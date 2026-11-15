@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.1038/s41598-024-67109-3",
+  "task_id": "dual_dataset/task_003",
+  "title": "Predicting wheat yield from 2001 to 2020 in Hebei Province at county and pixel levels based on synthesized time series images of Landsat and MODIS",
+  "category": "multiresolution_crop_monitoring",
+  "year": 2024,
+  "journal": "",
+  "impact_level": "medium",
+  "datasets": [
+    "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+    "MODIS Terra Vegetation Indices 16-Day Global 250 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "historical_high_resolution_optical_input",
+      "dataset": "USGS Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "moderate_resolution_vegetation_index_input",
+      "dataset": "MODIS Terra Vegetation Indices 16-Day Global 250 m"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "precipitation",
+    "temperature or reanalysis",
+    "soil and management data",
+    "county or field yield observations"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_003:multiresolution_crop_monitoring",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from independently selected full-text evidence; empirical results are excluded from idea fields."
+  },
+  "idea": {
+    "research_question": "Can Landsat and MODIS time series be combined to improve crop-yield or vegetation-productivity estimation across space and time?",
+    "hypothesis": "MODIS supplies dense temporal vegetation dynamics while Landsat supplies finer spatial structure; their fusion should improve both temporal continuity and spatial detail.",
+    "mechanism": "Temporal harmonization and spatial fusion construct vegetation trajectories, which are evaluated against yield or independent productivity observations and against single-sensor baselines.",
+    "key_variables": {
+      "target": "Joint observable and task-specific response",
+      "predictors": [
+        "historical_high_resolution_optical_input",
+        "moderate_resolution_vegetation_index_input",
+        "precipitation",
+        "temperature or reanalysis",
+        "soil and management data",
+        "county or field yield observations"
+      ]
+    },
+    "data_sources": [
+      "GEE:LANDSAT/LC08/C02/T1_L2",
+      "GEE:MODIS/061/MOD13Q1"
+    ],
+    "analytical_approach": "Spatiotemporal image fusion, vegetation-index trajectory modelling and yield prediction",
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves all required data roles and adds auxiliary data only for a distinct mechanism, validation or refinement purpose.",
+    "falsification_condition": "The idea fails if it drops a required role, cannot align the required inputs, or does not improve explanatory, predictive or validation performance over the appropriate single-source baseline.",
+    "required_component_usage": [
+      "historical_high_resolution_optical_input",
+      "moderate_resolution_vegetation_index_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently selected full-text multidataset evidence and the composite prompt contract on 2026-09-29."
+}

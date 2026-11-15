@@ -1,0 +1,58 @@
+{
+  "paper_id": "10.1088/1755-1315/964/1/012005",
+  "task_id": "three_or_more_datasets/task_014",
+  "title": "Assessing the applicability of Fusion Landsat-MODIS data for mapping agricultural land use - A case study in An Giang Province",
+  "category": "landsat_modis_vegetation_index",
+  "year": 2022,
+  "journal": "IOP Conference Series Earth and Environmental Science",
+  "impact_level": "medium",
+  "datasets": [
+    "Landsat Collection 2 Level-2 Surface Reflectance",
+    "MODIS Terra Surface Reflectance / Vegetation Indices",
+    "NDVI vegetation-index time series"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "landsat_optical_input",
+      "dataset": "Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "modis_temporal_input",
+      "dataset": "MODIS Terra Surface Reflectance / Vegetation Indices"
+    },
+    {
+      "role": "vegetation_index_input",
+      "dataset": "NDVI vegetation-index time series"
+    }
+  ],
+  "idea": {
+    "research_question": "Can Landsat spatial detail and MODIS temporal density jointly improve vegetation-index-based agricultural land-use mapping?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:LANDSAT/LC08/C02/T1_L2",
+      "GEE:MODIS/061/MOD09A1; GEE:MODIS/061/MOD13A1",
+      "Derived: NDVI from Landsat/MODIS"
+    ],
+    "required_component_usage": [
+      "landsat_optical_input",
+      "modis_temporal_input",
+      "vegetation_index_input"
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently audited full-text seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_014:composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "audited_candidate_space": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\landsat_modis_vegetation_index.json",
+    "extracted_methods_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\pdf_reextract\\Diem_2022_IOP_Conf._Ser.__Earth_Environ._Sci._964_012005.methods.txt",
+    "evidence_terms": {
+      "Landsat": true,
+      "MODIS": true,
+      "NDVI": true
+    }
+  }
+}

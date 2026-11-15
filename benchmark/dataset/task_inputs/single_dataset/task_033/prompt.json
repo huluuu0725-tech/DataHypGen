@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Tibetan Plateau",
+  "data_description": {
+    "dataset_name": "GIMMS NDVI From AVHRR Sensors (3rd Generation)",
+    "spatial_coverage": {
+      "region_name": "Tibetan Plateau",
+      "coverage": "Global land coverage at roughly 9 km, including the alpine grassland, meadow, desert-steppe and periglacial surfaces of the Tibetan Plateau in Central Asia."
+    },
+    "temporal_coverage": "1981-07-01 to 2013-12-16",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "About 9.3 km (1/12 degree)",
+    "temporal_unit": "15-day composite",
+    "analytical_capabilities": [
+      "Multi-decadal vegetation greenness trend analysis spanning the early 1980s onward",
+      "Interannual and growing-season vegetation dynamics at regional to continental scale",
+      "Maximum-value compositing of sub-monthly observations into monthly or annual series",
+      "Comparison of vegetation conditions across elevation belts, climate zones, or vegetation types",
+      "Quality-filtered assessment of long-term vegetation variability against gridded climate variables"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI as a dimensionless index",
+      "runtime_hint": "Use the `ndvi` band together with the `qa` flag band to drop unreliable retrievals before compositing. Values are stored without a scale factor, unlike MODIS vegetation-index collections. The coarse cell size means a single pixel mixes land-cover types, so masking sparsely vegetated cells by a low-NDVI threshold is common before trend analysis. Two composites per month allow maximum-value compositing to a monthly step."
+    },
+    "data_source": "NASA and NOAA, derived from AVHRR sensors",
+    "gee_asset": {
+      "id": "NASA/GIMMS/3GV0",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/GIMMS/3GV0"
+}

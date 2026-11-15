@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1038/s41467-021-27225-4",
+  "task_id": "dual_dataset/task_020",
+  "title": "Multi-decadal increase of forest burned area in Australia is linked to climate change",
+  "category": "climate_burned_area",
+  "year": 2021,
+  "journal": "Nature Communications",
+  "impact_level": "medium",
+  "datasets": [
+    "Climate forcing",
+    "Forest burned area"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "climate_forcing",
+      "dataset": "Climate forcing"
+    },
+    {
+      "role": "burned_area",
+      "dataset": "Forest burned area"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between climate forcing and forest burned area?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:ECMWF/ERA5/MONTHLY",
+      "GEE:MODIS/061/MCD64A1"
+    ],
+    "required_component_usage": [
+      "climate_forcing",
+      "burned_area"
+    ],
+    "expected_contribution": "A reproducible benchmark for association discovery across two core data components.",
+    "falsification_condition": "Reject if either required component is absent or not jointly represented."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_020:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_associations_20260930\\seed_audit.json"
+  }
+}

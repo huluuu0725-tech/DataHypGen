@@ -1,0 +1,1419 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_034",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "NLDAS-2: North American Land Data Assimilation System Forcing Fields",
+    "spatial_coverage": {
+      "region_name": "Western United States forests (west of 103°W)",
+      "coverage": "North American land domain from 24.85°N–53.28°N and 125.15°W–66.85°W; use the western-US subset and apply a forest mask for analysis."
+    },
+    "temporal_coverage": "1979-01-01T13:00:00Z to 2026-07-02T23:00:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "13915 m nominal (1/8°) hourly grid",
+    "temporal_unit": "Hourly forcing fields",
+    "analytical_capabilities": [
+      "Derive daily and monthly temperature, precipitation, humidity, wind and radiation summaries",
+      "Compute fuel-aridity proxies such as vapor-pressure deficit, reference evapotranspiration and fire-weather indices from meteorological inputs",
+      "Aggregate seasonal and annual climate indicators over western-US forest grids",
+      "Calculate spatial anomalies, trends and drought-index covariates for fire-risk analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NLDAS-2 meteorological forcing fields: temperature (°C), specific_humidity (mass fraction), pressure (Pa), wind_u/wind_v (m/s), radiation (W/m²), potential_evaporation and total_precipitation (kg/m²), plus convective_fraction (fraction) and potential_energy (J/kg).",
+      "runtime_hint": "Use catalog band names directly. Combine wind_u and wind_v to derive wind speed; aggregate hourly precipitation and radiation explicitly before computing daily fire indices. The collection is hourly at nominal 1/8° spacing, so it is not a precomputed FWI/ERC/KBDI/PDSI product. Apply the western-US and forest masks and retain the relevant 1979–2015 study interval."
+    },
+    "data_source": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC), NLDAS-2",
+    "gee_asset": {
+      "id": "NASA/NLDAS/FORA0125_H002",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_034.json",
+    "source_sha256": "0c71ffd3ecfba936d50149df0c1928de2b340bb34a2834f5a5ac3b3f03673772",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_034/prompt.json",
+    "current_prompt_sha256": "01c0b443d97883741549a36b99fb507258868ef41592e01101ffbb221d596620",
+    "original_anchor_asset": {
+      "id": "NASA/NLDAS/FORA0125_H002",
+      "observable_group": "nldas2_hourly_surface_meteorological_forcing",
+      "observation_identity_contract": {
+        "physical_object": "land-surface meteorological forcing fields",
+        "source_lineage": "NLDAS-2 FORA0125 forcing production lineage",
+        "core_measurement_semantics": "hourly NLDAS-2 surface meteorological forcing variables",
+        "non_material_variations": "archive, variable subset, reprojection, resampling or temporal aggregation derived from NLDAS-2 forcing",
+        "material_mismatches": "ERA5, gridMET, PRISM, another reanalysis/forcing lineage or a precomputed index without NLDAS-2 input"
+      },
+      "asset_alias_policy": "NLDAS-2 FORA0125 hourly forcing fields are admitted; ERA5/ERA5-Land, gridMET, PRISM-only products and precomputed fire indices are distinct products."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究不同气象强迫数据集及其多强迫集合配置如何影响山区雪水当量估计和数据同化后的结果。",
+      "hypothesis_or_mechanism": "不同再分析或陆面同化强迫产品在降水、温度、辐射等变量上的系统差异会通过下尺度、雨雪分配和雪模型传播到 SWE 估计中，而近峰值 ASO 雪深同化可约束这些误差。",
+      "variables_and_data_use": "论文使用 ERA5、MERRA-2 和 NLDAS-2 的小时地表降水、2 m 气温、比湿、地表气压、下行短波和长波辐射、10 m 风速等气象强迫变量，对其进行地形下尺度、偏差校正和集合扰动后驱动 SSiB3-SAST 雪模型；同时使用 ASO 雪深进行近峰值同化和 SWE 参考评估。",
+      "method_paradigm": "集合雪再分析",
+      "used_assets": [
+        "ECMWF Reanalysis v5 (ERA5)",
+        "Modern-Era Retrospective analysis for Research and Applications v2 (MERRA-2)",
+        "North American Land Data Assimilation System Phase 2 (NLDAS-2)",
+        "Airborne Snow Observatory (ASO)",
+        "SRTM DEM",
+        "AVHRR land cover",
+        "GLCF forest cover"
+      ],
+      "author_team": [
+        "Haorui Sun",
+        "Steven A. Margulis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Assessing the impact of meteorological forcing and its uncertainty on snow modeling and reanalysis",
+        "doi": "10.5194/tc-20-3345-2026",
+        "year": 2026,
+        "venue": "The Cryosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文研究 WRF-Hydro 是否能够模拟 Hurricane Irene 期间 Hackensack River watershed 的河流洪水与地表淹没过程。",
+      "hypothesis_or_mechanism": "通过将 NLDAS-2 降水和其他大气强迫输入 WRF-Hydro/Noah-MP，并结合高分辨率地形、土地覆盖和土壤数据，可以重建洪水流量、淹没深度和范围。",
+      "variables_and_data_use": "论文使用 NLDAS-2 的 precipitation 和其他 atmospheric forcings 作为模型模拟强迫，并将其从 0.125° × 0.125° 双线性插值到 200-m 分辨率；同时使用 USGS DEM 生成地形与 routing stack，MODIS Modified IGBP landcover 提供土地覆盖，STATSGO 提供土壤分类，并用 USGS streamflow stations、USGS high water mark data 和 crowdsourced/geotagged pictures 对模拟结果进行评估。",
+      "method_paradigm": "分布式水文建模",
+      "used_assets": [
+        "NLDAS-2",
+        "NASA NLDAS-2 website",
+        "USGS 1/3 arc-second (10-m) Digital Elevation Model (DEM)",
+        "MODIS Modified IGBP 20-category landcover product",
+        "STATSGO database",
+        "USGS stations",
+        "USGS high water mark (HWM) data",
+        "Google Earth 3D map layer",
+        "National Hydrography Dataset Plus (NHDPlus) V2.1",
+        "Synthetic Rating Curves (SRC)",
+        "National Flood Interoperability Experiment (NFIE) repository"
+      ],
+      "author_team": [
+        "Berina Mina Kilicarslan",
+        "Marouane Temimi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Simulating block-scale flood inundation and streamflow using the WRF-Hydro model in the New York City metropolitan area",
+        "doi": "10.1007/s11069-024-06597-y",
+        "year": 2024,
+        "venue": "Natural Hazards",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "如何利用条件连续偏斜伽马分布框架刻画并校正卫星降水产品相对于参考降水的系统偏差和随机误差？",
+      "hypothesis_or_mechanism": "卫星降水误差随降水率增大而增加，并可通过以卫星降水观测为条件的分布模型以及温度、湿度和总可降水量等协变量加以解释和校正。",
+      "variables_and_data_use": "使用TMPA和TMPA-RT的卫星降水作为待校正观测，使用NLDAS-2 File A小时降水强迫聚合得到的日尺度降水作为参考，并使用MERRA-2地表降水率和总可降水量等变量作为补充协变量；研究通过连续偏斜伽马分布估计降水发生概率、降水强度及误差分布。",
+      "method_paradigm": "统计误差建模与校正",
+      "used_assets": [
+        "TMPA",
+        "TMPA-RT",
+        "NLDAS-2",
+        "File A",
+        "MERRA-2"
+      ],
+      "author_team": [
+        "Daniel B. Wright",
+        "Dalia Kirschbaum",
+        "Soni Yatheendradas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Satellite Precipitation Characterization, Error Modeling, and Error Correction Using Censored Shifted Gamma Distributions",
+        "doi": "10.1175/jhm-d-17-0060.1",
+        "year": 2017,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "北美大陆季节性极端高温事件的发生频次是否存在显著趋势，且其与大规模低频气候变率模态有何关联？",
+      "hypothesis_or_mechanism": "季节性暖异常天数的增加受太平洋年代际振荡(PDO)和大西洋多年代际振荡(AMO)等大尺度气候模态的调制。",
+      "variables_and_data_use": "使用NLDAS-2和20世纪再分析数据的每日最高温度，计算超过季节第95百分位的天数；结合PDO、AMO指数及NCEP-DOE再分析场进行EOF分析与回归检验。",
+      "method_paradigm": "时间序列极值统计与气候模态回归分析",
+      "used_assets": [
+        "NLDAS-2",
+        "Twentieth Century Reanalysis",
+        "PDO index",
+        "AMO index",
+        "NCEP-Department of Energy (DOE) global reanalysis dataset",
+        "NOAA Extended Reconstructed SST dataset"
+      ],
+      "author_team": [
+        "Lejiang Yu",
+        "Shiyuan Zhong",
+        "Warren E. Heilman",
+        "Xindi Bian"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Trends in seasonal warm anomalies across the contiguous United States: Contributions from natural climate variability",
+        "doi": "10.1038/s41598-018-21817-9",
+        "year": 2018,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "美国本土陆地水文循环关键分量（降水、温度、净辐射、土壤水分、蒸散发、径流及积雪）在1980–2015年间的长期变化趋势及其空间分布特征是什么？",
+      "hypothesis_or_mechanism": "区域气候强迫（降水、温度、净辐射）的趋势梯度通过陆面能量与水分守恒动力学，驱动了蒸散发、土壤水分和径流的相应响应，进而导致蒸发分数呈现自西向东的递增格局。",
+      "variables_and_data_use": "使用 NLDAS-2 气象强迫数据（P, T, Rnet）驱动 Noah 3.3 陆面模型，结合 CPC 重缩放降水和多源卫星同化数据生成 NCA-LDAS 再分析产品，并利用 Mann-Kendall 检验计算各分量年均趋势，最后通过 FLUXNET-MTE、CMC、SNODAS 和 USGS HUC8 进行独立验证。",
+      "method_paradigm": "陆面数据同化与趋势统计检验",
+      "used_assets": [
+        "NLDAS-2 meteorology",
+        "CPC precipitation",
+        "ESA CCI soil moisture",
+        "LPRM AMSR-E soil moisture",
+        "SMOPS ASCAT soil moisture",
+        "SMOPS SMOS soil moisture",
+        "SMAP NSIDC soil moisture",
+        "SMM/I snow depth",
+        "AMSR-E snow depth",
+        "AMSR2 snow depth",
+        "IMS snow-covered area",
+        "MODIS snow-covered area",
+        "MODIS irrigated area",
+        "FLUXNET-MTE ET",
+        "CMC snow cover",
+        "SNODAS SWE",
+        "USGS HUC8 runoff"
+      ],
+      "author_team": [
+        "Michael F. Jasinski",
+        "Jordan S. Borak",
+        "Sujay V. Kumar",
+        "David M. Mocko",
+        "C. D. Peters‐Lidard",
+        "Matthew Rodell",
+        "Hualan Rui",
+        "H. K. Beaudoing",
+        "Bruce Vollmer",
+        "Kristi R. Arsenault",
+        "Bailing Li",
+        "John Bolten",
+        "Natthachet Tangdamrongsub"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "NCA-LDAS: Overview and Analysis of Hydrologic Trends for the National Climate Assessment",
+        "doi": "10.1175/jhm-d-17-0234.1",
+        "year": 2019,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究 NLDAS-2 气象强迫驱动的 WRF-Hydro 水文系统如何影响美国东北部1980年至2015年的径流、河流流量变化和水收支组成。",
+      "hypothesis_or_mechanism": "气温和降水变化通过改变积雪、土壤水分、冠层水分、蒸散发及地表和地下径流的分配，进而改变河流流量的大小和时序。",
+      "variables_and_data_use": "使用 NLDAS-2 的小时降水、短波和长波辐射、风速、气温、比湿和地表气压驱动 WRF-Hydro；模型输出雪储量、土壤水分、冠层水分、蒸散发、地表径流、地下径流和河流流量，并使用 NHDPlusV2 进行河网路由、使用 GagesII 的 USGS 流量观测进行校准和验证。",
+      "method_paradigm": "水文模拟与趋势评估",
+      "used_assets": [
+        "NLDAS-2",
+        "National Hydrography Dataset Plus version 2 (NHDPlusV2)",
+        "Geospatial Attributes of Gages for Evaluating Streamflow II (GagesII)",
+        "WRF-Hydro",
+        "RAPID"
+      ],
+      "author_team": [
+        "Marcelo Somos‐Valenzuela",
+        "Richard Palmer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Use of WRF-Hydro over the Northeast of the US to Estimate Water Budget Tendencies in Small Watersheds",
+        "doi": "10.3390/w10121709",
+        "year": 2018,
+        "venue": "Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "图像驱动的STIC1.2模型在不同干湿梯度下的区域蒸散发估算精度如何？",
+      "hypothesis_or_mechanism": "通过将辐射表观温度直接耦合到Penman-Monteith方程的解析解中，可以消除经验参数化不确定性，从而更准确地估算潜热通量。",
+      "variables_and_data_use": "使用MODIS反照率、LST、NDVI和LAI作为地表状态变量，结合NLDAS-2气象强迫（辐射、气温、湿度、风速）驱动能量平衡模型，并利用AmeriFlux通量塔数据进行交叉验证。",
+      "method_paradigm": "图像基地表能量平衡建模",
+      "used_assets": [
+        "NLDAS-2",
+        "MOD09A1",
+        "MOD11A2",
+        "MOD15A2",
+        "MCD15A2",
+        "MOD12Q1",
+        "MCD43B2",
+        "MCD43B3",
+        "PRISM",
+        "AmeriFlux",
+        "University of Idaho METDATA"
+      ],
+      "author_team": [
+        "Nishan Bhattarai",
+        "Kaniska Mallick",
+        "N. A. Brunsell",
+        "Ge Sun",
+        "Meha Jain"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Regional evapotranspiration from an image-based implementation of the Surface Temperature Initiated Closure (STIC1.2) model and its validation across an aridity gradient in the conterminous US",
+        "doi": "10.5194/hess-22-2311-2018",
+        "year": 2018,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何整合 CONUS 流域的小时 NLDAS-2 气象强迫、实测流量和多源流域属性，构建覆盖广泛流域及不同水文条件的 CAMELSH 数据集？",
+      "hypothesis_or_mechanism": "小时尺度 NLDAS-2 强迫与流域尺度空间汇总相结合，能够为流域水文分析和机器学习应用提供具有统一时间基准、空间范围和多样流域属性的输入数据。",
+      "variables_and_data_use": "使用 NLDAS-2 的11个小时气象强迫变量，并依据 GAGES-II 流域边界进行面积加权空间平均；将气温由开尔文转换为摄氏度，并将降水、温度和潜在蒸散发等变量进一步处理为日尺度以计算气候属性。同时使用 USGS Water Information System’s Instantaneous Values Service 的实测流量作为流域时间序列数据，使用 GAGES-II 和 HydroATLAS 提供流域边界及静态属性。",
+      "method_paradigm": "多源水文数据集构建",
+      "used_assets": [
+        "NLDAS-2",
+        "NLDAS_FORA0125_H.002",
+        "USGS Water Information System’s Instantaneous Values Service",
+        "Geospatial Attributes of Gages for Evaluating Streamflow (GAGES-II) database",
+        "HydroATLAS dataset"
+      ],
+      "author_team": [
+        "Vinh Ngoc Tran",
+        "Donghui Xu",
+        "Van Tam Nguyen",
+        "Tae Ho Kim",
+        "V. Y. Ivanov"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "CAMELSH: A Large-Sample Hourly Hydrometeorological Dataset and Attributes at Watershed-Scale for CONUS",
+        "doi": "10.1038/s41597-025-05612-6",
+        "year": 2025,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究LSTM能否利用像元尺度气象强迫和静态地表特征，在大范围内准确模拟雪水当量动态并实现跨区域迁移。",
+      "hypothesis_or_mechanism": "LSTM能够从降水、温度、辐射及其他气象强迫的长期序列中学习雪积累与消融的非线性时序关系，从而优于SNOW17或支持跨区域迁移。",
+      "variables_and_data_use": "模型使用PRISM的降水、平均温度、露点温度和水汽压亏缺，使用NLDAS-2的向下长波和短波辐射，并结合SRTM海拔和MODIS土地覆盖等静态特征；以University of Arizona (UA) ground-based daily 4-km SWE data product作为训练目标、校准目标和评估基准。NLDAS-2辐射先由逐小时聚合为日尺度，再重采样到4-km网格。",
+      "method_paradigm": "深度学习状态重建",
+      "used_assets": [
+        "PRISM",
+        "near-real-time North American Land Data Assimilation Phase 2 data set (NLDAS-2)",
+        "University of Arizona (UA) ground-based daily 4-km SWE data product",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "MODIS land cover climatology data set"
+      ],
+      "author_team": [
+        "Yuan‐Heng Wang",
+        "Hoshin V. Gupta",
+        "Xubin Zeng",
+        "Guo‐Yue Niu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Exploring the Potential of Long Short‐Term Memory Networks for Improving Understanding of Continental‐ and Regional‐Scale Snowpack Dynamics",
+        "doi": "10.1029/2021wr031033",
+        "year": 2022,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "在不同空间分辨率的气象强迫产品驱动下，SAC-HT 分布式水文模型的模拟技能如何随流域面积变化？",
+      "hypothesis_or_mechanism": "小流域由于缺乏对输入误差的缓冲能力且受地形与人工排水网络影响，模型技能会显著下降并表现出更强的空间变异性。",
+      "variables_and_data_use": "使用 NLDAS-2 的小时级气温和降水作为主要气象强迫输入；使用 Stage IV 降水作为高分辨率对比输入；使用 USGS 实测流量数据进行模型率定与验证。",
+      "method_paradigm": "水文模型率定与多源降水对比评估",
+      "used_assets": [
+        "NLDAS-2",
+        "Stage IV",
+        "USGS discharge",
+        "LIDAR/HEC-RAS rating curves"
+      ],
+      "author_team": [
+        "Tyler J. Madsen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Evaluation of a distributed streamflow forecast model at multiple watershed scales",
+        "doi": "10.31274/etd-180810-5187",
+        "year": 2017,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "评估 crowdsourced 传感器网络（PurpleAir）记录的小时级气温与 NLDAS-2 网格化气温的一致性、偏差机制及传感器老化特征。",
+      "hypothesis_or_mechanism": "户外传感器与 NLDAS-2 气温在常规条件下高度一致，但在极端高温下因太阳辐射加热产生偏差；传感器运行年限越长累积误差越大；室内气温受建筑热惯性影响滞后于室外约2小时。",
+      "variables_and_data_use": "使用 PurpleAir 原始 15 分钟温湿度数据经清洗与平均生成小时级气温；使用 NLDAS-2 小时级气温进行空间网格匹配；结合 IECC 气候分区与 NLCD 土地覆盖数据作为协变量进行线性回归、ANOVA 与交叉相关分析。",
+      "method_paradigm": "时空匹配与统计验证",
+      "used_assets": [
+        "PurpleAir",
+        "NLDAS-2",
+        "IECC Climate Zones",
+        "NLCD"
+      ],
+      "author_team": [
+        "Priyanka deSouza",
+        "Peter C. Ibsen",
+        "Daniel M. Westervelt",
+        "Ralph A. Kahn",
+        "Benjamin F. Zaitchik",
+        "Patrick L. Kinney"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A nationwide evaluation of crowd-sourced ambient temperature data",
+        "doi": "10.3389/fenvs.2025.1527855",
+        "year": 2025,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何将 NLDAS-2 陆面变量和其他水文气候变量统一转换为多空间尺度、多时间尺度的网格数据产品？",
+      "hypothesis_or_mechanism": "空间和时间聚合会降低陆面变量的细尺度异质性并消除部分日变化，但仍能保留主要季节性和区域空间格局。",
+      "variables_and_data_use": "使用 NLDAS-2 的 APCP、EVP、LAI 和 SOILM 原始小时、0.125 度数据，并将其聚合为 0.5 度和周尺度；同时整合 streamflow、drought 和 teleconnections 等变量，其中 streamflow 用于点到网格转换及验证。",
+      "method_paradigm": "数据集构建与验证",
+      "used_assets": [
+        "NLDAS-2 data",
+        "NLDAS-2 Land Surface Variables",
+        "APCP",
+        "EVP",
+        "LAI",
+        "SOILM",
+        "streamflow",
+        "drought",
+        "teleconnections",
+        "DataDryad at 10.5061/dryad.g1jwstqw7"
+      ],
+      "author_team": [
+        "Robert J. Erhardt",
+        "Courtney A. Di Vittorio",
+        "Staci A. Hepler",
+        "Lauren E. L. Lowman",
+        "Wendy Wei"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Homogenized gridded dataset for drought and hydrometeorological modeling for the continental United States",
+        "doi": "10.1038/s41597-024-03202-6",
+        "year": 2024,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "该研究比较 GHCN、PRISM 和 NLDAS 在美国行政区尺度识别极端降水事件时的一致性及其在不同社会地理特征下的差异。",
+      "hypothesis_or_mechanism": "不同气象数据源的观测方式、空间分辨率和模型谱系会导致极端降水暴露评估不一致，而这种不一致可能随气象站距离、城市化、地形和社会脆弱性而变化。",
+      "variables_and_data_use": "研究使用 GHCN 日降水站点观测、PRISM 日总降水网格以及 NLDAS 小时总降水；NLDAS 小时降水被按日求和后，在 census tract 和 county 多边形内做空间加权平均，并用于计算 99 分位和一英寸阈值下的极端降水事件。",
+      "method_paradigm": "数据源一致性评估",
+      "used_assets": [
+        "GHCN",
+        "PRISM",
+        "NLDAS",
+        "U.S. Census Bureau's TIGER/Line database",
+        "American Community Survey (ACS)",
+        "U.S. Centers for Disease Control and Prevention Agency for Toxic Substance and Disease Registry's SVI",
+        "United States Geological Survey LANDFIRE elevation data"
+      ],
+      "author_team": [
+        "Kyle T. Aune",
+        "Benjamin F. Zaitchik",
+        "Frank C. Curriero",
+        "Meghan F. Davis",
+        "Geneé S. Smith"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Agreement in extreme precipitation exposure assessment is modified by race and social vulnerability",
+        "doi": "10.3389/fepid.2023.1128501",
+        "year": 2023,
+        "venue": "Frontiers in Epidemiology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "不同物理参数化的 Noah-MP 配置能否在 NLDAS-2 强迫驱动下改进美国本土陆地水收支各组分的估计及其不确定性表征？",
+      "hypothesis_or_mechanism": "对径流、气孔导度、土壤水分胁迫和近地面大气湍流进行物理参数扰动，可以刻画模型结构不确定性，并通过更合理的过程表示改善陆地水收支模拟。",
+      "variables_and_data_use": "使用逐小时 NLDAS-2 大气强迫中的辐射、气温、气压、比湿、风速和降水率驱动 48 个 Noah-MP 配置，生成月尺度蒸散发、径流、雪水当量、土壤水分、地下水和总水储量；使用 GRACE、NASMD、SNODAS、AmeriFlux、FLUXNET MTE 和 GLEAM 进行验证，并以 Noah-2.8、VIC-4.0.3 和 Mosaic 作为 NLDAS-2 模型基准。",
+      "method_paradigm": "陆面模型集合模拟",
+      "used_assets": [
+        "hourly NLDAS-2 atmospheric forcings",
+        "NLDAS-2",
+        "Noah-MP",
+        "Noah-2.8",
+        "VIC-4.0.3",
+        "Mosaic",
+        "Gravity Recovery and Climate Experiment (GRACE)",
+        "North American Soil Moisture Database (NASMD)",
+        "Snow Data Assimilation System (SNODAS)",
+        "AmeriFlux",
+        "FLUXNET multi-tree ensemble (MTE)",
+        "Global Land Evaporation Amsterdam Model (GLEAM), version 3.3a"
+      ],
+      "author_team": [
+        "Hui Zheng",
+        "Wenli Fei",
+        "Zong‐Liang Yang",
+        "Jiangfeng Wei",
+        "Long Zhao",
+        "Lingcheng Li",
+        "Shu Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "An ensemble of 48 physically perturbed model estimates of the 1∕8° terrestrial water budget over the conterminous United States, 1980–2015",
+        "doi": "10.5194/essd-15-2755-2023",
+        "year": 2023,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "短期陆面模型模拟在重现美国干旱空间分布方面存在哪些局限性及其成因是什么？",
+      "hypothesis_or_mechanism": "陆面模型因基期较短且依赖单一土壤水分指标，难以捕捉由长期气候变率（如海温异常）驱动的干旱空间格局。",
+      "variables_and_data_use": "使用 NLDAS-2 小时级气象强迫驱动 NWM 和 VIC/Noah/Mosaic 模型获取土壤水分；结合 USDM 周尺度干旱等级进行模型验证；利用 Livneh 长序列数据集和 GPCC/GISS/SST 观测诊断气候驱动因素。",
+      "method_paradigm": "模型评估与气候归因分析",
+      "used_assets": [
+        "NLDAS-2",
+        "NWM v2.0",
+        "USDM",
+        "Livneh et al 2013 dataset",
+        "GPCC precipitation",
+        "NASA GISS surface temperature",
+        "NOAA extended reconstructed SST",
+        "CAM5",
+        "GFDL AM3",
+        "NASA GEOS-5"
+      ],
+      "author_team": [
+        "Hailan Wang",
+        "Li Xu",
+        "Mimi Hughes",
+        "Muthuvel Chelliah",
+        "David G. DeWitt",
+        "Brian Fuchs",
+        "Darren L. Jackson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Potential caveats in land surface model evaluations using the US drought monitor: roles of base periods and drought indicators",
+        "doi": "10.1088/1748-9326/ac3f63",
+        "year": 2021,
+        "venue": "Environmental Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "NWMv2.0与NWMv2.1在东北美国地区积雪模拟中的性能差异及其对气象强迫误差的敏感性如何？",
+      "hypothesis_or_mechanism": "改进的强迫数据集（如AORC）与模型配置可显著降低降水与温度偏差，从而提升积雪深度与SWE的模拟精度。",
+      "variables_and_data_use": "使用NLDAS-2降水与温度作为NWMv2.0的气象强迫输入；结合NYSM与NYSS实测雪深、SWE及气象数据进行偏差计算与RMSE评估。",
+      "method_paradigm": "多源观测对比与模型偏差分析",
+      "used_assets": [
+        "NLDAS-2",
+        "NWMv2.0",
+        "NWMv2.1",
+        "NYSM",
+        "NYSS",
+        "AORC",
+        "AnA"
+      ],
+      "author_team": [
+        "Patrick Naple"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating the performance of national water model snow simulations in the Northeastern United States using advanced Mesonet observations",
+        "doi": "10.54014/sjzv-n2cs",
+        "year": 2021,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "NLDAS-2 气候集合预报与 NMME 季节预报能否有效预测藻类生物量并指导藻株和池塘水深的月度优化选择？",
+      "hypothesis_or_mechanism": "利用历史 NLDAS-2 逐小时气象强迫构造的气候集合能够表征未来气象变率，并通过驱动水动力和藻类生长模型支持稳健的培养策略决策。",
+      "variables_and_data_use": "使用 NLDAS-2 的逐小时降水、气温、地表气压、风速、比湿、入射太阳辐射和入射长波辐射等变量，驱动 MASS2 和 BGM，并利用 1979—2023 年历史数据构造月度气候集合预报；同时使用 NMME 预报、Mesa/Falcon Field 地面站观测和 Phoenix Encanto 太阳辐射观测进行预测比较、验证和模型输入补充。",
+      "method_paradigm": "集合预报与过程模拟",
+      "used_assets": [
+        "NLDAS‐2",
+        "NMME",
+        "CCSM4",
+        "CFSv2",
+        "GEOS",
+        "Arizona Automated Surface Observing System (ASOS) station at Mesa/Falcon Field",
+        "Phoenix Encanto",
+        "Mountain Microclimate Simulation Model (MTCLIM)",
+        "Huesemann Algae Biomass Growth Model (BGM)",
+        "Modular Aquatic Simulation System in Two Dimensions (MASS2)"
+      ],
+      "author_team": [
+        "Hongxiang Yan",
+        "Song Gao",
+        "Mark S. Wigmosta",
+        "André M. Coleman",
+        "Ning Sun",
+        "Michael H. Huesemann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Adaptive Algal Cultivation Enabled by a Monthly Biomass Forecasting System",
+        "doi": "10.1002/bit.70120",
+        "year": 2025,
+        "venue": "Biotechnology and Bioengineering",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "不同降水产品对降雨触发滑坡暴雨特征及强度–持续时间阈值评估结果的影响有多大？",
+      "hypothesis_or_mechanism": "不同降水产品的传感器来源、空间分辨率和融合方法差异会导致暴雨强度与持续时间估计不同，进而改变滑坡阈值的命中率和误报率。",
+      "variables_and_data_use": "使用 NLDAS-2 逐小时降水以及 MRMS、IMERG-Early 和 IMERG-Final 降水估计，提取滑坡位置网格并计算暴雨总深度、持续时间、平均强度、峰值强度、重现期、排名和 z 分数；使用 NASA Global Landslide Catalogue 提供滑坡事件和触发类别，并以 NOAA precipitation atlas 获取重现期，比较不同产品下强度–持续时间阈值的命中率、误报率和频率偏差。",
+      "method_paradigm": "多源观测比较与阈值评估",
+      "used_assets": [
+        "NASA Global Landslide Catalogue (GLC)",
+        "North American Land Data Assimilation System version 2 (NLDAS‐2) meteorological dataset",
+        "Multi-radar multi-sensor (MRMS) precipitation estimates",
+        "Integrated Multi-satellitE Retrievals for GPM (IMERG) Early",
+        "Integrated Multi-satellitE Retrievals for GPM (IMERG) Final",
+        "NOAA precipitation atlas",
+        "North America Elevation 1-Kilometer Resolution, 2007"
+      ],
+      "author_team": [
+        "Elsa Culler",
+        "Andrew M. Badger",
+        "J. Toby Minear",
+        "K. F. Tiampo",
+        "Spencer D. Zeigler",
+        "Ben Livneh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "A multi‐sensor evaluation of precipitation uncertainty for landslide‐triggering storm events",
+        "doi": "10.1002/hyp.14260",
+        "year": 2021,
+        "venue": "Hydrological Processes",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "不同土壤冻融参数化方案如何影响大尺度、高时间分辨率下的径流和河流流量模拟？",
+      "hypothesis_or_mechanism": "冻结土壤中的冰会改变土壤水力性质和入渗能力，从而影响地表径流、地下水补给及最终河流流量，而不同冻土方案会产生不同的水文响应。",
+      "variables_and_data_use": "研究使用 NLDAS-2 precipitation data 以及 NLDAS-2 atmospheric forcing data 中的辐射、气压、气温、比湿和风速等逐小时变量驱动 Noah-MP；同时使用 IMERG-Final Run (V06B) precipitation 构造替代降水强迫情景。Noah-MP 通过不同超冷液态水和土壤水力性质方案模拟径流和地下水排放，再由 RAPID 汇流得到日流量，并使用 USGS National Water Information System (NWIS) 流量、UA SWE 和雪深产品以及 SMAP Level-3 冻融数据进行验证。",
+      "method_paradigm": "陆面水文模拟与参数化比较",
+      "used_assets": [
+        "NLDAS-2 precipitation data",
+        "NLDAS-2 atmospheric forcing data",
+        "IMERG-Final Run (V06B) precipitation",
+        "Noah-MP",
+        "RAPID",
+        "NHDPlus version 2 geospatial data set",
+        "USGS National Water Information System (NWIS)",
+        "4-km gridded snow water equivalent (SWE) and snow depth developed at the University of Arizona (UA)",
+        "NASA Soil Moisture Active Passive (SMAP) Level-3 data set",
+        "global 1-km hybrid State Soil Geographic Database",
+        "USGS 24-category vegetation data"
+      ],
+      "author_team": [
+        "Jetal Agnihotri",
+        "Ali Behrangi",
+        "Ahmad A. Tavakoly",
+        "Matthew Geheran",
+        "Mohammad Ali Farmani",
+        "Guo‐Yue Niu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Higher Frozen Soil Permeability Represented in a Hydrological Model Improves Spring Streamflow Prediction From River Basin to Continental Scales",
+        "doi": "10.1029/2022wr033075",
+        "year": 2023,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究重降水及其阈值是否与纽约州非冬季哮喘急诊就诊风险相关。",
+      "hypothesis_or_mechanism": "降水可能通过改变空气中过敏原、颗粒物和真菌孢子的浓度、扩散或致敏性而影响哮喘急性发作风险，并可能呈现非线性关系。",
+      "variables_and_data_use": "研究使用 NLDAS-2 的每日总降水、每日最高温度和热指数作为主要气象暴露或协变量，将 NLDAS-2 网格与哮喘病例地址进行空间匹配并按就诊日期赋值；同时使用 SPARCS 哮喘急诊记录作为结局，使用 EPA Bayesian space-time downscaling fusion model 的 PM 2.5 和臭氧数据作为协变量，使用 NLCD 土地覆盖数据进行开放空间分析，并以 GHCN-Daily 站点降水数据开展敏感性分析。",
+      "method_paradigm": "病例交叉关联分析",
+      "used_assets": [
+        "NYS Department of Health's (NYSDOH) Statewide Planning and Research Cooperative System (SPARCS)",
+        "North American Land Data Assimilation System forcing data for Phase 2 (NLDAS‐2)",
+        "US Environmental Protection Agency's Bayesian space-time downscaling fusion model",
+        "National Land Cover Database (NLCD)",
+        "Global Historical Climatology Network‐Daily (GHCN)"
+      ],
+      "author_team": [
+        "Arjita Rai",
+        "Temilayo Adeyeye",
+        "Tabassum Z. Insaf",
+        "Neil Muscatiello"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessing the Effect of Precipitation on Asthma Emergency Department Visits in New York State From 2005 to 2014: A Case‐Crossover Study",
+        "doi": "10.1029/2023gh000849",
+        "year": 2023,
+        "venue": "GeoHealth",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究热浪暴露是否与早产和非意外死亡风险相关，以及这种关联是否因城乡属性而异。",
+      "hypothesis_or_mechanism": "持续高温热浪可能通过热应激及相关生理过程增加早产和非意外死亡风险，并且细尺度空间暴露估计能够更好地反映城市热岛和局地温度差异。",
+      "variables_and_data_use": "使用NLDAS-2逐小时空气温度计算日最低、平均和最高温度，并据此构造基于百分位数或绝对阈值的连续两日热浪指标；使用MOD11A2 1 km地表温度对NLDAS-2空气温度进行空间下推；将ZIP代码级、NLDAS网格级和下推网格级热浪暴露与出生及死亡记录进行关联分析。",
+      "method_paradigm": "时间分层病例交叉研究",
+      "used_assets": [
+        "Phase 2 of the North American Land Data Assimilation System (NLDAS-2)",
+        "NLDAS",
+        "MODIS",
+        "MOD11A2"
+      ],
+      "author_team": [
+        "Connor Y. H. Wu",
+        "Benjamin F. Zaitchik",
+        "Samarth Swarup",
+        "Julia M. Gohlke"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Influence of the Spatial Resolution of the Exposure Estimate in Determining the Association between Heat Waves and Adverse Health Outcomes",
+        "doi": "10.1080/24694452.2018.1511411",
+        "year": 2019,
+        "venue": "Annals of the American Association of Geographers",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "不同网格化降水数据源，尤其是 NLDAS，与站点降水观测的一致性如何，以及它们如何影响 SWAT 模型的径流模拟、参数敏感性和模型表现？",
+      "hypothesis_or_mechanism": "不同降水产品对降水极端事件、干湿日和空间分布的刻画差异会改变 SWAT 的敏感参数、参数校准结果及模拟径流性能。",
+      "variables_and_data_use": "研究使用 NLDAS 的逐小时总降水并汇总或提取为日尺度，和 DAYMET、GLDAS、PRISM 的网格化降水进行比较，以 GHCN-D 站点日降水作为参考；各降水源随后分别驱动 SWAT，流量观测用于校准、验证和模型性能评价，土壤、DEM、土地覆盖和作物图层用于构建 SWAT 模型。",
+      "method_paradigm": "降水验证与水文模拟",
+      "used_assets": [
+        "NLDAS",
+        "DAYMET",
+        "GLDAS",
+        "PRISM",
+        "GHCN-D",
+        "State Soil Geographic Dataset",
+        "30-m digital elevation model (DEM)",
+        "2005 Kansas Level IV land cover map",
+        "Cropland Data Layer",
+        "National Land Cover Database layer",
+        "Daily flow at the reservoir outlet"
+      ],
+      "author_team": [
+        "Muluken E. Muche",
+        "Sumathy Sinnathamby",
+        "Rajbir Parmar",
+        "Christopher D. Knightes",
+        "John M. Johnston",
+        "Kurt Wolfe",
+        "S. Thomas Purucker",
+        "Mike Cyterski",
+        "Deron Smith"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison and Evaluation of Gridded Precipitation Datasets in a Kansas Agricultural Watershed Using SWAT",
+        "doi": "10.1111/1752-1688.12819",
+        "year": 2020,
+        "venue": "JAWRA Journal of the American Water Resources Association",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究多日滞后暴露于 NLDAS 气象强迫推导的高温和最高热指数是否会增加热应激、脱水、急性肾衰竭及心血管疾病相关急诊就诊和住院风险。",
+      "hypothesis_or_mechanism": "持续或滞后的高温及高热指数可能通过热应激、脱水和心血管及肾脏负荷增加而提高相关健康结局风险，并且该效应可能因人口和城乡特征而异。",
+      "variables_and_data_use": "使用 NLDAS 小时数据派生日最高温度、日最低温度、日平均温度和日最高热指数，并构造当日及滞后 1 至 7 天和多日移动平均暴露；使用 ASOS 观测进行补充比较，使用 EPA downscaler 的 PM2.5 和臭氧估计进行控制和交互作用分析，使用医院急诊及住院健康结局数据开展病例交叉分析。",
+      "method_paradigm": "环境流行病学影响评估",
+      "used_assets": [
+        "NLDAS reanalysis dataset",
+        "NLDAS hourly data",
+        "Automated Surface Observing System (ASOS)",
+        "Environmental Protection Agency’s (EPA) downscaler (DS) model",
+        "rural-urban commuting area (RUCA) codes"
+      ],
+      "author_team": [
+        "Temilayo Adeyeye",
+        "Tabassum Z. Insaf",
+        "Mohammad Z. Al‐Hamdan",
+        "Seema G. Nayak",
+        "Neil Stuart",
+        "Stephen DiRienzo",
+        "William L. Crosson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Estimating policy-relevant health effects of ambient heat exposures using spatially contiguous reanalysis data",
+        "doi": "10.1186/s12940-019-0467-5",
+        "year": 2019,
+        "venue": "Environmental Health",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "能否利用高分辨率 MODIS 地表温度空间变化，将 NLDAS-2 的粗分辨率日最高气温降尺度到约 1 km 分辨率？",
+      "hypothesis_or_mechanism": "在弱平流和无锋面过境条件下，近地面气温的空间格局可由地表温度的空间格局近似表示，因此 MODIS LST 异常能够补充 NLDAS-2 未解析的城市和局地热环境差异。",
+      "variables_and_data_use": "使用 NLDAS-2 逐小时气温计算约 12 km 网格的日最高气温，使用 MODIS/Aqua MYD11A1 和 MYD11A2 提取约 1 km 的白天地表温度空间偏差，将标准化或按固定比例缩放的 LST 偏差叠加到 NLDAS-2 气温上，并使用 National Weather Service (NWS) 台站观测进行验证。",
+      "method_paradigm": "遥感辅助空间降尺度",
+      "used_assets": [
+        "NLDAS-2",
+        "MODIS/Aqua MYD11A1",
+        "MODIS/Aqua MYD11A2",
+        "National Weather Service (NWS) station observations"
+      ],
+      "author_team": [
+        "William L. Crosson",
+        "Mohammad Z. Al‐Hamdan",
+        "Tabassum Z. Insaf"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling NLDAS-2 daily maximum air temperatures using MODIS land surface temperatures",
+        "doi": "10.1371/journal.pone.0227480",
+        "year": 2020,
+        "venue": "PLoS ONE",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "NLDAS-2 气象强迫与 MODIS 地表温度、植被覆盖度相结合时，能否有效刻画 LST/FVC 空间中的土壤湿度状态并支持粗分辨率土壤湿度降尺度？",
+      "hypothesis_or_mechanism": "气象强迫提供的近地面气温、风速和向下短波辐射能够约束地表能量平衡及干湿边界，而 LST 与 FVC 的组合可反映土壤水分变化并作为有效降尺度因子。",
+      "variables_and_data_use": "使用 NLDAS-2 Forcing Dataset 中 10 m U/V 风速、2 m 气温和向下短波辐射，并选取当地时间 13:00 与 MODIS Aqua LST 匹配；使用 MOD11A1 和 MYD11A1 获取 LST，使用 MCD15A2H 获取 LAI 并计算 FVC，使用 MCD43A3 和 MYD04_3K 估算反照率及大气辅助参数；据此计算 LST/FVC 空间的干湿边界、LST-derived SMI，并用 SMAPVEX12 的 SM maps 验证空间动态和降尺度效果。",
+      "method_paradigm": "遥感指标构建与降尺度验证",
+      "used_assets": [
+        "NLDAS-2 Forcing Dataset",
+        "MOD11A1",
+        "MYD11A1",
+        "MCD15A2H",
+        "MCD43A3",
+        "MYD04_3K",
+        "SMAPVEX12"
+      ],
+      "author_team": [
+        "Hao Sun",
+        "Baichi Zhou",
+        "Hongxing Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatial Evaluation of Soil Moisture (SM), Land Surface Temperature (LST), and LST-Derived SM Indexes Dynamics during SMAPVEX12",
+        "doi": "10.3390/s19051247",
+        "year": 2019,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "动态的水分供给、潜在蒸发需求、植被覆盖和土壤质地如何控制北美陆面表层土壤的干燥速率及直接土壤蒸发？",
+      "hypothesis_or_mechanism": "降水补给、潜在蒸发需求、植被遮荫与蒸腾作用以及土壤质地共同调节表层土壤失水，其中水分供给和大气蒸发需求是关键动态控制因素。",
+      "variables_and_data_use": "使用 SMAP 表层体积土壤湿度计算土壤干燥速率，以 NLDAS-2 primary forcing fields 提供的降水和由气象强迫计算的 PE 作为动态控制变量，使用 MODIS NDVI 表征植被，并使用 NLDAS-2 土壤质地和 NLDAS-2 Noah simulations 进行静态控制和模型比较。",
+      "method_paradigm": "遥感观测与陆面模型比较",
+      "used_assets": [
+        "SMAP",
+        "enhanced level 3 soil moisture data product, Version 1",
+        "NLDAS-2 primary forcing fields",
+        "NDVI",
+        "NLDAS-2 soil texture field",
+        "NLDAS-2 Noah simulations"
+      ],
+      "author_team": [
+        "Peter J. Shellito",
+        "Eric E. Small",
+        "Ben Livneh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Controls on surface soil drying rates observed by SMAP and simulated by the Noah land surface model",
+        "doi": "10.5194/hess-22-1649-2018",
+        "year": 2018,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "HEAVEN 数据同化框架能否在飓风诱发的极端洪水事件中提高 SAC-SMA 模型的河流流量预报能力？",
+      "hypothesis_or_mechanism": "通过联合处理强迫数据、模型参数、模型结构和初始状态的不确定性，并同化 USGS 流量观测，HEAVEN 可以改善极端洪峰的预报准确性。",
+      "variables_and_data_use": "使用 NLDAS_FORA0125_H 的降水变量作为 SAC-SMA 的降水强迫，将逐小时数据聚合为 6 小时平均面降水；使用 MOD16A2 PET product 的潜在蒸散发作为另一项模型输入；使用 USGS streamflow data 进行模型校准、数据同化和验证。",
+      "method_paradigm": "水文数据同化与洪水预报",
+      "used_assets": [
+        "NLDAS_FORA0125_H",
+        "MOD16A2 PET product",
+        "USGS streamflow data",
+        "SAC-SMA",
+        "HEAVEN"
+      ],
+      "author_team": [
+        "Peyman Abbaszadeh",
+        "Fatemeh Gholizadeh",
+        "Keyhan Gavahi",
+        "Hamid Moradkhani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Towards a robust hydrologic data assimilation system for hurricane-induced river flow forecasting",
+        "doi": "10.5194/hess-29-2407-2025",
+        "year": 2025,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究不同当前和未来复合飓风情景下，河流洪水、潮汐、风暴潮和海平面上升如何共同影响沿海电网变电站的淹没范围、洪水深度和风险。",
+      "hypothesis_or_mechanism": "降水驱动的河流洪水与沿海潮汐和风暴潮在时间上叠加，并叠加未来海平面上升时，将增加关键基础设施的洪水深度、淹没范围和超阈值暴露时间。",
+      "variables_and_data_use": "实际 Hurricane Sandy 和 Irene 事件使用 NLDAS-2 的逐小时地表气象强迫变量驱动 CREST-SVAS，生成上游流量边界；合成 Florence 和未来 Sandy 情景使用 WRF、GFS 和 ERA-Interim 等气象资料；使用 NOAA 沿海水位时间序列构造下游潮汐和风暴潮边界，并结合 DEM、土地覆盖、不透水率、FEMA 洪水图和 USGS 高水位标记，分析最大淹没范围、洪水深度、流量与水位关系以及超过基础设施危险阈值的时间比例。",
+      "method_paradigm": "复合洪水风险评估",
+      "used_assets": [
+        "Phase 2 of the North American Land Data Assimilation System (NLDAS-2) dataset",
+        "Weather Research and Forecasting (WRF) system",
+        "Global Forecast System (GFS) forecasts",
+        "ERA-Interim reanalysis",
+        "North American Regional Reanalysis (NARR)",
+        "USGS GMTED2010",
+        "MOD12Q1 from MODIS",
+        "National Land Cover Database (NLCD)",
+        "Connecticut's Changing Landscape (CCL) database",
+        "National Elevation Dataset (NED)",
+        "National Water Level Observation Network (NWLON)",
+        "1 m lidar DEM (CtECO, 2016)",
+        "FEMA 100-year flood maps",
+        "USGS high-water marks (HWMs)"
+      ],
+      "author_team": [
+        "Mariam Khanam",
+        "Giulia Sofia",
+        "Marika Koukoula",
+        "Rehenuma Lazin",
+        "Efthymios I. Nikolopoulos",
+        "Xinyi Shen",
+        "Emmanouil N. Anagnostou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impact of compound flood event on coastal critical infrastructures considering current and future climate",
+        "doi": "10.5194/nhess-21-587-2021",
+        "year": 2021,
+        "venue": "Natural hazards and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "野火干扰后森林生物量损失如何影响流域水文过程与水质？",
+      "hypothesis_or_mechanism": "火灾导致的植被枯落物移除与土壤渗透性改变会通过调节入渗与地表径流，进而显著影响流域产流机制与溶解性营养盐的输出通量。",
+      "variables_and_data_use": "使用NLDAS每日气温、降水、地表径流与蒸散发作为气候驱动与验证基准；结合MTBS火边界、SRTM DEM、LANDIS-II生物量及STATSGO2土壤数据进行模型初始化与参数化。",
+      "method_paradigm": "耦合生态水文模型模拟与多源遥感再分析数据验证",
+      "used_assets": [
+        "NLDAS",
+        "LANDIS-II",
+        "USGS & USFS 2014 MTBS fire boundary polygon",
+        "NASA JPL SRTM V3 DEM",
+        "NHDPlus V2 COMID",
+        "STATSGO2",
+        "National Biomass and Carbon Dataset (NBCD)",
+        "LandTrendr Biomass, CONUS"
+      ],
+      "author_team": [
+        "Kar’retta Venable",
+        "John M. Johnston",
+        "Stephen D. LeDuc",
+        "Lourdes Prieto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Model linkage to assess forest disturbance impacts on water quality: A wildfire case study using LANDIS(II)-VELMA",
+        "doi": "10.1016/j.envsoft.2024.106134",
+        "year": 2024,
+        "venue": "Environmental Modelling & Software",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "研究比较 NLDAS、当地气象站、iButton 和 Kestrel 监测数据在气象预测变量及户外 WBGT 估计中的表现和一致性。",
+      "hypothesis_or_mechanism": "NLDAS 提供的逐小时气象强迫变量能够支持 WBGT 估计，但由于空间分辨率和局地条件表示有限，结合 iButton 或当地气象站数据可能改善对监测点热应激条件的刻画。",
+      "variables_and_data_use": "研究使用 NLDAS 的地表入射短波辐射、气温、比湿、地表气压、东西向风和南北向风，经过单位转换、2 m 风速推导及相对湿度计算后，用于估计自然湿球温度、黑球温度和 WBGT；同时使用 Kestrel 5400 Heat Stress Trackers、iButton thermometer-hygrometers 以及 Birmingham-Shuttlesworth International Airport WS 和 Mac Crenshaw Memorial Airport WS 的现场气象数据进行比较、补充和验证。",
+      "method_paradigm": "多源观测比较与测量验证",
+      "used_assets": [
+        "Kestrel 5400 Heat Stress Trackers",
+        "iButton thermometer-hygrometers",
+        "Climate Data Online (CDO)",
+        "Birmingham-Shuttlesworth International Airport WS",
+        "Mac Crenshaw Memorial Airport WS",
+        "North American Land Data Assimilation System (NLDAS)",
+        "NLDAS",
+        "NASA Giovanni"
+      ],
+      "author_team": [
+        "Anabel W. Carter",
+        "Benjamin F. Zaitchik",
+        "Julia M. Gohlke",
+        "Suwei Wang",
+        "Molly Richardson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Methods for Estimating Wet Bulb Globe Temperature From Remote and Low‐Cost Data: A Comparative Study in Central Alabama",
+        "doi": "10.1029/2019gh000231",
+        "year": 2020,
+        "venue": "GeoHealth",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "湿度如何影响降水相态划分，并进一步影响 Noah-MP 对美国大陆雪深和雪水当量的模拟？",
+      "hypothesis_or_mechanism": "较干燥的大气条件会改变雨雪划分，使湿球温度方案相较干球温度方案产生更多降雪，从而降低雪深和 SWE 的模拟偏差。",
+      "variables_and_data_use": "使用 NLDAS-2 逐小时气温、比湿、风速、地表气压、向下短波和长波辐射及降水驱动 Noah-MP；比较基于干球温度的 TDRY 与基于湿球温度的 TWET 方案，并以相对湿度、气温、雪深和 SWE 评估降雪比例及模型表现；使用 UA 逐日 4 km 雪深和 SWE 产品进行验证。",
+      "method_paradigm": "陆面模型对比与机制归因",
+      "used_assets": [
+        "NorthAmericanLandDataAssimilationPhase2(NLDAS\u00012)",
+        "global1\u0001kmhybridStateSoilGeographicDatabase",
+        "U.S.GeologicalSurvey(USGS)24\u0001categoryvegetationdata",
+        "UAground\u0001based,daily,4\u0000kmsnowdepth,andSWEdataproduct",
+        "4\u0000kmgriddedPRISMprecipitationandtemperaturedata",
+        "Noah\u0001MP"
+      ],
+      "author_team": [
+        "Yuan‐Heng Wang",
+        "P. D. Broxton",
+        "Yuanhao Fang",
+        "Ali Behrangi",
+        "Michael Barlage",
+        "Xubin Zeng",
+        "Guo‐Yue Niu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A Wet‐Bulb Temperature‐Based Rain‐Snow Partitioning Scheme Improves Snowpack Prediction Over the Drier Western United States",
+        "doi": "10.1029/2019gl085722",
+        "year": 2019,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "如何构建一个能够有效识别西部山区冬季积雪干旱（Snow Drought）的新型综合指数？",
+      "hypothesis_or_mechanism": "通过机器学习自动编码器压缩多维气象强迫信息，并利用互信息量化各变量对压缩表征的贡献权重，可更准确地捕捉积雪积累与融水径流的关键驱动机制。",
+      "variables_and_data_use": "使用 NLDAS-2 初级强迫数据的十一项气象变量（如降水、温度、湿度、辐射等）作为初始特征池；结合 NSIDC 积雪水分当量与 USGS 径流数据进行随机森林特征筛选；利用自编码器提取瓶颈层特征，并通过互信息计算变量权重以合成 SnoDRI 指数。",
+      "method_paradigm": "无监督特征压缩与互信息加权合成",
+      "used_assets": [
+        "NLDAS-2 primary (File A) forcing data",
+        "NSIDC SWE and snow depth Version 1",
+        "CAMELS",
+        "USGS streamflow",
+        "SPI"
+      ],
+      "author_team": [
+        "Sinan Rasiya Koya",
+        "Kanak Kanti Kar",
+        "Shivendra Srivastava",
+        "Tsegaye Tadesse",
+        "Mark Svoboda",
+        "Tirthankar Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "An autoencoder-based snow drought index",
+        "doi": "10.1038/s41598-023-47999-5",
+        "year": 2023,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "美国中大西洋地区极端降水的时空分布特征及其长期变化趋势是什么？",
+      "hypothesis_or_mechanism": "气候变暖通过克劳修斯-克拉佩龙方程机制提升大气持水能力，进而增加极端降水的发生频率与累积强度。",
+      "variables_and_data_use": "调用 NLDAS-2 再分析降水产品，构建研究区长时间序列，计算极端降水指数以量化频率、强度及年代际趋势。",
+      "method_paradigm": "极端值统计分析 趋势检验",
+      "used_assets": [
+        "NLDAS-2"
+      ],
+      "author_team": [
+        "Ishrat Jahan Dollan",
+        "Viviana Maggioni",
+        "Jeremy Johnston"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Investigating Temporal and Spatial Precipitation Patterns in the Southern Mid-Atlantic United States",
+        "doi": "10.3389/fclim.2021.799055",
+        "year": 2022,
+        "venue": "Frontiers in Climate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "密西西比河流域1980至2019年间降水、气温与潜在蒸散发的时空演变趋势及干旱指数的突变特征是什么？",
+      "hypothesis_or_mechanism": "全球变暖与人类活动驱动流域水文气候要素发生系统性偏移，导致干旱风险加剧并呈现显著的空间异质性与年代际突变。",
+      "variables_and_data_use": "提取NLDAS-2小时级降水、PET与气温数据，聚合为日/年序列后分别计算UNEP与De Martonne干旱指数，并输入线性回归、Mann-Kendall检验与Pettitt突变点分析以量化趋势与转折年份。",
+      "method_paradigm": "参数与非参数统计趋势检验",
+      "used_assets": [
+        "NLDAS-2",
+        "North American Land Data Assimilation System Phase 2"
+      ],
+      "author_team": [
+        "Umanda Abeysinghe",
+        "Sarah Balkissoon",
+        "Noel Aloysius"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Assessment of hydroclimatic variability and aridity trends in the Mississippi River Basin using parametric and non-parametric techniques",
+        "doi": "10.3389/fclim.2025.1481926",
+        "year": 2025,
+        "venue": "Frontiers in Climate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "如何结合NLDAS-2气象强迫和雪相关变量构建能够识别西部美国雪旱的SnoDRI指数？",
+      "hypothesis_or_mechanism": "NLDAS-2降水、气温、湿度、气压及辐射等气象强迫通过影响雨雪分配、积雪累积和融雪过程，能够解释SWE和径流变化并识别雪旱信号。",
+      "variables_and_data_use": "使用NLDAS-2的风速、气温、比湿、地表气压、长短波辐射、降水、对流降水比例、对流有效位能和潜在蒸散等变量；将其按流域聚合并转换为月时间序列，用于计算SPI、随机森林特征重要性分析和自编码器加互信息的SnoDRI构建。使用NSIDC的SWE作为目标变量和验证指标，使用USGS径流进行辅助验证，并用CAMELS流域边界完成空间聚合。",
+      "method_paradigm": "机器学习指数构建",
+      "used_assets": [
+        "NLDAS-2",
+        "assimilated in-situ and modeled data over the conterminous US, Version 1",
+        "CAMELS",
+        "USGS"
+      ],
+      "author_team": [
+        "Sinan Rasiya Koya",
+        "Kanak Kanti Kar",
+        "Shivendra Srivastava",
+        "Tsegaye Tadesse",
+        "Mark Svoboda",
+        "Tirthankar Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "An Autoencoder-based Snow Drought Index",
+        "doi": "10.48550/arxiv.2305.13646",
+        "year": 2023,
+        "venue": "arXiv (Cornell University)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "量化四种主要陆面异质性来源对水能和生物地球化学循环分配的相对重要性",
+      "hypothesis_or_mechanism": "大气强迫和土地利用变化是决定水能分配空间变异性的最主要异质性来源",
+      "variables_and_data_use": "使用 NLDAS-2 气象强迫数据、土壤、地形和土地利用数据集驱动 ELMv1 陆面模型，结合 Sobol 指数法量化各变量对输出方差的贡献",
+      "method_paradigm": "基于 Sobol 指数的敏感性分析",
+      "used_assets": [
+        "NLDAS-2 forcing",
+        "ELMv1",
+        "SOIL",
+        "TOPO",
+        "LULC",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Lingcheng Li",
+        "Gautam Bisht",
+        "L. Ruby Leung"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Spatial heterogeneity effects on land surface modeling of water and energy partitioning",
+        "doi": "10.5194/gmd-2022-4",
+        "year": 2022,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "多源气象 forcing 是否能够帮助深度学习模型减轻不同气象数据产品之间的不确定性并提高流量模拟性能？",
+      "hypothesis_or_mechanism": "LSTM 可以在时间和空间上动态组合 Daymet、Maurer 和 NLDAS forcing，从而利用其互补信息并缓解单一 forcing 的误差。",
+      "variables_and_data_use": "模型使用 Daymet、Maurer 和 NLDAS 的日降水、日最高和最低气温、蒸汽压及地表辐射作为输入，并结合 27 个流域属性；NLDAS 输入是 CAMELS 中由 NLDAS 提供的流域平均日尺度 forcing，研究通过单源、双源和三源组合训练 LSTM，并以观测流量评估模拟结果。",
+      "method_paradigm": "多源深度学习归因分析",
+      "used_assets": [
+        "CAMELS",
+        "Daymet",
+        "Maurer",
+        "NLDAS"
+      ],
+      "author_team": [
+        "Frederik Kratzert",
+        "Daniel Klotz",
+        "Sepp Hochreiter",
+        "Grey Nearing"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A note on leveraging synergy in multiple meteorological data sets with deep learning for rainfall–runoff modeling",
+        "doi": "10.5194/hess-25-2685-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 37,
+    "source_paper_count": 37,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

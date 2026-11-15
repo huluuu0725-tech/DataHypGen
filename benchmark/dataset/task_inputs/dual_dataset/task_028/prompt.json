@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "U.S. West Coast wildfire-exposure observation space",
+  "datasets": [
+    {
+      "role": "wildfire_exposure",
+      "data_description": {
+        "dataset_name": "Wildfire exposure",
+        "data_type": "Wildfire burned-area or exposure observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "LOCAL:datasets/MTBS_BSmosaics",
+        "spatial_coverage": {
+          "region_name": "U.S. West Coast wildfire-exposure observation space",
+          "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "LOCAL:datasets/MTBS_BSmosaics"
+    },
+    {
+      "role": "social_vulnerability",
+      "data_description": {
+        "dataset_name": "Social Vulnerability Index population data",
+        "data_type": "Population social-vulnerability index observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1",
+        "spatial_coverage": {
+          "region_name": "U.S. West Coast wildfire-exposure observation space",
+          "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Wildfire exposure",
+      "data_type": "Wildfire burned-area or exposure observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "LOCAL:datasets/MTBS_BSmosaics",
+      "spatial_coverage": {
+        "region_name": "U.S. West Coast wildfire-exposure observation space",
+        "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Social Vulnerability Index population data",
+      "data_type": "Population social-vulnerability index observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1",
+      "spatial_coverage": {
+        "region_name": "U.S. West Coast wildfire-exposure observation space",
+        "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "LOCAL:datasets/MTBS_BSmosaics",
+    "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_028:composite_observation",
+    "type": "composite_observation",
+    "name": "wildfire_social_vulnerability composite observation",
+    "observable_group": "wildfire_social_vulnerability_multidataset_observation",
+    "components": [
+      {
+        "role": "wildfire_exposure",
+        "data_description": {
+          "dataset_name": "Wildfire exposure",
+          "data_type": "Wildfire burned-area or exposure observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "LOCAL:datasets/MTBS_BSmosaics",
+          "spatial_coverage": {
+            "region_name": "U.S. West Coast wildfire-exposure observation space",
+            "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "LOCAL:datasets/MTBS_BSmosaics"
+      },
+      {
+        "role": "social_vulnerability",
+        "data_description": {
+          "dataset_name": "Social Vulnerability Index population data",
+          "data_type": "Population social-vulnerability index observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1",
+          "spatial_coverage": {
+            "region_name": "U.S. West Coast wildfire-exposure observation space",
+            "coverage": "Declared analysis region within U.S. West Coast wildfire-exposure observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "wildfire_exposure",
+        "social_vulnerability"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_028:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "LOCAL:datasets/MTBS_BSmosaics",
+    "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "wildfire_exposure",
+      "social_vulnerability"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

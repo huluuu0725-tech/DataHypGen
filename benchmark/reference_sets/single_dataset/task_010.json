@@ -1,0 +1,713 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_010",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MODIS Terra LST/Emissivity 8-Day (MOD11A2 C061)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:MODIS/061/MOD11A2",
+    "spatial_resolution": "1 km",
+    "temporal_resolution": "8-day composite",
+    "gee_asset": {
+      "id": "MODIS/061/MOD11A2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD11A2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_010.json",
+    "source_sha256": "ac9b6f82a1039a72f4de1cf0d8bd8908da459f14e6cce32ac61020ea8584f6a9",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_010/prompt.json",
+    "current_prompt_sha256": "05f5cf0be1f8f17c92b81e1ffdabb2ff8006e688e70a945f1ed8a638e3004bba",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD11A2",
+      "observable_group": "modis_terra_lst_eight_day_composite",
+      "kind": "land_surface_temperature",
+      "title": "MODIS Land Surface Temperature 8-Day (MOD11A2, C061)",
+      "observation_identity_contract": {
+        "physical_object": "land-surface skin temperature and emissivity",
+        "source_lineage": "MODIS Terra MOD11 LST/Emissivity 8-day composite production lineage, collection 061",
+        "core_measurement_semantics": "MODIS Terra 8-day LST/Emissivity composite (MOD11A2, C061)",
+        "non_material_variations": "archive, tile/grid, resampling, collection 6 vs 6.1 refresh, or temporal aggregation retaining MOD11 LST/Emissivity observations",
+        "material_mismatches": "Aqua MYD11 composites without Terra MOD11 operational input, MOD11A1/Clear-day granule products used alone, Landsat/ECOSTRESS/ASTER thermal lineages, or reanalysis skin temperature without MOD11 operational input"
+      },
+      "asset_alias_policy": "Only the MODIS Terra MOD11A2 8-day LST/Emissivity composite family (collection 6/6.1) is admitted; Aqua MYD11A2 may appear as a companion comparison but is not an alias; LST values derived from Landsat, ECOSTRESS, ASTER or reanalysis are excluded unless MOD11A2 itself is operationally processed."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "研究试图确定2003—2020年降水、地表温度、蒸散发、植被和土地利用/土地覆被变化如何共同表征Irauçuba地区的荒漠化过程及其风险。",
+      "hypothesis_or_mechanism": "降水减少或异常、地表温度升高、蒸散发增强以及植被和土地覆被退化之间存在耦合关系，从而提高区域荒漠化易感性。",
+      "variables_and_data_use": "使用MOD11A2提取地表温度（LST），使用MOD16A2获取蒸散发相关变量，使用CHIRPS获取降水并结合自动气象站进行验证，使用MapBiomas分析土地利用和土地覆被变化；数据经空间统一后计算年度或多年均值，并开展LST、NDVI和CHIRPS之间的相关分析，同时计算降水异常指数和干旱指数。",
+      "method_paradigm": "多源遥感时序关联分析",
+      "used_assets": [
+        "CHIRPS",
+        "MOD11A2",
+        "MOD16A2",
+        "MapBiomas",
+        "Automatic Weather Stations (AWS) of the National Agency of Water and Basic Sanitation (ANA)",
+        "Google Earth Engine (GEE)",
+        "QGIS"
+      ],
+      "author_team": [
+        "João Guilherme Justino Da Costa",
+        "Geber Barbosa de Albuquerque Moura",
+        "Pabrício Marcos Oliveira Lopes",
+        "Pedro Rogério Giongo",
+        "José Ivaldo Barbosa de Brito"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessment of desertification in the brazilian semiarid region using time series of climatic and biophysical variables",
+        "doi": "10.26848/rbgf.v16.6.p3424-3444",
+        "year": 2023,
+        "venue": "Revista Brasileira de Geografia Física",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "研究意大利北部 2000-2020 年期间春季和夏季干旱事件的时空特征及其对植被绿度的影响",
+      "hypothesis_or_mechanism": "干旱事件主要由降水分配变化触发，而非温度升高，对人为扰动的农业和湿地植被影响最强",
+      "variables_and_data_use": "使用 MOD11A2 的 8 天最大和最小地表温度（聚合到双周尺度并转换为摄氏度）与地面降水温度数据结合计算水平衡，使用 MOD13A2 的 NDVI 和 EVI 评估植被响应，使用 MCD12Q1 进行土地覆盖分类，通过 SPEI 和 SPI 干旱指数与植被指数的相关分析识别干旱对不同植被类型的影响",
+      "method_paradigm": "时空趋势分析与相关性分析",
+      "used_assets": [
+        "MOD11A2",
+        "MOD13A2",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Alice Baronetti",
+        "Matia Menichini",
+        "Antonello Provenzale"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Vegetation response to droughts: The case of northern Italy",
+        "doi": "10.1002/joc.8340",
+        "year": 2023,
+        "venue": "International Journal of Climatology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "如何利用卫星观测的湖面温度校准 air2water 模型,重建青藏高原 132 个大型湖泊 1978-2017 年的湖冰物候时间序列",
+      "hypothesis_or_mechanism": "基于湖面能量平衡的 air2water 模型结合 MODIS LST 观测可以准确模拟湖面温度,进而通过温度阈值识别湖冰物候指标",
+      "variables_and_data_use": "使用 MOD11A2 的 8 天 LST 合成产品(白天和夜间均值)校准和验证 air2water 模型,使用 MOD10A1 雪盖产品辅助确定湖冰物候的温度阈值,使用气象站气温数据驱动模型模拟 1978-2017 年湖面温度",
+      "method_paradigm": "模型校准与验证 参数优化 物候阈值确定",
+      "used_assets": [
+        "MOD11A2",
+        "MOD10A1",
+        "中国地面气象站逐日气候资料 V3.0"
+      ],
+      "author_team": [
+        "Yanhong Wu",
+        "Linan Guo",
+        "Bing Zhang",
+        "Hongxing Zheng",
+        "Lanxin Fan",
+        "Haojing Chi",
+        "Junsheng Li",
+        "Shenglei Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Ice phenology dataset reconstructed from remote sensing and modelling for lakes over the Tibetan Plateau",
+        "doi": "10.1038/s41597-022-01863-9",
+        "year": 2022,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "滇池湖表水温在 2001-2017 年间的时空变化特征及其与气温的关系",
+      "hypothesis_or_mechanism": "湖表水温受太阳辐射、水体热容量、河流输入和气候变化共同影响，深水区和浅水区对气温的响应存在空间差异",
+      "variables_and_data_use": "使用 MOD11A2 8 天合成地表温度产品提取滇池白天和夜间湖表水温，分析年际、季节和月度变化趋势，结合气温数据进行相关性分析，并使用 Landsat 5/8 提取湖泊边界",
+      "method_paradigm": "时空变化趋势分析",
+      "used_assets": [
+        "MOD11A2",
+        "Landsat 5",
+        "Landsat 8"
+      ],
+      "author_team": [
+        "Yi Luo",
+        "Yueyue Zhang",
+        "Kun Yang",
+        "Zhenyu Yu",
+        "Yu Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatiotemporal Variations in Dianchi Lake’s Surface Water Temperature From 2001 to 2017 Under the Influence of Climate Warming",
+        "doi": "10.1109/access.2019.2935767",
+        "year": 2019,
+        "venue": "IEEE Access",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "论文研究如何利用MODIS数据估算巴西帕拉伊巴州和北里奥格兰德州半干旱地区晴空条件下的净辐射。",
+      "hypothesis_or_mechanism": "地表温度、发射率、反射率、太阳几何和地形等遥感及辅助变量能够支持晴空净辐射估算，并通过地面观测进行验证。",
+      "variables_and_data_use": "使用MOD11A2的地表温度和31、32波段发射率计算地表发射长波辐射，使用MOD09A1的太阳天顶角、儒略日和地表反射率计算短波辐射相关量，使用SRTM高程估算透射率，并用BDMEP地面观测验证净辐射估算结果。",
+      "method_paradigm": "遥感估算与地面验证",
+      "used_assets": [
+        "MOD11A2",
+        "MOD09A1",
+        "SRTM",
+        "BDMEP",
+        "INMET"
+      ],
+      "author_team": [
+        "Madson Tavares Silva",
+        "Verônica Gabriella de Oliveira",
+        "Carlos Antônio Costa dos Santos",
+        "Lindenberg Lucena da Silva",
+        "Francineide Amorim Costa Santos",
+        "Edivaldo Afonso de Oliveira Serrão"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Net Radiation in the Semiarid Region of the States of Paraíba and Rio Grande do Norte Using the MODIS Sensor",
+        "doi": "10.11137/1982-3908_2022_45_42790",
+        "year": 2022,
+        "venue": "Anuário do Instituto de Geociências",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究 2001–2020 年尼泊尔地表温度变化如何影响登革热传播的热适生性及其人口暴露。",
+      "hypothesis_or_mechanism": "地表温度落在伊蚊和登革病毒传播的适宜区间时，温度依赖的媒介传播过程增强，从而提高登革热传播适生性和人口暴露。",
+      "variables_and_data_use": "使用 MOD11A2 的昼夜地表温度观测，经过质量筛选、缺测重建、摄氏度转换、月平均和时间窗口聚合后，输入温度依赖的 R0 模型并生成登革热热适生性地图；结合 WorldPop 人口数据、SRTM DEM 和登革热发生位置进行人口暴露估计、海拔分析和模型验证。",
+      "method_paradigm": "机制模型与空间风险制图",
+      "used_assets": [
+        "MOD11A2 version 6.0",
+        "WorldPop geoportal",
+        "SRTM DEM",
+        "124 occurrence locations",
+        "line listing file",
+        "Epidemiology and Disease Control Division"
+      ],
+      "author_team": [
+        "Bipin Kumar Acharya",
+        "Laxman Khanal",
+        "Meghnath Dhimal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Increased thermal suitability elevates the risk of dengue transmission across the mid hills of Nepal",
+        "doi": "10.1371/journal.pone.0322031",
+        "year": 2025,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "印度班加罗尔城市区 2001-2021 年间陆地表面温度的时空变化特征是什么",
+      "hypothesis_or_mechanism": "城市化扩张导致不透水面增加和植被减少,从而引起陆地表面温度升高",
+      "variables_and_data_use": "使用 MODIS MOD11A2 Version-6 白天 8 天平均 LST 数据,提取 2001、2006、2011、2016、2021 五个年份的年度平均 LST,采用零值转空值平均法进行处理,将 DN 值转换为摄氏度",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "MODIS MOD11A2 Version-6"
+      ],
+      "author_team": [
+        "VIGNESHWARAN SARAVANAN",
+        "Vinod N Tamburi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Assessment of Land Surface Temperature (LST) using MODIS MOD11A2 Thermal Satellite Images Using Zero to Null Pixel Averaging Method for the Bengaluru Urban District",
+        "doi": "10.21203/rs.3.rs-1932983/v1",
+        "year": 2022,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "斋浦尔市城市扩张与城市热岛强度之间的时空关系是什么",
+      "hypothesis_or_mechanism": "城市扩张导致建成区增加,改变地表热量平衡,从而增强城市热岛效应",
+      "variables_and_data_use": "使用 MOD11A2 地表温度数据按月度、季节和年度分类分析 UHI 强度;使用 Landsat 7 ETM+ 多光谱影像通过监督分类提取建成区并计算城市扩张率、城市强度和紧凑度比率",
+      "method_paradigm": "监督分类与时空关联分析",
+      "used_assets": [
+        "MOD11A2",
+        "LANDSAT 7 ETM+"
+      ],
+      "author_team": [
+        "Rajesh Kumar",
+        "Kiran Jalem",
+        "Harikesh Singh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Assessment of Urban Expansion of Jaipur City and Its Impact on UHI With Respect to Lst Using Geoinformatics",
+        "doi": "10.21203/rs.3.rs-2451832/v1",
+        "year": 2023,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "武汉封锁及疫情出现期间的陆面温度是否相对于此前三年同日期发生变化，并且这种变化是否因土地覆盖类型而异？",
+      "hypothesis_or_mechanism": "封锁导致人类活动、交通和工业活动减少，从而使城市陆面温度下降，且建成区的变化最明显。",
+      "variables_and_data_use": "使用MOD11A2的八日陆面温度数据，经过数字量校准、开尔文到摄氏度转换、空间裁剪及跨年份同日期平均，比较2019年12月至2020年初与此前三年的陆面温度；使用MCD12Q1土地覆盖数据将区域划分为建成区、非建成土地和水体，并开展分类型比较。",
+      "method_paradigm": "多时相对比分析",
+      "used_assets": [
+        "MOD11A2",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Hamim Zaky Hadibasyir",
+        "Seftiawan Samsu Rijal",
+        "Dewi Ratna Sari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Comparison of Land Surface Temperature During and Before the Emergence of Covid-19 using Modis Imagery in Wuhan City, China",
+        "doi": "10.23917/forgeo.v34i1.10862",
+        "year": 2020,
+        "venue": "Forum Geografi",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "研究区土地覆盖和生物物理参数如何影响土壤表层湿度，并如何形成与半干旱相关的空间核心区？",
+      "hypothesis_or_mechanism": "植被状况、地表温度和气象水分条件共同控制表层土壤湿度，其中较高的 NDVI 和降水有利于湿度增加，而较高的地表温度、蒸发和风速与湿度降低相关。",
+      "variables_and_data_use": "使用 MOD13Q1 的 NDVI、MOD11A2 的地表温度 Ts 和 MCD12Q1 的土地覆盖数据；将 Ts 换算为摄氏度并重采样至 250 米、形成 16 天组合，再分别计算基于 Ts 和 NDVI 的土壤湿度指数并进行组合。结合气象站的降水、气温、相对湿度、蒸发、风速和日照数据开展相关及多元线性分析，并利用 SRTM 高程数据辅助地形描述。",
+      "method_paradigm": "遥感指数分析与相关回归",
+      "used_assets": [
+        "MOD13Q1",
+        "MOD11A2",
+        "MCD12Q1",
+        "SRTM",
+        "estação meteorológica automática de Ouricuri-PE",
+        "normais climatológicas de precipitação pluviométrica"
+      ],
+      "author_team": [
+        "Cássia Roberta de Melo Leite",
+        "Pabrício Marcos Oliveira Lopes",
+        "Cristina Rodrigues Nascimento",
+        "Geber Barbosa de Albuquerque Moura",
+        "Douglas Alberto de Oliveira Silva",
+        "Jhon Lennon Bezerra da Silva"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Núcleo de semiaridez associado a ocupação e umidade do solo em Pernambuco, Brasil",
+        "doi": "10.29150/jhrs.v10.1.p20-33",
+        "year": 2020,
+        "venue": "Journal of Hyperspectral Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "研究 2000 至 2018 年间不同土地覆盖类型及土地覆盖变化下的 LST 和 NDVI 如何变化，以及二者的变化是否相关。",
+      "hypothesis_or_mechanism": "城市发展、森林和农业土地覆盖具有不同的植被生产力稳定性，并通过土地覆盖变化影响陆面温度及其与 NDVI 的关系。",
+      "variables_and_data_use": "使用 MOD11A2 的 8-day LST 作为温度变量，使用 MOD13Q1 的 16-day NDVI 作为植被变量，使用 Landsat 5 TM 和 Landsat 8 OLI 推导土地覆盖分类；将数据重采样并匹配到 500 米像元质心，随后进行逐像元时间趋势回归和 LST-NDVI Pearson 相关分析。",
+      "method_paradigm": "像元级时序统计分析",
+      "used_assets": [
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 8 Over Land Imager (OLI)",
+        "MOD11A2",
+        "MOD13Q1",
+        "derived land cover products"
+      ],
+      "author_team": [
+        "Bijesh Mishra",
+        "Jeremy Sandifer",
+        "Buddhi Gyawali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Urban Heat Island in Kathmandu, Nepal: Evaluating Relationship between NDVI and LST from 2000 to 2018",
+        "doi": "10.3126/ije.v8i1.22546",
+        "year": 2019,
+        "venue": "International Journal of Environment",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "快速城市化流域的不透水面扩张如何通过空间影响机制影响湖泊水表面温度",
+      "hypothesis_or_mechanism": "流域不透水面积增加通过距离衰减的空间影响机制导致湖泊水表面温度升高",
+      "variables_and_data_use": "使用 MOD11A2 8 天 LST 合成产品提取 2001-2018 年六个湖泊的水表面温度（LSWT）季节和年度平均值，使用 30 米分辨率中国不透水面数据计算流域不透水面积（ISA）和覆盖率（ISACR），采用空间影响方程量化子流域不透水面对湖泊水温的距离衰减影响，并进行趋势分析和相关性检验",
+      "method_paradigm": "空间影响建模 相关分析",
+      "used_assets": [
+        "MODIS/Terra LST level 3 MOD11A2",
+        "Landsat series",
+        "China IS data (Tsinghua)",
+        "DEM 30m"
+      ],
+      "author_team": [
+        "Linfeng Tang",
+        "Kun Yang",
+        "Chunxue Shang",
+        "Zongqi Peng",
+        "Yi Luo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatial impact of urban expansion on lake surface water temperature based on the perspective of watershed scale",
+        "doi": "10.3389/fenvs.2022.991502",
+        "year": 2022,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "论文研究不同 Landsat-8 地表温度反演算法在上海地区的适用性及其结果准确性。",
+      "hypothesis_or_mechanism": "不同反演算法对地表发射率、大气透过率和热红外辐射信息的处理差异会导致地表温度估计结果不同。",
+      "variables_and_data_use": "论文使用 Landsat-8 热红外波段反演地表温度，利用 NDVI 估计地表发射率，利用 MOD05L2 水汽含量估计大气透过率，并使用 MOD11A2 的 MODIS 地表温度和地面气象站温度进行交叉验证。",
+      "method_paradigm": "地表温度反演与验证",
+      "used_assets": [
+        "Landsat-8 satellite images",
+        "MOD11A2",
+        "MOD05L2",
+        "China Meteorological Data Network",
+        "GlobeLand30"
+      ],
+      "author_team": [
+        "Yue Jiang",
+        "Wenpeng Lin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Comparative Analysis of Retrieval Algorithms of Land Surface Temperature from Landsat-8 Data: A Case Study of Shanghai, China",
+        "doi": "10.3390/ijerph18115659",
+        "year": 2021,
+        "venue": "International Journal of Environmental Research and Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "该论文研究如何结合遥感和气象数据估算印度Gujarat州Sabarkantha地区小麦、玉米、芥菜和鹰嘴豆等作物的粮食产量。",
+      "hypothesis_or_mechanism": "作物净初级生产力由fAPAR、PAR、辐射利用效率以及水分和温度胁迫共同决定，将NPP与收获指数结合可以估算粮食产量。",
+      "variables_and_data_use": "论文使用Sentinel 2B satellite data进行作物分类并计算NDVI/fAPAR，使用NASA Power data推导PAR，使用MODIS dataset (MOD11A2)的Day time LST和night time LST计算作物温度胁迫，并用Directorate of Agriculture, Gujarat政府统计数据验证产量估算。",
+      "method_paradigm": "遥感作物产量建模",
+      "used_assets": [
+        "Sentinel 2B satellite data",
+        "MODIS dataset (MOD11A2)",
+        "MOD11A2 Version 6 eight-day composite image",
+        "NASA Power data",
+        "Government Statistics provided by Directorate of Agriculture, Gujarat"
+      ],
+      "author_team": [
+        "Atrayee Roy",
+        "Rajat Saxena",
+        "Vidya Kumbhar",
+        "T. P. Singh",
+        "Gauri Deshpande"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Crop yield estimation using biophysical variables: A case study of Sabarkantha district, Gujarat, India",
+        "doi": "10.21203/rs.3.rs-3916187/v1",
+        "year": 2024,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "该论文研究 2000 至 2023 年 Luswishi Farm Block 的植被指数和陆表温度如何发生时空变化，以及二者之间的相关关系。",
+      "hypothesis_or_mechanism": "植被覆盖变化会通过地表能量交换和热环境差异影响陆表温度，因此 NDVI/EVI 与白天、夜间和平均 LST 存在可检测的时空相关性。",
+      "variables_and_data_use": "论文使用 MOD11A2 的 LST_Day_1km 和 LST_Night_1km 计算白天、夜间和平均 LST，并将 Kelvin 转为 Celsius；使用 MOD13Q1 的 NDVI 和 EVI 表征植被状况；两类数据被聚合到月度和年度尺度，重网格后用于 Pearson 相关、Mann-Kendall 趋势检验和 Sen 斜率估计。",
+      "method_paradigm": "时空趋势相关分析",
+      "used_assets": [
+        "MOD11A2",
+        "MOD11A2 V061",
+        "MOD11A2.061_1km_aid0001.nc",
+        "MOD13Q1",
+        "MOD13Q1 V061",
+        "MOD13Q1.061_250m_aid0001.nc",
+        "AppEEARS"
+      ],
+      "author_team": [
+        "Charles Bwalya Chisanga",
+        "Kabwe Harnadih Mubanga",
+        "Brian Singogo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Vegetation Indices and Land Surface Temperature within Luswishi Farm Block, Zambia: 2000–2023",
+        "doi": "10.5772/intechopen.1005522",
+        "year": 2024,
+        "venue": "IntechOpen eBooks",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "该论文研究Nigeria在2001、2011和2015年陆地表面温度的空间分布及时间变化特征。",
+      "hypothesis_or_mechanism": "城市化和不透水面扩张会改变地表能量平衡，使更多像元落入高温或极高温LST类别。",
+      "variables_and_data_use": "论文使用8-day average MODIS MOD11A2 LST images生成LST图，将原始DN值转换为摄氏度，并结合行政边界在QGIS中进行像元平均和分区统计，计算国家及各州的均值、最小值和最大值温度。",
+      "method_paradigm": "遥感时空统计",
+      "used_assets": [
+        "MODIS MOD11A2 LST images",
+        "8-day average MODIS MOD11A2 images",
+        "administrative border of Nigeria",
+        "administrative map of level one and zero",
+        "Esri shape files"
+      ],
+      "author_team": [
+        "Emmanuel M. Menegbo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Mapping land surface temperature in Nigeria using Modis data",
+        "doi": "10.14419/rftz0816",
+        "year": 2024,
+        "venue": "International Journal of Advanced Geosciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "该论文研究 Chennai 不同土地利用类型在 2015 至 2025 年间的 MODIS 地表温度昼夜和季节变化以及城市热岛特征。",
+      "hypothesis_or_mechanism": "城市和工业用地因不透水面、植被减少和人为热排放增强而表现出高于湿地等自然覆盖类型的地表温度，并改变昼夜温差。",
+      "variables_and_data_use": "论文使用 MOD11A2 Version 6.1 / MOD11A2.061 的 LST_Day_1km 和 LST_Night_1km 图层，通过 AppEEARS 对代表性点位提取 8 天合成时间序列，利用 MODIS QC bitmask 剔除未生产或低质量记录，随后计算描述统计、Day-Night LST 差值和月尺度气候态。",
+      "method_paradigm": "时序统计分析",
+      "used_assets": [
+        "MOD11A2 Version 6.1",
+        "MOD11A2.061",
+        "LST_Day_1km",
+        "LST_Night_1km",
+        "MODIS QC bitmask",
+        "AppEEARS"
+      ],
+      "author_team": [
+        "Mohit Sheode"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessing Urban Heat Dynamics Using Satellite-Derived Land Surface Temperature: A Case Study of Chennai, India",
+        "doi": "10.22214/ijraset.2026.84522",
+        "year": 2026,
+        "venue": "International Journal for Research in Applied Science and Engineering Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "该论文研究阿拉巴马州若干县域城市化强度变化与夏冬季昼夜地表城市热岛效应之间的关系。",
+      "hypothesis_or_mechanism": "开发用地扩张和开发强度增加会改变地表能量平衡，使开发区相对于周边非开发区域表现出更高或不同的日间、夜间及昼夜温差特征。",
+      "variables_and_data_use": "论文使用 NLCD 年度 LULC 产品划分开发强度、总开发区和非开发区，使用 MOD11A2 8日合成 LST 的日间和夜间温度，经单位换算后按夏季和冬季聚合，并叠加土地覆盖类别计算各类区域的平均 LST、昼夜温差和时间趋势。",
+      "method_paradigm": "遥感叠加趋势分析",
+      "used_assets": [
+        "NLCD",
+        "MOD11A2",
+        "US Census Tiger Line products"
+      ],
+      "author_team": [
+        "Suman Chatterjee",
+        "Ranjani Wasantha Kulawardhana",
+        "Marvin Lotsah",
+        "Ruwini Rathnayaka",
+        "Jiafu Mao",
+        "Melissa R. Allen-Dumas",
+        "Samson Hagos",
+        "Duli Chand"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Remote Sensing-Based Assessment of Urban Heat Island Effects: A Case Study from Three Major Cities of Alabama, USA",
+        "doi": "10.4236/ars.2026.152005",
+        "year": 2026,
+        "venue": "Advances in Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "该论文研究 Ile-Ife 地区土地利用/土地覆盖变化、植被与建成区指数以及地表温度在 1986、2002 和 2024 年的空间变化，并评估 2000 至 2024 年 MODIS LST 长期趋势。",
+      "hypothesis_or_mechanism": "土地覆盖从植被向建成区或裸地转变会增强地表热强度，而植被丰度较高的区域通常表现出较低的 LST，降雨变率作为气候背景影响年际热环境解释。",
+      "variables_and_data_use": "论文使用 Landsat TM, ETM+, OLI/TIRS 进行 LULC 分类、NDVI、NDBI 和基准年份 LST 反演；使用 MODIS LST (MOD11A2) 构建 2000 至 2024 年年度 LST 时间序列并做趋势分析；使用 CHIRPS rainfall 描述 1986 至 2024 年降雨变率；使用 Administrative boundaries 界定研究区。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Landsat TM, ETM+, OLI/TIRS",
+        "MODIS LST (MOD11A2)",
+        "MOD11A2",
+        "CHIRPS rainfall",
+        "Administrative boundaries",
+        "OSM / Surveyor General"
+      ],
+      "author_team": [
+        "A. M. Adesiyan",
+        "S. O. Akande",
+        "J. Oloukoi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Geospatial Assessment of Urban Heat Island and Climate Dynamics in Ile Ife, Southwest Nigeria",
+        "doi": "10.54222/jgst.2026.6xf0k69c",
+        "year": 2026,
+        "venue": "Journal of Geospatial Science and Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "该论文研究 Palakkad district 在2014、2016、2018、2020和2022年的季风前、季风期和季风后地表温度与相对湿度如何随季节变化。",
+      "hypothesis_or_mechanism": "季风循环、地形、土地覆盖和城市化共同影响局地热量与水汽条件，使季风期表现为较低 LST 和较高 RH，而季风前表现为较高 LST 和较低 RH。",
+      "variables_and_data_use": "论文从 MODIS Terra MOD11A2 Version 6 product 获取 LST mean，作为地表温度变量；从 ERA5-Land reanalysis dataset 获取气温和露点温度并用心理湿度关系计算 RH mean；这些季节均值通过 Google Earth Engine 提取并在 QGIS 中制图和解释。",
+      "method_paradigm": "季节变化检测",
+      "used_assets": [
+        "MODIS Terra MOD11A2 Version 6 product",
+        "ERA5-Land reanalysis dataset",
+        "Google Earth Engine (GEE)",
+        "QGIS"
+      ],
+      "author_team": [
+        "Feba Jose Jasmine",
+        "Sharmistha Naik",
+        "G Jayapal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Seasonal Dynamics of Land Surface Temperature and Relative Humidity in Palakkad District, Kerala: A Geospatial Analysis",
+        "doi": "10.54660/.jfmr.2025.6.2.438-446",
+        "year": 2025,
+        "venue": "Journal of Frontiers in Multidisciplinary Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 20,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

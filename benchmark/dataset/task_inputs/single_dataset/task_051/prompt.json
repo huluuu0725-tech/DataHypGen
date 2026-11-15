@@ -1,0 +1,29 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Pakistan flood-inundation mapping space",
+  "data_description": {
+    "dataset_name": "Copernicus GloFAS Global Flood Monitoring flood-likelihood product",
+    "data_type": "SAR-derived flood-likelihood raster product",
+    "data_format": "Local GeoTIFF directory exported from the Copernicus GloFAS Global Flood Monitoring STAC assets",
+    "data_path": "LOCAL:datasets/gfm_task_051",
+    "spatial_coverage": {
+      "region_name": "Pakistan, including the Indus Basin floodplain",
+      "coverage": "Global GFM coverage, subset to the Pakistan study area and event period."
+    },
+    "temporal_coverage": "Near-real-time Sentinel-1-derived flood monitoring; availability is subject to GFM portal holdings.",
+    "spatial_resolution": "Approximately 20 m Sentinel-1-derived flood-monitoring grid",
+    "temporal_unit": "Per Sentinel-1 acquisition",
+    "analytical_capabilities": [
+      "Retrieve flood-likelihood, flood extent, permanent-water and exclusion-mask layers",
+      "Map event flood likelihood and its spatial uncertainty",
+      "Aggregate and compare flood-likelihood patterns across sub-catchments or impact zones"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Flood likelihood derived from Sentinel-1 SAR observations, with associated flood and exclusion-mask layers.",
+      "runtime_hint": "Use the local GeoTIFF files downloaded from the public Copernicus GloFAS Global Flood Monitoring STAC assets under datasets/gfm_task_051. Interpret ENSEMBLE_UNCERTAINTY as flood likelihood / uncertainty, ENSEMBLE_FLOOD as flood extent, EXCLUSION_LAYER as the exclusion mask, and REFERENCE_WATER as permanent or reference water. Do not substitute the commercial JBA Flood Foresight simulation library, which is not a required or available source in this single-dataset task."
+    },
+    "data_source": "Copernicus Emergency Management Service Global Flood Monitoring",
+    "source_url": "https://portal.gfm.eodc.eu/"
+  },
+  "data_path": "LOCAL:datasets/gfm_task_051"
+}

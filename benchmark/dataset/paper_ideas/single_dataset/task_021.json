@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.3390/rs15092388",
+  "task_id": "single_dataset/task_021",
+  "title": "NDVI-Based Assessment of Land Degradation Trends in Balochistan, Pakistan",
+  "category": "land_use_land_cover",
+  "year": 2023,
+  "journal": "Remote Sensing",
+  "impact_level": null,
+  "datasets": [
+    "MODIS MOD13A1 NDVI (500 m, 16-day)",
+    "TerraClimate"
+  ],
+  "anchor_use_verified": {
+    "task_anchor": "MODIS/061/MOD13A1",
+    "operationally_used": true,
+    "role": "sole vegetation-index input; preprocessed on Google Earth Engine together with the climate variables",
+    "evidence": "Data section states NDVI comes from the MODIS MOD13A1 product, and that all six base variables were resampled and reprojected on Google Earth Engine before analysis.",
+    "companion_datasets": [
+      "TerraClimate: mean annual temperature, actual evapotranspiration, potential evapotranspiration, solar radiation, mean annual precipitation"
+    ],
+    "anchor_history": "Anchor was MODIS/061/MOD13Q1 (250 m) until 2026-08-28; repointed to MOD13A1 because the admitted product is the 500 m tier.",
+    "corrections": [
+      "The earlier datasets list named CHIRPS precipitation, which the data section does not use; the climate variables all come from TerraClimate.",
+      "idea.data_sources speculatively lists both MOD13Q1 and MOD13A1; only MOD13A1 is used. Left unchanged because that field is an enrichment artifact, not a claim about the source."
+    ],
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "2000—2020年间，巴基斯坦俾路支省的植被变化及土地退化趋势在空间上如何分异，降水、温度、实际蒸散发和潜在蒸散发通过何种机制影响NDVI变化，以及在剥离气候效应后人类活动对植被恢复或退化的相对贡献有多大？",
+    "hypothesis": "H1：在干旱和半干旱区，NDVI变化主要受水分可利用性控制，降水和实际蒸散发增加将促进NDVI升高，而潜在蒸散发升高及高温胁迫将通过增强蒸散需求和水分亏缺抑制NDVI；H2：温度与降水、温度与实际蒸散发之间存在交互增强作用，其联合解释力高于单一气候因子；H3：在控制主要气候因子后，生态恢复工程、土地管理和灌溉等人类活动将提高NDVI，而过度放牧、土地利用扩张和资源过度开采将降低NDVI；H4：NDVI趋势具有时间持续性，持续改善区域未来继续改善的概率高于发生趋势反转的概率。",
+    "mechanism": "气候因子通过水热条件和大气蒸散需求影响植被生产力：降水增加提高土壤含水量和植物可利用水分，实际蒸散发反映植被—土壤系统的水分消耗和能量交换，温度改变光合作用、呼吸作用及生长季长度，潜在蒸散发升高则可能加剧蒸散需求和水分亏缺。水分供给与大气蒸散需求的耦合进一步改变植被覆盖度和生物量，并最终表现为NDVI变化。在统计识别上，先利用地理探测器确定NDVI空间分异的主要气候因子及其交互作用，再通过多元回归或逐步回归估计气候因子的贡献，并从NDVI中剔除气候驱动部分；气候校正后的NDVI残差代表无法由气候解释的变化，其正负变化分别用于识别人类活动促进的植被恢复和人类活动导致的土地退化。人类活动通过生态修复、灌溉、土地管理和放牧强度等途径改变植被恢复能力、土壤水分条件和地表覆盖，进而影响残差NDVI。",
+    "key_variables": {
+      "target": "MODIS归一化植被指数（NDVI），包括年均NDVI、生长季NDVI及其2000—2020年像元尺度趋势；可进一步使用NDVI年际变化率、Sen斜率和气候校正后的NDVI残差作为结果指标。",
+      "predictors": [
+        "年际和生长季平均气温（TMP，°C）",
+        "年降水量或生长季降水量（MAP，mm）",
+        "实际蒸散发（AET，mm）",
+        "潜在蒸散发（PET，mm）",
+        "气候水分亏缺或AET/PET比值",
+        "土地利用/土地覆盖类型及其变化",
+        "人口密度",
+        "牲畜密度或放牧强度",
+        "耕地和灌溉土地扩张",
+        "道路、居民地及采矿等人类扰动指标",
+        "生态恢复工程或保护区分布",
+        "气候校正后的NDVI残差"
+      ]
+    },
+    "data_sources": [
+      "NASA MODIS植被指数产品MOD13Q1（250 m、16日合成）或MOD13A1（500 m、16日合成），2000—2020年；经质量控制、云污染剔除、最大值合成和年尺度聚合后获得NDVI序列。",
+      "NASA MODIS陆地覆盖产品MCD12Q1（500 m、年度），2001—2020年，用于土地利用/土地覆盖及其转移分析。",
+      "TerraClimate月尺度气候水文数据集（约4 km、1958年至今），提取2000—2020年的月均气温TMP、降水MAP、实际蒸散发AET和潜在蒸散发PET，并聚合至年尺度或生长季尺度。",
+      "WorldClim或ERA5-Land气候数据（约1 km或9 km，2000—2020年）作为气候变量的独立验证数据源。",
+      "WorldPop人口栅格数据（约100 m，2000—2020年）或巴基斯坦人口普查数据，用于构建人口压力指标。",
+      "FAO和巴基斯坦统计部门农业、牲畜及灌溉数据（2000—2020年），用于构建耕地扩张、牲畜密度和灌溉强度指标。",
+      "Global Surface Water或ESA WorldCover数据，用于识别水体、土地覆盖变化和生态恢复区域。",
+      "道路、居民地、采矿区及生态工程空间数据（2000—2020年），用于表征局地人类扰动和生态治理活动。"
+    ],
+    "analytical_approach": "首先对MODIS NDVI进行质量控制、异常值剔除、时间序列平滑和年度/生长季合成，并使用Sen's slope估计每个像元的长期变化速率，采用双侧Mann–Kendall检验评估趋势显著性，显著性水平设为α=0.05。根据Sen斜率正负及Mann–Kendall显著性将像元划分为改善、退化或稳定类型。随后计算Hurst指数，使用R/S分析或改进的重标度极差法评估NDVI趋势持续性，并将Hurst指数与历史趋势联合判定未来趋势稳定性。其次，以NDVI空间分异或长期平均NDVI为因变量，使用Geodetector的因子探测器计算TMP、MAP、AET和PET的解释力q统计量，并使用交互探测器比较因子组合的解释力，重点检验TMP×MAP和TMP×AET是否产生非线性增强或双因子增强。再次，在像元或分区尺度建立多元线性回归和双向逐步回归模型：NDVI_t = β0 + β1TMP_t + β2MAP_t + β3AET_t + β4PET_t + ε_t；通过方差膨胀因子检验多重共线性，并采用标准化回归系数、偏R²和交叉验证误差比较气候因子的相对贡献。最后以气候模型预测值与实际NDVI之差构造残差NDVI，采用残差Sen斜率、Mann–Kendall检验及空间回归分析识别人类活动影响，并将残差趋势与土地利用变化、人口密度、牲畜密度、灌溉、道路和生态恢复工程等变量进行回归或地理加权回归；必要时使用随机森林或XGBoost进行非线性贡献检验，以评估结果对模型设定的稳健性。",
+    "expected_contribution": "构建一个适用于干旱和半干旱区的气候—人类活动分离框架，将NDVI长期趋势、Hurst持续性分析、地理探测器气候交互分析、逐步回归和残差分析结合起来；在空间上识别土地退化、植被恢复与稳定区域，在机制上区分降水、温度、AET和PET对植被变化的独立及交互作用，并量化气候校正后人类活动对NDVI变化的方向和相对贡献。该设计可为俾路支省生态恢复工程布局、放牧管理、灌溉优化和脆弱生态区保护提供可检验的空间证据，并为其他干旱区土地退化监测提供可迁移的方法框架。",
+    "falsification_condition": "若在2000—2020年像元尺度分析中，气候变量与NDVI变化的交叉验证解释度R²低于0.20，或Geodetector中TMP、MAP、AET和PET的q值均低于0.10，且气候因子交互作用的q值不高于单因子q值加0.05，则不支持“气候水热条件及其交互作用主导NDVI空间分异”的假设；若气候校正后的NDVI残差趋势与土地利用、人口、牲畜、灌溉和生态工程变量的空间回归系数均不显著（|标准化β|<0.10且p≥0.05），则不支持存在可识别的人类活动影响；若Hurst指数低于0.50的像元占研究区50%以上，或历史改善区域未来趋势反转比例超过50%，则不支持NDVI变化具有显著持续性的假设；若经过多重共线性控制后，降水、温度、AET和PET的方向性系数在不同数据源或时间尺度下频繁反转，且效应量的95%置信区间均包含0，则不支持预设的气候驱动机制。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

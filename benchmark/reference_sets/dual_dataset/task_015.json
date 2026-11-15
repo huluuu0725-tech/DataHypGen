@@ -1,0 +1,3465 @@
+{
+  "schema_version": "portable-reference-exclusion-v1",
+  "task_id": "dual_dataset/task_015",
+  "evaluation_year": 2026,
+  "seed_exclusion": {
+    "doi": "10.1029/2019WR026793",
+    "year": 2020
+  },
+  "reference_count": 21,
+  "references": [
+    {
+      "doi": "10.1007/s11069-024-06597-y"
+    },
+    {
+      "doi": "10.1029/2018wr022606"
+    },
+    {
+      "doi": "10.1029/2021wr030966"
+    },
+    {
+      "doi": "10.1029/2021wr031523"
+    },
+    {
+      "doi": "10.1029/2021wr031794"
+    },
+    {
+      "doi": "10.1038/s41467-021-26107-z"
+    },
+    {
+      "doi": "10.1038/s41598-023-47999-5"
+    },
+    {
+      "doi": "10.1038/s41598-025-05978-y"
+    },
+    {
+      "doi": "10.1111/1752-1688.12964"
+    },
+    {
+      "doi": "10.31223/osf.io/4xhac"
+    },
+    {
+      "doi": "10.3389/frwa.2023.1166124"
+    },
+    {
+      "doi": "10.5194/hess-2020-540"
+    },
+    {
+      "doi": "10.5194/hess-22-6005-2018"
+    },
+    {
+      "doi": "10.5194/hess-25-2045-2021"
+    },
+    {
+      "doi": "10.5194/hess-25-2685-2021"
+    },
+    {
+      "doi": "10.5194/hess-26-1673-2022"
+    },
+    {
+      "doi": "10.5194/hess-26-3393-2022"
+    },
+    {
+      "doi": "10.5194/hess-26-5493-2022"
+    },
+    {
+      "doi": "10.5194/hess-28-4971-2024"
+    },
+    {
+      "doi": "10.5194/hess-29-6221-2025"
+    },
+    {
+      "doi": "10.5194/hess-29-6811-2025"
+    }
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_015:composite_observation",
+    "type": "composite_observation",
+    "name": "streamflow_meteorological_forcing composite observation",
+    "observable_group": "streamflow_meteorological_forcing_multidataset_observation",
+    "components": [
+      {
+        "role": "streamflow_observation",
+        "data_description": {
+          "dataset_name": "USGS NWIS Daily Values Streamflow Observations",
+          "data_type": "Hydrological gauge discharge time series",
+          "data_format": "USGS Water Services JSON API",
+          "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+          "spatial_resolution": "Gauge/station locations",
+          "temporal_unit": "Daily mean discharge values",
+          "temporal_coverage": "Historical and active USGS daily values; query window set by API parameters",
+          "data_source": "USGS NWIS Daily Values Service; parameterCd=00060 denotes discharge",
+          "analytical_capabilities": [
+            "Gauge-based streamflow observation",
+            "Daily discharge time-series aggregation",
+            "Hydrometeorological alignment with forcing fields"
+          ],
+          "spatial_coverage": {
+            "region_name": "Continental streamflow observation space",
+            "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+          }
+        },
+        "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active"
+      },
+      {
+        "role": "meteorological_forcing",
+        "data_description": {
+          "dataset_name": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "data_type": "Meteorological forcing raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+          "gee_asset": {
+            "id": "NASA/NLDAS/FORA0125_H002",
+            "type": "image_collection"
+          },
+          "spatial_resolution": "0.125 degree",
+          "temporal_unit": "Hourly images",
+          "temporal_coverage": "1979-01-01 to near present",
+          "data_source": "NASA GSFC NLDAS-2 (GES DISC collection mirrored in GEE)",
+          "analytical_capabilities": [
+            "Hourly precipitation and temperature forcing",
+            "Humidity, pressure and wind forcing",
+            "Long-term hydrometeorological aggregation"
+          ],
+          "spatial_coverage": {
+            "region_name": "Continental streamflow observation space",
+            "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+          }
+        },
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "streamflow_observation",
+        "meteorological_forcing"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "required_roles": [
+    "streamflow_observation",
+    "meteorological_forcing"
+  ],
+  "migration_alignment": {
+    "source_task_id": "dual_dataset/task_015",
+    "target_task_id": "dual_dataset/task_015",
+    "seed_doi": "10.1029/2019WR026793",
+    "reference_count": 21,
+    "original_slots": [
+      {
+        "role": "streamflow_observation",
+        "data_path": "External: CAMELS/USGS streamflow observations"
+      },
+      {
+        "role": "meteorological_forcing",
+        "data_path": "External: NLDAS-2 meteorological forcing"
+      }
+    ],
+    "current_slots": [
+      {
+        "role": "streamflow_observation",
+        "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active"
+      },
+      {
+        "role": "meteorological_forcing",
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002"
+      }
+    ],
+    "semantic_changes": [
+      "streamflow_observation restored from mismatched JRC surface-water raster to USGS NWIS gauge discharge API",
+      "meteorological_forcing restored to formal GEE NLDAS-2 forcing asset"
+    ],
+    "semantic_status": "source_restored_to_streamflow_gauge_contract",
+    "source_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\reference_sets\\task_015.json",
+    "source_sha256": "f8f377d934cfd396270c6cf8336091907a3d47c244d982fe3bf871badb29f768",
+    "provenance_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\provenance\\task_015.provenance_20261004.json"
+  },
+  "directions": [
+    {
+      "direction_id": "task_015_ref_01",
+      "source_paper_doi": "10.1007/s11069-024-06597-y",
+      "source_paper": {
+        "doi": "10.1007/s11069-024-06597-y",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500)",
+        "North American Land Data Assimilation System Phase-2 (NLDAS-2) dataset"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500)",
+          "actual_product_in_paper": "USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500)",
+          "evidence_quotes": [
+            "For the evaluation of the simulated streamflow, the following USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500) are considered (Fig.  1 )."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "North American Land Data Assimilation System Phase-2 (NLDAS-2) dataset",
+          "actual_product_in_paper": "North American Land Data Assimilation System Phase-2 (NLDAS-2) dataset",
+          "evidence_quotes": [
+            "The NLDAS-2 dataset is utilized as the forcing dataset for the model simulations (Cosgrove et al. 2003 )."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The NLDAS-2 dataset is utilized as the forcing dataset for the model simulations (Cosgrove et al. 2003 ).",
+        "For the evaluation of the simulated streamflow, the following USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500) are considered (Fig.  1 )."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究在新泽西州哈肯萨克河流域，WRF-Hydro 能否有效模拟街区尺度洪水淹没与河流流量，并评估其作为纽约市都会区 Stevens Flood Advisory System 潜在组成部分的表现？",
+      "hypothesis_or_mechanism": "WRF-Hydro 通过陆面水量计算及高分辨率地表和河道汇流模拟流量，并结合 HAND 方法将河流水位映射为地表淹没。淹没范围误差可能源于合成水位流量关系曲线不准确及模型结构误差。",
+      "variables_and_data_use": "使用 NASA NLDAS-2 降水及其他大气强迫驱动 WRF-Hydro，并将强迫数据从 0.125° 双线性插值至 200 m；使用 USGS 10 m DEM、MODIS Modified IGBP 土地覆盖和 1 km STATSGO 土壤分类构建模型输入。WRF-Hydro 5.1.1（含 Noah-MP）模拟流量和淹没深度；以 USGS 测站流量、USGS 高水位标记和飓风 Irene 后的地理标记照片评估结果。",
+      "method_paradigm": "采用分布式、多物理过程的 WRF-Hydro 水文模拟，以扩散波方程进行地表及河道汇流，并用 HAND 方法估算淹没深度和范围。通过动态维度搜索算法校准模型，并以流量、水位标记及群众提供的淹没信息评估表现。",
+      "study_area": "哈肯萨克河流域，位于美国新泽西州东北部、跨新泽西州与纽约州边界；研究域排除了 New Millbrook 测站以下区域。",
+      "study_period": "主要案例为 2011 年 8 月飓风 Irene 事件；文中称以 Superstorm Ida 事件进行模型校准，但所给文本未提供其具体日期。",
+      "datasets_used": [
+        {
+          "name_in_paper": "North American Land Data Assimilation System Phase-2 (NLDAS-2) dataset",
+          "role_in_study": "模型气象强迫数据，提供降水及其他大气强迫，并用于展示飓风 Irene 期间的累计降水。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NLDAS-2 dataset is utilized as the forcing dataset for the model simulations (Cosgrove et al. 2003 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS 1/3 arc-second (10-m) Digital Elevation Model (DEM)",
+          "role_in_study": "生成 WRF-Hydro 地形参数、汇流栅格及 HAND 图层。",
+          "usage": "used_as_data",
+          "evidence_quote": "The terrain-based parameters and routing stack in 50-m resolution for WRF-Hydro are generated based on the USGS 1/3 arc-second (10-m) Digital Elevation Model (DEM) product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS) Modified IGBP 20-category landcover product",
+          "role_in_study": "为陆面模型提供土地覆盖分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Moderate Resolution Imaging Spectroradiometer (MODIS) Modified IGBP 20-category landcover product with 500-m spatial resolution provides land cover classifications for the LSM",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "1-km STATSGO database",
+          "role_in_study": "生成模型使用的土壤分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "while the soil classifications are produced from the 1-km STATSGO database.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500)",
+          "role_in_study": "提供观测流量，用于模型校准及模拟流量评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the evaluation of the simulated streamflow, the following USGS stations of the Hackensack River at West Nyack NY (01376800), Hackensack River at Rivervale NJ (01377000), Pascack Brook at Westwood NJ (01375000), and Hackensack River at New Milford NJ (01378500) are considered (Fig.  1 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS high water mark (HWM) data",
+          "role_in_study": "用于评估 WRF-Hydro 预测的水深。",
+          "usage": "used_as_data",
+          "evidence_quote": "The water depth predicted by WRF-Hydro is evaluated using surveyed USGS high water mark (HWM) data (Watson et al. 2013 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "crowdsourced data",
+          "role_in_study": "以飓风 Irene 后当地媒体发布的照片进行街道淹水深度或淹没图的定性评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "In addition, a qualitative assessment of the simulated water depth or flood inundation mapping is made based on the crowdsourced data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Weather Research and Forecast Model Hydrological Extension (WRF-Hydro version 5.1.1)",
+          "role_in_study": "研究使用的分布式水文模型，生成流量及淹没模拟结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "A fully distributed, multi-physics model called Weather Research and Forecast Model Hydrological Extension (WRF-Hydro version 5.1.1) developed by the National Center for Atmospheric Research (NCAR) is used in this study (Gochis et al. 2020 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Noah-MP",
+          "role_in_study": "WRF-Hydro 中的陆面模型，负责垂向能量和水分通量及土壤柱水量平衡计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "WRF-Hydro modeling system relies on a 1-D column land surface model (LSM) called Noah-MP",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Water Model (NWM) reaches",
+          "role_in_study": "提供河段定义，用于关联合成水位流量曲线并提取模拟峰值流量。",
+          "usage": "used_as_data",
+          "evidence_quote": "River stage values for the WRF-Hydro streamflow outputs are generated by using Synthetic Rating Curves (SRC) defined CONUS-wide for each National Water Model (NWM) reach.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Hydrography Dataset Plus (NHDPlus) V2.1 dataset",
+          "role_in_study": "用于定义 NWM 河段，并据此确定子流域边界以裁剪河道网格输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "Given that the NWM reaches are defined based on the National Hydrography Dataset Plus (NHDPlus) V2.1 dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Synthetic Rating Curves (SRCs)",
+          "role_in_study": "将 WRF-Hydro 模拟峰值流量转换为峰值水位。",
+          "usage": "used_as_data",
+          "evidence_quote": "Simulated peak streamflow values within these sub-watersheds are extracted and utilized to determine the peak stage values by using SRCs.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS 10-m DEM",
+          "role_in_study": "生成 HAND 图层，并插值至 50 m 以匹配 WRF-Hydro 高分辨率汇流网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "HAND layers are calculated based on the USGS 10-m DEM which is interpolated to the 50-m resolution to match the WRF-Hydro high-resolution routing grids.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Google Earth 3D map layer",
+          "role_in_study": "叠加 WRF-Hydro 地表水深输出，以便与地理标记照片目视比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "The surface water depth output from the WRF-Hydro simulation is overlaid on the Google Earth 3D map layer and visually compared with the geotagged pictures from the same angle that the picture was captured.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s11069-024-06597-y.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s11069-024-06597-y.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "e500fb4058c6a4f3cd8843261cd65d48c7095f519be4c3444d29185085391043",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:33",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1007_s11069-024-06597-y.json",
+        "quote_gate": {
+          "total": 18,
+          "verified": 18
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_02",
+      "source_paper_doi": "10.1029/2018wr022606",
+      "source_paper": {
+        "doi": "10.1029/2018wr022606",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CAMELS observed discharge time series",
+        "Daymet data set"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS observed discharge time series",
+          "actual_product_in_paper": "CAMELS observed discharge time series",
+          "evidence_quotes": [
+            "The hydrometeorological time series include both daily meteorological forcing and observed discharge time series, as well as daily hydrological simulations."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Daymet data set",
+          "actual_product_in_paper": "Daymet data set",
+          "evidence_quotes": [
+            "Precipitation and temperature at the catchment scale were retrieved from the Daymet data set (Thornton et al., 2012)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The hydrometeorological time series include both daily meteorological forcing and observed discharge time series, as well as daily hydrological simulations.",
+        "Precipitation and temperature at the catchment scale were retrieved from the Daymet data set (Thornton et al., 2012)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究美国本土（CONUS）671个流域中15种水文特征量能否依据流域属性和空间信息进行预测，并比较其可预测性，以支持水文特征量的选择。",
+      "hypothesis_or_mechanism": "核心假设是水文特征量的空间可预测性与其空间分布的平滑程度有关：空间格局越嘈杂、越不连续的特征量越难预测。此类特征量与流域属性的关系较难识别，并且对流量观测误差更敏感。",
+      "variables_and_data_use": "研究使用CAMELS数据集中的流量观测、Daymet降水和温度时间序列、流域属性及Sacramento（SAC）水文模型模拟，计算并评估15种水文特征量。随机森林用于根据气候、地形、土地覆盖、土壤和地质属性预测特征量；SAC模拟用于基准比较，Moran’s I用于量化特征量的空间自相关。",
+      "method_paradigm": "采用随机森林流域特征回归、校准后的概念性水文模型模拟基准，以及Moran’s I空间自相关分析，对15种水文特征量的空间可预测性进行排序。",
+      "study_area": "美国本土（CONUS）的671个流域",
+      "study_period": "观测与模拟时间序列的具体共同研究时段未在所给文本中明确说明；SAC模拟对598个流域自1980年10月1日开始，其余流域从流量记录开始后的首个10月1日开始；校准期为各流域模拟最初15年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS data set (Catchment Attributes and MEteorology for Large-sample Studies)",
+          "role_in_study": "研究所用数据集合，包含流域属性以及气象强迫、观测流量和模拟流量时间序列。",
+          "usage": "used_as_data",
+          "evidence_quote": "All the data used in this study come from the CAMELS data set (Catchment Attributes and MEteorology for Large-sample Studies).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet data set",
+          "role_in_study": "提供流域尺度降水和温度强迫，并用于计算气候属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "Precipitation and temperature at the catchment scale were retrieved from the Daymet data set (Thornton et al., 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sacramento Soil Moisture Accounting model combined with the SNOW-17 snow accumulation and ablation model",
+          "role_in_study": "生成水文模拟流量，用于基准比较随机森林预测。",
+          "usage": "used_as_data",
+          "evidence_quote": "The hydrologic simulations were produced using the Sacramento Soil Moisture Accounting model (Burnash et al., 1973) combined with the SNOW-17 snow accumulation and ablation model (Anderson, 1973), with streamflow being routed using a unit-hydrograph model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS imagery",
+          "role_in_study": "用于估算最大叶面积指数、根系深度等土地覆盖属性，作为随机森林预测因子。",
+          "usage": "used_as_data",
+          "evidence_quote": "Land cover characteristics: attributes such as the maximum leaf area index and the rooting depth, estimated using MODIS imagery.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "State Soil Geographic Database (STATSGO)",
+          "role_in_study": "提供土壤深度、砂含量等土壤属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soil characteristics: variables such as the soil depth and the sand fraction, extracted from the State Soil Geographic Database (STATSGO, Miller and White, 1998) and from Pelletier et al. (2016).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Lithological Map (GLiM)",
+          "role_in_study": "提供流域地质类别属性，作为流域特征分析输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Geological characteristics: characteristics such as the dominant geology class and the subsurface permeability, retrieved from Global Lithological Map (GLiM, Hartmann and Moosdorf, 2012) and GLobal HYdrogeology MaPS (GLHYMPS, Gleeson et al., 2014).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GLobal HYdrogeology MaPS (GLHYMPS)",
+          "role_in_study": "提供地下渗透性等地质属性，作为流域特征分析输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Geological characteristics: characteristics such as the dominant geology class and the subsurface permeability, retrieved from Global Lithological Map (GLiM, Hartmann and Moosdorf, 2012) and GLobal HYdrogeology MaPS (GLHYMPS, Gleeson et al., 2014).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United States Geologial Survey (USGS) data base",
+          "role_in_study": "提供流域面积、平均高程等地形属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "Topographic characteristics: features such as catchment area and mean elevation, extracted from the United States Geologial Survey (USGS) data base.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Pelletier et al. (2016)",
+          "role_in_study": "用于提取土壤属性；所给文本未提供该数据产品的正式名称。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soil characteristics: variables such as the soil depth and the sand fraction, extracted from the State Soil Geographic Database (STATSGO, Miller and White, 1998) and from Pelletier et al. (2016).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2018wr022606.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2018wr022606.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "f4535b135ee752626573dbc98db54f6ab0b879f59480835f4e3b368cce6879c5",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:43",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1029_2018wr022606.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_03",
+      "source_paper_doi": "10.1029/2021wr030966",
+      "source_paper": {
+        "doi": "10.1029/2021wr030966",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CAMELS database",
+        "NLDAS product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS database",
+          "actual_product_in_paper": "CAMELS database",
+          "evidence_quotes": [
+            "The CAMELS database is comprised of data for 671 catchments distributed throughout CONUS and includes forcing data for"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "NLDAS product",
+          "actual_product_in_paper": "NLDAS product",
+          "evidence_quotes": [
+            "The NLDAS product consists of NLDAS P forcing data"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "For gridded time-series products, all data were obtained for the period from 1 October 2001 to 30 September 2016 for each catchment in Figure 1",
+        "The NLDAS product consists of NLDAS P forcing data"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究美国本土114个积雪主导的高海拔流域中，长期开放水量平衡能否验证传统闭合水量平衡假设，以及这些假设如何影响对气候变化下径流响应和流域间地下水交换的推断。",
+      "hypothesis_or_mechanism": "高海拔、干旱且具有深厚可渗透基质的流域可能向外输出地下水，使忽略地下水通量的闭合水量平衡假设失效。积雪、陡峭地形中的降水测量误差也可能破坏水量平衡闭合，并使基于 Budyko 的径流气候响应推断产生偏差。",
+      "variables_and_data_use": "研究使用 CAMELS 流域资料及 NLDAS 降水强迫等产品，比较降水与蒸散发估计，并以三重配准（TC）评估误差、合并产品；另将集合平均产品作为比较对象。结合流域径流、降水、蒸散发和水储量变化进行长期开放水量平衡分析，并用 Budyko 框架评估径流对降水相态变化的响应。",
+      "method_paradigm": "采用开放水量平衡与三重配准误差估计/产品合并，检验闭合水量平衡假设。再结合 Budyko 分析和条件推断树递归划分，评估地下水输入或输出及其流域特征。",
+      "study_area": "美国本土（CONUS）的114个积雪主导高海拔流域",
+      "study_period": "格网时间序列数据为2001年10月1日至2016年9月30日；文中另报告15年分析期。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS database",
+          "role_in_study": "提供候选流域及其流域属性和气象强迫资料，用于筛选研究流域。",
+          "usage": "used_as_data",
+          "evidence_quote": "We focus on a large collection of upland catchments compiled using a subset of the Catchment Attributes and Meteorology for Large Sample studies (CAMELs) database",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NLDAS product",
+          "role_in_study": "作为单一模型产品代表，用于水量平衡分析中的降水强迫估计。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NLDAS product consists of NLDAS P forcing data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Ensemble Mean product",
+          "role_in_study": "作为多个产品的集合平均估计，用于与其他产品比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "we compared three different data products selected to represent the most common choices available to users in upland settings: (a) an NLDAS product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TC-Merged product",
+          "role_in_study": "通过三重配准合并产品，以获得误差降低的估计并用于开放水量平衡分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "a TC-Merged product (described in Sections 2.2.3 and 3.1 below).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2021wr030966.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "1c6419f6cb1d5b67d7413f255f724e9d530fbfb2fad612c17bbc70efa22c5ec9",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:34",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1029_2021wr030966.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_04",
+      "source_paper_doi": "10.1029/2021wr031523",
+      "source_paper": {
+        "doi": "10.1029/2021wr031523",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "observations (system response data; streamflow at the catchment outlet; specific product not stated)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "observations (system response data; streamflow at the catchment outlet; specific product not stated)",
+          "actual_product_in_paper": "observations (system response data; streamflow at the catchment outlet; specific product not stated)",
+          "evidence_quotes": [
+            "model outputs (e.g., streamflow at the catchment outlet) matching the corresponding observations as closely as possible"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "meteorological_forcing"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "performance of two lumped conceptual hydrological models calibrated and tested in 463 catchments across the United States using 50 different data splitting schemes",
+        "model outputs (e.g., streamflow at the catchment outlet) matching the corresponding observations as closely as possible"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究在美国 463 个流域中，不同连续校准子时段的数据拆分方案如何影响两个集总概念水文模型在独立测试期的表现？研究旨在为水文模型校准与验证的数据拆分决策提供经验依据。",
+      "hypothesis_or_mechanism": "校准期的长度、数据近期性与可用数据范围会影响参数估计及模型在独立测试期的表现。研究检验了使用全部可用数据校准并跳过验证，是否比传统的先用较早数据校准、再用较新数据验证更稳健。",
+      "variables_and_data_use": "研究将流域出口的观测流量作为系统响应数据，用于两个集总概念水文模型的校准、验证与测试。研究在 463 个流域中比较 50 种数据拆分方案，并以测试期模型表现评估方案；给出的文本未指明流量观测数据产品名称，也未给出两个模型的名称。",
+      "method_paradigm": "大样本、多方案的经验比较实验：在不同连续校准子时段及全时段校准方案下校准模型，并比较独立测试期表现。另将模型构建决策表述为决策树问题，并将测试期模型成功/失败表述为分类问题。",
+      "study_area": "美国的 463 个流域",
+      "study_period": "有可用数据的 35 年期间；文本未给出具体起止年份。",
+      "datasets_used": [
+        {
+          "name_in_paper": "observations (system response data; streamflow at the catchment outlet)",
+          "role_in_study": "流域出口观测流量，用作模型校准、验证及测试的系统响应数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "model outputs (e.g., streamflow at the catchment outlet) matching the corresponding observations as closely as possible",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "two lumped conceptual hydrological models",
+          "role_in_study": "用于 463 个流域的模型校准、验证和测试期表现评估；文本未提供模型名称。",
+          "usage": "used_as_data",
+          "evidence_quote": "performance of two lumped conceptual hydrological models calibrated and tested in 463 catchments across the United States",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2021wr031523.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2021wr031523.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "1499f5246230b99e83ed15f68602c6262ddba9f7825fa5a5bf658d7c7e974ad0",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:27",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1029_2021wr031523.json",
+        "quote_gate": {
+          "total": 5,
+          "verified": 5
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_05",
+      "source_paper_doi": "10.1029/2021wr031794",
+      "source_paper": {
+        "doi": "10.1029/2021wr031794",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "streamflow data",
+        "weather forcing"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "streamflow data",
+          "actual_product_in_paper": "streamflow data",
+          "evidence_quotes": [
+            "It is able to use the weather forcing and streamflow data from a set of basins"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "weather forcing",
+          "actual_product_in_paper": "weather forcing",
+          "evidence_quotes": [
+            "It is able to use the weather forcing and streamflow data from a set of basins"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "It is able to use the weather forcing and streamflow data from a set of basins",
+        "These models predict streamflow given catchment physical descriptors and weather forcing data."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究问题是：在美国多个有流量观测的流域中，深度学习区域化模型能否用随机向量替代流域物理属性，并在物理属性缺失、不完整或不确定时仍保持可靠的径流预测性能？",
+      "hypothesis_or_mechanism": "核心假设是，随机向量只需为各流域提供不同的表征，就可以替代流域物理属性用于有观测流域的区域化预测。模型从天气驱动与流量数据中学习流域响应，因此随机向量方法可达到与使用实际物理属性相近的预测表现。",
+      "variables_and_data_use": "研究使用流域天气驱动作为动态输入、流域物理属性或随机向量作为静态表征，并以观测流量作为预测目标。采用长短期记忆网络（LSTM），具体比较 CT-LSTM 与 EA-LSTM；随机向量替代物理属性，用于评估不同数据稀缺情景下的区域化预测表现。论文文本提及 CAMELS 数据集，但所给片段未说明天气驱动和流量观测的具体产品名称。",
+      "method_paradigm": "采用基于深度学习的流域区域化径流预测范式，使用 LSTM 架构，以随机向量替代流域物理属性，并与使用实际物理属性的模型比较。模型包括 CT-LSTM 和 EA-LSTM。",
+      "study_area": "美国 531 个 CAMELS 流域",
+      "study_period": "",
+      "datasets_used": [
+        {
+          "name_in_paper": "US CAMELS (Catchment Attributes and Meteorology for Large Sample studies) data set",
+          "role_in_study": "作为多流域研究数据集；论文片段说明其包含美国流域，但未明确给出其中实际使用的数据变量或数据产品细节。",
+          "usage": "used_as_data",
+          "evidence_quote": "for 531 basins in the US CAMELS (Catchment Attributes and Meteorology for Large Sample studies) data set",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "weather forcing",
+          "role_in_study": "作为模型的动态天气驱动输入；所给片段未说明具体气象产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "It is able to use the weather forcing and streamflow data from a set of basins",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "streamflow data",
+          "role_in_study": "作为模型训练和流量预测所需的流量数据；所给片段未说明具体观测产品或数据服务。",
+          "usage": "used_as_data",
+          "evidence_quote": "It is able to use the weather forcing and streamflow data from a set of basins",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2021wr031794.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2021wr031794.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "e44875989fffa91fb9ed3af5f913943027867096d4d59ff65d0653810af8e0a9",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:37",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1029_2021wr031794.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_06",
+      "source_paper_doi": "10.1038/s41467-021-26107-z",
+      "source_paper": {
+        "doi": "10.1038/s41467-021-26107-z",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "streamflow observations",
+        "North American Land Data Assimilation System phase-II dataset (NLDAS-2)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "streamflow observations",
+          "actual_product_in_paper": "streamflow observations",
+          "evidence_quotes": [
+            "We demonstrate examples that learned from soil moisture and streamflow, where dPL drastically outperformed existing evolutionary and regionalization methods"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "North American Land Data Assimilation System phase-II dataset (NLDAS-2)",
+          "actual_product_in_paper": "North American Land Data Assimilation System phase-II dataset (NLDAS-2)",
+          "evidence_quotes": [
+            "For all models, we collected atmospheric forcing data from the North American Land Data Assimilation System phase-II dataset (NLDAS-2) 51 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "For all models, we collected atmospheric forcing data from the North American Land Data Assimilation System phase-II dataset (NLDAS-2) 51 .",
+        "We demonstrate examples that learned from soil moisture and streamflow, where dPL drastically outperformed existing evolutionary and regionalization methods"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究区涵盖美国本土（CONUS）等示例区域，研究对象是地球科学过程模型的空间变化参数：论文探讨可微参数学习能否比传统校准和区域化方法更高效地学习参数，并提升模型表现、物理一致性与泛化能力。",
+      "hypothesis_or_mechanism": "核心机制是训练一个从静态属性和/或历史强迫、观测响应映射到过程模型参数的网络，并通过可微模型或其代理模型的损失进行梯度优化。训练数据增加时，该方法预期能够改善预测表现、物理一致性和跨空间及未校准变量的泛化能力。",
+      "variables_and_data_use": "论文以NLDAS-2大气强迫驱动VIC水文模型，并使用土壤属性、SMAP增强型L3土壤湿度及流量等响应信息学习模型参数；LSTM代理模型用于近似VIC输出并支持梯度传播。SMAP观测缺测通过LSTM近实时预报方案填补，MOD16A2是文中介绍的卫星ET产品。",
+      "method_paradigm": "提出可微参数学习（dPL）框架，以神经网络生成过程模型参数，并通过梯度下降优化；对复杂的VIC模型使用LSTM代理模型。论文还将该方法与SCE-UA等校准或区域化方法进行比较。",
+      "study_area": "美国本土（CONUS）；论文还展示土壤湿度和流量学习示例。",
+      "study_period": "SMAP相关训练数据调参示例为2015-04-01至2016-03-31；流量示例的研究时段在所给文本中未说明。",
+      "datasets_used": [
+        {
+          "name_in_paper": "North American Land Data Assimilation System phase-II dataset (NLDAS-2)",
+          "role_in_study": "作为大气强迫数据驱动水文模型和相关网络，提供降水、气温、风速、气压、水汽压及长短波辐射等时序输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "For all models, we collected atmospheric forcing data from the North American Land Data Assimilation System phase-II dataset (NLDAS-2) 51 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SMAP enhanced level-3 9-km resolution surface soil moisture product",
+          "role_in_study": "提供地表土壤湿度观测，用作参数学习响应信息；通过近实时预报方案填补观测间隔。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the SMAP enhanced level-3 9-km resolution surface soil moisture product (see acknowledgements for access).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "International Soil Reference and Information Centre - World Inventory of Soil Emission Potentials (ISRIC-WISE) database",
+          "role_in_study": "提供土壤容重、土壤持水量及砂、粉砂、黏土比例等静态属性输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "These attributes included bulk density, soil water holding capacity, and sand, silt, and clay percentages from the International Soil Reference and Information Centre - World Inventory of Soil Emission Potentials (ISRIC-WISE) database 52 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SMAP product flags",
+          "role_in_study": "提供山区地形、土地覆盖、城市区域和水面比例等辅助输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Other inputs were SMAP product flags indicating mountainous terrain, land cover classes, urban areas, and fraction of land surface with water (time averaged).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Variable Infiltration Capacity (VIC) hydrologic model",
+          "role_in_study": "过程模型，用于模拟水文变量，并作为参数学习所服务的模型；其部分输出由LSTM代理模型仿真。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Variable Infiltration Capacity (VIC) hydrologic model has been widely used for simulating the water and energy exchanges between the land surface and atmosphere",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LSTM surrogate for VIC",
+          "role_in_study": "近似VIC模拟的地表土壤湿度和蒸散发输出，为参数搜索和梯度优化提供可微代理。",
+          "usage": "used_as_data",
+          "evidence_quote": "We first trained an LSTM surrogate for VIC using the forcings, attributes, and parameters from NLDAS-2 as inputs, and the VIC-simulated surface soil moisture (variable name: SOILM_lev1) and evapotranspiration (ET, variable name: EVP) as the targets of emulation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MOD16A2",
+          "role_in_study": "文中介绍的500米、8日合成蒸散发产品；所给文本没有明确说明其在实验中实际用作输入或验证数据。",
+          "usage": "mention_only",
+          "evidence_quote": "MOD16A2 55 is an 8-day composite ET product at 500-meter resolution, which is based on the Penman-Monteith equation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "streamflow observations",
+          "role_in_study": "作为流量学习示例中的观测响应；所给文本未提供具体观测产品或站点名称。",
+          "usage": "used_as_data",
+          "evidence_quote": "We demonstrate examples that learned from soil moisture and streamflow, where dPL drastically outperformed existing evolutionary and regionalization methods",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-021-26107-z.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-021-26107-z.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "e6fdeaba44b4c2ca19e9248b14c4ba2c4549d672a7eeeecdac2c12ccbe5ce677",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:30",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1038_s41467-021-26107-z.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_07",
+      "source_paper_doi": "10.1038/s41598-023-47999-5",
+      "source_paper": {
+        "doi": "10.1038/s41598-023-47999-5",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "USGS streamflow measurements provided in the CAMELS dataset",
+        "NLDAS-2 primary (File A) forcing data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS streamflow measurements provided in the CAMELS dataset",
+          "actual_product_in_paper": "USGS streamflow measurements provided in the CAMELS dataset",
+          "evidence_quotes": [
+            "The discharge data for these basins were collected from the US Geological Survey’s (USGS) streamflow measurements provided in the CAMELS dataset."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "NLDAS-2 primary (File A) forcing data",
+          "actual_product_in_paper": "NLDAS-2 primary (File A) forcing data",
+          "evidence_quotes": [
+            "We use NLDAS-2 primary (File A) forcing data, which provides a total of eleven variables, given in Table 1 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We use NLDAS-2 primary (File A) forcing data, which provides a total of eleven variables, given in Table 1 .",
+        "The discharge data for these basins were collected from the US Geological Survey’s (USGS) streamflow measurements provided in the CAMELS dataset.",
+        "Since we are interested in snow droughts and their hydrological impacts, we use SWE and discharge as target variables in the feature selection part of the framework (using Random Forest)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究旨在为美国西部太平洋沿岸州（华盛顿州、加利福尼亚州和俄勒冈州）建立并验证一种新的雪旱指标 SnoDRI，以识别和量化雪旱发生及其严重程度。",
+      "hypothesis_or_mechanism": "雪旱及其水文影响不能仅由雪水当量（SWE）异常刻画，气象变量和流量等信息也可能反映雪旱胁迫。研究假设可先用 SWE 和流量筛选相关气象变量，再结合自监督自编码器与互信息赋权，构建能表征雪旱的综合指标。",
+      "variables_and_data_use": "研究使用 NLDAS-2 Primary (File A) 的 11 个变量，按流域聚合并转换为月序列；基于其中的降水计算 SPI-3、SPI-4、SPI-6，并将 SPI-12 和 SPI-60 作为检验输入。来自 NSIDC 的 Assimilated in-situ and modeled data over the conterminous US, Version 1 的 SWE 用于验证并作为随机森林特征筛选目标之一；CAMELS 提供流域边界及流量数据，流量与 SWE 一同用于特征筛选，流量也用于验证 SnoDRI。",
+      "method_paradigm": "采用随机森林回归，依据 SWE 和流量筛选重要变量；再以自监督自编码器压缩筛选后的变量，并用互信息计算权重，形成标准化的 SnoDRI。通过 SWE、SWE 异常、雪分数、温度异常、降水、雪深和流量等指标验证结果。",
+      "study_area": "美国西部太平洋沿岸州：华盛顿州、加利福尼亚州和俄勒冈州；验证区域为内华达山脉上图奥勒米河流域。",
+      "study_period": "NLDAS-2 数据覆盖 1981—2021 年；SWE 数据为 1982—2020 年；USGS 流量记录为 1979—2020 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "NLDAS-2 primary (File A) forcing data",
+          "role_in_study": "提供气象强迫变量；流域聚合后转换为月序列，并用于计算 SPI 及 SnoDRI 输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use NLDAS-2 primary (File A) forcing data, which provides a total of eleven variables, given in Table 1 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Standardized Precipitation Index (SPI)",
+          "role_in_study": "由流域聚合的 NLDAS-2 降水计算，作为 SnoDRI 输入，包括 SPI-3、SPI-4、SPI-6，并以 SPI-12、SPI-60 检验模型能否舍弃较不相关信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "We calculate SPIs at three timescales (3, 4, and 6 months) and provide them as inputs for the SnoDRI because they provide a combined measure of precipitation over multiple time scales.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "assimilated in-situ and modeled data over the conterminous US, Version 1",
+          "role_in_study": "提供 SWE 和雪深；SWE 用作雪旱验证指标及随机森林特征筛选目标。",
+          "usage": "used_as_data",
+          "evidence_quote": "We obtained SWE data and snow depth from assimilated in-situ and modeled data over the conterminous US, Version 1 37 , 38 from the National Snow and Ice Data Center (NSIDC).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Catchment Attributes and MEteorology for Large-sample Studies (CAMELS) basin shapefiles",
+          "role_in_study": "筛选研究流域并提供流域边界，用于将格网数据聚合到流域尺度。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use the basin shapefiles provided in the dataset and filtered basins (a total of 85) belonging to the Pacific Coast states.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS streamflow measurements provided in the CAMELS dataset",
+          "role_in_study": "提供日均流量；流量用于随机森林特征筛选目标，并用于 SnoDRI 验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "The discharge data for these basins were collected from the US Geological Survey’s (USGS) streamflow measurements provided in the CAMELS dataset.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-023-47999-5.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-023-47999-5.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "5fd4cdf4633d10b1fa68dc9ac92faa7d6151e92634fb21631a4a3aa0af8bc8b5",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:42",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1038_s41598-023-47999-5.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_08",
+      "source_paper_doi": "10.1038/s41598-025-05978-y",
+      "source_paper": {
+        "doi": "10.1038/s41598-025-05978-y",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "United States Geological Survey National Water Information System"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "United States Geological Survey National Water Information System",
+          "actual_product_in_paper": "United States Geological Survey National Water Information System",
+          "evidence_quotes": [
+            "Additionally, daily streamflow data were compiled from the United States Geological Survey National Water Information System"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "North-American Land Data Assimilation System (NLDAS)",
+          "evidence_quotes": [
+            "generated by mapping daily, gridded meteorological datasets to subbasin and basin polygons using data from Daymet, Maurer, and North-American Land Data Assimilation System (NLDAS)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "meteorological_forcing"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Additionally, daily streamflow data were compiled from the United States Geological Survey National Water Information System",
+        "For this study, the input to the LSTM model is the historical SWE data, and the output is the streamflow values for the next day.",
+        "Similarly, daily SWE data was used from the UAZ dataset for each watershed."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究美国本土雪主导流域中雪水当量（SWE）对河流流量的影响有多强、滞后多久，以及雪旱发生后水文干旱的条件概率如何随时间变化。",
+      "hypothesis_or_mechanism": "冬季积雪作为天然蓄水库，其SWE变化会经过一定滞后影响春夏季流量；因此，雪旱可能随时间推进为水文干旱。研究通过不同SWE产品及滞后期下的流量预测表现和条件概率分析检验这种关系。",
+      "variables_and_data_use": "研究以Daymet、University of Arizona（UAZ）Daily 4 km Gridded SWE and Snow Depth和SNODAS的SWE产品比较雪量数据与流量的关系，并以历史SWE序列作为LSTM输入、次日流量作为输出。流量数据来自CAMELS所汇集的USGS站点日流量，用于模型分析和水文干旱识别；雪旱与水文干旱分别根据SWE和流量的日百分位判定，并据此计算不同滞后期的条件概率。NLDAS作为CAMELS气象强迫数据来源之一被介绍，但文中未说明其气象强迫变量被直接用于研究分析。",
+      "method_paradigm": "采用多种SWE产品与不同历史回看期的LSTM时序建模，以预测表现评估SWE与流量的联系；再以日气候态、百分位阈值和条件概率分析雪旱向水文干旱的滞后演变。",
+      "study_area": "美国本土（contiguous United States）的雪主导流域；空间分析指出美国西部流域表现突出。",
+      "study_period": "CAMELS流域数据覆盖1980—2014年；SWE产品的时间覆盖各异，UAZ数据为1981—2022年。干旱气候态分析使用35年日流量记录。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS dataset (Catchment Attributes and Meteorology for Large-sample Studies)",
+          "role_in_study": "用于选择美国本土雪主导流域并提供流域水文响应数据；研究使用其中的流量数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "For our study, we selected basins from the CAMELS dataset, focusing on snow-dominated catchments. The streamflow data from these selected basins were utilized to analyze the impact of snow on water availability.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United States Geological Survey National Water Information System",
+          "role_in_study": "提供流域及站点日流量观测，用于分析SWE与流量关系、构建流量气候态和识别水文干旱。",
+          "usage": "used_as_data",
+          "evidence_quote": "Additionally, daily streamflow data were compiled from the United States Geological Survey National Water Information System",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet dataset",
+          "role_in_study": "作为比较的SWE数据产品之一，用于分析雪量与流量的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The parameters generated—ranging from minimum and maximum temperature to precipitation, vapor pressure, radiation, snow water equivalent (SWE), and day length—are instrumental for filling the gaps in regions devoid of meteorological instruments, thus facilitating a more detailed analysis of hydrological processes.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daily 4 km Gridded SWE and Snow Depth dataset",
+          "role_in_study": "University of Arizona（UAZ）日尺度SWE产品，用于SWE—流量关系分析，并用于建立雪旱分析的SWE气候态。",
+          "usage": "used_as_data",
+          "evidence_quote": "Similarly, daily SWE data was used from the UAZ dataset for each watershed.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SNODAS dataset",
+          "role_in_study": "作为比较的雪产品之一，用于SWE与流量关系分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "The study utilizes multiple SWE products to determine which dataset has the strongest relationship with streamflow, as indicated by the model’s predictive performance.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "North-American Land Data Assimilation System (NLDAS)",
+          "role_in_study": "文中仅将其列为CAMELS流域平均气象强迫数据的来源之一；未说明直接将NLDAS气象变量用于分析。",
+          "usage": "mention_only",
+          "evidence_quote": "generated by mapping daily, gridded meteorological datasets to subbasin and basin polygons using data from Daymet, Maurer, and North-American Land Data Assimilation System (NLDAS)",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-025-05978-y.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-025-05978-y.methods.txt"
+        ],
+        "chars": 18709,
+        "text_mode": "head+methods",
+        "source_sha256": "ce07f3c9e6bc54fff7041d6b1151705ab387dbec707cad4657996db837bfa46b",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:46",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1038_s41598-025-05978-y.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_09",
+      "source_paper_doi": "10.1111/1752-1688.12964",
+      "source_paper": {
+        "doi": "10.1111/1752-1688.12964",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "daily streamflow records from USGS gauges in CAMELS",
+        "North American Land Data Assimilation System (NLDAS) meteorological forcing data in CAMELS"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "daily streamflow records from USGS gauges in CAMELS",
+          "actual_product_in_paper": "daily streamflow records from USGS gauges in CAMELS",
+          "evidence_quotes": [
+            "CAMELS data include corresponding daily stream-\nﬂow records from USGS gauges"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "North American Land Data Assimilation System (NLDAS) meteorological forcing data in CAMELS",
+          "actual_product_in_paper": "North American Land Data Assimilation System (NLDAS) meteorological forcing data in CAMELS",
+          "evidence_quotes": [
+            "meteorological forcing data (precipitation, max/min temperature,\nvapor pressure, and total solar radiation) come from\nNorth American Land Data Assimilation System\n(NLDAS; Xia et al. 2012)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "CAMELS data include corresponding daily stream-\nﬂow records from USGS gauges, and meteorological\nforcing data (precipitation, max/min temperature,\nvapor pressure, and total solar radiation) come from\nNorth American Land Data Assimilation System\n(NLDAS; Xia et al. 2012).",
+        "We tested a LSTM-based post-processor\nthat uses the dynamic NWM model outputs (shown\nin Table 1 and described below in the methods sec-\ntion) and compared the results against the NWM\nitself.",
+        "We trained the LSTMs on water years 2004 through\n2014 and tested on water years 1994 through 2002."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究考察美国本土（CONUS）531个CAMELS流域的日流量预测：LSTM利用美国国家水文模型（NWM）输出进行后处理，能否优于NWM本身或仅利用大气强迫数据训练的LSTM？同时，研究诊断NWM流量模拟误差的来源。",
+      "hypothesis_or_mechanism": "研究检验将NWM动态输出作为LSTM输入，是否能学习并纠正其系统性误差、改善流量预测。敏感性分析进一步考察陆面过程是否造成质量偏差，以及河道汇流路由是否造成模拟时序误差。",
+      "variables_and_data_use": "研究使用CAMELS中的USGS日流量记录作为预测目标和评估观测，并使用NLDAS气象强迫（降水、最高/最低气温、水汽压和太阳辐射）作为部分LSTM的输入。后处理模型还输入NWM 2.0回算输出，包括CHRT河道流量及其他河道变量、LDAS陆面状态与通量、RT路由数据；同时使用CAMELS静态流域属性。研究比较三种LSTM设置，并将结果与NWM回算进行诊断性比较。",
+      "method_paradigm": "采用长短期记忆网络（LSTM）进行日尺度流量时序预测与模型后处理，比较使用NWM输出、NWM输出加气象强迫、以及仅气象强迫的模型。通过敏感性分析诊断NWM误差来源，并以流量性能指标评估模型。",
+      "study_area": "美国本土（CONUS）的531个CAMELS流域",
+      "study_period": "LSTM训练期为水文年2004–2014年，测试期为水文年1994–2002年；NWM 2.0回算覆盖1993年1月至2019年12月。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and Meteorological dataset for Large Sample Studies (CAMELS)",
+          "role_in_study": "提供所选流域样本、流域静态属性，以及相应的日流量和气象强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study used the\nCatchment Attributes and Meteorological dataset for\nLarge Sample Studies (CAMELS)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "daily streamflow records from USGS gauges",
+          "role_in_study": "作为LSTM预测目标及与模型流量进行比较的站点观测数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS data include corresponding daily stream-\nﬂow records from USGS gauges",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "North American Land Data Assimilation System (NLDAS)",
+          "role_in_study": "提供气象强迫变量，作为带有“A”标记的LSTM模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "meteorological forcing data (precipitation, max/min temperature,\nvapor pressure, and total solar radiation) come from\nNorth American Land Data Assimilation System\n(NLDAS; Xia et al. 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NWM version 2.0 reanalysis",
+          "role_in_study": "提供回算流量及河道、陆面和路由模型输出，作为后处理LSTM输入及NWM诊断比较对象。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the NWM ver-\nsion 2.0 reanalysis, which contains output from a 25-\nyear (January 1993 through December 2019) retro-\nspective simulation",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "18 catchment attributes from the CAMELS dataset",
+          "role_in_study": "作为LSTM的静态流域输入变量，表征各流域的气候、植被、地形、地质和土壤特征。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used 18 catchment attributes from the CAMELS dataset related to cli-\nmate, vegetation, topography, geology, and soils.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1111_1752-1688.12964.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "e9212ed12f254eabbec2365275fe8c8874014ed95b02e1bbe0abd78e39560888",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.1111_1752-1688.12964.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_10",
+      "source_paper_doi": "10.31223/osf.io/4xhac",
+      "source_paper": {
+        "doi": "10.31223/osf.io/4xhac",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CAMELS corresponding daily streamflow records from USGS gauges",
+        "North American Land Data Assimilation System (NLDAS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS corresponding daily streamflow records from USGS gauges",
+          "actual_product_in_paper": "CAMELS corresponding daily streamflow records from USGS gauges",
+          "evidence_quotes": [
+            "CAMELS data include corresponding daily streamflow records from USGS gauges"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "North American Land Data Assimilation System (NLDAS)",
+          "actual_product_in_paper": "North American Land Data Assimilation System (NLDAS)",
+          "evidence_quotes": [
+            "meteorological forcing data (precipitation, max/min temperature, vapor pressure and total solar radiation) come from North American Land Data Assimilation System (NLDAS; Xia et al."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "CAMELS data include corresponding daily streamflow records from USGS gauges, and meteorological forcing data (precipitation, max/min temperature, vapor pressure and total solar radiation) come from North American Land Data Assimilation System (NLDAS; Xia et al.",
+        "We also tested a post-processor that included both the NWM outputs and NLDAS atmospheric forcings as inputs and compared against a baseline LSTM model trained only with atmospheric forcings (no NWM outputs)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究问题是：在美国本土（CONUS）的 531 个流域，使用 LSTM 对美国国家水文模型（NWM）的日均流量进行后处理，能否改善流量预测，以及 NWM 输出是否能为 LSTM 预测提供额外价值？",
+      "hypothesis_or_mechanism": "核心机制是将过程模型输出作为数据驱动 LSTM 的输入，以学习并校正 NWM 流量预测中的系统性误差。研究还通过敏感性分析诊断误差来源，认为陆面模块与河道汇流模块分别可能造成质量偏差与模拟时序误差。",
+      "variables_and_data_use": "研究使用 CAMELS 流域属性、日流量观测及气象强迫数据训练和评估 LSTM；气象强迫包含降水、最高/最低气温、蒸汽压和总太阳辐射。使用 NWM version 2.0 reanalysis 的河道、陆面及地表汇流输出作为后处理 LSTM 输入，并与仅使用气象强迫的基线 LSTM 及 NWM 本身比较；NWM 的逐小时输入汇总为日值。",
+      "method_paradigm": "采用长短期记忆网络（LSTM）进行流量预测与 NWM 输出后处理，并以基线模型和 NWM 进行比较。另以敏感性分析诊断 NWM 组件对预测误差的影响。",
+      "study_area": "美国本土（CONUS）的 531 个 CAMELS 流域，主要为无工程控制结构的源头流域。",
+      "study_period": "NWM 回算期为 1993 年 1 月至 2019 年 12 月；论文文本未明确给出观测数据与模型训练/测试的完整具体时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and Meteorological dataset for Large Sample Studies (CAMELS)",
+          "role_in_study": "提供 531 个流域的静态流域属性、USGS 流量记录及气象强迫数据，用于 LSTM 输入与流量预测评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study used the Catchment Attributes and Meteorological dataset for Large Sample Studies (CAMELS) (CAMELS; Newman et al., 2015; Addor et al., 2017).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Water Model version 2.0 reanalysis",
+          "role_in_study": "提供河道流量、陆面状态与通量及汇流输出，作为 LSTM 后处理输入并作为比较与诊断对象。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the National Water Model version 2.0 reanalysis, which contains output from a 25-year (January 1993 through December 2019) retrospective simulation",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Long short-term memory network (LSTM)",
+          "role_in_study": "用于基线流量预测，以及以 NWM 输出为输入的流量后处理预测。",
+          "usage": "used_as_data",
+          "evidence_quote": "Long short-term memory (LSTM) deep learning networks were used to post-process the U.S. National Water Model (NWM) outputs",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.31223_osf.io_4xhac.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "d79661ed172f1ec67cd2207b9da3333d0358365491d4d24810611891cab3c53f",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:46",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.31223_osf.io_4xhac.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_11",
+      "source_paper_doi": "10.3389/frwa.2023.1166124",
+      "source_paper": {
+        "doi": "10.3389/frwa.2023.1166124",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "United States Geological Survey (USGS) Water Information System",
+        "NLDAS-2 Primary Forcing Data (Hourly)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "United States Geological Survey (USGS) Water Information System",
+          "actual_product_in_paper": "United States Geological Survey (USGS) Water Information System",
+          "evidence_quotes": [
+            "we use the streamflow data from the United States Geological Survey (USGS) Water Information System, pre-processed by Gauch et al. (2021) to hourly and daily time-series"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "actual_product_in_paper": "North American Land Data Assimilation System Phase 2 (NLDAS-2)",
+          "evidence_quotes": [
+            "For the local model, we employ the North American Land Data Assimilation System Phase 2 (NLDAS-2) local meteorological dataset, which provides hourly data for 11 different forcing variables from 1980 to 2018, with a spatial resolution of approximately 12 km (i.e., 0.125 degree)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "we use the streamflow data from the United States Geological Survey (USGS) Water Information System, pre-processed by Gauch et al. (2021) to hourly and daily time-series over the period from 1 October 1980 to 30 September 2018.",
+        "For the local model, we employ the North American Land Data Assimilation System Phase 2 (NLDAS-2) local meteorological dataset"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究关注美国 CAMELS-US 的 516 个流域：使用全球数据训练的 LSTM 能否用于流量预测，表现如何，以及其表现与使用本地数据训练的 LSTM 有何差异？",
+      "hypothesis_or_mechanism": "LSTM 可直接从气象输入、流量输出和流域静态特征中学习关系；扩大训练流域的多样性并使用全球可获取数据，有望促进模型向缺测或无测站流域迁移。全球数据与本地数据的空间分辨率及流域特征来源差异可能影响预测表现。",
+      "variables_and_data_use": "研究使用 USGS 流量观测作为预测目标，使用 NLDAS-2 或 ERA5 的逐小时气象强迫作为动态输入，并比较 CAMELS-US 本地流域特征与 HydroMT 获取的全球流域特征作为静态输入。采用 MTS-LSTM 预测逐日和逐小时流量；文中还提及 CAMELS-US 流域特征所依据的 SPOT/VEGETATION、MODIS、SoilGrids 和 STATSGO 数据。",
+      "method_paradigm": "采用多流域深度学习预测范式，以 Multi-Timescale LSTM（MTS-LSTM）进行逐日和逐小时流量预测，并比较全球、本地及混合数据输入方案。模型通过包含日、小时尺度 NSE 与跨时间尺度一致性正则项的复合损失训练。",
+      "study_area": "美国 516 个 CAMELS-US 流域，流域面积小于 2000 km²，覆盖多个气候区。",
+      "study_period": "1980年10月1日至2018年9月30日；气象数据范围为1980—2018年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS-US dataset",
+          "role_in_study": "提供所选美国流域及本地流域特征；研究使用其流量观测子集。",
+          "usage": "used_as_data",
+          "evidence_quote": "These catchments are a subset of the Catchment Attributes and Meteorology for Large-sample Studies (CAMELS) US dataset used by Gauch et al. (2021).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United States Geological Survey (USGS) Water Information System",
+          "role_in_study": "提供经预处理的逐小时和逐日流量时间序列，作为模型预测目标。",
+          "usage": "used_as_data",
+          "evidence_quote": "we use the streamflow data from the United States Geological Survey (USGS) Water Information System, pre-processed by Gauch et al. (2021) to hourly and daily time-series over the period from 1 October 1980 to 30 September 2018.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "North American Land Data Assimilation System Phase 2 (NLDAS-2)",
+          "role_in_study": "本地模型的逐小时气象强迫输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the local model, we employ the North American Land Data Assimilation System Phase 2 (NLDAS-2) local meteorological dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA5",
+          "role_in_study": "全球模型的逐小时气象强迫输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the global model, we selected the ERA5 dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HydroMT",
+          "role_in_study": "获取全球栅格数据并推导全球流域特征，作为模型静态输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "We resort to the HydroMT tool to retrieve global catchment characteristics (Eilander et al., 2023).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SPOT/VEGETATION satellite data",
+          "role_in_study": "用于推导全球流域特征中的年最大绿植覆盖差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "the global attribute, derived from SPOT/VEGETATION satellite data (Verger et al., 2014)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS)",
+          "role_in_study": "提供本地流域特征所用的 1 km 土地覆盖产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "the local attribute, derived from the 1km land-cover product from Moderate Resolution Imaging Spectroradiometer (MODIS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SoilGrids",
+          "role_in_study": "用于推导全球流域特征中的最大含水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "derived globally from SoilGrids (Poggio et al., 2021)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "STATSGO",
+          "role_in_study": "用于推导本地流域特征中的最大含水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "derived locally from STATSGO (Miller and White, 1998).",
+          "quote_verified": false
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3389_frwa.2023.1166124.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3389_frwa.2023.1166124.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "ce1b05e76f4c6fa479a53059973ac4ced7cb3ea63c4eb1264e2f6d237c50e845",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:51",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.3389_frwa.2023.1166124.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_12",
+      "source_paper_doi": "10.5194/hess-2020-540",
+      "source_paper": {
+        "doi": "10.5194/hess-2020-540",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "USGS Water Information System through the Instantaneous Values REST API",
+        "hourly NLDAS-2 product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Water Information System through the Instantaneous Values REST API",
+          "actual_product_in_paper": "USGS Water Information System through the Instantaneous Values REST API",
+          "evidence_quotes": [
+            "516 basins have hourly stream gauge data available from the USGS Water Information System through the Instantaneous Values REST API."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "hourly NLDAS-2 product",
+          "actual_product_in_paper": "hourly NLDAS-2 product",
+          "evidence_quotes": [
+            "To maintain some congruence with previous CAMELS experiments, we used the hourly NLDAS-2 product, which contains meteorological data since 1979"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "516 basins have hourly stream gauge data available from the USGS Water Information System through the Instantaneous Values REST API.",
+        "To maintain some congruence with previous CAMELS experiments, we used the hourly NLDAS-2 product, which contains meteorological data since 1979",
+        "All LSTM models used in this study take as inputs the eleven forcing variables listed in Table 1, concatenated at each time step with the same 27 static catchment attributes from the CAMELS dataset that Kratzert et al. (2019) used."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究如何用单一长短期记忆网络在美国本土 516 个流域同时进行多个时间尺度的降雨—径流预测，并与逐时间尺度 LSTM 和美国国家水文模型进行比较。",
+      "hypothesis_or_mechanism": "多时间尺度 LSTM 先处理较长历史的低频输入，再将其隐状态传递给较高频分支处理近期输入，可在联合预测多个时间尺度时避免超长小时序列带来的计算负担，且不损失预测精度。日尺度与小时尺度预测还可通过约束每日小时预测均值等于该日预测来提高跨尺度一致性。",
+      "variables_and_data_use": "模型以 NLDAS-2 小时气象强迫变量为主要输入，并将其空间平均到流域、另计算日值；输入变量包括降水、气温、气压、辐射、湿度、蒸发相关变量及风分量，并与 CAMELS 的 27 个静态流域属性拼接。USGS Instantaneous Values REST API 的站点流量测量被平均为小时和日尺度，用作预测目标；另使用 CAMELS 所含 Daymet 和 Maurer 日气象强迫开展不同时间尺度输入实验，并以 US National Water Model v2 reanalysis 作基准。",
+      "method_paradigm": "提出并评估共享多时间尺度 LSTM（sMTS-LSTM）与多时间尺度 LSTM（MTS-LSTM），联合生成日尺度和小时尺度流量预测，并与朴素逐时间尺度 LSTM 及 NWM 比较。训练使用包含跨时间尺度一致性正则项的损失函数。",
+      "study_area": "美国本土（continental United States）的 516 个 CAMELS 流域",
+      "study_period": "训练期：1990-10-01 至 2003-09-30；验证期：2003-10-01 至 2008-09-30；测试期：2008-10-01 至 2018-09-30。NWM v2 再分析基准覆盖 1993 至 2018 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "USGS Water Information System through the Instantaneous Values REST API",
+          "role_in_study": "流域站点流量观测；将亚日尺度测量平均为小时和日尺度，作为模型预测目标。",
+          "usage": "used_as_data",
+          "evidence_quote": "516 basins have hourly stream gauge data available from the USGS Water Information System through the Instantaneous Values REST API.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "hourly NLDAS-2 product",
+          "role_in_study": "小时气象强迫输入；将变量在流域内进行空间平均，并另计算日值。",
+          "usage": "used_as_data",
+          "evidence_quote": "To maintain some congruence with previous CAMELS experiments, we used the hourly NLDAS-2 product, which contains meteorological data since 1979",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CAMELS dataset",
+          "role_in_study": "提供流域静态属性；模型输入使用 27 个静态流域属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "All LSTM models used in this study take as inputs the eleven forcing variables listed in Table 1, concatenated at each time step with the same 27 static catchment attributes from the CAMELS dataset that Kratzert et al. (2019) used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "作为多时间尺度输入实验中的日气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "To evaluate this capability, we used two sets of forcings as daily inputs: the Daymet and Maurer forcing sets that are included in the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer forcing sets",
+          "role_in_study": "作为多时间尺度输入实验中的日气象强迫；相关实验使用验证期数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "To evaluate this capability, we used two sets of forcings as daily inputs: the Daymet and Maurer forcing sets that are included in the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "US National Water Model (NWM) v2 reanalysis product",
+          "role_in_study": "基准模型数据，提供小时流量预测用于比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Specifically, we benchmarked against the NWM v2 reanalysis product, which includes hourly streamflow predictions for the years 1993 through 2018.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WRF-Hydro",
+          "role_in_study": "论文说明 NWM 所基于的过程型水文模型；并非所述实验中独立输入的数据产品。",
+          "usage": "mention_only",
+          "evidence_quote": "The US National Water Model (NWM) is a process-based model based on WRF-Hydro ( Gochis et al., 2020 ) .",
+          "quote_verified": false
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-2020-540.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-2020-540.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "dde35da11d0be441b300c07099ba0032735a0d337e351d31fc14b9a47f007dd1",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:58",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-2020-540.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_13",
+      "source_paper_doi": "10.5194/hess-22-6005-2018",
+      "source_paper": {
+        "doi": "10.5194/hess-22-6005-2018",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CAMELS data set observed discharge",
+        "CAMELS data set meteorological forcing data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS data set observed discharge",
+          "actual_product_in_paper": "CAMELS data set observed discharge",
+          "evidence_quotes": [
+            "This data set is freely available and includes meteorological forcing data and observed discharge for 671 catchments across the contiguous United States."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS data set meteorological forcing data",
+          "actual_product_in_paper": "CAMELS data set meteorological forcing data",
+          "evidence_quotes": [
+            "This data set is freely available and includes meteorological forcing data and observed discharge for 671 catchments across the contiguous United States."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "This data set is freely available and includes meteorological forcing data and observed discharge for 671 catchments across the contiguous United States.",
+        "In each time step t (1≤ t ≤ n), the current input xt is processed in the recurrent cells of each layer in the network."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文探讨 LSTM 是否能够在美国本土 241 个 CAMELS 流域的日尺度上刻画降雨–径流行为，并评估其用于多流域区域建模及将区域过程理解迁移至单个流域的潜力。",
+      "hypothesis_or_mechanism": "LSTM 能学习输入与径流输出之间的长期依赖关系，从而表示流域中的储存效应（例如受积雪影响流域的储存效应）。在区域尺度上从多个流域学习到的过程理解可迁移至单个流域，并改善其径流模拟表现。",
+      "variables_and_data_use": "研究使用 CAMELS 数据集中的气象强迫变量（每日降水、最低/最高气温、太阳辐射和水汽压）作为 LSTM 输入，以观测流量作为预测对象。研究还使用 CAMELS 提供的 SAC-SMA 与 Snow-17 模拟流量作为基准，与 LSTM 结果比较。",
+      "method_paradigm": "采用数据驱动的 LSTM 循环神经网络进行日尺度降雨–径流建模，并开展单流域建模、区域多流域建模及区域到单流域的迁移实验。将结果与 SAC-SMA+Snow-17 基准模拟比较。",
+      "study_area": "美国本土（contiguous United States）的 CAMELS 流域；研究实验使用其中 241 个流域。",
+      "study_period": "文本未提供具体研究时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS data set",
+          "role_in_study": "提供流域气象强迫数据及观测流量，用于 LSTM 降雨–径流建模与验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "This data set is freely available and includes meteorological forcing data and observed discharge for 671 catchments across the contiguous United States.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sacramento Soil Moisture Accounting Model (Burnash et al., 1973) coupled with the Snow-17 snow model (Anderson, 1973)",
+          "role_in_study": "提供基准径流模拟，与 LSTM 模型结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "For each basin, the CAMELS data set also includes time series of simulated discharge from the Sacramento Soil Moisture Accounting Model (Burnash et al., 1973) coupled with the Snow-17 snow model (Anderson, 1973).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-22-6005-2018.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-22-6005-2018.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "130f02bfe3abd1829f94574d354d0777d146c3a777b7d9031836c1b3413278bc",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-22-6005-2018.json",
+        "quote_gate": {
+          "total": 6,
+          "verified": 6
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_14",
+      "source_paper_doi": "10.5194/hess-25-2045-2021",
+      "source_paper": {
+        "doi": "10.5194/hess-25-2045-2021",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "USGS Water Information System through the Instantaneous Values REST API",
+        "hourly NLDAS-2 product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Water Information System through the Instantaneous Values REST API",
+          "actual_product_in_paper": "USGS Water Information System through the Instantaneous Values REST API",
+          "evidence_quotes": [
+            "Out of the 531 CAMELS benchmarking basins used by previous studies, 516 basins have hourly stream gauge data available from the USGS Water Information System through the Instantaneous Values REST API"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "hourly NLDAS-2 product",
+          "actual_product_in_paper": "hourly NLDAS-2 product",
+          "evidence_quotes": [
+            "we used the hourly NLDAS-2 product, which contains hourly meteorological data since 1979"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "All discharge information used in this study was downloaded from the USGS API.",
+        "we used the hourly NLDAS-2 product, which contains hourly meteorological data since 1979",
+        "All LSTM models used in this study take as inputs the 11 forcing variables listed in Table 1, concatenated at each time step with the same 27 static catchment attributes from the CAMELS dataset"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究问题是：在美国本土 516 个流域，单一多时间尺度 LSTM 能否联合进行不同时间分辨率的降雨—径流预测，并在预测精度和计算效率上优于各时间尺度分别建模或业务水文模型？",
+      "hypothesis_or_mechanism": "核心机制是以较粗时间分辨率处理较久远的输入，再将该阶段的隐状态和细胞状态传递给较细时间分辨率的 LSTM，以缩短细时间尺度的输入序列。作者还假设，不同时间尺度可由各自的 LSTM 分支处理，从而学习不同动力学并使用不同输入变量。",
+      "variables_and_data_use": "研究使用 USGS Water Information System Instantaneous Values REST API 的流量观测，将不同子日分辨率的测量聚合为小时和日流量；未使用 CAMELS 中的流量数据。气象强迫包括逐流域空间平均的小时 NLDAS-2 变量及其日聚合值，也评估了 CAMELS 中的 Daymet 和 Maurer 日强迫；模型输入还包括 CAMELS 的 27 个静态流域属性。US National Water Model v2 reanalysis 的小时流量预测用作基准比较。",
+      "method_paradigm": "采用深度学习降雨—径流预测范式，提出共享多时间尺度 LSTM（sMTS-LSTM）和多时间尺度 LSTM（MTS-LSTM），并与朴素小时 LSTM 及 NWM 基准比较。实验按训练、验证和测试时段划分数据，并以 NSE 等指标评估预测表现。",
+      "study_area": "美国本土（continental United States）的 516 个流域",
+      "study_period": "模型训练期为 1990-10-01 至 2003-09-30，验证期为 2003-10-01 至 2008-09-30，测试期为 2008-10-01 至 2018-09-30；NWM v2 reanalysis 基准预测覆盖 1993 至 2018 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "USGS Water Information System through the Instantaneous Values REST API",
+          "role_in_study": "提供流域测站流量观测；将子日测量聚合为小时和日时间步，并转换为 UTC。",
+          "usage": "used_as_data",
+          "evidence_quote": "All discharge information used in this study was downloaded from the USGS API.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "hourly NLDAS-2 product",
+          "role_in_study": "提供小时气象强迫变量；按流域进行空间平均，并进一步聚合为日值。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used the hourly NLDAS-2 product, which contains hourly meteorological data since 1979",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CAMELS dataset",
+          "role_in_study": "提供流域选择范围及模型输入所用的 27 个静态流域属性；其流量数据未用于本研究。",
+          "usage": "used_as_data",
+          "evidence_quote": "All LSTM models used in this study take as inputs the 11 forcing variables listed in Table 1, concatenated at each time step with the same 27 static catchment attributes from the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "作为多时间尺度输入能力实验中的日气象强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used two sets of forcings as daily inputs: the Daymet and Maurer forcing sets that are included in the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer forcing sets",
+          "role_in_study": "作为多时间尺度输入能力实验中的日气象强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used two sets of forcings as daily inputs: the Daymet and Maurer forcing sets that are included in the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NWM v2 reanalysis product",
+          "role_in_study": "提供小时流量预测，作为传统水文模型基准；低时间分辨率预测由小时预测聚合得到。",
+          "usage": "used_as_data",
+          "evidence_quote": "we benchmarked against the NWM v2 reanalysis product, which includes hourly streamflow predictions for the years 1993 through 2018.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-25-2045-2021.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-25-2045-2021.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "dfcd242565739312f4b1c525c0f624a0392b8fcdcbb40162c9bce97f704b9b7e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:01",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-25-2045-2021.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_15",
+      "source_paper_doi": "10.5194/hess-25-2685-2021",
+      "source_paper": {
+        "doi": "10.5194/hess-25-2685-2021",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "observed flow",
+        "Daymet; Maurer; North American Land Data Assimilation System (NLDAS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "observed flow",
+          "actual_product_in_paper": "observed flow",
+          "evidence_quotes": [
+            "we derived a metric by computing the Pearson correlation between the signature of the observed flow and the signature of the simulated flow over all basins."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Daymet; Maurer; North American Land Data Assimilation System (NLDAS)",
+          "actual_product_in_paper": "Daymet; Maurer; North American Land Data Assimilation System (NLDAS)",
+          "evidence_quotes": [
+            "We used all five meteorological variables from all three data products as input into the models."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We used all five meteorological variables from all three data products as input into the models.",
+        "We trained n =10 LSTMs using (1) all of the three forcing products together"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究的问题是：在美国本土（CONUS）的 CAMELS 流域中，将多个气象强迫产品联合输入深度学习降雨–径流模型，能否提高径流模拟准确度？模型会如何随地点和水文过程不同而组合降水产品？",
+      "hypothesis_or_mechanism": "不同气象强迫产品的误差和信息损失各异，尤其降水产品之间存在差异；LSTM 可学习按时空动态组合这些产品，从而缓解输入不确定性并改善径流模拟。",
+      "variables_and_data_use": "研究使用 CAMELS 中的 Daymet、Maurer 和 NLDAS 三种逐日气象强迫产品，将降水、最高和最低气温、水汽压及地表辐射作为 LSTM 输入，并使用 27 个流域属性。LSTM 预测流量；另以 SAC-SMA 配合三种气象强迫产品作为基准模型，并分析降水输入的敏感性及产品贡献。",
+      "method_paradigm": "采用多输入长短期记忆网络（LSTM）进行降雨–径流模拟，比较单产品、成对产品及三产品联合输入的模型，并通过特征消融和输入归因分析评估产品贡献。以 SAC-SMA 模型集合作为基准。",
+      "study_area": "美国本土（CONUS）的 531 个 CAMELS 流域",
+      "study_period": "训练期：1999年10月1日至2008年9月30日；测试期：1989年10月1日至1999年9月30日。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and Meteorological data set for Large Sample Studies (CAMELS)",
+          "role_in_study": "提供 531 个流域的气象强迫数据和流域属性，用于模型训练、测试及流域描述。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study uses the Catchment Attributes and Meteorological data set for Large Sample Studies (CAMELS;",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "CAMELS 中的逐日气象强迫产品；其降水、最高和最低气温、水汽压及地表辐射作为模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The three forcing products are (i) Daymet",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer",
+          "role_in_study": "CAMELS 中的逐日气象强迫产品；其气象变量作为模型输入，也用于 SAC-SMA 基准模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "The three forcing products are (i) Daymet ..., (ii) Maurer",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "North American Land Data Assimilation System (NLDAS)",
+          "role_in_study": "CAMELS 中的逐日气象强迫产品；其气象变量作为模型输入，也用于 SAC-SMA 基准模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "and the (iii) North American Land Data Assimilation System (NLDAS;",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "27 catchment attributes",
+          "role_in_study": "作为 LSTM 输入的流域属性，包括地形、气候、植被和土壤描述变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used the same 27 catchment attributes as Kratzert et al.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed flow",
+          "role_in_study": "用于计算观测流量与模拟流量的水文特征相关性及模型性能评价。",
+          "usage": "used_as_data",
+          "evidence_quote": "we derived a metric by computing the Pearson correlation between the signature of the observed flow and the signature of the simulated flow over all basins.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SAC-SMA model",
+          "role_in_study": "使用不同气象强迫产品校准并构建集合，作为 LSTM 的基准模拟模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "we produced a benchmark using the Sacramento Soil Moisture Accounting (SAC-SMA) model with multiple meteorological forcings.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-25-2685-2021.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-25-2685-2021.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "18bbfb698bd7c0063358ba4d3b17857dc8bf4021d120e7e49856f85d4f3b16a2",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:58",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-25-2685-2021.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_16",
+      "source_paper_doi": "10.5194/hess-26-1673-2022",
+      "source_paper": {
+        "doi": "10.5194/hess-26-1673-2022",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "daily streamflow discharge data from the US Geological Survey",
+        "NLDAS"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "daily streamflow discharge data from the US Geological Survey",
+          "actual_product_in_paper": "daily streamflow discharge data from the US Geological Survey",
+          "evidence_quotes": [
+            "as well as daily streamflow discharge data from the US Geological Survey."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "NLDAS",
+          "actual_product_in_paper": "NLDAS",
+          "evidence_quotes": [
+            "The original CAMELS dataset includes daily meteorological forcings (precipitation, temperature, short-wave radiation, humidity) from three different data sources (NLDAS, Maurer, DayMet)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The original CAMELS dataset includes daily meteorological forcings (precipitation, temperature, short-wave radiation, humidity) from three different data sources (NLDAS, Maurer, DayMet) for the time period 1980 through 2010 as well as daily streamflow discharge data from the US Geological Survey.",
+        "We used the same 531 basins from the CAMELS dataset (Fig. 1) that were originally chosen for model benchmarking by Newman et al. (2017)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究如何在美国本土 CAMELS 流域的降雨–径流建模中，使用深度学习生成并评估可靠且具有较高分辨率的不确定性预测。",
+      "hypothesis_or_mechanism": "核心思路是数据驱动模型能够捕捉输入与径流输出之间可由经验推断的关系，并据此给出不确定性预测；混合密度网络和蒙特卡罗 dropout 是可用于基准比较的方案。",
+      "variables_and_data_use": "研究使用 CAMELS 的流域平均日气象强迫变量（降水、气温、短波辐射和湿度）作为输入，并以 US Geological Survey 的日流量数据作为径流观测。数据中的气象强迫来自 NLDAS、Maurer 和 DayMet；研究用这些数据训练、验证和测试深度学习不确定性估计基线，包括混合密度网络（MDNs）和蒙特卡罗 dropout（MCD）。",
+      "method_paradigm": "采用基于 CAMELS 的深度学习基准评估范式，比较三种混合密度网络方案和一种蒙特卡罗 dropout 方案。通过概率图评估可靠性，并以一组汇总指标评估预测分布的分辨率，同时进行事后模型分析。",
+      "study_area": "美国本土的 531 个 CAMELS 流域。",
+      "study_period": "CAMELS 气象强迫和流量数据覆盖 1980–2010 年；论文所给文本未说明实际训练、验证和测试所用的具体年份。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and MEteorological Large Sample (CAMELS) dataset",
+          "role_in_study": "基准数据集，提供流域气象强迫、USGS 日流量和流域属性；研究选用其中 531 个流域。",
+          "usage": "used_as_data",
+          "evidence_quote": "we base the setup for a UE benchmark on a large, publicly curated, open dataset that is already established for other benchmarking efforts – namely the Catchment Attributes and MEteorological Large Sample (CAMELS) dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NLDAS",
+          "role_in_study": "CAMELS 日气象强迫数据的来源之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "The original CAMELS dataset includes daily meteorological forcings (precipitation, temperature, short-wave radiation, humidity) from three different data sources (NLDAS, Maurer, DayMet)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer",
+          "role_in_study": "CAMELS 日气象强迫数据的来源之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "The original CAMELS dataset includes daily meteorological forcings (precipitation, temperature, short-wave radiation, humidity) from three different data sources (NLDAS, Maurer, DayMet)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DayMet",
+          "role_in_study": "CAMELS 日气象强迫数据的来源之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "The original CAMELS dataset includes daily meteorological forcings (precipitation, temperature, short-wave radiation, humidity) from three different data sources (NLDAS, Maurer, DayMet)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "daily streamflow discharge data from the US Geological Survey",
+          "role_in_study": "提供模型所用的日流量观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "as well as daily streamflow discharge data from the US Geological Survey.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "basin-averaged catchment attributes",
+          "role_in_study": "CAMELS 中与土壤、地质、植被和气候有关的流域属性；所给文本未进一步说明其在模型中的具体用法。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS also includes basin-averaged catchment attributes related to soil, geology, vegetation, and climate.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-1673-2022.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-1673-2022.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "bc224c428a4331d7fbc7315033b146baf165d9a7e1defa145de7b0d748118e9a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-26-1673-2022.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_17",
+      "source_paper_doi": "10.5194/hess-26-3393-2022",
+      "source_paper": {
+        "doi": "10.5194/hess-26-3393-2022",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "U.S. Geological Survey (USGS) hourly streamflow",
+        "phase 2 of the National Land Data Assimilation System (NLDAS-2)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "U.S. Geological Survey (USGS) hourly streamflow",
+          "actual_product_in_paper": "U.S. Geological Survey (USGS) hourly streamflow",
+          "evidence_quotes": [
+            "Hourly streamflow was obtained from the U.S. Geological Survey (USGS)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "phase 2 of the National Land Data Assimilation System (NLDAS-2)",
+          "actual_product_in_paper": "phase 2 of the National Land Data Assimilation System (NLDAS-2)",
+          "evidence_quotes": [
+            "Hourly incoming shortwave radiation is from phase 2 of the National Land Data Assimilation System (NLDAS-2; Xia et al., 2012) at the nearest grid point to the watershed outlet."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The data used in this analysis include hourly streamflow, incoming shortwave radiation, mean daily relative humidity, air temperature, and precipitation.",
+        "Hourly streamflow was obtained from the U.S. Geological Survey (USGS).",
+        "Hourly incoming shortwave radiation is from phase 2 of the National Land Data Assimilation System (NLDAS-2; Xia et al., 2012) at the nearest grid point to the watershed outlet."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究旨在比较美国西部31个受积雪影响的山区流域中，基于日内（昼夜）径流周期的经验方法与区域陆面模拟对世纪末径流时间变化的预测，并评估不同气候条件下雪融驱动径流对气候变化的敏感性。",
+      "hypothesis_or_mechanism": "太阳辐射驱动的雪融会造成具有滞后的日内径流响应，因此可利用太阳辐射与逐小时径流的相关性识别雪融日，并以雪融日时间指标推断径流量时间变化。研究预期寒冷流域的雪融驱动径流对气候变暖更敏感，而陆面模型可能低估这种敏感性。",
+      "variables_and_data_use": "研究使用美国地质调查局（USGS）逐小时径流和NLDAS-2第二阶段逐小时入射短波辐射，通过滞后Spearman相关识别雪融日并计算DOS20。CAMELS中基于Daymet的平均日相对湿度、气温和降水，与太阳辐射等气候变量用于逐步多元线性回归；NoahMP-WRF历史及未来模拟的地表和地下径流则用于估算DOQ25和DOQ50，并与经验模型预测比较。",
+      "method_paradigm": "以太阳辐射和逐小时径流的滞后Spearman相关识别雪融日，构建DOS20指标，并使用逐步多元线性回归经验模型预测气候变化下的DOS20。另以NoahMP-WRF地表与地下径流输出估算年径流量达到25%和50%的日期，与经验预测进行比较。",
+      "study_area": "美国西部31个山区流域，属于CAMELS数据集；流域未受调控、面积小于250 km²且海拔高于1000 m。",
+      "study_period": "逐小时径流记录因流域而异，部分记录可追溯至1986年；分析选取12月1日至8月1日期间逐小时径流记录覆盖率超过80%的水文年。NoahMP-WRF历史模拟时段为2001–2013年，世纪末伪全球变暖模拟时段为2071–2100年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "U.S. Geological Survey (USGS) hourly streamflow",
+          "role_in_study": "流域出口逐小时径流观测，用于与逐小时太阳辐射进行滞后相关分析并识别雪融日。",
+          "usage": "used_as_data",
+          "evidence_quote": "Hourly streamflow was obtained from the U.S. Geological Survey (USGS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "phase 2 of the National Land Data Assimilation System (NLDAS-2)",
+          "role_in_study": "提供流域出口最近网格点的逐小时入射短波辐射，用于识别太阳辐射驱动的雪融径流日。",
+          "usage": "used_as_data",
+          "evidence_quote": "Hourly incoming shortwave radiation is from phase 2 of the National Land Data Assimilation System (NLDAS-2; Xia et al., 2012) at the nearest grid point to the watershed outlet.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CAMELS",
+          "role_in_study": "提供流域尺度平均日相对湿度、气温和降水；这些变量用于气候分析及经验回归，降水也用于评估可能的降雨误判。",
+          "usage": "used_as_data",
+          "evidence_quote": "Mean daily relative humidity, air temperature, and precipitation at the watershed scale are from CAMELS, based on the Daymet dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet dataset",
+          "role_in_study": "作为CAMELS中流域尺度平均日相对湿度、气温和降水数据的基础来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "Mean daily relative humidity, air temperature, and precipitation at the watershed scale are from CAMELS, based on the Daymet dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NoahMP-WRF",
+          "role_in_study": "提供历史及未来情景的每日流域尺度地表和地下径流输出，用于估算DOQ25与DOQ50。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used daily watershed-scale outputs of surface and subsurface runoff from historical and future NoahMP-WRF simulations to estimate the date of 25 % and 50 % of annual streamflow volume (DOQ 25 and DOQ 50, respectively).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-3393-2022.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-3393-2022.methods.txt"
+        ],
+        "chars": 18871,
+        "text_mode": "head+methods",
+        "source_sha256": "d3e89f523688c5ab97f3aefa92f6bd5a3c19b4d93615118a9306dc2b06247fa9",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:14",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-26-3393-2022.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_18",
+      "source_paper_doi": "10.5194/hess-26-5493-2022",
+      "source_paper": {
+        "doi": "10.5194/hess-26-5493-2022",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "daily discharge data from the United States Geological Survey (USGS) Water Information System",
+        "Daymet, NLDAS, Maurer"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "daily discharge data from the United States Geological Survey (USGS) Water Information System",
+          "actual_product_in_paper": "daily discharge data from the United States Geological Survey (USGS) Water Information System",
+          "evidence_quotes": [
+            "CAMELS includes daily discharge data from the United States Geological Survey (USGS) Water Information System, which are used as training and evaluation target data."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Daymet, NLDAS, Maurer",
+          "actual_product_in_paper": "Daymet, NLDAS, Maurer",
+          "evidence_quotes": [
+            "CAMELS also includes several daily meteorological forcing data sets (Daymet, NLDAS, Maurer) that are used as model inputs."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "CAMELS includes daily discharge data from the United States Geological Survey (USGS) Water Information System, which are used as training and evaluation target data.",
+        "CAMELS also includes several daily meteorological forcing data sets (Daymet, NLDAS, Maurer) that are used as model inputs.",
+        "Daily meteorological forcing data and static catchment attributes were used as input features for all models, and daily streamflow records were used as training targets"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究如何在美国本土（CONUS）的 CAMELS 流域 LSTM 降雨–径流模型中利用近实时流量观测，并比较自回归与变分数据同化两种策略的准确性和计算效率。",
+      "hypothesis_or_mechanism": "自回归通过将滞后流量观测作为模型输入来利用近实时观测；变分数据同化则通过反向传播更新 LSTM 状态。论文比较这两种机制，并指出针对缺失观测采用适当训练策略可以缓解自回归对缺失数据的敏感性。",
+      "variables_and_data_use": "研究使用 CAMELS 数据集中的 USGS 日流量作为训练目标和评估观测，并将 Daymet、NLDAS、Maurer 三套日气象强迫数据及静态流域属性作为 LSTM 输入。自回归模型另使用不同时间滞后的流量及观测/模拟标记作为输入；数据同化应用于模拟型 LSTM，在测试期间更新模型状态。",
+      "method_paradigm": "基于 LSTM 降雨–径流模型的比较实验，比较自回归（AR）与基于反向传播的变分数据同化（DA）。通过时间划分和流域空间交叉验证，并改变滞后时间及缺失流量比例进行评估。",
+      "study_area": "美国本土（CONUS）的 CAMELS 流域；使用筛选后的 531 个流域。",
+      "study_period": "CAMELS 流量记录为 1980–2014 年；模型训练期为 1999-10-01 至 2008-09-30，测试期为 1989-10-01 至 1999-09-30。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS",
+          "role_in_study": "包含研究使用的流域日流量、气象强迫和静态流域属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "This catchment attributes and meteorological large sample data set (CAMELS;  Newman et al. ,  2015 ; Addor et al. ,  2017 ) consists of daily meteorological and daily discharge data from 671 catchments in the continental United States (CONUS)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United States Geological Survey (USGS) Water Information System",
+          "role_in_study": "提供 CAMELS 中的日流量数据，用作训练目标和评估目标数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS includes daily discharge data from the United States Geological Survey (USGS) Water Information System, which are used as training and evaluation target data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "CAMELS 中的日气象强迫数据之一，用作模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Following Kratzert et al. ( 2021 ) , we used all three data sets as inputs.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NLDAS",
+          "role_in_study": "CAMELS 中的日气象强迫数据之一，用作模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Following Kratzert et al. ( 2021 ) , we used all three data sets as inputs.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer",
+          "role_in_study": "CAMELS 中的日气象强迫数据之一，用作模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Following Kratzert et al. ( 2021 ) , we used all three data sets as inputs.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "static catchment attributes",
+          "role_in_study": "作为模型输入特征，涵盖土壤、气候、植被、地形和地质属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS also includes several static catchment attributes related to soils, climate, vegetation, topography, and geology ( Addor et al. ,  2017 ) that we used as input features",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LSTM",
+          "role_in_study": "用于降雨–径流模拟，并作为自回归及数据同化比较的模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "We trained two classes of models using both the space-split and basin-split approaches: simulation models and AR models.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-5493-2022.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-5493-2022.methods.txt"
+        ],
+        "chars": 18710,
+        "text_mode": "head+methods",
+        "source_sha256": "e07edd658bca2edf9afa8047ff42b7a4a8423f85525ae7e898bc447aaae6a18d",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:12",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-26-5493-2022.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_19",
+      "source_paper_doi": "10.5194/hess-28-4971-2024",
+      "source_paper": {
+        "doi": "10.5194/hess-28-4971-2024",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "US Geological Survey gauges",
+        "extended North America Land Data Assimilation System (NLDAS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "US Geological Survey gauges",
+          "actual_product_in_paper": "US Geological Survey gauges",
+          "evidence_quotes": [
+            "Streamflow data are retrieved from US Geological Survey gauges"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "extended North America Land Data Assimilation System (NLDAS)",
+          "actual_product_in_paper": "extended North America Land Data Assimilation System (NLDAS)",
+          "evidence_quotes": [
+            "the meteorological forcing comes from the extended North America Land Data Assimilation System (NLDAS) ( Kratzert ,  2019 )"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Streamflow data are retrieved from US Geological Survey gauges, while the meteorological forcing comes from the extended North America Land Data Assimilation System (NLDAS) ( Kratzert ,  2019 ) and includes maximum and minimum daily temperatures, solar radiation, vapour pressure, and precipitation.",
+        "The convolutional encoder is thus followed by an LSTM decoder that takes as input 15 hydrological years of meteorological forcing, i.e. 5478 time points, and nine climate attributes (reported in Table  1 )."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究考察美国本土（CONUS）568个流域中，能否从流量时间序列学习到少量与气候驱动相对独立的流域景观特征，并将这些特征与气象驱动结合以准确重建完整流量序列。",
+      "hypothesis_or_mechanism": "显式噪声条件自编码器将气象强迫和气候属性输入解码器，以促使编码器学习流量中主要关联景观属性、而较少关联气候的特征；这些特征可作为流域景观指纹。研究预期少量学习到的特征足以概括静态景观属性中与流量重建相关的信息。",
+      "variables_and_data_use": "研究使用US-CAMELS的流量序列、扩展版NLDAS气象强迫变量及静态流域属性；气象变量包括最高和最低日温、太阳辐射、水汽压和降水。研究以USGS测站流量作为预测目标，采用显式噪声条件自编码器（ENCA）学习潜在景观特征，并与输入27项流域属性的CAAM模型比较流量重建表现。",
+      "method_paradigm": "采用卷积编码器与LSTM解码器构成的显式噪声条件自编码器，从流量中学习潜在流域特征，并以气象强迫和气候属性为条件。使用GRIDE估计潜在空间内在维度以选择特征数，并用NSE等指标评估流量重建。",
+      "study_area": "美国本土（CONUS）的568个流域",
+      "study_period": "1980年10月1日至2010年9月30日；前15个水文年用于训练，后15个水文年用于测试。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and Meteorology for Large-sample Studies (CAMELS)",
+          "role_in_study": "提供流域样本及流量、气象强迫和静态流域属性数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "We employ the Catchment Attributes and Meteorology for Large-sample Studies (CAMELS) ( Newman et al. ,  2015 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "US Geological Survey gauges",
+          "role_in_study": "提供用于建模和评估的流量观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "Streamflow data are retrieved from US Geological Survey gauges",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "extended North America Land Data Assimilation System (NLDAS)",
+          "role_in_study": "提供气象强迫变量，作为模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "the meteorological forcing comes from the extended North America Land Data Assimilation System (NLDAS) ( Kratzert ,  2019 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "static catchment attributes",
+          "role_in_study": "提供景观和气候属性，用于CAAM输入及与学习特征的比较分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "US-CAMELS also provides information about static catchment attributes ( Addor et al. ,  2017 )",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-28-4971-2024.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-28-4971-2024.methods.txt"
+        ],
+        "chars": 15794,
+        "text_mode": "head+methods",
+        "source_sha256": "162b08ae672ee4d4d6e09a2c5b2fdeed060c1da469d6762e88c838a80bbe60df",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:12",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-28-4971-2024.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_20",
+      "source_paper_doi": "10.5194/hess-29-6221-2025",
+      "source_paper": {
+        "doi": "10.5194/hess-29-6221-2025",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CAMELS streamflow",
+        "NLDAS"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CAMELS streamflow",
+          "actual_product_in_paper": "CAMELS streamflow",
+          "evidence_quotes": [
+            "All models are trained with streamflow as the target variable."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "NLDAS",
+          "actual_product_in_paper": "NLDAS",
+          "evidence_quotes": [
+            "The CAMELS dataset comes with three sets of daily meteorological forcings: Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and NLDAS (Xia et al., 2012)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "All models use all 15 forcing variables (precipitation, solar radiation, min/max temperature, and vapor pressure for each of the three forcing products) and the same set of 26 static attributes as Kratzert et al. (2021). All models are trained with streamflow as the target variable."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "研究在美国 CAMELS 数据集的 531 个流域中，如何让基于 LSTM 的水文模型在气象强迫数据缺失时仍能生成可靠预测，并比较不同缺失数据情景下的处理策略。",
+      "hypothesis_or_mechanism": "通过输入替换、对可用气象强迫嵌入取掩码均值，或使用注意力动态加权可用强迫的嵌入，模型能够应对输入缺失；其中掩码均值总体表现略优。",
+      "variables_and_data_use": "实验使用 CAMELS 的 Daymet、Maurer 和 NLDAS 日尺度气象强迫，共 15 个气象变量，并使用 26 个静态流域属性；streamflow 作为预测目标。研究训练基于 LSTM 的模型，在不同强迫缺失情景下比较 input replacing、masked mean 和 attention 三种输入处理机制。",
+      "method_paradigm": "基于 CAMELS 流域数据进行 LSTM 深度学习水文建模与对比实验。通过随机缺失时间步、整段缺失及空间区域缺失模拟输入数据中断，比较三种缺失值处理架构。",
+      "study_area": "美国 CAMELS 数据集中的 531 个流域；空间缺失实验涉及 Ohio、Cumberland 和 Tennessee 河流域中的 51 个流域。",
+      "study_period": "训练期：1999年10月1日至2008年9月30日；验证期：1980年10月1日至1989年9月30日；测试期：1989年10月1日至1999年9月30日。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS dataset",
+          "role_in_study": "提供 531 个流域及其相关数据，是实验的数据集范围。",
+          "usage": "used_as_data",
+          "evidence_quote": "We ran all experiments on the 531 basins of the CAMELS dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "提供三组日尺度气象强迫之一，作为模型输入；在空间缺失实验中覆盖所有流域。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CAMELS dataset comes with three sets of daily meteorological forcings: Daymet",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer",
+          "role_in_study": "提供三组日尺度气象强迫之一，作为模型输入；在空间缺失实验中覆盖所有流域。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CAMELS dataset comes with three sets of daily meteorological forcings: Daymet (Thornton et al., 1997), Maurer",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NLDAS",
+          "role_in_study": "提供三组日尺度气象强迫之一，作为模型输入；在空间缺失实验中仅对指定的 51 个流域提供。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CAMELS dataset comes with three sets of daily meteorological forcings: Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and NLDAS",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "26 static attributes",
+          "role_in_study": "作为模型输入的静态流域属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "All models use all 15 forcing variables (precipitation, solar radiation, min/max temperature, and vapor pressure for each of the three forcing products) and the same set of 26 static attributes",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "streamflow",
+          "role_in_study": "作为 LSTM 模型的预测目标变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "All models are trained with streamflow as the target variable.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-29-6221-2025.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-29-6221-2025.methods.txt"
+        ],
+        "chars": 15119,
+        "text_mode": "head+methods",
+        "source_sha256": "6bacdeb3c40b4d3eaea7fef03b77e595e72ec4b6133e6b314ca399e92960812b",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:18",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-29-6221-2025.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_015_ref_21",
+      "source_paper_doi": "10.5194/hess-29-6811-2025",
+      "source_paper": {
+        "doi": "10.5194/hess-29-6811-2025",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Global Streamflow; Catchment Attributes and Meteorology for Large-sample Studies (CAMELS); CAMELS-Chem",
+        "North American Land Data Assimilation System (NLDAS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "streamflow_observation",
+          "anchor_product": "USGS NWIS Daily Values Streamflow Observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Global Streamflow; Catchment Attributes and Meteorology for Large-sample Studies (CAMELS); CAMELS-Chem",
+          "actual_product_in_paper": "Global Streamflow; Catchment Attributes and Meteorology for Large-sample Studies (CAMELS); CAMELS-Chem",
+          "evidence_quotes": [
+            "For the CAMELS and Global Streamflow datasets, the target variables were daily observed streamflow at basin outlets."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "meteorological_forcing",
+          "anchor_product": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "North American Land Data Assimilation System (NLDAS)",
+          "actual_product_in_paper": "North American Land Data Assimilation System (NLDAS)",
+          "evidence_quotes": [
+            "CAMELS includes static attributes and dynamic forcing data from Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and the North American Land Data Assimilation System (NLDAS) (Xia et al., 2012)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "For the CAMELS and Global Streamflow datasets, the target variables were daily observed streamflow at basin outlets.",
+        "CAMELS includes static attributes and dynamic forcing data from Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and the North American Land Data Assimilation System (NLDAS) (NLDAS) (Xia et al., 2012)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究在多种水文预测任务中，Transformer 等注意力模型相较于 LSTM 的表现如何，以及预训练大语言模型和时间序列注意力模型能否用于零样本水文预报。研究对象涵盖美国本土及全球流域径流、土壤水分、雪水当量和溶解氧。",
+      "hypothesis_or_mechanism": "研究比较不同任务复杂度下模型结构的适用性：回归任务中 LSTM 可能表现较强，而随着任务从回归、预报扩展到自回归和零样本预测，基于注意力的模型可能逐渐超过 LSTM。预报任务将气象输入与滞后的目标变量结合，自回归任务则仅利用历史水文观测。",
+      "variables_and_data_use": "研究使用 CAMELS 和 Global Streamflow 的每日流域出口径流观测，以及 ISMN 土壤水分、SNOTEL 雪水当量和 CAMELS-Chem 溶解氧数据作为预测目标；输入还包括动态气象强迫和静态属性。CAMELS 的强迫数据包括 Daymet、Maurer 和 NLDAS；作者比较 11 种 Transformer 架构与 LSTM、DLinear，并在零样本预测中评估 GPT-3.5、GPT-4-turbo、Gemini 1 pro、Llama3 8B、Llama3 70B，以及提及的时间序列模型。",
+      "method_paradigm": "采用多数据集深度学习基准比较范式，评估回归、结合气象输入的时滞预报、自回归、空间交叉验证和零样本预报。以 KGE、NSE、R²、ubRMSE 及流量极值指标评价模型表现。",
+      "study_area": "美国本土（CONUS）、全球流域、美国西部 SNOTEL 站点及美国流域；ISMN 土壤水分观测覆盖 1317 个站点。",
+      "study_period": "各数据集均为日尺度；论文节选未给出整体研究的统一起止时段。CAMELS-Chem 所依据的水化学与流量记录时段为 1980—2014 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment Attributes and Meteorology for Large-sample Studies (CAMELS)",
+          "role_in_study": "用于美国本土流域径流建模；提供径流目标、动态强迫和静态流域属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CAMELS dataset (Addor et al., 2017; Newman et al., 2014) served as our benchmark dataset for runoff modeling across the conterminous United States (CONUS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daymet",
+          "role_in_study": "作为 CAMELS 中的动态气象强迫数据来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS includes static attributes and dynamic forcing data from Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and the North American Land Data Assimilation System (NLDAS) (Xia et al., 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Maurer",
+          "role_in_study": "作为 CAMELS 中的动态气象强迫数据来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS includes static attributes and dynamic forcing data from Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and the North American Land Data Assimilation System (NLDAS) (Xia et al., 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "North American Land Data Assimilation System (NLDAS)",
+          "role_in_study": "作为 CAMELS 中的动态气象强迫数据来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS includes static attributes and dynamic forcing data from Daymet (Thornton et al., 1997), Maurer (Maurer et al., 2002), and the North American Land Data Assimilation System (NLDAS) (Xia et al., 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Streamflow",
+          "role_in_study": "全球流域每日观测径流数据集，用作径流预测目标。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used a global dataset compiled by Beck et al. (2020), who initially collected daily observed streamflow data from 21,955 basins listed in multiple national and international databases.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "International Soil Moisture Network (ISMN)",
+          "role_in_study": "提供站点土壤水分观测目标及相关强迫变量和属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "The global soil moisture dataset from the International Soil Moisture Network (ISMN) (Dorigo et al., 2011, 2013; Liu et al., 2023) includes observations from 1317 sites.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SNOTEL observations",
+          "role_in_study": "提供美国西部站点的雪水当量观测目标。",
+          "usage": "used_as_data",
+          "evidence_quote": "The snow water equivalent (SWE) data used in our study follows Song et al. (2024), who utilized SNOTEL observations (USDA NRCS NWCC, 2021) from 525 sites across regions in the western United States.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CAMELS-Chem",
+          "role_in_study": "提供溶解氧数据及相关流域水化学和流量记录。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used dissolved oxygen data following Zhi et al. (2021), based on the CAMELS-Chem (Sterle et al., 2024) dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS water chemistry and streamflow records",
+          "role_in_study": "构成 CAMELS-Chem 的水化学及流量记录来源，用于溶解氧数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "CAMELS-Chem compiles USGS water chemistry and streamflow records from 1980 to 2014 across the United States.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GPT-3.5",
+          "role_in_study": "用于零样本水文预报评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "We evaluated several LLMs via API, including GPT-3.5, GPT-4-turbo, Gemini 1 pro, Llama3 8B, and Llama3 70B (Google, 2023; Grattafiori et al., 2024; OpenAI, 2023).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GPT-4-turbo",
+          "role_in_study": "用于零样本水文预报评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "We evaluated several LLMs via API, including GPT-3.5, GPT-4-turbo, Gemini 1 pro, Llama3 8B, and Llama3 70B (Google, 2023; Grattafiori et al., 2024; OpenAI, 2023).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Gemini 1 pro",
+          "role_in_study": "用于零样本水文预报评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "We evaluated several LLMs via API, including GPT-3.5, GPT-4-turbo, Gemini 1 pro, Llama3 8B, and Llama3 70B (Google, 2023; Grattafiori et al., 2024; OpenAI, 2023).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Llama3 8B",
+          "role_in_study": "用于零样本水文预报评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "We evaluated several LLMs via API, including GPT-3.5, GPT-4-turbo, Gemini 1 pro, Llama3 8B, and Llama3 70B (Google, 2023; Grattafiori et al., 2024; OpenAI, 2023).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Llama3 70B",
+          "role_in_study": "用于零样本水文预报评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "We evaluated several LLMs via API, including GPT-3.5, GPT-4-turbo, Gemini 1 pro, Llama3 8B, and Llama3 70B (Google, 2023; Grattafiori et al., 2024; OpenAI, 2023).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-29-6811-2025.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-29-6811-2025.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "88a6e19bf36035898d5c3d14255d05922344133a4a33b5ae36ea4cc39a626e2a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:51:28",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_015/10.5194_hess-29-6811-2025.json",
+        "quote_gate": {
+          "total": 18,
+          "verified": 18
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010",
+  "quality": {
+    "paper_count": 21,
+    "semantic_directions_extracted": true,
+    "direction_count": 21,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 1,
+    "expanded_set_reference_count": 20,
+    "complete_member_combination_count": 19,
+    "disputed_complete_pending_recheck_count": 0,
+    "partial_set_support_count": 2,
+    "component_support_count": 2,
+    "zero_member_support_count": 0,
+    "member_conflict_count": 0,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  }
+}

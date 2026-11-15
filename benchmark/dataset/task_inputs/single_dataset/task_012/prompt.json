@@ -1,0 +1,36 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Huron Creek watershed, Michigan, United States",
+  "task_description": "You are an agent exploring a small watershed using metre-scale lidar-derived bare-earth elevation. Examine micro-topography, drainage structure and terrain-resolution effects that are visible only in fine elevation data.",
+  "data_description": {
+    "dataset_name": "USGS 3DEP 1m National Map",
+    "spatial_coverage": {
+      "region_name": "Huron Creek watershed, Michigan, United States",
+      "coverage": "Small Huron Creek watershed in Houghton County, Michigan Upper Peninsula, roughly 7.25 km2 with a main channel about 5.15 km long. The region is retained as the executable USGS 3DEP benchmark area after seed replacement because the replacement seed's Portuguese UAV-lidar survey is not available through the US-only catalog Anchor."
+    },
+    "temporal_coverage": "2015-01-01 to 2025-04-08, by acquisition project",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1 m",
+    "temporal_unit": "Static per acquisition project; tiles are not necessarily seamless across projects",
+    "analytical_capabilities": [
+      "Metre-scale bare-earth elevation and micro-topographic structure analysis",
+      "Slope, aspect, curvature, relief and terrace-geometry derivation",
+      "Drainage-network extraction and flow-routing sensitivity analysis",
+      "Resolution aggregation experiments from a qualifying one-metre lidar source",
+      "Terrain input for fine-resolution hydrological modelling"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Bare-earth elevation in meters",
+      "runtime_hint": "Use the `elevation` band in metres. Mosaic only tiles from a documented acquisition project, inspect seams, and verify coverage before analysis. Any coarser experimental grid must be derived from the qualifying one-metre source."
+    },
+    "data_source": "USGS 3D Elevation Program, produced exclusively from high-resolution airborne lidar",
+    "gee_asset": {
+      "id": "USGS/3DEP/1m",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "Executable region retained from the former seed 10.1007/s12145-023-01218-x because it is within USGS 3DEP coverage; replacement seed 10.3390/rs15010169 supplies the earlier multi-dataset scientific design but its Portuguese project lidar is not the runtime asset.",
+    "asset_provenance": "The replacement seed constructs 0.1-1 m bare-earth DEMs from project UAV lidar. USGS/3DEP/1m is the ready catalog analogue for the same physical object and measurement semantics. Seed-study geography is not claimed as runtime coverage."
+  },
+  "data_path": "GEE:USGS/3DEP/1m"
+}

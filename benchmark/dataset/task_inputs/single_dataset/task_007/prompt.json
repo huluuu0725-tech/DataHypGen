@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Eastern Victoria public forests, Australia",
+  "data_description": {
+    "dataset_name": "USGS Landsat 5 TM Level 2, Collection 2, Tier 1",
+    "spatial_coverage": {
+      "region_name": "Eastern Victoria public forests, Australia",
+      "coverage": "Eastern Victoria, Australia, within Landsat WRS paths 91-92 and rows 85-86."
+    },
+    "temporal_coverage": "1984-03-16 16:18:01 to 2012-05-05 17:54:06 UTC",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Scene-level Landsat 5 TM observations with a 16-day revisit interval",
+    "analytical_capabilities": [
+      "Map visible, near-infrared, and shortwave-infrared surface reflectance",
+      "Build Landsat 5 TM reflectance time series on a common 30 m band schema",
+      "Derive vegetation, moisture, and normalized-difference spectral indices",
+      "Detect temporal changes in land-surface spectral response",
+      "Measure neighborhood texture and spatial heterogeneity from reflectance or derived indices"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Orthorectified surface reflectance as scaled unitless values in six optical bands",
+      "runtime_hint": "Use LANDSAT/LT05/C02/T1_L2 only. Optical bands are SR_B1 blue, SR_B2 green, SR_B3 red, SR_B4 near infrared, SR_B5 shortwave infrared 1, and SR_B7 shortwave infrared 2. Stored optical values have a catalog range of 1-65455; convert to surface reflectance with DN*0.0000275-0.2 before computing indices. Mask QA_PIXEL bit 0 fill, bit 1 dilated cloud, bit 3 cloud, bit 4 cloud shadow, and bit 5 snow; bit 6 marks clear conditions and bit 7 water. QA_RADSAT bits 0-4 and 6 flag saturation in optical bands 1-5 and 7. SR_ATMOS_OPACITY uses scale 0.001; values below 0.1 are generally clear, 0.1-0.3 average, and above 0.3 hazy, but the catalog recommends QA_PIXEL for cloud discrimination. Surface reflectance is produced with LEDAPS. Do not add Landsat 7, Landsat 8/9, TOA, raw DN, annual composites, or index-only products as required anchor data."
+    },
+    "data_source": "USGS / NASA Landsat program",
+    "gee_asset": {
+      "id": "LANDSAT/LT05/C02/T1_L2",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:LANDSAT/LT05/C02/T1_L2"
+}

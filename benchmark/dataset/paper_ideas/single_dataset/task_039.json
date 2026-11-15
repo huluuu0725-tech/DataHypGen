@@ -1,0 +1,99 @@
+{
+  "paper_id": "10.1038/s41467-024-48533-5",
+  "task_id": "single_dataset/task_039",
+  "title": "Urban development pattern's influence on extreme rainfall occurrences",
+  "category": "geological_hazards",
+  "year": 2024,
+  "journal": "Nature Communications",
+  "impact_level": "high",
+  "datasets": [
+    "GAIA global impervious areas (30m, 1985-2018)",
+    "GPM IMERG v06 liquid precipitation (0.1 degree, daily; 2001-2005 and 2016-2020)",
+    "Natural Earth global city locations",
+    "SRTM30+ v11 global 1 km elevation for coastal and mountainous-city exclusion",
+    "Koppen first-level climate classes",
+    "NCEP Final Operational Global Analysis (1 degree, 6-hourly) for WRF initial and boundary conditions",
+    "WRF v3.9.1 RAIL ensemble simulations and 13 rain-gauge observations for the 2012-08-20 to 2012-08-21 event"
+  ],
+  "idea": {
+    "research_question": "在控制城市规模、城市化增长速度、地形和气候背景后，紧凑型与分散型城市发展格局是否会系统性改变城市中心相对于周边农村区域的极端降雨发生频率、强度及空间衰减范围？这种影响是否通过城市热岛增强和低层辐合改变对流降雨，并在不同Köppen气候类型中保持一致？",
+    "hypothesis": "H1：城市形态对极端降雨具有独立影响；在相同城市化比例和增长水平下，紧凑型城市将产生更集中的城市中心降雨异常及更陡峭的径向衰减，而分散型城市将形成较低但空间分布更广、具有多个局地热点的降雨响应。H2：该效应主要沿着“城市形态紧凑度提高→地表能量和感热通量集中→城市热岛增强及边界层热力不稳定性增加→低层风场辐合增强→对流极端降雨发生概率上升”的机制路径传递。H3：城市形态与极端降雨的关系受地形和气候调节，但在四类Köppen气候类型中具有可检验的共同方向。",
+    "mechanism": "城市形态首先通过不透水面比例、斑块总面积和景观形状改变地表能量分配、粗糙度和水汽输送。紧凑型足迹将热源和动力阻力集中在城市核心，预期增强城市热岛、抬升边界层并在城市上空或下风向形成集中低层辐合，从而提高深对流触发和极端降雨发生的可能性。分散型足迹则将热力和动力扰动分布在多个斑块之间，预期使降雨响应在更大范围内扩散。该机制需要同时检验城市热岛强度、低层水平辐合和降雨极值的路径关联，并通过理想化陆面情景模拟隔离城市几何形态效应。",
+    "key_variables": {
+      "target": "以GPM IMERG v06日降雨定义城市特定的极端降雨事件，例如超过2001—2020年城市有效网格日降雨95%或99%分位数的事件；主要响应变量包括城市中心相对于农村控制区的极端降雨频率差和相对变化率、极端降雨强度差、城市中心峰值响应、径向空间衰减尺度以及热点数量和空间离散度，并比较2001—2005年与2016—2020年的变化。",
+      "predictors": [
+        "基于GAIA不透水面提取的城市发展模式类别：K-means聚类得到的三类城市格局，以及连续型紧凑度指标。",
+        "城市不透水面比例、1985—2018年城市化增长率、城市总面积和不同年份的城市扩张幅度。",
+        "PyLandStats计算的Landscape Shape Index、斑块总面积、斑块数量、平均斑块面积及城市边界形状复杂度。",
+        "城市中心到不透水面斑块、城市边缘和农村控制区的距离，以及按距离划分的环状缓冲区。",
+        "SRTM30提供的高程、坡度和地形起伏度，用于样本筛选、匹配和协变量控制。",
+        "RAIL-WRF模拟的城市热岛强度、地表感热通量、边界层热力状态、低层水平风场辐合和对流极端降雨指标。"
+      ]
+    },
+    "data_sources": [
+      "GAIA Global Artificial Impervious Areas全球人工不透水面数据，30 m空间分辨率，1985—2018年，用于构建城市足迹、城市化比例、增长率和景观形态指标。",
+      "GPM IMERG v06卫星降雨产品，0.1°空间分辨率、日时间尺度，覆盖60°S—60°N，2001—2020年，用于识别极端降雨事件并计算城市—农村降雨异常。",
+      "SRTM30 DEM，1 km空间分辨率，用于提取高程、坡度和地形起伏度，并对城市样本进行地形过滤和统计控制。",
+      "RAIL（Real Atmosphere, Ideal Land surface）WRF v3.9.1对流分辨率模拟，1 km网格；设置Circular、Ribbon、Satellite、Edge和Scatter五种城市足迹情景，统一城市化比例为14.1%，每种情景采用3种微物理方案与2种边界层方案组成的6成员集合。",
+      "全球1790个内陆城市样本及其四类Köppen气候类型分层标签，用于跨气候区比较和交互效应检验。"
+    ],
+    "analytical_approach": "首先将GAIA不透水面按城市边界、城市核心、城市边缘和农村控制环带进行空间聚合，使用PyLandStats计算城市总面积、城市不透水面比例、Landscape Shape Index、斑块数量和斑块面积等指标，并以1985—2018年变化估计城市化增长率。对形态指标进行z-score标准化后，采用欧氏距离的K-means聚类，设定k=3、n_init=50、max_iter=300、固定随机种子，并使用轮廓系数和自助法稳定性检验评估类别稳健性。其次，对GPM日降雨采用城市特定95%和99%分位数定义极端事件，分别计算2001—2005年和2016—2020年的频率、强度及城市—农村差异；通过0—10、10—20、20—40、40—60和60—100 km环状缓冲区估计降雨异常的径向分布，并用非线性最小二乘拟合A(r)=A0exp(-r/L)获取中心响应幅度A0和衰减尺度L。组间差异采用置换检验和10,000次城市层级bootstrap获得95%置信区间；采用以城市为随机截距、Köppen气候类型和时期为固定效应的线性混合模型或logit链接的广义线性混合模型，控制城市面积、城市化比例、增长率、高程、坡度和纬度，并使用城市聚类稳健标准误。进一步设置城市形态×距离、城市形态×气候类型交互项，检验紧凑度对降雨空间分布和气候区异质性的影响，并采用Benjamini—Hochberg方法控制多重比较的FDR，阈值设为q<0.05。机制分析采用标准化路径模型或中介分析，依次估计城市形态对城市热岛、低层辐合和极端降雨的直接及间接效应。最后在WRF v3.9.1中使用1 km网格和RAIL设置，保持大气初始条件、地形和城市化比例一致，仅替换Circular、Ribbon、Satellite、Edge和Scatter五种城市足迹；每种情景运行3种微物理方案×2种边界层方案的6成员集合，比较集合平均的热岛强度、低层辐合、边界层结构和极端降雨频率，并以成员间变异和95%置信区间评价机制结果的稳健性。",
+    "expected_contribution": "构建一个结合全球高分辨率城市形态遥感、卫星降雨观测和理想化对流分辨率模拟的研究框架，将城市化规模效应与城市空间组织效应分离开来；定量刻画紧凑度对极端降雨中心峰值、空间衰减尺度和热点分布的影响，并明确城市热岛—低层辐合—对流降雨的可能传递路径，为不同气候区的城市防洪规划和气候适应性形态设计提供可检验的地学依据。",
+    "falsification_condition": "若在控制城市面积、不透水面比例、城市化增长率、高程、坡度、纬度、时期和气候类型后，紧凑度或K-means发展模式对城市—农村极端降雨差异的回归系数及其95%置信区间均接近零，且城市形态×距离交互项不支持紧凑型城市具有更集中响应的预测；同时，WRF五种足迹情景中紧凑型与分散型在城市热岛、低层辐合和极端降雨指标上的差异不稳定或方向相反，则应否定“城市形态通过热岛和低层辐合集中增强城市中心极端降雨”的核心假设。"
+  },
+  "study_area_verified": {
+    "name": "1,790 inland, non-mountainous cities worldwide between 60 degrees south and 60 degrees north",
+    "sampling_frame": "Natural Earth city list, excluding coastal cities and cities whose centered 1-degree analysis window has more than 500 m elevation range",
+    "study_period": "Urban development represented by GAIA 2003 and 2018 layers; rainfall compared between 2001-2005 and 2016-2020",
+    "analysis_grid": "GAIA aggregated from 30 m to 0.01 degrees; city-centered 1-degree by 1-degree analysis windows; IMERG rainfall statistics aligned to the urban grid",
+    "review_date": "2026-08-31"
+  },
+  "anchor_repoint": {
+    "paper_used": "GAIA v1.0 global artificial impervious-area change product",
+    "task_anchor": "Tsinghua/FROM-GLC/GAIA/v10",
+    "former_anchor": "projects/sat-io/open-datasets/GAIA",
+    "why_the_former_anchor_needed_repointing": [
+      "The former ID is a community mirror absent from the current dataset index; the official ready GAIA asset is present.",
+      "The former prompt incorrectly described GAIA as an ImageCollection of annual 0-100 impervious fractions rather than a single change-year image."
+    ],
+    "why_this_anchor": "Tsinghua/FROM-GLC/GAIA/v10 is the exact official product family used by the paper and the sole exact GAIA match in the current dataset index.",
+    "corrections": [
+      "GAIA is reconstructed for 2003 and 2018, aggregated to 0.01 degrees, and thresholded at an impervious ratio above 0.2 to define urban cells.",
+      "The analysis uses 1,790 Natural Earth cities and city-centered 1-degree windows after coastal and elevation-range exclusions.",
+      "Rainfall is IMERG v06 liquid precipitation; RFreq99 and RFreq90 compare 2001-2005 with 2016-2020.",
+      "TA and LSI changes define urban-development descriptors, followed by three-cluster K-means classification and WRF RAIL mechanism simulations."
+    ],
+    "companion_dataset_availability": {
+      "in_current_dataset_index": [
+        "Tsinghua/FROM-GLC/GAIA/v10",
+        "NASA/GPM_L3/IMERG_V06"
+      ],
+      "public_but_no_exact_current_index_match_verified": [
+        "Natural Earth city point list",
+        "SRTM30+ v11 1 km elevation",
+        "Koppen climate classification",
+        "NCEP Final Operational Global Analysis"
+      ],
+      "derived_or_run_specific": [
+        "WRF RAIL ensemble outputs",
+        "the selected 13 rain-gauge observations"
+      ]
+    },
+    "seed_method_structure": "S2: GAIA supplies the urban-development exposure and cluster definitions, while IMERG supplies the rainfall response; the core empirical conclusion cannot be computed from either observable alone.",
+    "reference_direction_consequence": "Existing GAIA directions remain valid because the former community ID and current official ID represent the same product family.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "note": "The idea.* fields are retained as prior enrichment content under the provenance rule; the audit fields above identify which details are established by the supplied Methods.",
+    "review_date": "2026-08-31"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

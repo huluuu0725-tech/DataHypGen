@@ -1,0 +1,59 @@
+{
+  "paper_id": "10.12912/27197050/231071",
+  "task_id": "three_or_more_datasets/task_002",
+  "title": "Vulnerability analysis of coastal tidal flooding in pekalongan city using composite mapping analysis method",
+  "category": "geological_hazards",
+  "year": 2026,
+  "journal": "Ecological Engineering & Environmental Technology",
+  "impact_level": "medium",
+  "datasets": [
+    "Sentinel-1 SAR GRD C-band backscatter",
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "SRTM Digital Elevation Data 30 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "flood_extent_observation",
+      "dataset": "Sentinel-1 SAR GRD C-band backscatter"
+    },
+    {
+      "role": "land_cover_mapping",
+      "dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+    },
+    {
+      "role": "elevation_and_terrain",
+      "dataset": "SRTM Digital Elevation Data 30 m"
+    }
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_002:coastal_tidal_flood",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from the seed abstract and declared dataset roles; empirical results are excluded from the idea fields."
+  },
+  "idea": {
+    "research_question": "How can Sentinel-1 flood observations be integrated with land cover and terrain to explain and map coastal tidal-flood vulnerability?",
+    "hypothesis": "A flood-observation layer combined with terrain and land-cover context can distinguish persistent coastal exposure from event-specific inundation and produce a more interpretable vulnerability map than any single indicator.",
+    "mechanism": "Sentinel-1 backscatter identifies inundated surfaces; Sentinel-2 supplies land-cover classes; DEM-derived elevation represents topographic exposure. Their spatial alignment supports composite vulnerability scoring and independent field validation.",
+    "key_variables": {
+      "target": "Coastal tidal-flood inundation extent and composite vulnerability class",
+      "predictors": [
+        "Sentinel-1 VV/VH flood extent",
+        "Sentinel-2 land-cover classes",
+        "DEM-derived elevation and terrain",
+        "coastline, river and subsidence context"
+      ]
+    },
+    "data_sources": [
+      "COPERNICUS/S1_GRD",
+      "COPERNICUS/S2_SR_HARMONIZED",
+      "USGS/SRTMGL1_003"
+    ],
+    "analytical_approach": "Multi-date Sentinel-1 flood extraction followed by spatial harmonization with Sentinel-2 land cover, DEM-derived elevation and CHIRPS rainfall; construct a composite mapping-analysis score and evaluate spatial agreement against field observations.",
+    "expected_contribution": "An interpretable, reproducible coastal-flood vulnerability workflow that preserves the distinction between observed inundation and environmental drivers.",
+    "falsification_condition": "The integrated model does not improve spatial agreement or stability over the Sentinel-1 inundation layer alone, or the selected predictors do not explain differences in observed vulnerability across the coast."
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from the verified seed abstract and multidataset prompt specification on 2026-09-29."
+}

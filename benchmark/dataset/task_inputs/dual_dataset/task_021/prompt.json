@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Electricity reliability observation space",
+  "datasets": [
+    {
+      "role": "nighttime_lights",
+      "data_description": {
+        "dataset_name": "Satellite nighttime lights",
+        "data_type": "Nighttime-radiance raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+        "spatial_coverage": {
+          "region_name": "Electricity reliability observation space",
+          "coverage": "Declared analysis region within Electricity reliability observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS"
+    },
+    {
+      "role": "electricity_reliability",
+      "data_description": {
+        "dataset_name": "Electricity reliability indicators",
+        "data_type": "Electricity-supply reliability time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "PLANETARY_COMPUTER:hrea",
+        "spatial_coverage": {
+          "region_name": "Electricity reliability observation space",
+          "coverage": "Declared analysis region within Electricity reliability observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "PLANETARY_COMPUTER:hrea"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Satellite nighttime lights",
+      "data_type": "Nighttime-radiance raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "spatial_coverage": {
+        "region_name": "Electricity reliability observation space",
+        "coverage": "Declared analysis region within Electricity reliability observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Electricity reliability indicators",
+      "data_type": "Electricity-supply reliability time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "PLANETARY_COMPUTER:hrea",
+      "spatial_coverage": {
+        "region_name": "Electricity reliability observation space",
+        "coverage": "Declared analysis region within Electricity reliability observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+    "PLANETARY_COMPUTER:hrea"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_021:composite_observation",
+    "type": "composite_observation",
+    "name": "nighttime_lights_electricity composite observation",
+    "observable_group": "nighttime_lights_electricity_multidataset_observation",
+    "components": [
+      {
+        "role": "nighttime_lights",
+        "data_description": {
+          "dataset_name": "Satellite nighttime lights",
+          "data_type": "Nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS"
+      },
+      {
+        "role": "electricity_reliability",
+        "data_description": {
+          "dataset_name": "Electricity reliability indicators",
+          "data_type": "Electricity-supply reliability time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "PLANETARY_COMPUTER:hrea",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "PLANETARY_COMPUTER:hrea"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "nighttime_lights",
+        "electricity_reliability"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_021:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+    "PLANETARY_COMPUTER:hrea"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "nighttime_lights",
+      "electricity_reliability"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

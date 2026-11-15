@@ -1,0 +1,54 @@
+{
+  "paper_id": "10.1080/17538947.2023.2224087",
+  "task_id": "three_or_more_datasets/task_019",
+  "title": "Power outage and environmental justice in Winter Storm Uri: an analytical workflow based on nighttime light remote sensing",
+  "category": "nighttime_lights_outage_equity",
+  "year": 2023,
+  "journal": "International Journal of Digital Earth",
+  "impact_level": "medium",
+  "datasets": [
+    "NASA Black Marble daily nighttime lights",
+    "Reported power-outage observations",
+    "Population and demographic context grid"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "nighttime_light_observation",
+      "dataset": "NASA Black Marble daily nighttime lights"
+    },
+    {
+      "role": "outage_observation",
+      "dataset": "Reported power-outage observations"
+    },
+    {
+      "role": "population_demographic_context",
+      "dataset": "Population and demographic context grid"
+    }
+  ],
+  "idea": {
+    "research_question": "How can satellite-observed nighttime-light outages and population context reveal unequal exposure to extreme-weather power disruptions?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align every required role, construct role-specific features, test interactions, and compare against single-role ablations.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:NASA/VIIRS/002/VNP46A2",
+      "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+      "GEE:JRC/GHSL/P2023A/GHS_POP"
+    ],
+    "required_component_usage": [
+      null,
+      null,
+      null
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently screened multidataset seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_019:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_online_seed_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\online_recall_underrepresented_20260929\\independent_seed_audit.json",
+    "audit_verdict": "admit_candidate"
+  }
+}

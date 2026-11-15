@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+  "datasets": [
+    {
+      "role": "census_population",
+      "data_description": {
+        "dataset_name": "Census population counts",
+        "data_type": "Administrative-unit population counts",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Count",
+        "spatial_coverage": {
+          "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+          "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Count"
+    },
+    {
+      "role": "remote_sensing",
+      "data_description": {
+        "dataset_name": "VIIRS Black Marble Nighttime Lights (VNP46A2)",
+        "data_type": "Daily nighttime radiance raster (Day/Night Band)",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+        "spatial_coverage": {
+          "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+          "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+    },
+    {
+      "role": "ancillary_spatial",
+      "data_description": {
+        "dataset_name": "SRTM Digital Elevation Data 30 m",
+        "data_type": "Digital elevation raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:USGS/SRTMGL1_003",
+        "spatial_coverage": {
+          "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+          "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Census population counts",
+      "data_type": "Administrative-unit population counts",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Count",
+      "spatial_coverage": {
+        "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+        "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "VIIRS Black Marble Nighttime Lights (VNP46A2)",
+      "data_type": "Daily nighttime radiance raster (Day/Night Band)",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+      "spatial_coverage": {
+        "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+        "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "SRTM Digital Elevation Data 30 m",
+      "data_type": "Digital elevation raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:USGS/SRTMGL1_003",
+      "spatial_coverage": {
+        "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+        "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:CIESIN/GPWv411/GPW_Population_Count",
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_010:composite_observation",
+    "type": "composite_observation",
+    "name": "census_remote_sensing_ancillary composite observation",
+    "observable_group": "census_remote_sensing_ancillary_multidataset_observation",
+    "components": [
+      {
+        "role": "census_population",
+        "data_description": {
+          "dataset_name": "Census population counts",
+          "data_type": "Administrative-unit population counts",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Count",
+          "spatial_coverage": {
+            "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+            "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Count"
+      },
+      {
+        "role": "remote_sensing",
+        "data_description": {
+          "dataset_name": "VIIRS Black Marble Nighttime Lights (VNP46A2)",
+          "data_type": "Daily nighttime radiance raster (Day/Night Band)",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+            "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "ancillary_spatial",
+        "data_description": {
+          "dataset_name": "SRTM Digital Elevation Data 30 m",
+          "data_type": "Digital elevation raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:USGS/SRTMGL1_003",
+          "spatial_coverage": {
+            "region_name": "Population mapping landscapes with heterogeneous geospatial coverage",
+            "coverage": "Declared analysis region within Population mapping landscapes with heterogeneous geospatial coverage."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "census_population",
+        "remote_sensing",
+        "ancillary_spatial"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_010:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:CIESIN/GPWv411/GPW_Population_Count",
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "census_population",
+      "remote_sensing",
+      "ancillary_spatial"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

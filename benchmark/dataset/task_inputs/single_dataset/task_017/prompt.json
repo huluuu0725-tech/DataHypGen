@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global tropical forest regions",
+  "data_description": {
+    "dataset_name": "Global Forest Cover Change (GFCC) Tree Cover Multi-Year Global 30m",
+    "spatial_coverage": {
+      "region_name": "Global tropical forest regions",
+      "coverage": "Global Landsat WRS-2 path/row holdings with tree-canopy-cover estimates for available tiles; filter by epoch and mosaic the tiles intersecting the analysis region."
+    },
+    "temporal_coverage": "2000-01-01 to 2015-01-01, with nominal epochs centered on 2000, 2005, 2010, and 2015",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Five-year nominal epoch cadence",
+    "analytical_capabilities": [
+      "Map fractional tree-canopy cover at 30 m for the available epochs",
+      "Create threshold-based tree-cover or forest masks from canopy-cover percentage",
+      "Measure patch area, perimeter, connectivity, fragmentation, and edge structure from derived masks",
+      "Compare canopy-cover distributions among the 2000, 2005, 2010, and 2015 epochs",
+      "Propagate the supplied canopy-cover uncertainty layer into spatial summaries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Percentage of each 30 m pixel covered by woody vegetation taller than 5 m; `uncertainty` reports RMSE for tree-canopy cover.",
+      "runtime_hint": "Filter the ImageCollection by the numeric `year` property and mosaic the required WRS-2 path/row tiles. Use `tree_canopy_cover` directly as percent cover in the documented 0-100 range; no catalog scaling factor is specified. `uncertainty` is the canopy-cover RMSE. `source_index` identifies the contributing source image through each image's `sources` metadata and is available only for 2000, 2005, and 2010. The collection does not provide annual loss, gain, or loss-year bands."
+    },
+    "data_source": "NASA MEaSUREs and the University of Maryland, derived from enhanced Global Land Survey Landsat 5 TM and Landsat 7 ETM+ imagery",
+    "gee_asset": {
+      "id": "NASA/MEASURES/GFCC/TC/v3",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/MEASURES/GFCC/TC/v3"
+}

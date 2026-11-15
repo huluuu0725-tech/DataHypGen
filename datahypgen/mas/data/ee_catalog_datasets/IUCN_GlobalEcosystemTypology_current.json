@@ -1,0 +1,156 @@
+{
+    "type": "Collection",
+    "id": "IUCN/GlobalEcosystemTypology/current",
+    "stac_version": "1.1.0",
+    "description": "The Global Ecosystem Typology is a taxonomy of ecosystems based on\ntheir unique characteristics. It is a global classification system\nthat provides a consistent framework for describing and classifying\necological ecosystems.\n\nThe Global Ecosystem Typology has six levels. The top three levels\n(realms, functional biomes, and ecosystem functional groups) classify\necosystems based on their overall characteristics, such as their location,\ndominant plant life, and ecological processes. The bottom three levels\n(regional ecosystem subgroups, global ecosystem types, and subglobal\necosystem types) focus on specific geographic variants within ecosystem\nfunctional groups and complexes of organisms and their associated physical\nenvironment, providing a more detailed understanding of particular\necosystems.\n\nThis dataset focuses on the third level of the Global Ecosystem Typology:\nEcosystem Functional Group. It's defined as a group of related ecosystems\nwithin a biome that share common ecological drivers, which in turn promote\nsimilar biotic traits that characterise the group. Derived from the\ntop-down by subdivision of biomes.\n\nNOTE: Due to the size of some geometries, a simplification algorithm was\napplied to each one to reduce their complexity. As many vertices as\npossible were discarded without moving the distance from the original\nshape more than 100 m. As a result, approximately two dozen rows in the\ntable collapsed into geometries with 0 area and were removed.\n",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/catalog.json",
+            "type": "application/json",
+            "title": "Google Earth Engine Catalog"
+        },
+        {
+            "rel": "related",
+            "href": "https://code.earthengine.google.com/?scriptPath=Examples:Datasets/IUCN/IUCN_GlobalEcosystemTypology_current",
+            "type": "text/html",
+            "title": "Run the example for IUCN/GlobalEcosystemTypology/current in the Earth Engine Code Editor",
+            "code": "JavaScript"
+        },
+        {
+            "rel": "preview",
+            "href": "https://developers.google.com/earth-engine/datasets/images/IUCN/IUCN_GlobalEcosystemTypology_current_sample.png",
+            "type": "image/png"
+        },
+        {
+            "rel": "license",
+            "href": "https://developers.google.com/earth-engine/datasets/catalog/IUCN_GlobalEcosystemTypology_current#terms-of-use",
+            "type": "text/html"
+        },
+        {
+            "rel": "related",
+            "href": "https://code.earthengine.google.com/?scriptPath=Examples:Datasets/IUCN/IUCN_GlobalEcosystemTypology_current_FeatureView",
+            "type": "text/html",
+            "title": "Run the example for IUCN/GlobalEcosystemTypology/current in the Earth Engine Code Editor",
+            "code": "JavaScript"
+        },
+        {
+            "rel": "self",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/IUCN/IUCN_GlobalEcosystemTypology_current.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/IUCN/catalog.json",
+            "type": "application/json",
+            "title": "IUCN"
+        }
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/version/v1.2.0/schema.json"
+    ],
+    "gee:categories": [
+        "ecosystems"
+    ],
+    "gee:terms_of_use": "Global Ecosystem Typology datasets are provided under the CC BY 4.0 license,\nwhich allows re-distribution and re-use of a licensed work on the condition\nthat the creator is appropriately credited.\n",
+    "gee:type": "table",
+    "sci:publications": [
+        {
+            "citation": "RT Pennington, J Franklin, NA Brummitt, A Etter, KR Young, RT Corlett\nand DA Keith. (2022). T1.2 Tropical/Subtropical dry forests and\nthickets. In: Keith, D.A., Ferrer-Paris, J.R., Nicholson,\nE. et al. (2022). A function-based typology for Earth's ecosystems\n- Appendix S4. The IUCN Global Ecosystem Typology v2.1: Descriptive\nprofiles for Biomes and Ecosystem Functional Groups.\n",
+            "doi": "10.1038/s41586-022-05318-4"
+        }
+    ],
+    "version": "1.0",
+    "gee:status": "ready",
+    "title": "IUCN Global Ecosystem Typology Level 3: 1.0",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2023-09-14T00:00:00Z",
+                    "2023-09-14T00:00:00Z"
+                ]
+            ]
+        }
+    },
+    "license": "CC-BY-4.0",
+    "keywords": [
+        "ecosystem",
+        "ecosystems",
+        "global",
+        "table"
+    ],
+    "providers": [
+        {
+            "name": "International Union for Conservation of Nature and Natural Resources",
+            "roles": [
+                "licensor",
+                "producer"
+            ],
+            "url": "https://global-ecosystems.org/page/typology"
+        },
+        {
+            "name": "Google Earth Engine",
+            "roles": [
+                "host"
+            ],
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/IUCN_GlobalEcosystemTypology_current"
+        }
+    ],
+    "summaries": {
+        "gee:schema": [
+            {
+                "description": "Ecosystem functional group code (e.g., \"T1.1\" = Tropical/Subtropical\nlowland rainforests). For a complete taxonomy, see\n[https://global-ecosystems.org/explore](https://global-ecosystems.org/explore).\n",
+                "name": "efg_code",
+                "type": "STRING"
+            },
+            {
+                "description": "Map code",
+                "name": "map_code",
+                "type": "STRING"
+            },
+            {
+                "description": "Map version",
+                "name": "map_version",
+                "type": "STRING"
+            },
+            {
+                "description": "It indicates whether the specified region contains major\noccurrences (1) or minor occurrences (2) of the functional group.\"\n",
+                "name": "occurrence",
+                "type": "INT"
+            }
+        ],
+        "gee:visualizations": [
+            {
+                "display_name": "Global Ecosystem Typology",
+                "lookat": {
+                    "lat": 46.194,
+                    "lon": -63.873,
+                    "zoom": 8
+                },
+                "table_visualization": {
+                    "color": "black",
+                    "point_size": 1
+                }
+            }
+        ],
+        "gee:feature_view_ingestion_params": {
+            "max_features_per_tile": 250,
+            "thinning_ranking": [
+                ".minZoomLevel DESC"
+            ],
+            "thinning_strategy": "HIGHER_DENSITY"
+        }
+    }
+}

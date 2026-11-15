@@ -1,0 +1,3764 @@
+{
+  "schema_version": "portable-reference-exclusion-v1",
+  "task_id": "dual_dataset/task_006",
+  "evaluation_year": 2026,
+  "seed_exclusion": {
+    "doi": "10.14311/cej.2026.02.0016",
+    "year": 2026
+  },
+  "reference_count": 20,
+  "references": [
+    {
+      "doi": "10.1007/s11356-024-33391-x"
+    },
+    {
+      "doi": "10.1007/s41748-021-00213-w"
+    },
+    {
+      "doi": "10.1016/j.heliyon.2025.e42660"
+    },
+    {
+      "doi": "10.1016/j.onehlt.2023.100566"
+    },
+    {
+      "doi": "10.1038/nature09396"
+    },
+    {
+      "doi": "10.1038/s41467-022-32580-x"
+    },
+    {
+      "doi": "10.1038/s41467-023-37880-4"
+    },
+    {
+      "doi": "10.1038/s41558-022-01287-8"
+    },
+    {
+      "doi": "10.1038/s41598-021-04241-4"
+    },
+    {
+      "doi": "10.1038/s41893-019-0220-7"
+    },
+    {
+      "doi": "10.1038/s42003-019-0636-7"
+    },
+    {
+      "doi": "10.1038/s43247-020-00053-y"
+    },
+    {
+      "doi": "10.1038/srep32177"
+    },
+    {
+      "doi": "10.1057/s41599-026-07338-1"
+    },
+    {
+      "doi": "10.1088/1748-9326/ab738e"
+    },
+    {
+      "doi": "10.15835/nbha48411993"
+    },
+    {
+      "doi": "10.3390/cli9030047"
+    },
+    {
+      "doi": "10.5194/gmd-10-1903-2017"
+    },
+    {
+      "doi": "10.5194/hess-24-1565-2020"
+    },
+    {
+      "doi": "10.5194/hess-26-1481-2022"
+    }
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_006:composite_observation",
+    "type": "composite_observation",
+    "name": "land_cover_precipitation composite observation",
+    "observable_group": "land_cover_precipitation_multidataset_observation",
+    "components": [
+      {
+        "role": "land_cover_context",
+        "data_description": {
+          "dataset_name": "Copernicus Global Land Cover 100 m",
+          "data_type": "Categorical land-cover raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+          "spatial_coverage": {
+            "region_name": "Flood-prone and climate-sensitive landscapes",
+            "coverage": "Declared analysis region within Flood-prone and climate-sensitive landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Daily gridded precipitation raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "spatial_coverage": {
+            "region_name": "Flood-prone and climate-sensitive landscapes",
+            "coverage": "Declared analysis region within Flood-prone and climate-sensitive landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "land_cover_context",
+        "precipitation_driver"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "required_roles": [
+    "land_cover_context",
+    "precipitation_driver"
+  ],
+  "migration_alignment": {
+    "source_task_id": "dual_dataset/task_006",
+    "target_task_id": "dual_dataset/task_006",
+    "seed_doi": "10.14311/cej.2026.02.0016",
+    "reference_count": 20,
+    "original_slots": [
+      {
+        "role": "land_cover_context",
+        "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "current_slots": [
+      {
+        "role": "land_cover_context",
+        "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "semantic_changes": [],
+    "semantic_status": "unchanged_contract",
+    "source_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\reference_sets\\task_006.json",
+    "source_sha256": "fe030c0c13e5dcb6f74f65bf094ff07e2d884cd0a2e98bce3e4a3cfa18513108",
+    "provenance_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\provenance\\task_006.provenance_20261004.json"
+  },
+  "directions": [
+    {
+      "direction_id": "task_006_ref_01",
+      "source_paper_doi": "10.1007/s11356-024-33391-x",
+      "source_paper": {
+        "doi": "10.1007/s11356-024-33391-x",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CORINE LULC 2018 level 3 map",
+        "CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CORINE LULC 2018 level 3 map",
+          "actual_product_in_paper": "CORINE LULC 2018 level 3 map",
+          "evidence_quotes": [
+            "In this study, the remotely sensed datasets of CORINE LULC 2018 level 3 map (Büttner et al. 2021 ) and the Global Hydrologic Soil Group (HYSOGs250m) map (Ross et al. 2018 ) were combined using GIS techniques."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)",
+          "actual_product_in_paper": "CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)",
+          "evidence_quotes": [
+            "The meteorological factors were obtained using the CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data) dataset"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The meteorological factors were obtained using the CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data) dataset",
+        "In this study, the remotely sensed datasets of CORINE LULC 2018 level 3 map (Büttner et al. 2021 ) and the Global Hydrologic Soil Group (HYSOGs250m) map (Ross et al. 2018 ) were combined using GIS techniques."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在为塞浦路斯岛绘制洪水风险图，比较频率比（FR）、FR-Shannon 熵（FR-SE）与模糊层次分析法（F-AHP）在洪水危险度制图中的表现，并识别高风险区域及低风险扩展区。",
+      "hypothesis_or_mechanism": "降雨与极端降水、地形和水文响应等因素共同影响洪水危险度；人口、建筑价值、道路及应急医疗可达性等因素决定洪水暴露与应对能力。研究将危险度与脆弱性结合，形成洪水风险评估。",
+      "variables_and_data_use": "研究以 CHIRPS 降水数据计算年降雨量、极端降水指标及降雨第 99 百分位数；以 ALOS World 3D-30m（AW3D30）提取高程、坡度、坡向和曲率等地形因子。CORINE LULC 2018 与 HYSOGs250m 土壤水文组数据用于计算 SCS-CN 曲线数，CORINE LULC 还用于流路糙率；WorldPop 2020、OpenStreetMap、塞浦路斯统计服务数据等用于构建脆弱性因子，之后采用 FR、FR-SE 和 F-AHP 制图。",
+      "method_paradigm": "这是基于 GIS 的洪水危险度与脆弱性空间制图研究：用 FR、FR-SE 和 F-AHP 生成并比较危险度图，用 F-AHP 聚合脆弱性因子，再将危险度与脆弱性结合生成风险图。",
+      "study_area": "塞浦路斯岛",
+      "study_period": "降水数据覆盖 1981–2022 年；人口数据为 2020 年，CORINE 土地覆盖为 2018 年，城市化变化计算涉及 2012–2018 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)",
+          "role_in_study": "提供年降雨量和极端降水指标，并用于计算第 99 百分位降雨量及降雨径流相关参数。",
+          "usage": "used_as_data",
+          "evidence_quote": "The meteorological factors were obtained using the CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data) dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ALOS World 3D-30m (AW3D30)",
+          "role_in_study": "提供地形数据，用于派生高程、坡度、坡向及曲率等洪水危险度因子。",
+          "usage": "used_as_data",
+          "evidence_quote": "The topographic factors utilized in the analysis were derived from the ALOS World 3D-30m (AW3D30) dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CORINE LULC 2018 level 3 map",
+          "role_in_study": "与土壤水文组数据共同用于计算曲线数，并用于确定流路糙率；也用于展示研究区土地覆盖。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, the remotely sensed datasets of CORINE LULC 2018 level 3 map (Büttner et al. 2021 ) and the Global Hydrologic Soil Group (HYSOGs250m) map (Ross et al. 2018 ) were combined using GIS techniques.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Hydrologic Soil Group (HYSOGs250m) map",
+          "role_in_study": "与 CORINE LULC 数据结合，用于计算 SCS-CN 曲线数。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, the remotely sensed datasets of CORINE LULC 2018 level 3 map (Büttner et al. 2021 ) and the Global Hydrologic Soil Group (HYSOGs250m) map (Ross et al. 2018 ) were combined using GIS techniques.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldPop Global (WPG) unconstrained datasets",
+          "role_in_study": "提供 2020 年人口数据，用于构建人口密度脆弱性因子。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the year 2020, the WorldPop Global (WPG) unconstrained datasets (Lloyd et al. 2019 ) were selected",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "first administrative level population census conducted in 2021",
+          "role_in_study": "用于与遥感人口密度数据进行比较并评估人口数据精度。",
+          "usage": "used_as_data",
+          "evidence_quote": "coupled with the initial results of the first administrative level population census conducted in 2021.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Cyprus Wetlands Project (CWP)",
+          "role_in_study": "提供水库容量数据，用于计算相对水库比（RRA）。",
+          "usage": "used_as_data",
+          "evidence_quote": "Reservoir capacities were obtained from the Cyprus Wetlands Project (CWP) conducted by Terra Cypria, the Cyprus Conservation Foundation (Terra Cypria 2022 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Statistical Service of Cyprus (Cystat)",
+          "role_in_study": "提供不同建筑类型的单位建筑成本，用于构建经济价值脆弱性因子。",
+          "usage": "used_as_data",
+          "evidence_quote": "The local prices of construction per m 2 for various building types, as depicted in Fig. 3 c, were obtained from the Statistical Service of Cyprus (Cystat) (Cyprus Statistical Service Cystat 2022 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "open street map building data",
+          "role_in_study": "与建筑成本数据关联，用于建筑经济价值分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "were obtained from the Statistical Service of Cyprus (Cystat) (Cyprus Statistical Service Cystat 2022 ) and linked with open street map building data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "OpenStreetMap (OSM)",
+          "role_in_study": "提供道路数据，用于计算道路距离、道路重要性及道路脆弱性指数。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, the OpenStreetMap (OSM) served as a data source for roads",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CORINE Land Use/Land cover (LULC) for 2018",
+          "role_in_study": "用于研究区位置图中的土地利用/覆盖展示。",
+          "usage": "used_as_data",
+          "evidence_quote": "Additionally, it illustrates the remotely sensed CORINE Land Use/Land cover (LULC) for 2018 (Büttner et al. 2021 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "historical flood locations",
+          "role_in_study": "提供历史洪水位置，用于呈现研究区历史洪水分布。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Water Development Department of the Republic of Cyprus identified 154 historical flood locations, which have been documented and digitized on the island",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s11356-024-33391-x.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s11356-024-33391-x.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "734f846099781390e2a143e314f9a5c3dd9f4774eb41341eae5815f2bd3e9467",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:04",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1007_s11356-024-33391-x.json",
+        "quote_gate": {
+          "total": 16,
+          "verified": 16
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_02",
+      "source_paper_doi": "10.1007/s41748-021-00213-w",
+      "source_paper": {
+        "doi": "10.1007/s41748-021-00213-w",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6",
+        "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6",
+          "actual_product_in_paper": "Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6",
+          "evidence_quotes": [
+            "Here, we also used the third data product from MODIS, which is the Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final)",
+          "actual_product_in_paper": "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final)",
+          "evidence_quotes": [
+            "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final) (Funk et al. 2015) used in this study contains 0.05° resolution satellite imagery of quasi-global precipitation data which is used for time-series analysis to show the precipitation trends and seasonal differences within the study area."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The land-cover changes between 2009 and 2018 were processed by the ArcGIS change detection tool.",
+        "In this study, lag correlation analysis was performed for all the bivariate combinations of evapotranspiration, soil moisture, precipitation, and EVI."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究考察2009—2018年地中海地区的土地覆盖变化，并分析降水、植被指数、表层土壤湿度和蒸散发等水文变量与土地覆盖变化之间的关联及其时空趋势。",
+      "hypothesis_or_mechanism": "研究基于水文变量变化能够解释部分土地覆盖变化这一机制，考察降水、土壤湿度、蒸散发和植被指数之间的相关关系。文中比较FLDAS与GLDAS，并以观测数据的一致性评估其结果。",
+      "variables_and_data_use": "研究使用FLDAS和GLDAS提取蒸散发与表层土壤湿度，并使用NASA-USDA global soil moisture数据的表层土壤湿度参数；使用CHIRPS Pentad v2.0 final分析降水趋势和季节差异。研究还使用Terra MOD13A2.006提取NDVI和EVI、Terra MOD16A2.006分析蒸散发，并使用Terra与Aqua联合的MCD12Q1 Version 6检测土地覆盖变化；采用谐波分析、滞后相关分析和ArcGIS变化检测工具开展分析。",
+      "method_paradigm": "采用多源卫星与同化产品的时序分析范式，结合谐波分析估计水文变量趋势、滞后相关分析考察变量关系，并以ArcGIS变化检测识别土地覆盖变化。",
+      "study_area": "地中海地区（Mediterranean region，涉及欧洲、非洲和亚洲部分区域）",
+      "study_period": "土地覆盖变化分析时段为2009—2018年；各数据产品的可用时段有所不同。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Famine Early Warning Systems Network (FEWS NET) Land Data Assimilation System (FLDAS)",
+          "role_in_study": "提取蒸散发和0–10厘米表层土壤湿度，并与GLDAS结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, we used parameters including evapotranspiration and soil moisture (0–10 cm underground) from FLDAS data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Land Data Assimilation System (GLDAS)",
+          "role_in_study": "提取蒸散发和土壤湿度，并与FLDAS结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, we used parameters such as evapotranspiration and soil moisture from GLDAS data (Rodell et al. 2004).",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "NASA-USDA global soil moisture data",
+          "role_in_study": "使用表层土壤湿度（SSM）参数进行水文变量分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, we used surface soil moisture (SSM): mm parameter.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final)",
+          "role_in_study": "提供降水数据，用于时间序列分析、降水趋势和研究区季节差异分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "CHIRPS Pentad (climate hazards group infra-red precipitation with station data) (version 2.0 final) (Funk et al. 2015) used in this study contains 0.05° resolution satellite imagery of quasi-global precipitation data which is used for time-series analysis to show the precipitation trends and seasonal differences within the study area.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS VI products (MOD13), specifically the MOD13A2.006 product (from Terra MOD13 series)",
+          "role_in_study": "提供植被指数数据；用于分析NDVI和EVI。",
+          "usage": "used_as_data",
+          "evidence_quote": "Specifically, the MOD13A2.006 product (from Terra MOD13 series) was used that provides two vegetation indexes data, namely, the Normalized Difference Vegetation Index (NDVI) and the EVI",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MOD16A2.006 data product (from Terra MOD16 series)",
+          "role_in_study": "提供蒸散发分析数据产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "Moreover, the MOD16A2.006 data product (from Terra MOD16 series) was also used for the ET analysis",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6",
+          "role_in_study": "提供年度土地覆盖类型数据，用于2009—2018年土地覆盖变化检测。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here, we also used the third data product from MODIS, which is the Terra and Aqua combined MODIS land-cover type (MCD12Q1) Version 6",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "shuttle radar topography mission elevation",
+          "role_in_study": "作为研究区地图中的地形高程信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "The maps of land-cover types (a) and shuttle radar topography mission elevation (b) with country boundaries of the Mediterranean region",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s41748-021-00213-w.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s41748-021-00213-w.methods.txt"
+        ],
+        "chars": 13308,
+        "text_mode": "head+methods",
+        "source_sha256": "ec9fccb8f34dfc18ef68d945486cfb48dddbf6589092f20eb120fdcac8f003c2",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:30:55",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1007_s41748-021-00213-w.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_03",
+      "source_paper_doi": "10.1016/j.heliyon.2025.e42660",
+      "source_paper": {
+        "doi": "10.1016/j.heliyon.2025.e42660",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "land use/land cover (LULC); source and product unspecified",
+        "Rainfall data from five meteorological stations"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "land use/land cover (LULC); source and product unspecified",
+          "actual_product_in_paper": "land use/land cover (LULC); source and product unspecified",
+          "evidence_quotes": [
+            "In this study, LULC was added as an additional parameter to enhance the DRASTIC model."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Rainfall data from five meteorological stations",
+          "actual_product_in_paper": "Rainfall data from five meteorological stations",
+          "evidence_quotes": [
+            "Rainfall data were collected from five meteorological stations-Bahir Dar, Zenzelema, Meshenti, Zege and Tis Abay-and were obtained from the Ethiopian Meteorology Institute (EMI)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "In this study, LULC was added as an additional parameter to enhance the DRASTIC model.",
+        "Rainfall data were collected from five meteorological stations-Bahir Dar, Zenzelema, Meshenti, Zege and Tis Abay-and were obtained from the Ethiopian Meteorology Institute (EMI)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估埃塞俄比亚巴希尔达尔市不同土地管理情景下的地下水污染脆弱性，并识别影响脆弱性的主要参数。",
+      "hypothesis_or_mechanism": "土地利用/土地覆盖变化可能通过改变污染物输入及其向地下水的渗透，影响地下水污染脆弱性。土地管理情景因此会改变改进 DRASTIC 模型的脆弱性评价结果。",
+      "variables_and_data_use": "研究使用改进 DRASTIC 模型，综合地下水埋深、净补给、含水层介质、土壤、地形、包气带、导水率和土地利用/土地覆盖（LULC）评估脆弱性；净补给指数依据降雨、坡度和土壤渗透性构建。降雨使用气象站 1990–2023 年平均年降雨量并经克里金插值，Sentinel-1A DEM 用于生成坡度；研究还比较基线、农业扩张、城市化和再造林情景，并进行单参数及地图移除敏感性分析。",
+      "method_paradigm": "采用 GIS 栅格叠加的改进 DRASTIC 多参数脆弱性评价，并将 LULC 作为附加参数。通过情景分析和敏感性分析评估土地管理变化及各参数对脆弱性结果的影响。",
+      "study_area": "埃塞俄比亚阿姆哈拉州巴希尔达尔市（Bahir Dar City），邻近塔纳湖。",
+      "study_period": "模型情景评价的具体年份未说明；用于降雨计算的时段为 1990–2023 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Climate Hazards Group Infrared Precipitation with Stations, version 2.0 (CHIRPS v2.0)",
+          "role_in_study": "用于研究区长期年降雨背景描述；模型净补给计算所述降雨输入来自气象站数据。",
+          "usage": "mention_only",
+          "evidence_quote": "Based on data from the Ethiopian Meteorology Institute (EMI) and the Climate Hazards Group Infrared Precipitation with Stations, version 2.0 (CHIRPS v2.0), the long-term areal average annual rainfall of the City for the period 1990–2023 is approximately 1430 mm.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "water table depth data of 30 wells",
+          "role_in_study": "地下水埋深输入；经克里金插值生成连续埋深图层。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, the water table depth data of 30 wells were obtained from the Amhara Design and Supervision Enterprise and the Bahir Dar City Water Supply and Sanitation Office.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Rainfall data from five meteorological stations",
+          "role_in_study": "用于构建净补给指数；计算 1990–2023 年平均年降雨量并插值。",
+          "usage": "used_as_data",
+          "evidence_quote": "Rainfall data were collected from five meteorological stations-Bahir Dar, Zenzelema, Meshenti, Zege and Tis Abay-and were obtained from the Ethiopian Meteorology Institute (EMI).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1A Digital Elevation Model (DEM)",
+          "role_in_study": "用于生成坡度图，作为地形参数并参与净补给指数构建。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Hydro-processing tools, such as SNAP Toolbox software, were used to derive the slope map from the Sentinel-1A Digital Elevation Model (DEM).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "soil type map",
+          "role_in_study": "用于土壤参数分类，并参与净补给指数构建。",
+          "usage": "used_as_data",
+          "evidence_quote": "A soil type map of the study area was obtained from the Ministry of Water and Energy (MoWE)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Harmonized World Soil Database (HWSD)",
+          "role_in_study": "提供土壤质地及土壤属性数据，用于推导土壤渗透性。",
+          "usage": "used_as_data",
+          "evidence_quote": "soil properties for various soil types were gathered from the Harmonized World Soil Database (HWSD).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "aquifer media data",
+          "role_in_study": "作为含水层介质参数输入，转换为栅格并按污染敏感性重分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study obtained aquifer media data in vector format from the Ethiopian Geological Survey.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "soil texture",
+          "role_in_study": "用于评价包气带影响并确定相应等级。",
+          "usage": "used_as_data",
+          "evidence_quote": "The influence of the vadose zone was assessed based on the distribution of soil texture and its characteristics, which were sourced from the Amhara National Regional State Bureau of Environmental Protection.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "hydraulic conductivity data from 15 wells",
+          "role_in_study": "用于生成水力传导系数连续表面，作为改进 DRASTIC 模型参数。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, hydraulic conductivity data were generated from 15 wells",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "land use/land cover (LULC)",
+          "role_in_study": "作为改进 DRASTIC 模型的附加参数，并用于不同土地管理情景评价；数据产品来源未在给定文本中说明。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, LULC was added as an additional parameter to enhance the DRASTIC model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "modified DRASTIC model",
+          "role_in_study": "整合脆弱性参数，评价地下水污染脆弱性及土地管理情景。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, the modified DRASTIC model was employed to assess the groundwater vulnerability of Bahir Dar City to pollution.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.heliyon.2025.e42660.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.heliyon.2025.e42660.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "2c4bec69dc92c8ffce370ad658c5e0dda279cf1342c4045df0b7e80ae44deb18",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:01",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1016_j.heliyon.2025.e42660.json",
+        "quote_gate": {
+          "total": 15,
+          "verified": 15
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_04",
+      "source_paper_doi": "10.1016/j.onehlt.2023.100566",
+      "source_paper": {
+        "doi": "10.1016/j.onehlt.2023.100566",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "100 m land cover classes based on the Copernicus land cover data",
+        "2021 mean monthly precipitation anomalies"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "100 m land cover classes based on the Copernicus land cover data",
+          "actual_product_in_paper": "100 m land cover classes based on the Copernicus land cover data",
+          "evidence_quotes": [
+            "A previously validated data product of land cover classes at 100 m resolution based on the Copernicus land cover data was used to represent relevant land classes"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "2021 mean monthly precipitation anomalies",
+          "actual_product_in_paper": "2021 mean monthly precipitation anomalies",
+          "evidence_quotes": [
+            "Weather anomaly data were obtained from the Goddard Earth Science Data Information and Services Center and comprised the 2021 mean monthly precipitation, temperature, and soil moisture anomalies"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "A previously validated data product of land cover classes at 100 m resolution based on the Copernicus land cover data was used to represent relevant land classes",
+        "Weather anomaly data were obtained from the Goddard Earth Science Data Information and Services Center and comprised the 2021 mean monthly precipitation, temperature, and soil moisture anomalies",
+        "This study investigated the landscape epidemiology of JEV outbreaks in Australian piggeries reported between January and April of 2022 to determine the influence of ardeid habitat suitability, hydrogeography, hydrology, land cover and La Niña-associated climate anomalies."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究澳大利亚东部及南部等地2022年猪场日本脑炎病毒（JEV）暴发与景观结构、苍鹭科鸟类栖息地适宜性、水文地理特征及拉尼娜相关气候异常之间的关系。",
+      "hypothesis_or_mechanism": "研究考察水鸟与猪只栖息地交界、湿地和水道等景观特征是否与猪场JEV暴发相关，并比较这些景观因素与拉尼娜相关天气异常的作用。可能机制是水文条件和适宜栖息地影响病毒维持及传播，但研究报告的是相关性而非因果证明。",
+      "variables_and_data_use": "研究使用Copernicus land cover数据衍生的100 m土地覆盖类别，计算5弧分景观单元内土地覆盖组成与配置指标；使用Landsat 5、7和8影像支持的JRC Global Surface Water数据刻画2021年地表水季节性，并用HydroSHEDS流量累积表示水文汇流。以GBIF鸟类与野猪记录、环境变量和RF、BRT、GAM集成模型估计栖息地适宜性及苍鹭科物种丰富度代理；另将2021年月降水、温度和土壤湿度异常与猪场暴发空间数据用于暴发模型。",
+      "method_paradigm": "采用物种分布模型集成与景观生态指标分析相结合的空间建模范式：以随机森林、提升回归树和广义加性模型估计栖息地适宜性，并以景观组成、配置及水文变量分析猪场暴发关联。",
+      "study_area": "澳大利亚东部，覆盖昆士兰州、新南威尔士州、维多利亚州和南澳大利亚州的猪场暴发地点。",
+      "study_period": "猪场暴发数据为2022年1月19日至4月4日；气候异常和地表水数据主要对应2021年；GBIF物种观察记录为2010年1月1日至2020年12月31日。",
+      "datasets_used": [
+        {
+          "name_in_paper": "World Organisation for Animal Health (WOAH) reported piggery outbreaks",
+          "role_in_study": "提供54个猪场暴发位置，用于训练JEV暴发模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "Fifty-four location-unique piggery outbreaks across four states were reported to the World Organisation for Animal Health (WOAH) by the Australian government between 19 January 2022 and 4 April 2022",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Biodiversity Information Facility (GBIF) observations of ardeid species",
+          "role_in_study": "用于建模苍鹭科鸟类栖息地适宜性并生成物种丰富度代理。",
+          "usage": "used_as_data",
+          "evidence_quote": "A total of 791,416 observations of these species recorded between 1 January 2010 and 31 December 2020 were obtained from the Global Biodiversity Information Facility (GBIF)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GBIF observations of feral pigs",
+          "role_in_study": "用于建模野猪栖息地适宜性。",
+          "usage": "used_as_data",
+          "evidence_quote": "Similarly, 9667 observations of feral pigs recorded over the same time period were also obtained from the GBIF",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "national herd dataset",
+          "role_in_study": "提供家猪密度和猪场密度数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Domestic pig density and piggery density data were acquired from the national herd dataset that is used in the Australian Animal Disease Spread Model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Human Footprint (HFP) data product",
+          "role_in_study": "用于按人类足迹比例抽取背景点，以校正观测与报告偏差。",
+          "usage": "used_as_data",
+          "evidence_quote": "The HFP data were acquired as a raster from the Socioeconomic Data and Applications Center (SEDAC) registry maintained by the Center for International Earth Science Information Network (CIESIN)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Space Agency and Climate Change Initiative wetlands data products",
+          "role_in_study": "作为栖息地适宜性模型的湿地环境变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Wetlands [43, 44] and land cover data [45] were obtained as 3 arc sec data products from the European Space Agency and Climate Change Initiative",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Space Agency and Climate Change Initiative land cover data",
+          "role_in_study": "使用2010年土地覆盖数据作为苍鹭科鸟类和野猪栖息地适宜性模型的环境变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Land cover assessed in 2010 was applied to the ardeid and feral pig suitability models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CIESIN and WorldPop rivers and waterways raster data product",
+          "role_in_study": "提供河流和水道空间数据，用于栖息地模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "A separate high-resolution (3 arc sec) raster data product for all rivers and waterways produced in collaboration between CIESIN and the WorldPop project was also acquired",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldClim",
+          "role_in_study": "提供基线年均降水、年均温度和等温性变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "WorldClim was used as the source of baseline climate data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Priestley-Taylor α coefficient (P-Tα) raster data",
+          "role_in_study": "量化景观水分胁迫，并用于栖息地适宜性模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "The P-Tα raster data were obtained from the Consultative Group for International Agricultural Research (CGIAR) Consortium for Spatial Information at a resolution of 30 arc sec",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "100 m land cover classes based on the Copernicus land cover data",
+          "role_in_study": "表示JEV暴发模型中的土地类别，并计算景观组成与配置指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "A previously validated data product of land cover classes at 100 m resolution based on the Copernicus land cover data was used to represent relevant land classes",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Joint Research Centre's Global Surface Water product, based on Landsat 5, 7, and 8 imagery",
+          "role_in_study": "以2021年地表水出现月份数刻画地表水季节性和临时湿地。",
+          "usage": "used_as_data",
+          "evidence_quote": "Surface water seasonality was also captured at high resolution using the Joint Research Centre's Global Surface Water product, which is based on Landsat 5, 7, and 8 imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Hydrological Data and Maps based on SHuttle Elevation Derivatives at multiple Scales (HydroSHEDS)",
+          "role_in_study": "提供水文流量累积数据，衡量景观中的水流与汇集。",
+          "usage": "used_as_data",
+          "evidence_quote": "This data product was obtained from the Hydrological Data and Maps based on SHuttle Elevation Derivatives at multiple Scales (HydroSHEDS) information system",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "2021 mean monthly precipitation, temperature, and soil moisture anomalies",
+          "role_in_study": "提供拉尼娜相关天气异常变量，并与1982至2016年基线比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Weather anomaly data were obtained from the Goddard Earth Science Data Information and Services Center and comprised the 2021 mean monthly precipitation, temperature, and soil moisture anomalies",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.onehlt.2023.100566.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.onehlt.2023.100566.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "158ce1a0e02ad0cb81ae62c0d0d1cf184a53e6062b3b5b83b73288a6ef82b7a3",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:04",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1016_j.onehlt.2023.100566.json",
+        "quote_gate": {
+          "total": 19,
+          "verified": 19
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_05",
+      "source_paper_doi": "10.1038/nature09396",
+      "source_paper": {
+        "doi": "10.1038/nature09396",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "remote-sensing-based global land-use map",
+        "observation-based products of climate variables; precipitation (P) in catchment water balance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "remote-sensing-based global land-use map",
+          "actual_product_in_paper": "remote-sensing-based global land-use map",
+          "evidence_quotes": [
+            "a remote-sensing-based global land-use map27"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "observation-based products of climate variables; precipitation (P) in catchment water balance",
+          "actual_product_in_paper": "observation-based products of climate variables; precipitation (P) in catchment water balance",
+          "evidence_quotes": [
+            "observation-based products of climate variables28,29 as forcing data"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We used a harmonized FAPAR product from three sensors (AVHRR25, SeaWiFS24, MERIS26), a remote-sensing-based global land-use map27, and observation-based products of climate variables28,29 as forcing data.",
+        "The Tropical Rainfall Measuring Mission's (TRMM) microwave imager currently yields the longest high-quality record of surface soil moisture since 1998 (ref. 15)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究全球陆地蒸散发（ET）在1982—2008年的变化趋势，并解释1998年后全球ET上升趋势减弱的原因，重点考察南半球非洲、澳大利亚等区域的水分供给限制。",
+      "hypothesis_or_mechanism": "研究假设，1998年后土壤水分供给减少使南半球部分地区的ET受到水分限制，从而促成全球ET上升趋势的停止或减弱。大气蒸发需求增加只有在水分供给充足时才会推动ET增加。",
+      "variables_and_data_use": "研究将FLUXNET通量塔ET观测、气象记录、2公里分辨率的SeaWiFS FAPAR及植被和气候信息用于训练模型树集成（MTE），生成1982—2008年0.5度月尺度ET。MTE强迫数据还包括AVHRR、SeaWiFS和MERIS的协调FAPAR产品、全球土地利用图及基于观测的气候变量产品；TRMM微波成像仪的土壤水分观测用于检验土壤水分变化与ET趋势的关系。另以GSWP-2陆面模型集合比较验证ET估计，并用集水区水量平衡（降水减径流）进行独立对照。",
+      "method_paradigm": "采用数据驱动的机器学习上尺度方法，以模型树集成（MTE）将通量塔点位ET观测与遥感和气象信息结合，生成全球网格化ET估计。通过趋势检验、空间格局比较及与独立模型、集水区水量平衡和卫星土壤水分资料的对照，分析趋势变化及其可能机制。",
+      "study_area": "全球陆地；机制分析重点涉及南半球的非洲和澳大利亚等区域。",
+      "study_period": "1982—2008年；ET趋势比较包括1982—1997年与1998—2008年，TRMM土壤水分分析覆盖1998—2008年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "FLUXNET eddy covariance data (253 flux towers)",
+          "role_in_study": "通量塔ET观测及气象记录，用于构建训练数据并训练MTE。",
+          "usage": "used_as_data",
+          "evidence_quote": "We processed half-hourly eddy covariance data from 253 globally distributed flux towers",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sea-viewing Wide Field-of-View Sensor (SeaWiFS) FAPAR",
+          "role_in_study": "提供2公里分辨率的冠层吸收光合有效辐射比例观测，作为MTE训练数据和遥感输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "satellite observations of the fraction of photosynthetically active radiation absorbed by the canopy (FAPAR) at 2-km resolution from the sea-viewing wide field-of-view sensor (SeaWiFS; ref. 24)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "AVHRR, SeaWiFS, MERIS harmonized FAPAR product",
+          "role_in_study": "提供协调的FAPAR遥感强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used a harmonized FAPAR product from three sensors (AVHRR25, SeaWiFS24, MERIS26)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "remote-sensing-based global land-use map",
+          "role_in_study": "作为MTE的遥感强迫数据之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "a remote-sensing-based global land-use map27",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observation-based products of climate variables",
+          "role_in_study": "作为MTE的气候变量强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "observation-based products of climate variables28,29 as forcing data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Tropical Rainfall Measuring Mission (TRMM) microwave imager",
+          "role_in_study": "提供1998年以来的卫星观测表层土壤水分，用于与ET趋势和变化进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Tropical Rainfall Measuring Mission's (TRMM) microwave imager currently yields the longest high-quality record of surface soil moisture since 1998 (ref. 15).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Soil Wetness Project 2 (GSWP-2) land-surface model ensemble",
+          "role_in_study": "用于将MTE年ET与陆面模型集合结果比较验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "Comparison of annual MTE ET (1986–1995) stratified by bioclimatic zones (n=24) against the median GSWP-2 model ensemble.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "catchment water-balance ET estimates from 112 catchments",
+          "role_in_study": "作为独立ET估计，与MTE的平均年ET进行对照验证；水量平衡使用降水减径流。",
+          "usage": "used_as_data",
+          "evidence_quote": "corroboration against independent ET estimates from 112 catchment water balances",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nature09396.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "2b4b5f2a71e260d725eaee83aee481c554812ddf4240375a30dfd58a9b507fcd",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:30:57",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_nature09396.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_06",
+      "source_paper_doi": "10.1038/s41467-022-32580-x",
+      "source_paper": {
+        "doi": "10.1038/s41467-022-32580-x",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative)",
+        "CHIRPS Daily Final Precipitation v2.0"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative)",
+          "actual_product_in_paper": "ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative)",
+          "evidence_quotes": [
+            "We used global land cover data from ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative) from 1992 to 2015 with a 300-meter spatial resolution and annual temporal resolution."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+          "actual_product_in_paper": "CHIRPS v2.0 (Climate Hazards Group InfraRed Precipitation with Station)",
+          "evidence_quotes": [
+            "We used daily precipitation time series from CHIRPS v2.0 (Climate Hazards Group InfraRed Precipitation with Station) 61 from 1981 to 2015."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We used daily precipitation time series from CHIRPS v2.0 (Climate Hazards Group InfraRed Precipitation with Station) 61 from 1981 to 2015.",
+        "We used global land cover data from ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative) from 1992 to 2015 with a 300-meter spatial resolution and annual temporal resolution."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究考察南美洲热带主要河流流域（包括巴西及周边地区）过去四十年洪水流量与干旱流量如何变化，以及气候变化和土地、水资源管理对这些变化的相对作用。",
+      "hypothesis_or_mechanism": "气候变化可通过改变降雨及其极端程度影响河川洪旱；水资源消耗和森林砍伐会进一步放大气候对径流极端的影响。降雨减少并伴随用水增加与干化相关，而极端降雨增加及森林砍伐与水循环加速相关。",
+      "variables_and_data_use": "研究使用 CAMELS-BR 的水文站逐日流量，计算干旱流量、平均流量和洪水流量；使用 CHIRPS v2.0 降水、GLEAM v3.3a 蒸发量、ESA/CCI Land Cover v2.0.7 原生植被覆盖，以及巴西 ANA 消耗性用水数据表征气候与土地管理驱动因素。研究以 Theil–Sen 斜率和 Mann–Kendall 检验估计趋势，并用固定效应面板回归分析驱动因素与洪旱流量变化的关系。",
+      "method_paradigm": "采用大尺度水文时间序列趋势分析与空间块克里金插值，并通过固定效应面板回归进行趋势归因。另对四个热点区域的年序列进行标准化和 LOESS 平滑，以比较区域间变化。",
+      "study_area": "南美洲热带主要河流流域；热点区域包括巴西高原、南亚马孙、北亚马孙和巴西南部。",
+      "study_period": "流量及主要驱动因素分析为1980—2015年；植被数据覆盖1992—2015年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CAMELS-BR dataset (Catchment Attributes and Meteorology for Large-sample Studies – Brazil)",
+          "role_in_study": "提供886个水文站的逐日流量及相关流域资料，用于计算径流指标和分析趋势。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used daily streamflow data from 886 hydrometric stations obtained from the CAMELS-BR dataset (Catchment Attributes and Meteorology for Large-sample Studies – Brazil) 55 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CHIRPS v2.0 (Climate Hazards Group InfraRed Precipitation with Station)",
+          "role_in_study": "提供逐日降水时间序列，用于计算降水及降水减蒸发驱动指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used daily precipitation time series from CHIRPS v2.0 (Climate Hazards Group InfraRed Precipitation with Station) 61 from 1981 to 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GLEAM v3.3a (Global Land Evaporation Amsterdam Model)",
+          "role_in_study": "提供包含植被蒸腾的逐日蒸发时间序列，用于构造 P−E 指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daily evaporation time series (including transpiration from vegetation) were obtained from GLEAM v3.3a (Global Land Evaporation Amsterdam Model) 65 , 66 from 1980 to 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA5-Land",
+          "role_in_study": "作为蒸发数据的替代方案进行敏感性分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also conducted an alternative analysis using evaporation data from ERA5-Land 67 , 68 and obtained similar results.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative)",
+          "role_in_study": "提供1992—2015年土地覆盖数据，用于计算原生植被覆盖。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used global land cover data from ESA/CCI Land Cover v2.0.7 (European Space Agency/Climate Change Initiative) from 1992 to 2015 with a 300-meter spatial resolution and annual temporal resolution.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ANA’s Manual of Consumptive Water Use in Brazil",
+          "role_in_study": "提供巴西各市镇的月度消耗性用水估计，用于表征人为用水驱动因素。",
+          "usage": "used_as_data",
+          "evidence_quote": "Consumptive water use (i.e., abstracted water that does not directly return to the river basin) was extracted from the ANA’s Manual of Consumptive Water Use in Brazil 37 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Reservoir and Dam database (GRanD)",
+          "role_in_study": "作为 CAMELS-BR 所含水库资料的来源之一，用于识别水库并筛除受水库调节显著影响的站点。",
+          "usage": "used_as_data",
+          "evidence_quote": "The reservoirs considered were those from the CAMELS-BR data set, which is formed by a combination of data from the Global Reservoir and Dam database (GRanD) 56 , the Brazilian National Water Agency (ANA - Agência Nacional de Águas) Dam Safety Report 2017 57 and water bodies identified from Landsat satellite images 58 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Brazilian National Water Agency (ANA) Dam Safety Report 2017",
+          "role_in_study": "作为 CAMELS-BR 所含水库资料的来源之一，用于水库筛选。",
+          "usage": "used_as_data",
+          "evidence_quote": "The reservoirs considered were those from the CAMELS-BR data set, which is formed by a combination of data from the Global Reservoir and Dam database (GRanD) 56 , the Brazilian National Water Agency (ANA - Agência Nacional de Águas) Dam Safety Report 2017 57 and water bodies identified from Landsat satellite images 58 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat satellite images",
+          "role_in_study": "用于识别水体并形成 CAMELS-BR 中水库资料的一部分。",
+          "usage": "used_as_data",
+          "evidence_quote": "The reservoirs considered were those from the CAMELS-BR data set, which is formed by a combination of data from the Global Reservoir and Dam database (GRanD) 56 , the Brazilian National Water Agency (ANA - Agência Nacional de Águas) Dam Safety Report 2017 57 and water bodies identified from Landsat satellite images 58 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Streamflow Indices and Metadata Archive (GSIM)",
+          "role_in_study": "提供流域边界。",
+          "usage": "used_as_data",
+          "evidence_quote": "The catchment boundaries were derived from the Global Streamflow Indices and Metadata Archive (GSIM) 59 , 60 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MSWEP",
+          "role_in_study": "用于与气象站降水趋势比较，以评估格点降水产品；不是最终选定的主降水序列。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our choice of using CHIRPS data was based on a comparison of precipitation trends from several gridded datasets (CHIRPS, MSWEP 62 , PERSIANN 63 , and CPC) with precipitation trends of ANA weather stations 64 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PERSIANN",
+          "role_in_study": "用于与气象站降水趋势比较，以评估格点降水产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our choice of using CHIRPS data was based on a comparison of precipitation trends from several gridded datasets (CHIRPS, MSWEP 62 , PERSIANN 63 , and CPC) with precipitation trends of ANA weather stations 64 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CPC",
+          "role_in_study": "用于与气象站降水趋势比较，以评估格点降水产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our choice of using CHIRPS data was based on a comparison of precipitation trends from several gridded datasets (CHIRPS, MSWEP 62 , PERSIANN 63 , and CPC) with precipitation trends of ANA weather stations 64 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ANA weather stations",
+          "role_in_study": "提供逐日站点降水观测，用于检验和比较格点降水产品的趋势。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the comparison, we estimated trends in the ANA dataset using daily precipitation data from 2315 weather stations with at least 25 years without missing values between 1980 and 2015.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-022-32580-x.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-022-32580-x.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "29cc8f14e17c4e43b43d47ddd01efa16efb5f26517b128d5dd312fda4ad196ae",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:25",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s41467-022-32580-x.json",
+        "quote_gate": {
+          "total": 18,
+          "verified": 18
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_07",
+      "source_paper_doi": "10.1038/s41467-023-37880-4",
+      "source_paper": {
+        "doi": "10.1038/s41467-023-37880-4",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product",
+          "actual_product_in_paper": "Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product",
+          "evidence_quotes": [
+            "We used historical rainfall data from the Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product to generate a reference rainfall map 23 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "land_cover_context"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We used historical rainfall data from the Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product to generate a reference rainfall map 23 ."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "研究旨在绘制非洲大陆森林内外的树木覆盖，评估有多少树木覆盖位于既有地图未划定为树木覆盖的区域，并验证高分辨率影像能否支持跨国家的一致监测。",
+      "hypothesis_or_mechanism": "利用具有高空间分辨率且按当地物候时期筛选的影像，可以识别森林及非森林景观中的树冠。选择树木叶片充分展开、同时尽量减少高草干扰的影像，有助于提高树冠分割效果。",
+      "variables_and_data_use": "研究以2019年PlanetScope PSScene analytic_sr四波段影像为主要输入，使用基于UNet的深度学习模型分割树冠，并以航空LiDAR和无人机立体影像生成的冠层高度图评估结果。MODIS/Terra物候产品和Copernicus Dynamic Land Cover用于确定镶嵌影像的日期范围；CHIRPS历史降雨用于生成1982—2018年平均降雨参考图，ESA WorldCover 2020及Global Land Cover and Land Use Change产品用于水体掩膜，WorldCover还用于农田分析。",
+      "method_paradigm": "采用按物候条件筛选影像并构建自定义镶嵌图，再以改造的UNet深度学习模型进行树冠分割。通过LiDAR及无人机立体影像冠层高度图、以及既有树木预测结果进行精度评估和对照分析。",
+      "study_area": "非洲大陆；模型评估样区包括塞内加尔、刚果民主共和国（DRC）和莫桑比克。",
+      "study_period": "主要制图影像为2019年；历史降雨参考期为1982—2018年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "PlanetScope constellation of nanosatellites; PSScene analytic_sr product bundle",
+          "role_in_study": "2019年高分辨率多光谱影像，用于生成非洲大陆镶嵌图并作为树冠分割模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used high-resolution satellite images from the PlanetScope constellation of nanosatellites",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS/Terra phenology product",
+          "role_in_study": "提供物候日期阈值，用于选择各镶嵌网格的影像日期范围。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the MODIS/Terra phenology product 40 to determine the local mean days for senescence, mid-greendown, and dormancy thresholds.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Copernicus Dynamic Land Cover map",
+          "role_in_study": "提供植被以落叶或常绿为主的信息，用于确定影像日期范围。",
+          "usage": "used_as_data",
+          "evidence_quote": "this information was derived from the Copernicus Dynamic Land Cover map 41 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat reference images",
+          "role_in_study": "作为直方图匹配参考，使PlanetScope影像镶嵌图的表面反射率分布更一致。",
+          "usage": "used_as_data",
+          "evidence_quote": "a histogram matching algorithm was then applied using Landsat reference images 42",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "aerial LiDAR and stereo UAV imagery",
+          "role_in_study": "生成冠层高度图，用于评估PlanetScope树木覆盖预测精度。",
+          "usage": "used_as_data",
+          "evidence_quote": "we compared our binary tree cover map with canopy height maps (CHMs) derived from aerial LiDAR and stereo UAV imagery.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldView imagery",
+          "role_in_study": "使用既有50厘米影像树木预测结果，与PlanetScope结果对照，评估孤立树木检出情况。",
+          "usage": "used_as_data",
+          "evidence_quote": "we compared our results to the predictions on 50 cm WorldView imagery performed in a previous study 16 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ESA WorldCover 2020 product",
+          "role_in_study": "用于预测时屏蔽水体，并在农田树木分析中屏蔽农田。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used land cover data from both the ESA WorldCover 2020 product at 10 m 18",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Land Cover and Land Use Change product",
+          "role_in_study": "用于预测时屏蔽水体。",
+          "usage": "used_as_data",
+          "evidence_quote": "and the Global Land Cover and Land Use Change product at 30 m 47 to mask out water bodies at prediction time.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product",
+          "role_in_study": "提供历史降雨数据，生成1982—2018年平均降雨参考图，用于与树木覆盖分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used historical rainfall data from the Climate Hazards Group Infra-red Precipitation with Station (CHIRPS) product to generate a reference rainfall map 23 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "tree cover from Hansen et al.",
+          "role_in_study": "提供2019年树木覆盖数据，用于与本研究结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "We further used tree cover from Hansen et al. 12",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "forest canopy height data from Lang et al.",
+          "role_in_study": "用于将树木覆盖划分为冠层高度类别。",
+          "usage": "used_as_data",
+          "evidence_quote": "Finally, we used forest canopy height data from both Lang et al. 21 at 10 m",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "forest canopy height data from Potapov et al.",
+          "role_in_study": "用于将树木覆盖划分为冠层高度类别。",
+          "usage": "used_as_data",
+          "evidence_quote": "and Potapov et al. 22 at 30 m to group our tree cover into height classes",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-023-37880-4.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-023-37880-4.methods.txt"
+        ],
+        "chars": 18698,
+        "text_mode": "head+methods",
+        "source_sha256": "fd97a917bd4c8b0cee20aad6a1d6e03cb7094400d5aae8580a8ccd658b215cab",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:30",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s41467-023-37880-4.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_08",
+      "source_paper_doi": "10.1038/s41558-022-01287-8",
+      "source_paper": {
+        "doi": "10.1038/s41558-022-01287-8",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "MODIS Land Cover product",
+        "CHIRPS Daily Final Precipitation v2.0"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS Land Cover product",
+          "actual_product_in_paper": "MODIS Land Cover product",
+          "evidence_quotes": [
+            "human land use (defined in the Methods from the MODIS Land Cover product)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+          "actual_product_in_paper": "CHIRPS dataset",
+          "evidence_quotes": [
+            "mean annual precipitation (MAP, estimated from the CHIRPS dataset40)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "we explore the relationships between the AR(1) trends and mean annual precipitation (MAP, estimated from the CHIRPS dataset40), as well as between the AR(1) trends and the distance from human land use (Methods).",
+        "human land use (defined in the Methods from the MODIS Land Cover product)"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究关注亚马逊流域植被系统的韧性在过去几十年如何变化，以及年均降水和人类土地利用等因素是否与韧性变化相关。",
+      "hypothesis_or_mechanism": "核心机制是临界减速：系统稳定性减弱时，对短期扰动的响应变慢，植被时间序列的滞后 1 阶自相关（AR(1)）因而上升。作者进一步假设，低年均降水和更接近人类干扰可能与亚马逊韧性损失加剧有关。",
+      "variables_and_data_use": "研究使用卫星衍生的植被光学厚度（VOD）时间序列估计 AR(1)，并以 NDVI 时间序列及方差分析作比较或稳健性检验。使用 CHIRPS 数据估计年均降水（MAP），并使用 MODIS Land Cover 产品界定人类土地利用，以分析降水和距人类土地利用距离与韧性趋势的关系；文本未说明 VOD、NDVI 的具体传感器或产品级别。",
+      "method_paradigm": "基于卫星植被时间序列的临界减速分析：计算滑动窗口 AR(1)，并检验其时间趋势及其与降水、距人类土地利用距离的空间关系。另以 NDVI 和方差等指标进行比较与稳健性分析。",
+      "study_area": "亚马逊流域及亚马逊雨林",
+      "study_period": "1991—2016；部分韧性趋势分析重点考察 2003 年以来的变化。",
+      "datasets_used": [
+        {
+          "name_in_paper": "satellite-derived vegetation data (VOD)",
+          "role_in_study": "主要植被指标，用于构建时间序列并估计 AR(1) 以衡量韧性变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "We investigate controls on the resilience of the Amazon vegetation system and how its resilience has changed over the last three decades, in terms of a changing AR(1) coefficient as estimated from satellite-derived vegetation data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NDVI",
+          "role_in_study": "替代植被时间序列，用于比较韧性变化并检验结果稳健性。",
+          "usage": "used_as_data",
+          "evidence_quote": "A predominance of increasing AR(1) trends is also found for the NDVI time series since 2003",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CHIRPS dataset",
+          "role_in_study": "用于估计年均降水（MAP），并分析降水与 AR(1) 趋势的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "we explore the relationships between the AR(1) trends and mean annual precipitation (MAP, estimated from the CHIRPS dataset40)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS Land Cover product",
+          "role_in_study": "用于定义人类土地利用，进而计算森林网格到人类土地利用的距离。",
+          "usage": "used_as_data",
+          "evidence_quote": "human land use (defined in the Methods from the MODIS Land Cover product)",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41558-022-01287-8.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41558-022-01287-8.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "55066215c6d821a39d33b5be76c628ea9e1bfff530c1d99d5d72c3efefe1f75a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:13",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s41558-022-01287-8.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_09",
+      "source_paper_doi": "10.1038/s41598-021-04241-4",
+      "source_paper": {
+        "doi": "10.1038/s41598-021-04241-4",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "MODIS Land Cover product (MCD12C1, version 6)",
+        "Climate Hazards Group InfraRed Precipitation CHIRPS"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS Land Cover product (MCD12C1, version 6)",
+          "actual_product_in_paper": "MODIS Land Cover product (MCD12C1, version 6)",
+          "evidence_quotes": [
+            "Land cover identification and change was performed through the MODIS Land Cover product (MCD12C1, version 6), which provides yearly land cover classes on a grid of resolution of 0.05°"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards Group InfraRed Precipitation CHIRPS",
+          "actual_product_in_paper": "Climate Hazards Group InfraRed Precipitation CHIRPS",
+          "evidence_quotes": [
+            "Precipitation data comes from the Climate Hazards Group InfraRed Precipitation CHIRPS 66"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Land cover identification and change was performed through the MODIS Land Cover product (MCD12C1, version 6), which provides yearly land cover classes on a grid of resolution of 0.05°",
+        "We used monthly values of CHIRPS precipitation data for the analysis of temporal series and trends.",
+        "Dry-Day Frequency (DDF) was calculated from CHIRPS daily data 31"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究探讨亚马孙东部—塞拉多过渡区及 MATOPIBA 农业前沿在气候变化和土地利用变化压力下，近几十年的升温、干燥、干旱及雨季开始时间如何变化，以及这些变化对火灾风险的影响。",
+      "hypothesis_or_mechanism": "研究认为，农业扩张导致的土地利用变化与气候变化共同作用，可能加剧极端干旱。气候变暖、变干与森林砍伐和火灾相互作用，可能延迟雨季开始、增加干旱及火灾风险，并推动亚马孙森林向类似塞拉多的状态转变。",
+      "variables_and_data_use": "研究使用 MODIS Land Cover MCD12C1 version 6 描述研究区土地覆盖及其变化；使用 CHIRPS 降水数据分析月降水时间序列与趋势，并从日数据计算干日频率，另以 CHIRPS 降水计算 SPI。研究还使用 ERA5 和 ERA5-Land 气候变量计算或分析温度、水汽压亏缺、湿度、垂直运动及蒸发，使用 NOAA OLR 确定雨季开始，并结合 CRU 降雨数据计算 scPDSI 和 SPEI；大豆种植面积遥感数据及 IBGE 产量统计用于分析农业变化。",
+      "method_paradigm": "研究采用多源格点气候、降水、遥感土地覆盖和农业统计数据的观测分析范式，计算季节异常、干旱指标和雨季开始时间。通过 Mann–Kendall 趋势检验、Sen 斜率估计及线性回归分析变量趋势和时间序列关系。",
+      "study_area": "亚马孙河流域和托坎廷斯河流域，包括 MATOPIBA 区域，重点关注亚马孙东部—塞拉多过渡区。",
+      "study_period": "主要气候变量分析期为 1981–2020 年；卫星产品（MODIS 土地覆盖和大豆分类）分析期为 2001–2020 年；综合干旱指数分析期为 2001–2019 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "MODIS Land Cover product (MCD12C1, version 6)",
+          "role_in_study": "识别研究区土地覆盖类别及其变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Land cover identification and change was performed through the MODIS Land Cover product (MCD12C1, version 6), which provides yearly land cover classes on a grid of resolution of 0.05°",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards Group InfraRed Precipitation CHIRPS",
+          "role_in_study": "用于降水时间序列和趋势分析；日降水用于计算干日频率，降水数据还用于计算 SPI。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used monthly values of CHIRPS precipitation data for the analysis of temporal series and trends.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Centre for Medium-Range Weather Forecasts ECMWF Reanalysis Version 5 (ERA5)",
+          "role_in_study": "提供气温、水汽、垂直速度、湿度和地表气压等气候变量，用于气候分析及计算水汽压亏缺。",
+          "usage": "used_as_data",
+          "evidence_quote": "Air temperature at 2 m, total atmospheric water vapor content (TCWV), vertical velocity (omega) at 500 hPa, specific humidity at 1000 hPa, and surface pressure were generated from the European Centre for Medium-Range Weather Forecasts ECMWF Reanalysis Version 5 (ERA5)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA5-Land",
+          "role_in_study": "提供陆面 2 米气温和总蒸发数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Air temperature at 2 m and total evaporation were obtained from the land component of the ERA5 reanalysis (ERA5-Land)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "outgoing longwave radiation (OLR) from NOAA",
+          "role_in_study": "作为热带深对流的代理变量，用于确定雨季开始时间。",
+          "usage": "used_as_data",
+          "evidence_quote": "The wet season onset (WSO) was calculated using the outgoing longwave radiation (OLR) at resolution 2.5° × 2.5° from NOAA (psl.noaa.gov/data/gridded/data.interpOLR.html#detail) as a proxy for deep convection in the tropical region.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CRU rainfall dataset",
+          "role_in_study": "用于计算自校准 Palmer 干旱严重度指数 scPDSI。",
+          "usage": "used_as_data",
+          "evidence_quote": "The scPDSI product was computed from the CRU rainfall dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CRU",
+          "role_in_study": "提供月降水数据，用于计算 SPEI。",
+          "usage": "used_as_data",
+          "evidence_quote": "To calculate SPEI we use monthly precipitation from CRU.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "datasets at https://glad.umd.edu/projects/commodity-crop-mapping-and-monitoring-south-america",
+          "role_in_study": "提供年度大豆覆盖图，用于提取 MATOPIBA 地区大豆种植面积。",
+          "usage": "used_as_data",
+          "evidence_quote": "Annual maps of soy cover across South America were downloaded in GeoTif format 63 and resized over the MATOPIBA region.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "IBGE statistics",
+          "role_in_study": "提供 MATOPIBA 地区大豆产量统计，用于分析产量与降水异常的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soybean yield (kg/ha) over the region (Extended Data Fig. 10) was obtained from IBGE statistics available at https://sidra.ibge.gov.br/pesquisa/pam/tabelas (accessed on May 10 2021).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-021-04241-4.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-021-04241-4.methods.txt"
+        ],
+        "chars": 11778,
+        "text_mode": "head+methods",
+        "source_sha256": "48c2ae7f1e53b23de1bf676d24c09e3b68913446a4f33567cf79f7d325f6472f",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:19",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s41598-021-04241-4.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_10",
+      "source_paper_doi": "10.1038/s41893-019-0220-7",
+      "source_paper": {
+        "doi": "10.1038/s41893-019-0220-7",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Collection 5.1 MODIS yearly product known as MCD12C1",
+        "CRU TS4.01"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Collection 5.1 MODIS yearly product known as MCD12C1",
+          "actual_product_in_paper": "Collection 5.1 MODIS yearly product known as MCD12C1",
+          "evidence_quotes": [
+            "The land cover (LC) information is provided by the Collection 5.1 MODIS yearly product known as MCD12C1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CRU TS4.01",
+          "actual_product_in_paper": "CRU TS4.01",
+          "evidence_quotes": [
+            "Monthly 0.5° CMG temperature and precipitation data are provided by University of East Anglia Climate Research Unit (CRU) and the latest version is CRU TS4.01"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The land cover (LC) information is provided by the Collection 5.1 MODIS yearly product known as MCD12C1",
+        "Monthly 0.5° CMG temperature and precipitation data are provided by University of East Anglia Climate Research Unit (CRU) and the latest version is CRU TS4.01"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究全球植被叶面积增加的时空格局，并评估中国和印度在2000年以来全球变绿中的贡献，以及土地利用管理等直接因素的作用。",
+      "hypothesis_or_mechanism": "研究关注的机制是，土地利用管理可通过造林、扩增耕地和复种等直接推动叶面积增加；气候变化和CO₂施肥等间接因素也会促进变绿。论文指出，土地利用管理是全球净叶面积增加的重要驱动因素。",
+      "variables_and_data_use": "研究以 Terra 和 Aqua MODIS Collection 6 LAI 产品（MOD15A2H、MYD15A2H）计算2000—2017年年均LAI及其趋势，并用 AVHRR 的 NDVI3gV1 与 MODIS LAI 生成 LAI3gV1，分析较长时段变化。使用 MODIS MCD12C1 土地覆盖产品划分生物群系，使用 Terra MODIS VCF 表征地表覆盖比例；CRU TS4.01 温度和降水用于气候变量分析。研究还使用 FAOSTAT 农业统计、中国森林清查数据及 GADM 行政区数据。",
+      "method_paradigm": "基于卫星遥感LAI时间序列进行趋势分析，以 Mann–Kendall 检验识别显著变绿或变褐区域，并计算净叶面积变化。结合土地覆盖、生物群系、气候和农业统计资料，分析变绿的区域分布及可能驱动因素。",
+      "study_area": "全球，重点分析中国和印度。",
+      "study_period": "主要分析2000—2017年；AVHRR LAI3gV1另用于1982—2016年及2000—2016年的趋势分析。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Collection 6 (C6, also Version 6) Terra and Aqua MODIS LAI products (MOD15A2H and MYD15A2H)",
+          "role_in_study": "计算年均LAI并分析2000—2017年叶面积趋势和净变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Collection 6 (C6, also Version 6) Terra and Aqua MODIS LAI products (MOD15A2H and MYD15A2H) are used in this study",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "AVHRR LAI3gV1",
+          "role_in_study": "提供较长时段的LAI序列，用于趋势分析；由 NDVI3gV1 与 MODIS LAI 重叠数据训练人工神经网络生成。",
+          "usage": "used_as_data",
+          "evidence_quote": "The full time series of LAI3gV1 data was generated by an artificial neural network (ANN) algorithm",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NDVI3gV1",
+          "role_in_study": "作为生成 AVHRR LAI3gV1 的训练数据之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "trained with the overlapping data (2000–2016) of NDVI3gV1 and C6 Terra MODIS LAI product.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Collection 5.1 MODIS yearly product known as MCD12C1",
+          "role_in_study": "提供土地覆盖分类，汇总为森林、其他木本植被、草地和农田等生物群系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The land cover (LC) information is provided by the Collection 5.1 MODIS yearly product known as MCD12C1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "C6 Terra MODIS VCF",
+          "role_in_study": "提供树木、非树木植被和非植被覆盖比例，并聚合至0.05°网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "C6 Terra MODIS VCF is a yearly product that presents a continuous, sub-pixel fraction of land surface cover",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CRU TS4.01",
+          "role_in_study": "提供月温度和降水数据，用于计算年均温、年总降水及气候分区。",
+          "usage": "used_as_data",
+          "evidence_quote": "Monthly 0.5° CMG temperature and precipitation data are provided by University of East Anglia Climate Research Unit (CRU) and the latest version is CRU TS4.01",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Database of Global Administrative Areas (GADM) v2.8",
+          "role_in_study": "提供国家及次国家行政区边界数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the latest version (v2.8) in this study.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "FAOSTAT database",
+          "role_in_study": "提供耕地面积、收获面积、谷物产量和人口数据，用于农业变化分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Arable area, harvested area, cereal production and population were obtained from FAOSTAT database hosted by FAO",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Continuous Forest Inventory of China (1999–2003 and 2009–2013)",
+          "role_in_study": "提供中国森林统计数据，用于计算造林面积及森林面积和覆盖度变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used forest statistics documented in the National Continuous Forest Inventory of China (1999–2003 and 2009–2013) to calculate the afforested area, and the changes in forest area and coverage.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "planted forest map of China at 1 km spatial resolution",
+          "role_in_study": "提供中国人工林空间分布信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also used the planted forest map of China at 1 km spatial resolution",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41893-019-0220-7.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41893-019-0220-7.methods.txt"
+        ],
+        "chars": 13258,
+        "text_mode": "head+methods",
+        "source_sha256": "8dc432da7e99f4c720647adcb9a5344fbe2efcd4513849ae624e4fb43ebcfa01",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:42",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s41893-019-0220-7.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_11",
+      "source_paper_doi": "10.1038/s42003-019-0636-7",
+      "source_paper": {
+        "doi": "10.1038/s42003-019-0636-7",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1)",
+        "Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) dataset"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1)",
+          "actual_product_in_paper": "MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1)",
+          "evidence_quotes": [
+            "To stratify the estimated phenological parameters based on land cover, the MODIS land cover data, which have been shown to perform relatively well when compared to other global land cover data, were acquired for this study"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) dataset",
+          "actual_product_in_paper": "Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) dataset",
+          "evidence_quotes": [
+            "16 years (2000–2016) of daily rainfall data were downloaded from CHIRPS"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The specific datsets are the MODIS/Terra Surface Reflectance 8-Day L3 Global 500 m data (MOD09A1), and MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1).",
+        "The 0.05° gridded rainfall Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) dataset, which has been shown to out-perform most other rainfall products in data-sparse regions in Africa 65 , was selected for this research.",
+        "All datasets were aggregated to match the spatial resolution of the temperature data (i.e., 0.125°)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究分析非洲不同地理区域及植被类型中，植被生长季物候参数与光周期、降水、温度和太阳辐射等环境驱动因素之间的关系，并确定哪些因素控制生长季开始和结束。",
+      "hypothesis_or_mechanism": "研究检验光周期是否是非洲植被物候的主导控制因素，同时考虑降水、温度和太阳辐射等因素的共同作用。其机制设想是稳定的光周期信号与年际变化的其他环境驱动因素共同影响物候事件。",
+      "variables_and_data_use": "研究用 MODIS/Terra MOD09A1 500 m 地表反射率计算 EVI，并通过离散傅里叶变换估算 2001–2015 年生长季开始（SOS）和结束（EOS）；MODIS/Terra MCD12Q1 500 m 年度土地覆盖用于划分和掩膜植被类型。气候变量包括 CHIRPS 日降水、ERA-Interim 日地表皮肤温度和向下地表太阳辐射，以及按纬度和年内日生成的日光周期；这些变量用于分析 SOS、EOS 与各驱动因素的关系。",
+      "method_paradigm": "先以 EVI 时间序列和离散傅里叶变换提取物候参数，再按土地覆盖类型和地理区域分层。使用简单线性回归和偏相关分析评估物候参数与生长季前气候驱动因素的关系。",
+      "study_area": "非洲及其不同地理区域",
+      "study_period": "物候估算期为 2001–2015 年；MOD09A1 数据覆盖 2000 年 2 月 18 日至 2015 年 8 月 29 日，MCD12Q1 覆盖 2001–2013 年；气候数据主要覆盖 2000–2016 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "MODIS/Terra Surface Reflectance 8-Day L3 Global 500 m data (MOD09A1)",
+          "role_in_study": "用于计算 EVI 时间序列，并据此估算生长季开始和结束。",
+          "usage": "used_as_data",
+          "evidence_quote": "The specific datsets are the MODIS/Terra Surface Reflectance 8-Day L3 Global 500 m data (MOD09A1)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1)",
+          "role_in_study": "用于土地覆盖分层、提取稳定土地覆盖像元，并掩膜物候估计结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The specific datsets are the MODIS/Terra Surface Reflectance 8-Day L3 Global 500 m data (MOD09A1), and MODIS/Terra Land Cover Type Yearly L3 Global 500 m data (MCD12Q1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) dataset",
+          "role_in_study": "提供日降水数据，用于计算生长季开始和结束前的降水量并分析其与物候的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "16 years (2000–2016) of daily rainfall data were downloaded from CHIRPS",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-Interim daily skin temperature data",
+          "role_in_study": "提供日皮肤温度数据，用作气候驱动变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "daily skin temperature data from 2000 to 2016 with a spatial resolution of 0.125° were acquired from the ERA-Interim",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-Interim daily surface solar radiation downwards data",
+          "role_in_study": "提供向下地表太阳辐射数据，用作气候驱动变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "16 years of daily surface solar radiation downwards data, which is the sum of shortwave radiation reaching the surface of the Earth, were also downloaded from the ERA-Interim.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "daily photoperiod data",
+          "role_in_study": "按纬度和年内日生成日光时长数据，用作物候驱动变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "16 years of daily photoperiod data, representing the length of time that a plant receives sunlight in a day, were also generated for this analysis.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s42003-019-0636-7.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s42003-019-0636-7.methods.txt"
+        ],
+        "chars": 12019,
+        "text_mode": "head+methods",
+        "source_sha256": "5156eba4c0750e20f359092975c368ca08864028567b6868e4b50495b93cf03e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:19",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s42003-019-0636-7.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_12",
+      "source_paper_doi": "10.1038/s43247-020-00053-y",
+      "source_paper": {
+        "doi": "10.1038/s43247-020-00053-y",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "West Africa land cover dataset provided by the United States Geological Survey (USGS)",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "West Africa land cover dataset provided by the United States Geological Survey (USGS)",
+          "actual_product_in_paper": "West Africa land cover dataset provided by the United States Geological Survey (USGS)",
+          "evidence_quotes": [
+            "Our analysis takes advantage of a thematically detailed and temporally consistent land cover dataset of West Africa provided by the United States Geological Survey (USGS)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)",
+          "actual_product_in_paper": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)",
+          "evidence_quotes": [
+            "We used rainfall isohyets derived from the Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We used rainfall isohyets derived from the Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013) to divide the study area",
+        "Our analysis takes advantage of a thematically detailed and temporally consistent land cover dataset of West Africa provided by the United States Geological Survey (USGS)"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究区为西非及乍得南部，研究对象是1975—2013年土地覆盖变化。论文旨在量化区域尺度的土地覆盖时空格局，并通过人口密度、自然与人类主导土地覆盖转换及新定居点周边变化，推断人类活动对变化的影响。",
+      "hypothesis_or_mechanism": "人口增长及其带来的土地资源压力会推动农业扩张和定居点扩张，并与土地覆盖变化相关；新定居点附近的变化强度可作为人口压力影响的代理指标。论文通过多方面证据推断人类影响，而非仅凭相关性断言因果。",
+      "variables_and_data_use": "研究使用USGS西非多时相土地覆盖数据，依据主要来自Landsat的影像进行专家判读，分析1975、2000和2013年的23类土地覆盖及其转换。使用CHIRPS 1981—2013年平均降雨量划分生物气候分区，使用联合国人口估计和2000年GPWv4人口密度描述人口趋势与空间压力。研究以新转为定居点的位置为代理，结合强度分析和邻域分析评估土地覆盖变化。",
+      "method_paradigm": "采用土地覆盖转移矩阵与强度分析框架，按时间区间、类别和转换三个层次分析变化，并与均匀变化强度基准比较。另将土地覆盖归并为自然与人类主导两类，并在新定居点周边进行邻域变化率及转换类型分析。",
+      "study_area": "西非16个国家及乍得南部，划分为六个生物气候分区。",
+      "study_period": "土地覆盖：1975、2000、2013年；降雨分区依据1981—2013年平均降雨量；人口估计为1950—2013年，空间人口密度使用2000年数据。",
+      "datasets_used": [
+        {
+          "name_in_paper": "West Africa land cover dataset provided by the United States Geological Survey (USGS)",
+          "role_in_study": "核心土地覆盖数据；提供约1975、2000和2013年23类土地覆盖，用于转移矩阵和时空变化分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "This dataset was created from expert image interpretation of primarily Landsat",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat imagery",
+          "role_in_study": "作为USGS土地覆盖数据专家影像判读的主要影像来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "created from expert image interpretation of primarily Landsat",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "aerial photographs",
+          "role_in_study": "补充土地覆盖数据判读的影像资料。",
+          "usage": "used_as_data",
+          "evidence_quote": "complemented with aerial photographs, Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) and finer resolution satellite imagery as well as field observations",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER)",
+          "role_in_study": "补充土地覆盖数据判读的影像资料。",
+          "usage": "used_as_data",
+          "evidence_quote": "complemented with aerial photographs, Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) and finer resolution satellite imagery as well as field observations",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "finer resolution satellite imagery",
+          "role_in_study": "按需补充土地覆盖数据判读的影像资料，具体产品未说明。",
+          "usage": "used_as_data",
+          "evidence_quote": "and finer resolution satellite imagery as well as field observations",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "field observations",
+          "role_in_study": "用于支持土地覆盖专家判读。",
+          "usage": "used_as_data",
+          "evidence_quote": "as well as field observations, using a sample-based approach",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)",
+          "role_in_study": "用于生成降雨等值线并划分六个生物气候分区。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used rainfall isohyets derived from the Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) mean annual rainfall (1981–2013)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United Nations Department of Economic and Social Affairs (UNESA) population estimates",
+          "role_in_study": "提供1950—2013年各国年度人口估计，用于汇总区域人口并计算年增长率。",
+          "usage": "used_as_data",
+          "evidence_quote": "Population estimates by country were obtained from the United Nations Department of Economic and Social Affairs (UNESA) at yearly intervals from 1950 to 2013",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Gridded Population of the World (GPWv4) population density data",
+          "role_in_study": "提供2000年人口密度空间数据，用于表示研究区不同地带的人口压力差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "Gridded Population of the World (GPWv4) population density data for 2000 were obtained",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s43247-020-00053-y.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s43247-020-00053-y.methods.txt"
+        ],
+        "chars": 14142,
+        "text_mode": "head+methods",
+        "source_sha256": "6dadbe2498b0607357489bc0d4855df5987491587e52654f20bb79f6e67ebc74",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:31",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_s43247-020-00053-y.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_13",
+      "source_paper_doi": "10.1038/srep32177",
+      "source_paper": {
+        "doi": "10.1038/srep32177",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "1-km UMD map; MODIS land cover product (500-m spatial resolution)",
+        "India Meteorological Department (IMD) gridded rainfall data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "1-km UMD map; MODIS land cover product (500-m spatial resolution)",
+          "actual_product_in_paper": "1-km UMD map; MODIS land cover product (500-m spatial resolution)",
+          "evidence_quotes": [
+            "In this study, both the land cover maps are resampled to 1 km."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "India Meteorological Department (IMD) gridded rainfall data",
+          "actual_product_in_paper": "India Meteorological Department (IMD) gridded rainfall data",
+          "evidence_quotes": [
+            "Model runs are compared with India Meteorological Department (IMD) gridded rainfall data at a 0.25° × 0.25° resolution 46 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "In this study, both the land cover maps are resampled to 1 km.",
+        "Model runs are compared with India Meteorological Department (IMD) gridded rainfall data at a 0.25° × 0.25° resolution 46 ."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究印度次大陆近年土地利用/土地覆盖变化是否会影响印度夏季季风降雨（ISMR），并评估这种影响的空间格局与幅度。",
+      "hypothesis_or_mechanism": "研究假设，大规模森林砍伐会减少蒸散发，进而降低降水中的水汽再循环部分，导致印度夏季季风降雨减弱。",
+      "variables_and_data_use": "研究使用1987年和2005年的土地覆盖图，在WRF 3.6与CLM耦合模型中设置土地覆盖情景；1987年图来自1 km UMD产品及AVHRR影像，2005年土地覆盖采用500 m MODIS land cover product。以ERA-I再分析提供边界条件，并用CFSR进行选定年代模拟；IMD格点降雨用于模型比较，MODIS影像用于对照LAI，动态水汽再循环模型用于追踪蒸发来源对降水的贡献。",
+      "method_paradigm": "采用区域气候模式情景敏感性模拟，结合光谱松弛和耦合陆面模型，比较不同土地覆盖设定下的季风降水。另用基于拉格朗日方法的动态再循环模型量化不同蒸发源对降水的贡献。",
+      "study_area": "覆盖整个印度次大陆的区域模型域。",
+      "study_period": "土地覆盖图代表1980–1989年（1987图）和2000–2009年（2005图）；主要模拟时段为2000–2010年，季风分析月份为6–9月（JJAS）；另以1979–1989年和2000–2010年进行SST影响模拟。",
+      "datasets_used": [
+        {
+          "name_in_paper": "1-km UMD map",
+          "role_in_study": "提供1987年土地覆盖图，用于与2005年土地覆盖比较及WRF土地覆盖情景。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 1-km UMD map is prepared based on satellite imagery collected by AVHRR from 1981 to 1994 (1987 Map).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "AVHRR",
+          "role_in_study": "为1987年UMD土地覆盖图提供卫星影像。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 1-km UMD map is prepared based on satellite imagery collected by AVHRR from 1981 to 1994 (1987 Map).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS land cover product (500-m spatial resolution)",
+          "role_in_study": "提供2005年土地覆盖图，用于土地覆盖变化分析和WRF情景设置。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here we used the LULC map of 500 m resolution.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS image",
+          "role_in_study": "提供LAI观测参照，用于比较WRF中基于PFT的LAI。",
+          "usage": "used_as_data",
+          "evidence_quote": "The monthly values (for JJAS) of LAI as observed in MODIS image and as used in WRF through consideration of PFTs are plotted in Supplementary Fig. S7 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WRF model (version 3.6)",
+          "role_in_study": "区域气候模拟模型，用于评估不同土地覆盖情景对季风降水的影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here, we used a Weather Research and Forecasting (WRF) model (version 3.6) in non-hydrostatic mode, coupled with a Community Land Surface Model (CLM) for understanding land surface feedback",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Community Land Surface Model (CLM)",
+          "role_in_study": "与WRF耦合，表示陆面反馈及植被功能型。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here, we used a Weather Research and Forecasting (WRF) model (version 3.6) in non-hydrostatic mode, coupled with a Community Land Surface Model (CLM) for understanding land surface feedback",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-I data",
+          "role_in_study": "为WRF区域模拟提供侧边界条件。",
+          "usage": "used_as_data",
+          "evidence_quote": "Lateral boundary conditions are provided by the European Centre for Medium-range Weather Forecasts (ECMWF) reanalysis data or ERA-I data 43 with 6-hourly outputs (00, 06, 12, 18 UTC) at a 0.75° × 0.75° horizontal resolution over 30 pressure levels.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NCEP Climate Forecast System Reanalysis (CFSR) data",
+          "role_in_study": "用于两个选定年代、采用相同模型配置的模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also used NCEP Climate Forecast System Reanalysis (CFSR) data 45 at a 0.50° × 0.50° spatial resolution for two selected decades, 1979–1989 and 2000–2010, with the same model configuration.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "India Meteorological Department (IMD) gridded rainfall data",
+          "role_in_study": "用于与模型模拟结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Model runs are compared with India Meteorological Department (IMD) gridded rainfall data at a 0.25° × 0.25° resolution 46 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "dynamic recycling model",
+          "role_in_study": "基于拉格朗日方法追踪水汽，计算再循环降水及不同蒸发源的贡献。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used a dynamic recycling model 22 , which is based on a Lagrangian approach, to track the moisture to compute the recycled precipitation.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_srep32177.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_srep32177.methods.txt"
+        ],
+        "chars": 17374,
+        "text_mode": "head+methods",
+        "source_sha256": "174bad04c09a2680eca3d91a798cfedadbd876ef86951ea2305bf7d1dc6c8548",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:33",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1038_srep32177.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_14",
+      "source_paper_doi": "10.1057/s41599-026-07338-1",
+      "source_paper": {
+        "doi": "10.1057/s41599-026-07338-1",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-2 satellite imagery",
+        "Climate data from the Tanzania Meteorological Agency (TMA)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2 satellite imagery",
+          "actual_product_in_paper": "Sentinel-2 satellite imagery",
+          "evidence_quotes": [
+            "Sentinel-2 imagery helps analyze land cover changes."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate data from the Tanzania Meteorological Agency (TMA)",
+          "actual_product_in_paper": "Climate data from the Tanzania Meteorological Agency (TMA)",
+          "evidence_quotes": [
+            "Climate data, including rainfall and temperature anomalies (2018 2023), is sourced from the Tanzania Meteorological Agency (TMA)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Sentinel-2 imagery helps analyze land cover changes.",
+        "Climate data, including rainfall and temperature anomalies (2018 2023), is sourced from the Tanzania Meteorological Agency (TMA)"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究考察坦桑尼亚六个地理分区、26个区域的贫困动态，分析教育、就业、基础设施和气候变化如何影响区域贫困及其空间差异。",
+      "hypothesis_or_mechanism": "研究的核心机制是气候冲击与基础设施不足相互作用，加剧农业依赖地区的生计脆弱性和贫困；气候韧性基础设施可能缓解这种影响。",
+      "variables_and_data_use": "研究整合贫困、收入、教育、就业、基础设施、降雨和温度等变量，使用坦桑尼亚气象局（TMA）的气候数据分析气候变化与贫困的关系。使用 Sentinel-2 卫星影像分析土地覆盖变化，并以 NDVI 和 SIF 衡量植被胁迫及农业生产力变化；通过 SAR、GWR 和 SDM 等空间计量模型分析贫困的空间依赖与区域差异。",
+      "method_paradigm": "采用纵向与空间分析相结合的空间计量研究范式，使用 Moran’s I、LISA、SAR、GWR 和 SDM 识别贫困聚集、局部热点及空间溢出。对贫困率等变量进行标准化，并对气候变量作季节平均。",
+      "study_area": "坦桑尼亚，覆盖六个地理分区、26个区域；重点涉及达累斯萨拉姆、姆万扎、阿鲁沙、姆贝亚、辛吉达、滨海和基戈马。",
+      "study_period": "研究文本给出的时段包括：贫困数据 2019—2024 年，气候数据 2018—2023 年，Sentinel-2 影像 2017—2021 年，基础设施数据 2002、2012 和 2022 年；部分模型分析贫困的时段为 2002—2022 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "National Poverty Survey (NPS) from TASAF",
+          "role_in_study": "提供贫困相关数据，用于分析贫困动态。",
+          "usage": "used_as_data",
+          "evidence_quote": "Secondary data sources include the National Poverty Survey (NPS) from TASAF (2019 2024)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "infrastructure data from the National Bureau of Statistics (NBS)",
+          "role_in_study": "提供基础设施数据，用于评估基础设施变化与贫困的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "infrastructure data from the National Bureau of Statistics (NBS) for 2002, 2012, and 2022.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate data from the Tanzania Meteorological Agency (TMA)",
+          "role_in_study": "提供降雨和温度异常等气候数据，用于分析气候变化与贫困的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Climate data, including rainfall and temperature anomalies (2018 2023), is sourced from the Tanzania Meteorological Agency (TMA)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 satellite imagery",
+          "role_in_study": "用于分析土地覆盖变化及土地利用趋势。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 imagery helps analyze land cover changes.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Normalized Difference Vegetation Index (NDVI)",
+          "role_in_study": "衡量植被胁迫，并作为环境变量纳入贫困空间分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "tools such as the Normalized Difference Vegetation Index (NDVI) and Solar-Induced Chlorophyll Fluorescence (SIF) were employed to measure vegetation stress",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Solar-Induced Fluorescence (SIF)",
+          "role_in_study": "衡量植被胁迫，并用于评估气候变率导致的作物损失。",
+          "usage": "used_as_data",
+          "evidence_quote": "tools such as the Normalized Difference Vegetation Index (NDVI) and Solar-Induced Chlorophyll Fluorescence (SIF) were employed to measure vegetation stress and assess crop yield losses due to climate variability.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "household surveys",
+          "role_in_study": "提供家庭收入、教育机会和气候感知等社会经济指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "Primary data comes from household surveys and semi-structured interviews in regions identified by the Tanzania Social Action Fund (TASAF) as vulnerable to poverty.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "semi-structured interviews",
+          "role_in_study": "收集贫困脆弱地区的初级资料。",
+          "usage": "used_as_data",
+          "evidence_quote": "Primary data comes from household surveys and semi-structured interviews in regions identified by the Tanzania Social Action Fund (TASAF) as vulnerable to poverty.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1057_s41599-026-07338-1.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1057_s41599-026-07338-1.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "346a49eb55c68e0bea927d64fbc2e74f5eb1ba460b2e43c6981cf5659958e3f6",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:33",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1057_s41599-026-07338-1.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_15",
+      "source_paper_doi": "10.1088/1748-9326/ab738e",
+      "source_paper": {
+        "doi": "10.1088/1748-9326/ab738e",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat satellite dataset",
+        "GLDAS2 dataset"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat satellite dataset",
+          "actual_product_in_paper": "Landsat satellite dataset",
+          "evidence_quotes": [
+            "Deforestation estimates were obtained from the Landsat satellite dataset of [33]."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "GLDAS2 dataset",
+          "actual_product_in_paper": "GLDAS2 dataset",
+          "evidence_quotes": [
+            "Monthly precipitation and actual evapotranspiration data were taken from the GLDAS2 dataset [39]."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Deforestation estimates were obtained from the Landsat satellite dataset of [33].",
+        "Monthly precipitation and actual evapotranspiration data were taken from the GLDAS2 dataset [39]."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究考察 21 世纪初亚马逊地区干季强度与森林砍伐如何相互影响，以及森林转为农田后通过蒸散和大气水分再循环对区域降雨与干旱产生多大影响。",
+      "hypothesis_or_mechanism": "干季越强可能越有利于森林砍伐；砍伐减少森林蒸散和可再循环水分，进而减少降雨、加剧干季。两种作用可能构成随累计砍伐增强的正反馈。",
+      "variables_and_data_use": "研究以 Landsat 森林损失与增加数据估算砍伐，并以 GLDAS2 的月降水和实际蒸散量计算最大气候水分亏缺（MCWD）；另用 PRODES 对分析进行稳健性检验。PCR-GLOBWB 估算森林与雨养农田的蒸散差异，ERA-Interim 气象资料驱动拉格朗日大气水分追踪，以评估砍伐对下风向降雨及 MCWD 的影响。",
+      "method_paradigm": "采用空间与时间回归估计干季强度对砍伐的影响，并结合水文模型和拉格朗日大气水分追踪模拟砍伐对降雨的影响。最后通过比较观测砍伐与无反馈情景下的估计砍伐量，量化干旱—砍伐反馈强度。",
+      "study_area": "亚马逊地区；水分追踪计算覆盖热带南美洲。",
+      "study_period": "主要反馈分析为 2003–2014 年；砍伐数据涉及 2000–2017 年，干季强度与砍伐关系分析为 21 世纪初。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Landsat satellite dataset",
+          "role_in_study": "提供森林损失和森林增加数据，用于估算及空间汇总净砍伐。",
+          "usage": "used_as_data",
+          "evidence_quote": "Deforestation estimates were obtained from the Landsat satellite dataset of [33].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GLDAS2 dataset",
+          "role_in_study": "提供月降水和实际蒸散量，用于计算 MCWD，并为水分追踪提供蒸散和降水估计。",
+          "usage": "used_as_data",
+          "evidence_quote": "Monthly precipitation and actual evapotranspiration data were taken from the GLDAS2 dataset [39].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PRODES dataset",
+          "role_in_study": "作为稳健性检验数据，重复砍伐与干季强度分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "To check for robustness of our results we repeated the above analysis using the Projeto de Monitoramento do Desmatamento na Amazônia Legal por Satélite (PRODES) dataset from the Brazilian Instituto Nacional de Pesquisas Espaciais (INPE).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PC Raster Global Water Balance hydrological model (PCR-GLOBWB)",
+          "role_in_study": "估算森林和雨养农田的蒸散，并评估森林转为农田造成的蒸散变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "We estimated the monthly forest contributions to evapotranspiration during 2003–2014 using the PCR-GLOBWB model at 0.5° resolution.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-Interim data",
+          "role_in_study": "提供风速和风向等三维大气资料，用于模拟水汽轨迹；另提供可降水量资料。",
+          "usage": "used_as_data",
+          "evidence_quote": "The trajectories of the parcels are simulated back in time using three-dimensional estimates of wind speed and direction using linearly interpolated ERA-Interim data at 0.75° and 6 h resolution [42].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Lagrangian atmospheric moisture tracking model",
+          "role_in_study": "追踪降水水汽来源，估算蒸散变化对亚马逊区域降雨的影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "To estimate the regional effects of evapotranspiration reductions on rainfall due to deforestation, we used a Lagrangian atmospheric moisture tracking model [36].",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_ab738e.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_ab738e.methods.txt"
+        ],
+        "chars": 17827,
+        "text_mode": "head+methods",
+        "source_sha256": "dd9ffd940632255e32d923945f4c66d96f84ed882f5b78ee0990697c4863562a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:40",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.1088_1748-9326_ab738e.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_16",
+      "source_paper_doi": "10.15835/nbha48411993",
+      "source_paper": {
+        "doi": "10.15835/nbha48411993",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CORINE Land Cover (CLC) data",
+        "WorldClim database"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CORINE Land Cover (CLC) data",
+          "actual_product_in_paper": "CORINE Land Cover (CLC) data",
+          "evidence_quotes": [
+            "Vegetation type is informed by CLC data."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "WorldClim database",
+          "actual_product_in_paper": "WorldClim database",
+          "evidence_quotes": [
+            "Hydro-meteorological information regarding solar radiation, precipitation, maximum temperature, and wind speed rely on raster data (resolution of 30 seconds) derived from WorldClim database (Fick and Hijmans, 2017)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Vegetation type is informed by CLC data.",
+        "Hydro-meteorological information regarding solar radiation, precipitation, maximum temperature, and wind speed rely on raster data (resolution of 30 seconds) derived from WorldClim database (Fick and Hijmans, 2017)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在检验将 NDVI、树冠覆盖密度和土地覆盖类型作为燃料指标纳入野火蔓延能力指数（WSCI）后，能否表征黑山植被区域的野火蔓延能力并支持火灾风险管理。",
+      "hypothesis_or_mechanism": "植被类型、树冠覆盖密度和 NDVI 可表征燃料属性，而燃料属性会影响野火蔓延能力；将这些指标与社会、水文气象及地球物理指标结合并加权，可形成空间化的 WSCI。",
+      "variables_and_data_use": "研究以 CORINE Land Cover（CLC）提取植被区域并表示植被类型，以 Copernicus 树冠覆盖密度（TCD）栅格表示树冠覆盖，以 Sentinel-2 多光谱影像的 RED（band 4）和 NIR（band 8）计算 NDVI。其他输入包括 WorldClim 的 1970–2000 年 7 月水文气象栅格和 EEA 提供的 DEM；各指标经归一化、AHP 加权后计算 WSCI，并用 CLC 标示的近期烧毁区域进行 ROC 验证。",
+      "method_paradigm": "采用多准则空间指数评估范式：对各准则进行 0–1 归一化，使用 AHP 确定权重，并将加权指标求和得到 WSCI。通过近期烧毁区域作为正例，使用 ROC/AUC 验证指数。",
+      "study_area": "黑山（Montenegro），西巴尔干地区。",
+      "study_period": "数据时段包括 WorldClim 月平均值（1970–2000 年 7 月）、Sentinel-2 影像（2015 年 7 月 25 日）及 CLC 2018；火灾验证使用文本所述近期烧毁区域，未给出明确统一的研究时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CORINE Land Cover (CLC) data",
+          "role_in_study": "提取植被分析区域、提供植被类型，并用于识别近期烧毁区域以验证 WSCI。",
+          "usage": "used_as_data",
+          "evidence_quote": "Vegetation type is informed by CLC data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldClim database",
+          "role_in_study": "提供太阳辐射、降水、最高温度和风速栅格，作为水文气象指标输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Hydro-meteorological information regarding solar radiation, precipitation, maximum temperature, and wind speed rely on raster data (resolution of 30 seconds) derived from WorldClim database (Fick and Hijmans, 2017).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "digital elevation model (DEM) via EEA",
+          "role_in_study": "提供地形坡度、坡向和海拔等地球物理属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "Geophysical properties of the terrain such as slope, aspect, and altitude are provided by digital elevation model (DEM) via EEA.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "tree cover density (TCD)",
+          "role_in_study": "作为燃料属性指标，表示树冠覆盖密度。",
+          "usage": "used_as_data",
+          "evidence_quote": "Whereas, TCD is downloaded as a raster data from Copernicus portal (EEA).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel2 multi-spectral satellite images",
+          "role_in_study": "提供 RED 和 NIR 波段，用于计算 NDVI。",
+          "usage": "used_as_data",
+          "evidence_quote": "Then, within the Sentinel2 layers the band 4 (RED) and band 8 (NIR) are used in the calculation of NDVI index.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.15835_nbha48411993.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.15835_nbha48411993.methods.txt"
+        ],
+        "chars": 15391,
+        "text_mode": "head+methods",
+        "source_sha256": "f64256130951ec4c9732e525205da83ac665dbb8dbf787593daabb5b179b1f3d",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:45",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.15835_nbha48411993.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_17",
+      "source_paper_doi": "10.3390/cli9030047",
+      "source_paper": {
+        "doi": "10.3390/cli9030047",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Coordination of Information on the Environment (CORINE) land cover map",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Coordination of Information on the Environment (CORINE) land cover map",
+          "actual_product_in_paper": "Coordination of Information on the Environment (CORINE) land cover map",
+          "evidence_quotes": [
+            "while the Coordination of Information on the Environment (CORINE) land cover map was adopted to investigate land use classes."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection",
+          "actual_product_in_paper": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection",
+          "evidence_quotes": [
+            "The analysis was based on the time series (TS) of different MODIS collections datasets together with Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection obtained through Google Earth Engine."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The analysis was based on the time series (TS) of different MODIS collections datasets together with Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection obtained through Google Earth Engine.",
+        "Ground weather stations data from the Centro Funzionale VdA ranging from 2000 to 2019 were used.",
+        "while the Coordination of Information on the Environment (CORINE) land cover map was adopted to investigate land use classes."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究探讨意大利西北部奥斯塔谷的山地草场与阔叶林，能否通过卫星遥感监测其物候和植被蒸散发的短期变化，并分析这些变化与气温异常、降水及积雪融化时序的关系。",
+      "hypothesis_or_mechanism": "研究预期积雪持续时间、降水和气温异常会影响植被物候与蒸散发。气候变暖和积雪提前融化可能使生长季开始提前、持续时间延长，并改变植被用水及水循环。",
+      "variables_and_data_use": "研究使用 Terra MODIS 的 MOD13Q1 v.6、MOD16A2 和 MOD10A1 v.6 时间序列，分别提取物候指标、植被蒸散发和雪盖信息；使用 CHIRPS 降水数据及 Centro Funzionale VdA 地面气象站数据分析降水和气温变化。另使用 SRTM DTM 描述地形、CORINE 土地覆盖图识别土地利用类别，并以 TIMESAT 分析物候时间序列。",
+      "method_paradigm": "采用多源卫星遥感时间序列分析，提取物候指标、蒸散发及雪盖时序，并检验其时间趋势及与气象变量的关系。结合地面气象站观测、地形和土地覆盖资料，对奥斯塔谷草场与阔叶林进行区域尺度分析。",
+      "study_area": "意大利西北部奥斯塔谷（阿尔卑斯地区）",
+      "study_period": "2000—2019年",
+      "datasets_used": [
+        {
+          "name_in_paper": "TERRA MODIS MOD13Q1 v.6",
+          "role_in_study": "用于提取植被物候指标（PMs）。",
+          "usage": "used_as_data",
+          "evidence_quote": "In particular, the MOD13Q1 v.6, MOD16A2 and MOD10A1 v.6 collections were used to derive PMs, ET and snow cover maps.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TERRA MODIS MOD16A2",
+          "role_in_study": "用于估算植被蒸散发（ET）。",
+          "usage": "used_as_data",
+          "evidence_quote": "In particular, the MOD13Q1 v.6, MOD16A2 and MOD10A1 v.6 collections were used to derive PMs, ET and snow cover maps.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TERRA MODIS MOD10A1 v.6",
+          "role_in_study": "用于生成雪盖图并分析雪盖融化时序。",
+          "usage": "used_as_data",
+          "evidence_quote": "In particular, the MOD13Q1 v.6, MOD16A2 and MOD10A1 v.6 collections were used to derive PMs, ET and snow cover maps.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection",
+          "role_in_study": "用于分析降水趋势。",
+          "usage": "used_as_data",
+          "evidence_quote": "The analysis was based on the time series (TS) of different MODIS collections datasets together with Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) collection obtained through Google Earth Engine.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Ground weather stations data from the Centro Funzionale VdA",
+          "role_in_study": "用于提供地面气象观测，分析气温异常及气象变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Ground weather stations data from the Centro Funzionale VdA ranging from 2000 to 2019 were used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SRTM (shuttle radar topography mission) DTM (digital terrain model)",
+          "role_in_study": "用于描述研究区局地地形。",
+          "usage": "used_as_data",
+          "evidence_quote": "The SRTM (shuttle radar topography mission) DTM (digital terrain model) was also used to describe local topography",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Coordination of Information on the Environment (CORINE) land cover map",
+          "role_in_study": "用于调查土地利用类别并区分研究对象类别。",
+          "usage": "used_as_data",
+          "evidence_quote": "while the Coordination of Information on the Environment (CORINE) land cover map was adopted to investigate land use classes.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_cli9030047.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_cli9030047.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "dc6c281fc331ad0110e3aa549b90df68af722f096fe66fda40834ae1f6dc1506",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:44",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.3390_cli9030047.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_18",
+      "source_paper_doi": "10.5194/gmd-10-1903-2017",
+      "source_paper": {
+        "doi": "10.5194/gmd-10-1903-2017",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "multi-source precipitation product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "multi-source precipitation product",
+          "actual_product_in_paper": "multi-source precipitation product",
+          "evidence_quotes": [
+            "and a multi-source precipitation product"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "land_cover_context"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "v3a (based on satellite-observed soil moisture, vegetation optical depth and snow-water equivalent, reanalysis air temperature and radiation, and a multi-source precipitation product)",
+        "The latter share most of their forcing, except for the vegetation optical depth and soil moisture, which are based on observations from different passive and active C- and L-band microwave sensors (European Space Agency Climate Change Initiative, ESA CCI) for the v3b data set (spanning 2003–2015) and observations from the Soil Moisture and Ocean Salinity (SMOS) satellite in the v3c data set (spanning 2011–2015)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "本文介绍并评估全球陆地蒸发阿姆斯特丹模型 GLEAM v3 及其生成的陆地蒸发和根区土壤湿度数据集，研究其相较于 GLEAM v2 的改进及其与全球涡度协方差塔和原位土壤湿度观测的一致性。研究对象是全球陆地，而非某一特定区域。",
+      "hypothesis_or_mechanism": "研究通过改进蒸发胁迫、土壤排水和卫星土壤湿度同化机制，预期能更好表示陆地蒸发与根区土壤湿度。其物理机制是结合微波植被光学厚度和根区土壤湿度刻画土壤与植被对陆地干燥的非线性响应，并以多层水量平衡表示降水下渗、蒸发和排水。",
+      "variables_and_data_use": "GLEAM v3 用微波传感器观测的土壤湿度和植被光学厚度约束潜在蒸发并估算蒸发胁迫，以多层土壤水量平衡计算根区土壤湿度；降水用于驱动土壤模块和 Gash 降雨截留模型。论文描述 v3a 使用卫星土壤湿度、植被光学厚度、雪水当量、再分析气温与辐射及多源降水产品；v3b 使用 ESA CCI 观测，v3c 使用 SMOS 卫星观测，并用 91 个涡度协方差塔和 2325 个土壤湿度传感器进行验证。",
+      "method_paradigm": "这是全球卫星遥感驱动的陆地蒸发与根区土壤湿度过程模型及数据集评估研究。模型结合 Priestley–Taylor 潜在蒸发、分层土壤水量平衡、Gash 截留模型和卫星表层土壤湿度同化，并与原位观测及 GLEAM v2 比较。",
+      "study_area": "全球陆地",
+      "study_period": "GLEAM v3a：1980–2015；v3b：2003–2015；v3c：2011–2015。验证期依所用数据集而异。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Global Vegetation Continuous Fields product (MOD44B), based on observations from the Moderate Resolution Image Spectroradiometer (MODIS)",
+          "role_in_study": "提供像元内裸土、低矮植被和高大植被的覆盖比例，用于土地覆盖分数及蒸发通量加权汇总。",
+          "usage": "used_as_data",
+          "evidence_quote": "these fractions are sourced from the Global Vegetation Continuous Fields product (MOD44B), based on observations from the Moderate Resolution Image Spectroradiometer (MODIS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "product of Tuanmu and Jetz (2014)",
+          "role_in_study": "提供像元内开阔水体比例。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the fraction of open water, the product of Tuanmu and Jetz (2014) is used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Gridded Surfaces of Selected Soil Characteristics",
+          "role_in_study": "提供 GLEAM 土壤模块所需的土壤属性。",
+          "usage": "used_as_data",
+          "evidence_quote": "The soil properties used in GLEAM come from the database of Global Gridded Surfaces of Selected Soil Characteristics generated by the International Geosphere-Biosphere Programme Data and Information System (IGBP-DIS, Global Soil Data Task Group, 2000).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite-observed soil moisture",
+          "role_in_study": "作为 v3a 的输入，并为 GLEAM 土壤湿度数据同化提供卫星观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "v3a (based on satellite-observed soil moisture, vegetation optical depth and snow-water equivalent,",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "vegetation optical depth",
+          "role_in_study": "作为卫星观测输入，用于约束潜在蒸发及表征蒸发胁迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "These observations are primarily derived from microwave sensors, including soil moisture and vegetation optical depth used in GLEAM to constrain the potential evaporation rates.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "snow-water equivalent",
+          "role_in_study": "作为 v3a 的输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "v3a (based on satellite-observed soil moisture, vegetation optical depth and snow-water equivalent,",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "reanalysis air temperature and radiation",
+          "role_in_study": "提供 v3a 的气温和辐射驱动数据，用于潜在蒸发计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "reanalysis air temperature and radiation,",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "multi-source precipitation product",
+          "role_in_study": "作为 v3a 降水驱动输入，用于土壤水量平衡和降雨截留计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "and a multi-source precipitation product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Space Agency Climate Change Initiative, ESA CCI",
+          "role_in_study": "为 v3b 提供土壤湿度和植被光学厚度观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "European Space Agency Climate Change Initiative, ESA CCI) for the v3b data set",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Soil Moisture and Ocean Salinity (SMOS) satellite",
+          "role_in_study": "为 v3c 提供土壤湿度和植被光学厚度观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "observations from the Soil Moisture and Ocean Salinity (SMOS) satellite in the v3c data set",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "91 eddy-covariance towers",
+          "role_in_study": "提供蒸发通量验证观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "validated against measurements from 91 eddy-covariance towers",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "2325 soil moisture sensors",
+          "role_in_study": "提供土壤湿度验证观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "and 2325 soil moisture sensors across a broad range of ecosystems.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_gmd-10-1903-2017.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_gmd-10-1903-2017.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "2fe79ca6ffc6725e685051f38d9631a5e9d2d906ffe75afcca270b30fa4ebccc",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:47",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.5194_gmd-10-1903-2017.json",
+        "quote_gate": {
+          "total": 15,
+          "verified": 15
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_19",
+      "source_paper_doi": "10.5194/hess-24-1565-2020",
+      "source_paper": {
+        "doi": "10.5194/hess-24-1565-2020",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Areas equipped for irrigation that are actually irrigated (AEIai) map; Global Reservoir and Dam (WB GRanD) database; 2013 Intact Forest Landscapes (IFL) map",
+        "Climate Hazards group Infrared Precipitation with Stations (CHIRPS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Areas equipped for irrigation that are actually irrigated (AEIai) map; Global Reservoir and Dam (WB GRanD) database; 2013 Intact Forest Landscapes (IFL) map",
+          "actual_product_in_paper": "Areas equipped for irrigation that are actually irrigated (AEIai) map; Global Reservoir and Dam (WB GRanD) database; 2013 Intact Forest Landscapes (IFL) map",
+          "evidence_quotes": [
+            "A map of areas equipped for irrigation that are actually irrigated (AEIai, from FAO and the Rheinische Friedrich-Wilhelms-Universität Bonn; Siebert et al., 2013), a map of water bodies obtained from the Global Reservoir and Dam (WB GRanD) database (Lehner et al., 2011) and a map of 2013 Intact Forest Landscapes (IFL) were used to evaluate how well the ET products identified spatial characteristics."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Climate Hazards group Infrared Precipitation with Stations (CHIRPS)",
+          "actual_product_in_paper": "Climate Hazards group Infrared Precipitation with Stations (CHIRPS)",
+          "evidence_quotes": [
+            "As direct observations of precipitation from gauges were not used, precipitation was taken as the average of the three data products, EWEMBI, CHIRPS and MSWEP."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "As direct observations of precipitation from gauges were not used, precipitation was taken as the average of the three data products, EWEMBI, CHIRPS and MSWEP.",
+        "A map of areas equipped for irrigation that are actually irrigated (AEIai, from FAO and the Rheinische Friedrich-Wilhelms-Universität Bonn; Siebert et al., 2013), a map of water bodies obtained from the Global Reservoir and Dam (WB GRanD) database (Lehner et al., 2011) and a map of 2013 Intact Forest Landscapes (IFL) were used to evaluate how well the ET products identified spatial characteristics."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在评估非洲各流域尺度上遥感蒸散发产品的可靠性，并考察它们对非洲空间差异的刻画能力。",
+      "hypothesis_or_mechanism": "研究以长期流域水量平衡 ET = P − Q 推算的蒸散发作为比较基准，并以 Budyko 曲线作为参考条件；其物理基础是流域蒸散发受水量与能量平衡共同约束。",
+      "variables_and_data_use": "研究比较 CMRSET、ETMonitor、GLEAM、LandFlux-EVAL、MOD16、MTE、SSEBop、WaPOR 和 WECANN 等蒸散发产品；以 E2OBS、WFDEI、EWEMBI、CHIRPS 和 MSWEP 降水产品及 GRDC、VUB HYDR 流量数据计算流域水量平衡蒸散发，并用 Hargreaves、Penman–Monteith 和 Priestley–Taylor 参考潜在蒸散发产品进行 Budyko 评价。另用 AEIai 灌溉区、WB GRanD 水体和 2013 年 IFL 森林图评估蒸散发产品的空间特征，并对产品开展聚类分析。",
+      "method_paradigm": "采用流域水量平衡对比、Budyko 曲线基准评价、土地覆盖要素空间评估和聚类分析的综合产品验证范式。将产品统一投影并重采样至 0.0022° × 0.0022° 网格，以误差、偏差和相关系数等指标进行比较。",
+      "study_area": "非洲；分析对象为非洲主要河流流域及选定的森林、灌溉区和水体。",
+      "study_period": "降水流域平均值计算覆盖 1979—2016 年；蒸散发产品各自的评价时段因产品而异，长期平均值用于流域比较。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CMRSET",
+          "role_in_study": "遥感蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ETMonitor",
+          "role_in_study": "遥感蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GLEAM",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LandFlux-EVAL",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MOD16",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MTE",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SSEBop",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WaPOR",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WECANN",
+          "role_in_study": "蒸散发产品，用于评估流域蒸散发估计和空间差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The derived ET products evaluated in this study include CMRSET, ETMonitor, GLEAM, LandFlux-EVAL, MOD16, MTE, SSEBop, WaPOR and WECANN.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EartH2Observe (E2OBS)",
+          "role_in_study": "降水产品；纳入研究所用降水产品，用于降水评价。",
+          "usage": "used_as_data",
+          "evidence_quote": "The precipitation products used in this study are EartH2Observe (E2OBS), WATCH forcing data methodology applied to ERA-Interim reanalysis (WFDEI), ERA-Interim data Merged and Bias-corrected (EWEMBI), the Climate Hazards group Infrared Precipitation with Stations (CHIRPS) and the Multi-Source Weighted Ensemble Precipitation (MSWEP).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WATCH forcing data methodology applied to ERA-Interim reanalysis (WFDEI)",
+          "role_in_study": "降水产品；纳入研究所用降水产品，用于降水评价。",
+          "usage": "used_as_data",
+          "evidence_quote": "The precipitation products used in this study are EartH2Observe (E2OBS), WATCH forcing data methodology applied to ERA-Interim reanalysis (WFDEI), ERA-Interim data Merged and Bias-corrected (EWEMBI), the Climate Hazards group Infrared Precipitation with Stations (CHIRPS) and the Multi-Source Weighted Ensemble Precipitation (MSWEP).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-Interim data Merged and Bias-corrected (EWEMBI)",
+          "role_in_study": "降水产品；与 CHIRPS、MSWEP 一起取平均，为水量平衡和 Budyko 计算提供降水。",
+          "usage": "used_as_data",
+          "evidence_quote": "As direct observations of precipitation from gauges were not used, precipitation was taken as the average of the three data products, EWEMBI, CHIRPS and MSWEP.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Climate Hazards group Infrared Precipitation with Stations (CHIRPS)",
+          "role_in_study": "降水产品；与 EWEMBI、MSWEP 一起取平均，为水量平衡和 Budyko 计算提供降水。",
+          "usage": "used_as_data",
+          "evidence_quote": "As direct observations of precipitation from gauges were not used, precipitation was taken as the average of the three data products, EWEMBI, CHIRPS and MSWEP.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Multi-Source Weighted Ensemble Precipitation (MSWEP)",
+          "role_in_study": "降水产品；与 EWEMBI、CHIRPS 一起取平均，为水量平衡和 Budyko 计算提供降水。",
+          "usage": "used_as_data",
+          "evidence_quote": "As direct observations of precipitation from gauges were not used, precipitation was taken as the average of the three data products, EWEMBI, CHIRPS and MSWEP.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Runoff Data Centre (GRDC) discharge data",
+          "role_in_study": "河流流量观测，用于计算流域水量平衡蒸散发。",
+          "usage": "used_as_data",
+          "evidence_quote": "Discharge data were obtained from the Global Runoff Data Centre (GRDC) and the Vrije Universiteit Brussels (VUB) Department of Hydrology and Hydraulic Engineering (HYDR).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Vrije Universiteit Brussels (VUB) Department of Hydrology and Hydraulic Engineering (HYDR) discharge data",
+          "role_in_study": "河流流量观测，用于计算流域水量平衡蒸散发。",
+          "usage": "used_as_data",
+          "evidence_quote": "Discharge data were obtained from the Global Runoff Data Centre (GRDC) and the Vrije Universiteit Brussels (VUB) Department of Hydrology and Hydraulic Engineering (HYDR).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Hargreaves reference potential evapotranspiration (Har)",
+          "role_in_study": "参考潜在蒸散发数据，用于 Budyko 评价及与流域潜在蒸散发比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Three global reference potential evapotranspiration (PET) data products developed by Deltares (Sperna Weiland et al., 2015) are used based on the Hargreaves (Har; Hargreaves and Samani, 1985), Penman–Monteith (P–M; Montieth, 1965; Penman, 1948) and Priestly–Taylor (P–T; Priestley and Taylor, 1972) approaches.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Penman–Monteith (P–M) reference potential evapotranspiration",
+          "role_in_study": "参考潜在蒸散发数据，用于 Budyko 评价及与流域潜在蒸散发比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Three global reference potential evapotranspiration (PET) data products developed by Deltares (Sperna Weiland et al., 2015) are used based on the Hargreaves (Har; Hargreaves and Samani, 1985), Penman–Monteith (P–M; Montieth, 1965; Penman, 1948) and Priestly–Taylor (P–T; Priestley and Taylor, 1972) approaches.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Priestly–Taylor (P–T) reference potential evapotranspiration",
+          "role_in_study": "参考潜在蒸散发数据，用于 Budyko 评价及与流域潜在蒸散发比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Three global reference potential evapotranspiration (PET) data products developed by Deltares (Sperna Weiland et al., 2015) are used based on the Hargreaves (Har; Hargreaves and Samani, 1985), Penman–Monteith (P–M; Montieth, 1965; Penman, 1948) and Priestly–Taylor (P–T; Priestley and Taylor, 1972) approaches.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Major River Basins of the World (MRBW) shapefile",
+          "role_in_study": "提供流域边界和面积，用于计算流域平均降水、流量换算及蒸散发统计。",
+          "usage": "used_as_data",
+          "evidence_quote": "Catchment or basin areas were taken from the “Major River Basins of the World” (MRBW) shapefile (World Bank, 2017).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Areas equipped for irrigation that are actually irrigated (AEIai) map",
+          "role_in_study": "灌溉区空间要素图，用于评估蒸散发产品对灌溉区特征的识别。",
+          "usage": "used_as_data",
+          "evidence_quote": "A map of areas equipped for irrigation that are actually irrigated (AEIai, from FAO and the Rheinische Friedrich-Wilhelms-Universität Bonn; Siebert et al., 2013), a map of water bodies obtained from the Global Reservoir and Dam (WB GRanD) database (Lehner et al., 2011) and a map of 2013 Intact Forest Landscapes (IFL) were used to evaluate how well the ET products identified spatial characteristics.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Reservoir and Dam (WB GRanD) database",
+          "role_in_study": "水体空间要素图，用于评估蒸散发产品在水体上的估计。",
+          "usage": "used_as_data",
+          "evidence_quote": "A map of areas equipped for irrigation that are actually irrigated (AEIai, from FAO and the Rheinische Friedrich-Wilhelms-Universität Bonn; Siebert et al., 2013), a map of water bodies obtained from the Global Reservoir and Dam (WB GRanD) database (Lehner et al., 2011) and a map of 2013 Intact Forest Landscapes (IFL) were used to evaluate how well the ET products identified spatial characteristics.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "2013 Intact Forest Landscapes (IFL) map",
+          "role_in_study": "森林空间要素图，用于评估蒸散发产品在森林区域的估计。",
+          "usage": "used_as_data",
+          "evidence_quote": "A map of areas equipped for irrigation that are actually irrigated (AEIai, from FAO and the Rheinische Friedrich-Wilhelms-Universität Bonn; Siebert et al., 2013), a map of water bodies obtained from the Global Reservoir and Dam (WB GRanD) database (Lehner et al., 2011) and a map of 2013 Intact Forest Landscapes (IFL) were used to evaluate how well the ET products identified spatial characteristics.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-24-1565-2020.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-24-1565-2020.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "d5b3e32043f9ab395f49a72fcc0a971247189f4a6ece28cce6bf4558adeab75a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:59",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.5194_hess-24-1565-2020.json",
+        "quote_gate": {
+          "total": 27,
+          "verified": 27
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_006_ref_20",
+      "source_paper_doi": "10.5194/hess-26-1481-2022",
+      "source_paper": {
+        "doi": "10.5194/hess-26-1481-2022",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "European Space Agency Climate Change Initiative (ESA, 2017) LULC data",
+        "CORDEX-Africa regional climate model (RCM) precipitation datasets"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "land_cover_context",
+          "anchor_product": "Copernicus Global Land Cover 100 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "European Space Agency Climate Change Initiative (ESA, 2017) LULC data",
+          "actual_product_in_paper": "European Space Agency Climate Change Initiative (ESA, 2017) LULC data",
+          "evidence_quotes": [
+            "Based on high-resolution LULC data available between 1992 and 2015 from the European Space Agency Climate Change Initiative (ESA, 2017), LULC maps for 1992, 2005, and 2015 are used"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CORDEX-Africa regional climate model (RCM) precipitation datasets",
+          "actual_product_in_paper": "CORDEX-Africa regional climate model (RCM) precipitation datasets",
+          "evidence_quotes": [
+            "The climate variables used in this study are daily data of rainfall and minimum, maximum, and average air temperature"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "the bias-corrected climate projection datasets are used as input in the fully distributed mesoscale Hydrologic Model (mHM) to assess the impact of climate change on multiple hydrological fluxes and state variables.",
+        "LULC maps for 1992, 2005, and 2015 are used for the periods 1951–1990, 1991–2020, and 2021–2100, respectively."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在评估全球变暖及不同温室气体排放情景下，西非沃尔特河流域水资源和水文过程将如何变化，尤其是降雨季节性及多种水文通量和状态变量的变化。",
+      "hypothesis_or_mechanism": "不同排放情景会造成不同的气候变化，从而使沃尔特河流域的降雨季节性和水文过程出现对比性变化。经多变量偏差订正的气候投影可作为水文模型输入，用于评估这些变化。",
+      "variables_and_data_use": "研究使用CMIP5全球气候模式经CORDEX-Africa区域气候模式动力降尺度得到的日降雨和最低、最高及平均气温数据，并以卫星和再分析降雨、气温产品评估气候数据；采用WFDEI作为偏差订正参考数据。研究将偏差订正后的气候投影输入mesoscale Hydrologic Model（mHM），并使用ESA Climate Change Initiative高分辨率土地覆盖数据中1992、2005和2015年的地图设置不同时段的土地覆盖。",
+      "method_paradigm": "采用多模式气候投影评估、R2D2多变量偏差订正与分布式水文模拟相结合的情景分析范式；边际分布通过CDF-t调整，变量间及站点间依赖结构通过R2D2调整。之后用mHM模拟水文过程，并分析未来变化及高低流量。",
+      "study_area": "西非沃尔特河流域（Volta River basin），跨贝宁、布基纳法索、科特迪瓦、加纳、马里和多哥。",
+      "study_period": "气候模式数据覆盖1951—2100年；水文模型运行期为1951—2100年，历史基准期为1991—2020年，未来评估期包括2021—2050年、2051—2080年和2071—2100年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CMIP5 general circulation models (GCMs) dynamically downscaled by CORDEX-Africa regional climate models (RCMs)",
+          "role_in_study": "提供历史及未来情景下的日降雨和最低、最高、平均气温，经过偏差订正后输入mHM进行水文投影。",
+          "usage": "used_as_data",
+          "evidence_quote": "12 GCMs from CMIP5 dynamically downscaled with five RCMs available from the CORDEX-Africa initiative are selected for this study",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite-based and reanalysis-based rainfall datasets",
+          "role_in_study": "作为降雨参考观测数据，用于评估气候投影数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "the climate projection datasets are evaluated with respect to 10 satellite-based and reanalysis-based rainfall datasets and six temperature datasets",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite-based and reanalysis-based temperature datasets",
+          "role_in_study": "作为气温参考数据，用于评估气候投影数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "the climate projection datasets are evaluated with respect to 10 satellite-based and reanalysis-based rainfall datasets and six temperature datasets",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WFDEI",
+          "role_in_study": "提供降雨和气温参考数据，作为气候数据多变量偏差订正的参考数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "the WFDEI, because it has both rainfall and temperature data over a long period (1979–2016).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "mesoscale Hydrologic Model (mHM)",
+          "role_in_study": "以偏差订正后的气候投影为输入，模拟水文通量和状态变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "the bias-corrected climate projection datasets are used as input in the fully distributed mesoscale Hydrologic Model (mHM)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Space Agency Climate Change Initiative (ESA, 2017) LULC data",
+          "role_in_study": "提供1992、2005和2015年土地覆盖地图，用于模型期内不同时段的土地覆盖设置。",
+          "usage": "used_as_data",
+          "evidence_quote": "Based on high-resolution LULC data available between 1992 and 2015 from the European Space Agency Climate Change Initiative (ESA, 2017), LULC maps for 1992, 2005, and 2015 are used",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-1481-2022.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-26-1481-2022.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "c5661f0ae65593efad5bf7d3ffd5e3241cd24b91304adcf338d13322295e723c",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:31:56",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_006/10.5194_hess-26-1481-2022.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010",
+  "quality": {
+    "paper_count": 20,
+    "semantic_directions_extracted": true,
+    "direction_count": 20,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 20,
+    "complete_member_combination_count": 18,
+    "disputed_complete_pending_recheck_count": 0,
+    "partial_set_support_count": 2,
+    "component_support_count": 2,
+    "zero_member_support_count": 0,
+    "member_conflict_count": 0,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  }
+}

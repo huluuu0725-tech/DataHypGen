@@ -1,0 +1,793 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_046",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:NASA/GDDP-CMIP6",
+    "spatial_resolution": "0.25 degree",
+    "temporal_resolution": "daily, 2014-2100 scenarios",
+    "gee_asset": {
+      "id": "NASA/GDDP-CMIP6",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/GDDP-CMIP6",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_046.json",
+    "source_sha256": "647b39322bf242daa755afec6096b18137ca57a28b7d93c47fec3800d5180940",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_046/prompt.json",
+    "current_prompt_sha256": "f4a95865daa75f6581ec5e34f359c9666048720cb62e191fdf8b3eb3c8041981",
+    "original_anchor_asset": {
+      "id": "NASA/GDDP-CMIP6",
+      "observable_group": "nex_gddp_cmip6_downscaled_climate_projections",
+      "kind": "climate_projection",
+      "title": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+      "observation_identity_contract": {
+        "physical_object": "bias-corrected downscaled daily climate projections",
+        "source_lineage": "NASA Earth Exchange GDDP CMIP6 lineage (bias-correction/downscaling of CMIP6 GCM daily output)",
+        "core_measurement_semantics": "NEX-GDDP-CMIP6 daily downscaled precipitation and temperature fields under CMIP6 scenarios",
+        "non_material_variations": "GCM member, scenario (SSP), archive, grid, or temporal aggregation retaining NEX-GDDP-CMIP6 downscaled output",
+        "material_mismatches": "raw CMIP6 GCM output, CMIP5-based NEX-GDDP, CORDEX, WorldClim/CHELSA climatologies, or reanalysis without the NEX-GDDP-CMIP6 downscaling lineage"
+      },
+      "asset_alias_policy": "Only the NEX-GDDP-CMIP6 downscaled projection family is admitted; raw CMIP6 GCM output and other downscaled/climatology products may be companions but are not aliases."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "不同 CMIP6 情景下，非洲未来湿球黑球温度将如何变化，以及这些变化对非洲国家承办非洲国家杯的适宜性有何影响？",
+      "hypothesis_or_mechanism": "增暖及湿度和短波辐射变化会共同改变 WBGT，导致高热风险月份和地区扩大，并影响承办赛事的适宜性。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的 tas、hurs 和 rsds 计算日 WBGT，并比较三个 SSP 情景下近未来和远未来相对于 1985–2014 基准期的变化；使用 ERA5 和 SARAH-3 作为参考数据评估模式表现。",
+      "method_paradigm": "气候影响评估与不确定性分析",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "ERA5",
+        "SARAH-3"
+      ],
+      "author_team": [
+        "Windmanagda Sawadogo",
+        "Jan Bliefernicht",
+        "Aïssatou Faye",
+        "Harald Günter Kunstmann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Where should sports events be held under global warming? A case study of the African Cup of Nations",
+        "doi": "10.1016/j.scs.2024.106091",
+        "year": 2024,
+        "venue": "Sustainable Cities and Society",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "不同共享社会经济路径下，复合热旱事件的频率、持续时间及温度和降水强度将如何变化？",
+      "hypothesis_or_mechanism": "未来增暖将使高温与低降水更频繁地同时发生，并扩大受复合热旱影响的区域和事件强度。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的逐日平均温度和降水，以 1981—2010 年各模式成员数据计算第 90 和第 10 百分位阈值，识别复合热旱事件并计算持续时间、降水强度和温度强度；使用 CN0.5 和 ERA5 对历史期结果进行验证。",
+      "method_paradigm": "气候情景投影与极端事件分析",
+      "used_assets": [
+        "NASA Earth Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)",
+        "National Meteorological Information Center (CN0.5)",
+        "ERA5"
+      ],
+      "author_team": [
+        "Yizhuo Wen",
+        "Junhong Guo",
+        "Feng Wang",
+        "Zhenda Hao",
+        "Yifan Fei",
+        "Aili Yang",
+        "Yurui Fan",
+        "Faith Ka Shun Chan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "A high-resolution dataset for future compound hot-dry events under climate change",
+        "doi": "10.1038/s41597-024-03883-z",
+        "year": 2024,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "研究新疆未来不同 SSP 情景下热浪及其人口暴露的变化。",
+      "hypothesis_or_mechanism": "气候变化与人口变化共同影响未来热浪人口暴露，二者还可能产生交互效应。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 气候模式数据投影热浪，使用 CN05.1 逐日最高气温和相对湿度观测评估模式表现，并结合中国 SSP 人口网格预估计算不同未来时期的人口热浪暴露及气候、人口和交互贡献。",
+      "method_paradigm": "多模式集合与暴露归因",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "CN05.1",
+        "Provincial and gridded population projection for China under shared socioeconomic pathways from 2010 to 2100"
+      ],
+      "author_team": [
+        "Diwen Dong",
+        "Hui Tao",
+        "Zengxin Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Projected population exposure to heatwaves in Xinjiang Uygur autonomous region, China",
+        "doi": "10.1038/s41598-024-54885-1",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "不同全球升温水平和 SSP 情景下，未来温度极端将如何变化？",
+      "hypothesis_or_mechanism": "随着全球升温水平提高，极端高温和热夜等温度极端将发生显著变化，且变化幅度随排放情景而异。",
+      "variables_and_data_use": "使用 NEX-GDDP CMIP6 多模式逐日最高温和最低温，计算温度极端指数并比较不同全球升温水平及 SSP 情景；使用 ERA5 再分析温度评估历史模拟表现。",
+      "method_paradigm": "气候情景投影与极端指数分析",
+      "used_assets": [
+        "NEX-GDDP data from CMIP6",
+        "ERA5 reanalysis temperature dataset"
+      ],
+      "author_team": [
+        "Buri Vinodhkumar",
+        "Safi Ullah",
+        "T. V. Lakshmi Kumar",
+        "Sami G. Al‐Ghamdi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Amplification of temperature extremes in Arabian Peninsula under warmer worlds",
+        "doi": "10.1038/s41598-024-67514-8",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "美国住宅部门未来气候驱动的夏季制冷需求估算，在使用日尺度与小时尺度温度时有何差异？",
+      "hypothesis_or_mechanism": "小时尺度温度能够捕捉日内极端高温和变化，因此相较日均温度可能更充分地反映制冷需求变化。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的未来逐日最高和最低温度投影，并结合 ERA5 历史小时温度推算未来小时温度；使用 ERA5 太阳辐射计算太阳热增益，再计算可变度日和可变度小时指标。",
+      "method_paradigm": "气候投影重构与需求评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "ERA5"
+      ],
+      "author_team": [
+        "Gesang Gesangyangji",
+        "Tracey Holloway",
+        "Daniel James Vimont",
+        "Alessio Mastrucci",
+        "Edward A. Byers",
+        "Summer Joy Acker"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "The hours matter: comparing indicators of US residential cooling from hourly versus daily climate variables",
+        "doi": "10.1088/1748-9326/adbd54",
+        "year": 2025,
+        "venue": "Environmental Research Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "在不同气候与社会经济情景下，美国县级老年人口的慢性和极端热暴露将如何变化？",
+      "hypothesis_or_mechanism": "气候变暖、人口规模变化和人口老龄化共同推动老年人口热暴露增加，其相对贡献随情景和地区而异。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的逐日平均和最高气温，计算冷却度日及最高温度第 95 百分位，并与县级人口投影结合，构造人口加权热暴露指标和变化分解。",
+      "method_paradigm": "情景影响评估与分解分析",
+      "used_assets": [
+        "NASA Earth Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)",
+        "county-level population projections",
+        "data generated by Striessnig et al. (2019)"
+      ],
+      "author_team": [
+        "Deborah Carr",
+        "Giacomo Falchetta",
+        "Ian Sue Wing"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Population Aging and Heat Exposure in the 21st Century: Which U.S. Regions Are at Greatest Risk and Why?",
+        "doi": "10.1093/geront/gnad050",
+        "year": 2023,
+        "venue": "The Gerontologist",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "如何利用机器学习将逐日气候投影时间降尺度为全球逐小时温湿指数，以刻画未来奶牛热应激？",
+      "hypothesis_or_mechanism": "历史逐小时温度和湿度与日尺度气候特征、日长及季节信息之间的关系，可由机器学习模型学习并用于生成未来逐小时温湿指数。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的逐日平均、最低和最高温度及平均相对湿度作为未来预测输入；使用 ERA5 逐小时数据计算温湿指数并训练模型，并以 ERA5-Land 检验模型在较高空间分辨率数据上的表现。",
+      "method_paradigm": "机器学习时间降尺度",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "ERA5 reanalysis",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Pantelis Georgiades",
+        "Theo Economou",
+        "Yiannis Proestos",
+        "Jose Araya",
+        "Jos Lelieveld",
+        "Marco Neira"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Global projections of heat stress at high temporal resolution using machine learning",
+        "doi": "10.5194/essd-17-1153-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "基于 NEX-GDDP-CMIP6 数据评估撒哈拉以南非洲未来近期（2031-2060）和远期（2061-2090）在不同排放情景下均值降水和极端降水的变化特征",
+      "hypothesis_or_mechanism": "温室气体驱动的增温将改变降水特征，导致降水强度增加、干旱延长和季节模式变化，且这些变化在区域和季节上存在空间异质性",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的 26 个模式在 SSP1-2.6、SSP2-4.5 和 SSP5-8.5 情景下的日降水数据，计算年和季节（DJF、MAM、SON）均值降水，以及 9 个 ETCCDI 极端降水指数（CDD、CWD、RR1、R10mm、R20mm、Rx1day、R95p、R99p、SDII），对比历史期（1985-2014）与未来期的变化",
+      "method_paradigm": "气候预估变化检测",
+      "used_assets": [
+        "NEX-GDDP-CMIP6"
+      ],
+      "author_team": [
+        "Sydney Samuel",
+        "Gizaw Mengistu Tsidu",
+        "Alessandro Dosio",
+        "Kgakgamatso Mphale"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Assessment of Historical and Future Mean and Extreme Precipitation Over Sub‐Saharan Africa Using NEX ‐ GDDP ‐ CMIP6 : Part II —Future Changes",
+        "doi": "10.1002/joc.70179",
+        "year": 2025,
+        "venue": "International Journal of Climatology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "气候变化如何影响加拿大葡萄种植区的生长季适宜性及未来栽培潜力？",
+      "hypothesis_or_mechanism": "生长季气候变化可能使部分地区更适宜种植其他葡萄品种，同时干旱、热浪和高温也可能增加葡萄种植风险。",
+      "variables_and_data_use": "片段提及生长季适宜性、最高 NST、干旱和热浪，但未说明实际使用的产品、数据集或具体变量输入方式。",
+      "method_paradigm": "气候影响评估",
+      "used_assets": [],
+      "author_team": [
+        "Massimiliano Nicola Lippa",
+        "Paolo Tarolli",
+        "Eugenio Straffelini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Climate change impacts and the reshaping of Canadian viticulture",
+        "doi": "10.1016/j.isci.2025.111941",
+        "year": 2025,
+        "venue": "iScience",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "阿联酋未来气候情景下降水极值事件的变化特征与趋势",
+      "hypothesis_or_mechanism": "在全球变暖背景下，阿拉伯半岛南部中尺度对流系统将增强，导致极端降水事件显著增加",
+      "variables_and_data_use": "使用 NEX-GDDP CMIP6 的 30 个模式日降水数据，计算多模式平均，提取四个 ETCCDI 降水极值指数，分析历史期（1985-2014）及未来三个时段（2021-2050、2051-2080、2081-2100）在 SSP1-2.6、SSP2-4.5、SSP5-8.5 情景下的空间和时间变化趋势",
+      "method_paradigm": "气候模式集合分析 趋势检测",
+      "used_assets": [
+        "NEX-GDDP CMIP6",
+        "CPC daily precipitation"
+      ],
+      "author_team": [
+        "K. Koteswara Rao",
+        "Abdulla Al Mandous",
+        "Mohamed Al Ebri",
+        "Noora Al Hameli",
+        "Mohamed Rakib",
+        "Shamsa Al Kaabi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Future changes in the precipitation regime over the Arabian Peninsula with special emphasis on UAE: insights from NEX-GDDP CMIP6 model simulations",
+        "doi": "10.1038/s41598-023-49910-8",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "气候变化下全球玉米产量的未来波动与重大减产风险如何变化，灌溉扩张和市场整合能否降低这些风险？",
+      "hypothesis_or_mechanism": "温度胁迫和降水变化会影响玉米产量，灌溉扩张及市场整合可能缓解产量波动和减产风险。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 气候数据驱动玉米产量响应函数，依据生长季温度指标和累计降水估算产量变化，并计算区域产量波动及重大损失风险。",
+      "method_paradigm": "统计产量响应与情景风险评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "CMIP6"
+      ],
+      "author_team": [
+        "Iman Haqiqi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Trade can buffer climate-induced risks and volatilities in crop supply",
+        "doi": "10.1088/2976-601x/ad7d12",
+        "year": 2024,
+        "venue": "Environmental Research Food Systems",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究不同 CMIP6 排放情景下，中国未来热应激相关死亡及其区域差异将如何变化。",
+      "hypothesis_or_mechanism": "未来升温与湿度变化会改变热应激水平，并通过既有的热应激—死亡暴露响应关系影响热相关死亡；不同情景和模式会带来结果差异。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的逐日地表气温和相对湿度计算热应激指数，结合历史死亡记录建立暴露响应关系，并结合 SSP 人口数据估算未来各网格及区域的热相关死亡。",
+      "method_paradigm": "气候健康影响评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "population dataset",
+        "Chinese Centre for Disease Control and Prevention (CDC)"
+      ],
+      "author_team": [
+        "Guwei Zhang",
+        "Ling Han",
+        "Jiajun Yao",
+        "Jiaxi Yang",
+        "Zhiqi Xu",
+        "Xiuhua Cai",
+        "Jin Huang",
+        "Lin Pei"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessing future heat stress across China: combined effects of heat and relative humidity on mortality",
+        "doi": "10.3389/fpubh.2023.1282497",
+        "year": 2023,
+        "venue": "Frontiers in Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "未来不同排放情景下，帕拉奥佩巴河流域的径流特征、水文极端和水资源许可冲突将如何变化？",
+      "hypothesis_or_mechanism": "气候情景下的降水和气象条件变化会改变流域径流及枯水流量，从而影响水文极端和用水许可与可用水量之间的关系。",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的逐日气候预测，筛选七个气候模式并采用 SSP245、SSP585 情景，将气象变量驱动 MHD-INPE 水文模型；使用 BR-DWGD 观测降水评估气候模式，并分析未来径流指标及许可用水冲突。",
+      "method_paradigm": "气候情景驱动的分布式水文影响评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "BR-DWGD",
+        "MHD-INPE"
+      ],
+      "author_team": [
+        "Claudiana Mesquita de Alvarenga",
+        "Lívia Alves Alvarenga",
+        "Pâmela Aparecida Melo",
+        "Javier Tomasella",
+        "Pâmela Rafanele França Pinto",
+        "Carlos Rogério de Mello",
+        "Jorge M. G. P. Isidoro"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impacts of Climate Change on the Hydrology of a Highly Disturbed Tropical River Basin",
+        "doi": "10.3390/earth7020052",
+        "year": 2026,
+        "venue": "Earth",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "如何开发和实现一个开源平台，简化对 NASA 地球观测遥感数据（包括 NEX-GDDP-CMIP6 气候预估数据）的访问、处理和可视化，并将其无缝集成到水文模型框架中？",
+      "hypothesis_or_mechanism": "通过构建 NASAaccess 软件包（R、conda 和 Tethys 平台），可以降低技术门槛，使科学家和利益相关者能够高效访问和使用 NASA 的 NEX-GDDP-CMIP6 等多种遥感数据产品，支持更全面的计算密集型建模框架",
+      "variables_and_data_use": "论文开发的 NASAaccess 平台支持访问 NEX-GDDP-CMIP6 数据集的日降尺度降水和温度变量，通过自动化下载、裁剪、重格式化和可视化功能，将这些变量转换为兼容 VIC、DHSVM、RHESSys 和 SWAT 等水文模型的输入格式",
+      "method_paradigm": "软件工具开发与数据访问平台构建",
+      "used_assets": [
+        "NASA Earth Exchange Global Daily Downscaled Projections (NEX-GDDP) CMIP6",
+        "Global Precipitation Measurement (GPM) IMERG",
+        "Global Land Data Assimilation System (GLDAS)",
+        "NASA Earth Exchange Global Daily Downscaled Projections (NEX-GDDP) CMIP5"
+      ],
+      "author_team": [
+        "Ibrahim Nourein Mohammed",
+        "Elkin Giovanni Romero Bustamante",
+        "John Bolten",
+        "E. James Nelson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Technical note: NASAaccess – a tool for access, reformatting, and visualization of remotely sensed earth observation and climate data",
+        "doi": "10.5194/hess-27-3621-2023",
+        "year": 2023,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "研究未来印度特大城市及半干旱蒂鲁帕蒂地区极端降水和暖日将如何变化。",
+      "hypothesis_or_mechanism": "现有文本没有提供假设或变化机制，无法判断。",
+      "variables_and_data_use": "标题提及极端降水和暖日，但所提供的 Methods/Data 内容未说明实际使用的数据产品、变量或分析方式。",
+      "method_paradigm": "气候变化建模",
+      "used_assets": [],
+      "author_team": [
+        "Kaagita Venkatramana",
+        "Venugopal Thandlam",
+        "Venkatramana Reddy Sakirevupalli",
+        "Byju Pookkandy",
+        "Sarojamma Bathireddy Gari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Future changes in extreme precipitation and warm days over megacities of India and the semi-arid Tirupati district",
+        "doi": "10.54302/mausam.v76i4.7112",
+        "year": 2025,
+        "venue": "MAUSAM",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "不同 CMIP6 排放情景下，2031—2050 年的降雨变化将如何影响 Aceh Province 的洪水易发风险分布？",
+      "hypothesis_or_mechanism": "未来降雨变化与地形、土壤和土地覆盖共同作用，形成空间上不同的洪水风险等级。",
+      "variables_and_data_use": "使用 TaiESM1 的 NEX-GDDP-CMIP6 降雨数据构建 SSP2-4.5 和 SSP5-8.5 未来降雨图层，并与地形、土地覆盖、土壤类型及 DEMNAS 数据叠加加权；以 2008—2024 年历史洪水事件验证结果。",
+      "method_paradigm": "GIS 洪水风险评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "TaiESM1",
+        "Indonesian topographic data",
+        "land cover",
+        "soil type",
+        "DEMNAS",
+        "historical flood events for the period 2008-2024"
+      ],
+      "author_team": [
+        "Nengah Bennuwardana",
+        "Sukendra Martha",
+        "Yosef Prihanto",
+        "Dangan Waluyo",
+        "Firmansyah Firmansyah",
+        "Bachtiar Rifai"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Spatial Analysis of Flood Risk Projections in Aceh Province Using Coupled Model Intercomparison Project Phase 6 (CMIP6) Climate Models and GIS",
+        "doi": "10.55927/fjas.v4i8.317",
+        "year": 2025,
+        "venue": "Formosa Journal of Applied Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "在气候变化和非平稳条件下，NEX-GDDP-CMIP6气候投影能否用于预测金属矿区地下水位变化？",
+      "hypothesis_or_mechanism": "降雨和蒸散发变化会改变含水层补给与耗散过程，从而导致地下水位下降及其变异性在未来增加。",
+      "variables_and_data_use": "使用NEX-GDDP-CMIP6提供的总月降雨量和蒸散发值作为气候预测变量，使用NIHR提供的45口观测井月地下水位作为目标变量，并通过HGBR机器学习模型和时间分解预测地下水动态。",
+      "method_paradigm": "机器学习影响评估",
+      "used_assets": [
+        "NEX-GDDP-CMIP6",
+        "Cuba's National Institute of Hydraulic Resources (NIHR)"
+      ],
+      "author_team": [
+        "D. L. Ustyugov",
+        "H. L. Noa Segura",
+        "Y. C. Mila Doma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Modeling scenarios of groundwater dynamics variation using machine learning algorithms and remote sensing data",
+        "doi": "10.17580/gzh.2026.06.01",
+        "year": 2026,
+        "venue": "Gornyi Zhurnal",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "未来气候情景下全球肉牛热应激暴露的时空演变特征",
+      "hypothesis_or_mechanism": "气候变暖将导致极端热应激区域面积扩大，威胁肉牛福利和畜牧业生产",
+      "variables_and_data_use": "使用 NEX-GDDP-CMIP6 的日尺度气温、短波辐射、风速、相对湿度（1985–2100，四个 SSP 情景，27 个 GCM），聚合为季节平均值，计算热负荷指数（HLI），划分热应激等级，量化极端热应激区域面积的全球和国家尺度变化",
+      "method_paradigm": "气候影响评估 多模式集合",
+      "used_assets": [
+        "NEX-GDDP-CMIP6"
+      ],
+      "author_team": [
+        "Giampiero Grossi",
+        "Andrea Vitali",
+        "Nicola Lacetera",
+        "Chiara Rossi",
+        "Nicola Lacetera"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Integrating climate scenarios and thermal welfare thresholds to project future heat stress risk in beef cattle",
+        "doi": "10.1007/s00484-026-03217-1",
+        "year": 2026,
+        "venue": "International Journal of Biometeorology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究不同干旱指数如何刻画 Mahanadi River Basin 的历史与未来干旱风险，以及 SSP2-4.5 和 SSP5-8.5 情景下气候变化将如何影响下游水资源压力。",
+      "hypothesis_or_mechanism": "未来降水减少和气温升高将增强蒸散与水分亏缺，使长期尺度的气象干旱加剧并增加水库和农业水资源压力。",
+      "variables_and_data_use": "使用 IMD 的历史逐日降水和 NASA NEX-GDDP CMIP6 的逐日降水、最高气温和最低气温；将降水数据用于 SPI、CZI、降雨距平和 Z-score 计算，并利用 SSP2-4.5 与 SSP5-8.5 的 NEX-GDDP 未来数据评估 2020—2060 年干旱变化，同时结合水库、作物产量和历史干旱记录进行验证。",
+      "method_paradigm": "情景投影与干旱指数评估",
+      "used_assets": [
+        "The Indian Meteorological Department (IMD), Pune",
+        "NASA NEX-GDDP CMIP6 data datasets",
+        "NASA NEX-GDDP CMIP6",
+        "NEXGDDP future data",
+        "reservoir levels from the Central Water Commission",
+        "crop yield records from the Odisha State Disaster Management Authority (2002–2018)",
+        "historical drought reports"
+      ],
+      "author_team": [
+        "Asit Kumar Dandapat",
+        "Prafulla Kumar Panda",
+        "Sovan Sankalp",
+        "Muralitharan Jothiman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Evaluating drought risks and metrological hazards in the Mahanadi basin: impact of precipitation deficits and climate change on the downstream regions of Hirakud dam",
+        "doi": "10.1007/s42452-025-07310-9",
+        "year": 2025,
+        "venue": "Discover Applied Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究不同CMIP6模式和排放情景下未来寒冷天气复合极端事件在研究区域的变化及其不确定性。",
+      "hypothesis_or_mechanism": "模式结构差异和情景差异共同驱动寒冷天气复合极端事件变化的不确定性，并且其相对贡献随未来时期变化。",
+      "variables_and_data_use": "使用NEXGDDP-CMIP6的日最低温度和降水数据识别寒冷天气复合事件，基于多个CMIP6模式、四种SSP情景和多个未来时段计算事件变化、相对异常及模式和情景不确定性，并使用CN05.1观测数据进行模拟评估。",
+      "method_paradigm": "气候极端事件评估",
+      "used_assets": [
+        "CN05.1",
+        "NEXGDDP-CMIP6"
+      ],
+      "author_team": [
+        "Yunlong Du",
+        "Yun Chai",
+        "Xuesong Huo",
+        "Huawei Liu",
+        "Liang Lin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Projection of cold and wet compound events in the Yangtze River Basin based on NEX-GDDP-CMIP6 downscaling simulations",
+        "doi": "10.1007/s42452-026-09038-6",
+        "year": 2026,
+        "venue": "Discover Applied Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "研究未来不同SSP情景下长江流域极端降水及其人口和GDP暴露将如何变化。",
+      "hypothesis_or_mechanism": "NEX-GDDP-CMIP6模拟的极端降水变化将通过改变极端降水事件发生天数，并与人口和GDP增长共同作用，驱动社会经济暴露变化。",
+      "variables_and_data_use": "使用NEX-GDDP-CMIP6的日尺度降水计算RX1day、RX5day及10年和20年重现期极端降水，使用CN05.1观测降水评估模型表现，并结合人口和GDP投影计算人口暴露与GDP暴露及其气候、人口或GDP和交互效应。",
+      "method_paradigm": "气候影响与暴露评估",
+      "used_assets": [
+        "CN05.1",
+        "NASA Earth Exchange Global Daily Downscaled Projections (NEX-GDDP)",
+        "NEX-GDDP-CMIP6",
+        "gridded projections of population and Gross Domestic Product (GDP) developed under Chinas universal two-child policy scenario"
+      ],
+      "author_team": [
+        "Yinan Guo",
+        "Yujia Bai",
+        "Zhifu Zhang",
+        "Yongli Dou",
+        "Juliao Qiu",
+        "Xi Gong",
+        "Lingling Wu",
+        "Li Zhou",
+        "Keying Liu",
+        "Zhongshun Gu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Intensifying extreme precipitation amplifies socioeconomic exposure in the Yangtze River Basin",
+        "doi": "10.1038/s41598-026-64257-6",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "研究评估基于NEX-GDDP-CMIP6气候投影构建的干旱指标如何表征未来干旱的频率、持续时间、强度及综合危害。",
+      "hypothesis_or_mechanism": "偏差校正和降尺度的CMIP6降水与温度变化将通过降水亏缺和潜在蒸散发增强共同改变干旱的发生频率、持续时间和强度。",
+      "variables_and_data_use": "使用bias-corrected NEX-GDDP-CMIP6 projections中的降水和温度相关变量，基于FAO-56 Penman–Monteith方法计算潜在蒸散发，再计算SPEI；通过run theory提取干旱频率、持续时间和强度，并加权归一化形成DHI，随后进行分级、季节聚合、历史验证以及降水与潜在蒸散发归因分析。",
+      "method_paradigm": "气候投影与干旱风险评估",
+      "used_assets": [
+        "bias-corrected NEX-GDDP-CMIP6 projections",
+        "MPI-ESM1-2-LR"
+      ],
+      "author_team": [
+        "P. Sreelakshmi",
+        "Sushant Sawant"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Assessment of drought hazard change across agro-climatic regions of India under 2 °C, 3 °C and 4 °C warming levels based on CMIP6 projections",
+        "doi": "10.1186/s40677-026-00402-7",
+        "year": 2026,
+        "venue": "Geoenvironmental Disasters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "在不同 CMIP6 排放情景和未来时期下，全球户外运动面临的热应激、热浪和强降雨风险将如何变化？",
+      "hypothesis_or_mechanism": "气候变暖及其伴随的湿度和降水变化将增加户外运动期间的热生理压力、极端高温暴露、热浪和强降雨风险，并可能影响赛事时段安排。",
+      "variables_and_data_use": "使用 NASA NEX-GDDP-CMIP6 的日尺度温度、相对湿度和降水相关投影，选取五个 CMIP6 全球模式及 SSP1-2.6、SSP2-4.5 和 SSP5-8.5 情景，计算早晨、下午和晚间 WBGT、超过 40°C 的热指数、热浪和强降雨指标，并进行季节聚合和多模式集合平均。",
+      "method_paradigm": "气候影响评估",
+      "used_assets": [
+        "NASA NEX-GDDP-CMIP6 dataset",
+        "NASA NEX-GDDP CMIP6 projections",
+        "GFDL-ESM4",
+        "IPSL-CM6A-LR",
+        "MPI-ESM1-2-HR"
+      ],
+      "author_team": [
+        "Dimitri Defrance",
+        "Tiffanie Lescure"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Global climate risks for outdoor sports under CMIP6 scenarios: A multi-indicator assessment based on WBGT, Heat Index, heavy rainfall, and heatwaves",
+        "doi": "10.1371/journal.pclm.0000969",
+        "year": 2026,
+        "venue": "PLOS Climate",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 23,
+    "source_paper_count": 23,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

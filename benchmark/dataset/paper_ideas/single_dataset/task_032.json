@@ -1,0 +1,87 @@
+{
+  "paper_id": "10.3390/rs16101744",
+  "task_id": "single_dataset/task_032",
+  "title": "Refined Analysis of Vegetation Phenology Changes and Driving Forces in High Latitude Altitude Regions",
+  "category": "climate_surface_interaction",
+  "year": 2024,
+  "journal": "Remote Sensing",
+  "impact_level": null,
+  "datasets": [
+    "MODIS Seamless Data Cube reflectance (0.05 degrees, 4-day)",
+    "MCD12C1 land cover (0.05 degrees)",
+    "MOD11C3 monthly land surface temperature (0.05 degrees)",
+    "TerraClimate precipitation and solar radiation (4.6 km)",
+    "Human Footprint (1 km, 2001-2020)",
+    "USA-NPN and PEP725 ground phenology observations"
+  ],
+  "study_area_verified": {
+    "name": "Northern Hemisphere high-latitude and high-altitude regions",
+    "period": "2001-2022 for phenology and climate; 2001-2020 for human footprint",
+    "grid": "all covariates resampled to 0.05 degrees for consistency",
+    "validation": "300 breaking-leaf-bud and 100 leaf-fall records from USA-NPN over 2011-2022; 300 first-leaf and 50-percent-autumn-colouring records plus 73 needle-separation records from PEP725",
+    "review_date": "2026-08-28"
+  },
+  "anchor_substitution": {
+    "paper_used": "MODIS Seamless Data Cube (SDC) surface reflectance at 0.05 degrees on a 4-day step, a gap-filled reprocessing of daily MOD09GA 500 m distributed through the Pengcheng Cloud Brain platform",
+    "task_anchor": "MODIS/061/MOD09CMG",
+    "former_anchors": [
+      "MODIS/061/MOD13Q1",
+      "MODIS/061/MOD13C1"
+    ],
+    "why_a_substitute_is_needed": "The Earth Engine catalog publishes no Seamless Data Cube; SDC is a value-added product distributed only through its own platform.",
+    "why_mod09cmg": "It matches the source on three counts at once: the same 0.05 degree Climate Modeling Grid, surface reflectance rather than a downstream vegetation index (SDC is itself a MOD09 reprocessing), and a daily step finer than the source's 4-day spacing, so it can be aggregated to match. A coarser product could not be refined.",
+    "why_the_former_anchors_were_wrong": "MOD13Q1 is 250 m, two orders of magnitude finer than the 0.05 degree grid every covariate in this study was resampled to. MOD13C1 sits on the right grid but composites over 16 days against the source's 4-day step, an irreversible loss for transition-date estimation, and supplies vegetation indices rather than reflectance.",
+    "closest_alternative_not_taken": "MOD13C1 shares the same grid and would hand over ready-made NDVI and EVI with per-cell standard deviations, saving one processing step. It was not taken because its 16-day compositing cannot be refined back to the source's 4-day step.",
+    "residual_gap": "MOD09CMG carries no gap filling, which is precisely what SDC adds. Cloud and snow gaps at high latitudes must be handled explicitly through the QA and internal cloud-mask bands before seasonal curves are fitted, and vegetation indices must be computed from bands 1 and 2 rather than read off.",
+    "catalog_metadata_repair": "The locally cached MOD09CMG entry shipped with an empty eo:bands array, which is why an earlier round rejected it as unstatable. The 25 band definitions were retrieved from the published Earth Engine catalog page on 2026-08-28 and patched into the local copy under local_metadata_patch, removing that obstacle.",
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "MODIS/061/MCD12C1",
+        "IDAHO_EPSCOR/TERRACLIMATE"
+      ],
+      "not_in_catalog": [
+        "MOD11C3 monthly LST at 0.05 degrees",
+        "Human Footprint",
+        "USA-NPN records",
+        "PEP725 records"
+      ]
+    },
+    "corrections": [
+      "The earlier datasets list named only MODIS NDVI and MODIS EVI, omitting land cover, temperature, precipitation, solar radiation, human footprint and the two ground phenology networks the study depends on for validation."
+    ],
+    "fields_left_unchanged": [
+      "idea.data_sources",
+      "idea.analytical_approach"
+    ],
+    "note": "Those fields describe what the source did and must not be rewritten to match the anchor.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "在北半球高纬高海拔地区，植被返青和枯黄物候是否会在变暖与人类活动增强的共同作用下发生系统性偏移，并且这种偏移在不同植被类型与土地利用转换路径中是否存在稳定差异？",
+    "hypothesis": "如果春季热量积累增强且人类干扰升高，那么SOS将提前、EOS将推迟、LOS将延长；这种变化对温度最敏感的窗口主要出现在生长季初期，而在生长季末期，辐射和降水对物候的约束将相对增强，且土地利用强度越高、LOS越短。",
+    "mechanism": "气温上升首先改变积温与冻融节律，推动春季物候启动；随后，太阳辐射和降水通过调节光合有效辐射、冠层能量平衡与土壤水分，控制秋季衰老进程；与此同时，土地利用转换和人类足迹通过改变植被结构、地表扰动和水分可利用性，放大或削弱气候信号，最终造成SOS/EOS/LOS在不同区域与不同土地类型中的空间异质性。",
+    "key_variables": {
+      "target": "植被物候指标：SOS、EOS、LOS（由MODIS-NDVISDC和MODIS-EVI2SDC提取）",
+      "predictors": [
+        "近地表气温/温度异常",
+        "短波辐射",
+        "降水量",
+        "Human Footprint指数",
+        "土地利用/覆盖类型",
+        "土地利用转换类别",
+        "海拔",
+        "纬度"
+      ]
+    },
+    "data_sources": [
+      "MODIS-NDVISDC和MODIS-EVI2SDC高时间分辨率无缝植被指数产品（建议使用2001年至最新可用年；空间分辨率以原产品为准，通常为500 m）",
+      "MODIS MCD12Q1全球土地覆盖/土地利用产品（2001年至最新可用年，500 m）用于植被类型分组与土地利用转移识别",
+      "ERA5-Land温度、降水和短波辐射数据（月尺度或日尺度，0.1°）以及全球Human Footprint栅格用于驱动因素归因"
+    ],
+    "analytical_approach": "先对MODIS植被指数时间序列做Savitzky-Golay或Whittaker平滑，再用TIMESAT双Logistic曲线拟合结合20%振幅阈值提取SOS/EOS/LOS；用Theil-Sen斜率和Mann-Kendall检验评估物候趋势；按植被类型、海拔带和土地利用转换类型分层；用偏相关分析、随机森林回归或GeoDetector q-statistic量化温度、辐射、降水与Human Footprint的相对解释力及交互作用。",
+    "expected_contribution": "建立一个面向高纬高海拔地区的物候归因框架，把高时间分辨率MODIS物候、土地利用转换和人类干扰统一到同一分析链条中，明确不同物候窗口的主控因子差异，并为寒区生态监测、土地资源管理和气候适应规划提供可操作的证据。",
+    "falsification_condition": "若在2001年至最新可用年内，按TIMESAT提取的SOS/EOS/LOS在多数植被类型中不呈现与温度窗口一致的方向性响应，或温度、辐射、降水与Human Footprint联合模型的解释度低于10%，或不同土地利用转换组之间LOS差异的效应量|Hedges g|小于0.2且95%置信区间跨0，则该研究假设应被否定。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

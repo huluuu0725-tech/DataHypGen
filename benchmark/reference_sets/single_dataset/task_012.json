@@ -1,0 +1,979 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_012",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "USGS 3DEP 1m National Map",
+    "spatial_coverage": {
+      "region_name": "Huron Creek watershed, Michigan, United States",
+      "coverage": "Small Huron Creek watershed in Houghton County, Michigan Upper Peninsula, roughly 7.25 km2 with a main channel about 5.15 km long. The region is retained as the executable USGS 3DEP benchmark area after seed replacement because the replacement seed's Portuguese UAV-lidar survey is not available through the US-only catalog Anchor."
+    },
+    "temporal_coverage": "2015-01-01 to 2025-04-08, by acquisition project",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1 m",
+    "temporal_unit": "Static per acquisition project; tiles are not necessarily seamless across projects",
+    "analytical_capabilities": [
+      "Metre-scale bare-earth elevation and micro-topographic structure analysis",
+      "Slope, aspect, curvature, relief and terrace-geometry derivation",
+      "Drainage-network extraction and flow-routing sensitivity analysis",
+      "Resolution aggregation experiments from a qualifying one-metre lidar source",
+      "Terrain input for fine-resolution hydrological modelling"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Bare-earth elevation in meters",
+      "runtime_hint": "Use the `elevation` band in metres. Mosaic only tiles from a documented acquisition project, inspect seams, and verify coverage before analysis. Any coarser experimental grid must be derived from the qualifying one-metre source."
+    },
+    "data_source": "USGS 3D Elevation Program, produced exclusively from high-resolution airborne lidar",
+    "gee_asset": {
+      "id": "USGS/3DEP/1m",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "Executable region retained from the former seed 10.1007/s12145-023-01218-x because it is within USGS 3DEP coverage; replacement seed 10.3390/rs15010169 supplies the earlier multi-dataset scientific design but its Portuguese project lidar is not the runtime asset.",
+    "asset_provenance": "The replacement seed constructs 0.1-1 m bare-earth DEMs from project UAV lidar. USGS/3DEP/1m is the ready catalog analogue for the same physical object and measurement semantics. Seed-study geography is not claimed as runtime coverage."
+  },
+  "current_data_path": "GEE:USGS/3DEP/1m",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_012.json",
+    "source_sha256": "d6a90f8692bf09e353f81052fba276400cac2ea4ae2ffef2137f08bb3dce9f8a",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_012/prompt.json",
+    "current_prompt_sha256": "b3dca418ba4d3e172c06af29e05e6635ddc36d46f6c28f05265edc688f5bc77f",
+    "original_anchor_asset": {
+      "id": "USGS/3DEP/1m",
+      "observable_group": "usgs_3dep_one_metre_lidar_elevation",
+      "observation_identity_contract": {
+        "physical_object": "bare-earth terrain elevation",
+        "source_lineage": "airborne-lidar terrain mapping, including USGS 3DEP and project-specific airborne lidar",
+        "core_measurement_semantics": "one-metre-or-finer lidar-derived bare-earth elevation",
+        "non_material_variations": "provider, format, reprojection or resampling derived from the qualifying fine-resolution lidar source",
+        "material_mismatches": "coarse elevation, photogrammetric DSM or non-lidar DEM without a qualifying airborne-lidar input"
+      },
+      "asset_alias_policy": "USGS 3DEP one-metre lidar-derived bare-earth elevation is admitted, as is project-specific airborne lidar DEM at one metre or finer; coarser 3DEP tiers, SRTM, ASTER GDEM, AW3D and other global DEMs are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other elevation products. A study that compares its lidar DEM against coarser DEMs is admissible as long as the metre-scale lidar surface is itself operationally processed.",
+      "anchor_repointed": {
+        "from": "USGS/SRTMGL1_003",
+        "to": "USGS/3DEP/1m",
+        "reason": "The seed derives its entire HAND surface from a 0.6 m airborne lidar DEM, not from SRTM. Its central claim is that metre-scale terrain can substitute for 2D hydrodynamic models in ungauged basins, so a 30 m anchor contradicts the research question rather than approximating it.",
+        "seed_evidence": "Methods: 'we used a lidar DEM with a spatial resolution of 2 ft x 2 ft (0.6 m x 0.6 m) to generate the drainage network and watershed boundary', subdivided into seven sub-basins.",
+        "verified_against": "Earth Engine catalog entry USGS/3DEP/1m (status ready, 1 m elevation band in metres, produced exclusively from high-resolution lidar source data, bare-earth surface)",
+        "residual_gap": "The seed's own 0.6 m project lidar is finer than the 1 m 3DEP tier and is not published as an Earth Engine asset; 3DEP/1m is the closest available metre-scale lidar surface.",
+        "review_date": "2026-08-28"
+      },
+      "seed_replacement": {
+        "previous_seed_doi": "10.1007/s12145-023-01218-x",
+        "replacement_seed_doi": "10.3390/rs15010169",
+        "reason": "The replacement seed was first published online in 2022 and directly constructs 0.1 m, 0.25 m, 0.5 m and 1 m bare-earth DEMs from UAV airborne-lidar ground returns, while retaining a clear multi-dataset S2 design.",
+        "review_date": "2026-09-25"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_02",
+      "research_question": "如何将 3DEP 激光雷达衍生的高度和强度特征与 NAIP 多光谱影像融合，以提升大范围建筑物轮廓提取效果？",
+      "hypothesis_or_mechanism": "激光雷达提供的垂直结构和回波强度信息能够补充光学影像在阴影、遮挡和植被覆盖条件下的不足，从而提高建筑物分割性能。",
+      "variables_and_data_use": "研究使用 National Agricultural Imagery Program (NAIP) 的红、绿、蓝和近红外波段，以及 3DEP 激光雷达衍生的 feature height 和 intensity 栅格；将影像重采样并把各层对齐至 1.0 米分辨率，构建六波段输入栅格用于 U-Net 建筑物轮廓提取。3DEP 点云还经过深度学习模型重新分类，以改善建筑物高度信息的提取；Global Building Footprints (GBF) 用作训练和验证标签。",
+      "method_paradigm": "多源融合语义分割",
+      "used_assets": [
+        "U.S. Geological Survey (USGS) 3D Elevation Program (3DEP)",
+        "3DEP lidar",
+        "National Agricultural Imagery Program (NAIP)",
+        "Global Building Footprints (GBF)"
+      ],
+      "author_team": [
+        "Jung Kuan Liu",
+        "Rongjun Qin",
+        "Samantha Arundel",
+        "Lexie Yang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Improving Building Footprint Extraction Using NAIP and 3DEP Lidar Derived Features with Deep Learning",
+        "doi": "10.5194/isprs-annals-xi-4-2026-103-2026",
+        "year": 2026,
+        "venue": "ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "如何利用高分辨率LiDAR DEM、实测河流横断面和二维浅水方程模型改进河流淹没区的河床地形与水力输运表示？",
+      "hypothesis_or_mechanism": "通过低流量二维水动力模拟识别LiDAR测量时的淹没范围，并将实测横断面与原始LiDAR断面之间的高程偏移空间化，可在保留河道形态的同时改善河床及输水能力估计。",
+      "variables_and_data_use": "使用0.8米LiDAR DEM中的高程变量作为原始地形和水动力模型底图，使用实测横断面CSsur作为河床高程校正与验证基准，使用低流量、曼宁糙率和二维浅水方程模拟识别淹没区域，最终生成修正DEM并比较断面输水能力和RMSE。",
+      "method_paradigm": "物理水动力重建与测量校正",
+      "used_assets": [
+        "0.8 m grid LiDAR DEM measured in 2008–2009",
+        "DEMori",
+        "CSsur",
+        "HEC-RAS 2D",
+        "QGIS"
+      ],
+      "author_team": [
+        "Gabriele Farina",
+        "Marco Pilotti",
+        "Luca Milanesi",
+        "Giulia Valerio"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A simple method for the enhancement of river bathymetry in LiDAR DEM",
+        "doi": "10.1016/j.envsoft.2025.106354",
+        "year": 2025,
+        "venue": "Environmental Modelling &amp; Software",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究如何将校准的降雨—径流模型、二维 HEC-RAS 和0.5米激光雷达地形数据结合起来，以提高城市洪水危险区制图的精度。",
+      "hypothesis_or_mechanism": "更精细的激光雷达裸地地形能够更准确地表达城市河道和地表几何，而经校准的降雨—径流过程能够改善洪水水动力模拟及淹没范围预测。",
+      "variables_and_data_use": "使用0.5米 Lidar DEM/DTM提取流域面积、河流长度、坡度并构建河道几何；使用逐小时和5分钟间隔降雨数据驱动降雨—径流模型；使用水位和流量观测进行模型校准与验证；使用土壤类型、土地利用和航空影像确定有效降雨、曲线数、糙率及受淹区域。",
+      "method_paradigm": "水文水动力耦合建模",
+      "used_assets": [
+        "Lidar DEM",
+        "Lidar DTM data",
+        "Rainfall 2008–2022",
+        "rainfall data in 2022",
+        "Water level data in 2022",
+        "Discharge data 2008–2022",
+        "Soil Type Map in 2018",
+        "Aerial photography data in 2024",
+        "Land use data in 2023",
+        "HEC RAS"
+      ],
+      "author_team": [
+        "Siti Dahlia",
+        "Slamet Suprayogi",
+        "Taufik Hery Purwanto",
+        "Dyah Rahmawati Hizbaron"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integrated rainfall-runoff, HEC‑RAS 2D, and Lidar DEM model for flood simulation in urban ungauged catchment area: case study of Cipinang catchment, Jakarta City, Indonesia",
+        "doi": "10.1007/s40808-025-02483-z",
+        "year": 2025,
+        "venue": "Modeling Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "卫星影像（Pléiades）衍生的数字表面模型能否准确替代高分辨率激光雷达DEM用于细观尺度山坡形态学分析？",
+      "hypothesis_or_mechanism": "在去除高频地形噪声并采用合适的拟合窗口后，卫星DSM提取的山坡指标（如曲率、坡度）可与LiDAR DEM结果保持一致，满足地貌过程研究的精度需求。",
+      "variables_and_data_use": "使用Pléiades影像生成的DSM与LiDAR DEM作为输入变量，计算并对比坡度、曲率、山脊长度等二阶地形导数与形态参数，以评估卫星数据的适用性。",
+      "method_paradigm": "遥感数据验证与定量地貌学分析",
+      "used_assets": [
+        "Pléiades imagery/DSM",
+        "LiDAR DEM"
+      ],
+      "author_team": [
+        "Victor Pellegrino",
+        "Vincent Godard",
+        "Jules Fleury"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Investigation of the use of topographic data derived from Pléiades imagery for high-resolution hillslope-scale morphometry",
+        "doi": "10.1016/j.geomorph.2024.109162",
+        "year": 2024,
+        "venue": "Geomorphology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "无人机激光雷达与视觉传感器生成的数字高程模型在计算Bendung Kamijoro水坝沉积物体积及评估高程精度方面有何差异？",
+      "hypothesis_or_mechanism": "激光雷达能够穿透植被直接获取真实地表高程，而视觉摄影测量易受光照和植被覆盖影响导致高程高估，因此两者在复杂地形下的沉积物体积估算结果存在显著偏差。",
+      "variables_and_data_use": "使用无人机激光雷达点云分类后的DEM/DTM作为核心高程变量用于沉积物体积计算与精度验证；同时使用视觉传感器（RGB）通过SfM生成的DEM/DSM作为对比基准变量。",
+      "method_paradigm": "多源遥感数据对比分析",
+      "used_assets": [
+        "UAV DJI Matrice 300 RTK",
+        "Zenmuse L1",
+        "DJI Terra",
+        "Global Mapper",
+        "Agisoft Metashape"
+      ],
+      "author_team": [
+        "M Aziz Anggara",
+        "Afif Ari Wibowo",
+        "Aditya Saputra",
+        "Jumadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluasi Performa DEM Sensor Visual (RGB) terhadap DEM Sensor LiDAR melalui Perbandingan Elevasi dan Volume Sedimen di Bendung Kamijoro",
+        "doi": "10.29303/goescienceed.v7i1.1731",
+        "year": 2026,
+        "venue": "Jurnal Pendidikan, Sains, Geologi, dan Geofisika (GeoScienceEd Journal)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何利用高分辨率机载激光雷达数据构建流域数字地形模型，以支持洪水淹没模拟？",
+      "hypothesis_or_mechanism": "精确的地面点云分类与DTM构建能够显著提升HEC-RAS洪水演进模拟的水位与淹没范围预测精度。",
+      "variables_and_data_use": "使用激光雷达点云数据提取地面高程构建DTM作为主输入变量；结合INA Geoportal DEM进行地形一致性校验；利用HEC-GeoRAS提取曼宁粗糙系数与河道几何参数驱动水动力模型。",
+      "method_paradigm": "机载激光雷达点云处理与水文水动力耦合模拟",
+      "used_assets": [
+        "LiDAR data",
+        "Digital Terrain Model (DTM)",
+        "INA Geoportal DEM",
+        "HEC-RAS 5.0.1",
+        "HEC-GeoRAS 10.3"
+      ],
+      "author_team": [
+        "Yudi Firmansyah",
+        "Mohamad Mahfudz",
+        "Rian Nurtyawan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Utilization of Digital Terrain Model (DTM) from LiDAR data for flood inundation simulation due to Ciujung River overflow in Banten Province",
+        "doi": "10.33751/injast.v5i2.10721",
+        "year": 2024,
+        "venue": "Indonesian Journal of Applied Environmental Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "评估Safer_RAIN快速洪水模拟模块在模拟农村堤防溃决和城市排水系统溢流场景中的准确性与适用性。",
+      "hypothesis_or_mechanism": "基于1米级激光雷达DEM的层级填溢算法能够以较低计算成本高精度复现复杂城市与农村洪水的淹没范围与水深分布。",
+      "variables_and_data_use": "使用1米LiDAR DEM作为地形基础变量提取洼地与汇流路径；结合降雨栅格、排水管网溢出体积及HEC-RAS/Hydro_AS-2D模型输出进行验证与对比分析。",
+      "method_paradigm": "基于DEM的快速水文水动力模拟与交叉验证",
+      "used_assets": [
+        "Italian Ministry of the Environment’s National Geoportal 1 m LiDAR DEM",
+        "HEC-RAS 2D",
+        "Hydro_AS-2D",
+        "OpenStreetMap",
+        "MM Spa drainage model"
+      ],
+      "author_team": [
+        "Kay Khaing Kyaw",
+        "Federica Bonaiuti",
+        "Huimin Wang",
+        "Stefano Bagli",
+        "Paolo Mazzoli",
+        "Pier Paolo Alberoni",
+        "Simone Persiano",
+        "Attilio Castellarin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Fast-Processing DEM-Based Urban and Rural Inundation Scenarios from Point-Source Flood Volumes",
+        "doi": "10.3390/su16020875",
+        "year": 2024,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何结合Sentinel-1 SAR和高分辨率LiDAR DEM快速提取洪水范围、估算洪水深度并评估农业土地受灾情况？",
+      "hypothesis_or_mechanism": "洪水前后Sentinel-1 SAR影像的变化可以识别淹没范围，而高分辨率LiDAR地形高程与FwDET结合能够由淹没范围进一步推导空间化洪水深度。 ",
+      "variables_and_data_use": "使用Sentinel-1 SAR的洪水前后VV极化影像计算影像比值并提取洪水范围；使用1m×1m LiDAR-based DEM进行坡度筛除和FwDET洪水深度估算，随后重采样为10m×10m以匹配卫星数据；使用Sentinel-2云无年度合成影像分类土地利用，并将洪水深度与水稻田、年度作物等农业用地叠加以评估受灾情况。",
+      "method_paradigm": "遥感变化检测与影响评估",
+      "used_assets": [
+        "Sentinel-1 SAR",
+        "Sentinel-2",
+        "highly precise LiDAR-based DEM",
+        "FwDET",
+        "Google Earth Engine"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Flood Inundation Assessment on Agricultural Land: Integrating High Spatial Resolution Sentinel Data with LiDAR DEM",
+        "doi": "10.52939/ijg.v21i3.3997",
+        "year": 2025,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "快速抽水操作对西泗水堡系统堤岸结构安全性的影响及泵送运行策略如何与土壤稳定性限制同步？",
+      "hypothesis_or_mechanism": "过快的排水速率会导致堤岸孔隙水压力消散滞后，从而降低有效应力并削弱土壤抗剪强度，引发边坡失稳。",
+      "variables_and_data_use": "使用BIG提供的0.5米LiDAR DTM作为地形高程输入驱动1D/2D水动力模型；结合PUPR项目的土力学参数（粘聚力、内摩擦角等）进行边坡稳定性分析。",
+      "method_paradigm": "水动力-岩土耦合数值模拟",
+      "used_assets": [
+        "Geospatial Information Agency (BIG) LiDAR DTM",
+        "Google Earth Pro",
+        "Tanjung Emas Tide Gauge Station",
+        "Rain stations precipitation data",
+        "PUPR Geotechnical Investigation Reports"
+      ],
+      "author_team": [
+        "Azizah Rokhmawati",
+        "Wati Asriningsih Pranoto",
+        "Heru Tri Saksena"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Effectiveness Analysis of Polder Drainage Systems in Reducing Urban Flood Risk: 1D/2D Hydrodynamic Simulation Based on LiDAR Topographic Data",
+        "doi": "10.69855/sipil.v2i1.520",
+        "year": 2026,
+        "venue": "Structures, Infrastructure, Planning, Implementation, and Legislation",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "How accurately can a metre-scale airborne-lidar HAND workflow reproduce flood extent and depth in a data-scarce ungauged watershed relative to two-dimensional hydrodynamic models?",
+      "hypothesis_or_mechanism": "Fine bare-earth lidar elevation preserves drainage and channel geometry needed for HAND inundation mapping, while rainfall-runoff forcing, land cover, soils and hydraulic reference simulations constrain water levels and validation.",
+      "variables_and_data_use": "A 0.6 m airborne-lidar DEM is used to delineate the watershed and drainage network and derive HAND and channel geometry; NLCD, SSURGO, rainfall and discharge estimates support hydrologic forcing and roughness, and HEC-RAS 2D/SMS-SRH 2D provide comparison simulations.",
+      "method_paradigm": "Metre-scale terrain-derived flood mapping with hydrologic and hydrodynamic cross-validation",
+      "used_assets": [
+        "0.6 m airborne lidar bare-earth DEM",
+        "NLCD 2019",
+        "SSURGO",
+        "event rainfall and discharge estimates",
+        "HEC-RAS 2D",
+        "SMS-SRH 2D"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "seed full text previously verified for operational 0.6 m airborne-lidar DEM use; independently admitted after seed replacement",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Suitability of the HAND model for flood inundation mapping in data-scarce regions",
+        "doi": "10.1007/s12145-023-01218-x",
+        "year": 2023,
+        "venue": "Earth Science Informatics",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "former_seed_independently_admitted_after_seed_replacement",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "不同全球一弧秒 DEM 在多种地形、地貌和水文派生指标上的表现如何，以及这些表现如何随海拔范围和测试区域变化？",
+      "hypothesis_or_mechanism": "全球 DEM 与高分辨率激光雷达参考 DTM 之间的高程误差会传播到坡度、粗糙度、地貌分类和排水网络等派生结果中，因此仅比较高程误差不足以评价 DEM 质量。",
+      "variables_and_data_use": "研究使用 CopDEM、ALOS、SRTM、NASADEM、ASTER、FABDEM、CoastalDEM 3.0、DiluviumDEM、DeltaDTM 和 TanDEM-X 等全球 DEM 或编辑 DTM，并将其逐像元与由高分辨率航空激光雷达 DTM 下采样得到的参考 DTM 比较；计算高程、坡度、地形位置指数、粗糙度、曲率、湿润指数、流量累积、地貌分类和河网差异等指标，同时使用 ICESat-2 等数据进行部分验证。",
+      "method_paradigm": "DEM 基准评估",
+      "used_assets": [
+        "CopDEM",
+        "ALOS",
+        "SRTM",
+        "NASADEM",
+        "ASTER",
+        "FABDEM",
+        "CoastalDEM 3.0",
+        "DiluviumDEM",
+        "DeltaDTM",
+        "TanDEM-X",
+        "USGS 3DEP",
+        "reference DTMs from airborne lidar",
+        "ICESat-2"
+      ],
+      "author_team": [
+        "Peter Lorentz Guth",
+        "Sebastiano Trevisani",
+        "Carlos Henrique Grohmann",
+        "John B. Lindsay",
+        "Dean B. Gesch",
+        "Laurence Paul Hawker",
+        "Conrad Bielski"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Ranking of 10 Global One-Arc-Second DEMs Reveals Limitations in Terrain Morphology Representation",
+        "doi": "10.3390/rs16173273",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究不同来源和空间分辨率的激光雷达派生 DEM 如何影响基于 HAND 的洪水淹没图质量。",
+      "hypothesis_or_mechanism": "更高分辨率且源自 1 m 3DEP lidar 的地形高程能够更准确地表示地形和排水关系，从而提升 HAND 洪水淹没图与 BLE 基准之间的一致性。",
+      "variables_and_data_use": "使用 3DEP lidar 派生的 3、5、10、15、20、60 和 90 m DEM 计算 HAND 并生成洪水淹没范围；使用 NHDPlusHR DEM 作为传统基线；使用 BLE FIM extents 进行验证，并将 NWM catchments、地形坡度、土地覆盖、不透水率和地表粗糙度作为空间分析变量。",
+      "method_paradigm": "分辨率敏感性评价",
+      "used_assets": [
+        "3DEP DEMs",
+        "1 m 3DEP information",
+        "1 m lidar data",
+        "NHDPlusHR DEMs",
+        "Base Level Engineering (BLE) FIM extents",
+        "National Water Model (NWM) catchments",
+        "National Land Cover Database (NLCD)",
+        "Py3DEP",
+        "PyGeoHydro"
+      ],
+      "author_team": [
+        "Fernando Aristizabal",
+        "Taher Chegini",
+        "Gregory Petrochenkov",
+        "Fernando Renzo Salas",
+        "Jasmeet Judge"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Effects of high-quality elevation data and explanatory variables on the accuracy of flood inundation mapping via Height Above Nearest Drainage",
+        "doi": "10.5194/hess-28-1287-2024",
+        "year": 2024,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同物种（德州陆龟和叉角羚）的移动速度与地形坡度之间存在怎样的定量关系？",
+      "hypothesis_or_mechanism": "动物的移动速度随地形坡度的增加呈非线性下降，且不同物种因体型、代谢策略与生态需求差异，对坡度变化的耐受阈值与响应机制不同。",
+      "variables_and_data_use": "使用GPS追踪数据计算动物移动速度；使用UAS激光雷达DTM（4厘米）和SRTM DEM（30米）提取地形坡度作为自变量；结合HMM行为分类状态建立Laplace、Gauss和Lorentz非线性回归模型。",
+      "method_paradigm": "轨迹追踪与地形坡度非线性建模",
+      "used_assets": [
+        "UAS lidar DTM (4-cm resolution)",
+        "SRTM DEM (30-m resolution)",
+        "GPS tracking data",
+        "momentuHMM"
+      ],
+      "author_team": [
+        "Samuel Norton Chambers",
+        "Joshua W. von Nonn",
+        "Matthew A. Burgess",
+        "Lance R. Brady",
+        "Jeffrey Bracewell",
+        "Daniel Guerra",
+        "Miguel L. Villarreal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; Qwen quote verified; GPT quote manually matched after PDF control-character normalization",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "The tortoise and the antilocaprid: adapting GPS tracking and terrain data to model wildlife walking functions",
+        "doi": "10.1007/s10980-025-02092-2",
+        "year": 2025,
+        "venue": "Landscape Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究如何通过无人机 InSAR 成像、高效相位滤波和相位解缠重建高分辨率 DEM，并用于环境变化和滑坡风险监测。",
+      "hypothesis_or_mechanism": "在主从 SAR 影像配准后，采用均值滤波降低干涉相位噪声并结合基于泊松方程和 FFT 的最小二乘相位解缠，可以以较低计算成本提高地形高程重建的稳定性和效率。",
+      "variables_and_data_use": "论文使用 USGS 3DEP 的 1 米、3 米和 5 米 DEM 作为真实地形高程输入和验证基准，将其缩放后用于模拟 SAR/InSAR 成像，并以重建 DEM 与真实 DEM 之间的 SSIM 和 RMSE 评估方法效果；同时比较均值滤波、非局部滤波、最小二乘相位解缠和质量引导相位解缠。",
+      "method_paradigm": "InSAR模拟与高程重建",
+      "used_assets": [
+        "USGS 3DEP dataset (1 m × 1 m)",
+        "USGS 3DEP dataset (5 m × 5 m)",
+        "USGS 3DEP dataset (3 m × 3 m)"
+      ],
+      "author_team": [
+        "Hsu-Yueh Chuang",
+        "Jean‐Fu Kiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "An On-Site InSAR Terrain Imaging Method with Unmanned Aerial Vehicles",
+        "doi": "10.3390/s24072287",
+        "year": 2024,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "OmniPath 能否利用高分辨率机载 LiDAR 和行人路网数据识别城市人行道上的细尺度坡度、表面不连续性及其他无障碍通行障碍？",
+      "hypothesis_or_mechanism": "将地面分类 LiDAR 高程点与人行道网络进行空间对齐，并以细尺度滑动窗口提取地形剖面，可以识别传统二维路网数据难以发现的局部坡度和高程障碍，从而改善无障碍路径评估。",
+      "variables_and_data_use": "研究使用 USGS 3DEP LiDAR Dataset 和 2021 District of Columbia dataset 的机载 LiDAR 地面点及高程数据，计算纵坡、横坡、垂直高程突变、楼梯和平台等指标；使用 DC-GIS Sidewalks Dataset 定义合法人行道边界，使用 OpenStreetMap Data 构建行人拓扑网络，并以现场测量结果验证 LiDAR 提取的几何指标。",
+      "method_paradigm": "高分辨率地形感知决策支持",
+      "used_assets": [
+        "DC-GIS Sidewalks Dataset",
+        "USGS 3DEP LiDAR Dataset",
+        "2021 District of Columbia dataset",
+        "OpenStreetMap Data",
+        "Mapillary v4 API"
+      ],
+      "author_team": [
+        "Asm Mobarak Hossain",
+        "Nadim Mahmud",
+        "Vaskar Raychoudhury",
+        "Md Osman Gani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "OmniPath: A Multi-Modal Agentic Framework for Auditing Wheelchair Accessibility",
+        "doi": "10.1109/compsac69091.2026.00049",
+        "year": 2026,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究问题是如何利用 GHVRD 方法从 ICESat-2 ATL03 光子数据中有效去除噪声并保留真实地形信号。",
+      "hypothesis_or_mechanism": "通过自适应网格粗滤波结合 Otsu 优化的水平和垂直递归划分，可以依据光子密度和空间分裂特征区分信号光子与噪声光子，从而提高复杂地形中的去噪精度。",
+      "variables_and_data_use": "使用 ICESat-2 ATL03 的光子位置、椭球高和光子密度进行信号提取与去噪；使用 USGS 3DEP 1m airborne radar data 的一米 LiDAR DEM 和点云高程作为地形验证数据；使用 GlobeLand30 V2020 data 提供地表覆盖类别信息。",
+      "method_paradigm": "自适应光子去噪与地形验证",
+      "used_assets": [
+        "ICESat-2 ATL03 Data",
+        "USGS 3DEP 1m airborne radar data",
+        "GlobeLand30 V2020 data"
+      ],
+      "author_team": [
+        "Zhaodong Chen",
+        "Chengdong Zhang",
+        "Xing Wang",
+        "Rongwei Fan",
+        "Zhiwei Dong",
+        "Lansong Cao",
+        "Deying Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Coarse-to-Fine Denoising for Micro-Pulse Photon-Counting LiDAR Data: A Multi-Stage Adaptive Framework",
+        "doi": "10.3390/rs17172931",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "如何利用无人机摄影测量和 USGS 3DEP 激光雷达地形数据重建并展示 Black Hollow 排水区的侵蚀、沉积和大型木材堵塞特征？",
+      "hypothesis_or_mechanism": "无人机摄影测量提供的高分辨率地形和影像能够刻画由 2021 年 debris-flow event 形成的侵蚀与沉积地貌及木材堵塞，而 USGS 3DEP 激光雷达数据可提供稳定地形基准以改善空间一致性。",
+      "variables_and_data_use": "使用 UAV imagery 通过 SfM 生成点云、DEM 和正射影像，并使用 U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) lidar point cloud (1-meter resolution) 对派生点云和 DEM 进行 ICP 垂直及水平配准；研究对象包括地形高程、侵蚀与沉积特征以及木材堵塞。",
+      "method_paradigm": "高分辨率地形重建与空间配准",
+      "used_assets": [
+        "UAV Imagery and Topographic Data from Black Hollow 10 September 2025, upper Cache la Poudre River",
+        "U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) lidar point cloud (1-meter resolution)",
+        "point cloud",
+        "digital elevation model (DEM)",
+        "orthoimagery",
+        "uncrewed aerial vehicle (UAV) imagery"
+      ],
+      "author_team": [
+        "Mason M. Einbund",
+        "Francis Kevin Rengers",
+        "Olivia J. Hoch",
+        "Kelli Baxstrom",
+        "Charles Miles",
+        "Sonia M. Ellison"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "UAV Imagery and Topographic Data from Black Hollow 10 September 2025, upper Cache la Poudre River",
+        "doi": "10.5066/p14bjlpz",
+        "year": 2026,
+        "venue": "USGS DOI Tool Production Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究不同河段的冲积河道调整轨迹如何随河流位置变化，并揭示沉积物迁移能力的沿河转移。",
+      "hypothesis_or_mechanism": "河道宽度、深度、坡度和形态的空间变化反映了沉积物迁移能力沿河道的差异及其调整机制。",
+      "variables_and_data_use": "使用一米地形测深激光雷达横断面高程剖面提取河道宽度、平均和最大深度、横断面面积、湿周及水力半径；使用 10-m USGS 3DEP DEM 提取河道中心线、纵向高程和局部坡度，并结合河段形态汇总数据分析沿河变化。",
+      "method_paradigm": "河道形态变化分析",
+      "used_assets": [
+        "1-m topobathymetric lidar data product from Dietrich, 2014",
+        "10-m USGS 3DEP DEM",
+        "Reach_Summary_Final.csv",
+        "NREE_data_compilation.csv"
+      ],
+      "author_team": [
+        "Claire C. Masteller"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Supporting code and datasets for \"Tracking the trajectory of alluvial channel adjustment reveals along-river shifts in sediment mobility \"",
+        "doi": "10.5281/zenodo.18521749",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究探讨基于地形参数和地貌分类的深度学习模型能否提取农业梯田与采矿谷填面等人工地貌特征，并评估迁移学习和训练样本规模的影响。",
+      "hypothesis_or_mechanism": "从地貌分类任务中学习到的地形表征能够迁移到农业梯田和谷填面提取任务，从而改善模型的特征学习和泛化能力。",
+      "variables_and_data_use": "研究使用 USGS 3DEP 的 1m 激光雷达派生数字地形模型，将其聚合为 2m 网格，并计算地形位置指数、坡度平方根和多尺度地形位置指数作为输入预测变量；同时使用 geomorphon 分类以及农业梯田和谷填面标注作为训练、验证和测试数据。",
+      "method_paradigm": "深度学习语义分割与迁移学习",
+      "used_assets": [
+        "USGS3DEP",
+        "3DEP1mDTMtiles",
+        "terraceDL",
+        "v-fillDL dataset",
+        "geomorphons"
+      ],
+      "author_team": [
+        "Aaron Edward Maxwell",
+        "Sarah Farhadpour",
+        "Muhammad Zeeshan Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Exploring Transfer Learning for Anthropogenic Geomorphic Feature Extraction from Land Surface Parameters Using UNet",
+        "doi": "10.3390/rs16244670",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "GFVM 能否利用多源地形、建筑物高度和水体邻近性数据，在全球范围内评估并解释建筑环境的洪水脆弱性？",
+      "hypothesis_or_mechanism": "低洼地形、负 TPI、较小坡度和靠近水体会增加洪水脆弱性，而建筑物高度会通过提供垂直缓冲降低部分暴露风险。",
+      "variables_and_data_use": "研究使用 AHN2、AHN3、UKEnvironmentAgency DTM、USGS3DEP、Australia5mDEM、NASADEM、Copernicus GLO-30 和 ALOS World3D 提供地形高程，并派生 slope 和 TPI；使用 OpenStreetMap 与 Natural Earth 计算水体邻近性，使用 Global Building Atlas 或模型估计建筑物高度，并以 DartmouthFloodObservatory、UKEnvironmentAgencyFloodZonesystem 和 FEMANationalFloodHazardLayer 进行验证。",
+      "method_paradigm": "全球空间决策模型",
+      "used_assets": [
+        "USGS3DEP",
+        "AHN2",
+        "AHN3",
+        "UKEnvironmentAgency DTM",
+        "EnvironmentAgency1mLiDARgrid",
+        "Australia5mDEM",
+        "NASADEM",
+        "Copernicus GLO-30",
+        "ALOS World3D",
+        "OpenStreetMap",
+        "Natural Earth",
+        "Global Building Atlas",
+        "DartmouthFloodObservatory",
+        "UKEnvironmentAgencyFloodZonesystem",
+        "FEMANationalFloodHazardLayer",
+        "GoogleEarthPro"
+      ],
+      "author_team": [
+        "Sakiru Olarewaju Olagunju",
+        "Ademi Sharipova",
+        "Adina Serikkyzy",
+        "Dariga Satybaldiyeva",
+        "Hüseyin Atakan Varol",
+        "Ferhat Karaca"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Global Flood Vulnerability Model: Building-Level Assessment Using Multi-Source Remote Sensing",
+        "doi": "10.3390/rs18091425",
+        "year": 2026,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "DEMIX 参考数据如何支持不同数字高程模型之间的系统比较与互操作性评估？",
+      "hypothesis_or_mechanism": "统一的高分辨率参考高程数据、网格处理和水平垂直基准转换能够减少数据源差异对 DEM 比较结果的影响。",
+      "variables_and_data_use": "使用包括 USGS 3DEP 在内的高分辨率 DEM/DTM 数据，结合源数据分辨率、区域和瓦片元数据，经过基准转换、网格化和重算后构建 DEMIX 参考数据库，用于数字高程模型互比。",
+      "method_paradigm": "DEM 基准构建与互比",
+      "used_assets": [
+        "USGS 3DEP",
+        "DEMIX 1 Reference DEMs version 2.0"
+      ],
+      "author_team": [
+        "Peter Lorentz Guth",
+        "Serge Riazanoff",
+        "Axel Corseaux",
+        "Carlos Henrique Grohmann",
+        "Sebastiano Trevisani",
+        "Carlos López-Vázquez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "DEMIX 1\" Reference DEMs version 2.0",
+        "doi": "10.5281/zenodo.7600698",
+        "year": 2023,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "2019年美国东部爱荷华州3DEP机载激光雷达数据的几何精度是否满足QL2规范要求？",
+      "hypothesis_or_mechanism": "通过标准化飞行参数与数据处理流程，激光雷达点云在垂直与水平方向上的误差可控制在容差范围内。",
+      "variables_and_data_use": "使用3DEP激光雷达点云数据计算点密度、同表面精度、跨 swath 精度及绝对高程误差，并与实地 surveyed 数据进行比对。",
+      "method_paradigm": "几何精度验证与质量控制",
+      "used_assets": [
+        "USGS 3DEP lidar data (Eastern Iowa, 2019)",
+        "USGS field survey data"
+      ],
+      "author_team": [
+        "Aparajithan Sampath",
+        "J. Irwin",
+        "Travis Kropuenske"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT uncertain caused by landing-page-only excerpt (3483 chars) while the 26-page PDF (56987 chars) was not extracted",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of the geometric accuracy of airborne light detection and ranging data for eastern Iowa, 2019",
+        "doi": "10.3133/ofr20251017",
+        "year": 2025,
+        "venue": "Antarctica A Keystone in a Changing World",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "如何利用顶底貌激光雷达技术在内陆河流环境中实现陆地与水下地形的无缝高程融合？",
+      "hypothesis_or_mechanism": "通过优化激光雷达在水体环境中的性能参数与站点条件，可准确获取河床底部地形并实现与陆地高程的垂直水平对齐。",
+      "variables_and_data_use": "使用顶底貌激光雷达原始回波数据，经处理后生成浮点型TBDEM栅格，参考NAVD88/GEOID18垂直基准。",
+      "method_paradigm": "顶底貌激光雷达数据处理与融合",
+      "used_assets": [
+        "Topobathymetric elevation model development using a new methodology: Coastal National Elevation Database",
+        "inland topobathymetric digital elevation model (TBDEM)"
+      ],
+      "author_team": [
+        "Jeffrey J. Danielson",
+        "Cynthia Miller-Corbett",
+        "Cindy A. Thatcher",
+        "United States Geological Survey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT uncertain caused by excerpt lacking input identity/resolution/bare-earth semantics that are present in the full text abstract",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Potomac River Pilot Topobathymetric Digital Elevation Model, 1979 to 2025",
+        "doi": "10.5066/p13bbwdb",
+        "year": 2026,
+        "venue": "USGS DOI Tool Production Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "研究评估不同空间分辨率和内外圈范围的地形高程数据如何影响基拉韦厄火山完整布格重力异常的地形改正结果。",
+      "hypothesis_or_mechanism": "近测站区域使用较粗分辨率高程数据会显著改变地形重力改正值，从而影响布格重力异常的解释。",
+      "variables_and_data_use": "研究使用 1-meter digital elevation model (DEM; Mosbrucker and others, 2020)计算高分辨率内圈地形改正，使用 30-meter DEM (USGS, 2023)计算外圈改正，并结合 50-meter Main Hawaiian Islands Multibeam Bathymetry Synthesis (Hawaiʻi Mapping Research Group, 2023)进行海底地形改正；Scintrex CG-6 gravimeter 提供实测重力数据，GNSS 提供高程信息。",
+      "method_paradigm": "重力异常地形改正敏感性分析",
+      "used_assets": [
+        "Scintrex CG-6 gravimeter",
+        "differential Global Navigation Satellite System (GNSS)",
+        "1-meter digital elevation model (DEM; Mosbrucker and others, 2020)",
+        "30-meter DEM (USGS, 2023)",
+        "50-meter Main Hawaiian Islands Multibeam Bathymetry Synthesis (Hawaiʻi Mapping Research Group, 2023)"
+      ],
+      "author_team": [
+        "Claire Ruggles",
+        "Ashton F. Flinders"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Manual anchor verification against the full text; both models returned uncertain because the excerpt did not disclose the 1-metre DEM lineage, which the full-text reference list does disclose (airborne lidar survey) | Re-judged 2026-09-28: both models returned uncertain again because the Methods/Data excerpt carries only the in-text citation 'Mosbrucker and others, 2020' and omits the reference entry ('based on July 2019 airborne lidar surveys'); manual anchor verification therefore remains the basis.",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Complete Bouguer gravity data of Kīlauea, Island of Hawaiʻi, 2023.",
+        "doi": "10.5066/p1qqtadd",
+        "year": 2026,
+        "venue": "USGS DOI Tool Production Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "如何利用2022年水深、近岸激光雷达和3DEP地形数据更新Lost Lake的库容—水位及水面面积—水位关系？",
+      "hypothesis_or_mechanism": "将精细陆域激光雷达高程与清除大型水生植物异常点后的水深观测融合，可形成连续的湖床—近岸DEM，从而更准确地计算不同水位下的库容和水面面积。",
+      "variables_and_data_use": "研究使用U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) lidar dataset collected in 2022提供近岸地形高程，使用bathymetric and terrestrial lidar data提供湖床与近岸补充观测，以GNSS fast static points开展高程质量控制，并基于0.25米融合DEM按0.02米垂直间隔计算库容和水面面积。",
+      "method_paradigm": "地形重建与库容分析",
+      "used_assets": [
+        "U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) lidar dataset collected in 2022",
+        "bathymetric and terrestrial lidar data",
+        "GNSS fast static points",
+        "LostLake_NAD83-2011_UTMZ10N_NAVD88_0.25m_PHaluska2026.tif"
+      ],
+      "author_team": [
+        "Patrick A Haluska"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Bathymetric survey and stage-storage assessment of Lost Lake, California, collected in 2022",
+        "doi": "10.5066/p13c3nhz",
+        "year": 2026,
+        "venue": "USGS DOI Tool Production Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "不同星球环境和不同空间分辨率的数字高程模型能否支持 MarsCONE 2.0 对小尺度火山渣锥地貌的可靠识别与定量分析？",
+      "hypothesis_or_mechanism": "高分辨率地形数据能够更完整地保留火山锥的坡面、坑口和锥体几何特征，从而提高 MarsCONE 2.0 在火星与地球不同火山区中的自动形态检测能力。",
+      "variables_and_data_use": "研究使用 CTX 与 HiRISE 立体影像派生的火星 DEM、Copernicus GLO-30 DEM、十米和一米 3DEP DEM，以及 CEM 4.0 和立体卫星摄影测量点云派生 DEM；这些高程数据用于表征火山锥地形，并结合专家标注的 pitted cones 点要素验证 MarsCONE 2.0 的自动形态检测表现。",
+      "method_paradigm": "跨环境算法验证",
+      "used_assets": [
+        "Context Camera (CTX)",
+        "High Resolution Imaging Science Experiment (HiRISE)",
+        "Copernicus GLO-30 DEM",
+        "3D Elevation Program (3DEP)",
+        "Continuum of Mexican Elevations and Digital Elevation Models (CEM 4.0)",
+        "photogrammetric point clouds generated using high-resolution satellite imagery acquired in stereoscopic mode",
+        "CTX_008262_1862_042652_1855",
+        "HI_008262_1855_042652_1855",
+        "HI_009409_1860_009554_1860",
+        "HI_053926_1860_059689_1860",
+        "HI_055126_1865_055482_1865",
+        "CTX_019124_1803_019269_1803",
+        "HI_013177_1800_021458_1800",
+        "HI_017634_1800_025493_1800",
+        "HI_039484_1805_039550_1805"
+      ],
+      "author_team": [
+        "Bartosz Pieterek",
+        "Jakub Śledziowski",
+        "Thomas J. Jones"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Planetary geomorphological dataset of Martian and terrestrial scoria cones for MarsCONE 2.0 validation",
+        "doi": "10.5281/zenodo.20672286",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 26,
+    "source_paper_count": 26,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

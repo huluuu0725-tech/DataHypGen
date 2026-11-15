@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global agricultural and managed landscapes",
+  "datasets": [
+    {
+      "role": "historical_optical_surface_input",
+      "data_description": {
+        "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+        "data_type": "Multispectral raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "30 m multispectral surface-reflectance grid",
+        "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+        "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+        "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "analytical_capabilities": [
+          "Long-term multispectral monitoring",
+          "Surface reflectance and vegetation-index derivation",
+          "Land-cover or crop feature extraction"
+        ],
+        "spatial_coverage": {
+          "region_name": "Global agricultural and managed landscapes",
+          "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+        }
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+    },
+    {
+      "role": "high_resolution_optical_surface_input",
+      "data_description": {
+        "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "data_type": "Multispectral raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "10 m visible/NIR and 20 m red-edge/SWIR bands",
+        "temporal_unit": "Scene-level observations with approximately 5-day revisit",
+        "temporal_coverage": "2017-present for harmonized Sentinel-2 surface reflectance",
+        "data_source": "ESA Copernicus Sentinel-2 MSI",
+        "gee_asset": {
+          "id": "COPERNICUS/S2_SR_HARMONIZED",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+        "analytical_capabilities": [
+          "Cloud-masked optical compositing",
+          "High-resolution vegetation and crop classification",
+          "Cross-sensor feature fusion"
+        ],
+        "spatial_coverage": {
+          "region_name": "Global agricultural and managed landscapes",
+          "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+      "data_type": "Multispectral raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "30 m multispectral surface-reflectance grid",
+      "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+      "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+      "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "analytical_capabilities": [
+        "Long-term multispectral monitoring",
+        "Surface reflectance and vegetation-index derivation",
+        "Land-cover or crop feature extraction"
+      ],
+      "spatial_coverage": {
+        "region_name": "Global agricultural and managed landscapes",
+        "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+      }
+    },
+    {
+      "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "data_type": "Multispectral raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "10 m visible/NIR and 20 m red-edge/SWIR bands",
+      "temporal_unit": "Scene-level observations with approximately 5-day revisit",
+      "temporal_coverage": "2017-present for harmonized Sentinel-2 surface reflectance",
+      "data_source": "ESA Copernicus Sentinel-2 MSI",
+      "gee_asset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "analytical_capabilities": [
+        "Cloud-masked optical compositing",
+        "High-resolution vegetation and crop classification",
+        "Cross-sensor feature fusion"
+      ],
+      "spatial_coverage": {
+        "region_name": "Global agricultural and managed landscapes",
+        "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:COPERNICUS/S2_SR_HARMONIZED"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "multisensor_optical_fusion composite observation",
+    "observable_group": "multisensor_optical_fusion_multidataset_observation",
+    "data_description": {
+      "dataset_name": "multisensor_optical_fusion composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Global agricultural and managed landscapes",
+        "coverage": "Declared study region within Global agricultural and managed landscapes."
+      },
+      "analytical_capabilities": [
+        "Role-aware spatial and temporal alignment",
+        "Joint feature construction",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "historical_optical_surface_input",
+        "data_description": {
+          "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+          "data_type": "Multispectral raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "30 m multispectral surface-reflectance grid",
+          "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+          "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+          "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "analytical_capabilities": [
+            "Long-term multispectral monitoring",
+            "Surface reflectance and vegetation-index derivation",
+            "Land-cover or crop feature extraction"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global agricultural and managed landscapes",
+            "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "high_resolution_optical_surface_input",
+        "data_description": {
+          "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "data_type": "Multispectral raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m visible/NIR and 20 m red-edge/SWIR bands",
+          "temporal_unit": "Scene-level observations with approximately 5-day revisit",
+          "temporal_coverage": "2017-present for harmonized Sentinel-2 surface reflectance",
+          "data_source": "ESA Copernicus Sentinel-2 MSI",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "analytical_capabilities": [
+            "Cloud-masked optical compositing",
+            "High-resolution vegetation and crop classification",
+            "Cross-sensor feature fusion"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global agricultural and managed landscapes",
+            "coverage": "Catalog coverage intersected with Global agricultural and managed landscapes."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "The declared components jointly define the task observation and must be interpreted with their stated roles.",
+      "alignment": "All required components must be spatially collocated and aligned to a declared temporal support before analysis.",
+      "required_roles": [
+        "historical_optical_surface_input",
+        "high_resolution_optical_surface_input"
+      ],
+      "component_count": 2,
+      "supplement_policy": "Ideas may add verified auxiliary datasets with distinct scientific roles; auxiliary data cannot replace required roles."
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:COPERNICUS/S2_SR_HARMONIZED"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "historical_optical_surface_input",
+      "high_resolution_optical_surface_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

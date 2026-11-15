@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas with valid daily nighttime observations",
+  "data_description": {
+    "dataset_name": "NASA VIIRS Black Marble VNP46A2 Daily Nighttime Lights",
+    "spatial_coverage": {
+      "region_name": "Global land areas with valid daily nighttime observations",
+      "coverage": "Near-global daily nighttime radiance over land, subject to clouds, snow, lunar conditions, viewing geometry, and retrieval-quality screening."
+    },
+    "temporal_coverage": "January 2012-present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 m",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Mapping daily BRDF-corrected nighttime radiance and its spatial distribution",
+      "Constructing location-specific seasonal and pre-event radiance baselines",
+      "Detecting abrupt radiance departures and estimating their onset, depth, duration, and spatial extent",
+      "Comparing anomaly trajectories across neighborhoods, regions, and repeated events",
+      "Auditing cloud, snow, ephemeral-light, lunar, and gap-filling effects with the supplied quality layers"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Nighttime DNB radiance in nanowatts per square centimetre per steradian",
+      "runtime_hint": "Prefer DNB_BRDF_Corrected_NTL for observed radiance and use Mandatory_Quality_Flag, QF_Cloud_Mask, Snow_Flag, and Latest_High_Quality_Retrieval to define valid samples. Treat gap-filled values separately and compare dates against a matched local baseline rather than raw global thresholds."
+    },
+    "data_source": "NASA VIIRS Land Science Investigator-led Processing System and Black Marble product team",
+    "gee_asset": {
+      "id": "NASA/VIIRS/002/VNP46A2",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+}

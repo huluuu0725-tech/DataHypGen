@@ -1,0 +1,2890 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_026",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "GRACE Monthly Mass Grids - Land [deprecated]",
+    "spatial_coverage": {
+      "region_name": "United States terrestrial surfaces",
+      "coverage": "Global land areas represented by terrestrial water-equivalent-thickness anomaly grids; the supplied study domain uses 0.5 degree land cells over the United States and excludes ocean regions."
+    },
+    "temporal_coverage": "2002-04-01T00:00:00Z to 2017-01-07T00:00:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "111320 m nominal (~1 degree)",
+    "temporal_unit": "Monthly mass-grid solution",
+    "analytical_capabilities": [
+      "Map spatial patterns and regional contrasts in terrestrial water storage anomalies",
+      "Analyze monthly trends, variability and seasonal cycles in land water storage",
+      "Compare independent CSR, GFZ and JPL processing-center solutions",
+      "Detect spatially coherent storage changes and hydrological anomalies",
+      "Relate GRACE storage anomalies to climate, hydrology and groundwater covariates"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Equivalent liquid water thickness calculated independently by CSR, GFZ and JPL, expressed in centimetres.",
+      "runtime_hint": "Use the catalog bands `lwe_thickness_csr`, `lwe_thickness_gfz` and `lwe_thickness_jpl`; each has units cm and nominal 111320 m ground sampling. The catalog provides no scale factor, offset or fill value for these bands. Their catalog-declared estimated ranges are CSR -139.2 to 74.88 cm, GFZ -145.45 to 70.19 cm and JPL -137.94 to 71.86 cm. The collection is deprecated; use the historical Release 05 record only when that processing generation is required, and apply the published scaling grid for quantitative regional analyses."
+    },
+    "data_source": "NASA Jet Propulsion Laboratory GRACE Tellus processing centers (CSR, GFZ and JPL)",
+    "gee_asset": {
+      "id": "NASA/GRACE/MASS_GRIDS/LAND",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_026.json",
+    "source_sha256": "928ef55299719768a701dace3229be347e75793776678241037da8a84338a00c",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_026/prompt.json",
+    "current_prompt_sha256": "b00a32e57fdc26b9d684cfbbea8ce37ea1d27cee42f7324010d97257bad4dcf5",
+    "original_anchor_asset": {
+      "id": "NASA/GRACE/MASS_GRIDS/LAND",
+      "observable_group": "grace_land_water_equivalent_thickness",
+      "observation_identity_contract": {
+        "physical_object": "terrestrial water-storage mass anomaly expressed as equivalent water thickness",
+        "source_lineage": "GRACE and GRACE-FO satellite gravimetry land-solution lineage, including CSR, JPL, GFZ or GSFC processing centers",
+        "core_measurement_semantics": "monthly terrestrial or groundwater storage anomaly inferred from GRACE-family gravity observations",
+        "non_material_variations": "processing center, release, spherical-harmonic versus mascon representation, grid, scaling, leakage correction or GRACE-FO continuation",
+        "material_mismatches": "ocean/ice-only mass observations or hydrological-model storage without operational GRACE-family evidence"
+      },
+      "asset_alias_policy": "Admit GRACE Tellus land monthly mass-grid solutions and directly related GRACE/GRACE-FO mascon solutions in the terrestrial-water-storage family, including CSR, GFZ and JPL releases. GRACE-FO may be paired with GRACE when the study operationally uses the GRACE family. Standalone hydrological-model storage without GRACE evidence is excluded."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "Can coarse GRACE total-water-storage change be downscaled without losing its mass-change signal?",
+      "hypothesis_or_mechanism": "Partial least squares relates coarse gravimetric anomalies to finer hydrological predictors and then constrains the disaggregated field to the observed total.",
+      "variables_and_data_use": "GRACE storage change is modeled with land-surface and hydroclimate predictors at finer resolution.",
+      "method_paradigm": "Constrained statistical downscaling using partial least squares regression.",
+      "used_assets": [
+        "GRACE land mass grids",
+        "fine-resolution hydrological predictors"
+      ],
+      "author_team": [
+        "Bramha Dutt Vishwakarma",
+        "Jinwei Zhang",
+        "Nico Sneeuw"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE total water storage change using partial least squares regression",
+        "doi": "10.1038/s41597-021-00862-6",
+        "year": 2021,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Can assimilating GRACE and GRACE-FO produce a dynamically consistent global land-water-storage record?",
+      "hypothesis_or_mechanism": "Data assimilation spreads gravimetric constraints through modeled water stores while maintaining water-balance dynamics and continuity across missions.",
+      "variables_and_data_use": "GRACE land-water storage is assimilated into a global hydrological model and validated against independent storage components.",
+      "method_paradigm": "Global hydrological data assimilation and product validation.",
+      "used_assets": [
+        "GRACE land mass grids",
+        "GRACE-FO",
+        "global hydrological model"
+      ],
+      "author_team": [
+        "Helena Gerdener",
+        "Jürgen Kusche",
+        "Kerstin Schulze",
+        "Petra Döll",
+        "Anna Kłos"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "The global land water storage data set release 2 (GLWS2.0) derived via assimilating GRACE and GRACE-FO data into a global hydrological model",
+        "doi": "10.1007/s00190-023-01763-9",
+        "year": 2023,
+        "venue": "Journal of Geodesy",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "Can an autoregressive remove–restore technique accurately reconstruct total water storage changes during the 11-month observation gap between GRACE and GRACE-FO?",
+      "hypothesis_or_mechanism": "Removing climatology and deterministic signals via hydrological models and least-squares estimation before applying forward and backward autoregressive predictions yields superior gap-filled TWS estimates compared to standalone hydrological models.",
+      "variables_and_data_use": "Operational input: CSR RL06 mascon TWS changes for GRACE/GRACE-FO observations. Auxiliary inputs: GLDAS Noah and WGHM hydrological model TWS for climatology and trend/seasonality removal. Validation: Swarm spherical harmonic TWS changes.",
+      "method_paradigm": "Autoregressive GRACE TWS gap reconstruction",
+      "used_assets": [
+        "CSR GRACE/GRACE-FO RL06 mascons",
+        "GLDAS Noah 2.1",
+        "WGHM",
+        "Swarm COST-G"
+      ],
+      "author_team": [
+        "Artur Lenczuk",
+        "Matthias Weigelt",
+        "Wieslaw Kosek",
+        "Jan Mikocki"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Autoregressive Reconstruction of Total Water Storage within GRACE and GRACE Follow-On Gap Period",
+        "doi": "10.3390/en15134827",
+        "year": 2022,
+        "venue": "Energies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "How can component-wise nonstationarity in GRACE/GRACE-FO-derived terrestrial water storage anomalies be reconstructed, decomposed, evaluated, and characterized over time?",
+      "hypothesis_or_mechanism": "A combined observation-only gap-filling, SSA decomposition, spectral diagnostics, and change-point framework can better characterize time-varying seasonal and interannual-decadal TWSA behavior than conventional fixed-harmonic least-squares fitting.",
+      "variables_and_data_use": "The study uses GRACE and GRACE-FO JPL RL06M v3.0 Mascon terrestrial water storage anomaly data, reconstructs missing monthly observations, decomposes TWSA into trend, semi-annual, annual, interannual-decadal, and residual components, and analyzes their temporal and spectral nonstationarity.",
+      "method_paradigm": "GRACE TWSA component-wise nonstationarity decomposition",
+      "used_assets": [
+        "GRACE JPL RL06M v3.0 mascons",
+        "GRACE-FO JPL RL06M v3.0 mascons"
+      ],
+      "author_team": [
+        "Hoa Thi Pham",
+        "Joseph Awange",
+        "Sten Claessens",
+        "Jielong Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "A Framework for Characterizing Component-Wise Nonstationarity in GRACE/GRACE-FO-Derived Terrestrial Water Storage Anomalies",
+        "doi": "10.1007/s11053-026-10755-3",
+        "year": 2026,
+        "venue": "Natural Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "How can machine learning models downscale coarse-resolution GRACE-derived terrestrial water storage anomalies to high-resolution groundwater storage estimates?",
+      "hypothesis_or_mechanism": "Integrating fine-resolution hydro-meteorological and vegetation predictors with ML algorithms can effectively refine GRACE TWSA into localized groundwater storage maps.",
+      "variables_and_data_use": "GRACE monthly mass grids (TWSA) as target variable; ERA5-Land (runoff, precipitation, evaporation), TerraClimate (AET), MODIS NDVI, and GLDAS-2.2 (GWS) as predictors; processed via XGBoost, RF, and SVR models.",
+      "method_paradigm": "Machine-learning spatial downscaling of GRACE groundwater storage",
+      "used_assets": [
+        "NASA/GRACE/MASS_GRIDS/LAND",
+        "GLDAS-2.2",
+        "ERA5-Land",
+        "TerraClimate",
+        "MODIS NDVI"
+      ],
+      "author_team": [
+        "Pekham Ganguly"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Machine Learning-Based Downscaling of GRACE-Derived Groundwater Storage for West Bengal, India.",
+        "doi": "10.22214/ijraset.2026.82503",
+        "year": 2026,
+        "venue": "International Journal for Research in Applied Science and Engineering Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "The paper analyzes terrestrial water storage change and drought dynamics in Jiangxi Province using GRACE-derived water storage anomalies and related hydroclimatic variables.",
+      "hypothesis_or_mechanism": "Water storage deficit inferred from satellite gravity-based TWSA is linked to precipitation, runoff, evapotranspiration, and drought indices.",
+      "variables_and_data_use": "It uses TWSA-derived water storage deficit indices from three Mascon GRACE datasets, compares them with GLDAS data, and relates them to precipitation, runoff, evapotranspiration, scPDSI, and SPEI.",
+      "method_paradigm": "GRACE drought-index correlation analysis",
+      "used_assets": [
+        "GRACE mascon products",
+        "GLDAS",
+        "scPDSI",
+        "SPEI"
+      ],
+      "author_team": [
+        "Changmin Huan",
+        "Tieding Lu",
+        "Shijian Zhou",
+        "Fengwei Wang",
+        "Zhao Wu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Monitoring terrestrial water storage changes and drought in Jiangxi Province using GRACE and GRACE Follow-on data",
+        "doi": "10.13168/agg.2023.0011",
+        "year": 2023,
+        "venue": "Acta Geodynamica et Geomaterialia",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "Can a Bayesian convolutional neural network effectively bridge the total water storage anomaly observation gap between GRACE and GRACE-FO satellites globally?",
+      "hypothesis_or_mechanism": "Integrating residual-skip connections, spatial-channel attentions, and Bayesian training enables the model to capture complex spatiotemporal patterns and quantify predictive uncertainties from climate predictors.",
+      "variables_and_data_use": "JPL and CSR GRACE Mascon data serve as reference observations for model training and validation; ERA5-Land hydroclimatic data act as predictor inputs for gap-filling.",
+      "method_paradigm": "Bayesian deep-learning gap filling of GRACE TWSA",
+      "used_assets": [
+        "JPL GRACE mascon",
+        "CSR GRACE mascon",
+        "ERA5-Land",
+        "GLDAS Noah TWSA",
+        "Swarm gravity solution"
+      ],
+      "author_team": [
+        "Shaoxing Mo",
+        "Yulong Zhong",
+        "Ehsan Forootan",
+        "Nooshin Mehrnegar",
+        "Xin Yin",
+        "Jichun Wu",
+        "Wei Feng",
+        "Xiaoqing Shi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Bayesian convolutional neural networks for predicting the terrestrial water storage anomalies during GRACE and GRACE-FO gap",
+        "doi": "10.1016/j.jhydrol.2021.127244",
+        "year": 2022,
+        "venue": "Journal of Hydrology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "How do different terrestrial water storage and soil moisture datasets compare in estimating groundwater storage anomalies across arid and semi-arid basins?",
+      "hypothesis_or_mechanism": "Cross-dataset anomaly comparisons can validate spatio-temporal patterns and improve confidence in estimated groundwater storage variations.",
+      "variables_and_data_use": "Uses GRACE mascon TWS (CSR & JPL), GLEAM soil moisture, and Hydroweb surface water volume anomalies to derive groundwater storage anomalies via a mass-balance approach.",
+      "method_paradigm": "GRACE groundwater-storage residual estimation",
+      "used_assets": [
+        "CSR GRACE mascon TWS",
+        "JPL GRACE mascon TWS",
+        "GLEAM soil moisture",
+        "Hydroweb surface water"
+      ],
+      "author_team": [
+        "Frédéric Frappart"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Groundwater Storage Changes in the Major North African Transboundary Aquifer Systems during the GRACE Era (2003–2016)",
+        "doi": "10.3390/w12102669",
+        "year": 2020,
+        "venue": "Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "How do terrestrial and groundwater storage dynamics vary spatiotemporally across Nigeria's climatic zones from 2002 to 2021?",
+      "hypothesis_or_mechanism": "Monsoon-driven precipitation and climate teleconnections (ENSO, IOD) dominate TWS variability, while anthropogenic extraction and urbanization drive localized GWS depletion.",
+      "variables_and_data_use": "Terrestrial water storage (TWS) and groundwater storage (GWS) derived from CSR RL06 GRACE/GRACE-FO mascon datasets, GLDAS soil moisture/canopy water, and in-situ groundwater levels converted via specific yield.",
+      "method_paradigm": "GRACE TWS/GWS residual decomposition and validation",
+      "used_assets": [
+        "CSR GRACE/GRACE-FO RL06 mascons",
+        "GLDAS soil moisture and canopy water",
+        "NIHSA groundwater levels"
+      ],
+      "author_team": [
+        "Ikenna D. Arungwa",
+        "Elochukwu C. Moka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Exploring the Dynamics of Terrestrial Water and Groundwater Storage across Nigeria: Insights from GRACE/GRACE-FO",
+        "doi": "10.32604/rig.2026.083164",
+        "year": 2026,
+        "venue": "Revue Internationale de Géomatique",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "Which combination of hydrological model components and precipitation datasets most accurately simulates terrestrial water storage anomalies over Iran when benchmarked against satellite observations?",
+      "hypothesis_or_mechanism": "Systematically combining specific model outputs (e.g., ERA5 evapotranspiration, VIC/CLSM precipitation) will produce an optimal TWSA simulation that captures regional hydrological dynamics better than single-model approaches.",
+      "variables_and_data_use": "Monthly precipitation, evapotranspiration, and runoff from five hydrological models (GLDAS-Noah/CLSM/VIC, ERA5-Land, WGHM) and GPM precipitation were combined into 128 configurations to compute TWSA via the water balance equation, then statistically evaluated against an ensemble mean of GRACE mascon solutions.",
+      "method_paradigm": "Multi-model TWSA benchmarking and driver attribution",
+      "used_assets": [
+        "GRACE/GRACE-FO RL06 mascons (CSR, JPL, GSFC)",
+        "GLDAS Noah",
+        "GLDAS CLSM",
+        "GLDAS VIC",
+        "ERA5-Land",
+        "WGHM",
+        "GPM Level-3 precipitation"
+      ],
+      "author_team": [
+        "Xilong Yuan",
+        "Fengwei Wang",
+        "Yunqi Zhou",
+        "Shijian Zhou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Overcoming single model bias through GRACE and multi model data reveals Iran water storage depletion drivers",
+        "doi": "10.1038/s41598-026-51961-6",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "Can a hybrid optimization-LSTM model accurately predict terrestrial water storage changes over the Nile River basin?",
+      "hypothesis_or_mechanism": "Integrating dipper throated and grey wolf optimization algorithms into an LSTM framework improves the reconstruction and forecasting accuracy of terrestrial water storage time series compared to standard models.",
+      "variables_and_data_use": "Terrestrial water storage change (TWSC) time series derived from the CSR GRACE RL06 mascon product (2002–2017) serve as the primary target variable for training and validating the DTOFGW-LSTM prediction model alongside precipitation and temperature inputs.",
+      "method_paradigm": "Deep-learning forecasting of GRACE terrestrial water storage change",
+      "used_assets": [
+        "CSR GRACE RL06 v02 mascon",
+        "GPCC precipitation",
+        "CRU temperature and potential evapotranspiration"
+      ],
+      "author_team": [
+        "Basma Fawzi",
+        "Mahmoud Salah",
+        "Mahmoud El-Mewafi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Prediction of terrestrial water storage changes by using GRACE  data over Nile river basin",
+        "doi": "10.3846/gac.2026.22447",
+        "year": 2026,
+        "venue": "Geodesy and Cartography",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "How do terrestrial and groundwater storage dynamics vary across Sulawesi Island from 2002 to 2024?",
+      "hypothesis_or_mechanism": "Groundwater storage anomalies can be reliably estimated by isolating them from total water storage anomalies after removing modeled soil moisture and canopy water storage components.",
+      "variables_and_data_use": "Uses CSR GRACE/GRACE-FO mascon TWSA (2002-2024) and GLDAS Noah v2.1 soil moisture/canopy water storage to compute groundwater storage anomalies via a residual subtraction method.",
+      "method_paradigm": "GRACE residual groundwater estimation with GLDAS",
+      "used_assets": [
+        "CSR GRACE/GRACE-FO mascon TWSA",
+        "GLDAS Noah v2.1 soil moisture and canopy water storage"
+      ],
+      "author_team": [
+        "Arief Sudradjat",
+        "Mayrina Firdayati",
+        "Rahdian Fathurachman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Analysis of Groundwater Storage Changes in Sulawesi Island Based on GRACE Satellite",
+        "doi": "10.5614/j.tl.2026.32.1.3",
+        "year": 2026,
+        "venue": "Jurnal Teknik Lingkungan",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "Can an improved point-mass inversion of GRACE/GRACE-FO Level-2 gravity solutions provide a reliable terrestrial water-storage anomaly product for regional hydrological applications?",
+      "hypothesis_or_mechanism": "An improved point-mass parameterization of residual GRACE/GRACE-FO gravitational potential can stabilize the ill-posed downward-continuation problem and produce TWSA fields consistent with established mascon products.",
+      "variables_and_data_use": "COST-G16 monthly GRACE/GRACE-FO Level-2 spherical-harmonic coefficients are corrected for geocenter, degree-2, GIA and aliased tidal signals, then inverted with the improved point-mass method to generate 0.25-degree TWSA fields and compared with mascon solutions.",
+      "method_paradigm": "Alternative GRACE Level-2 spherical-harmonic TWSA estimation with improved point-mass inversion.",
+      "used_assets": [
+        "GRACE/GRACE-FO COST-G16 Level-2 spherical-harmonic solutions",
+        "GRACE JPL geocenter corrections",
+        "GRACE/GRACE-FO mascon comparison products"
+      ],
+      "author_team": [
+        "Vagner Ferreira",
+        "Bin Yong",
+        "Henry Montecino",
+        "Christopher E. Ndehedehe",
+        "Kurt Seitz",
+        "Hansjörg Kutterer",
+        "Kun Yang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Estimating GRACE terrestrial water storage anomaly using an improved point mass solution",
+        "doi": "10.1038/s41597-023-02122-1",
+        "year": 2023,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "Can a GRACE-assimilated land-surface groundwater-storage product be downscaled to capture local-scale drought effects under data scarcity?",
+      "hypothesis_or_mechanism": "Fine-resolution hydro-meteorological predictors and machine-learning regressors can refine the coarse GLDAS-GRACE groundwater-storage signal while retaining its GRACE-constrained drought response.",
+      "variables_and_data_use": "The target is GLDAS-GRACE groundwater storage derived from CSR GRACE/GRACE-FO solutions; precipitation, soil moisture and other hydro-meteorological variables are predictors, and groundwater-well observations validate the 5-km downscaled estimates.",
+      "method_paradigm": "Local-scale machine-learning downscaling of a GRACE-assimilated groundwater-storage product.",
+      "used_assets": [
+        "GLDAS-GRACE groundwater storage",
+        "GRACE/GRACE-FO CSR solutions",
+        "hydro-meteorological predictors",
+        "groundwater observation wells"
+      ],
+      "author_team": [
+        "Christopher Shilengwe",
+        "Kawawa Banda",
+        "Imasiku Nyambe"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Machine learning downscaling of GRACE/GRACE-FO data to capture spatial-temporal drought effects on groundwater storage at a local scale under data-scarcity",
+        "doi": "10.1186/s40068-024-00368-1",
+        "year": 2024,
+        "venue": "Environmental Systems Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "Can machine-learning models reconstruct a globally continuous terrestrial water-storage record across the within-mission and GRACE-to-GRACE-FO gaps?",
+      "hypothesis_or_mechanism": "Combining DNN, GLM and gradient-boosting models with hydroclimatic predictors can recover missing TWS signals, with the best model varying between grid and basin scales.",
+      "variables_and_data_use": "GRACE/GRACE-FO TWS records are reconstructed at global grid and basin scales using eight climatic and hydrological predictors, including GLDAS-derived TWS; model performance is evaluated with NSE, correlation and normalized RMSE.",
+      "method_paradigm": "Global machine-learning reconstruction of missing GRACE/GRACE-FO terrestrial water-storage records.",
+      "used_assets": [
+        "JPL GRACE RL06M mascon TWS",
+        "GRACE-FO TWS",
+        "GLDAS-derived TWS",
+        "climatic and hydrological predictors"
+      ],
+      "author_team": [
+        "Bimal Gyawali",
+        "Mohamed Ahmed",
+        "Dorina Murgulet",
+        "David N. Wiese"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Filling Temporal Gaps within and between GRACE and GRACE-FO Terrestrial Water Storage Records: An Innovative Approach",
+        "doi": "10.3390/rs14071565",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "Can a multilayer-perceptron reconstruction bridge the GRACE-to-GRACE-FO gap and support regional groundwater-storage assessment in Telangana?",
+      "hypothesis_or_mechanism": "STL decomposition and an MLP can reconstruct the missing inter-mission TWSA sequence, after which GLDAS component subtraction and well observations can quantify and validate groundwater-storage anomalies.",
+      "variables_and_data_use": "Monthly GRACE TWS and GRACE-FO TWS products are gap-filled for 2003–2020; GLDAS Noah/CLSM soil-moisture and canopy-water components derive GWSA residuals, while 210 observation wells provide independent validation.",
+      "method_paradigm": "Regional MLP gap reconstruction and GRACE-derived groundwater-storage validation.",
+      "used_assets": [
+        "JPL GRACE mascon TWS",
+        "GRACE-FO mascon TWS",
+        "GLDAS Noah and CLSM",
+        "groundwater observation wells"
+      ],
+      "author_team": [
+        "Kuruva Satish Kumar",
+        "Venkataramana Sridhar",
+        "Bellamkonda Jaya Sankar Varaprasad",
+        "Konudula Chinnapa Reddy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Bridging the Data Gap between the GRACE Missions and Assessment of Groundwater Storage Variations for Telangana State, India",
+        "doi": "10.3390/w14233852",
+        "year": 2022,
+        "venue": "Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "How does combining multiple GRACE/GRACE-FO mascon solutions with gap-filled and downscaled products improve estimates of groundwater-storage change in the Indus and Ganga basins?",
+      "hypothesis_or_mechanism": "A multi-mascon ensemble reduces solution-specific uncertainty, while gap filling, downscaling and removal of upper-zone soil moisture improve the interpretation and validation of groundwater-storage trends.",
+      "variables_and_data_use": "JPL, CSR and GSFC GRACE/GRACE-FO mascons are combined with gap-filled JPL TWSA, a downscaled high-resolution TWSA product, satellite soil moisture and in-situ well levels to estimate and validate GWSA.",
+      "method_paradigm": "Multi-mascon ensemble TWSA, gap filling, downscaling and groundwater-storage validation.",
+      "used_assets": [
+        "JPL GRACE/GRACE-FO mascons",
+        "CSR GRACE/GRACE-FO mascons",
+        "GSFC GRACE/GRACE-FO mascons",
+        "gap-filled and downscaled TWSA",
+        "in-situ groundwater wells"
+      ],
+      "author_team": [
+        "Saurabh Choubey",
+        "Shard Chander",
+        "Rina Kumari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "GRACE and GRACE Follow On: On Accurate estimation of Groundwater Storage Change from Satellite Gravimetry and Beyond",
+        "doi": "10.5194/isprs-archives-xlix-b3-2026-783-2026",
+        "year": 2026,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "How are GRACE/GRACE-FO equivalent-water-height variations related to seasonal precipitation patterns and ENSO conditions across Indonesia?",
+      "hypothesis_or_mechanism": "ENSO-driven changes in atmospheric moisture transport alter precipitation and produce coherent contemporaneous changes in terrestrial equivalent water height, with regional accuracy varying by rainfall homogeneity.",
+      "variables_and_data_use": "JPL GRACE/GRACE-FO mascon EWH is extracted on a 0.5-degree grid and compared with CPC precipitation reanalysis and the Oceanic Niño Index; missing GRACE months are reconstructed before seasonal and bias analyses.",
+      "method_paradigm": "GRACE EWH and seasonal/ENSO relationship analysis.",
+      "used_assets": [
+        "JPL GRACE/GRACE-FO mascon EWH",
+        "CPC precipitation reanalysis",
+        "Oceanic Niño Index"
+      ],
+      "author_team": [
+        "Muhammad Taufiq",
+        "Ira Mutiara Anjasmara"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analisis Data Pola Musim di Indonesia Menggunakan Data Equivalent Water Height (EWH) dari Satelit GRACE",
+        "doi": "10.55123/insologi.v4i6.7085",
+        "year": 2025,
+        "venue": "INSOLOGI: Jurnal Sains dan Teknologi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "研究比较不同数据同化方法将SMOS、SMAP和GRACE观测 assimilate 到CABLE模型中，以改进土壤水分和地下水储量估计的效果。",
+      "hypothesis_or_mechanism": "通过将多源卫星观测与CABLE模型状态结合，不同数据同化方法能够逐月更新模型状态并改善储量估计。",
+      "variables_and_data_use": "研究使用SMOS和SMAP土壤水分观测，以及GRACE提供的月平均陆地总水储量观测，将其同化到CABLE模型中，用于更新土壤水分（SM）和地下水储量（GWS）等状态变量。",
+      "method_paradigm": "多源卫星数据同化",
+      "used_assets": [
+        "SMOS",
+        "SMAP",
+        "GRACE",
+        "CABLE"
+      ],
+      "author_team": [
+        "Natthachet Tangdamrongsub",
+        "Jianzhi Dong",
+        "Peter Shellito"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Assessing Performances of Multivariate Data Assimilation Algorithms with SMOS, SMAP, and GRACE Observations for Improved Soil Moisture and Groundwater Analyses",
+        "doi": "10.3390/w14040621",
+        "year": 2022,
+        "venue": "Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "该论文研究2002—2024年乍得盆地降雨、总水储量、地表水/土壤水和地下水储量的时空变化及其相互关系。",
+      "hypothesis_or_mechanism": "论文隐含机制是降雨、地表水和总水储量变化会影响地下水储量，但蒸发、抽水压力和水文地质条件可能削弱降雨向地下水补给的转化。",
+      "variables_and_data_use": "论文使用CHIRPS v2.0的月降雨量、GRACE/GRACE-FO NASA JPL的月TWSA并由厘米转换为毫米、GLDAS-NOAH v2.1的地表水/土壤水变量，并通过GRACE TWSA与GLDAS水分量差值派生GWSA；随后在GEE、ArcGIS和Python中进行年度聚合、制图、趋势分析和相关分析。",
+      "method_paradigm": "遥感时空趋势分析",
+      "used_assets": [
+        "CHIRPS v2.0",
+        "GRACE/GRACE-FO",
+        "NASA JPL",
+        "GLDAS-NOAH v2.1",
+        "Derived (GRACE-GLDAS)"
+      ],
+      "author_team": [
+        "Ubong Paulinus Udoka",
+        "Karel Pavelka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Estimating Long-Term Groundwater Storage Change in the Chad Basin, Nigeria, Using GRACE/GRACE-FO and GLDAS Terrestrial Water Storage Anomalies",
+        "doi": "10.5194/isprs-archives-xlix-b3-2026-859-2026",
+        "year": 2026,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究探讨2005—2024年巴布亚岛陆地水储量和地下水储量的空间、时间及季节变化特征。",
+      "hypothesis_or_mechanism": "GRACE和GRACE-FO观测到的陆地总水储量变化，在扣除GLDAS模拟的非含水层水储量后，可以表征地下水储量的长期变化及季节性补给—消耗过程。",
+      "variables_and_data_use": "研究使用GRACE和GRACE-FO的月尺度陆地水当量厚度变量（lwe_thicknes）计算陆地水储量变化，并结合GLDAS的土壤水分、雪水当量和冠层水储量数据，通过残差法估算地下水储量。",
+      "method_paradigm": "卫星重力反演与残差分析",
+      "used_assets": [
+        "GRACE",
+        "GRACE-FO",
+        "Global Land Data Assimilation System (GLDAS)",
+        "lwe_thicknes"
+      ],
+      "author_team": [
+        "Daniar Ihza Carundyatama",
+        "Krisna Dwi Oktabrian",
+        "Farrel Fitria Nathania Kuncara",
+        "Purwanti Lelly Sabrina",
+        "La Ode Ashamad Nusriah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatiotemporal Variability of Terrestrial Water Storage and Groundwater Storage on the Papua Island Using the GRACE and GRACE-FO Satellites",
+        "doi": "10.12962/inderaja.v20i1.9810",
+        "year": 2026,
+        "venue": "Jurnal Penginderaan Jauh dan Pengolahan Data Citra Digital",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "研究旨在利用GRACE/GRACE-FO观测及辅助变量估算并降尺度2003—2020年松花江流域的地下水储量变化。",
+      "hypothesis_or_mechanism": "GRACE反演的陆地总水储量异常扣除模型估计的土壤水、积雪和冠层水储量异常后，可获得地下水储量异常，并可由环境变量解释和降尺度。",
+      "variables_and_data_use": "研究使用GRACE/GRACE-FO的月尺度总水储量异常数据，具体采用CSR数据，并通过IMSSA插补缺失值；使用GLDAS Noah-v2.1和ESSI-3提供的土壤水储量、冠层水储量及雪水当量，以水量平衡方程分离地下水储量异常；同时使用降水、NDVI、实际蒸散、地表温度、土壤湿度和气温等环境变量，通过PLSR筛选变量，再利用GWR和随机森林将地下水储量异常从0.25°降尺度至1公里。",
+      "method_paradigm": "GRACE水储量重建与降尺度",
+      "used_assets": [
+        "GRACE",
+        "GRACE-FO",
+        "CSR",
+        "Mascon",
+        "GLDAS Noah-v2.1",
+        "CLSM",
+        "ESSI-3",
+        "MOD13A3",
+        "MOD11A2",
+        "SSEBop"
+      ],
+      "author_team": [
+        "Chuanqi Liu",
+        "Zhijie Zhang",
+        "Chi Xu",
+        "Wanchang Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Reconstructing Long-Term, High-Resolution Groundwater Storage Changes in the Songhua River Basin Using Supplemented GRACE and GRACE-FO Data",
+        "doi": "10.3390/rs16234566",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究考察如何融合 GRACE/GRACE-FO 总水储量变化、SMAP 土壤水分观测与 W3RA 模型输出，以改进高平原含水层各水储量组分的估计。",
+      "hypothesis_or_mechanism": "通过贝叶斯数据同化约束模型状态，使各水储量组分之和符合 GRACE/GRACE-FO 总水储量变化，同时利用 SMAP 改善表层土壤水储量估计。",
+      "variables_and_data_use": "使用 CSR 提供的 GRACE/GRACE-FO RL06 Level 2 球谐产品计算月尺度总水储量变化，并结合 JPL 和 GFZ 产品估计不确定性；使用 SMAP L3 土壤水分约束表层土壤水储量，使用 W3RA 模型输出作为各水储量组分的先验信息，并通过数据同化重构地下水、土壤水、地表水和积雪等储量。",
+      "method_paradigm": "贝叶斯状态空间重构",
+      "used_assets": [
+        "GRACE/GRACE-FO Level 2 (L2) products",
+        "Center for Space Research (CSR)",
+        "Jet Propulsion Laboratory (JPL) L2 data",
+        "GeoForschungsZentrum (GFZ) L2 data",
+        "SMAP",
+        "W3RA"
+      ],
+      "author_team": [
+        "Nooshin Mehrnegar",
+        "Maike Schumacher",
+        "Thomas Jagdhuber",
+        "Ehsan Forootan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Making the Best Use of GRACE, GRACE‐FO and SMAP Data Through a Constrained Bayesian Data‐Model Integration",
+        "doi": "10.1029/2023wr034544",
+        "year": 2023,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "研究探讨如何利用高分辨率水文变量对GRACE陆地水储量变化进行统计降尺度，并评估降尺度结果在区域地下水储量变化表征中的有效性。",
+      "hypothesis_or_mechanism": "降水、蒸散发和径流等水文变量能够解释GRACE陆地水储量变化，统计模型未解释的残差可能反映气候变化和人为取水影响。",
+      "variables_and_data_use": "研究使用CSR、JPL和GSFC的GRACE level 3 mascon产品构建1.0°网格的GRACE-TWS集合平均及其变化，作为降尺度的因变量；使用Australian Water Outlook中的降水、蒸散发和径流变化作为预测变量，通过支持向量机预测GRACE-TWS并对残差进行插值；同时使用Australian groundwater explorer的地下水位数据进行验证。",
+      "method_paradigm": "机器学习统计降尺度",
+      "used_assets": [
+        "GRACE level 3 mascon products",
+        "CSR",
+        "JPL",
+        "GSFC",
+        "GRACE-TWS",
+        "Australian Water Outlook",
+        "AWRA-L v7",
+        "Australian groundwater explorer"
+      ],
+      "author_team": [
+        "Ikechukwu Kalu",
+        "Christopher E. Ndehedehe",
+        "Vagner G. Ferreira",
+        "Sreekanth Janardhanan",
+        "Matthew Currell",
+        "Mark J. Kennard"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Statistical downscaling of GRACE terrestrial water storage changes based on the Australian Water Outlook model",
+        "doi": "10.1038/s41598-024-60366-2",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "该论文研究基于 GRACE/GRACE-FO 月度水储量产品与累积观测趋势反演得到的长期陆地水储量趋势在空间分辨率和局地信号刻画上的差异。",
+      "hypothesis_or_mechanism": "通过牺牲时间分辨率并累积较长时期的 GRACE/GRACE-FO 观测，可降低噪声并使用较弱约束，从而更好保留小尺度陆地水储量趋势信号。",
+      "variables_and_data_use": "论文使用 CSR、JPL 和 GSFC 的 RL06 Mascons 月度 TWS/EWH 产品，以及 COST-G、GFZ GravIS 的格网水储量异常产品，估计 2002-04 至 2021-01 的长期趋势，并与基于 ITSG-Grace2018s 和 GRACE-FO 观测法方程构建的 MFT 趋势产品进行比较。",
+      "method_paradigm": "趋势重建对比",
+      "used_assets": [
+        "RL06 Mascons solutions of the Center of Space Research (CSR)",
+        "Jet Propulsion Laboratory (JPL, NASA/JPL 2019)",
+        "Goddard Space Flight Center (GSFC)",
+        "COST-G",
+        "GFZ GravIS gridded water storage anomalies",
+        "ITSG-Grace2018s",
+        "GRACE-FO GPS tracking and microwave ranging data"
+      ],
+      "author_team": [
+        "A Kvas",
+        "E Boergens",
+        "H Dobslaw",
+        "A Eicker",
+        "T Mayer-Guerr",
+        "A Güntner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Evaluating long-term water storage trends in small catchments and aquifers from a joint inversion of 20 years of GRACE/GRACE-FO mission data",
+        "doi": "10.1093/gji/ggad468",
+        "year": 2023,
+        "venue": "Geophysical Journal International",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究如何利用水文气候变量和机器学习方法重建2003至2022年加里曼丹流域的GRACE陆地水储量异常数据。",
+      "hypothesis_or_mechanism": "降水、蒸散发、径流、土壤水分、植被冠层储水和温度等水文气候变量及其时间滞后能够有效解释并重建GRACE陆地水储量异常。",
+      "variables_and_data_use": "研究实际使用GRACE/GRACE-FO Mascon EWH CRI Filtered Release 06.1 v.03作为陆地水储量异常因变量，并使用Noah GLDAS V2.1中的降水、蒸散发、径流、土壤水分、植被冠层储水和气温等变量作为输入，通过插值、空间重采样和三个月滞后处理后训练XGBoost模型重建数据缺口。",
+      "method_paradigm": "机器学习状态重建",
+      "used_assets": [
+        "GRACE/GRACE-FO Mascon Ocean, Ice, and Hydrology Equivalent Water Height (EWH) Coastal Resolution Improvement (CRI) Filtered Release 06.1 v.03",
+        "Noah GLDAS V2.1",
+        "XGBoost"
+      ],
+      "author_team": [
+        "Rizka Amelia Dwi Safira",
+        "Ira Mutiara Anjasmara",
+        "Joseph L. Awange"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Predictive Modeling of Terrestrial Water Storage Anomalies in Kalimantan Basins: Bridging the GRACE and GRACE-FO Data Gap with Extreme Gradient Boosting",
+        "doi": "10.12962/geoid.v19i3.2329",
+        "year": 2024,
+        "venue": "GEOID",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "研究评估改进的前向建模方法能否降低GRACE陆地水储量估计中的泄漏误差并提高信号恢复效果。",
+      "hypothesis_or_mechanism": "通过特殊掩膜和利用前向球谐系数计算最终等效水高，可以减少海岸线附近的过度恢复和噪声累积。",
+      "variables_and_data_use": "研究使用CSR GRACE Release 05 Level-2球谐系数、JPL RL05M和CSR RL05 mascon解以及GRACE Tellus陆地质量网格，处理并比较等效水高（EWH）和陆地水储量变化；同时利用ESM AOHIS和AOerr模型开展含噪模拟。",
+      "method_paradigm": "前向建模方法验证",
+      "used_assets": [
+        "monthly GRACE release 05 Level-2 product",
+        "JPL RL05M",
+        "CSR RL05 mascon solution",
+        "GRACE Tellus mass grids",
+        "ESM AOHIS model",
+        "ESM AOerr model"
+      ],
+      "author_team": [
+        "Hao Zhou",
+        "Min Dai",
+        "Penghui Wang",
+        "Min Wei",
+        "Lu Tang",
+        "Siyou Xu",
+        "Zhicai Luo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of GRACE/GRACE Follow-On Terrestrial Water Storage Estimates Using an Improved Forward Modeling Method: A Case Study in Africa",
+        "doi": "10.3389/feart.2021.796723",
+        "year": 2022,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "研究如何利用GRACE-FO总水储量数据识别全球不同区域水储量变化行为及其类别。",
+      "hypothesis_or_mechanism": "主成分分析能够放大水储量变化信号并降低噪声，SOM能够依据区域行为相似性将其聚类。",
+      "variables_and_data_use": "研究实际使用GRACE-FO观测计算总水储量（TWS），先通过PCA进行信号提取、降噪和降维，再利用SOM将TWS值聚类为4类。",
+      "method_paradigm": "主成分分析与聚类",
+      "used_assets": [
+        "GRACE-FO"
+      ],
+      "author_team": [
+        "Omid Memarian Sorkhabi",
+        "Iman Kurdpour"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "PCA-SOM OF GRACE-FO TOTAL WATER STORAGE FOR GLOBAL CLIMATE DECISIONS",
+        "doi": "10.3846/gac.2022.15171",
+        "year": 2022,
+        "venue": "Geodesy and cartography",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "研究分析印度尼西亚分区网格中的GRACE重力场水储量等效水高变化，并考察其与Mascon及降雨数据的对应关系。",
+      "hypothesis_or_mechanism": "GRACE观测到的质量重新分配能够反映陆地水储量变化，经过球谐系数反演得到的等效水高应与Mascon结果具有视觉一致性，并可与TRMM降雨变化进行比较。",
+      "variables_and_data_use": "研究实际使用GRACE level 2球谐数据，通过C20、1度球谐系数和GIA校正后反演等效水高，并采用300 km高斯滤波；同时使用GRACE level 3 Mascon网格数据进行匹配和比较，使用TRMM 3B43月降雨数据作为对照。",
+      "method_paradigm": "重力反演对比分析",
+      "used_assets": [
+        "GRACE level 2 satellite data",
+        "Mascon data in grid form",
+        "TRMM 3B43 satellite data",
+        "C20 spherical harmonic coefficient data",
+        "1 degree spherical harmonic coefficient data",
+        "Glacial Isostatic Adjustments (GIA) correction data"
+      ],
+      "author_team": [
+        "Safri Yanti Rahayu",
+        "Ira Mutiara Anjasmara"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "VARIABILITY OF EQUIVALENT WATER HEIGHT (EWH) IN INDONESIA DURING 14 YEARS OF GRACE GRAVITY SATELLITE MISSION",
+        "doi": "10.3846/gac.2024.17872",
+        "year": 2024,
+        "venue": "Geodesy and cartography",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "伊拉克的GRACE水储量亏缺如何表征水文干旱，并如何与基于降水的SPI气象干旱进行比较？",
+      "hypothesis_or_mechanism": "GRACE反演的陆地水储量异常及其亏缺能够识别水文干旱，并可通过与降水驱动的SPI比较揭示水文干旱和气象干旱之间的对应关系。",
+      "variables_and_data_use": "研究使用JPL的RLO5时变场GRACE质量网格数据计算月总水储量及其异常，并据此计算水储量亏缺（WSD）、水储量亏缺指数（WSDI）和干旱严重度；使用Iraqi Meteorological Organization (IMO)的月平均降雨数据计算SPI，并在伊拉克边界外区块使用Noah/GLDAS降水数据，同时采用Kalman滤波和线性插值填补GRACE时间序列缺失值。",
+      "method_paradigm": "遥感水储量干旱评估",
+      "used_assets": [
+        "GRACE",
+        "JPL's RLO5 time-varying field model",
+        "Noah",
+        "GLDAS",
+        "Iraqi Meteorological Organization (IMO)"
+      ],
+      "author_team": [
+        "Ayat A. Hassan",
+        "Alaa M. Al-Abadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Hydrological Assessment of Iraq for the Period 2002-2020 Using GRACE Terrestrial Water Storage Deficit",
+        "doi": "10.46717/igj.57.1a.11ms-2024-1-22",
+        "year": 2024,
+        "venue": "The Iraqi Geological Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "如何利用随机森林融合GRACE衍生地下水储量异常、原位地下水位及水文地质变量，将月尺度地下水储量变化下尺度到5 km网格？",
+      "hypothesis_or_mechanism": "GRACE衍生的区域尺度GWSA与降水、温度、土壤水分、导水率、岩性和坡度共同控制局地地下水位变化，因此随机森林可学习该非线性关系并重建高分辨率地下水储量变化。",
+      "variables_and_data_use": "使用UTCSR GRACE RL06 L2月重力场球谐系数计算TWSA，以GLDAS_NOAH025_M土壤水分异常从TWSA中推导GWSA；将GWSA、PRISM降水和温度、饱和导水率、Texture及NED坡度作为随机森林预测变量，以DWR CASGEM和USGS井水位作为响应变量，并使用JPL GPS与CryoSat-2垂向形变进行独立比较和储水系数估算，同时将结果与CSR Mascon进行比较。",
+      "method_paradigm": "机器学习空间下尺度",
+      "used_assets": [
+        "Release (RL) 06 Level 2 (L2) monthly gravity field solutions provided by the University of Texas at Austin Center for Space Research (UTCSR)",
+        "CSR Mascon",
+        "PRISM",
+        "GLDAS Noah Land Surface Model L4 monthly 0.25° x 0.25° V2.1 (GLDAS_NOAH025_M)",
+        "data from Zhang et al. (2019)",
+        "Texture data",
+        "National Elevation Dataset (NED)",
+        "DWR CASGEM",
+        "United States Geological Survey (http://water.usgs.gov/ogw/data.html)",
+        "JPL_GPS_Timeseries",
+        "CryoSat-2 (CS-2) low-resolution mode (LRM) radar altimetry data"
+      ],
+      "author_team": [
+        "Vibhor Agarwal",
+        "Orhan Akyilmaz",
+        "C.K. Shum",
+        "Wei Feng",
+        "Ting-Yi Yang",
+        "Ehsan Forootan",
+        "Tajdarul Hassan Syed",
+        "Umesh K. Haritashya",
+        "Metehan Uz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Machine learning based downscaling of GRACE-estimated groundwater in Central Valley, California",
+        "doi": "10.1016/j.scitotenv.2022.161138",
+        "year": 2023,
+        "venue": "Science of The Total Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "如何利用GRACE与GRACE-FO估算地下水储量的时空变化、识别其影响因素，并预测不同时间尺度上的未来变化？",
+      "hypothesis_or_mechanism": "地下水储量变化由降水补给与地下水开采、农业灌溉等人类活动共同驱动，并表现出可由历史时间序列学习的趋势和周期特征。",
+      "variables_and_data_use": "使用CSR提供的GRACE and GRACE-FO Level-2 RL06.1 spherical harmonic product反演陆地总水储量变化，结合GLDAS global land surface model version 2.1和Watergap Global Hydrological Model (WGHM) 2.2c分离并验证地下水储量变化；使用GPCP precipitation model及水资源公报数据分析降水、地下水开采和农业灌溉的影响，使用降水重建TWS数据填补任务间空档，并以地下水储量时间序列训练SVM进行预测。",
+      "method_paradigm": "反演与时间序列预测",
+      "used_assets": [
+        "GRACE and GRACE-FO Level-2 RL06.1 spherical harmonic product from CSR",
+        "GLDAS global land surface model version 2.1",
+        "Watergap Global Hydrological Model (WGHM) 2.2c",
+        "GPCP precipitation model",
+        "TWS change data based on precipitation reconstruction in China (2002.04–2019.12)",
+        "CGDPA precipitation products",
+        "CN05.1 temperature products",
+        "water resources bulletin issued by Shandong Provincial Department of Water Resources"
+      ],
+      "author_team": [
+        "Wanqiu Li",
+        "Lifeng Bao",
+        "Guobiao Yao",
+        "Fengwei Wang",
+        "Qiuying Guo",
+        "Jie Zhu",
+        "Jinjie Zhu",
+        "Zhiwei Wang",
+        "Jingxue Bi",
+        "Chengcheng Zhu",
+        "Yulong Zhong",
+        "Shanbo Lu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "The analysis on groundwater storage variations from GRACE/GRACE-FO in recent 20 years driven by influencing factors and prediction in Shandong Province, China",
+        "doi": "10.1038/s41598-024-55588-3",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "如何利用GRACE陆地水储量水量平衡估算与VIP-RS模型蒸散发之间的差异，评估研究期内人类活动诱导的蒸散发变化？",
+      "hypothesis_or_mechanism": "GRACE水量平衡估算反映自然与人为过程共同作用下的总蒸散发，而VIP-RS主要表征自然过程，因此二者差值可作为人类活动影响蒸散发的指标。",
+      "variables_and_data_use": "使用GRACE Monthly Mass Grids Land data获得陆地水储量异常及其变化，并结合TerraClimate降水等水量平衡变量推算GRACE蒸散发；使用VIP-RS model生成自然过程蒸散发基准，以二者差值估计人类诱导蒸散发；同时使用GLDAS进行自然条件对照，并利用MODIS/061/MOD16A2蒸散发数据表征和比较季节空间分布。",
+      "method_paradigm": "水量平衡与对比归因",
+      "used_assets": [
+        "GRACE Monthly Mass Grids Land data",
+        "TerraClimate: Monthly Climate data",
+        "MODIS/061/MOD16A2: Terra Net Evapotranspiration Gap-Filled 8-Day Global 500m",
+        "GLDAS",
+        "VIP-RS model"
+      ],
+      "author_team": [
+        "A. K. Yoshe",
+        "E. N. Sutyrina",
+        "V. R. Chupin",
+        "I. Yu. Shelekhov"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Assessment of human-induced evapotranspiration with GRACE satellites in the catchment area of lake Baikal",
+        "doi": "10.21285/2227-2917-2024-4-695-707",
+        "year": 2025,
+        "venue": "Izvestiya vuzov. Investitsii. Stroitelstvo. Nedvizhimost",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "GRACE总水储量记录能否约束流域水文模型参数，并降低对季节至年际尺度陆地水储量过程的不确定性？",
+      "hypothesis_or_mechanism": "通过使模型模拟的总水储量异常拟合GRACE观测，可以利用GRACE的综合质量变化信息约束土壤孔隙度、根系深度、水力传导率及入渗和排水等水文过程参数。",
+      "variables_and_data_use": "研究对CSR、GFZ和JPL的GRACE Tellus L3 land_mass RL05一度陆地质量场TWS解取算术平均，并将其异常及不确定性用于MCMC似然函数以约束模型；TRMM 3B42提供降水驱动，SO-HYBAM河流流量与降水和TWS共同支持月总ET推导，模型则模拟PAW、PUW及其合计TWS。",
+      "method_paradigm": "贝叶斯模型数据融合",
+      "used_assets": [
+        "GRACE Tellus L3 land_mass RL05 1-degree land field products (CSR, GFZ, and JPL)",
+        "Tropical Rainfall Measuring Mission (TRMM) 3B42",
+        "SO-HYBAM in situ river gauge discharge measurements",
+        "monthly total ET"
+      ],
+      "author_team": [
+        "Elias C. Massoud",
+        "A. Anthony Bloom",
+        "Marcos Longo",
+        "John T. Reager",
+        "Paul A. Levine",
+        "John R. Worden"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Information content of soil hydrology in a west  Amazon watershed as informed by GRACE",
+        "doi": "10.5194/hess-26-1407-2022",
+        "year": 2022,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_41",
+      "research_question": "如何针对流域总水储量变化比较流域统一、逐网格和频率依赖三种缩放方案，并评估冰川质量变化是否会影响 GRACE 泄漏校正效果？",
+      "hypothesis_or_mechanism": "由于滤波对长期、年周期和半年周期信号的衰减程度不同，频率依赖缩放且使用包含冰川质量变化的水文模型，可能比单一缩放因子更有效地恢复泄漏信号。",
+      "variables_and_data_use": "研究使用 JPL、CSR 和 GFZ 的 GRACE Level 2 RL06 GSM 月度 Stokes 系数推导等效水高和流域 TWSC，并以 CSR RL06 MASCON 进行结果比较；使用 WGHM 2.2d 标准版与集成冰川版的 TWSA 生成不同缩放因子和模拟真实信号，使用 ICE-6G_D、TN-13 和 TN-11 完成 GIA、一阶系数及 C20 校正，并利用 ITSG-2018 solutions 的法方程生成误差实现以评估残余泄漏和噪声。",
+      "method_paradigm": "误差校正验证",
+      "used_assets": [
+        "GRACE Level 2 RL06 GSM products from JPL, CSR, and GFZ",
+        "RL06 MASCON product from CSR",
+        "WGHM 2.2d",
+        "ICE-6G_D",
+        "Technical Note (TN-13)",
+        "TN-11",
+        "ITSG-2018 solutions"
+      ],
+      "author_team": [
+        "Vasaw Tripathi",
+        "Andreas Groh",
+        "Martin Horwath",
+        "Raaj Ramsankaran"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Scaling methods of leakage correction in GRACE mass change estimates revisited for the complex hydro-climatic setting of the Indus Basin",
+        "doi": "10.5194/hess-26-4515-2022",
+        "year": 2022,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_42",
+      "research_question": "研究区 2009—2022 年的陆地水储量和地下水储量如何变化，以及 GRACE 派生结果能否反映现场监测井观测到的地下水变化？",
+      "hypothesis_or_mechanism": "降水减少、灌溉农业扩张和地下水开采增加会导致地下水储量持续下降，而 GRACE TWS 异常扣除土壤水分和地表水分量后能够重建这一变化。",
+      "variables_and_data_use": "使用 JPL-M Mass GridsGlobal mascons (JPL RL06.1_v03) 的月度 GRACE TWS 异常作为核心观测；使用 GLDAS  2.1 Noah Land Surface Model L4 的土壤水分和地表水变量扣除非地下水分量，得到 GWS 异常；使用 DWS 监测井地下水位进行验证，并使用 SAWS 降雨数据分析气候因素。",
+      "method_paradigm": "卫星重力状态重建与现场验证",
+      "used_assets": [
+        "JPL-M Mass GridsGlobal mascons (JPL RL06.1_v03)",
+        "GRACE",
+        "GRACE-FO",
+        "GLDAS  2.1 Noah Land Surface Model L4",
+        "DWS",
+        "SAWS"
+      ],
+      "author_team": [
+        "Maal A. Adam",
+        "Stephanie E. Scheiber-Enslin",
+        "K. A. Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Estimating water storage change from GRACE satellite data over the Breede Water Management Area, Western Cape, South Africa",
+        "doi": "10.1007/s10040-025-02946-8",
+        "year": 2025,
+        "venue": "Hydrogeology Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_43",
+      "research_question": "研究Najran地区地下水储量变化是否与地表沉降、植被变化及地下水开采相关。",
+      "hypothesis_or_mechanism": "过度地下水抽取导致地下水储量下降和含水层压密，从而引发地表沉降，并可能影响依赖地下水灌溉的植被覆盖。",
+      "variables_and_data_use": "使用0.25° GRACE mascon solutions RL06.2获取陆地总水储量异常，并扣除Global Land Data Assimilation中的variable infiltration capacity model、catchment land surface model和Noah model土壤水分异常以估算地下水储量异常；使用LiCSAR和LiCSBAS处理Sentinel-1干涉数据获取地表沉降，使用Landsat 8计算NDVI，并以GNSS、地下水井和降水数据进行比较或辅助解释。",
+      "method_paradigm": "多源遥感关系机制分析",
+      "used_assets": [
+        "GRACE",
+        "GRACE-FO",
+        "0.25° GRACE mascon solutions RL06.2",
+        "Global Land Data Assimilation",
+        "variable infiltration capacity model",
+        "catchment land surface model",
+        "Noah model",
+        "LiCSAR",
+        "LiCSBAS",
+        "Sentinel-1",
+        "Landsat 8",
+        "GNSS",
+        "GAMIT/GLOBK"
+      ],
+      "author_team": [
+        "Esubalew Adem",
+        "Roman Shults",
+        "Muhammad Ukasha",
+        "Amro Elfeki",
+        "Faisal Alqahtani",
+        "Mohamed Elhag"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Land subsidence and groundwater storage change assessment using InSAR and GRACE in the arid environment of Saudi Arabia",
+        "doi": "10.1007/s11069-024-06733-8",
+        "year": 2024,
+        "venue": "Natural Hazards",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_44",
+      "research_question": "如何利用 GRACE JPL mascon 与高分辨率陆面和地形变量估计西安纳托利亚盆地 10 km 尺度的地下水储量变化？",
+      "hypothesis_or_mechanism": "土壤水分、积雪水、降雨、径流、蒸散发和地形等高分辨率变量能够通过随机森林学习 GRACE 总水储量异常的空间关系，从而实现 TWSA 降尺度并提高地下水储量变化的空间刻画能力。",
+      "variables_and_data_use": "研究使用 GRACE JPL mascon release 06 的月尺度 TWSA 作为粗分辨率观测基准，使用 SRTM 数字高程模型以及 FLDAS-Noah 的土壤水分、积雪水、降雨、地表径流和蒸散发变量训练随机森林并将 TWSA 从 50 km 降尺度到 10 km；随后从降尺度 TWSA 中扣除 FLDAS 土壤水储量和积雪水当量，得到 GWSA，并使用 SHW 地下水位观测进行验证，同时结合 TSMS 降水、Global SPEI 和 Global scPDSI 分析水文干旱背景。",
+      "method_paradigm": "机器学习降尺度与水储量分离",
+      "used_assets": [
+        "GRACE JPL mascon (release 06)",
+        "JPL Mascon",
+        "FLDAS-Noah",
+        "FLDAS Noah",
+        "SRTM",
+        "Global SPEI",
+        "Global scPDSI",
+        "SHW-Monthly",
+        "TSMS-Monthly"
+      ],
+      "author_team": [
+        "Behnam Khorrami",
+        "Shoaib Ali",
+        "Orhan Gündüz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Investigating the Local-scale Fluctuations of Groundwater Storage by Using Downscaled GRACE/GRACE-FO JPL Mascon Product Based on Machine Learning (ML) Algorithm",
+        "doi": "10.1007/s11269-023-03509-w",
+        "year": 2023,
+        "venue": "Water Resources Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_45",
+      "research_question": "如何结合 GRACE、ERA5-Land 和 TSMP-G2A 数据，在较高空间分辨率上估计月尺度水位深度异常？",
+      "hypothesis_or_mechanism": "GRACE 的大尺度总水储量异常与 ERA5-Land 气候变量共同包含地下水变化信号，机器学习可以学习其与 TSMP-G2A 水位深度异常之间的关系并实现空间下采样。",
+      "variables_and_data_use": "使用 CSR RL06 Mascon grid (CSR-RL06.2) 提供的月尺度 TWSA 作为核心卫星预测变量，结合 ERA5-Land 的降水、蒸发和温度变量，以 TSMP-G2A 模拟的水位深度异常作为训练和评估目标，并用 ADES database 的地下水井观测进行外部验证。",
+      "method_paradigm": "机器学习统计下采样",
+      "used_assets": [
+        "GRACE",
+        "CSR RL06 Mascon grid (CSR-RL06.2)",
+        "TSMP-G2A",
+        "ERA5-Land",
+        "ADES database"
+      ],
+      "author_team": [
+        "Leandro Avila",
+        "Alban de Lavenne",
+        "Maria-Helena Ramos",
+        "Stefan Kollet"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Estimation of Monthly Water Table Depth Anomalies Based on the Integration of GRACE and ERA5-Land with Large-Scale Simulations Using Random Forest and LSTM Networks",
+        "doi": "10.1007/s11269-025-04097-7",
+        "year": 2025,
+        "venue": "Water Resources Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_46",
+      "research_question": "GRACE/GRACE-FO 观测的陆地水储量异常如何刻画土耳其的水文干旱，并与降水和大尺度气候振荡之间存在怎样的关系？",
+      "hypothesis_or_mechanism": "陆地水储量异常受降水及 AO、NAO、ENSO 等大尺度气候振荡影响，持续的负异常将表现为更严重和更持久的水文干旱。",
+      "variables_and_data_use": "使用 GRACE/GRACE-FO 的 monthly GRACE land water storage data 和 TWS grid 计算 terrestrial water storage anomaly、等效水厚度、Water Storage Deficit 和 Water Storage Deficit Index，并进行趋势分析、干旱制图和干旱严重度评估；使用 PERSIANN 降水计算不同时间尺度的 Standardized Precipitation Index；使用 AO、MEI、NAO、ONI 和 SOI 与 GRACE 派生的干旱指标开展相关分析。",
+      "method_paradigm": "水文干旱诊断与气候关联分析",
+      "used_assets": [
+        "GRACE",
+        "GRACE-FO",
+        "monthly GRACE land water storage data",
+        "TWS grid",
+        "PERSIANN",
+        "Arctic Oscillation (AO)",
+        "Multivariate ENSO Index (MEI)",
+        "North Atlantic Oscillation (NAO)",
+        "Oceanic Nino Index (ONI)",
+        "Southern Oscillation Index (SOI)"
+      ],
+      "author_team": [
+        "Emre Topçu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Drought Characterization Using the Grace Terrestrial Water Storage Deficit in Turkey",
+        "doi": "10.1007/s12524-024-01853-x",
+        "year": 2024,
+        "venue": "Journal of the Indian Society of Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_47",
+      "research_question": "研究考察 Debre Markos 地区 GRACE 观测到的长期陆地和地下水储量变化如何与土地利用变化、井场状况及井间干扰共同影响城市地下水可持续性。",
+      "hypothesis_or_mechanism": "土地利用扩张和土地覆盖变化会加剧含水层压力与井间干扰，从而导致局地井产量下降，而 GRACE 反映的区域储量下降可提供长期水资源压力背景。",
+      "variables_and_data_use": "使用 JPL GRACE Tellus RL06 M 月度等效水厚度陆地总水储量异常，并扣除 GLDAS NOAH-2.1 的土壤水分和地表水分以估算地下水储量异常；使用 Landsat 8 OLI 生成 2014 年和 2024 年土地利用/土地覆盖图，结合井坐标、排水量、井深、DEM、FAO Soil portal 和 Surficial geology of Africa 分析土地利用影响、井间干扰和地下水保护风险。",
+      "method_paradigm": "多源空间决策支持",
+      "used_assets": [
+        "GRACE Tellus Level-3 Mascon solutions (RL06 M)",
+        "NASA GRACE",
+        "Global Land Data Assimilation System (GLDAS NOAH-2.1 model)",
+        "Landsat 8 OLI",
+        "Digital Elevation Model (DEM)",
+        "FAO Soil portal",
+        "Surficial geology of Africa",
+        "Field Records"
+      ],
+      "author_team": [
+        "Endeshaw Nibret Abeje",
+        "Tade Mule Asrade",
+        "Fasikaw Fentie Cherie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integrated assessment of groundwater sustainability using GRACE satellite data and GIS in Debre Markos, Ethiopia",
+        "doi": "10.1007/s44288-025-00384-3",
+        "year": 2026,
+        "venue": "Discover Geoscience",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_48",
+      "research_question": "如何利用气候和水文相关输入，通过数据驱动方法重建 GRACE 观测时期之外的全球网格化陆地总水储量变化，并填补 GRACE 与 GRACE-FO 之间的数据空缺？",
+      "hypothesis_or_mechanism": "降水、陆面温度、海表温度和气候指数等气候变量与 GRACE 观测的总水储量变化存在稳定的时空关系，因此可用于预测或重建 GRACE-like TWSC。",
+      "variables_and_data_use": "以 CSR RL06 GRACE monthly mascons 的等效水厚度储量异常作为目标变量，使用 GRACE-FO temporal gravity field models 进行后续时期验证，并以降水、陆面温度、海表温度和气候指数作为预测变量；GLDAS、CPC soil moisture 和 WGHM 用于与水文模型模拟结果比较。",
+      "method_paradigm": "数据驱动时空重建",
+      "used_assets": [
+        "RL06 GRACE monthly mascons",
+        "GRACE-FO temporal gravity field models",
+        "RL06 Swarm time-variable gravity field models",
+        "CPC global daily unified gauge-based analysis of precipitation",
+        "Global Historical Climatology Network version 2 and the Climate Anomaly Monitoring System (GHCN CAMS)",
+        "monthly Optimum Interpolation (OI) sea surface temperature",
+        "seventeen climate indices",
+        "NASA Global Land Data Assimilation System (GLDAS) NOAH 10M series model",
+        "CPC soil moisture",
+        "WaterGAP Global Hydrology Model (WGHM) version 2.2d"
+      ],
+      "author_team": [
+        "Fupeng Li",
+        "Jürgen Kusche",
+        "Roelof Rietbroek",
+        "Zhengtao Wang",
+        "Ehsan Forootan",
+        "Kerstin Schulze",
+        "Christina Lück"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Comparison of Data‐Driven Techniques to Reconstruct (1992–2002) and Predict (2017–2018) GRACE‐Like Gridded Total Water Storage Changes Using Climate Inputs",
+        "doi": "10.1029/2019wr026551",
+        "year": 2020,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_49",
+      "research_question": "如何高效且准确地将GRACE与GRACE-FO Level-2重力场的完整方差—协方差传播为全球陆地水储量场的不确定性，并评估其对水文同化和海平面收支研究的影响？",
+      "hypothesis_or_mechanism": "保留重力系数的完整协方差并显式考虑滤波过程，可避免陆地水储量不确定性的显著偏差，从而改善数据同化和海平面收支估计。",
+      "variables_and_data_use": "研究使用GRACE(‐FO) level‐2 data中的时变重力场及完整方差—协方差，通过蒙特卡洛方法推导1°全球网格TWS不确定性，量化滤波影响，并将所得观测误差结构用于水文数据同化和海平面收支实验。",
+      "method_paradigm": "蒙特卡洛误差传播",
+      "used_assets": [
+        "GRACE(‐FO) level‐2 data"
+      ],
+      "author_team": [
+        "Fan Yang",
+        "Ehsan Forootan",
+        "Shuhao Liu",
+        "Maike Schumacher"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Monte Carlo Propagation of the Full Variance‐Covariance of GRACE‐Like Level‐2 Data With Applications in Hydrological Data Assimilation and Sea‐Level Budget Studies",
+        "doi": "10.1029/2023wr036764",
+        "year": 2024,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_50",
+      "research_question": "日尺度GRACE重力场能否观测5至30日尺度的快速陆地水储量变化，并用于评价ERA5相对于ERA-Interim的陆地水文通量改进？",
+      "hypothesis_or_mechanism": "天气系统引起的降水、蒸散发和径流净通量会产生可由日尺度GRACE检测的快速陆地水储量变化，而ERA5改进后的降水和陆面过程应与这些观测变化更加一致。",
+      "variables_and_data_use": "使用ITSG-Grace2018日尺度球谐重力场转换为水储量异常，经五点数值微分和5至30日带通滤波得到储量变化通量；使用ERA5和ERA-Interim的日降水、蒸散发及径流构建净水文通量，使用GPCC Full Data Daily V.2018进行独立降水比较，并以global land surface scheme and discharge model检验侧向水输送的影响。",
+      "method_paradigm": "观测对比与过程归因",
+      "used_assets": [
+        "ITSG-Grace2018",
+        "ERA-Interim",
+        "ERA5",
+        "GPCC Full Data Daily V.2018",
+        "global land surface scheme and discharge model"
+      ],
+      "author_team": [
+        "Annette Eicker",
+        "Laura Jensen",
+        "Viviana Wöhnke",
+        "Henryk Dobslaw",
+        "Andreas Kvas",
+        "Torsten Mayer-Gürr",
+        "Robert Dill"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Daily GRACE satellite data evaluate short-term hydro-meteorological fluxes from global atmospheric reanalyses",
+        "doi": "10.1038/s41598-020-61166-0",
+        "year": 2020,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_51",
+      "research_question": "如何利用GRACE陆地总水储量异常构建干旱指标、亏缺与恢复阈值，并区分气象干旱和人为用水造成的储量下降？",
+      "hypothesis_or_mechanism": "在降水和潜在蒸散发不存在显著长期趋势时，去趋势和去季节后的GRACE TWSA残差可表征气象干旱，而长期下降趋势可作为人为用水影响的代理。",
+      "variables_and_data_use": "研究使用GRACE Release 06 Mascon Solutions生成2002年4月至2017年3月的面积加权月尺度TWSA，进一步计算TWSDI、修正TWSDI、储量亏缺、干旱严重度和恢复时间阈值；同时使用CRU TS version 4.03的降水和潜在蒸散发计算SPI与SPEI，并检验气象变量趋势。",
+      "method_paradigm": "信号分解与过程归因",
+      "used_assets": [
+        "GRACE Release 06 Mascon  Solutions",
+        "Climatic Research Unit (CRU) time series dataset version 4.03"
+      ],
+      "author_team": [
+        "Seyed-Mohammad Hosseini-Moghari",
+        "Shahab Araghinejad",
+        "Kumars Ebrahimi",
+        "Qiuhong Tang",
+        "Amir AghaKouchak"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Using GRACE satellite observations for separating meteorological variability from anthropogenic impacts on water availability",
+        "doi": "10.1038/s41598-020-71837-7",
+        "year": 2020,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_52",
+      "research_question": "如何联合 GRACE/GRACE-FO 重力质量变化、Sentinel-1 InSAR 地表位移和井水位观测，重建 Tulare basin 非承压与承压含水层的月度水体积变化？",
+      "hypothesis_or_mechanism": "去除长期非弹性压实后，短期地表形变与 GRACE 系列观测的总水质量变化具有互补敏感性，联合反演可区分浅层非承压含水层和深层承压含水层的水量变化。",
+      "variables_and_data_use": "使用 GRACE 和 GRACE Follow-on (FO) 的陆地水储量及质量变化作为总水量约束，使用 Sentinel-1 Interferometric Synthetic Aperture Radar (InSAR) observations 的视线向位移作为地表形变约束，并以 water levels at wells 比较反演结果和局地水文响应。",
+      "method_paradigm": "多源联合反演",
+      "used_assets": [
+        "GRACE",
+        "GRACE Follow-on (FO)",
+        "Sentinel-1 Interferometric Synthetic Aperture Radar (InSAR) observations",
+        "water levels at wells"
+      ],
+      "author_team": [
+        "Donald W. Vasco",
+        "Kyra H Kim",
+        "Tom G. Farr",
+        "J. T. Reager",
+        "David Bekaert",
+        "Simran S. Sangha",
+        "Jonny Rutqvist",
+        "Hiroko K. Beaudoing"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Using Sentinel-1 and GRACE satellite data to monitor the hydrological variations within the Tulare Basin, California",
+        "doi": "10.1038/s41598-022-07650-1",
+        "year": 2022,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_53",
+      "research_question": "研究GRACE-FO观测期内湖南省总陆地水储量变化及土壤水、地表水和地下水等储量组分对其变化的相对贡献。",
+      "hypothesis_or_mechanism": "总陆地水储量异常可通过扣除土壤水分、湖泊和水库地表水储量异常来分离地下水储量变化，不同储量组分对区域总变化的贡献存在差异。",
+      "variables_and_data_use": "使用JPL RL06.3 v4 Mascon、CSR GRACE/GRACE-FO RL06.3 Mascon Solutions和GSFC mascons获取TWSA并开展产品对比；使用CLDAS-V2.0 dataset计算多层土壤水分储量异常；使用Hunan Hydrological Public Service Map中的水库储量和洞庭湖水位估算地表水储量异常；使用Monthly Groundwater Dynamics Report中的井观测验证GWSA；最终通过分量差分和平均绝对偏差计算各储量组分的贡献率。",
+      "method_paradigm": "分量分解与贡献归因",
+      "used_assets": [
+        "JPL RL06.3 v4 Mascon (JPLM)",
+        "CSR GRACE/GRACE-FO RL06.3 Mascon Solutions (CSRM)",
+        "GSFC mascon data",
+        "CLDAS-V2.0 dataset",
+        "Hunan Hydrological Public Service Map",
+        "Monthly Groundwater Dynamics Report"
+      ],
+      "author_team": [
+        "Fan Lei",
+        "Jingwen Zhou",
+        "Kaijun Yang",
+        "Jide Wei",
+        "Li Cao",
+        "Fang Hu",
+        "Zhe Zhang",
+        "Yulong Zhong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Quantifying groundwater storage dynamics during the 2024 flood season using GRACE-FO and multi-source hydrological data in Hunan Province, China",
+        "doi": "10.1038/s41598-026-48703-z",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_54",
+      "research_question": "河流储量是否会影响全球水文模型的参数校准结果以及基于GRACE陆地水储量观测的模型验证？",
+      "hypothesis_or_mechanism": "GRACETWS中包含的河流储量会改变模型校准约束，而在验证阶段显式加入模拟河流储量能够改善水文模型与GRACE观测之间的一致性。",
+      "variables_and_data_use": "论文使用JPLmascon solution (RLM06v2)提供的GRACETWS月尺度陆地水储量变化作为模型校准和验证基准，利用GRUNv1径流重建驱动TRIPy和CaMa-Flood以估计河流储量，并从GRACETWS中扣除该成分形成TWS-noRiver；同时使用FLUXCOMET和ESACCI soilmoisture作为多标准校准约束，并使用HydroSHEDS支持河流路由的地形表示。",
+      "method_paradigm": "模型校准与观测验证",
+      "used_assets": [
+        "GRACETWS",
+        "JPLmascon solution (RLM06v2)",
+        "GRUNv1",
+        "FLUXCOMET",
+        "ESACCI soilmoisture",
+        "TRIPy",
+        "CaMa-Flood v4.01",
+        "HydroSHEDS"
+      ],
+      "author_team": [
+        "Tina Trautmann",
+        "Sujan Koirala",
+        "Andreas Guentner",
+        "Hyungjun Kim",
+        "Martin Jung"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Calibrating global hydrological models with GRACE TWS: does river storage matter?",
+        "doi": "10.1088/2515-7620/acece5",
+        "year": 2023,
+        "venue": "Environmental Research Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_55",
+      "research_question": "如何利用 PCA 以及 GLDAS 水储量变化的相关时间信息，可靠填补 GRACE 与 GRACE-FO 之间连续 11 个月的观测缺口？",
+      "hypothesis_or_mechanism": "GRACE(-FO) 质量变化与 GLDAS 水储量变化具有强相关结构，将二者联合进行迭代 PCA 分解可以恢复缺测期的主要时空模式，同时抑制高阶相关噪声。",
+      "variables_and_data_use": "使用 CSR 的 GRACE(-FO) Level 2 月度球谐系数作为待重建的核心观测，经过低阶系数替换、均值场扣除和趋势分解后输入 PCA；使用 GLDAS Catchment Land Surface Model 的雪水、冠层水和土壤水总量变化提供缺测期时间模式；最后将重建球谐系数转换为等效水高，并与原始 GRACE 观测、最小二乘填补结果及其他观测进行比较评价。",
+      "method_paradigm": "时序缺口重建",
+      "used_assets": [
+        "level 2 GRACE(-FO) data sets from the Center for Space Research",
+        "GLDAS Catchment Land Surface Model",
+        "SLR"
+      ],
+      "author_team": [
+        "Yanchao Gu",
+        "Feilong Huang",
+        "Jun Huang",
+        "Hongbo Yuan",
+        "Bing Yu",
+        "Chongqin Gao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Filling the gap between GRACE and GRACE follow-on observations based on principal component analysis",
+        "doi": "10.1093/gji/ggad484",
+        "year": 2023,
+        "venue": "Geophysical Journal International",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_56",
+      "research_question": "GRACE观测的陆地总水储量在时间上如何变化，以及这些异常与ENSO和PDO气候模态存在何种关系？",
+      "hypothesis_or_mechanism": "ENSO和PDO通过改变区域气候与水文输入，驱动去除季节信号后的陆地总水储量异常变化。",
+      "variables_and_data_use": "使用GRACE月度TWS及去季节后的残余TWS作为响应变量，并将其时间序列与ENSO和PDO气候指数进行对照分析。",
+      "method_paradigm": "时序关系分析",
+      "used_assets": [
+        "GRACE",
+        "ENSO",
+        "PDO"
+      ],
+      "author_team": [
+        "Dostdar Hussain",
+        "Huan-Chin Kao",
+        "Aftab Ahmed Khan",
+        "Wen-Hau Lan",
+        "Moslem Imani",
+        "Chi-Ming Lee",
+        "Chung-Yen Kuo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatial and Temporal Variations of Terrestrial Water Storage in Upper Indus Basin Using GRACE and Altimetry Data",
+        "doi": "10.1109/access.2020.2984794",
+        "year": 2020,
+        "venue": "IEEE Access",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_57",
+      "research_question": "如何利用GRACE/GRACE-FO与GLDAS重建地下水储量变化，并分析其与CGPS垂向位移的关系？",
+      "hypothesis_or_mechanism": "GRACE观测到的陆地水质量负荷变化在扣除土壤水分、雪水和冠层水分后可表征地下水储量变化，而水负荷变化会通过弹性地壳响应反映在GPS垂向位移中。",
+      "variables_and_data_use": "使用CSR RL06 GSM月尺度球谐系数生成等效水高和总水储量异常，以GLDAS的SM、SWE和CWS分量进行扣除并估算GWS变化，利用ICE-6G和SLR解实施重力场改正，再将GWS时间序列与CGPS垂向位移的EMD趋势项进行比较和相关分析。",
+      "method_paradigm": "多源时序归因分析",
+      "used_assets": [
+        "degree and order 60 RL06 geoid spherical harmonic model (GSM) monthly solutions released by CSR",
+        "Land Data Assimilation System (GLDAS) simulation",
+        "ICE-6G model",
+        "satellite laser ranging (SLR) solution",
+        "Continuous Global Positioning System (CGPS) stations"
+      ],
+      "author_team": [
+        "Tingye Tao",
+        "Guangkuo Xie",
+        "Rong He",
+        "Zhengguang Tao",
+        "Min Ma",
+        "Fei Gao",
+        "Yongchao Zhu",
+        "Xiaochuan Qu",
+        "Shuiping Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Groundwater Storage Variation Characteristics in North China before and after the South-to-North Water Diversion Project Based on GRACE and GPS Data",
+        "doi": "10.1134/s0097807823010153",
+        "year": 2023,
+        "venue": "Water Resources",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_58",
+      "research_question": "如何利用GRACE/GRACE-FO与MERRA-2长期TWSA刻画珠江流域的干旱和洪水、分析其与气候模态的联系，并量化水库蓄水变化造成的偏差？",
+      "hypothesis_or_mechanism": "ENSO等气候变率通过改变降水驱动具有时间滞后的TWSA变化，而新增水库蓄水产生的人为质量趋势会系统性改变干旱持续时间、严重度和洪水潜势估计。",
+      "variables_and_data_use": "以CSR、JPL和GSFC GRACE/GRACE-FO mascon TWSA计算TWSC、WSDI和FPI，以MERRA-2 TWSA扩展1980年以来的时间序列；结合CMA、TRMM 3B43和MERRA-2降水、MOD16A2与GLEAMV3蒸散发、实测径流进行水量平衡验证，并利用水库储量资料校正RESS影响，以scPDSI和气候指数开展对照及遥相关分析。",
+      "method_paradigm": "多源重建与归因",
+      "used_assets": [
+        "Center for Space Research (CSR) Release 06 mascons",
+        "Jet Propulsion Laboratory (JPL) Release 06 mascons",
+        "Goddard Space Flight Center (GSFC) mascon",
+        "MERRA-2",
+        "TRMM 3B43",
+        "MOD16A2",
+        "GLEAMV3",
+        "CRUTS 4.03",
+        "self-calibrated Palmer drought severity index (scPDSI)",
+        "China River Sediment Bulletin",
+        "Water Resources Bulletin of the PRB",
+        "Niño-3.4 index",
+        "North Atlantic Oscillation",
+        "Indian Ocean dipole",
+        "Pacific decadal oscillation"
+      ],
+      "author_team": [
+        "Zhiyong Huang",
+        "Jiu Jimmy Jiao",
+        "Xin Luo",
+        "Yun Pan",
+        "Taoyong Jin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Drought and Flood Characterization and Connection to Climate Variability in the Pearl River Basin in Southern China Using Long-Term GRACE and Reanalysis Data",
+        "doi": "10.1175/jcli-d-20-0332.1",
+        "year": 2021,
+        "venue": "Journal of Climate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_59",
+      "research_question": "如何将GRACE观测的陆地总水储量与土壤湿度、湖泊地表水及水文模型先验相结合，以重建地下水储量变化？",
+      "hypothesis_or_mechanism": "在雪储量可忽略的条件下，GRACE-TWS可分解为地下水、土壤湿度和地表水储量，利用各分量的EOF模式进行tie-in最小二乘拟合能够恢复地下水储量的时空变化。",
+      "variables_and_data_use": "以CSR GRACE Level-2球谐系数反演表观水厚度和TWS；以GLDAS-Noah提供SMS；以Landsat 7 ETM+、Landsat 8 OLI及TOPEX/POSEIDON、Jason-1、Jason-2估算SWS；以WaterGAP (version 2.2d)地下水场构造GWS先验模式，并以Maiduguri station实测地下水序列进行验证。",
+      "method_paradigm": "多源状态重建",
+      "used_assets": [
+        "GRACE Level-2 data",
+        "Landsat 7 ETM+",
+        "Landsat 8 OLI",
+        "TOPEX/POSEIDON (T/P)",
+        "Jason-1",
+        "Jason-2",
+        "GLDAS-Noah",
+        "WaterGAP (version 2.2d)",
+        "Maiduguri station in-situ groundwater time series"
+      ],
+      "author_team": [
+        "Marie Grâce Mutimucyeye",
+        "Annoncée Mukeshimana",
+        "Jean Pierre Munyaneza",
+        "Irène Rwabudandi",
+        "Marie Jeanne Nyiransabimana",
+        "Janvière Uwamariya"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Groundwater storage dynamics in the Lake Chad Basin revealed by GRACE and a multi-sensor signal separation approach",
+        "doi": "10.1590/s1982-21702024000100010",
+        "year": 2024,
+        "venue": "Boletim de Ciências Geodésicas",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_60",
+      "research_question": "不同GRACE RL06陆地质量解和JPL MASCON解在多大程度上能够重建并验证研究区的地下水储量变化和地下水补给量？",
+      "hypothesis_or_mechanism": "从GRACE总水储量异常中扣除GLDAS土壤水分异常可获得地下水储量异常，而去季节化并经井水位验证的最优GRACE解能够反映地下水补给及长期变化。",
+      "variables_and_data_use": "使用CSR、JPL和GFZ的GRACE Tellus Land RL06以及JPL Release06 Version02 MASCON获取月度总水储量异常；使用CLM、Noah和VIC version 2.1土壤水分计算地下水储量异常；利用遥测井水位和给水度进行验证与产品筛选；结合SRTM、雨量站、含水层参数、地下水通量和灌溉回归流估算并检验地下水补给。",
+      "method_paradigm": "多产品验证与反演",
+      "used_assets": [
+        "GRCTellus LandRL06 release of GRACE data from CSR, JPL and GFZ",
+        "JPL Release06 Version02 MASCON",
+        "CLM (version 2.1)",
+        "Noah (version 2.1)",
+        "VIC (version 2.1)",
+        "SRTM",
+        "Groundwater telemetric monitoring wells",
+        "Rainfall National Centre of Meteorology and Seismology, Abu Dhabi"
+      ],
+      "author_team": [
+        "Khaled Alghafli",
+        "Xiaogang Shi",
+        "William Sloan",
+        "Mohammad Shamsudduha",
+        "Qiuhong Tang",
+        "Ahmed Sefelnasr",
+        "Abdel Azim Ebraheem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Groundwater Recharge Estimation Using In-Situ and Grace Observations in the Eastern Region of the United Arab Emirates",
+        "doi": "10.2139/ssrn.4156379",
+        "year": 2022,
+        "venue": "SSRN Electronic Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_61",
+      "research_question": "如何利用GRACE陆地水储量与TerraClimate水文气候变量构建并比较多种干旱指数，以刻画研究区干旱的严重度、持续时间和时空变化？",
+      "hypothesis_or_mechanism": "GRACE观测到的月尺度陆地水储量负异常反映综合水资源亏缺，并应与降水、蒸散需求和地表径流所表征的气象及水文干旱变化相关。",
+      "variables_and_data_use": "研究使用GRACE satellite (JPL, CSR, GFZ) at (1 1 )的月尺度陆地水储量计算WSD和WSDI，并实施去条带、Gaussian平滑及均衡调整；使用Terra-Climate Precipitation计算SPI和SPEI，使用Terra-Climate Actual evapotranspiration及估算的潜在蒸散发计算ESI和EDDI，使用Terra-Climate Actual Surface Runoff计算SRI，最后通过Pearson相关和模型性能指标比较各指数。",
+      "method_paradigm": "多指标相关分析",
+      "used_assets": [
+        "GRACE-dataset",
+        "GRACE satellite (JPL, CSR, GFZ) at (1 1 )",
+        "TerraClimate",
+        "Terra-Climate Actual evapotranspiration",
+        "Terra-Climate Precipitation",
+        "Terra-Climate Actual Surface Runoff"
+      ],
+      "author_team": [
+        "Agegnehu Kitanbo Yoshe"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Characterization of Drought Severity Using GRACE and TerraClimate Dataset in the Rift Valley Basin, Ethiopia",
+        "doi": "10.21926/aeer.2601003",
+        "year": 2026,
+        "venue": "Advances in Environmental and Engineering Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_62",
+      "research_question": "不同ARMA或ARIMA噪声模型中，哪一种最适合描述GRACE Mascon月度EWT时间序列的时间相关性并给出更可靠的趋势不确定度和预测？",
+      "hypothesis_or_mechanism": "GRACE EWT序列含有彩色噪声和显著时间自相关，采用合适的ARMA模型能够比忽略相关性的模型更真实地估计趋势标准误，并产生与GRACE-FO观测一致的预测。",
+      "variables_and_data_use": "使用GSFC Mascon solutions RL06 v1.0提供的月度EWT变化作为响应时间序列，拟合趋势、年周期和半年周期，并对残差应用ARMA或ARIMA模型；再利用GRACE-only data进行预测，并与GRACE-FO observations比较。",
+      "method_paradigm": "时间序列状态重建",
+      "used_assets": [
+        "GSFC Mascon solutions RL06 v1.0",
+        "GSFC Mascon time-series",
+        "GRACE-only data",
+        "GRACE-FO observations"
+      ],
+      "author_team": [
+        "Ozge Gunes",
+        "Cuneyt Aydin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Applying autoregressive models in analysis of GRACE-Mascon time-series",
+        "doi": "10.24425/agg.2022.141299",
+        "year": 2022,
+        "venue": "Advances in Geodesy and Geoinformation",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_63",
+      "research_question": "能否利用CSR球谐解建立TWS与水文负载垂向位移之间的时间依赖关系，并据此将GSFC mascon TWS-L3时间序列转换为垂向位移？",
+      "hypothesis_or_mechanism": "陆地水质量增加会通过弹性负载作用引起地壳向下位移，因此TWS与垂向位移呈显著反向、非线性且随时间变化的关系。",
+      "variables_and_data_use": "使用CSR Release 06 DDK2球谐系数分别计算TWS和垂向位移，以拟合二次及时间依赖的十参数回归模型；随后将GSFC RL06v02 mascon TWS作为模型输入转换为垂向位移，并比较两种GRACE表示所得位移时间序列的相关性；SLR C20 coefficients用于替换低阶重力系数。",
+      "method_paradigm": "回归转换建模",
+      "used_assets": [
+        "CSR Release 06 DDK2 filtered spherical harmonic coefficients",
+        "GSFC mascon solutions of the RL06v02 version",
+        "SLR C20 coefficients"
+      ],
+      "author_team": [
+        "Cüneyt Aydın",
+        "Özge Günes",
+        "Beyza Güney"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Transforming GRACE mascon TWS-L3 data into vertical displacements using a regression approach: a case study of the Türkiye region",
+        "doi": "10.24425/agg.2025.154148",
+        "year": 2025,
+        "venue": "Advances in Geodesy and Geoinformation",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_64",
+      "research_question": "如何结合GRACE卫星总水储量异常、GLDAS陆面水文分量和JRC地表水数据，重建并检测2003至2024年的地下水储量变化及其长期趋势？",
+      "hypothesis_or_mechanism": "从GRACE观测的总水储量异常中扣除GLDAS土壤水分与雪水当量以及JRC地表水异常，可以分离地下水储量异常并揭示季节变化、长期趋势和干旱期损失。",
+      "variables_and_data_use": "使用GRACE Monthly Mass Grids Version 03 - Global Mascon (CRI Filtered)的lwe_thickness作为总水储量异常，将GLDAS-2.1的RootMoist_inst和SWE_inst转换为厘米等效水深，并使用JRC: Yearly Water Classification History, v1.4.的WaterClass表征地表水；各分量经时间聚合与对齐后按水量平衡方程计算地下水储量异常，并估计线性趋势和2015至2016年干旱期损失。",
+      "method_paradigm": "多源水量平衡反演",
+      "used_assets": [
+        "GRACE Monthly Mass Grids Version 03 - Global Mascon (CRI Filtered)",
+        "GLDAS-2.1: Global Land Data Assimilation System",
+        "JRC: Yearly Water Classification History, v1.4."
+      ],
+      "author_team": [
+        "Najm Al-Deen Moneer Hilal",
+        "Komariah",
+        "Ari Handono Ramelan",
+        "Keigo Noda"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Monitoring of groundwater storage changes using the Gravity Recovery and Climate Experiment (GRACE) satellite mission: a case study of Sragen Regency, Indonesia",
+        "doi": "10.26565/2410-7360-2025-62-10",
+        "year": 2025,
+        "venue": "Visnyk of V. N. Karazin Kharkiv National University. Series Geology. Geography. Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_65",
+      "research_question": "能否通过两阶段人工神经网络将GRACE月度mascon陆地水储量数据降尺度，并结合气候变量与井观测准确预测地下水位？",
+      "hypothesis_or_mechanism": "高分辨率气候和水量平衡变量可学习粗分辨率GRACE水储量的空间变化，而降尺度GRACE信息能够为地下水位预测提供独立且显著的储量约束。",
+      "variables_and_data_use": "研究处理GRACE mascon monthly products并将其降尺度至4×4公里；使用CHIRPS降水以及TerraClimate的实际蒸散发、水分亏缺、干旱指数、潜在蒸散发、短波辐射、径流、土壤水分和雪水当量等变量作为模型输入；使用YMD井水位作为预测目标和验证数据，并以USGS potentiometric data进行补充比较。",
+      "method_paradigm": "两阶段神经网络",
+      "used_assets": [
+        "GRACE mascon monthly products",
+        "Climate Hazards Group Infrared Precipitation with Stations (CHIRPS)",
+        "TerraClimate",
+        "Yazoo Mississippi Delta Joint Water Management District (YMD)",
+        "USGS potentiometric data"
+      ],
+      "author_team": [
+        "Abdel Rahman M. Awawdeh",
+        "Hakan Yasarer",
+        "Zahra Ghaffari",
+        "Lance D. Yarbrough"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE Data for Improved Groundwater Forecasting Using Artificial Neural Networks",
+        "doi": "10.28991/cej-2025-011-02-01",
+        "year": 2025,
+        "venue": "Civil Engineering Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_66",
+      "research_question": "如何结合GRACE/GRACE-FO水质量变化与ERA5降水和蒸发数据，估算波罗的海区域的陆地径流、海水净交换及其季节和年际变化？",
+      "hypothesis_or_mechanism": "依据水量平衡dW=P−E+R+N，GRACE观测的水储量变化与ERA5净降水之差可在大陆集水区反演径流R，并在海盆中进一步反演净海水交换N。",
+      "variables_and_data_use": "使用CSR RL06 GRACE mascon v2的月度水质量预算异常W，经校正、重网格和中心差分生成dW；使用ERA5 reanalysis的降水P与蒸发E计算P−E；依据global continental runoff pathway scheme确定大陆集水区，并通过两阶段水量平衡残差估算R和N，随后分析均值、趋势、季节周期、非季节信号及其与North Atlantic Oscillation的关系。",
+      "method_paradigm": "水量平衡重建",
+      "used_assets": [
+        "RL06 GRACE mascon (mass concentration) v2 solution provided by the Center of Space Research (CSR) at the University of Texas at Austin",
+        "GRACE",
+        "GRACE FO",
+        "ERA5 reanalysis",
+        "global continental runoff pathway scheme"
+      ],
+      "author_team": [
+        "Ahmed Kamel Boulahia",
+        "David García-García",
+        "M. Isabel Vigo",
+        "Mario Trottini",
+        "Juan-Manuel Sayol"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "The Water Cycle of the Baltic Sea Region From GRACE/GRACE-FO Missions and ERA5 Data",
+        "doi": "10.3389/feart.2022.879148",
+        "year": 2022,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_67",
+      "research_question": "基于变分模态分解的时间滤波能否比既有去条带和经验模态分解方法更有效地抑制GRACE/GFO球谐系数噪声，并改善巴拿马小尺度质量变化与地下水储量估计？",
+      "hypothesis_or_mechanism": "逐个分解球谐系数时间序列并依据自相关谱筛除高频噪声模态，可减少南北条带误差，同时比传统空间滤波更好地保留小尺度真实质量变化信号。",
+      "variables_and_data_use": "以CSR、GFZ和JPL的GRACE/GFO Release 06 GSM月度球谐系数为主要输入，经低阶项替换、ICE-6G_D改正、三中心平均和VMD滤波后转换为等效水高；以CSR mascon RL06 v2和JPL mascon RL06 v2直接评估质量场，并结合Global Land Data Assimilation System NOAH Version 2.1 model的月度土壤水储量推导地下水储量，再用GW1和GW2原位观测进行独立检验。",
+      "method_paradigm": "滤波重建与验证",
+      "used_assets": [
+        "GRACE/GFO Release 06 GSM products",
+        "CSR mascon RL06 v2",
+        "JPL mascon RL06 v2",
+        "Global Land Data Assimilation System NOAH Version 2.1 model",
+        "ICE-6G_D model",
+        "GW1",
+        "GW2"
+      ],
+      "author_team": [
+        "Guangyu Jian",
+        "Chuang Xu",
+        "Chaolong Yao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Improving mass change estimation in Panama with the GRACE/GFO gravity field using the variational mode decomposition",
+        "doi": "10.3389/feart.2023.1199945",
+        "year": 2023,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_68",
+      "research_question": "能否利用随机森林和多源高分辨率环境数据，将GRACE月尺度总水储量异常从约100 km下推至1 km，并可靠重建局地水储量变化？",
+      "hypothesis_or_mechanism": "GRACE TWS与降水、植被、地表温度、蒸散发、地形和积雪之间的非线性关系可由随机森林学习，再通过加入原始GRACE残差，在增强空间细节的同时保留大尺度质量异常信号。",
+      "variables_and_data_use": "以TELLUS_GRAC_L3_CSR_RL06_LND_v03的月尺度TWS异常为目标变量，以GPM降水、MODIS NDVI、LST、ET和NDSI以及SRTM高程为预测变量；先在1°尺度训练随机森林，再在1 km尺度预测并加入插值残差，最后使用原始GRACE统计一致性、139口井的地下水位及已知含水层动态进行验证。",
+      "method_paradigm": "机器学习状态重建",
+      "used_assets": [
+        "Center for Space Research (CSR) Monthly GRACE Level-3 Surface Water Density Equivalent Mass-Anomaly Dataset version 6.0",
+        "TELLUS_GRAC_L3_CSR_RL06_LND_v03",
+        "GPM_3IMERGM_06",
+        "MODIS_006_MOD13A2",
+        "MODIS_006_MOD11A2",
+        "MODIS_061_MOD16A2",
+        "USGS_SRTMGL1_003",
+        "MODIS_061_MOD10A1",
+        "groundwater level data"
+      ],
+      "author_team": [
+        "Youssef Hamou-Ali",
+        "Nourlhouda Karmouda",
+        "Ismail Mohsine",
+        "Tarik Bouramtane",
+        "Ilias Kacimi",
+        "Sarah Tweed",
+        "Mounia Tahiri",
+        "Nadia Kassou",
+        "Ali El Bilali",
+        "Omar Chafki",
+        "Mohamed Abdellah Ezzaouini",
+        "Siham Laraichi",
+        "Abdelaaziz Zerouali",
+        "Marc Leblanc"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE total water storage data using random forest: a three-round validation approach under drought conditions",
+        "doi": "10.3389/frwa.2025.1545821",
+        "year": 2025,
+        "venue": "Frontiers in Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_69",
+      "research_question": "如何联合GRACE推导的地下水储量变化、PSInSAR地表形变以及地面观测，分析地表沉降或抬升与地下水变化之间的关系？",
+      "hypothesis_or_mechanism": "地下水储量和水位变化会改变含水层孔隙压力及骨架压缩或回弹状态，从而与地表沉降或抬升表现出关联。",
+      "variables_and_data_use": "使用COST-G RL01 Level 3 Data product反演月度Terrestrial Water Storage，以GLDAS水储量分量扣除地表水、土壤水分和雪冰影响后计算Groundwater Storage Change；使用Envisat-Asar影像开展PSInSAR地表位移反演，以GNSS验证形变结果，并以Environment Agency井资料验证和解释地下水变化。",
+      "method_paradigm": "多源遥感关系分析",
+      "used_assets": [
+        "COST-G RL01 Level 3 Data product",
+        "AOD1B RL06",
+        "GLDAS Noah model",
+        "NOAH",
+        "Community Land Model (CLM)",
+        "MOSAIC",
+        "Variable Infiltration Capacity (VIC)",
+        "47 Envisat-Asar Images",
+        "SRTM V4",
+        "Borehole groundwater data from The Environment Agency (EA)",
+        "GNSS data from The British Isles continuous GNSS Facility (BIGF)"
+      ],
+      "author_team": [
+        "Vivek Agarwal",
+        "Amit Kumar",
+        "Rachel L. Gomes",
+        "Stuart Marsh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Monitoring of Ground Movement and Groundwater Changes in London Using InSAR and GRACE",
+        "doi": "10.3390/app10238599",
+        "year": 2020,
+        "venue": "Applied Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_70",
+      "research_question": "如何结合 GRACE 与 Swarm 月时变重力场，重建跨越 GRACE—GRACE-FO 数据缺口且长期一致的全球总水储量变化场？",
+      "hypothesis_or_mechanism": "迭代 ICA 能提取 GRACE 与 Swarm 共有的主导时空分量，逐步削弱 Swarm 的高频噪声和任务间不连续性，从而得到更稳定的 TWSC 重建。",
+      "variables_and_data_use": "研究使用 CSR GRACE L2 RL06 和 RL05 月球谐重力场作为主要高分辨率观测，使用 ASU combined monthly Swarm L2 gravity model 补充缺口，并以 2019 年 GRACE-FO data 评价重建；数据经低阶系数替换、高斯平滑、ICA 重建、GIA 改正及重力场到 TWSC 的转换后，用于估计全球 33 个大型河流流域的趋势和季节性质量变化。",
+      "method_paradigm": "迭代统计重建",
+      "used_assets": [
+        "monthly GRACE L2 product (RL06, [57])",
+        "previous release (RL05)",
+        "GRACE-FO data of 2019",
+        "combined monthly Swarm L2 gravity model provided by (ASU, [31])"
+      ],
+      "author_team": [
+        "Ehsan Forootan",
+        "Maike Schumacher",
+        "Nooshin Mehrnegar",
+        "Aleš Bezděk",
+        "Matthieu J. Talpe",
+        "Saeed Farzaneh",
+        "Chaoyang Zhang",
+        "Yu Zhang",
+        "C. K. Shum"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "An Iterative ICA-Based Reconstruction Method to Produce Consistent Time-Variable Total Water Storage Fields Using GRACE and Swarm Satellite Data",
+        "doi": "10.3390/rs12101639",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_71",
+      "research_question": "2002—2024年陆地总水储量如何随时间和空间变化，并存在哪些显著趋势、极端异常、周期和水文状态转折？",
+      "hypothesis_or_mechanism": "降水和蒸散发所代表的气候变率可解释部分TWS变化，而土地利用和水资源管理等非气候驱动可能造成其余变化及水文状态转换。",
+      "variables_and_data_use": "使用GRACE Monthly Mass Grids Release 6.3 Version 4 Global Mascons的月尺度等效水厚度异常计算区域平均TWS序列，并开展趋势检验、变化点检测、自相关、频谱、小波、极端异常和分段状态分析；同时使用降水与蒸散发数据比较潜在气候驱动。",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "GRACE Monthly Mass Grids Release 6.3 Version 4 Global Mascons dataset",
+        "JPL RL06.3Mv04 solutions",
+        "precipitation and evapotranspiration data that come with GRACE data"
+      ],
+      "author_team": [
+        "Peter Adetokunbo",
+        "Ayodeji Adekunle Eluyemi",
+        "Segun Aguda",
+        "Eniolayimika Jegede",
+        "Tunji Omoseyin",
+        "Oluseun Adetola Sanuade",
+        "Rasheed Babatunde Adesina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Decadal Trends and Periodicity of Terrestrial Water Storage in Nigeria-GRACE Satellite Observations",
+        "doi": "10.4236/ojg.2025.157017",
+        "year": 2025,
+        "venue": "Open Journal of Geology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_72",
+      "research_question": "如何构建全球湖库与强震区域校正数据集，并量化这些校正对GRACE陆地水储量时序、水文模型同化、形变验证和干旱识别的影响？",
+      "hypothesis_or_mechanism": "局地湖库质量变化会通过GRACE有限空间分辨率产生泄漏，而强震的同震及震后重力变化会伪装成水储量趋势，移除或重定位这些信号可提高水文解释的一致性。",
+      "variables_and_data_use": "研究从ITSG-Grace2018球谐系数推导月尺度TWSA；利用DAHITI水位、Global WaterPack水面范围和HydroLAKES标识构建RECOG-LR；从GRACE数据拟合地震信号形成RECOG-EQ；随后比较校正前后的TWSA趋势与变率，将其同化进WaterGAP，并用ITRF2014 stacking的GNSS垂向位移及AOD1B负荷校正进行验证。",
+      "method_paradigm": "校正构建与影响评估",
+      "used_assets": [
+        "ITSG-Grace2018",
+        "DAHITI",
+        "Global WaterPack (GWP)",
+        "HydroLAKES",
+        "RECOG-LR",
+        "RECOG-EQ",
+        "WaterGAP",
+        "ITRF2014 stacking",
+        "AOD1B"
+      ],
+      "author_team": [
+        "Simon Deggim",
+        "Annette Eicker",
+        "Lennart Schawohl",
+        "Helena Gerdener",
+        "Kerstin Schulze",
+        "Olga Engels",
+        "Jürgen Kusche",
+        "Anita T. Saraswati",
+        "Tonie van Dam",
+        "Laura Ellenbeck",
+        "Denise Dettmering",
+        "Christian Schwatke",
+        "Stefan Mayr",
+        "Igor Klein",
+        "Laurent Longuevergne"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "RECOG RL01: correcting GRACE total water storage estimates for global lakes/reservoirs and earthquakes",
+        "doi": "10.5194/essd-13-2227-2021",
+        "year": 2021,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_73",
+      "research_question": "如何联合GRACE/GRACE-FO陆地水储量观测、前GRACE时期的SLR-DORIS重力信息和长期气候变量，重建自1984年以来的全球陆地水储量异常？",
+      "hypothesis_or_mechanism": "GRACE导出的EOF可作为共同空间基底，使气候驱动重建提供较高空间分辨率和季节变化，而SLR-DORIS观测则约束前GRACE时期及长期趋势，从而形成更一致的多年代TWSA记录。",
+      "variables_and_data_use": "以ITSG-Grace2018、COST-G RL01和NASA GSFC global mascon product推导的TWSA构建EOF、训练ARX、MLR和Random Forest模型；以降水、土壤湿度、海表温度、气温和LAI作为预测变量；再将初步重建与SLR-DORIS大尺度重力场通过方差分量估计融合，生成TWSTORE，并使用GRACE/-FO、海平面收支、GRDC、GLEAM和ERA5进行比较或派生分析。",
+      "method_paradigm": "多源状态重建",
+      "used_assets": [
+        "ITSG-Grace2018",
+        "COST-G RL01",
+        "NASA GSFC global mascon product",
+        "NASA/JPL degree 1 and c20 coefficients",
+        "HadISST1",
+        "COBE-SST 2 and Sea Ice dataset",
+        "Global Precipitation Climatology Centre (GPCC) dataset",
+        "Climate Prediction Center's (CPC) Global Precipitation V1.0 Data Set",
+        "CPC soil moisture data set",
+        "GHCN CAMS Monthly Temperature data",
+        "Globmap LAI v3",
+        "Löcher et al. ( 2025 b )",
+        "Global Runoff Data Center (GRDC)",
+        "GLEAM",
+        "ERA5",
+        "TWSTORE"
+      ],
+      "author_team": [
+        "Charlotte Hacker",
+        "Benjamin D. Gutknecht",
+        "Anno Löcher",
+        "Jürgen Kusche"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Multidecadal reconstruction of terrestrial water storage changes by combining pre-GRACE satellite  observations and climate data",
+        "doi": "10.5194/essd-18-1747-2026",
+        "year": 2026,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_74",
+      "research_question": "GRACE月尺度总水储量异常与多任务河流卫星测高数据能否联合约束大型半干旱河流系统的水文模型参数并改善流量模拟？",
+      "hypothesis_or_mechanism": "GRACE通过约束降水在径流与蒸发之间的分配来限制流量规模，而多任务测高水位动态进一步约束河流过程，因此二者联合可筛选更合理的参数集。",
+      "variables_and_data_use": "使用GRACE observations的月尺度总水储量异常支持模型校准，并将多个卫星任务和虚拟站的河流水位测高数据与模拟流量或经率定曲线、Strickler–Manning方程得到的模拟水位比较，最后以in situ observed river discharge评价模型表现。",
+      "method_paradigm": "多准则模型校准",
+      "used_assets": [
+        "GRACE observations",
+        "GRACE monthly land water mass grids NETCDF RELEASE 5.0",
+        "river altimetry data from multiple satellite missions",
+        "in situ observed river discharge"
+      ],
+      "author_team": [
+        "Petra Hulsman",
+        "Hessel C. Winsemius",
+        "Claire I. Michailovsky",
+        "Hubert H. G. Savenije",
+        "Markus Hrachowitz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Using altimetry observations combined with GRACE to select parameter sets of a hydrological model in a data-scarce region",
+        "doi": "10.5194/hess-24-3331-2020",
+        "year": 2020,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_75",
+      "research_question": "如何利用GRACE月尺度总水储量变化构建适用于寒区大型流域的物理型径流过程线分离方法？",
+      "hypothesis_or_mechanism": "流域总水储量可分解为地表水、可排泄地下水和不可排泄水，其中可排泄地下水通过受冻结累积温度调节的水力传导率控制基流。",
+      "variables_and_data_use": "使用GRACE Release-06 V03 spherical harmonic (SH) solutions获取月尺度总水储量变化，使用Global Land Data Assimilation System (GLDAS) V2 meteorological forcing的气温计算冻结条件和累积温度，使用EALCO (Ecological Assimilation of Land and Climate Observations, Natural Resources Canada) V.4.2的雪水当量表示不可排泄储水，并以gauging station 04HA001的河流流量校准基流模型、分离基流与地表径流及开展方法比较。",
+      "method_paradigm": "物理约束过程建模",
+      "used_assets": [
+        "GRACE Release-06 V03 spherical harmonic (SH) solutions",
+        "Global Land Data Assimilation System (GLDAS) V2 meteorological forcing",
+        "EALCO (Ecological Assimilation of Land and Climate Observations, Natural Resources Canada) V.4.2",
+        "river flow measurement at gauging station 04HA001",
+        "U.S. Geological Survey (USGS) Groundwater Toolbox"
+      ],
+      "author_team": [
+        "Shusen Wang",
+        "Junhua Li",
+        "Hazen A. J. Russell"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A novel method for cold-region streamflow hydrograph separation using GRACE satellite observations",
+        "doi": "10.5194/hess-25-2649-2021",
+        "year": 2021,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_76",
+      "research_question": "提高 CABLE 模型网格分辨率并同化 GRACE 月尺度总水储量观测，能否改善陆地水储量及其组成部分的估计与空间刻画？",
+      "hypothesis_or_mechanism": "通过 EnKS 将 GRACE ΔTWS 及其不确定度约束到 CABLE 的土壤水分、冠层储水、雪水当量和地下水状态中，可纠正模型水储量偏差，而更细网格可增强空间细节。",
+      "variables_and_data_use": "将 GSFC Mascon product 的月尺度 ΔTWS 和观测不确定度作为同化输入；以 CHIRPS 和 Princeton 气象数据驱动 CABLE-SSGW；使用 ESA CCI COMBINED product version 4.7 (v04.7)、GLEAM version 3.3a、Australian Groundwater Explorer、SASMAS 和 FLUXNET2015 对土壤水分、蒸散发及地下水相关结果进行验证。",
+      "method_paradigm": "数据同化状态重建",
+      "used_assets": [
+        "GSFC Mascon product",
+        "CABLE SubgridSoil GroundWater (CABLE-SSGW)",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)",
+        "high-resolution global data set of meteorological forcings for land surface modeling version 2, Princeton University (Princeton)",
+        "Global Land Surface Satellite product (GLASS)",
+        "ESA CCI COMBINED product version 4.7 (v04.7)",
+        "GLEAM version 3.3a",
+        "Scaling and Assimilation of Soil Moisture and Streamflow (SASMAS)",
+        "Australian Groundwater Explorer",
+        "FLUXNET2015"
+      ],
+      "author_team": [
+        "Natthachet Tangdamrongsub",
+        "Michael F. Jasinski",
+        "Peter J. Shellito"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Development and evaluation of 0.05° terrestrial water  storage estimates using Community Atmosphere  Biosphere Land Exchange (CABLE) land surface  model and assimilation of GRACE data",
+        "doi": "10.5194/hess-25-4185-2021",
+        "year": 2021,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_77",
+      "research_question": "如何利用GRACE观测的陆地水储量亏缺和历史降水关系，估算全球干旱所需的补偿降水量及可能的恢复时间？",
+      "hypothesis_or_mechanism": "在历史储量亏缺期，累计降水异常与陆地水储量异常之间存在区域稳定的线性关系，因此未来降水超过气候态的部分可逐步补充亏缺并决定干旱恢复时长。",
+      "variables_and_data_use": "使用GRACE mascon (RL06) solutions的月尺度TWSA，经尺度因子校正、缺测插值、3个月平滑、去趋势和去气候态后识别储量亏缺与干旱事件；使用GPCP V2.3月降水构建累计去趋势平滑降水异常，回归估算所需降水，并通过历史降水分解、预测和湿润情景模拟恢复时间。",
+      "method_paradigm": "统计建模与情景模拟",
+      "used_assets": [
+        "GRACE mascon (RL06) solutions",
+        "GPCP V2.3"
+      ],
+      "author_team": [
+        "Alka Singh",
+        "John Thomas Reager",
+        "Ali Behrangi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Estimation of hydrological drought recovery based  on precipitation and Gravity Recovery and Climate Experiment (GRACE) water storage deficit",
+        "doi": "10.5194/hess-25-511-2021",
+        "year": 2021,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_78",
+      "research_question": "如何将区域尺度GRACE总水储量异常统计降尺度至0.5°，并用观测井数据定量验证其地下水储量时空表现是否优于低分辨率参考？",
+      "hypothesis_or_mechanism": "区域尺度TWS与降雨、植被和表层土壤湿度之间学习到的关系可迁移至细网格，而加性质量约束和GLEAM土壤水扣除可分别保持GRACE区域信号并分离地下水储量异常。",
+      "variables_and_data_use": "以JPL RL06M GRACE mascon TWS异常为预测目标和低分辨率约束，以TRMM降雨、MODIS NDVI及其变化、ESA CCI表层土壤湿度和各变量累积量作为预测因子；使用GLEAM v3.5b RZSM从TWS中扣除土壤水贡献，并用Groundwater Department of Telangana井水位推导的GWS-OW进行时空验证。",
+      "method_paradigm": "统计降尺度与验证",
+      "used_assets": [
+        "GRACE mascon solution from JPL (RL06M) with the Coastal Resolution Improvement (CRI) filter",
+        "TRMM",
+        "MODIS",
+        "ESA CCI product",
+        "GLEAM v3.5b monthly root zone soil moisture (RZSM) dataset",
+        "GWL data from the Groundwater Department of Telangana",
+        "India Water Resources Information System"
+      ],
+      "author_team": [
+        "Claire Pascal",
+        "Sylvain Ferrant",
+        "Adrien Selles",
+        "Jean-Christophe Maréchal",
+        "Abhilash Paswan",
+        "Olivier Merlin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating downscaling methods of GRACE (Gravity  Recovery and Climate Experiment) data: a case study  over a fractured crystalline aquifer in southern India",
+        "doi": "10.5194/hess-26-4169-2022",
+        "year": 2022,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_79",
+      "research_question": "如何结合 GRACE/GRACE-FO 陆地水储量、GLDAS 土壤水储量及地下水收支项估算 Saq–Ram Aquifer System 的地下水变化和自然补给率？",
+      "hypothesis_or_mechanism": "在缺乏永久地表水的干旱区，GRACE TWS 扣除 GLDAS SWS 可近似得到 GWS，而其长期变化与抽水、自然排泄和人工回归水共同约束自然补给量。",
+      "variables_and_data_use": "使用 GRACE-JPL、GRACE-CSR 和 GRACE-GSFC 的月尺度 TWS 异常作为总水储量观测，使用 GLDAS-VIC、GLDAS-CLSM 和 GLDAS-NOAH 的 SWS 异常扣除土壤水贡献，推导 GWS 变化；随后结合地下水开采、自然排泄、人工补给及 CRU 降雨资料建立区域地下水质量平衡并估计自然补给。",
+      "method_paradigm": "遥感水量平衡",
+      "used_assets": [
+        "GRACE-JPL",
+        "GRACE-CSR",
+        "GRACE-GSFC",
+        "GLDAS-VIC",
+        "GLDAS-CLSM",
+        "GLDAS-NOAH",
+        "Climatic Research Unit database (CRU)"
+      ],
+      "author_team": [
+        "Pierre Seraphin",
+        "Julio Gonçalvès",
+        "Bruno Hamelin",
+        "Thomas Stieglitz",
+        "Pierre Deschamps"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Influence of intensive agriculture and geological heterogeneity on the recharge of an arid aquifer system (Saq–Ram, Arabian Peninsula) inferred from GRACE data",
+        "doi": "10.5194/hess-26-5757-2022",
+        "year": 2022,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_80",
+      "research_question": "如何将月尺度GRACE/GRACE-FO陆地水储量异常重建并降尺度至日尺度，以监测流域亚月尺度极端洪水事件？",
+      "hypothesis_or_mechanism": "降水、气温和土壤湿度异常与GRACE/GRACE-FO TWSA之间的月尺度统计关系可迁移至日尺度，而前一日水储量状态与当日降水共同决定区域洪水潜势。",
+      "variables_and_data_use": "将CSR、GSFC和JPL的GRACE/GRACE-FO RL06等效水厚度TWSA取平均并作为模型输出目标，以CMA日/月降水和气温及GLDAS 2.1 Noah土壤湿度储量异常作为输入，通过MLP、LSTM和MLR重建月尺度TWSA并生成日尺度TWSA；随后结合日降水计算NDFPI，并以水文站日流量识别的洪水事件进行检验。",
+      "method_paradigm": "机器学习时序降尺度",
+      "used_assets": [
+        "CSR GRACE and GRACE-FO RL06 solution",
+        "GSFC GRACE and GRACE-FO RL06 solution",
+        "JPL GRACE and GRACE-FO RL06 solution",
+        "Global Land Data Assimilation System version 2.1 (GLDAS 2.1) Noah land surface model",
+        "China Meteorological Administration (CMA)",
+        "daily streamflow observations from the Yangtze River Conservancy Commission of Ministry of Water Resources"
+      ],
+      "author_team": [
+        "Jingkai Xie",
+        "Yue-Ping Xu",
+        "Hongjie Yu",
+        "Yan Huang",
+        "Yuxue Guo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Monitoring the extreme flood events in the Yangtze River basin based on GRACE and GRACE-FO satellite data",
+        "doi": "10.5194/hess-26-5933-2022",
+        "year": 2022,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_81",
+      "research_question": "九套GRACE重力解所揭示的年际至年代际陆地总水储量变化，与ISBA-CTRIP和WGHM2.2d水文模型的估计在空间格局和变化幅度上有何差异？",
+      "hypothesis_or_mechanism": "若水文模型未充分表示地下水、人类用水、大型湖泊或冰川等储量过程，其TWS估计将与GRACE观测产生具有空间结构的残差。",
+      "variables_and_data_use": "将九套GRACE或GRACE-FO mascon及球谐解处理为月尺度等效水高TWS异常并取集合平均，以解间离散度表示不确定性；将ISBA-CTRIP和WGHM2.2d的TWS输出加入湖泊校正后，与GRACE异常比较并计算残差，同时使用GPCC和IMERG描述降水。",
+      "method_paradigm": "多源观测模型比较",
+      "used_assets": [
+        "Jet Propulsion Laboratory (JPL) (RL06 Version 02)",
+        "Center for Space Research (CSR) (RL06 V02)",
+        "Goddard Space Flight Center (GSFC) (RL06 V01)",
+        "JPL (RL06)",
+        "CSR (RL06)",
+        "GeoForschungsZentrum (GFZ) (RL06)",
+        "Institute of Geodesy at Graz University of Technology (ITSG) (GRACE2018)",
+        "Combination Service for Time-variable Gravity Fields (COST-G) (RL01)",
+        "Centre National d'Etudes Spatiales - Groupe de Recherche de Géodésie Spatiale (CNES-GRGS) (RL05)",
+        "ISBA-CTRIP",
+        "WGHM2.2d",
+        "Global Glacier Model",
+        "hydroweb database",
+        "GLWD (Global Lakes and Wetlands Database)",
+        "Global Precipitation Climatology Center (GPCC) Full Data Product V6",
+        "IMERG (Integrated Multi-satellitE Retrievals for GPM)",
+        "ERA-Interim",
+        "WFDEI",
+        "ETOPO1 Global Relief Model",
+        "ICE6G-D"
+      ],
+      "author_team": [
+        "Julia Pfeffer",
+        "Anny Cazenave",
+        "Alejandro Blazquez",
+        "Bertrand Decharme",
+        "Simon Munier",
+        "Anne Barnoud"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of pluri-annual and decadal changes in terrestrial water storage predicted by global hydrological models in comparison with the GRACE satellite gravity mission",
+        "doi": "10.5194/hess-27-3743-2023",
+        "year": 2023,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_82",
+      "research_question": "能否利用GRACE/GRACE-FO观测到的最大陆地总水储量下降估算大尺度生态系统根区水储存容量，并比替代估计更好地支持蒸散发模拟？",
+      "hypothesis_or_mechanism": "在扣除地下水抽取趋势、雪和地表水变化后，GRACE/GRACE-FO记录中的最大TWS下降主要反映生态系统通过蒸散发消耗的根区储水容量。",
+      "variables_and_data_use": "以JPL RL06 GRACE/GRACE-FO mascon月度TWS anomaly计算最大drawdown和S r GRACE / FO，使用MCD12Q1筛选植被区，以Global Precipitation Climatology Project降水和全球径流再分析检验水量平衡，以ERA5气温排除雪影响，并将S r GRACE / FO、S CWDX80 product和S r RD × WHC分别输入USGS monthly hydrologic model，最终用GLEAM ET version 4.1的标准化异常评价模拟表现。",
+      "method_paradigm": "观测反演与模型验证",
+      "used_assets": [
+        "GRACE",
+        "GRACE-FO",
+        "Jet Propulsion Laboratory (JPL) RL06 solutions",
+        "JPL mascon solutions",
+        "MCD12Q1 version 6.1",
+        "multi-forcing observation-based global runoff reanalysis",
+        "Global Precipitation Climatology Project",
+        "ERA5",
+        "AQUASTAT",
+        "S CWDX80 product",
+        "effective rooting depths from Yang et al. (2016)",
+        "Harmonized World Soil Database version 1.2",
+        "version 4.1 of the Global Land Evaporation Amsterdam Model (GLEAM) ET",
+        "USGS monthly hydrologic model"
+      ],
+      "author_team": [
+        "Meng Zhao",
+        "Erica L. McCormick",
+        "Geruo A",
+        "Alexandra G. Konings",
+        "Bailing Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Substantial root-zone water storage capacity observed by GRACE and GRACE/FO",
+        "doi": "10.5194/hess-29-2293-2025",
+        "year": 2025,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_83",
+      "research_question": "如何依据空间自相关特征，为不同水储量分量确定与 GRACE/GRACE-FO TWSA 空间结构兼容的滤波方法和滤波宽度？",
+      "hypothesis_or_mechanism": "将水储量分量的滤波强度调整到其空间自相关函数最接近 GRACE TWSA，可减少空间尺度不一致并提高通过扣除法分离地下水储量异常的可靠性。",
+      "variables_and_data_use": "以 COST-G TWSA Level-3 product 为主要空间相关参照，并比较 GFZ data set、ITSG data set 和 UB-ITSG；将 CGLS SWE、C3S Soil Moisture CDR 根区土壤湿度、C3S glacier mass product 和 LISFLOOD/GloFAS 地表水储量转换为月异常并聚合为 4WSC，测试 Gaussian 和 DDK 滤波，再以空间自相关函数 RMSD 选择最优滤波宽度。",
+      "method_paradigm": "空间自相关滤波评估",
+      "used_assets": [
+        "COST-G TWSA Level-3 product",
+        "GFZ data set",
+        "ITSG data set",
+        "UB-ITSG",
+        "Copernicus Global Land service (CGLS) Snow Water Equivalent (SWE)",
+        "ERA5-land",
+        "C3S Soil Moisture CDR",
+        "C3S glacier mass product",
+        "LISFLOOD",
+        "GloFAS"
+      ],
+      "author_team": [
+        "Ehsan Sharifi",
+        "Julian Haas",
+        "Eva Boergens",
+        "Henryk Dobslaw",
+        "Andreas Güntner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Technical note: GRACE-compatible filtering of water storage data sets via spatial autocorrelation analysis",
+        "doi": "10.5194/hess-29-6985-2025",
+        "year": 2025,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_84",
+      "research_question": "能否融合GRACE水储量变化、SENTINEL-1地表形变和站点地下水位数据，利用U-Net重建印度恒河流域的高空间分辨率地下水位？",
+      "hypothesis_or_mechanism": "GRACE提供区域尺度水质量变化，SENTINEL-1提供局地地表形变，两者的互补信息可使U-Net比单独使用任一卫星数据更准确地估算地下水位。",
+      "variables_and_data_use": "将GRACE Satellite Data表示的terrestrial water storage变化和SENTINEL-1 InSAR形变信息组合为模型输入波段；将约80,000个站点的地下水位观测经IDW插值形成目标栅格，并从训练区和评价区分别抽取256 × 256像素邻域训练和检验U-Net。",
+      "method_paradigm": "多源状态重建",
+      "used_assets": [
+        "GRACE Satellite Data",
+        "SENTINEL-1",
+        "Groundwater Level Data"
+      ],
+      "author_team": [
+        "A. Galodha",
+        "N. S. Kayithi",
+        "D. Sharma",
+        "P. Jain"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "MONITORING GROUNDWATER STORAGE BASINS AND HYDROLOGICAL CHANGES USING THE GRACE SATELLITE AND SENTINEL-1 FOR THE GANGA RIVER BASIN",
+        "doi": "10.5194/isprs-archives-xlviii-m-3-2023-95-2023",
+        "year": 2023,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_85",
+      "research_question": "如何利用GRACE总水储量及其他陆地水储量分量重建地下水干旱指数时间序列，并分析其趋势、季节性和频率特征？",
+      "hypothesis_or_mechanism": "从GRACE重力反演TWS中扣除土壤水、雪水、地表水和冠层水后，可以估算地下水储量变化，其标准化异常能够揭示地下水干旱及其周期结构。",
+      "variables_and_data_use": "以GRACE和GRACE FO谱系的TWS为基础变量，结合G3P Copernicus Service及soil moisture (SM)、snow water equivalence (SWE)、surface water storage (SWS)和canopy (CA)计算GWS，再由GWSD标准化得到GDI，并对GDI进行加性时间序列分解和DFT分析。",
+      "method_paradigm": "状态重建与频谱分析",
+      "used_assets": [
+        "GRACE (Gravity Recovery and Climate Experiment)",
+        "GRACE FO",
+        "G3P Copernicus Service (Global Gravity-based Groundwater Product)",
+        "soil moisture (SM)",
+        "snow water equivalence (SWE)",
+        "surface water storage (SWS)",
+        "canopy (CA)"
+      ],
+      "author_team": [
+        "Monika Biryło"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Satellite-based Determination and Analysis of Groundwater Drought Index Time Series in Europe",
+        "doi": "10.59440/ceer/220434",
+        "year": 2026,
+        "venue": "Civil and Environmental Engineering Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 79,
+    "source_paper_count": 79,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

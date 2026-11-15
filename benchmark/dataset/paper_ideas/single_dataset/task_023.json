@@ -1,0 +1,91 @@
+{
+  "paper_id": "10.3390/rs15082064",
+  "task_id": "single_dataset/task_023",
+  "title": "Systematic Evaluation of Four Satellite AOD Datasets for PM2.5 Estimation",
+  "category": "environmental_monitoring",
+  "year": 2023,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "MODIS Terra/Aqua MAIAC AOD MCD19A2 V6.1 (1 km, daily; 2018)",
+    "MODIS Terra/Aqua Dark Target AOD MOD04_3K and MYD04_3K (3 km, daily; 2018)",
+    "Sentinel-3A SLSTR AOD (orbit-level retrievals, daily merged and resampled to 0.01 degree; 2018)",
+    "Sentinel-5P TROPOMI AOD (orbit-level retrievals with cloud fraction <=0.1, daily merged and resampled to 0.01 degree; 2018)",
+    "EEA E2a PM2.5 monitoring data (350 stations across Germany, Poland, Czechia, Austria, Switzerland, France, Belgium, Luxembourg and the Netherlands; hourly or daily)",
+    "ECMWF HRES Set I atmospheric forecast fields (0.1 degree, daily 12:00; 13 meteorological parameters; 2018)",
+    "MODIS Terra/Aqua LST MOD11A1 and MYD11A1 (1 km, daily merged then monthly means; 2018)",
+    "MODIS Terra/Aqua NDVI MOD13A3 and MYD13A3 (1 km, monthly merged; 2018)"
+  ],
+  "study_area_verified": {
+    "name": "Central Europe air-quality domain covering Germany and neighboring countries",
+    "extent": "350 PM2.5 monitoring stations in Germany, Poland, Czechia, Austria, Switzerland, France, Belgium, Luxembourg and the Netherlands.",
+    "study_period": "2018; satellite and meteorological fields were merged daily, with ECMWF fields sampled at 12:00 and TROPOMI observations screened at cloud fraction <=0.1.",
+    "analysis_grid": "Fixed 0.01 degree latitude-longitude grid for merged AOD products and resampled meteorological/satellite predictors.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "MODIS/061/MCD19A2_GRANULES",
+    "operationally_used": true,
+    "role": "MAIAC Terra/Aqua MCD19A2 AOD is one of four satellite AOD predictors evaluated in random-forest PM2.5 estimation; MODIS Dark Target, Sentinel-3A SLSTR and Sentinel-5P TROPOMI are companion comparison products.",
+    "evidence": "The supplied Methods identify the combined Terra/Aqua MAIAC product MCD19A2, describe daily AOD processing and include it in the four-product comparison.",
+    "corrections": [
+      "The previous datasets field was truncated and conflated MODIS Dark Target and MAIAC; it omitted station, meteorological, LST and NDVI products.",
+      "The task prompt now describes only the MCD19A2.061 anchor and uses its catalog-confirmed bands, cadence, extent and QA metadata."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "MODIS/061/MCD19A2_GRANULES"
+      ],
+      "not_available_as_identified_source": [
+        "EEA E2a station observations",
+        "ECMWF HRES Set I forecast fields as used in the paper",
+        "Sentinel-3A SLSTR AOD and Sentinel-5P TROPOMI AOD source products",
+        "The paper-specific fixed-grid merges and regression-combined Dark Target product"
+      ]
+    },
+    "sibling_task_boundary": "Admission is restricted to papers that operationally use MODIS MAIAC MCD19A2 AOD. MODIS Dark Target, SLSTR, TROPOMI and other aerosol products are comparison families, not aliases of this anchor.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "不同卫星AOD产品在德国区域内用于地表PM2.5估计时，其分辨率、空间覆盖率和代理变量配置如何共同影响模型可迁移性与预测精度？",
+    "hypothesis": "在相同的机器学习框架下，空间分辨率更高、时空覆盖更稳定的AOD产品将带来更高的PM2.5估计精度；当AOD覆盖不足或分辨率较粗时，代理变量对模型输出的贡献会显著上升，并部分替代AOD信息。",
+    "mechanism": "卫星AOD通过表征柱总气溶胶负荷，为地表PM2.5提供遥感约束；但AOD到地表PM2.5之间受边界层高度、湿度、垂直分布和云污染影响。高分辨率且覆盖充分的AOD产品能够更好地保留局地气溶胶空间梯度，经由随机森林学习AOD与地面站点PM2.5之间的非线性映射；当AOD信息稀疏或噪声较大时，模型更依赖气象、土地利用、地形和排放相关代理变量来补足缺失的空间和过程信息，从而维持估计能力。",
+    "key_variables": {
+      "target": "地表PM2.5浓度（年内逐日或逐时匹配到站点的观测值）",
+      "predictors": [
+        "MODIS Terra/Aqua AOD（Dark Target, DT）",
+        "MODIS Terra/Aqua AOD（MAIAC）",
+        "Sentinel-3A SLSTR AOD",
+        "Sentinel-5P TROPOMI AOD",
+        "气象代理变量（如边界层高度、相对湿度、温度、风速）",
+        "土地利用与下垫面变量",
+        "地形变量",
+        "人口或排放相关代理变量",
+        "空间位置与时间特征"
+      ]
+    },
+    "data_sources": [
+      "德国2018年地面PM2.5监测站网络观测数据（高密度in situ网络，站点级时间序列）",
+      "MODIS Terra/Aqua AOD产品（Dark Target, DT；2018年；卫星轨道级/格点AOD）",
+      "MODIS Terra/Aqua AOD产品（MAIAC；2018年；高分辨率格点AOD）",
+      "Sentinel-3A SLSTR AOD产品（2018年；中高分辨率格点AOD）",
+      "Sentinel-5P TROPOMI AOD产品（2018年；较粗分辨率格点AOD）",
+      "与PM2.5估计相关的代理数据集（2018年德国区域，按站点或网格匹配）"
+    ],
+    "analytical_approach": "以随机森林回归为核心建模框架，对四类AOD数据分别建立PM2.5估计模型；采用交叉验证评估泛化性能，比较不同AOD产品在不同空间分辨率与覆盖条件下的解释力；通过特征重要性分析（例如基于随机森林的置换重要性或Gini重要性）比较AOD与代理变量的相对贡献，并进行分组消融实验，检验删除AOD或删除代理变量后的性能变化。",
+    "expected_contribution": "构建一个可复用的卫星AOD产品比较框架，用于识别不同传感器与反演算法在PM2.5估计中的适用边界；为后续区域空气污染制图提供基于证据的产品选择依据；同时揭示在AOD覆盖不足情形下，代理变量如何补偿遥感信息缺口，从而提高PM2.5估计研究的设计透明度与可解释性。",
+    "falsification_condition": "如果在德国2018年数据上，四类AOD产品的随机森林模型在交叉验证中的R2均低于0.60，或高分辨率/高覆盖AOD产品相对低分辨率/低覆盖产品的R2提升小于0.05，且AOD在特征重要性中的贡献未高于代理变量，则“更高分辨率与更高覆盖率AOD能够显著提升PM2.5估计能力，并降低对代理变量依赖”的假设不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

@@ -1,0 +1,47 @@
+{
+  "paper_id": "10.3390/urbansci10070356",
+  "task_id": "dual_dataset/task_012",
+  "title": "Long-Term Urban Thermal Dynamics and Land Use Transformation in Košice, Slovakia: A Landsat Time Series Analysis (1985–2025)",
+  "category": "land_cover_landsat",
+  "year": 2026,
+  "journal": "",
+  "impact_level": "medium",
+  "datasets": [
+    "Copernicus Global Land Cover 100 m",
+    "Landsat Collection 2 Level-2 Surface Reflectance"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "land_cover_context",
+      "dataset": "Copernicus Global Land Cover 100 m"
+    },
+    {
+      "role": "landsat_optical_input",
+      "dataset": "Landsat Collection 2 Level-2 Surface Reflectance"
+    }
+  ],
+  "idea": {
+    "research_question": "How do land-cover transitions and Landsat observations jointly reveal environmental change?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+      "GEE:LANDSAT/LC08/C02/T1_L2"
+    ],
+    "required_component_usage": [
+      "land_cover_context",
+      "landsat_optical_input"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves the audited multidataset observation contract.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_012:composite_observation",
+    "task_seed_audit": "independent_combination_seed_audit_20260929.json",
+    "seed_selection_basis": "independent_section_ready_audit",
+    "audited_combination_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\batch_reference_spaces_20260929\\land_cover_landsat.json",
+    "selected_candidate_evidence": "section_ready"
+  }
+}

@@ -1,0 +1,123 @@
+{
+ "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+ "task_description": "The dataset is the companion training/testing database of a reference paper (see data_description.paper_overview). Use it as the research starting point: propose research ideas that could achieve better performance than the reference paper's reported configuration, evaluated on this same table under a fair comparison protocol.",
+ "region_name": "Postfire debris-flow basin-storm events, western US (Staley et al. 2016 OFR database, calibration table of Prescott & McGuire 2026)",
+ "data_description": {
+  "dataset_name": "USGS postfire debris-flow basin-rainstorm event database, Staley et al. 2016 OFR 2016-1106 Appendix 1 (companion data of Prescott & McGuire 2026, International Journal of Wildland Fire, DOI 10.1071/WF25172)",
+  "spatial_coverage": {
+   "region_name": "Burned watersheds in CA, AZ, CO, ID, MT, NM, UT, USA",
+   "coverage": "1,550 basin-storm events across 34 fires (2000-2012); UTM coordinates per event location (UTM_X 235,283-733,557 m; UTM_Y 3,468,148-5,110,116 m; zones per UTM_Zone column)."
+  },
+  "temporal_coverage": "Fire years 2000-2012; each row is one rainstorm event at one documented basin, with dated storm windows (StormDate) and storm start/end times where available.",
+  "data_type": "Tabular event table",
+  "data_format": "Local CSV (staley2016_appendix1_modeldata.csv; xlsx original with a DataDescription sheet kept in assets/ASSET-PFDF-BAYES/repo/data/)",
+  "spatial_resolution": "Basin (watershed) scale; contributing areas 0.02-7.9 km2",
+  "coordinate_system": "UTM coordinates per row (UTM_Zone, UTM_X easting, UTM_Y northing)",
+  "temporal_unit": "Per-event storm timestamps; storm duration in hours",
+  "records": "1550 rows x 27 columns",
+  "data_type_numeric": "Mixed numeric/categorical; Response is the binary label (1 = debris flow occurred at the documented location during the storm, 0 = none). Database splits the rows into author-defined Training/Test partitions.",
+  "total_samples": 1550,
+  "table_content": {
+   "label": "Response (1,216 no-response vs 334 debris-flow events; 21.5% positive overall; Training 201/939 = 21.4%, Test 133/611 = 21.8%)",
+   "column_keys": [
+    "Fire Name", "Year", "Fire_ID", "Fire_SegID", "Database", "State",
+    "UTM_Zone", "UTM_X", "UTM_Y", "Response", "StormDate", "GaugeDist_m",
+    "StormStart", "StormEnd", "StormDur_H", "StormAccum_mm", "StormAvgI_mm/h",
+    "Peak_I15_mm/h", "Peak_I30_mm/h", "Peak_I60_mm/h", "ContributingArea_km2",
+    "PropHM23", "dNBR/1000", "KF", "Acc015_mm", "Acc030_mm", "Acc060_mm"
+   ],
+   "column_groups": {
+    "fire_identity": ["Fire Name", "Year", "Fire_ID", "Fire_SegID", "State"],
+    "split_and_geolocation": ["Database", "UTM_Zone", "UTM_X", "UTM_Y"],
+    "label": ["Response"],
+    "storm_context": ["StormDate", "GaugeDist_m", "StormStart", "StormEnd", "StormDur_H", "StormAccum_mm", "StormAvgI_mm/h"],
+    "rainfall_peaks": ["Peak_I15_mm/h", "Peak_I30_mm/h", "Peak_I60_mm/h"],
+    "basin_attributes": ["ContributingArea_km2", "PropHM23", "dNBR/1000", "KF"],
+    "rainfall_accumulations": ["Acc015_mm", "Acc030_mm", "Acc060_mm"]
+   },
+   "sample_row_note": "Basin attribute columns (PropHM23, dNBR/1000, KF, ContributingArea_km2) are pre-storm watershed properties; rainfall columns describe the specific storm at the nearest gauge (GaugeDist_m 28-3,999 m)."
+  },
+  "unit_of_measurement": "StormDur_H: hours; StormAccum_mm: mm storm total; StormAvgI and Peak_I15/I30/I60: mm/h (peak intensities over 15/30/60-min windows, Peak_I15 >= Peak_I30 >= Peak_I60 holds by construction for nested windows); ContributingArea_km2: km2; PropHM23: proportion of watershed burned at high or moderate severity with gradients in excess of 23 degrees (0-1); dNBR/1000: differenced normalized burn ratio divided by 1000 (0-1); KF: average KF-factor (erodibility index of fine soil fragments); Acc015/030/060_mm: peak 15/30/60-minute rainfall accumulations in mm; GaugeDist_m: meters; UTM_X/UTM_Y: meters.",
+  "data_source": "USGS Open-File Report 2016-1106 Appendix 1 (Staley et al. 2016), redistributed in the Zenodo companion archive of Prescott & McGuire 2026 (record 20018915, CC-BY-4.0), sheet 'Appendix1_ModelData' with the authors' original DataDescription sheet documenting every column.",
+  "reference": "Paper DOI 10.1071/WF25172; archive DOI 10.5281/zenodo.20018915; source database USGS OFR 2016-1106",
+  "important_note": "Structural facts a reader needs before use: (1) The Database column is a GEOGRAPHIC split: every Training row is California (939 rows, 19 fires) and every Test row is one of AZ/CO/ID/MT/NM/UT (611 rows, 15 fires) - confirmed by crosstab on this table. The paper's model is calibrated on southern California and tested out of region. (2) Missing rainfall values are structural: Peak_I15/Acc015 missing on 230 rows, Peak_I30/Acc030 on 214, Peak_I60/Acc060 on 256, StormStart/StormEnd on 160; dNBR/1000 missing on 77 rows. (3) The official M1 model form multiplies each basin attribute by the 15-min accumulation (PropHM23*Acc015, dNBRby1000*Acc015, KF*Acc015) plus an intercept, after standardizing these three interaction columns on the Training rows; the Bayesian version places a posterior over those 4 coefficients. (4) The nested peak windows are ordered by construction (I15 >= I30 >= I60; Acc015 <= Acc030 <= Acc060 is NOT guaranteed since accumulations are maxima over sliding windows of different lengths - check before asserting orderings). (5) The authors' southern-California external test set (testingdata_bondextended_laslomasext.xlsx, 96 basin-rain events with observed peak I15 and PFDF response, columns T/F/S) is kept in assets/ASSET-PFDF-BAYES/repo/data/, not in this task directory. (6) The released posterior (posterior.csv, 132,992 samples x 4 parameters) and per-posterior-sample verification metrics (verification*.csv) are in the same assets folder; the released model script has seed=None, so exact posterior reproducibility is not guaranteed - the released posterior is the canonical anchor. (7) Response positives exist in every state (CA 201, AZ 41, CO 35, NM 35, MT 7, ID 11, UT 4) but state-level event counts are highly uneven - stratified claims are unevenly powered outside CA.",
+  "column_profiles": {
+   "StormDur_H": {"type": "numeric", "missing": 0, "min": 0, "p50": 14.3, "max": 65},
+   "StormAccum_mm": {"type": "numeric", "missing": 0, "min": 0, "p50": 22, "max": 222.25},
+   "StormAvgI_mm/h": {"type": "numeric", "missing": 0, "min": 0, "p50": 1.96, "max": 58.67},
+   "Peak_I15_mm/h": {"type": "numeric", "missing": 230, "min": 1.6, "p50": 16.8, "max": 112},
+   "Peak_I30_mm/h": {"type": "numeric", "missing": 214, "min": 1.2, "p50": 12, "max": 80},
+   "Peak_I60_mm/h": {"type": "numeric", "missing": 256, "min": 0.6, "p50": 8.38, "max": 50.8},
+   "ContributingArea_km2": {"type": "numeric", "missing": 0, "min": 0.0201, "p50": 0.436, "max": 7.888},
+   "PropHM23": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.523, "max": 0.99},
+   "dNBR/1000": {"type": "numeric", "missing": 77, "min": 0.00716, "p50": 0.311, "max": 0.997},
+   "KF": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.239, "max": 11.36},
+   "Acc015_mm": {"type": "numeric", "missing": 230, "min": 0.4, "p50": 4.2, "max": 28},
+   "Acc030_mm": {"type": "numeric", "missing": 214, "min": 0.6, "p50": 6, "max": 40},
+   "Acc060_mm": {"type": "numeric", "missing": 256, "min": 0.6, "p50": 8.38, "max": 50.8},
+   "GaugeDist_m": {"type": "numeric", "missing": 0, "min": 27.84, "p50": 1913.67, "max": 3999.3},
+   "Year": {"type": "numeric", "missing": 0, "min": 2000, "p50": 2009, "max": 2012},
+   "Response": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 1},
+   "Database": {"type": "categorical", "cardinality": 2, "top_values": {"Training": 939, "Test": 611}},
+   "State": {"type": "categorical", "cardinality": 7, "top_values": {"CA": 939, "CO": 300, "AZ": 209, "NM": 58}},
+   "Fire Name": {"type": "categorical", "cardinality": 34, "top_values_note": "34 fires, 2000-2012"},
+   "Fire_ID": {"type": "categorical", "cardinality": 34, "top_values_note": "fire abbreviation; Fire_SegID adds segment ids per fire"}
+  },
+  "dataset_facts": {
+   "events_total": 1550,
+   "fires_total": 34,
+   "events_by_database": {"Training": 939, "Test": 611},
+   "positives_by_database": {"Training": 201, "Test": 133},
+   "fires_by_database": {"Training": 19, "Test": 15},
+   "positives_by_state": {"CA": 201, "AZ": 41, "CO": 35, "NM": 35, "ID": 11, "MT": 7, "UT": 4},
+   "companion_outputs_in_assets": {
+    "posterior.csv": "132,992 MCMC samples x 4 coefficients (b0..b3) of the calibrated Bayesian M1 model.",
+    "verification.csv": "Per-posterior-sample metrics on Training and Test: Brier/Ignorance/Bias/Reliability/Sharpness/Discrimination median-min-max, AUC (Training 0.8485-0.8614 median 0.8586; Test 0.9127-0.9420 median 0.9241), ThreatScore at p=0.5 and p_opt.",
+    "verification_balancedm1_fulldataset.csv / verification_balancedm1.csv / verification_fullm1_balancedsubset.csv / verification_min_i15_6.csv / verification_s2016datasets.csv": "Variant verifications (balanced partitions, min-I15 pruning variants).",
+    "testingdata_bondextended_laslomasext.xlsx": "96-row southern California external test set (Bond extended + Las Lomas extension).",
+    "i15_vals_*.csv, *.h5": "Site rainfall intensity series used for climatological integration and Gumbel posterior fitting."
+   }
+  },
+  "analytical_capabilities": "Supportable from this table: event-level PFDF probability modeling with the official M1 interaction features or any feature set computable from these columns; out-of-region (CA -> intermountain) transfer evaluation using the Database split; fire-grouped resampling protocols (34 fires); rainfall-threshold estimation (probability as a function of I15 or accumulations); severity/soil/steepness interaction analysis; state/region stratification. NOT supportable from this table: sub-event rainfall timing (only storm summaries and peaks are given), basin-internal spatial distributions, rain-gauge density effects beyond GaugeDist_m, and any claim about events outside 2000-2012 fires. The southern-California external test set and rainfall time series are companion files, not this table.",
+  "paper_overview": {
+   "citation": "Prescott, A., and McGuire, L.: A Bayesian approach to postfire debris-flow probability modeling for southern California, United States, International Journal of Wildland Fire, published 2026-08-18, DOI 10.1071/WF25172.",
+   "evidence_base_note": "Full published text retrieved on 2026-11-02 from the ConnectSci article page (CSIRO Publishing's current platform; DOI redirect), saved as validation/paper_fulltext_20261102_connectsci.txt; supplemented by the authors' Zenodo code/data archive and released verification outputs. The published AUROC table (training 0.86, test 0.92) is consistent with the released verification.csv medians (0.8586/0.9241) - the two sources cross-validate.",
+   "research_question": "Can a Bayesian logistic model for postfire debris-flow (PFDF) probability, built on the existing M1 model structure (terrain steepness T, burn severity F, soil erodibility S, each interacting with standardized 15-min rainfall intensity), provide calibrated probabilities with quantified parameter uncertainty, credible intervals on rainfall intensity-duration thresholds, and climatologically resolved spatial variation in first-year PFDF probability in southern California?",
+   "data_used": "Calibration: the Staley et al. (2016) OFR 2016-1106 basin-storm database (this table, CA Training rows). Testing: a southern California event set assembled from Las Lomas and van Tassel basins (Fish Fire 2016; 7 PFDFs), six El Dorado Fire basins (2020), and four Bond Fire basins (2020; 8 PFDFs), with rainfall intensities sourced from Graber (2023); for the Bond Fire basins, storms not listed by Graber were assumed to be non-responsive based on Orange County rain-gauge records (Methods). Climatology: NOAA Atlas 14 rainfall frequency information and site rain-gauge series (Buckweed 813, Station 17816) for the Gumbel posterior fitting.",
+   "methods": "SCMbayes: logistic model z = beta0 + beta1*(I15_std*T) + beta2*(I15_std*F) + beta3*(I15_std*S) with T/F/S the standardized M1 interaction inputs (PropHM23, dNBR/1000, KF each multiplied by I15 then standardized on training data). Calibration via emcee affine-invariant MCMC, 32 walkers x 100,000 steps, burn-in discarded at 5x the estimated autocorrelation length and thinned by half of it (this rule generated the 132,992 released samples). All post-calibration analyses drew parameter sets exclusively from the joint 90%-credible region (4-D histogram highest-density hypervolume); test computations used all retained parameter sets, and the total-probability analysis used 10,000 sets sampled from each of the SCMbayes hypervolume and per-basin Gumbel posteriors (fitted with 15,000-step emcee runs). Derived products: I15 thresholds at a chosen probability pc (with credible intervals), and integration of conditional PFDF probability over the full marginal I15 distribution for climatological spatial variation. Verification: distributions-oriented measures (Brier score, reliability, sharpness) plus AUROC and threat score at pc=0.5 and at the training-optimal pc.",
+   "main_results": [
+    "Posterior mean coefficients (beta0..beta3 = -1.38, 0.78, 0.77, 0.48) are nearly identical to the M1 maximum-likelihood estimate (-1.37, 0.78, 0.76, 0.48), so the average SCMbayes prediction closely tracks the original M1 model; the value added is the uncertainty quantification.",
+    "T and F inputs have ~1.6x the average effect of the S input, consistent with Staley et al. (2017) sensitivity analysis.",
+    "Published verification (Table 3): Training AUROC median 0.86 (credible range 0.85-0.86), Test AUROC 0.92; Training Brier median 0.13.",
+    "Class-imbalance experiments: the full-training calibration beat both an I15>6 mm/h subsample and a class-balanced subsample on Brier score and reliability; the balanced subsample was worst with systematically overpredicted probabilities. All three variants shared similar AUROC (~0.92) and optimal threat scores (0.44-0.45) - the authors warn that classification-based metrics can miss calibration differences.",
+    "Using the training-optimal threshold pc = 0.30 on extended-record test basins, the ensemble caught all but one positive outcome with 16 of 78 negatives false-alarmed, for an ensemble-best threat score of 0.55.",
+    "The model estimates watershed-specific I15 thresholds with credible intervals; for an example basin (7149, Witch Fire) thresholds ranged from ~50 to >175 mm/h depending on T/F/S values.",
+    "Released verification outputs (consistent with the published table): Training AUC median 0.8586 (0.8485-0.8614 over posterior samples), Test AUC median 0.9241 (0.9127-0.9420), Test Brier median 0.0862 (0.0812-0.0931)."
+   ],
+   "stated_scope_and_limitations": [
+    "Applicability is explicitly the first postfire year: the calibration database consists primarily of first-year observations, and the authors state thresholds/probabilities apply to first-year hazard assessment (Methods; sediment-exhaustion effects beyond first year are excluded by design).",
+    "The Bond Fire basin test rows include an assumption: storms absent from Graber (2023) were treated as non-responsive based on Orange County gauge records and community reporting - a stated-but-imperfect negative-label source.",
+    "Test basins are all southern California (Fish, El Dorado, Bond fires); the non-CA intermountain Test partition of the Staley database exists in the released table but is not the paper's headline test.",
+    "Model structure is inherited from M1, including its independence assumptions across basin-storm observations; the authors note collinearity among beta1-beta3 is amplified by multiplication with I15.",
+    "Rainfall inputs derive from gauge measurements; spatial rainfall uncertainty enters only through the Gumbel posterior at the two instrumented example basins."
+   ],
+   "not_disclosed_in_paper_sources_available_here": [
+    "Supplementary tables S1-S5 (basin attributes, per-storm records, threshold tables) are referenced by the text but not included in the Zenodo archive or the retrieved page.",
+    "Per-sample geographic coordinates of the 96 external-test events beyond basin names/dates (basin locations are in the cited monitoring-network publications)."
+   ]
+  },
+  "improvement_directive": {
+   "objective": "Treat the Prescott & McGuire 2026 paper summarized above as the baseline starting point. Propose research ideas that could achieve better performance than the paper's reported configuration, using this companion table as the primary data source.",
+   "better_performance_means": "For this task, better performance is concretely one or more of: lower Brier score / better reliability than the published anchors (Training Brier median 0.13, Test Brier median 0.086) at comparable sharpness; higher AUROC than 0.86 (training) / 0.92 (test); better reliability-calibration trade-offs than the class-balancing variants the authors rejected; better threat score than the published anchors (0.44-0.45 at pc=0.5, 0.55 ensemble-best at pc=0.30) without inflating false alarms; rainfall thresholds with tighter honest credible intervals; better transfer to the non-CA intermountain Test partition than the geographic split delivers. No particular improvement direction is presumed effective in advance.",
+   "requirements_per_idea": [
+    "Name the specific limitation or deficiency of the original paper's approach that the idea addresses (e.g., fixed M1 feature set, uniform priors, geographic split, threshold rule, unmodeled rainfall uncertainty).",
+    "State the concrete change (features, model class, prior/likelihood, fold or evaluation protocol, threshold rule, or research angle) and why it could plausibly work.",
+    "Explain how the idea would be compared fairly against the paper's original configuration: freeze the baseline (M1 four-coefficient logistic with the released posterior, evaluated on the same Test rows with the same metric family), change one thing at a time, and report paired differences (per-fold or per-posterior-sample).",
+    "Formulate testable claims: state what must be computed, on which rows, with which expected direction, and give falsification conditions (what observed result would refute the claim).",
+    "Check data affordability: every claim must be computable from this table (plus the released posterior/verification files), or explicitly marked as requiring external data (e.g., the external southern-California test set or rainfall time series in assets)."
+   ],
+   "constraints": "The official label is the field-verified Response; the official M1 feature form multiplies basin attributes by Acc015_mm. Any change to label, features, or split is a legitimate idea but must be stated and compared against the frozen original. The Database split is geographic (CA vs intermountain) - do not silently re-split when reproducing the paper numbers."
+  }
+ },
+ "data_path": "./datasets/bayesian_pfdf_probability_socal"
+}

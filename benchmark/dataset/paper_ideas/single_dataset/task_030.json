@@ -1,0 +1,74 @@
+{
+  "paper_id": "10.3390/f15122098",
+  "task_id": "single_dataset/task_030",
+  "title": "Driving Factors for Vegetation NDVI Changes in Cold Temperate Zone",
+  "category": "climate_surface_interaction",
+  "year": 2023,
+  "journal": "Forests",
+  "impact_level": null,
+  "datasets": [
+    "NESDC annual NDVI (30 m, 2001-2020)",
+    "NCDC annual land cover (30 m, 1985-2022)",
+    "ERA5-Land monthly temperature (0.1 degree)",
+    "TPDC monthly precipitation for China (1 km)",
+    "DEM (30 m, Geospatial Data Cloud)"
+  ],
+  "study_area_verified": {
+    "name": "Greater Khingan Mountains, northeastern China",
+    "period": "2001-2020, annual time step",
+    "projection": "WGS 1984 UTM Zone 51N",
+    "elevation_range_m": "142 to 1510, classified as low below 300, middle 300-800, high above 800",
+    "review_date": "2026-08-28"
+  },
+  "anchor_substitution": {
+    "paper_used": "Annual 30 m NDVI over 2001-2020 from the National Ecosystem Science Data Center of the Chinese National Science and Technology Infrastructure",
+    "task_anchor": "LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI",
+    "former_anchor": "MODIS/061/MOD13Q1",
+    "why_a_substitute_is_needed": "The Earth Engine catalog publishes no Chinese national NDVI collection; the NESDC product is distributed only through its own portal.",
+    "why_this_asset": "The Landsat annual NDVI composite matches the source on 30 m pixel size, annual time step and 2001-2020 coverage simultaneously, and both series are Landsat-derived at the same resolution.",
+    "why_the_former_anchor_was_wrong": "MOD13Q1 is 250 m on a 16-day step. The source stratifies vegetation by slope, aspect and elevation class derived from a 30 m DEM, which a 250 m grid cannot support.",
+    "residual_gap": "The catalog composite keeps the most recent valid pixel of each year, while the NESDC product applies its own compositing rule, so annual values are comparable in resolution and step but not numerically interchangeable.",
+    "companion_datasets": [
+      "NCDC 30 m annual land cover 1985-2022, reclassified into 7 classes: cropland, forest, grassland, water, bare land, impervious, wetland",
+      "ERA5-Land monthly mean temperature at 0.1 degree, aggregated to annual means for 2001-2020",
+      "TPDC monthly precipitation for China at 1 km, aggregated to annual means",
+      "30 m DEM from Geospatial Data Cloud, with slope reclassified into 6 grades and aspect into 10 classes"
+    ],
+    "corrections": [
+      "The earlier datasets list named MODIS NDVI and a bare 'Climate data' entry. NDVI comes from NESDC at 30 m, not MODIS; climate comes from ERA5-Land temperature and a TPDC precipitation product, which are separate sources at different resolutions."
+    ],
+    "fields_left_unchanged": [
+      "idea.data_sources",
+      "idea.analytical_approach"
+    ],
+    "note": "Those fields describe what the source did and must not be rewritten to match the anchor.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "在寒温带地区，2001–2020年植被NDVI时空变化主要由哪些地形、气候和土地利用因子共同驱动，其主导作用路径如何组织？",
+    "hypothesis": "寒温带地区NDVI的长期变化并非主要由单一气候因子控制，而是由土地利用类型通过改变地表覆盖与人类扰动强度，并与海拔、坡度、坡向共同调节水热再分配过程后，进一步影响植被生长；在这一框架下，土地利用和地形因子对NDVI的解释力应强于单独的温度或降水因子，且交互作用会增强对NDVI空间异质性的解释。",
+    "mechanism": "气候背景中的年均温和年降水通过影响水热条件、土壤水分和生长季长度，首先改变植被光合和生物量积累；地形变量（海拔、坡度、坡向）通过控制辐射接收、温度递减、径流汇聚与土壤保持，进一步调节局地水热格局；土地利用类型则通过改变植被覆盖结构、地表扰动强度和人类管理方式，直接重塑NDVI空间分布，并放大或削弱气候与地形的作用。最终，NDVI变化表现为气候约束、地形分异与土地利用格局共同作用的结果，其中土地利用可作为连接人类活动与自然环境响应的中介变量。",
+    "key_variables": {
+      "target": "NDVI（Normalized Difference Vegetation Index）",
+      "predictors": [
+        "土地利用/覆被类型",
+        "海拔",
+        "坡度",
+        "坡向",
+        "年降水量",
+        "年均气温"
+      ]
+    },
+    "data_sources": [
+      "MODIS NDVI时间序列数据，2001–2020年，建议采用250 m、16天合成产品（如MOD13Q1/MOD13A1）",
+      "气象数据，2001–2020年，年尺度的年降水量和年均气温栅格或站点插值数据",
+      "DEM地形数据，建议30 m分辨率（如SRTM/ASTER GDEM）",
+      "土地利用/覆被数据，2001–2020年或与NDVI分析期相近的年度/多期分类栅格"
+    ],
+    "analytical_approach": "首先对2001–2020年NDVI进行时间序列趋势分析，推荐使用Theil-Sen斜率估计结合Mann-Kendall显著性检验；其次对海拔、坡度、坡向、降水、气温和土地利用进行离散化处理后，采用地理探测器模型中的因子探测器识别单因子解释力，并用交互探测器检验双因子叠加是增强、非线性增强还是独立作用；必要时可补充空间分区统计以刻画不同地貌单元中的NDVI差异。",
+    "expected_contribution": "构建寒温带地区植被NDVI变化的‘气候-地形-土地利用’耦合解释框架，识别驱动NDVI空间异质性的关键控制因子及其交互路径，为寒温带生态恢复、土地管理和区域适应性规划提供可操作的因子优先级依据。",
+    "falsification_condition": "若在2001–2020年NDVI趋势分析中不存在稳定的上升或下降趋势，或地理探测器中任一关键驱动因子的解释力q值均低于0.05，且交互作用未表现出对单因子的增强效应，则该机制假设应被否定；同样，若土地利用的解释力不高于任一气候因子，或土地利用与地形/气候的交互q值不高于对应单因子q值，则“土地利用主导并放大自然因子作用”的假设不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

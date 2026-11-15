@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1371/journal.pone.0227480",
+  "task_id": "dual_dataset/task_029",
+  "title": "Downscaling NLDAS-2 daily maximum air temperatures using MODIS land surface temperatures",
+  "category": "nldas2_modis_land_surface_temperature",
+  "year": 2020,
+  "journal": "PLOS ONE",
+  "impact_level": "medium",
+  "datasets": [
+    "NLDAS-2 daily maximum air temperature",
+    "MODIS land surface temperature"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "nldas2_air_temperature",
+      "dataset": "NLDAS-2 daily maximum air temperature"
+    },
+    {
+      "role": "modis_land_surface_temperature",
+      "dataset": "MODIS land surface temperature"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial or temporal associations are present between NLDAS-2 daily maximum air temperature and MODIS land surface temperature?",
+    "hypothesis": "The required components contain a joint signal not represented by either component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:NASA/NLDAS/FORA0125_H002",
+      "GEE:MODIS/061/MYD11A2"
+    ],
+    "required_component_usage": [
+      "nldas2_air_temperature",
+      "modis_land_surface_temperature"
+    ],
+    "expected_contribution": "A benchmark task that requires both components of a composite observation.",
+    "falsification_condition": "Reject an idea if either required component is absent, background-only, or not operationally used with the other required component."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_029:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"
+  }
+}

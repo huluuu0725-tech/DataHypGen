@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Greater Khingan Mountains, northeastern China",
+  "data_description": {
+    "dataset_name": "Landsat Collection 2 Tier 1 Level 2 Annual NDVI Composite",
+    "spatial_coverage": {
+      "region_name": "Greater Khingan Mountains, China",
+      "coverage": "Global land coverage at 30 m, including the boreal forest, wetland and cold-temperate terrain of the Greater Khingan Mountains in northeastern China"
+    },
+    "temporal_coverage": "1984 to 2026, one image per year",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Annual composite",
+    "analytical_capabilities": [
+      "Vegetation greenness monitoring at the scale of individual forest stands and land parcels",
+      "Multi-decadal interannual vegetation trend analysis on a fixed annual step",
+      "Vegetation disturbance and recovery detection at 30 m",
+      "Stratification of vegetation state by elevation belt, slope class, aspect, or land-cover type",
+      "Association analysis against coarser gridded climate variables after resampling"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI as a dimensionless index ranging from -1.0 to 1.0",
+      "runtime_hint": "Use the single `NDVI` band directly; values are already physical and carry no scale factor. Each image composites every scene acquired in that calendar year, keeping the most recent valid pixel, so a year with sparse cloud-free coverage may be represented by observations from an unrepresentative season. Check per-year image availability over the area of interest before building trend series, and note that the annual step means within-year phenology is not recoverable."
+    },
+    "data_source": "USGS, derived from Landsat Collection 2 Tier 1 Level 2 surface reflectance",
+    "gee_asset": {
+      "id": "LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI"
+}

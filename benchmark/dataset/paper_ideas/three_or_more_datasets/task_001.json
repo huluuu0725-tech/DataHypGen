@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.3390/rs12101560",
+  "task_id": "three_or_more_datasets/task_001",
+  "title": "Small Scale Landslide Detection Using Sentinel-1 Interferometric SAR Coherence",
+  "category": "geological_hazards",
+  "year": 2020,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Sentinel-1A/B Level-1 SLC IW imagery",
+    "SRTM digital elevation model",
+    "Sentinel-2 Level-2A vegetation observations"
+  ],
+  "anchor_context": {
+    "task_anchor": {
+      "type": "multidataset_anchor",
+      "components": [
+        "Sentinel-1 SLC",
+        "SRTM DEM"
+      ],
+      "seed_role": "task seed exclusion; not included as a reference direction"
+    },
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "selection_basis": "User-selected seed: highest citation count among the four 2020 candidates and strongest central overlap with the remaining SLC+DEM reference space.",
+    "same_year_reference_policy": "Other user-selected 2020 papers remain admissible; the seed DOI itself is excluded explicitly."
+  },
+  "idea": {
+    "research_question": "Can interferometric coherence change derived from Sentinel-1 SLC pairs detect small landslides accurately enough to support rapid hazard assessment and early warning?",
+    "hypothesis": "A landslide produces a spatially localized loss of interferometric coherence that remains distinguishable from vegetation and terrain effects after DEM-supported processing and ancillary masking.",
+    "mechanism": "Sentinel-1 SLC pairs preserve phase information used to estimate interferometric coherence. SRTM DEM supports co-registration, topographic-phase removal and terrain correction, while Sentinel-2 vegetation information and reference landslide areas help separate genuine surface disturbance from background decorrelation.",
+    "key_variables": {
+      "target": "Landslide versus non-landslide area and the spatial extent of detected slope failure",
+      "predictors": [
+        "Pre-event and post-event interferometric coherence",
+        "Coherence difference and normalized coherence difference",
+        "DEM-derived terrain geometry",
+        "Vegetation state and landslide reference masks"
+      ]
+    },
+    "data_sources": [
+      "Sentinel-1A/B Level-1 SLC IW products",
+      "SRTM DEM",
+      "Sentinel-2 Level-2A imagery"
+    ],
+    "analytical_approach": "对事件前后Sentinel-1 SLC影像进行DEM辅助配准、地形相位去除和地形校正，生成干涉相干性；计算相干性差值与归一化相干性差值，通过植被掩膜和参考滑坡范围控制非灾害退相干，并使用ROC、检测率、误报率和总体精度评价识别能力。",
+    "expected_contribution": "建立一个以SLC相位信息和DEM地形处理为核心的小尺度滑坡相干性变化检测框架，并明确其用于灾害快速识别和早期预警的有效边界。",
+    "falsification_condition": "若相干性变化在独立滑坡和非滑坡区域之间不可稳定区分，或在控制植被、地形和观测几何后检测结果仍具有高误报率且不能跨事件复现，则该相干性变化机制不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "single_dataset/task_003_manual_anchor_reclassification_and_open_full_text"
+}

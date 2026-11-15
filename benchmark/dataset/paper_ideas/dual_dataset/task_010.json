@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1007/s41324-026-00690-z",
+  "task_id": "dual_dataset/task_010",
+  "title": "Quantifying post-fire vegetation loss and trace gas emissions from the July 2025 Çeşme wildfire using Sentinel-2 and Sentinel-5P",
+  "category": "sentinel2_vegetation_sentinel5p_co",
+  "year": 2026,
+  "journal": "Discover Environment",
+  "impact_level": "medium",
+  "datasets": [
+    "Sentinel-2 MSI Level-2A Surface Reflectance Harmonized",
+    "Sentinel-5P TROPOMI Offline Carbon Monoxide (CO)"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "sentinel2_vegetation_condition",
+      "dataset": "Sentinel-2 MSI Level-2A Surface Reflectance Harmonized"
+    },
+    {
+      "role": "sentinel5p_co_column",
+      "dataset": "Sentinel-5P TROPOMI Offline Carbon Monoxide (CO)"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial or temporal associations are present between Sentinel-2 surface-reflectance vegetation/burn-condition indices and Sentinel-5P CO column observations?",
+    "hypothesis": "The required components contain a joint signal not represented by either component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "GEE:COPERNICUS/S5P/OFFL/L3_CO"
+    ],
+    "required_component_usage": [
+      "sentinel2_vegetation_condition",
+      "sentinel5p_co_column"
+    ],
+    "expected_contribution": "A benchmark task that requires both components of a composite observation.",
+    "falsification_condition": "Reject an idea if either required component is absent, background-only, or not operationally used with the other required component."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_010:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"
+  }
+}

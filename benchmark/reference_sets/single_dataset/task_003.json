@@ -1,0 +1,1351 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_003",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Sentinel-1A Level-1 Single Look Complex Product",
+    "spatial_coverage": {
+      "region_name": "Lawson Creek landslide, Curry County, southwestern Oregon",
+      "coverage": "Sentinel-1A SLC acquisitions intersecting the Lawson Creek landslide and surrounding slopes."
+    },
+    "temporal_coverage": "2014-04-03 to present",
+    "data_type": "Raster scene collection",
+    "data_format": "Sentinel-1 Level-1 SLC SAFE products indexed through NASA Earthdata CMR STAC",
+    "spatial_resolution": "Acquisition-mode dependent; IW SLC preserves complex samples at approximately 5 m by 20 m spatial resolution",
+    "temporal_unit": "Scene-level repeat-pass acquisitions",
+    "analytical_capabilities": [
+      "Form repeat-pass interferograms from compatible Sentinel-1 SLC acquisitions",
+      "Estimate interferometric coherence and wrapped phase",
+      "Coregister bursts and construct orbit-consistent displacement time series",
+      "Unwrap phase and estimate line-of-sight surface displacement",
+      "Compare displacement with rainfall, soil moisture and terrain controls"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Complex-valued radar samples preserving amplitude and phase",
+      "runtime_hint": "Select acquisitions with compatible relative orbit, pass direction, acquisition mode, subswath, burst coverage and polarization. SLC data require precise-orbit application, coregistration, interferogram formation, topographic-phase removal with a DEM, filtering, coherence estimation and phase unwrapping before displacement analysis. Do not treat SLC pixels as terrain-corrected GRD backscatter."
+    },
+    "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+    "source_metadata": {
+      "source": "NASA_CMR",
+      "id": "SENTINEL-1A_SLC",
+      "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1214470488-ASF.html",
+      "provider": "NASA ASF DAAC; ESA Copernicus",
+      "thematic_group": "Radar / Interferometric SAR"
+    }
+  },
+  "current_data_path": "NASA_CMR:SENTINEL-1A_SLC",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_003.json",
+    "source_sha256": "e3add9e33c4b5616d45df9cf75584b14580a4800f5c3cc8206f0fca78828a0bb",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_003/prompt.json",
+    "current_prompt_sha256": "1c252a2acdc99ceccfa363ab231bf87a5262f2dfa733dd45086fa70b8af2ac10",
+    "original_anchor_asset": {
+      "id": "NASA_CMR:SENTINEL-1A_SLC",
+      "observable_group": "sentinel1_c_band_sar_single_look_complex_phase",
+      "observation_identity_contract": {
+        "physical_object": "complex C-band microwave radar signal over the land surface",
+        "source_lineage": "Sentinel-1A/B Level-1 Single Look Complex observations distributed by ASF through NASA Earthdata CMR",
+        "core_measurement_semantics": "complex in-phase and quadrature samples preserving amplitude and interferometric phase in slant-range geometry",
+        "non_material_variations": "Sentinel-1A or Sentinel-1B platform, full-scene or burst packaging, archive mirror, SAFE processing baseline, polarization and acquisition mode when complex phase remains available",
+        "material_mismatches": "GRD or RTC backscatter without complex phase, a derived displacement map without operational use of Sentinel-1 SLC, or SLC observations from another radar mission without Sentinel-1 input"
+      },
+      "asset_alias_policy": "Sentinel-1A and Sentinel-1B Level-1 SLC products are admitted, including NASA CMR ASF full-scene collections and SLC burst packaging that preserves complex phase. GRD, RTC and backscatter-only products are excluded unless Sentinel-1 SLC is also operationally processed. ALOS/PALSAR and ALOS-2/PALSAR-2 SLC are seed companion inputs, not aliases of the C-band Sentinel-1 anchor.",
+      "alias_policy_scope": "A paper need not reproduce the seed's ALOS and ALOS-2 branches, but it must operationally process Sentinel-1 SLC complex data. Interferograms, coherence, unwrapped phase or displacement count only when their derivation from Sentinel-1 SLC is established in Methods/Data.",
+      "anchor_repointed": {
+        "from": "COPERNICUS/S1_GRD",
+        "to": "NASA_CMR:SENTINEL-1A_SLC",
+        "reason": "NASA Earthdata CMR exposes the actual Sentinel-1A/B Level-1 SLC collections through ASF. The former GRD anchor removed interferometric phase and changed the observable used by the seed.",
+        "seed_evidence": "The seed processes Sentinel-1A/B ascending track 35 repeat-pass scenes into interferograms and a coherence-weighted SBAS line-of-sight displacement time series, together with ALOS and ALOS-2 SLC branches.",
+        "verified_against": "NASA CMR collections SENTINEL-1A_SLC (C1214470488-ASF), SENTINEL-1B_SLC (C1327985661-ASF), SENTINEL-1_BURSTS (C2709161906-ASF), ALOS_PALSAR_LEVEL1.1 (C1206485527-ASF) and ALOS2_L1_PSR2 (C3315903479-ASF).",
+        "companion_collections": [
+          "NASA_CMR:ALOS_PALSAR_LEVEL1.1",
+          "NASA_CMR:ALOS2_L1_PSR2"
+        ],
+        "residual_gap": "The supplied task Anchor exposes the Sentinel-1A collection. Sentinel-1B is admitted as the same product family, while the L-band ALOS and ALOS-2 branches remain separate companion collections.",
+        "review_date": "2026-09-20"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用 Sentinel-1 SAR 影像识别和绘制山洪事件产生的临时地表水，并比较快速制图法与 SAR 极化法的效果？",
+      "hypothesis_or_mechanism": "基于 Sentinel-1 IW GRD 后向散射的快速制图方法能够以更短处理时间和更低计算需求获得比基于 SLC 双极化数据的 SAR 极化方法更高的洪水制图精度。",
+      "variables_and_data_use": "使用 Sentinel-1 IW GRD 的地面距离后向散射数据进行临时地表水快速制图，同时使用 Sentinel-1 SLC (dual polarimetry) 开展 SAR 极化制图，并依据参考数据比较两种结果的准确率。",
+      "method_paradigm": "遥感制图验证",
+      "used_assets": [
+        "Sentinel-1 IW GRD",
+        "Sentinel-1 SLC (dual polarimetry)"
+      ],
+      "author_team": [
+        "T. A. Gasica",
+        "F. Bioresita",
+        "A. Murtiyoso"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "IDENTIFICATION OF TEMPORARY SURFACE WATER USING SENTINEL-1 SAR DATA, CASE STUDY: SENTANI FLASH FLOODING, INDONESIA",
+        "doi": "10.5194/isprs-archives-xliii-b3-2020-55-2020",
+        "year": 2020,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何利用升轨和降轨Sentinel-1 SLC干涉时间序列识别、量化并制图城市及其周边坡体的缓慢形变与不稳定区域？",
+      "hypothesis_or_mechanism": "持续发生滑移的不稳定坡体会在Sentinel-1复数相位构成的SBAS时间序列中表现为成簇的LOS形变信号，将其投影至下坡方向后可更可靠地表征真实坡面运动。",
+      "variables_and_data_use": "研究使用Sentinel-1 IW SLC影像生成升轨和降轨干涉图，经ISCE、MintPY和SBAS获得LOS位移、速度与时间序列，并结合传感器视线几何及DEM坡度坡向计算VSLOPE、东西向速度和垂直速度；2019年LiDAR hillshade、aerial imagery和Site photos用于划定不稳定坡体、解释地貌并排除非滑坡形变。",
+      "method_paradigm": "InSAR形变重建",
+      "used_assets": [
+        "Sentinel-1 single look complex images from the interferometric wide-swath mode",
+        "10 m by 10 m 2019 digital elevation model (DEM)",
+        "LiDAR hillshade acquired in 2019",
+        "aerial imagery",
+        "Site photos"
+      ],
+      "author_team": [
+        "Matthew E. Cook",
+        "Martin S. Brook",
+        "Ian J. Hamling",
+        "Murry Cave",
+        "Jon F. Tunnicliffe",
+        "Rachel Holley"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Investigating slow-moving shallow soil landslides using Sentinel-1 InSAR data in Gisborne, New Zealand",
+        "doi": "10.1007/s10346-022-01982-9",
+        "year": 2022,
+        "venue": "Landslides",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "地下水长期过度开采是否导致研究区含水层压密、地表沉降以及建筑物裂缝损害，并能否通过多源地面与卫星观测加以识别和量化？",
+      "hypothesis_or_mechanism": "持续地下水位下降会提高含水层有效应力并压密松散冲积沉积物，由此产生差异性地表沉降，进一步形成张性、压性或剪切性建筑裂缝。",
+      "variables_and_data_use": "使用Sentinal-1 C-band SAR数据对开展DInSAR，估算2017—2018年的雷达LOS形变与沉降热点；使用Shuttle Radar Topography Mission (SRTM) 1 arc-second作为高程处理输入；使用JPL-Mascons Tellus-based monthly mass gridded GRACE gravity data推导TWS变化；使用Global Land Data Assimilation System (GLDAS)-based soil moisture change (SMC)构建土壤水分变化序列；使用bore-well/tube-well and dug-well data计算2005—2018年地下水位波动；使用GPS data验证垂直沉降速率，并结合建筑裂缝调查评估损害。",
+      "method_paradigm": "多源遥感归因分析",
+      "used_assets": [
+        "Sentinal-1 C-band SAR data pairs",
+        "SENTINEL-1 C-SAR (IW)",
+        "Shuttle Radar Topography Mission (SRTM) 1 arc-second",
+        "JPL-Mascons Tellus-based monthly mass gridded GRACE gravity data",
+        "Global Land Data Assimilation System (GLDAS)-based soil moisture change (SMC)",
+        "bore-well/tube-well and dug-well data",
+        "GPS data"
+      ],
+      "author_team": [
+        "Pranshu Pranjal",
+        "Neha Kadiyan",
+        "R. S. Chatterjee",
+        "Dheeraj Kumar",
+        "Madhu Sudan Sati"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Interpreting land subsidence impacts due to groundwater depletion using remote sensing-based GRACE gravity anomaly and DInSAR technique: a study on north-western parts of India",
+        "doi": "10.1007/s12665-021-09905-y",
+        "year": 2021,
+        "venue": "Environmental Earth Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "Cryosat-2 高度计能否在平坦农业区可靠探测长期地表沉降，并获得与 Sentinel-1A InSAR 和 GPS 相近的垂直位移速率？",
+      "hypothesis_or_mechanism": "地下水持续损失会引起含水层系统压密和地表沉降，因此 Cryosat-2 高程变化、Sentinel-1A 干涉相位位移和 GPS 垂直速度应表现出一致的空间与速率特征，且可能与 GRACE 水储量和降水变化相关。",
+      "variables_and_data_use": "使用 SGDR_L2 of Cryosat-2 的地表高度估计重复轨道高程变化；使用 Sentinel-1A interferometric wide swath SLC 相位，通过 GMTSAR/SBAS 生成干涉图、解缠相位及 LOS 和垂直位移率；使用 GPS 三维速度验证结果并改正水平运动贡献；使用 SRTM DEM 校正地形相位，使用 EGM2008 转换高程基准，并以 CSR RL06 solution with DDK5 filtering applied 和 GPCP version 2.3 分别描述水储量及降水变化。",
+      "method_paradigm": "多传感器测量验证",
+      "used_assets": [
+        "S1A SAR images",
+        "Single Look Complex (SLC) images",
+        "SGDR_L2 of Cryosat-2",
+        "Earth Gravitational Model 2008 (EGM2008)",
+        "90-m digital elevation model (DEM) from the Shuttle Radar Topography Mission (SRTM)",
+        "GPS data from the Nevada Geodetic Laboratory (NGL)",
+        "CSR RL06 solution with DDK5 filtering applied",
+        "Global Precipitation Climatology Project (GPCP); version 2.3"
+      ],
+      "author_team": [
+        "Shiang-Hung Wei",
+        "Cheinway Hwang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Land subsidence near Hanford and Corcoran, California, from Cryosat-2 altimetry and Sentinel-1A SAR imagery",
+        "doi": "10.1007/s44195-025-00087-9",
+        "year": 2025,
+        "venue": "Terrestrial, Atmospheric and Oceanic Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "如何利用一年期全球Sentinel-1复数SAR观测构建不同季节和重复间隔下的C波段干涉相干性、后向散射及相干衰减参数数据集？",
+      "hypothesis_or_mechanism": "在系统噪声、空间基线和体散射影响总体有限的条件下，时间去相关是全球Sentinel-1重复轨道相干性变化的主要机制，并可用随重复间隔指数衰减的模型表征。",
+      "variables_and_data_use": "以Sentinel-1A/B IW模式SLC为主要输入，使用复数影像对计算6、12、18、24、36和48天差分干涉相干性，并从检测和多视后的SLC生成VV、VH、HH或HV极化的RTC后向散射；随后按季节计算相干性中位数和后向散射均值，并拟合长期相干性、衰减时间常数及拟合误差。AUX_POEORB用于轨道更新，COPDEM-90用于配准、地形相位扣除、地形校正和地理编码。",
+      "method_paradigm": "全球InSAR重建",
+      "used_assets": [
+        "Sentinel-1 SLC",
+        "Sentinel-1A",
+        "Sentinel-1B",
+        "precision state vectors (AUX_POEORB)",
+        "COPDEM-90"
+      ],
+      "author_team": [
+        "Josef Kellndorfer",
+        "Oliver Cartus",
+        "Marco Lavalle",
+        "Christophe Magnard",
+        "Pietro Milillo",
+        "Shadi Oveisgharan",
+        "Batu Osmanoglu",
+        "Paul A. Rosen",
+        "Urs Wegmüller"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Global seasonal Sentinel-1 interferometric coherence and backscatter data set",
+        "doi": "10.1038/s41597-022-01189-6",
+        "year": 2022,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "如何利用2017年至2025年的Sentinel-1A/B SLC多时相观测刻画地表形变速率及时间演化，并解释其主要地质和水文地质控制因素？",
+      "hypothesis_or_mechanism": "地表沉降主要由未充分固结的第四纪火山沉积物压密、地下水开采引起的孔隙水压力下降以及城市人为荷载共同驱动，而较稳定的第三纪地层表现出较弱形变。",
+      "variables_and_data_use": "以102景Sentinel-1A/B Single Look Complex (SLC)影像的干涉相位为核心输入，通过PS-InSAR反演各持久散射点的LOS线性速度和非线性形变时间序列；使用SRTM 30 meter去除地形相位，并结合Peta Geologi Lembar Bogor Effendi et al., 1998及水文地质信息解释形变空间差异。",
+      "method_paradigm": "多时相形变归因",
+      "used_assets": [
+        "Sentinel-1A/B dalam mode Single Look Complex (SLC)",
+        "SRTM 30 meter",
+        "Peta Geologi Lembar Bogor Effendi et al., 1998"
+      ],
+      "author_team": [
+        "Meldayan Monang Anouw",
+        "Novi Triany",
+        "Joko Widodo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "ANALISIS DEFORMASI PERMUKAAN DAERAH BOGOR MENGGUNAKAN METODE PS-INSAR DENGAN DATA SENTINEL-1",
+        "doi": "10.25105/jogee.v7i1.25894",
+        "year": 2026,
+        "venue": "Journal of Geoscience Engineering and Energy",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "不同全球DEM在Sentinel-1 SLC地形归一化、地形相位移除和正射校正中的选择，会如何影响后向散射、干涉相干性及土地覆盖分类结果？",
+      "hypothesis_or_mechanism": "更准确且空间表达更充分的DEM能够更好地校正坡度、散射面积和地形相位效应，从而降低不同轨道间的SAR变量差异并提高土地覆盖分类的一致性和准确率。",
+      "variables_and_data_use": "以Sentinel-1 SLC生成VV和VH极化后向散射、同极化干涉相干性及干涉图，并分别使用SRTM、AW3D、TanDEM-X DEM等进行地形处理；以ALS DEM作为精细参考，以PNOA DEM辅助生成地形形态，并结合ESA CCI land cover map、GUF、ALOS FNF、CLC和SIOSE构建土地覆盖训练与验证标签。",
+      "method_paradigm": "测量校正比较",
+      "used_assets": [
+        "Sentinel-1 SLC",
+        "SRTM",
+        "AW3D",
+        "TanDEM-X DEM",
+        "TDX30",
+        "TDX20",
+        "TDX90",
+        "ALS DEM",
+        "PNOA DEM",
+        "ESA CCI land cover map (2015)",
+        "DLR’s global urban footprint (GUF) (2016)",
+        "ALOS PALSAR forest map (ALOS FNF) (2017)",
+        "Corine land cover map 2012 (CLC)",
+        "Spanish information system on soil occupation (SIOSE, 2014)"
+      ],
+      "author_team": [
+        "Ignacio Borlaf-Mena",
+        "Maurizio Santoro",
+        "Ludovic Villard",
+        "Ovidiu Badea",
+        "Mihai Tanase"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Investigating the Impact of Digital Elevation Models on Sentinel-1 Backscatter and Coherence Observations",
+        "doi": "10.3390/rs12183016",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "如何联合Sentinel-1A DInSAR地表形变与地震资料识别并约束2019年8月火山喷发期间的形变源？",
+      "hypothesis_or_mechanism": "火山顶部与东南侧翼的复杂形变由多个同时活动的岩浆或构造源共同产生，并与观测到的浅层地震活动相对应。",
+      "variables_and_data_use": "使用Sentinel-1A升轨和降轨复数雷达观测生成干涉图，经相位解缠获得LOS位移并组合为垂直和东西向位移；使用SRTM DEM进行地形表示与模型校正，并以地震位置、深度和震级约束形变源解释。",
+      "method_paradigm": "多源反演归因",
+      "used_assets": [
+        "Sentinel-1A",
+        "S1 data",
+        "1 arcsec Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)",
+        "seismological data"
+      ],
+      "author_team": [
+        "Emanuela Valerio",
+        "Claudio De Luca",
+        "Riccardo Lanari",
+        "Mariarosaria Manzo",
+        "Maurizio Battaglia"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The August 2019 Piton de la Fournaise (La Réunion Island) Eruption: Analysis of the Multi-Source Deformation Pattern Detected through Sentinel-1 DInSAR Measurements",
+        "doi": "10.3390/rs14071762",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "低成本C波段有源反射器能否在实际Sentinel-1 InSAR观测中提供足够稳定且可校正的振幅和相位响应？",
+      "hypothesis_or_mechanism": "有源反射器对Sentinel-1信号进行低功耗放大和同向转发，其主要相位误差由温度变化引起，因而可通过经验温度关系进行校正。",
+      "variables_and_data_use": "使用Sentinel-1 SLC IW影像的振幅估计有源反射器的雷达散射截面和信杂比，使用干涉相位反演累计位移并评估相位稳定性，再利用Catalonia Government气象服务的温度数据分析和校正热致相位漂移。",
+      "method_paradigm": "测量验证",
+      "used_assets": [
+        "Sentinel-1 images, SLC IW mode",
+        "Sentinel-1A and -1B",
+        "Copernicus hub",
+        "Meteorological data provided by the meteorological service of the Catalonia Government"
+      ],
+      "author_team": [
+        "Guido Luzi",
+        "Pedro F. Espín-López",
+        "Fermín Mira Pérez",
+        "Oriol Monserrat",
+        "Michele Crosetto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Low-Cost Active Reflector for Interferometric Monitoring Based on Sentinel-1 SAR Images",
+        "doi": "10.3390/s21062008",
+        "year": 2021,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "Sentinel-1干涉相干性时间序列能否在灾难性滑坡发生前识别具有统计显著性的早期变化信号？",
+      "hypothesis_or_mechanism": "滑坡孕育和发生引起地表散射特性及空间相位一致性变化，从而使相邻Sentinel-1 SLC影像对的相干性在事件发生前后显著下降。",
+      "variables_and_data_use": "使用Sentinel-1A和Sentinel-1B的IW Level-1 SLC VV+VH影像组成28个十二天间隔的干涉对，通过SNAP生成相干图，提取研究点位的最小、最大和平均相干性，并按卫星、升降轨及事件阶段开展时序分析、ANOVA和双尾t检验。",
+      "method_paradigm": "时序变化检测",
+      "used_assets": [
+        "Sentinel-1A IW Level-1 SLC with VV+VH polarization",
+        "Sentinel-1B IW Level-1 SLC with VV+VH polarization",
+        "Copernicus Open Access Hub",
+        "Sentinel’s Application Platform (SNAP)"
+      ],
+      "author_team": [
+        "Marios Tzouvaras"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Statistical Time-Series Analysis of Interferometric Coherence from Sentinel-1 Sensors for Landslide Detection and Early Warning",
+        "doi": "10.3390/s21206799",
+        "year": 2021,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "如何利用Sentinel-1A长时间序列干涉观测，在植被茂密且易失相干的山区识别滑坡并重建其地表形变？",
+      "hypothesis_or_mechanism": "联合散射体自适应滤波能够改善低相干区域的干涉相位质量，进而使SBAS更可靠地恢复滑坡LOS形变时间序列。",
+      "variables_and_data_use": "使用Sentinel-1A SLC复数影像形成和优化干涉相位，并通过SBAS反演LOS位移及年均形变速率；使用AW3D30 DEM去除地形相位并地理编码，POD文件校正轨道误差，GNSS measurements验证位移结果，Google optical images辅助判读滑坡。",
+      "method_paradigm": "时序InSAR形变重建",
+      "used_assets": [
+        "Sentinel-1A",
+        "single-look complex (SLC) images",
+        "ALOS World 3D 30 m (AW3D30) DEM",
+        "precise orbit ephemerides (POD) files for Sentinel-1A",
+        "GNSS measurements",
+        "Google optical images"
+      ],
+      "author_team": [
+        "Huibao Huang",
+        "Shujun Ju",
+        "Wei Duan",
+        "Dejun Jiang",
+        "Zhiliang Gao",
+        "Heng Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Landslide Monitoring along the Dadu River in Sichuan Based on Sentinel-1 Multi-Temporal InSAR",
+        "doi": "10.3390/s23073383",
+        "year": 2023,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "如何联合ALOS PALSAR与Sentinel-1多时相SLC观测重建矿区地表形变过程、分析其潜在触发因素并评价基础设施面临的塌陷风险？",
+      "hypothesis_or_mechanism": "采矿与排水等人类活动叠加降水和地震扰动会驱动矿区及尾矿库地表形变，而形变速率、累计形变量与道路和建筑暴露共同决定塌陷风险水平。",
+      "variables_and_data_use": "使用ALOS PALSAR和Sentinel-1 SLC影像生成干涉对并反演LOS形变速度与时间序列，使用Sentinel-2进行地表变化展示和验证，以降水与地震记录分析潜在触发机制，并结合道路密度、建筑密度及建筑高度计算IRE风险指数。",
+      "method_paradigm": "时序InSAR风险评价",
+      "used_assets": [
+        "ALOS PALSAR",
+        "Sentinel-1 SAR datasets",
+        "Sentinel-2",
+        "precipitation dataset",
+        "Chinese Earthquake Networks Center (CENC)",
+        "Chinese National Geographical Information Public Service Platform of Tianditu System",
+        "buildings’ spatial distribution and the average building heights with 10 m resolution"
+      ],
+      "author_team": [
+        "Chao Ding",
+        "Guangcai Feng",
+        "Lu Zhang",
+        "Wenxin Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Retrospect on the Ground Deformation Process and Potential Triggering Mechanism of the Traditional Steel Production Base in Laiwu with ALOS PALSAR and Sentinel-1 SAR Sensors",
+        "doi": "10.3390/s24154872",
+        "year": 2024,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "如何利用Sentinel-1干涉宽幅SAR影像的相位、相干性和强度变化识别并监测滑坡造成的地表形变与受损区域？",
+      "hypothesis_or_mechanism": "滑坡引起的地表位移和散射结构变化会造成干涉相位偏移及相干性下降，因此比较事件前后的干涉相位、相干性和强度能够定位并刻画滑坡活动。",
+      "variables_and_data_use": "研究使用Sentinel-1 interferometric wide-area mode images组成事件前后影像对，生成干涉图和两幅干涉相位图，计算预事件与共事件相干性并分析强度相关性，以估计地表位移和识别滑坡变化；Cartosat-1 DEM用于地形表达和辅助处理。",
+      "method_paradigm": "差分干涉变化检测",
+      "used_assets": [
+        "Sentinel-1 data",
+        "Sentinel-1 interferometric wide-area mode images",
+        "Cartosat-1 DEM"
+      ],
+      "author_team": [
+        "Sudhir Kumar Chaturvedi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Landslide Assessment Using Sentinel-I SAR-C Interferometry Technique",
+        "doi": "10.46488/nept.2022.v21i03.025",
+        "year": 2022,
+        "venue": "Nature Environment and Pollution Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "Sentinel-1后向散射、双极化PolSAR变量和6天InSAR相干性对山地积雪深度、雪水当量及其变化的敏感性如何受局地入射角、植被和地表状态影响？",
+      "hypothesis_or_mechanism": "积雪微结构、分层和体散射会增强VH及极化变量对积雪积累的响应，而显著SWE变化、积雪湿化和散射中心迁移会降低干涉相干性，且局地入射角会调节这些机制。",
+      "variables_and_data_use": "使用S-1 Level-1 GRD生成VV、VH和VH-VV后向散射，使用Sentinel-1 SLC生成Stokes参数、α、S0等PolSAR变量以及6天相干性和相位产品；将这些变量与SnowClim v1.0的SD和SWE、Noah-MP4的SM和T进行时间及空间相关分析，并利用DEM GLO-30、CGLS-LC100、IMS和GLASS 250-m LAI进行地形校正、掩膜、分层和机制解释。",
+      "method_paradigm": "多源敏感性分析",
+      "used_assets": [
+        "Single Look Complex (SLC) data",
+        "S-1 Level-1 Ground Range Detected (GRD) data products",
+        "ASF HyP3",
+        "ESA SNAP toolbox",
+        "Copernicus 30 m global digital elevation model (DEM GLO-30)",
+        "Noah-Multiparameterization version 4.0.1 (Noah-MP4)",
+        "ECMWF Reanalysis v5 (ERA5)",
+        "SnowClim v1.0",
+        "Multi-Source Weather (MSWX)",
+        "Multi-Source Weighted-Ensemble Precipitation, version 2.8 (MSWEP V2.8)",
+        "Copernicus Global Land Service 2018 Land Cover product at 100 m (CGLS-LC100)",
+        "Interactive Multisensor Snow and Ice Mapping System (IMS)",
+        "GLASS 250-m LAI product (version 6)",
+        "Moderate-resolution Imaging Spectroradiometer (MODIS)"
+      ],
+      "author_team": [
+        "Jonas-Frederik Jans",
+        "Ezra Beernaert",
+        "Morgane De Breuck",
+        "Isis Brangers",
+        "Devon Dunmire",
+        "Gabrielle De Lannoy",
+        "Hans Lievens"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Sensitivity of Sentinel-1 C-band SAR backscatter, polarimetry and interferometry to snow accumulation in the Alps",
+        "doi": "10.1016/j.rse.2024.114477",
+        "year": 2025,
+        "venue": "Remote Sensing of Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "如何联合Sentinel-1 InSAR地表形变、GRACE总水储量和水文模型数据，区分并量化地下水损失引起的区域弹性地表响应与含水层压密形变？",
+      "hypothesis_or_mechanism": "地下水质量损失会通过弹性卸载产生长波长地表抬升，而受限含水层中的孔隙压力下降会导致局地压密和显著沉降，两种机制可通过形变尺度和弹性或孔弹性模型加以分离。",
+      "variables_and_data_use": "研究将C-band Sentinel-1 images处理为干涉图和LOS形变时间序列，再结合升降轨估算垂直及东西向形变；使用Level-3 GRACE solutions from the NASA Jet Propulsion Laboratory (JPL)获得总水储量变化，使用GLDAS Noah估算土壤水储量并分离地下水变化；使用Shuttle Radar Topography Mission (SRTM) Digital Elevation Model和precise satellite orbital information校正干涉相位，并以GNSS stations验证InSAR垂直运动结果。",
+      "method_paradigm": "多源反演与过程归因",
+      "used_assets": [
+        "C-band Sentinel-1 images",
+        "GRACE",
+        "GRACE-FO",
+        "Level-3 GRACE solutions from the NASA Jet Propulsion Laboratory (JPL)",
+        "GLDAS Noah",
+        "Shuttle Radar Topography Mission (SRTM) Digital Elevation Model",
+        "precise satellite orbital information",
+        "GNSS stations",
+        "SPEI drought index"
+      ],
+      "author_team": [
+        "Mohammad Khorrami",
+        "Manoochehr Shirzaei",
+        "Khosro Ghobadi‐Far",
+        "Susanna Werth",
+        "Grace Carlson",
+        "Guang Zhai"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Groundwater Volume Loss in Mexico City Constrained by InSAR and GRACE Observations and Mechanical Models",
+        "doi": "10.1029/2022gl101962",
+        "year": 2023,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "如何利用 Sentinel-1 时间序列 InSAR 监测 2017—2022 年印度尼西亚 Pekalongan 的地面沉降，并提高测量点密度和结果可靠性？",
+      "hypothesis_or_mechanism": "过度开采地下水、全新世年轻冲积层压实以及建筑荷载可能共同导致 Pekalongan 地面沉降，而结合 PS 和 DS 的优化时间序列 InSAR 能够更密集、更可靠地刻画其空间分布和变化模式。",
+      "variables_and_data_use": "使用 Sentinel-1A C 波段 SAR 观测生成干涉图、PS/DS 测量点和形变时间序列；使用 Copernicus GLO-30 扣除地形相位；使用 CNN 和 OHSA 优化测量点；使用 GPS station measurements 验证形变；使用 GRACE、GRACE-FO 和 GLDAS 及 CLSM、VIC、Noah 模型估计地下水储量；并结合降水、地形、水文、土地覆盖和地质因子制作沉降易感性图。",
+      "method_paradigm": "时间序列形变重建与验证",
+      "used_assets": [
+        "Sentinel\n-\n1A SAR data",
+        "Sentinel\n-\n1 SAR data",
+        "Copernicus GLO-30",
+        "GRACE",
+        "GRACE Follow-on (GRACE-FO)",
+        "RL-06, level-3",
+        "Global Land Data Assimilation System (GLDAS)",
+        "catchment land surface model (CLSM)",
+        "variable infiltration capacity (VIC) model",
+        "Noah model",
+        "GPS station measurements"
+      ],
+      "author_team": [
+        "Wahyu Luqmanul Hakim",
+        "Muhammad Fulki Fadhillah",
+        "Kwang-Jae Lee",
+        "Seung-Jae Lee",
+        "Sung-Ho Chae",
+        "Chang-Wook Lee"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Land Subsidence and Groundwater Storage Assessment Using ICOPS, GRACE, and Susceptibility Mapping in Pekalongan, Indonesia",
+        "doi": "10.1109/tgrs.2023.3324043",
+        "year": 2023,
+        "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "Sentinel-1 InSAR相干性变化检测能否比SAR振幅变化和Sentinel-2光学指标更清晰、稳定地识别2024年4月洪水激活的河道？",
+      "hypothesis_or_mechanism": "洪水引发的冲刷、沉积和地表重排会降低事件前后Sentinel-1复数回波的干涉相干性，从而使短时间基线的相干性差值能够揭示振幅或光学影像不易捕获的河道活动。",
+      "variables_and_data_use": "使用Sentinel-1 SLC的VV/VH振幅与相位计算洪水前和洪水期间/之后的干涉相干性及其差值；使用Sentinel-1 GRD VV后向散射计算洪水前后振幅差；使用harmonized Sentinel-2 Surface Reflectance Collection计算Tasseled Cap Brightness，并以Copernicus Sentinel-2 Cloud Probability dataset实施云掩膜；使用TanDEM-X 30 m Edited DEM (EDEM)派生Flow Accumulation和Topographic Wetness Index，用于流路解释和方法间比较。",
+      "method_paradigm": "多源变化检测",
+      "used_assets": [
+        "Sentinel-1 VV/VH Single Look Complex (SLC) scenes",
+        "Sentinel-1 SLC",
+        "pre-processed S1_GRD collection",
+        "harmonized Sentinel-2 Surface Reflectance Collection",
+        "Copernicus Sentinel-2 Cloud Probability dataset",
+        "TanDEM-X 30 m Edited DEM (EDEM)"
+      ],
+      "author_team": [
+        "Laura Obrecht",
+        "Johannes Löw",
+        "Simon Plank",
+        "Ahmed Hadidi",
+        "Wahib Sahwan",
+        "Tobias Ullmann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Improving flood channel detection in arid environments with Sentinel-1 InSAR coherence: a multi-sensor comparison from the April 2024 flood in Oman",
+        "doi": "10.1515/geo-2025-0953",
+        "year": 2026,
+        "venue": "Open Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "研究Sentinel-1干涉相干性变化检测能否识别2019年2月暴雨诱发的公路旁滑坡及其对基础设施的影响。",
+      "hypothesis_or_mechanism": "滑坡引起地表散射特性和位置变化，从而导致Sentinel-1复数信号的时间相干性降低，并在滑坡发生前后形成可检测的相干性差异。",
+      "variables_and_data_use": "使用Sentinel-1A和Sentinel-1B IW模式SLC影像的VV和VH极化数据构建12天间隔的干涉像对，计算相干性图、相干性差异和归一化相干性差异；使用Sentinel-2 satellite imagery计算NDVI以减少植被影响，使用SRTM DEM进行地形相位去除和地形校正，并使用Sentinel Precise Orbits辅助配准。",
+      "method_paradigm": "时序SAR相干变化检测",
+      "used_assets": [
+        "Sentinel-1 Interferometric Wide (IW) swath SLC of VV + VH polarization",
+        "Sentinel-1A",
+        "Sentinel-1B",
+        "Sentinel Precise Orbits",
+        "SRTM (Shuttle Radar Topography Mission) 1 sec HGT Digital Elevation Model (DEM)",
+        "Sentinel-2 satellite imagery"
+      ],
+      "author_team": [
+        "Marios Tzouvaras",
+        "Chris Danezis",
+        "Diofantos G. Hadjimitsis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Small Scale Landslide Detection Using Sentinel-1 Interferometric SAR Coherence",
+        "doi": "10.3390/rs12101560",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何利用 Sentinel-1 时序 InSAR 重建东非裂谷系统全新世活火山的地表形变及速度？",
+      "hypothesis_or_mechanism": "大气和轨道长波误差可能掩盖火山形变信号，而相位与高程相关的经验校正及平面去除能够改善形变反演。",
+      "variables_and_data_use": "研究使用 Sentinel-1 SAR 数据，经 LïCSAR 生成干涉图和相干性，并裁剪解缠干涉图；随后利用干涉相位反演各日期位移图和线性速度，同时根据相位与高程的相关性进行部分大气校正，并使用 Global Volcanism Program (2013) 确定火山位置和中心。",
+      "method_paradigm": "时序InSAR形变重建",
+      "used_assets": [
+        "Sentinel-1 SAR data",
+        "LïCSAR processing system",
+        "LïCSAR data set",
+        "Global Volcanism Program (2013)"
+      ],
+      "author_team": [
+        "F. Albino",
+        "J. Biggs"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Magmatic Processes in the East African Rift System: Insights From a 2015–2020 Sentinel‐1 InSAR Survey",
+        "doi": "10.1029/2020gc009488",
+        "year": 2021,
+        "venue": "Geochemistry, Geophysics, Geosystems",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "如何利用 Sentinel-1A 时序干涉测量监测 Muyubao 滑坡的时空变形及其滑动方向？",
+      "hypothesis_or_mechanism": "滑坡地表的持续形变会在 Sentinel-1A 干涉相位时序中表现为可反演的视线向位移，并可通过投影得到沿滑动方向的变形信息。",
+      "variables_and_data_use": "使用 Sentinel-1a SAR 图像的幅度和干涉相位生成 97 组干涉图，通过 StaMPS SBAS 反演视线向位移时序；使用 SRTM DEM 生成单视差分干涉图并处理地形相关相位；最终将视线向位移投影到滑坡实际滑动方向。",
+      "method_paradigm": "时序 InSAR 形变重建",
+      "used_assets": [
+        "Sentinel-1a",
+        "SRTM (Shuttle Radar Topography Mission) DEM",
+        "COMET-LiCSAR",
+        "StaMPS SBAS"
+      ],
+      "author_team": [
+        "Chao Zhou",
+        "Ying Cao",
+        "Kunlong Yin",
+        "Yang Wang",
+        "Xuguo Shi",
+        "Filippo Catani",
+        "Bayes Ahmed"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Landslide Characterization Applying Sentinel-1 Images and InSAR Technique: The Muyubao Landslide in the Three Gorges Reservoir Area, China",
+        "doi": "10.3390/rs12203385",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "如何利用Sentinel-1干涉时间序列自动检测和分类东非裂谷系统火山的地表形变信号？",
+      "hypothesis_or_mechanism": "地形相关大气延迟和参考框架选择会影响火山形变时间序列，而线性与S形函数能够分别近似持续性和瞬态形变过程。",
+      "variables_and_data_use": "使用Sentinel-1干涉图、解缠相位、相干性、视线向位移和速度时间序列，并结合高程、火山位置及相位—高程相关性进行大气校正、参考点选择、质量筛选和形变信号分类。",
+      "method_paradigm": "自动化时序InSAR分析",
+      "used_assets": [
+        "Sentinel-1",
+        "LïCSAR",
+        "Smithsonian catalogue"
+      ],
+      "author_team": [
+        "Fabien Albino",
+        "Juliet Biggs",
+        "Milan Lazecký",
+        "Yasser Maghsoudi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Routine Processing and Automatic Detection of Volcanic Ground Deformation Using Sentinel-1 InSAR Data: Insights from African Volcanoes",
+        "doi": "10.3390/rs14225703",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "How consistent is radiometric calibration across the Sentinel-1A/B constellation over a wide backscatter range?",
+      "hypothesis_or_mechanism": "Transponder-based calibration and common processing of Sentinel-1 SLC products can quantify constellation-level radiometric bias and stability.",
+      "variables_and_data_use": "Sentinel-1 SLC intensity, calibration transponders, radar brightness and radar cross section, together with TanDEM-X DEM terrain context, are compared across calibration sites and land targets.",
+      "method_paradigm": "Sentinel-1 constellation radiometric calibration and cross-platform validation",
+      "used_assets": [
+        "Sentinel-1 SLC",
+        "TanDEM-X 90 m DEM",
+        "DLR calibration transponders"
+      ],
+      "author_team": [
+        "Kersten Schmidt",
+        "Marco Schwerdt",
+        "Nuno Miranda",
+        "Jens Reimann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Radiometric Comparison within the Sentinel-1 SAR Constellation over a Wide Backscatter Range",
+        "doi": "10.3390/rs12050854",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "What is the spatial pattern and likely cause of ground deformation in Abbottabad City?",
+      "hypothesis_or_mechanism": "DEM-assisted MT-InSAR separates deformation from topographic phase, while rainfall, groundwater use and unconsolidated sediments explain the observed subsidence pattern.",
+      "variables_and_data_use": "Sentinel-1A SLC ascending/descending stacks, SRTM DEM, LOS time series, rainfall, wells and geological units are integrated for deformation attribution.",
+      "method_paradigm": "DEM-assisted MT-InSAR ground-deformation mapping and cause attribution",
+      "used_assets": [
+        "Sentinel-1 SLC IW",
+        "USGS/SRTMGL1_003",
+        "rainfall records",
+        "groundwater-well data",
+        "geological maps"
+      ],
+      "author_team": [
+        "Naeem Shahzad",
+        "Xiaoli Ding",
+        "Songbo Wu",
+        "Hongyu Liang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Ground Deformation and Its Causes in Abbottabad City, Pakistan from Sentinel-1A Data and MT-InSAR",
+        "doi": "10.3390/rs12203442",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "How detectable are earthquake-induced surface deformations with Sentinel-1 SLC DInSAR across different events?",
+      "hypothesis_or_mechanism": "DEM-assisted two-pass DInSAR can recover coseismic interferograms, coherence and displacement maps whose detectability depends on event magnitude, geometry and decorrelation.",
+      "variables_and_data_use": "Sentinel-1 SLC pre/post-event pairs, SRTM 30 m DEM, earthquake catalog parameters, interferograms, coherence and displacement maps are evaluated for five events.",
+      "method_paradigm": "Earthquake deformation detectability assessment with DEM-assisted DInSAR",
+      "used_assets": [
+        "Sentinel-1 SLC IW",
+        "USGS/SRTMGL1_003",
+        "Kyrgyz earthquake catalog",
+        "SNAP-derived interferograms"
+      ],
+      "author_team": [
+        "A. Djenaliev",
+        "M. Kada",
+        "A. Chymyrov",
+        "O. Hellwich",
+        "E. Bairamov",
+        "A. Muraliev"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Investigation of Earthquake Deformation Detectability using Sentinel-1 Interferometric Data",
+        "doi": "10.52939/ijg.v18i6.2453",
+        "year": 2022,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "Can an open SNAP/Python workflow make Sentinel-1 SLC DInSAR coseismic deformation mapping reproducible?",
+      "hypothesis_or_mechanism": "A scripted processing chain combining SLC co-registration, DEM-based topographic phase removal and interferogram generation can reproduce reliable coseismic displacement maps with less software overhead.",
+      "variables_and_data_use": "Sentinel-1 SLC IW products, SRTM-derived DEM/hillshade, earthquake parameters and historical DInSAR results are used to build and validate the workflow.",
+      "method_paradigm": "Reproducible Python/SNAP DInSAR workflow for coseismic deformation",
+      "used_assets": [
+        "Sentinel-1 SLC IW",
+        "USGS/SRTM DEM",
+        "earthquake event catalog",
+        "historical DInSAR results"
+      ],
+      "author_team": [
+        "Martina Occhipinti",
+        "Filippo Carboni",
+        "Shaila Amorini",
+        "Nicola Paltriccia",
+        "Carlos López-Martínez",
+        "Massimiliano Porreca"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Implementing the European Space Agency’s SentiNel Application Platform’s Open-Source Python Module for Differential Synthetic Aperture Radar Interferometry Coseismic Ground Deformation from Sentinel-1 Data",
+        "doi": "10.3390/rs16010048",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "Can ALOS-2 and Sentinel-1 SLC observations provide continuous multi-temporal deformation monitoring of the Beijing Subway Network?",
+      "hypothesis_or_mechanism": "Combining high-resolution ALOS-2 with more frequent Sentinel-1 SLC acquisitions extends temporal coverage while DEM-assisted SBAS processing removes topographic phase.",
+      "variables_and_data_use": "ALOS-2 and Sentinel-1 SLC scenes, SRTM DEM, SBAS-InSAR LOS deformation and subway-network buffers are used to assess subsidence continuity.",
+      "method_paradigm": "Cross-sensor SBAS-InSAR urban infrastructure deformation monitoring",
+      "used_assets": [
+        "ALOS-2 SLC",
+        "Sentinel-1 SLC",
+        "USGS/SRTMGL1_003",
+        "Beijing Subway Network vector data"
+      ],
+      "author_team": [
+        "Chengcheng Huang",
+        "Lei Tan",
+        "Jinxiu Liu",
+        "Kai Yan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Multi-Temporal-InSAR Ground Deformation\nMapping of Beijing Subway Network\nBased on ALOS-2 and Sentinel-1 Data",
+        "doi": "10.15244/pjoes/194592",
+        "year": 2024,
+        "venue": "Polish Journal of Environmental Studies",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "Can Sentinel-1 SLC interferometry model deformation along a highway crossing a landslide-susceptible area?",
+      "hypothesis_or_mechanism": "PSI-derived LOS deformation, constrained by DEM geometry and validated with GNSS, can reveal localized highway and slope instability.",
+      "variables_and_data_use": "Sentinel-1 SLC IW stacks, DEM-based topographic geometry, PS-InSAR deformation, highway centerline and GNSS displacement observations are combined.",
+      "method_paradigm": "PS-InSAR infrastructure deformation modeling with GNSS validation",
+      "used_assets": [
+        "Sentinel-1 SLC IW",
+        "external DEM",
+        "GNSS continuous observations",
+        "highway centerline"
+      ],
+      "author_team": [
+        "Roberto Monti",
+        "Mirko Reguzzoni",
+        "Osmari Aponte"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Sentinel-1 SAR modeling of a highway in a landslide-susceptible area",
+        "doi": "10.1088/2631-8695/ade032",
+        "year": 2025,
+        "venue": "Engineering Research Express",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "2011—2025 年间植被覆盖变化如何影响沙丘稳定性，并与风驱动的地形侵蚀和堆积格局相互作用？",
+      "hypothesis_or_mechanism": "较高植被覆盖通过提高地表粗糙度、降低近地风速并捕获沉积物来抑制沙粒迁移，而区域主导风向控制沙丘表面的侵蚀、搬运和堆积空间格局。",
+      "variables_and_data_use": "研究从 ASTER data 和 Landsat 8 OLI 计算 NDVI 与 NSI，并进行植被、稳定沙丘、活动沙丘和裸土分类；使用 ASTER Global Digital Elevation Model (GDEM, Version 3) 作为参考地形高程，与 Sentinel-1 Single Look Complex (SLC) image pairs 生成的 2025 年 DEM 进行配准和差分；再结合 wind data、Google Earth imagery、official 1:100,000 geological map 及野外调查解释和验证植被稳定作用与风成地貌变化。",
+      "method_paradigm": "多源遥感关系机制分析",
+      "used_assets": [
+        "ASTER Global Digital Elevation Model (GDEM, Version 3)",
+        "Sentinel-1 Single Look Complex (SLC) image pairs",
+        "Sentinel-1–derived DEM (2025)",
+        "ASTER data",
+        "Landsat 8 OLI",
+        "Google Earth imagery",
+        "official 1:100,000 geological map",
+        "wind data"
+      ],
+      "author_team": [
+        "Naoual El Hammouch",
+        "Hassan Tabyaoui",
+        "Fatima El Hammichi",
+        "Ahmed Gaber"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Mapping Vegetation Cover and Assessing Dune Stabilization in the Merzouga Desert Using NDVI Indicators from ASTER and Landsat Data",
+        "doi": "10.30564/re.v8i3.12800",
+        "year": 2026,
+        "venue": "Research in Ecology",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "如何基于多准则排除程序与空间统计方法，准确评估区域尺度高山深谷缓慢变形地质体（DsGSDs）的活动状态与空间分布模式？",
+      "hypothesis_or_mechanism": "通过联合升/降轨哨兵1号干涉相位数据提取持久散射体形变速率，并结合地形投影与空间聚类分析，可客观区分不同活动状态的滑坡体并识别其应变集中区。",
+      "variables_and_data_use": "使用哨兵1号C波段SAR图像的干涉相位反演LOS向形变速率，结合10米DEM提取坡度坡向进行几何投影，计算沿坡速度、空间自相关指数及聚类模式以分类地质体活动性。",
+      "method_paradigm": "双步A-DInSAR与空间统计分类",
+      "used_assets": [
+        "Copernicus Sentinel-1 mission C-Band SAR images",
+        "10 m DEM"
+      ],
+      "author_team": [
+        "Martina Cignetti",
+        "Danilo Godone",
+        "Davide Notti",
+        "Daniele Giordan",
+        "Davide Bertolo",
+        "Fabiana Calò",
+        "Diego Reale",
+        "Simona Verde",
+        "Gianfranco Fornaro"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "State of activity classification of deep-seated gravitational slope deformation at regional scale based on Sentinel-1 data",
+        "doi": "10.1007/s10346-023-02114-7",
+        "year": 2023,
+        "venue": "Landslides",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_41",
+      "research_question": "Sentinel-1雷达干涉是否能够识别和制图非潮汐大气负荷作用下地表短期垂直位移的空间分布？",
+      "hypothesis_or_mechanism": "非潮汐大气负荷会在短时间内引起空间异质的地表垂直运动，而Sentinel-1差分干涉能够捕捉这种运动并与GNSS观测和负荷模型相互验证。",
+      "variables_and_data_use": "研究使用Sentinel-1A IW SLC影像的复数信号和干涉相位，通过差分干涉、相位滤波、相位解缠及相位到位移转换生成垂直位移图；使用BYCH、GORD和CRNT站点的GNSS时间序列进行验证，并结合ECMWF、International Mass Loading Service及MPIOM相关资料构建或比较非潮汐大气负荷位移模型。",
+      "method_paradigm": "差分干涉测量与GNSS验证",
+      "used_assets": [
+        "Sentinel-1A",
+        "SLC (Single Look Complex)",
+        "S1A_IW_SLC__1SDV_20191218T160209_20191218T160237_030405_037AC0_42E7",
+        "S1A_IW_SLC__1SDV_20191230T160208_20191230T160236_030580_0380C4_D374",
+        "S1A_IW_SLC__1SDV_20191222T042039_20191222T042106_030456_037C7F_77B9",
+        "S1A_IW_SLC__1SDV_20200103T042038_20200103T042105_030631_038284_AFE4",
+        "S1A_IW_SLC__1SDV_20191218T160144_20191218T160211_030405_037AC0_4BC3",
+        "S1A_IW_SLC__1SDV_20191230T160144_20191230T160211_030580_0380C4_AC4B",
+        "Daily 30-second RINEX-files",
+        "time series of daily GNSS solutions of BYCH, GORD, CRNT stations",
+        "ECMWF (European Center for Medium-Range Weather Forecasts)",
+        "International Mass Loading Service",
+        "MPIOM (Max Planck Institute Ocean Model)",
+        "ACE30 digital elevation model"
+      ],
+      "author_team": [
+        "Kornyliy Tretyak",
+        "D. V. Kukhtar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Application of Sntinel-1 radar interferometric images for the monitoring of vertical displacements of the earth’s surface affected by non-tidal atmospheric loading",
+        "doi": "10.24028/gj.v45i1.275180",
+        "year": 2023,
+        "venue": "Geofizicheskiy Zhurnal",
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2023,
+        "seed_year": 2019,
+        "relation_to_seed": "post_seed",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": false
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_42",
+      "research_question": "哪种分类方法最适合利用多时相SAR数据区分城市及城市周边地区的主要土地覆盖类别？",
+      "hypothesis_or_mechanism": "结合Sentinel-1 SAR的后向散射、极化散射特征及纹理信息能够区分水体湿地、裸地、植被和城市建成区等土地覆盖类别，而极化分解可能提供有助于分类的散射机制信息。",
+      "variables_and_data_use": "研究使用2015年7月24日和12月15日的Sentinel-1 Level-1 SLC和GRD双极化VH、VV数据；GRD经辐射定标、滤波和地形校正后提取后向散射及纹理特征，SLC用于计算协方差矩阵和Entropy、Anisotropy、Alpha极化分解参数，并进行Wishart H-A-Alpha分类。Landsat 8用于计算NDVI和NDBI并验证城市建成区和植被范围，SRTM 3sec DEM用于GRD地形校正。",
+      "method_paradigm": "多源SAR土地覆盖分类",
+      "used_assets": [
+        "Sentinel-1",
+        "Level-1 SLC",
+        "Level-1 GRD",
+        "Landsat 8",
+        "SRTM 3sec DEM"
+      ],
+      "author_team": [
+        "Koel Roychowdhury"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "COMPARISON BETWEEN SPECTRAL, SPATIAL AND POLARIMETRIC CLASSIFICATION OF URBAN AND PERIURBAN LANDCOVER USING TEMPORAL SENTINEL – 1 IMAGES",
+        "doi": "10.5194/isprs-archives-xli-b7-789-2016",
+        "year": 2016,
+        "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2016,
+        "seed_year": 2019,
+        "relation_to_seed": "pre_seed",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": true
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_43",
+      "research_question": "研究延安地区输电线路和输电塔周边地表及塔体的形变变化特征。",
+      "hypothesis_or_mechanism": "输电塔及其邻近地表的形变具有空间和时间差异，地形、地质环境及季节性因素可能影响其变化。",
+      "variables_and_data_use": "使用S-1 IW SLC数据进行PSI干涉处理，提取持久散射体、视线位移速度和位移时间序列；使用SRTM 1Sec DEM和ESA精密轨道文件辅助配准、地形和轨道改正，并将形变结果叠加到输电线路和输电塔位置进行分析。",
+      "method_paradigm": "PSI形变监测",
+      "used_assets": [
+        "S-1 IW SLC dataset",
+        "Shuttle Radar Topography Mission (SRTM)1SecDEM",
+        "precise orbit ephemerides (POE) orbit files provided by ESA",
+        "SNAP",
+        "StaMPS"
+      ],
+      "author_team": [
+        "Huachun He",
+        "Liya Zhou",
+        "Haiyu Lee"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Methods text, power-line transmission-tower PSI analysis paragraph",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Ground Displacement Variation Around Power Line Corridors on the Loess Plateau Estimated by Persistent Scatterer Interferometry",
+        "doi": "10.1109/access.2021.3090201",
+        "year": 2021,
+        "venue": "IEEE Access",
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2021,
+        "seed_year": 2019,
+        "relation_to_seed": "post_seed",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": false
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_44",
+      "research_question": "如何利用新型双极化地表散射指数（DpRSI）有效表征裸地、平静海面及道路等‘类地表’目标的散射特性？",
+      "hypothesis_or_mechanism": "类地表目标因镜面反射导致复数雷达截面积（CRCS）较低，其归一化斯托克斯参数（g1n）值偏低，可通过特定公式反演得到高DpRSI值以区分偶次或体散射目标。",
+      "variables_and_data_use": "使用哨兵1号双极化SLC与GRD数据计算复数琼斯矢量、协方差矩阵及斯托克斯参数（g0, g1），构建并归一化DpRSI指数；同时引入Radarsat-2全极化T矩阵T11元素作为对比基准。",
+      "method_paradigm": "极化散射分解与指数构建",
+      "used_assets": [
+        "Sentinel-1 SLC",
+        "Sentinel-1 GRD",
+        "Radarsat-2 FP"
+      ],
+      "author_team": [
+        "Abhinav Verma",
+        "Avik Bhattacharya",
+        "Subhadip Dey",
+        "Carlos López-Martínez",
+        "Paolo E. Gamba"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Methods section II, dual-pol surface-scattering index construction",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Radar surface scattering index from dual-pol Sentinel-1 SLC and GRD SAR data",
+        "doi": "10.1109/migars61408.2024.10545001",
+        "year": 2024,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2024,
+        "seed_year": 2019,
+        "relation_to_seed": "post_seed",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": false
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_45",
+      "research_question": "论文研究如何利用多时相Sentinel-1雷达干涉观测检测巴西Recife市的地表沉降。",
+      "hypothesis_or_mechanism": "地下水开采、填海城市区域的地基沉降以及新建筑引起的地面沉降会造成可由雷达干涉相位变化观测到的地表位移。",
+      "variables_and_data_use": "使用68景Sentinel-1A IW VV SLC影像构建多时相干涉序列，利用雷达相位变化估计地表形变和沉降速率；使用SRTM DEM对干涉图进行地形平整。",
+      "method_paradigm": "多时相雷达干涉形变监测",
+      "used_assets": [
+        "Sentinel-1A IW SLC images",
+        "Sentinel-1A VV SLC images",
+        "A Digital Elevation Model (DEM) from the SRTM mission"
+      ],
+      "author_team": [
+        "Enton Bedini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Methods, Sentinel-1 data and preprocessing paragraphs",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Persistent Scatterer Interferometry of Sentinel-1 time series to detect ground subsidence in the city of Recife, Brazil",
+        "doi": "10.29150/jhrs.v10.1.p1-9",
+        "year": 2020,
+        "venue": "Journal of Hyperspectral Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2020,
+        "seed_year": 2019,
+        "relation_to_seed": "post_seed",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": false
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_46",
+      "research_question": "如何利用D-InSAR技术定量监测叙利亚Balloran大坝附近主要道路沿线因地质构造与降雨引发的滑坡地表形变？",
+      "hypothesis_or_mechanism": "地表缓慢形变会累积导致雷达回波相位差，通过差分干涉处理与相位解缠可提取视线方向位移场，从而识别高概率滑坡风险区段。",
+      "variables_and_data_use": "使用Sentinel-1B SLC复数相位数据计算干涉相位并解缠，结合SRTM DEM进行地形校正输出LOS向形变量；辅以Leica GPS实测位移数据进行交叉验证。",
+      "method_paradigm": "差分干涉测量与实地验证",
+      "used_assets": [
+        "S1B_IW_SLC_1SD_20181016_T033410",
+        "S1B_IW_SLC_1SD_20190321_T033406",
+        "SRTM 1-second DEM",
+        "Leica GPS system 550"
+      ],
+      "author_team": [
+        "Muhannad Hammad",
+        "László Mucsi",
+        "Boudewijn van Leeuwen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Methods, D-InSAR input and master/slave co-registration paragraph",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "LANDSLIDE INVESTIGATION USING DIFFERENTIAL SYNTHETIC APERTURE RADAR INTERFEROMETRY: A CASE STUDY OF BALLORAN DAM AREA IN SYRIA",
+        "doi": "10.5194/isprs-archives-xlii-3-w8-133-2019",
+        "year": 2019,
+        "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_existing"
+      },
+      "temporal_identity": {
+        "paper_year": 2019,
+        "seed_year": 2019,
+        "relation_to_seed": "same_year",
+        "eligibility_policy": "fixed_range_2015_2026",
+        "explicitly_retained_under_relaxed_window": true
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 35,
+    "source_paper_count": 35,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

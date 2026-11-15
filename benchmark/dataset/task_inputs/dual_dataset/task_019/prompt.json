@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global river-flood projection space",
+  "datasets": [
+    {
+      "role": "climate_forcing",
+      "data_description": {
+        "dataset_name": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+        "data_type": "Climate projection raster time series",
+        "data_format": "Google Earth Engine ImageCollection",
+        "data_path": "GEE:NASA/GDDP-CMIP6",
+        "gee_asset": {
+          "id": "NASA/GDDP-CMIP6",
+          "type": "image_collection"
+        },
+        "spatial_resolution": "0.25 degree",
+        "temporal_unit": "Daily images",
+        "temporal_coverage": "2014-2100 (SSP scenarios)",
+        "data_source": "NASA NEX-GDDP-CMIP6 (NASA Center for Climate Simulation)",
+        "analytical_capabilities": [
+          "Downscaled CMIP6 precipitation and temperature",
+          "Scenario-based climate forcing",
+          "Long-term trend and anomaly analysis"
+        ],
+        "spatial_coverage": {
+          "region_name": "Global river-flood projection space",
+          "coverage": "Catalog coverage intersected with Global river-flood projection space."
+        }
+      },
+      "data_path": "GEE:NASA/GDDP-CMIP6"
+    },
+    {
+      "role": "flood_simulation",
+      "data_description": {
+        "dataset_name": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+        "data_type": "Modelled river flood inundation depth raster tiles",
+        "data_format": "Local GeoTIFF tile directory with tile_extents.geojson",
+        "data_path": "LOCAL:datasets/rc_flood_hazard/RP100",
+        "local_asset": {
+          "root": "datasets/rc_flood_hazard",
+          "tile_directory": "datasets/rc_flood_hazard/RP100",
+          "tile_index": "datasets/rc_flood_hazard/tile_extents.geojson",
+          "return_period": "RP100",
+          "tile_count": 271
+        },
+        "spatial_resolution": "3 arc seconds (~90 m)",
+        "temporal_unit": "Static return-period hazard scenario",
+        "temporal_coverage": "No event time axis; RP100 flood-depth scenario",
+        "data_source": "European Commission Joint Research Centre / Copernicus Emergency Management Service GloFAS",
+        "analytical_capabilities": [
+          "Modelled river flood inundation depth",
+          "100-year return-period hazard analysis",
+          "Global flood-depth tile aggregation"
+        ],
+        "spatial_coverage": {
+          "region_name": "Global river-flood projection space",
+          "coverage": "Catalog coverage intersected with Global river-flood projection space."
+        }
+      },
+      "data_path": "LOCAL:datasets/rc_flood_hazard/RP100"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+      "data_type": "Climate projection raster time series",
+      "data_format": "Google Earth Engine ImageCollection",
+      "data_path": "GEE:NASA/GDDP-CMIP6",
+      "gee_asset": {
+        "id": "NASA/GDDP-CMIP6",
+        "type": "image_collection"
+      },
+      "spatial_resolution": "0.25 degree",
+      "temporal_unit": "Daily images",
+      "temporal_coverage": "2014-2100 (SSP scenarios)",
+      "data_source": "NASA NEX-GDDP-CMIP6 (NASA Center for Climate Simulation)",
+      "analytical_capabilities": [
+        "Downscaled CMIP6 precipitation and temperature",
+        "Scenario-based climate forcing",
+        "Long-term trend and anomaly analysis"
+      ],
+      "spatial_coverage": {
+        "region_name": "Global river-flood projection space",
+        "coverage": "Catalog coverage intersected with Global river-flood projection space."
+      }
+    },
+    {
+      "dataset_name": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+      "data_type": "Modelled river flood inundation depth raster tiles",
+      "data_format": "Local GeoTIFF tile directory with tile_extents.geojson",
+      "data_path": "LOCAL:datasets/rc_flood_hazard/RP100",
+      "local_asset": {
+        "root": "datasets/rc_flood_hazard",
+        "tile_directory": "datasets/rc_flood_hazard/RP100",
+        "tile_index": "datasets/rc_flood_hazard/tile_extents.geojson",
+        "return_period": "RP100",
+        "tile_count": 271
+      },
+      "spatial_resolution": "3 arc seconds (~90 m)",
+      "temporal_unit": "Static return-period hazard scenario",
+      "temporal_coverage": "No event time axis; RP100 flood-depth scenario",
+      "data_source": "European Commission Joint Research Centre / Copernicus Emergency Management Service GloFAS",
+      "analytical_capabilities": [
+        "Modelled river flood inundation depth",
+        "100-year return-period hazard analysis",
+        "Global flood-depth tile aggregation"
+      ],
+      "spatial_coverage": {
+        "region_name": "Global river-flood projection space",
+        "coverage": "Catalog coverage intersected with Global river-flood projection space."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/GDDP-CMIP6",
+    "LOCAL:datasets/rc_flood_hazard/RP100"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_019:composite_observation",
+    "type": "composite_observation",
+    "name": "flood_precipitation_climate composite observation",
+    "observable_group": "flood_precipitation_climate_multidataset_observation",
+    "components": [
+      {
+        "role": "climate_forcing",
+        "data_description": {
+          "dataset_name": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "data_type": "Climate projection raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:NASA/GDDP-CMIP6",
+          "gee_asset": {
+            "id": "NASA/GDDP-CMIP6",
+            "type": "image_collection"
+          },
+          "spatial_resolution": "0.25 degree",
+          "temporal_unit": "Daily images",
+          "temporal_coverage": "2014-2100 (SSP scenarios)",
+          "data_source": "NASA NEX-GDDP-CMIP6 (NASA Center for Climate Simulation)",
+          "analytical_capabilities": [
+            "Downscaled CMIP6 precipitation and temperature",
+            "Scenario-based climate forcing",
+            "Long-term trend and anomaly analysis"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global river-flood projection space",
+            "coverage": "Catalog coverage intersected with Global river-flood projection space."
+          }
+        },
+        "data_path": "GEE:NASA/GDDP-CMIP6"
+      },
+      {
+        "role": "flood_simulation",
+        "data_description": {
+          "dataset_name": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "data_type": "Modelled river flood inundation depth raster tiles",
+          "data_format": "Local GeoTIFF tile directory with tile_extents.geojson",
+          "data_path": "LOCAL:datasets/rc_flood_hazard/RP100",
+          "local_asset": {
+            "root": "datasets/rc_flood_hazard",
+            "tile_directory": "datasets/rc_flood_hazard/RP100",
+            "tile_index": "datasets/rc_flood_hazard/tile_extents.geojson",
+            "return_period": "RP100",
+            "tile_count": 271
+          },
+          "spatial_resolution": "3 arc seconds (~90 m)",
+          "temporal_unit": "Static return-period hazard scenario",
+          "temporal_coverage": "No event time axis; RP100 flood-depth scenario",
+          "data_source": "European Commission Joint Research Centre / Copernicus Emergency Management Service GloFAS",
+          "analytical_capabilities": [
+            "Modelled river flood inundation depth",
+            "100-year return-period hazard analysis",
+            "Global flood-depth tile aggregation"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global river-flood projection space",
+            "coverage": "Catalog coverage intersected with Global river-flood projection space."
+          }
+        },
+        "data_path": "LOCAL:datasets/rc_flood_hazard/RP100"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_019:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/GDDP-CMIP6",
+    "LOCAL:datasets/rc_flood_hazard/RP100"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "climate_forcing",
+      "flood_simulation"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

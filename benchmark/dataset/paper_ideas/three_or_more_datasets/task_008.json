@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.1016/j.rse.2019.03.013",
+  "task_id": "three_or_more_datasets/task_008",
+  "title": "Detecting and monitoring long-term landslides in urbanized areas with nighttime light data and multi-seasonal Landsat imagery across Taiwan from 1998 to 2017",
+  "category": "urban_landslide_long_term_monitoring",
+  "year": 2019,
+  "journal": "Remote Sensing of Environment",
+  "impact_level": "medium",
+  "datasets": [
+    "Landsat Collection 2 Level-2 Surface Reflectance",
+    "VIIRS Black Marble nighttime radiance",
+    "NASA SRTM 30 m Digital Elevation Model"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "multi_season_optical_surface_input",
+      "dataset": "Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "human_activity_disambiguation_input",
+      "dataset": "VIIRS Black Marble nighttime radiance"
+    },
+    {
+      "role": "terrain_context_input",
+      "dataset": "NASA SRTM 30 m Digital Elevation Model"
+    }
+  ],
+  "idea": {
+    "research_question": "Can medium-resolution optical imagery identify long-term landslides in urbanized terrain when human activity creates spectral confounders?",
+    "hypothesis": "Seasonal optical trajectories detect exposed landslide material, nighttime radiance separates anthropogenic disturbance, and terrain features reduce classification ambiguity.",
+    "mechanism": "Random-forest classification, multi-season compositing, independent validation and long-term recurrence mapping",
+    "expected_contribution": "Transfers a human-activity proxy into natural-hazard disambiguation.",
+    "required_component_usage": [
+      "multi_season_optical_surface_input",
+      "human_activity_disambiguation_input",
+      "terrain_context_input"
+    ],
+    "data_sources": [
+      "LANDSAT/LC08/C02/T1_L2",
+      "NASA/VIIRS/002/VNP46A2",
+      "USGS/SRTMGL1_003"
+    ],
+    "falsification_condition": "Reject if any required role is omitted, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_008:composite_observation",
+    "anchor_type": "composite_observation",
+    "extraction_basis": "Full-text seed evidence; empirical results are excluded from the task prompt."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "10.1002/met.70104",
+  "task_id": "single_dataset/task_051",
+  "title": "Assimilation of Satellite Flood Likelihood Data Improves Inundation Mapping From a Simulation Library System",
+  "category": "glofas_global_flood_monitoring",
+  "year": 2025,
+  "journal": "Meteorological Applications",
+  "impact_level": "medium",
+  "datasets": [
+    "Copernicus GloFAS Global Flood Monitoring flood-likelihood product"
+  ],
+  "idea": {
+    "research_question": "How do GloFAS Global Flood Monitoring flood-likelihood patterns describe the extent and uncertainty of flooding across Pakistan impact zones?",
+    "hypothesis": "High GFM flood likelihood forms coherent event footprints while the product's exclusion mask identifies areas where SAR-derived flood interpretation is unreliable.",
+    "mechanism": "Retrieve GFM likelihood, flood, permanent-water and exclusion-mask layers for an event window, aggregate valid observations by impact zone, and compare likelihood gradients across floodplain contexts.",
+    "analytical_approach": "Single-source GloFAS Global Flood Monitoring event mapping and uncertainty analysis",
+    "data_sources": [
+      "LOCAL:datasets/gfm_task_051"
+    ],
+    "expected_contribution": "A reproducible public single-dataset benchmark for GFM flood-likelihood mapping without the commercial Flood Foresight simulation library.",
+    "falsification_condition": "Reject the hypothesis if high-likelihood pixels are not spatially coherent across repeat event acquisitions after applying the supplied exclusion and permanent-water masks."
+  },
+  "seed_audit": {
+    "selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "migration_note": "Migrated from dual_dataset/task_035 on 2026-10-07; the commercial JBA Flood Foresight maps are removed from the active contract, leaving only public GloFAS GFM flood likelihood."
+  }
+}

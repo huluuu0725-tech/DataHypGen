@@ -1,0 +1,1256 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_037",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MOD15A2H.061 Terra Leaf Area Index/FPAR 8-Day Global 500m",
+    "spatial_coverage": {
+      "region_name": "China",
+      "coverage": "Terrestrial areas within the national boundary of China, including croplands, forests, grasslands, wetlands, shrublands, and other vegetated surfaces."
+    },
+    "temporal_coverage": "2000-02-18 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 m",
+    "temporal_unit": "8-day composite",
+    "analytical_capabilities": [
+      "Quantifying canopy leaf area and absorbed photosynthetically active radiation",
+      "Tracking seasonal canopy development and deriving growing-season metrics from sub-monthly composites",
+      "Detecting long-term and interannual trends in canopy density",
+      "Comparing canopy structure across land-cover types, elevation belts and management regimes",
+      "Propagating retrieval uncertainty through analyses using the per-pixel standard deviation bands"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Leaf Area Index as one-sided leaf area per unit ground area (m2/m2); FPAR as the fraction of incident photosynthetically active radiation absorbed by the canopy",
+      "runtime_hint": "Apply the scale factors: multiply `Lai_500m` and `LaiStdDev_500m` by 0.1, and `Fpar_500m` and `FparStdDev_500m` by 0.01. Stored values run 0 to 100, so scaled LAI reaches 10 m2/m2 and scaled FPAR reaches 1.0; values above 100 are fill and must be masked before any reduction. Screen retrievals with `FparLai_QC` and `FparExtra_QC` before analysis: the main algorithm retrieval is the highest-quality class, while backup-algorithm and saturated retrievals are common over dense canopies and over snow, cloud and aerosol contamination. `LaiStdDev_500m` and `FparStdDev_500m` give the per-pixel retrieval spread and flag cells where the estimate is weakly constrained. This is a Terra-only collection on an 8-day step; the Aqua counterpart MYD15A2H shares the grid and cadence from 2002-07-04 and can be combined to densify the series. Composites are built from best-available observations within each 8-day window, so persistent cloud or snow still leaves gaps that must be handled explicitly before fitting seasonal curves."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD15A2H",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD15A2H",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_037.json",
+    "source_sha256": "bed084630db342daa6f2014e49c99475b43351a58b96a1dd1d91bd5d9dd75bce",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_037/prompt.json",
+    "current_prompt_sha256": "da3d5e808f7297bc4b4ac18473fe7cddcbdc0090e3db16ea5a769ea6b7c45e0f",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD15A2H",
+      "observable_group": "modis_500m_8day_lai_fpar",
+      "observation_identity_contract": {
+        "physical_object": "vegetation leaf-area and absorbed photosynthetically active radiation",
+        "source_lineage": "Terra/Aqua MODIS MOD15/MYD15/MCD15 LAI-FPAR retrieval lineage",
+        "core_measurement_semantics": "MODIS-derived LAI or FPAR",
+        "non_material_variations": "Terra/Aqua combination, collection version, grid, cadence, archive, resampling or aggregation retaining MODIS LAI/FPAR",
+        "material_mismatches": "NDVI/EVI, AVHRR LAI or another sensor/retrieval lineage without MODIS LAI/FPAR"
+      },
+      "asset_alias_policy": "MOD15A2H Collection 6/6.1 LAI or FPAR is admitted, as is the Aqua counterpart MYD15A2H on the same 8-day step and 500 m grid, since the two are routinely combined. MCD15A3H is excluded: it is the Terra+Aqua 4-day tier. The MOD13 vegetation-index tiers are excluded because they carry a different observable. AVHRR LAI3g and GIMMS NDVI are excluded.",
+      "repointed_from": {
+        "former_anchor": "MODIS/061/MOD13Q1",
+        "reason": "The source measures leaf area index, not a vegetation index. Its Methods open by naming Collection 6 MOD15A2H and MYD15A2H at 500 m on an 8-day step as the primary observable, quality-screened, averaged into 16-day composites, spatially aggregated to 0.05 degrees, then reduced to an annual mean. MOD13Q1 disagrees on all three counts: observable class, 250 m grid, and 16-day cadence.",
+        "why_this_is_a_repoint_not_a_substitution": "MOD15A2H is published in the Earth Engine catalog at Collection 6.1 with status ready, covering 2000-02-18 to present. The exact product the source used is available, so no substitute is needed.",
+        "ndvi_role_in_source": "GIMMS NDVI3gV1 appears in the source only as a training input to the neural network that generates the AVHRR LAI3gV1 comparison series. It is an intermediate, never an analysed observable, so it cannot justify a vegetation-index anchor.",
+        "collection_note": "MODIS/006/MOD15A2H is deprecated and ends 2023-02-10; the anchor points at Collection 6.1.",
+        "review_date": "2026-08-28"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_06",
+      "research_question": "该论文研究如何基于原始 MODIS LAI 产品重建一个时空一致性更好的全球长时间序列 HiQ-LAI 数据集。",
+      "hypothesis_or_mechanism": "其机制是假设结合像元质量信息、空间相关性、时间相关性和原始 MODIS LAI 检索值，可以降低噪声并保留真实 LAI 异常。",
+      "variables_and_data_use": "论文使用 MOD15A2H 的 LAI、FparLai_QC 和 LaiStdDev 三个 SDS，分别作为原始 LAI 检索值、质量控制信息和检索不确定性输入；同时使用 MCD12Q1 提供地表覆盖/生物群系辅助信息，并用 GBOV、DIRECT V2.1 和 BELMANIP V2.1 等地面或站点数据进行验证和比较。",
+      "method_paradigm": "时空重建验证",
+      "used_assets": [
+        "MOD15A2H",
+        "MODIS LAI C6.1",
+        "MCD12Q1",
+        "GBOV LAI",
+        "DIRECT V2.1",
+        "BELMANIP V2.1"
+      ],
+      "author_team": [
+        "Kai Yan",
+        "Jingrui Wang",
+        "Rui Peng",
+        "Kai Yang",
+        "Xiuzhi Chen",
+        "Gaofei Yin",
+        "Jinwei Dong",
+        "Marie Weiss",
+        "Jiabin Pu",
+        "Ranga B. Myneni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "HiQ-LAI: a high-quality reprocessed MODIS leaf area index dataset with better spatiotemporal consistency from 2000 to 2022",
+        "doi": "10.5194/essd-16-1601-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "该研究探讨将 MODIS LAI 同化进 DSSAT-CERES-rice 作物模拟模型是否能提高水稻收获前产量估计精度。",
+      "hypothesis_or_mechanism": "通过用 MODIS-LAI 时间序列约束和优化作物模型中的 LAI 状态变量及输入参数，可减少模拟 LAI 与遥感 LAI 的偏差，从而改进产量预测。",
+      "variables_and_data_use": "论文下载并处理 MODIS LAI product (MOD15A2) 的 8 天、0.5 km LAI 影像，将 HDF 转为 GeoTIFF，提取稻田像元 LAI，与地面 LAI 校准后按 panchayat 汇总，并作为 DSSAT-CERES-rice 模型同化与优化的观测输入。",
+      "method_paradigm": "遥感同化产量预测",
+      "used_assets": [
+        "MODIS LAI product (MOD15A2)",
+        "MODIS-LAI",
+        "DSSAT-CERES-rice"
+      ],
+      "author_team": [
+        "K. AJITH",
+        "V. GEETHALAKSHMI",
+        "K. BHUVANESWAR",
+        "P. SHAJEESH JAN",
+        "ANU SUSAN SAM",
+        "AJAI P. KRISHNA"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integration of CERES-rice crop simulation model and MODIS LAI (MOD15A2) for rice yield estimation",
+        "doi": "10.54386/jam.v27i3.2973",
+        "year": 2025,
+        "venue": "Journal of Agrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "该论文研究如何利用FY-3D MERSI-II植被指数结合MODIS LAI产品估算并验证MERSI-II LAI。",
+      "hypothesis_or_mechanism": "不同植被指数与LAI之间存在可由机器学习模型刻画的非线性关系，且按植被类型和生长阶段选择最优指数组合可提高LAI估算精度。",
+      "variables_and_data_use": "论文使用MERSI-II蓝、红、近红外反射率计算多种植被指数；使用MYD15A2H的LAI层及两个质量控制层筛选主算法、无云/低气溶胶像元，并将2010–2019年MODIS LAI平均后生成16天合成LAI作为VI–LAI关系分析和模型训练数据；使用MCD12Q1 Land Cover Type 3区分植被类型；还使用GLASS LAI和GBOV LAI进行交叉验证或地面验证。",
+      "method_paradigm": "机器学习反演",
+      "used_assets": [
+        "MERSI-II",
+        "MYD15A2H",
+        "MODIS LAI products",
+        "MCD12Q1",
+        "GLASS LAI (V6)",
+        "GBOV LAI dataset",
+        "BELMANIP"
+      ],
+      "author_team": [
+        "Fangyi Lv",
+        "Kaimin Sun",
+        "Wenzhuo Li",
+        "Shunxia Miao",
+        "Xiuqing Hu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Estimation of Leaf Area Index across Biomes and Growth Stages Combining Multiple Vegetation Indices",
+        "doi": "10.3390/s24186106",
+        "year": 2024,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "如何整合MODIS和VIIRS的LAI/FPAR标准产品，构建长期、传感器无关且质量稳定的全球LAI/FPAR气候数据记录？",
+      "hypothesis_or_mechanism": "通过质量标志筛选高质量观测，并利用时空张量补全模型填补缺失值，可以提高LAI/FPAR数据记录的时间稳定性和总体精度。",
+      "variables_and_data_use": "研究实际使用了MOD15A2H、MYD15A2H和VNP15A2H的LAI、FPAR及其质量控制变量，包括算法路径、云和气溶胶状况等；研究先筛选高质量观测，再融合Terra、Aqua和VIIRS时间序列，并使用时空张量模型进行缺失值填补和后续平滑，生成不同空间、时间分辨率和投影的LAI/FPAR气候数据记录。",
+      "method_paradigm": "多源融合与时空重建",
+      "used_assets": [
+        "MOD15A2H",
+        "MYD15A2H",
+        "VNP15A2H",
+        "MCD12Q1",
+        "GBOV LAI/FPAR maps",
+        "DIRECT LAI, FPAR, and vegetation cover"
+      ],
+      "author_team": [
+        "Jiabin Pu",
+        "Kai Yan",
+        "Samapriya Roy",
+        "Zaichun Zhu",
+        "Miina Rautiainen",
+        "Yuri Knyazikhin",
+        "Ranga B. Myneni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Sensor-independent LAI/FPAR CDR: reconstructing a global sensor-independent climate data record of MODIS and VIIRS LAI/FPAR from 2000 to 2022",
+        "doi": "10.5194/essd-16-15-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "研究2001–2016年中国土地覆盖变化和气候变化如何影响生物源挥发性有机物排放及其变化趋势。",
+      "hypothesis_or_mechanism": "植被叶面积变化通过改变冠层叶量和叶龄响应调节MEGAN排放活动因子，而气候变化通过温度和光照等条件影响排放过程。",
+      "variables_and_data_use": "使用MODIS MOD15A2H和MCD15A2H的LAI、MOD44B的植被覆盖率以及MCD12C1的土地覆盖和PFT信息驱动MEGAN；使用WRF模拟的温度、短波辐射等气象场计算排放，并使用HCHO柱浓度验证异戊二烯排放年际变化。",
+      "method_paradigm": "情景模拟与趋势归因",
+      "used_assets": [
+        "MEGAN v2.1",
+        "Community Land Model 4.0",
+        "MODIS MOD15A2H",
+        "MCD15A2H",
+        "MOD44B",
+        "MCD12C1",
+        "ERA-Interim",
+        "Weather Research and Forecast (WRF) model V3.9",
+        "monthly Level-3 HCHO VC product",
+        "OMI"
+      ],
+      "author_team": [
+        "Hui Wang",
+        "Qizhong Wu",
+        "Alex Guenther",
+        "Xiaochun Yang",
+        "Lanning Wang",
+        "Tang Xiao",
+        "Jie Li",
+        "Jinming Feng",
+        "Qi Xu",
+        "Huaqiong Cheng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "A long-term estimation of biogenic volatile organic compound (BVOC) emission in China from 2001–2016: the roles of land cover change and climate variability",
+        "doi": "10.5194/acp-21-4825-2021",
+        "year": 2021,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "该论文研究如何在 PEcAn/SIPNET 框架中利用卫星 LAI 和地上生物量观测进行区域生态系统碳状态再分析。",
+      "hypothesis_or_mechanism": "通过顺序状态数据同化把 MODIS LAI 和 Landsat 系列生物量观测纳入过程模型，可以降低碳库与通量估计不确定性，并利用站点间协方差传播观测信息。",
+      "variables_and_data_use": "研究使用 MODIS MOD15A2H 的 LAI、SD 和 QC 值，筛选高质量 LAI 后提取年度峰值 LAI 作为同化观测；同时使用 Landtrendr 年度 AGB 及标准差作为同化观测，使用 AmeriFlux NEE 进行校准和验证，并用 PRISM、CCSM4、ERA5 等作为气候驱动或站点选择变量。",
+      "method_paradigm": "生态数据同化再分析",
+      "used_assets": [
+        "MODIS MOD15A2H",
+        "Landtrendr",
+        "NLCD",
+        "AmeriFlux",
+        "PRISM 800 m",
+        "CCSM4",
+        "ERA5",
+        "SoilGrids"
+      ],
+      "author_team": [
+        "Hamze Dokoohaki",
+        "Bailey D. Morrison",
+        "Ann Raiho",
+        "Shawn Serbin",
+        "Katie Zarada",
+        "Luke Dramko",
+        "Michael C. Dietze"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Development of an open-source regional data assimilation system in PEcAn v. 1.7.2: application to carbon cycle reanalysis across the contiguous US using SIPNET",
+        "doi": "10.5194/gmd-15-3233-2022",
+        "year": 2022,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究MODIS LAI、树木年轮宽度和欧洲山毛榉masting之间的关系，以及气候和水分条件如何影响这些关系。",
+      "hypothesis_or_mechanism": "masting可能伴随叶面积降低，使LAI与masting负相关，而LAI与树木年轮宽度正相关，并且较高的水分可利用性和夏季气候会共同影响masting。",
+      "variables_and_data_use": "使用MOD15A2H的MODIS LAI，经过质量筛选、滚动最大值和平滑插值后计算年度及季节性LAI指标，重点分析Jun-Aug最大LAI；同时使用SPOT-VGT/PROBA-V LAI进行比较，结合树木年轮宽度、现场masting观测、DWD温度和降水、SPEI以及ASCAT SWI开展相关和气候驱动分析。",
+      "method_paradigm": "相关分析与气候驱动归因",
+      "used_assets": [
+        "MOD15A2H",
+        "MODIS-LAI",
+        "SPOT-VGT/PROBA-V",
+        "DWD Climate Data Center",
+        "SPEI",
+        "ASCAT SWI",
+        "ESA CCI land cover map",
+        "species distribution maps"
+      ],
+      "author_team": [
+        "Juliane Stolz",
+        "Matthias Forkel",
+        "Ernst van der Maaten",
+        "Jan Martin",
+        "Marieke van der Maaten‐Theunissen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Through eagle eyes—the potential of satellite-derived LAI time series to estimate masting events and tree-ring width of European beech",
+        "doi": "10.1007/s10113-023-02068-5",
+        "year": 2023,
+        "venue": "Regional Environmental Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "印度农业区的MODIS LAI在Rabi、Kharif及年度尺度上如何变化，以及灌溉、气候、二氧化碳和土地利用变化如何影响这些变化？",
+      "hypothesis_or_mechanism": "灌溉能够调节不同干旱程度耕地中的植被叶面积变化，而二氧化碳、气候变化和土地利用变化共同驱动长期LAI趋势。",
+      "variables_and_data_use": "以MOD15A2H和MYD15A2H的MODIS LAI为核心观测变量，经质量筛选、Terra/Aqua合并和时间聚合后构建Rabi、Kharif及年度LAI序列；结合MCD12Q1、IIASA cropland fraction、灌溉和雨养耕地地图、作物类型地图、CRU TS气候变量、农业统计以及TRENDY v7模型LAI，分析LAI趋势、灌溉差异、气候响应和CO2、气候及土地利用变化的贡献。",
+      "method_paradigm": "趋势分析与过程归因",
+      "used_assets": [
+        "MOD15A2H",
+        "MYD15A2H",
+        "MCD12Q1",
+        "IIASA cropland fraction data",
+        "global irrigated and rainfed cropland area maps",
+        "seasonally resolved crop type maps",
+        "MODIS 250 m surface reflectances",
+        "WorldClim2",
+        "CRU TS Version 4.04",
+        "TRENDY v7",
+        "CABLE-POP",
+        "CLM5.0",
+        "JSBACH",
+        "JULES",
+        "LPJ-GUESS",
+        "LPX-Bern",
+        "ORCHIDEE",
+        "SDGVM",
+        "SURFEX",
+        "VISIT",
+        "CRU-JRA55",
+        "Land-use Harmonization (LUH) Version 2",
+        "Indian agriculture statistics"
+      ],
+      "author_team": [
+        "Taejin Park",
+        "Murali Krishna Gumma",
+        "Weile Wang",
+        "Pranay Panjala",
+        "S. K. Dubey",
+        "Ramakrishna Nemani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Greening of human-dominated ecosystems in India",
+        "doi": "10.1038/s43247-023-01078-9",
+        "year": 2023,
+        "venue": "Communications Earth & Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "该论文研究实地上尺度 LAI、MODIS MOD15 LAI 不同 collection 产品以及 EPIC 模拟 LAI 在森林样地和空气质量模型尺度上的一致性。",
+      "hypothesis_or_mechanism": "MODIS Collection 6 半公里 LAI 由于更细空间分辨率、改进的表面反射率和土地覆盖输入，应比 Collection 5 更好地表征异质森林景观，并可作为与 EPIC LAI 对比的观测基准。",
+      "variables_and_data_use": "论文下载 MOD15A2H collection 6 Level 4 的 8 日 0.5 km MODIS LAI，并与 MOD15A2 collection 5 的 1.0 km MODIS LAI 一起进行堆叠、重投影、质量标志筛选、Savitzky–Golay 时间序列平滑和空间聚合；同时使用 TRAC、DHP、Landsat 5/7、USGS 正射影像构建 1.0 km LAI-RM，并将聚合后的 MODIS LAI 与 12.0 km EPIC LAI 比较。",
+      "method_paradigm": "多源 LAI 验证比较",
+      "used_assets": [
+        "MOD15A2H",
+        "MOD15A2",
+        "MODIS LAI",
+        "MCD12Q1",
+        "Landsat 5 (L5) Thematic Mapper",
+        "Landsat 7 (L7) Enhanced Thematic Mapper+",
+        "USGS EarthExplorer",
+        "USGS three-band natural color orthoimagery",
+        "EPIC LAI",
+        "FIA Evalidator Tool",
+        "TRAC",
+        "DHP"
+      ],
+      "author_team": [
+        "John Iiames",
+        "Ellen J. Cooter",
+        "A. N. Pilant",
+        "Yang Shao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison of EPIC-Simulated and MODIS-Derived Leaf Area Index (LAI) across Multiple Spatial Scales",
+        "doi": "10.3390/rs12172764",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "该论文研究不同 LAI 和土地覆盖卫星数据集作为 MEGAN 输入时，对中国 2016 年 BVOC 排放估算及其对 O3 和 SOA 贡献的影响有多大。",
+      "hypothesis_or_mechanism": "不同 LAI 与土地覆盖/PFT 数据会改变植被活动因子和植被类型分布，从而影响 BVOC 排放，并进一步改变 CMAQ 模拟的 O3 和二次有机气溶胶浓度。",
+      "variables_and_data_use": "论文将 GLASS、MODIS MOD15A2H version 6 (MOD15) 和 CGLS LAI products 作为 LAI 输入，将 MODIS MCD12Q1 LC products、C3S LC products 和 CGLS LC products 重分类为 PFT fractions 作为土地覆盖输入，驱动 MEGAN v2.1 估算 BVOC 排放，再将不同情景的生物源排放输入 CMAQ 评估 O3 和 SOA 影响；NCEP FNL、MEIC 和 EDGAR v4.3 用于气象与人为排放控制输入。",
+      "method_paradigm": "模型敏感性实验",
+      "used_assets": [
+        "Global LAnd Surface Satellite (GLASS)",
+        "MODIS MOD15A2H version 6 (MOD15)",
+        "CGLS LAI products",
+        "MODIS MCD12Q1 LC products",
+        "Copernicus Climate Change Service (C3S) LC products",
+        "CGLS LC products",
+        "NCEP Final (FNL) Operational Model Global Tropospheric Analyses dataset",
+        "Multi-resolution Emission Inventory for China (MEIC)",
+        "Emissions Database for Global Atmospheric Research (EDGAR) v4.3"
+      ],
+      "author_team": [
+        "Jinlong Ma",
+        "Shengqiang Zhu",
+        "Siyu Wang",
+        "Peng Wang",
+        "Jianmin Chen",
+        "Hongliang Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impacts of land cover changes on biogenic emission and its contribution to ozone and secondary organic aerosol in China",
+        "doi": "10.5194/acp-23-4311-2023",
+        "year": 2023,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "如何利用MODIS MOD15A2H FPAR及其质量、空间和时间信息生成更高质量且更稳定的全球FPAR产品，并验证其相对于原始MODIS FPAR和其他FPAR产品的改进效果？",
+      "hypothesis_or_mechanism": "通过结合反演算法路径、检索不确定性、空间邻域信息、时间序列信息和原始MODIS FPAR，STICA能够降低云、气溶胶、传感器异常及备用算法造成的噪声，从而提高FPAR的时空一致性和精度。",
+      "variables_and_data_use": "以MOD15A2H的Fpar_500m、FparLai_QC和FparStdDev作为输入，经过Clim缺口填补、质量评估、空间加权、时间平滑及与原始FPAR的加权融合生成HiQ-FPAR；使用SI FPAR进行产品交叉比较，使用MCD12Q1进行生物群系分组，使用GBOV LP4进行直接验证，并利用BELMANIP 2.1进行多生物群系间接验证和趋势分析。",
+      "method_paradigm": "产品重构与精度验证",
+      "used_assets": [
+        "MOD15A2H",
+        "HiQ-FPAR",
+        "projects/verselab-398313/assets/HiQ_Fpar/wgs_500m_8d",
+        "SI FPAR",
+        "MCD12Q1 Version 6.1",
+        "GBOV FPAR LP product (LP4)",
+        "BELMANIP 2.1"
+      ],
+      "author_team": [
+        "Kai Yan",
+        "Xinpei Yu",
+        "Jinxiu Liu",
+        "Jingrui Wang",
+        "Xiuzhi Chen",
+        "Jiabin Pu",
+        "Marie Weiss",
+        "R. Myneni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "HiQ-FPAR: a High-Quality and Value-added MODIS Global FPAR Product from 2000 to 2023",
+        "doi": "10.5281/zenodo.18435571",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "如何利用MODIS FPAR及其质量信息生成时空一致性更高、精度更优的全球高质量FPAR产品，并评估其与原始MODIS FPAR及其他FPAR产品的一致性？",
+      "hypothesis_or_mechanism": "通过质量评估以及空间邻域和时间序列信息融合，STICA能够降低MODIS FPAR受云、气溶胶、传感器异常和备用算法影响产生的噪声，从而提高FPAR的时空稳定性和验证精度。",
+      "variables_and_data_use": "以MOD15A2H的Fpar_500m、FparLai_QC和FparStdDev为核心输入，经过气候学补缺、算法路径与不确定性评估、空间IDW和时间指数平滑后生成HiQ-FPAR；使用SI FPAR进行产品交叉比较，使用GBOV FPAR LP4进行直接验证，使用MCD12Q1和BELMANIP 2.1开展按生物群系的间接验证与分层分析。",
+      "method_paradigm": "遥感产品重建与验证",
+      "used_assets": [
+        "MOD15A2H",
+        "HiQ-FPAR",
+        "SI FPAR",
+        "MCD12Q1",
+        "GBOV FPAR LP product (LP4)",
+        "BELMANIP 2.1"
+      ],
+      "author_team": [
+        "Kai Yan",
+        "Xinpei Yu",
+        "Jinxiu Liu",
+        "Jingrui Wang",
+        "Xiuzhi Chen",
+        "Jiabin Pu",
+        "Marie Weiss",
+        "R. Myneni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "HiQ-FPAR: a High-Quality and Value-added MODIS Global FPAR Product from 2000 to 2023",
+        "doi": "10.5281/zenodo.18435572",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "不同 FPAR 产品在空间和时间变化、不确定性以及驱动 GPP 模拟方面表现出怎样的差异？",
+      "hypothesis_or_mechanism": "不同传感器、植被特征和反演算法造成的 FPAR 偏差会传递到 GPP 模拟中，而替换 FPAR 输入将导致 GPP 结果发生相应变化。",
+      "variables_and_data_use": "使用 GLASS-FPAR、GEOV2-FPAR 和 MODIS-FPAR 作为三种 FPAR 输入，通过扩展三重配准评估其误差和相关性，并分别输入 CASA 模型模拟 GPP；使用 MCD12Q1 土地覆盖数据设置植被类型参数，使用 TerraClimate 提供温度、降水和太阳辐射驱动变量，再用 ChinaFLUX 和 FLUXNET2015 的通量塔 GPP 数据进行验证。",
+      "method_paradigm": "产品不确定性评估",
+      "used_assets": [
+        "GLASS-FPAR",
+        "GLASS09B02",
+        "GEOV2-FPAR",
+        "FAPAR_1 km_V2",
+        "MODIS-FPAR",
+        "MOD15A2H",
+        "MCD12Q1",
+        "ChinaFLUX",
+        "FLUXNET2015",
+        "TerraClimate",
+        "CASA model"
+      ],
+      "author_team": [
+        "Xin Chen",
+        "Tiexi Chen",
+        "Yu Shu",
+        "Qingyun Yan",
+        "Qifei Han",
+        "Xueqiong Wei",
+        "Chaofan Li",
+        "Guojie Wang",
+        "Yong Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Framework to Assess the Potential Uncertainties of Three FPAR Products",
+        "doi": "10.1029/2021jg006320",
+        "year": 2021,
+        "venue": "Journal of Geophysical Research Biogeosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "如何客观量化并评估MODIS与VIIRS叶面积指数（LAI）产品在长时序记录中的时间序列稳定性？",
+      "hypothesis_or_mechanism": "大气扰动、太阳-传感器几何条件变化及传感器固有不确定性会导致LAI时序产生非自然抖动，进而削弱长时序趋势分析的可靠性。",
+      "variables_and_data_use": "直接读取MOD15A2H/MYD15A2H的LAI主变量与质量控制层（FparLai_QC, FparExtra_QC），构建像素级8天时序，计算绝对/相对时间序列稳定性（TSS）与标准化异常频次（TSA）。",
+      "method_paradigm": "时序稳定性评估与多源产品交叉验证",
+      "used_assets": [
+        "MOD15A2H",
+        "MYD15A2H",
+        "VNP15A2H",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Dongxiao Zou",
+        "Kai Yan",
+        "Jiabin Pu",
+        "Si Gao",
+        "Wenjuan Li",
+        "Xihan Mu",
+        "Yuri Knyazikhin",
+        "Ranga B. Myneni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Revisit the Performance of MODIS and VIIRS Leaf Area Index Products from the Perspective of Time-Series Stability",
+        "doi": "10.1109/jstars.2022.3214224",
+        "year": 2022,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "该论文研究能否用农业气象—光谱模型结合卫星和气象数据估算巴西 Mato Grosso 大豆地块产量。",
+      "hypothesis_or_mechanism": "大豆产量可由潜在干物质生产、叶面积修正、温度修正、收获系数以及蒸散发水分亏缺共同决定，卫星影像变量可替代部分田间变量进入模型。",
+      "variables_and_data_use": "论文使用地块实测产量和物候数据进行验证，使用 LAI 计算叶面积修正系数，使用 MOD16/MOD16A2 的真实和潜在蒸散发相关变量表示水分限制，使用 MERRA -2 或 Modern-Era Retrospective Analysis for Research and Applications 的日尺度温度数据进行温度条件控制，并使用 Pixel Reliability 对影像进行可靠性和云掩膜处理。",
+      "method_paradigm": "农业气象建模",
+      "used_assets": [
+        "MOD16",
+        "MOD16A2",
+        "MERRA -2",
+        "Modern-Era Retrospective Analysis for Research and Applications",
+        "Pixel Reliability",
+        "MODIS data"
+      ],
+      "author_team": [
+        "Christiany Mattioli Sarmiento",
+        "Priscila Pereira Coltri",
+        "Marcelo de Carvalho Alves",
+        "Luiz Gonsaga de Carvalho"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "A SPECTRAL AGROMETEOROLOGICAL MODEL FOR ESTIMATING SOYBEAN GRAIN PRODUCTIVITY IN MATO GROSSO, BRAZIL",
+        "doi": "10.1590/1809-4430-eng.agric.v40n3p405-412/2020",
+        "year": 2020,
+        "venue": "Engenharia Agrícola",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "红树林覆盖损失与空间破碎化如何影响其叶面积指数（LAI）和总初级生产力（GPP）？",
+      "hypothesis_or_mechanism": "红树林覆盖减少与斑块破碎化会削弱植被冠层结构完整性与光截获能力，进而降低光合有效辐射吸收效率，导致 LAI 下降与碳同化能力（GPP）减弱。",
+      "variables_and_data_use": "使用 MODIS MOD15A2H 产品的 LAI 变量表征植被冠层密度与健康状况，结合 MODIS MOD17A2H 的 GPP 变量评估碳同化水平；通过 MCD12Q1 提取永久湿地掩膜，并融合 Landsat 与 Sentinel-2 影像进行覆盖变化检测与 SVM 分类。",
+      "method_paradigm": "遥感时序监测与机器学习分类",
+      "used_assets": [
+        "MOD15A2H",
+        "MOD17A2H",
+        "MCD12Q1",
+        "Landsat 7 ETM+ L1T",
+        "Sentinel-2 L1C"
+      ],
+      "author_team": [
+        "Kasturi Devi Kanniah",
+        "Chuen Siang Kang",
+        "Sahadev Sharma",
+        "Ahmad Aldrie Amir"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Remote Sensing to Study Mangrove Fragmentation and Its Impacts on Leaf Area Index and Gross Primary Productivity in the South of Peninsular Malaysia",
+        "doi": "10.3390/rs13081427",
+        "year": 2021,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "该论文研究如何在 PEcAn/SIPNET 框架中用区域尺度顺序状态数据同化重建美国本土陆地碳库和碳通量状态。",
+      "hypothesis_or_mechanism": "机制假设是 LAI 与地上生物量观测可通过生态过程模型中的碳库协方差约束叶碳、木质碳和土壤碳，并改善 NEE 等碳通量估计。",
+      "variables_and_data_use": "论文使用 MODIS MOD15A2H 的 LAI、SD 和 QC 值，筛选高质量观测并提取年度峰值 LAI 进行同化；使用 Landtrendr 的年度 AGB 和像元标准差作为另一个同化约束；使用 Ameriflux NEE 进行参数校准和通量验证；使用 NLCD、PRISM 800m、CCSM4、ERA5、BETY-db 和 soilGrids 分别支持功能型划分、站点选择、气象驱动、参数先验和土壤碳评估。",
+      "method_paradigm": "顺序状态同化",
+      "used_assets": [
+        "MODIS MOD15A2H",
+        "Landtrendr (Landsat-based detection of Trends in Disturbance and Recovery)",
+        "NLCD",
+        "PRISM 800m",
+        "CCSM4",
+        "ERA5 reanalysis product",
+        "Ameriflux",
+        "BETY-db",
+        "soilGrids"
+      ],
+      "author_team": [
+        "Hamze Dokoohaki",
+        "Bailey D. Morrison",
+        "Ann Raiho",
+        "Shawn Serbin",
+        "Michael C. Dietze"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A novel model–data fusion approach to terrestrial carbon cycle reanalysis across the contiguous U.S using SIPNET and PEcAn state data assimilation system v. 1.7.2",
+        "doi": "10.5194/gmd-2021-236",
+        "year": 2021,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "不同全球LAI产品在2000—2018年所揭示的植被绿化趋势是否一致，以及这些趋势在空间上如何分布？",
+      "hypothesis_or_mechanism": "如果不同传感器和生产方法能够稳定刻画植被叶面积变化，则各LAI产品应呈现具有空间一致性的显著增绿或变褐趋势，但产品间的处理和来源差异可能导致趋势强度不同。",
+      "variables_and_data_use": "论文使用BU AVHRR LAI/GIMMS 3g V1、NOAA CDR LAI、LTDR LAI、BU MODIS C6 LAI（MOD15A2H和MYD15A2H）以及SPOT/PROBA-V LAI；对各产品的LAI时间序列计算年度均值、分位数和年内离散程度，并采用Mann-Kendall检验、Theil-Sen估计和空间置换聚类方法检测全球趋势及其显著性。",
+      "method_paradigm": "多产品趋势比较与变化检测",
+      "used_assets": [
+        "BU AVHRR LAI/GIMMS 3g V1",
+        "NOAA CDR LAI",
+        "LTDR LAI",
+        "BU MODIS C6 LAI",
+        "MOD15A2H",
+        "MYD15A2H",
+        "SPOT/PROBA-V LAI"
+      ],
+      "author_team": [
+        "José Cortés",
+        "Miguel D. Mahecha",
+        "Markus Reichstein",
+        "Ranga B. Myneni",
+        "Chi Chen",
+        "Alexander Brenning"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Where Are Global Vegetation Greening and Browning Trends Significant?",
+        "doi": "10.1029/2020gl091496",
+        "year": 2021,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究植被生产力及其变化趋势，并检验温度、降水、VPD和光合有效辐射等气候因子与植被生产力之间的动态因果关系。",
+      "hypothesis_or_mechanism": "气候因子通过影响植被叶面积、光合作用和呼吸过程，进而驱动GPP、PSNnet和NPP的时序变化。",
+      "variables_and_data_use": "使用MOD15A2H LAI数据表征植被绿度并聚合为月尺度和年尺度；使用MOD17A2HGF的GPP和PSNnet、MOD17A3HGF的NPP以及FLUXCOM的GPP和NEE表征植被生产力；使用IMD降水和温度、ERA5计算的VPD以及CERES Surface PAR作为气候和辐射驱动变量，并使用MCD12Q1进行土地覆盖分类。",
+      "method_paradigm": "趋势分析与因果机制检验",
+      "used_assets": [
+        "Terra MODIS (MOD15A2H) Version 6",
+        "MOD17A2HGF Version 6",
+        "MOD17A3HGF Version 6",
+        "FLUXCOM GPP and NEE products",
+        "CRUNCEPv6",
+        "MCD12Q1",
+        "India Meteorological Department (IMD) daily gridded precipitation data",
+        "IMD daily average surface temperature",
+        "European Centre for Medium-Range Weather Forecasts (ECMWF) ERA5",
+        "CERES Surface PAR (Direct)"
+      ],
+      "author_team": [
+        "Ripan Das",
+        "Rajiv Kumar Chaturvedi",
+        "Adrija Roy",
+        "Subhankar Karmakar",
+        "Subimal Ghosh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Warming inhibits increases in vegetation net primary productivity despite greening in India",
+        "doi": "10.1038/s41598-023-48614-3",
+        "year": 2023,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "中国主要生态恢复区植被叶面积（LAI）与蒸散发（Ea、Et）的时空演变规律及其关键驱动机制是什么？",
+      "hypothesis_or_mechanism": "大气CO2浓度升高与气候变暖协同作用，通过刺激植物光合碳同化与增加植被覆盖度，进而显著改变区域水热交换与蒸散发通量。",
+      "variables_and_data_use": "使用MODIS LAI（2000–2015）与AVHRR LAI（1982–1999）构建长时序植被结构变量；结合气象要素、土地利用类型与CO2浓度数据，通过统计回归与方差分解量化自然与人为因素对LAI及蒸散变异的贡献率。",
+      "method_paradigm": "多源遥感融合与时空归因分析",
+      "used_assets": [
+        "MODIS LAI",
+        "AVHRR LAI",
+        "meteorological factors",
+        "land use",
+        "CO2"
+      ],
+      "author_team": [
+        "Haiyan Zheng",
+        "Chiyuan Miao",
+        "Xiaoyan Li",
+        "Dongxian Kong",
+        "Jiaojiao Gou",
+        "Jingwen Wu",
+        "Shuping Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Effects of Vegetation Changes and Multiple Environmental Factors on Evapotranspiration Across China Over the Past 34 Years",
+        "doi": "10.1029/2021ef002564",
+        "year": 2022,
+        "venue": "Earth s Future",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "气候变化与土地管理变化对三江平原植被动态变化的相对贡献分别是什么？",
+      "hypothesis_or_mechanism": "通过利用跨境自然配置控制气候因子，配对土地利用实验（PLUE）能够有效分离并量化人类土地利用与管理活动对植被发育的独立驱动作用。",
+      "variables_and_data_use": "使用 MOD15A2H V006 的 8 天 500 m LAI 数据作为植被响应变量，结合 CRU 降水温度与站点气象资料作为气候控制变量，利用 MCD12Q1 和 RESDC 土地覆盖/利用数据划分不同管理强度的区域进行配对实验与统计归因分析。",
+      "method_paradigm": "配对土地利用实验与自然对照分析",
+      "used_assets": [
+        "MOD15A2H",
+        "MCD12Q1",
+        "CRU TS4.02",
+        "ISD-Lite",
+        "RESDC"
+      ],
+      "author_team": [
+        "Tiexi Chen",
+        "A. J. Dolman",
+        "Zhanli Sun",
+        "Ning Zeng",
+        "Haiyang Gao",
+        "Lijuan Miao",
+        "Xueqiong Wei",
+        "Chaofan Li",
+        "Qifei Han",
+        "Tingting Shi",
+        "Guojie Wang",
+        "Shengjie Zhou",
+        "Chuanzhuang Liang",
+        "Xin Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Land Management Explains the Contrasting Greening Pattern Across China‐Russia Border Based on Paired Land Use Experiment Approach",
+        "doi": "10.1029/2021jg006659",
+        "year": 2022,
+        "venue": "Journal of Geophysical Research Biogeosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "论文研究不同生态系统中早季、峰值季和晚季 LAI 轨迹及其异常变化如何呈现放大或稳定情景，以及这些情景由哪些气候和生态机制控制。",
+      "hypothesis_or_mechanism": "早季和峰值季的正 LAI 异常可能延续并放大到晚季，也可能受到降水、温度、土壤湿度及植被—土壤反馈遗留效应的制约而表现为稳定或负向响应。",
+      "variables_and_data_use": "使用 MCD15A2H v006 的 MODIS LAI/FPAR 产品计算和比较早季、峰值季及晚季 LAI 异常；使用 AVHRR LAI3g 进行跨产品比较，使用 global eddy covariance (EC) GPP estimates 辅助表征生产力，并以 CRU36 的降水和温度、GLEAM v3a37 的土壤湿度识别驱动因素；同时将观测到的 MODIS 和 AVHRR LAI 异常与 TRENDY Version 11 的 TBM LAI simulations 比较。",
+      "method_paradigm": "季节轨迹分析与过程归因",
+      "used_assets": [
+        "MCD15A2H v006",
+        "AVHRR LAI3g",
+        "global eddy covariance (EC) GPP estimates",
+        "CRU36",
+        "GLEAM v3a37",
+        "TRENDY Version 11"
+      ],
+      "author_team": [
+        "Wen Zhang",
+        "William K. Smith",
+        "Trevor F. Keenan",
+        "Matthew P. Dannenberg",
+        "Yang Li",
+        "Songhan Wang",
+        "John S. Kimball",
+        "D. J. Moore"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Seasonal stabilization effects slowed the greening of the Northern Hemisphere over the last two decades",
+        "doi": "10.1038/s41467-025-61308-w",
+        "year": 2025,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "2001–2015年间伊朗地区植被与气候指标的长期时空演变趋势及其对荒漠化潜在风险的贡献机制是什么？",
+      "hypothesis_or_mechanism": "气候变暖与降水减少等环境胁迫叠加土地利用变化，导致植被生长衰退（LAI/NPP下降），进而通过多因子协同作用显著推高区域荒漠化潜力。",
+      "variables_and_data_use": "使用MODIS月尺度LAI、NDVI、NPP、LST及TRMM降水数据，通过Mann-Kendall非参数检验与Theil-Sen斜率估计量化各指标季节/年度趋势，利用Pearson相关系数分析植被-气候耦合关系，最终结合布尔逻辑与重分类技术构建荒漠化潜力空间图谱。",
+      "method_paradigm": "多源遥感时序趋势分析与空间统计建模",
+      "used_assets": [
+        "MOD15A2",
+        "MOD13C1",
+        "Mod17a3",
+        "MOD11C1",
+        "TRMM"
+      ],
+      "author_team": [
+        "Hadi Eskandari Dameneh",
+        "Hamid Gholami",
+        "Matt W. Telfer",
+        "Jesús Rodrigo‐Comino",
+        "Adrian L. Collins",
+        "John D. Jansen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Desertification of Iran in the early twenty-first century: assessment using climate and vegetation indices",
+        "doi": "10.1038/s41598-021-99636-8",
+        "year": 2021,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "高纬北方森林中观测约束的 GPP 和 LAI 对温度的空间敏感度能否预测其长期变暖响应，并据此区分温度和 CO2 增加对森林变化的贡献？",
+      "hypothesis_or_mechanism": "GPP 和 LAI 对温度的空间响应与其时间响应具有可迁移的指数关系，因此升温而非 CO2 增加可能是近几十年高纬北方森林生产力和绿度变化的主要驱动。",
+      "variables_and_data_use": "使用 GIMMS MODIS-LAI 等 LAI 产品和 OCO-2 SIF 约束 GPP、FluxCom GPP 产品，计算生长季 LAI 或 GPP 与生长季平均温度之间的空间敏感度；结合 TRENDY 的 S1、S2 模拟推导温度和 CO2 驱动下的时间变化，并利用 GEOS-Chem 和 NOAA 全球年平均 CO2 数据估计大气 CO2 季节循环及 CO2 增加效应。",
+      "method_paradigm": "观测约束的模式归因",
+      "used_assets": [
+        "MCD-MODIS",
+        "GIMMS LAI3g",
+        "GIMMS MODIS-LAI",
+        "NOAA AVHRR",
+        "OCO-2 solar induced chlorophyll fluorescence (SIF) constrained GPP",
+        "FluxCom GPP products",
+        "TRENDY model runs",
+        "GEOS-Chem",
+        "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_gl.txt"
+      ],
+      "author_team": [
+        "Junjie Liu",
+        "P. O. Wennberg"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "An emergent constraint on the thermal sensitivity of photosynthesis and greenness in the high latitude northern forests",
+        "doi": "10.1038/s41598-024-56362-1",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何构建动态全球植被模型框架以更准确地模拟和预测全球年最大 fAPAR 及其长期变化趋势？",
+      "hypothesis_or_mechanism": "通过融合 MODIS 遥感观测与多模式生态系统模拟（TRENDY），结合非线性回归与参数同化技术，可有效提升对植被光合辐射吸收动态及碳循环反馈过程的刻画精度。",
+      "variables_and_data_use": "使用 MODIS MOD15A2H 日尺度 fAPAR 数据提取年最大值并进行空间聚合；使用 TRENDY v9 多模式集合的 LAI 数据经方程转换后作为对比基准，用于验证框架性能。",
+      "method_paradigm": "遥感数据同化与多模型对比评估",
+      "used_assets": [
+        "MOD15A2H",
+        "TRENDY v9",
+        "C3S Climate Data Store reanalysis v2.0",
+        "GEOV1"
+      ],
+      "author_team": [
+        "Wenjia Cai",
+        "Ziqi Zhu",
+        "Sandy P. Harrison",
+        "Youngryel Ryu",
+        "Han Wang",
+        "Boya Zhou",
+        "I. Colin Prentice"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A unifying principle for global greenness patterns and trends",
+        "doi": "10.1101/2023.02.25.529932",
+        "year": 2023,
+        "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "如何利用ICESat-2光子云数据和质量控制方法在森林区域开展大尺度、高质量的叶面积指数反演？",
+      "hypothesis_or_mechanism": "剔除缺少地面点的低质量分段并利用路径长度分布校正冠层聚集效应，可以提高ICESat-2 LAI反演精度并缓解被动光学LAI在高LAI森林中的饱和问题。",
+      "variables_and_data_use": "使用ATL03和ATL08光子及冠层结构数据计算间隙率、路径长度分布、聚集指数和LAI；使用MOD15A2H和GLASSLAI作为LAI对照产品；使用GLC FCS30筛选森林分段和森林类型；使用地面测量LAI进行验证。",
+      "method_paradigm": "遥感反演与精度验证",
+      "used_assets": [
+        "ATL03",
+        "ATL08",
+        "MOD15A2H",
+        "GLASSLAI",
+        "GLC FCS30"
+      ],
+      "author_team": [
+        "Da Guo",
+        "Xiaoning Song",
+        "Ronghai Hu",
+        "Max Mallen‐Cooper",
+        "Yuzhen Xing",
+        "Ruijin Li",
+        "Hong Zeng",
+        "Han Guo",
+        "Guangjian Yan",
+        "Paul Kardol"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Large-Scale Retrieval and Quality Control of Leaf Area Index Based on ICESat-2 Spaceborne Photon-Counting Laser Altimeter",
+        "doi": "10.1109/tgrs.2025.3592523",
+        "year": 2025,
+        "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "肯尼亚森林覆盖在2001至2023年间的时空演变模式及其自然与社会经济驱动机制是什么？",
+      "hypothesis_or_mechanism": "人类社会经济活动（如GDP增长、人口密度）与自然气候因素（如降水、温度）的交互作用共同主导了森林结构的退化与斑块化，而非单纯的面积净损失。",
+      "variables_and_data_use": "使用 MOD15A2H 的 LAI 产品量化冠层结构变化，结合 MOD12Q1 土地覆盖分类提取森林掩膜，利用 GeoDetector 模型分析自然与社会经济因子的解释力及非线性交互效应。",
+      "method_paradigm": "多源遥感时序分析与地理探测器归因",
+      "used_assets": [
+        "MOD15A2H",
+        "MOD12Q1",
+        "MOD13Q1",
+        "MOD16A2",
+        "ERA5-Land",
+        "ASTER GDEM",
+        "VIIRS",
+        "DMSP-OLS",
+        "WorldPop",
+        "WDI GDP"
+      ],
+      "author_team": [
+        "J. KAVERE",
+        "X.G. YANG",
+        "Y. YU",
+        "F.J. MOHAMEDI"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "SPATIO-TEMPORAL PATTERNS AND DRIVING MECHANISMS OF FOREST COVER CHANGE IN KENYA (2001-2023)",
+        "doi": "10.15666/aeer/2403_56895714",
+        "year": 2026,
+        "venue": "Applied Ecology and Environmental Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "研究气温和土壤湿度的累积变化如何影响西北中国植被LAI的季节变化、年际变化和长期趋势。",
+      "hypothesis_or_mechanism": "植被对气候变化存在由先前水热条件驱动的记忆和累积响应，土壤湿度与气温的联合变化能够解释并预测LAI动态。",
+      "variables_and_data_use": "使用reprocessed MODIS Version 6.1 LAI dataset作为植被观测和预测目标，使用GLDAS–2.1 Noah model daily product中的气温和0–100 cm土壤湿度作为驱动变量，并使用MCD12Q1表征土地覆盖和生态系统类型；通过56天回溯窗口输入LSTM，比较双变量、仅土壤湿度和仅气温模型。",
+      "method_paradigm": "深度学习关系建模",
+      "used_assets": [
+        "reprocessed MODIS Version 6.1 LAI dataset",
+        "GLDAS–2.1 Noah model daily product",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Yajun Si",
+        "Junpo Yu",
+        "Geng Li",
+        "Jesús Carrera",
+        "Jiming Jin",
+        "Haihua Bai"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Differential Effects of Soil Moisture and Air Temperature on Vegetation Dynamics in Northwest China’s Warming and Wetting Region: An LSTM Modeling Approach",
+        "doi": "10.3390/plants15101542",
+        "year": 2026,
+        "venue": "Plants",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "研究2001—2020年全球生物源挥发性有机物排放变化中植被、气象和二氧化碳变化分别发挥了多大作用。",
+      "hypothesis_or_mechanism": "MODIS LAI及其派生的LAIv变化通过改变植被排放活动因子影响BVOC排放，而气温、辐射、土壤湿度和二氧化碳等因素共同调节这种排放响应。",
+      "variables_and_data_use": "使用MCD15A2H LAI并结合MOD44B Version 6植被覆盖数据计算LAIv，使用MCD12C1生成植物功能型比例和排放因子，并将MERRA-2的温度、短波辐射、土壤湿度、风速、降水等变量输入MEGANv3.2；通过敏感性试验分离植被、气象和二氧化碳对BVOC排放趋势的贡献，并用CrIS异戊二烯柱负荷以及文献中的原位排放通量进行比较。",
+      "method_paradigm": "过程模型敏感性归因",
+      "used_assets": [
+        "MCD15A2H",
+        "MOD44B Version 6",
+        "MCD12C1",
+        "MERRA-2",
+        "Cross-track Infrared Sounder (CrIS)"
+      ],
+      "author_team": [
+        "Hao Wang",
+        "Xiaohong Liu",
+        "Chenglai Wu",
+        "Guangxing Lin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Regional to global distributions, trends, and drivers of biogenic volatile organic compound emission from 2001 to 2020",
+        "doi": "10.5194/acp-24-3309-2024",
+        "year": 2024,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "自然植被长期变绿和变褐趋势在多大程度上由大气CO2升高的生理效应、辐射效应和气候变化驱动？",
+      "hypothesis_or_mechanism": "CO2升高可能通过增强光合作用和扩大叶面积促进部分生物群系变绿，但长期干燥、干旱和其他气候变化可能在高生产力生态系统中引起并强化变褐。 ",
+      "variables_and_data_use": "论文以GIMMS LAI3gV1为主要长期观测，并使用MOD15A2H和MYD15A2H MODIS LAI以及GLASS LAI、GLOBMAP LAI、LTDR NDVI和NOAA FAPAR进行产品比较；将MODIS 8 d、500 m LAI经过质量控制后合成为16 d并聚合到1/20度和年度尺度，计算各像元和生物群系的LAI趋势，再与MPI-ESM1.2-LR和TRENDYv7的历史及反事实模拟比较，以归因CO2和气候等驱动因素。",
+      "method_paradigm": "因果反事实过程归因",
+      "used_assets": [
+        "GIMMS LAI3gV1",
+        "MOD15A2H",
+        "MYD15A2H",
+        "GLASS LAI",
+        "GLOBMAP LAI",
+        "LTDR NDVI version 5 (v5)",
+        "FAPAR product from the NOAA Climate Data Record Program",
+        "MCD12C1",
+        "GLDAS-2 Noah version 3.3",
+        "MOD44B",
+        "MPI-ESM1.2-LR",
+        "TRENDYv7",
+        "GLOBALVIEW-CO2",
+        "CRU JRA-55 reanalysis",
+        "LUH2"
+      ],
+      "author_team": [
+        "Alexander J. Winkler",
+        "Ranga B. Myneni",
+        "Alexis Hannart",
+        "Stephen Sitch",
+        "Vanessa Haverd",
+        "Danica Lombardozzi",
+        "Vivek K. Arora",
+        "Julia Pongratz",
+        "Julia E. M. S. Nabel",
+        "Daniel S. Goll",
+        "Etsushi Kato",
+        "Hanqin Tian",
+        "Almut Arneth",
+        "Pierre Friedlingstein",
+        "Atul K. Jain",
+        "Sönke Zaehle",
+        "﻿Victor Brovkin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Slowdown of the greening trend in natural vegetation with further rise in atmospheric CO 2",
+        "doi": "10.5194/bg-18-4985-2021",
+        "year": 2021,
+        "venue": "Biogeosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 30,
+    "source_paper_count": 30,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

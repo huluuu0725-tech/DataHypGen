@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Kubuqi Desert, Inner Mongolia, China",
+  "data_description": {
+    "dataset_name": "MOD13A3.061 Vegetation Indices Monthly L3 Global 1 km SIN Grid",
+    "spatial_coverage": {
+      "region_name": "Kubuqi Desert and surrounding terrestrial areas in Inner Mongolia, China",
+      "coverage": "Global terrestrial coverage on a 1 km sinusoidal grid, including the Kubuqi Desert and adjacent arid and semi-arid land surfaces."
+    },
+    "temporal_coverage": "February 2000 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1 km",
+    "temporal_unit": "Monthly composite",
+    "analytical_capabilities": [
+      "Monthly vegetation condition mapping and interannual comparison",
+      "Vegetation index time-series analysis at monthly resolution",
+      "Seasonal cycle, phenology-window, and growing-season aggregation",
+      "Vegetation trend detection and change attribution against gridded covariates",
+      "Spatial stratification of vegetation state by terrain, climate zone, or land-cover class"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI and EVI as dimensionless indices, stored with a scale factor of 0.0001",
+      "runtime_hint": "Multiply `NDVI` or `EVI` by 0.0001 to obtain physical index values. Screen pixels with `SummaryQA` for routine filtering, or `DetailedQA` when specific quality bits matter. `sur_refl_b01` through `sur_refl_b07` carry the contributing surface reflectances at the same scale, and `ViewZenith`, `SolarZenith` and `RelativeAzimuth` are in degrees with a 0.01 scale. Monthly compositing means a single image already averages within its month, so avoid double-averaging when building seasonal means. Note this collection has no per-pixel `DayOfYear` band, so the exact observation date within a month is not recoverable."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD13A3",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD13A3"
+}

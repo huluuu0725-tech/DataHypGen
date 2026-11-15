@@ -1,0 +1,179 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Drought- and soil-moisture-sensitive landscapes",
+  "datasets": [
+    {
+      "role": "precipitation_driver",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Daily gridded precipitation raster",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "spatial_coverage": {
+          "region_name": "Drought- and soil-moisture-sensitive landscapes",
+          "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    },
+    {
+      "role": "soil_moisture_state",
+      "data_description": {
+        "dataset_name": "SMAP L4 Global 3-hourly 9 km Surface and Root Zone Soil Moisture (SPL4SMGP.008)",
+        "data_type": "Soil-moisture raster time series",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+        "spatial_coverage": {
+          "region_name": "Drought- and soil-moisture-sensitive landscapes",
+          "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ],
+        "data_source": "NASA SMAP Level-4 soil-moisture product",
+        "gee_asset": {
+          "id": "NASA/SMAP/SPL4SMGP/008",
+          "type": "image_collection"
+        }
+      },
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+      "dataset_name": "SMAP L4 Global 3-hourly 9 km Surface and Root Zone Soil Moisture (SPL4SMGP.008)",
+      "data_source": "NASA SMAP Level-4 soil-moisture product",
+      "gee_asset": {
+        "id": "NASA/SMAP/SPL4SMGP/008",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Daily gridded precipitation raster",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "spatial_coverage": {
+        "region_name": "Drought- and soil-moisture-sensitive landscapes",
+        "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "SMAP L4 Global 3-hourly 9 km Surface and Root Zone Soil Moisture (SPL4SMGP.008)",
+      "data_type": "Soil-moisture raster time series",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+      "spatial_coverage": {
+        "region_name": "Drought- and soil-moisture-sensitive landscapes",
+        "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ],
+      "data_source": "NASA SMAP Level-4 soil-moisture product",
+      "gee_asset": {
+        "id": "NASA/SMAP/SPL4SMGP/008",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:NASA/SMAP/SPL4SMGP/008"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_009:composite_observation",
+    "type": "composite_observation",
+    "name": "precipitation_sm_data composite observation",
+    "observable_group": "precipitation_sm_data_multidataset_observation",
+    "components": [
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Daily gridded precipitation raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "spatial_coverage": {
+            "region_name": "Drought- and soil-moisture-sensitive landscapes",
+            "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      },
+      {
+        "role": "soil_moisture_state",
+        "data_description": {
+          "dataset_name": "SMAP L4 Global 3-hourly 9 km Surface and Root Zone Soil Moisture (SPL4SMGP.008)",
+          "data_type": "Soil-moisture raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+          "spatial_coverage": {
+            "region_name": "Drought- and soil-moisture-sensitive landscapes",
+            "coverage": "Declared analysis region within Drought- and soil-moisture-sensitive landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ],
+          "data_source": "NASA SMAP Level-4 soil-moisture product",
+          "gee_asset": {
+            "id": "NASA/SMAP/SPL4SMGP/008",
+            "type": "image_collection"
+          }
+        },
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+        "dataset_name": "SMAP L4 Global 3-hourly 9 km Surface and Root Zone Soil Moisture (SPL4SMGP.008)",
+        "data_source": "NASA SMAP Level-4 soil-moisture product",
+        "gee_asset": {
+          "id": "NASA/SMAP/SPL4SMGP/008",
+          "type": "image_collection"
+        }
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "precipitation_driver",
+        "soil_moisture_state"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_009:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:NASA/SMAP/SPL4SMGP/008"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "precipitation_driver",
+      "soil_moisture_state"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

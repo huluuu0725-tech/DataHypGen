@@ -1,0 +1,53 @@
+{
+  "paper_id": "10.1371/journal.pone.0107042",
+  "task_id": "three_or_more_datasets/task_010",
+  "title": "Disaggregating Census Data for Population Mapping Using Random Forests with Remotely-Sensed and Ancillary Data",
+  "category": "census_remote_sensing_ancillary",
+  "year": 2014,
+  "journal": "PLoS ONE",
+  "impact_level": "medium",
+  "datasets": [
+    "Census population counts",
+    "VIIRS Black Marble Nighttime Lights (VNP46A2)",
+    "SRTM Digital Elevation Data 30 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "census_population",
+      "dataset": "Census population counts"
+    },
+    {
+      "role": "remote_sensing",
+      "dataset": "VIIRS Black Marble Nighttime Lights (VNP46A2)"
+    },
+    {
+      "role": "ancillary_spatial",
+      "dataset": "SRTM Digital Elevation Data 30 m"
+    }
+  ],
+  "idea": {
+    "research_question": "What spatial associations can be identified between census population, remote-sensing covariates and ancillary spatial data?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:CIESIN/GPWv411/GPW_Population_Count",
+      "GEE:NASA/VIIRS/002/VNP46A2",
+      "GEE:USGS/SRTMGL1_003"
+    ],
+    "required_component_usage": [
+      "census_population",
+      "remote_sensing",
+      "ancillary_spatial"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_010:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

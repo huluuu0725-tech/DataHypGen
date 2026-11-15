@@ -1,0 +1,1407 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_035",
+  "pairing_status": "paired_with_pending_entries",
+  "current_task_binding": {
+    "dataset_name": "Landsat Collection 2 Surface Reflectance (TM/ETM+/OLI)",
+    "spatial_coverage": {
+      "region_name": "Global vegetated land surfaces",
+      "coverage": "Terrestrial vegetated areas worldwide, subject to Landsat acquisition footprints, cloud screening, and valid observations."
+    },
+    "temporal_coverage": "1984-present (Landsat 5, 7, 8, and 9)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Irregular scene acquisitions with a nominal 16-day revisit interval per satellite",
+    "analytical_capabilities": [
+      "Land surface spectral characterization",
+      "Vegetation index calculation and vegetation condition assessment",
+      "Land cover mapping and classification",
+      "Multi-temporal land surface change detection",
+      "Surface temperature and environmental condition analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Surface reflectance, dimensionless after applying Collection 2 scale factors and offsets; ST_B10 provides surface temperature in Kelvin after calibration.",
+      "runtime_hint": "Apply the Collection 2 scale factors and offsets, mask clouds and cloud shadows using quality assurance bands, and account for sensor-specific band differences when combining Landsat collections."
+    },
+    "data_source": "NASA and the United States Geological Survey Landsat program",
+    "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1_L2 / LANDSAT/LE07/C02/T1_L2 / LANDSAT/LT05/C02/T1_L2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_035.json",
+    "source_sha256": "e989c8c0aebb2b56fee3db8f1096d3e839c70921e24c3166796b47750c721cb6",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_035/prompt.json",
+    "current_prompt_sha256": "fd5818205307eab2fdbe9a1569849b31fed610297b4dbca646a6466308a0cc42",
+    "original_anchor_asset": {
+      "id": "LANDSAT/LC08/C02/T1_L2 / LANDSAT/LE07/C02/T1_L2 / LANDSAT/LT05/C02/T1_L2",
+      "observable_group": "landsat_collection2_level2_surface_reflectance_and_temperature",
+      "observation_identity_contract": {
+        "physical_object": "land-surface spectral reflectance and thermal surface state",
+        "source_lineage": "Landsat TM/ETM+/OLI/TIRS Collection 2 observation lineage",
+        "core_measurement_semantics": "analysis-ready Landsat surface reflectance or surface temperature derived from Landsat observations",
+        "non_material_variations": "Landsat sensor generation, Collection 2 release, archive, grid, resampling, compositing or index derivation retaining the Landsat Level-2 physical measurement",
+        "material_mismatches": "another sensor lineage, DN/TOA-only measurement when surface reflectance/temperature is required, or generic Landsat use without an identifiable qualifying observation"
+      },
+      "asset_alias_policy": "Only Landsat Collection 2 Level-2 products are admitted; Collection 1 and unspecified generic Landsat use are excluded."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "How do multi-scale drought conditions relate to long-term vegetation dynamics and vegetation regime shifts in the semi-arid Jebel Marra Highlands?",
+      "hypothesis_or_mechanism": "Drought at different accumulation timescales produces delayed and scale-dependent vegetation responses, while persistent drought-related departures can coincide with structural breaks in the NDVI record.",
+      "variables_and_data_use": "Monthly Landsat Collection 2 surface-reflectance NDVI from 2000–2024 is compared with SPEI-3, SPEI-6, and SPEI-12 derived from CHIRPS precipitation and ERA5-Land potential evapotranspiration; lagged correlations, trend tests, drought severity comparisons, and BFAST breakpoints quantify the relationship.",
+      "method_paradigm": "Multi-scale drought–vegetation time-series coupling with lag analysis and regime-shift detection.",
+      "used_assets": [
+        "Landsat Collection 2 Surface Reflectance",
+        "CHIRPS",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Abdalrahman Ahmed",
+        "Kornel Czimber"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Multi-scale drought-vegetation relationships in the Jebel Marra Highlands, Sudan: evidence from Landsat NDVI time series, SPEI, and BFAST analysis",
+        "doi": "10.3389/ffgc.2026.1879552",
+        "year": 2026,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "探究全球陆地蒸散发（ET）的日变化特征及其在能量与水分限制区的差异，并量化气象驱动因子及极端气候事件对ET日周期的影响机制。",
+      "hypothesis_or_mechanism": "植被生理状态与大气环境需求共同调控ET的日变化节律，极端干旱或高温事件会通过改变水热条件导致ET日峰值发生偏移。",
+      "variables_and_data_use": "以ECOSTRESS ET/LST为观测基准，融合MODIS地表反射率反演NIRv，结合ERA5-Land气象再分析数据（气温、辐射、土壤湿度等）作为特征输入，采用随机森林算法构建小时级ET数据集，并利用SHAP值进行气象驱动归因分析。",
+      "method_paradigm": "多源遥感融合与机器学习归因",
+      "used_assets": [
+        "ECOSTRESS L3_ET_PT-JPL",
+        "ECOSTRESS L2_LSTE",
+        "MODIS MCD43C4.v061",
+        "MODIS MCD12C1.v006",
+        "LANDSAT/LC08/C02/T1_L2",
+        "ERA5-Land",
+        "FLUXCOM-X",
+        "ESA WorldCover"
+      ],
+      "author_team": [
+        "Jingyi Bu",
+        "Jingfeng Xiao",
+        "Joshua B. Fisher",
+        "Yiqi Luo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "NASA’s ECOSTRESS satellite reveals widespread midday depression in ecosystem evapotranspiration",
+        "doi": "10.1038/s41467-026-76873-x",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "该研究评估 1984–2024 年 Bagna Izbickie 泥炭地自然保护区的土地覆盖动态和生态环境质量如何随时间变化。",
+      "hypothesis_or_mechanism": "长期排水、植被演替和后期主动保育可能通过改变植被覆盖、湿度、裸土暴露和地表热状态，驱动泥炭地生态质量和土地覆盖格局的变化。",
+      "variables_and_data_use": "研究使用 Landsat Collection 2 Level-2 surface reflectance products 的 Blue、Green、Red、NIR、SWIR1、SWIR2 波段，派生 NDVI、NDMI、NBR、MNDWI、WET、NDBSI/BSI 等指标，用于土地覆盖分类和 RSEI 构建；使用 Landsat Collection 2 Level-2 Surface Temperature product 获取 LST；同时使用 TerraClimate 的 precipitation、PPT–ETo、CWD、AcEt 和 surface runoff 作为水文气候背景变量。",
+      "method_paradigm": "遥感时序变化检测",
+      "used_assets": [
+        "Landsat Collection 2 Level-2 (C2 L2) surface reflectance products",
+        "Landsat 5 TM C2 L2 imagery",
+        "Landsat 7 ETM+ Collection 2 Level-2 data",
+        "Landsat 8 OLI C2 L2 imagery",
+        "Landsat Collection 2 Level-2 Surface Temperature product",
+        "TerraClimate",
+        "ClimateEngine",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Cichosz Radosław",
+        "Łyszczarz Stanisław",
+        "Jasik Michał",
+        "Szymański Norbert",
+        "Małek Stanisław"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Four decades of hydroclimate-driven change and ecological condition in a Baltic raised bog assessed with Landsat and RSEI",
+        "doi": "10.1038/s41598-026-44890-x",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究 2006、2016 和 2026 年间 Babulu Laut 海岸区红树林覆盖如何发生时空变化，并探讨其与海岸侵蚀的关联。",
+      "hypothesis_or_mechanism": "红树林覆盖的减少或空间退缩会削弱海岸防护作用，从而与海岸侵蚀过程存在空间和时间上的对应关系。",
+      "variables_and_data_use": "论文使用 Landsat Collection 2 Level-2 的地表反射率波段，基于 NIR、Red、Green 和 SWIR 波段计算 NDVI 与 MNDWI，通过阈值法区分红树林和非红树林，并对多期分类结果进行叠加以量化红树林面积变化；同时使用行政区划图和海岸线图限定范围并支持侵蚀关系分析。",
+      "method_paradigm": "多时相变化检测",
+      "used_assets": [
+        "Landsat Collection 2 Level-2",
+        "United States Geological Survey (USGS)",
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 8 Operational Land Imager/Thermal Infrared Sensor (OLI/TIRS)",
+        "peta administrasi wilayah",
+        "peta garis pantai"
+      ],
+      "author_team": [
+        "Fransisko Sitanggang",
+        "Arum Sekar Kedhaton",
+        "Sutriani Sutriani",
+        "Djayusman Djayusman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "ANALISIS MULTI-TEMPORAL PERUBAHAN TUTUPAN MANGROVE DAN PENGARUHNYA TERHADAP DINAMIKA ABRASI PANTAI DI BABULU LAUT KALIMANTAN TIMUR",
+        "doi": "10.31764/geography.v14i1.38421",
+        "year": 2026,
+        "venue": "GEOGRAPHY Jurnal Kajian Penelitian dan Pengembangan Pendidikan",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "如何通过多源遥感数据融合构建全球高分辨率、高时间连续性的地表反射率无缝数据立方体？",
+      "hypothesis_or_mechanism": "结合Landsat的高空间分辨率与MODIS的高时间频率，利用时空融合算法与跨传感器校准，可有效重建云层遮挡区域的缺失反射率并保持辐射一致性。",
+      "variables_and_data_use": "使用Landsat Collection 2 Level-2地表反射率（蓝、绿、红、NIR、SWIR1、SWIR2波段）作为基础观测输入；利用MODIS NBAR产品进行时空插值与融合建模；使用HLS产品进行交叉验证。",
+      "method_paradigm": "多源遥感数据时空融合与重建",
+      "used_assets": [
+        "Landsat Collection 2 level-2 surface reflectance (L2SR)",
+        "MODIS MOD09GA version 6.1",
+        "NASA HLS V2.0"
+      ],
+      "author_team": [
+        "Shuang Chen",
+        "Jie Wang",
+        "Qiang Liu",
+        "Xiangan Liang",
+        "Rui Liu",
+        "Peng Qin",
+        "Jincheng Yuan",
+        "Junbo Wei",
+        "Shuai Yuan",
+        "Huabing Huang",
+        "Peng Gong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Global 30 m seamless data cube (2000–2022) of land surface reflectance generated from Landsat 5, 7, 8, and 9 and MODIS Terra constellations",
+        "doi": "10.5194/essd-16-5449-2024",
+        "year": 2024,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该论文研究 1990—2021 年 Central Ciliwung Watershed 土地覆盖变化如何影响径流和洪水风险。",
+      "hypothesis_or_mechanism": "建成区扩张会提高不透水面比例，降低入渗和植被截留能力，从而增加径流系数、峰值流量和洪水风险。",
+      "variables_and_data_use": "论文使用 Landsat Collection 2 Level-2 imagery 的地表反射率影像生成 1990、2000、2011 年土地覆盖分类，使用 Sentinel-2 Level-2A imagery 生成 2021 年土地覆盖分类，并用 QA_PIXEL、SCL 进行云掩膜；随后通过 Random Forest 分类、精度评估和后分类比较计算建成区、农业、植被、裸地和水体变化，并结合 Rational Method 解释水文影响。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Landsat Collection 2 Level-2 imagery",
+        "Sentinel-2 Level-2A imagery",
+        "QA_PIXEL",
+        "Scene Classification Layer (SCL)",
+        "Ina-Geoportal or BIG",
+        "USGS Earth Explorer",
+        "high-resolution imagery"
+      ],
+      "author_team": [
+        "Belicka Yan Oktaria",
+        "Atie Tri Juniati",
+        "I Nyoman Teguh Prasidha"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "SPATIO-TEMPORAL ANALYSIS OF LAND COVER CHANGE (1990–2021) AND ITS IMPLICATIONS ON HYDROLOGICAL RISK IN THE CENTRAL CILIWUNG WATERSHED (DEPOK–SOUTH JAKARTA)",
+        "doi": "10.51988/jtsc.v7i1.425",
+        "year": 2026,
+        "venue": "JURNAL TEKNIK SIPIL CENDEKIA (JTSC)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "研究如何利用Landsat地表反射率及多源时序数据预测北澳大利亚Themeda草地的NDVI、土地覆盖变化、火险空间分布和火后植被恢复。",
+      "hypothesis_or_mechanism": "Landsat反射率构建的Themeda光谱指数能够表征草本植物的绿色度和枯黄过程，而ConvLSTM与Temporal U-Net能够利用火灾引起的突变和时空上下文提高植被状态及火险预测性能。",
+      "variables_and_data_use": "使用Landsat 8/9 OLI Collection 2地表反射率的B4、B5、B6等波段构建TVI和月度反射率特征，并将其与MODIS MOD13Q1的NDVI/EVI、BOM Rainfall Grids的月降雨、NAFI Fire Scars的火烧掩膜及Sentinel-2 MSI多光谱数据共同输入模型；独立地面生物量数据用于TVI校准和验证。",
+      "method_paradigm": "时空深度学习",
+      "used_assets": [
+        "Landsat 8/9 OLI",
+        "Landsat 8/9 OLI Collection 2 surface reflectance data",
+        "MODIS MOD13Q1",
+        "BOM Rainfall Grids",
+        "NAFI Fire Scars",
+        "Sentinel-2 MSI",
+        "independent field biomass data"
+      ],
+      "author_team": [
+        "Vincent Kibet.",
+        "Raphael Agong",
+        "Julius Sirma",
+        "Nancy Mbugua"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Themeda-Based Spatiotemporal Deep Learning for Predicting Vegetation Dynamics and Fire-Induced Land Cover Change in Northern Australia Using ConvLSTM and Temporal U-Net Models",
+        "doi": "10.47772/ijriss.2026.100600022",
+        "year": 2026,
+        "venue": "International Journal of Research and Innovation in Social Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "意大利阿尔卑斯山和亚平宁山脉的森林线位置及其周边植被光谱特征在 1984–2023 年间如何变化，以及这些变化是否随高程、距森林线距离和冠层覆盖度而异？",
+      "hypothesis_or_mechanism": "森林线附近和较低海拔区域将出现森林扩张与植被绿度、湿度增强，而绿度指标更适合识别开放区域的森林再殖民，湿度指标更适合识别致密林冠中的林下层填补过程。",
+      "variables_and_data_use": "使用 Collection 2 Level-2 Landsat TM、ETM+、OLI 和 OLI-2 影像制作生长季反射率 medoid 合成，并计算 NDVI、EVI、TCA、NBR、NDMI 和 TCW 等绿度与湿度指标；以 TCD 作为冠层覆盖参考，以 Tinitaly DEM 提取高程和森林线距离相关变量，并用长期时间序列、TAU 统计量和上下文 Mann–Kendall 检验评估光谱趋势。",
+      "method_paradigm": "长时序趋势检测",
+      "used_assets": [
+        "Level-2 Collection 2 Landsat images",
+        "TM",
+        "ETM+",
+        "OLI",
+        "OLI-2",
+        "Tree Cover Density 2018 (TCD) dataset",
+        "Sentinel-2 multispectral data",
+        "Dynamic World land cover map",
+        "Tinitaly digital elevation model (DEM) v 1.1",
+        "Bioclimates of Italy dataset",
+        "Global Mountain Biodiversity Assessment (GMBA) inventory"
+      ],
+      "author_team": [
+        "Lorena Baglioni",
+        "Donato Morresi",
+        "Matteo Garbarino",
+        "Carlo Urbinati",
+        "Emanuele Lingua",
+        "Raffaella Marzano",
+        "Alessandro Vitali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Forestlines in Italian mountains are shifting upward: detection and monitoring using satellite time series",
+        "doi": "10.5194/bg-22-4349-2025",
+        "year": 2025,
+        "venue": "Biogeosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "研究1984年至2023年 Kharkiv 的土地利用/土地覆盖变化如何影响地表温度、城市热岛和地表城市热岛。",
+      "hypothesis_or_mechanism": "城市扩张和工业化会提高建成区地表温度并增强城市热岛，而植被和绿地能够降低局地地表温度并缓解热环境。",
+      "variables_and_data_use": "使用 Landsat5Level2、Collection2、Tier1 的 SR_B1-SR_B7 和 ST_B6，以及 Landsat8/9Level2、Collection2、Tier1 的 SR_B2-SR_B7 和 ST_B10，计算 NDVI、地表温度、土地利用/土地覆盖类别、UHI 和 SUHI；使用 MOD11A1V6.1 及 MODIS/006/MOD11A1LST_Day_1km 进行地表温度比较，并使用 CRUTSVersion4.07 的月平均气温等气候变量辅助分析长期变化。",
+      "method_paradigm": "遥感变化检测与热环境分析",
+      "used_assets": [
+        "Landsat5Level2, Collection2, Tier1",
+        "Landsat8/9Level2, Collection2, Tier1",
+        "MOD11A1V6.1",
+        "MODIS/006/MOD11A1LST_Day_1km",
+        "CRUTSVersion4.07"
+      ],
+      "author_team": [
+        "Gareth Rees",
+        "Liliia Hebryn-Baidy",
+        "Vadym Belenok"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Temporal Variations in Land Surface Temperature within an Urban Ecosystem: A Comprehensive Assessment of Land Use and Land Cover Change in Kharkiv, Ukraine",
+        "doi": "10.3390/rs16091637",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "该研究评估 2012、2016、2019 和 2021 年 Jatiluhur Reservoir 水葫芦覆盖范围及其入侵变化趋势。",
+      "hypothesis_or_mechanism": "水葫芦漂浮植被在近红外、红光和绿光反射率上的差异可通过 NDVI 与 NDWI 组合从清水、浑浊水体和陆生植被中区分出来，并用于追踪其扩张。",
+      "variables_and_data_use": "研究使用 Collection 2 Level-2 Surface Reflectance 中的 Green、Red、NIR 和 SWIR1 等 Landsat 反射率波段，计算 NDWI 以识别水体和非水体，计算 NDVI 以确认并分级水葫芦密度；随后按阈值分类并统计像元面积，用线性回归分析覆盖变化趋势。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Collection 2 Level-2 Surface Reflectance satellite imagery",
+        "USGS Earth Explorer",
+        "Landsat 7 ETM+ data",
+        "Landsat 8 OLI/TIRS data",
+        "Level-2 Surface Reflectance products",
+        "QA_PIXEL band",
+        "boundary vector data (Jatiluhur reservoir) in shapefile\n(SHP) format",
+        "Google Earth imagery"
+      ],
+      "author_team": [
+        "Lismining Astuti",
+        "Edy Junaidi",
+        "Erni Butar",
+        "Andri Warsa",
+        "Sri Purnamaningtyas",
+        "Gussasta Arnenda",
+        "Husnah",
+        "Didik Tjahjo",
+        "Tarzan Sembiring"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Invasion of water hyacinth (Pontederia crassipes Mart.) in Jatiluhur Reservoir, West Java, Indonesia and possible impact on dissolved oxygen and water temperature",
+        "doi": "10.3391/bir.2026.15.2.07",
+        "year": 2026,
+        "venue": "BioInvasions Records",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究 1994–2024 年 Bannu 和 Lakki Marwat 地区土地覆盖变化及其对迁徙鹤类潜在栖息地条件的影响。",
+      "hypothesis_or_mechanism": "土地覆盖变化、植被绿度和地表水条件的长期变化会改变迁徙鹤类的觅食、停歇和越冬生境适宜性。",
+      "variables_and_data_use": "使用 Landsat Collection 2 Level-2 地表反射率影像进行土地利用土地覆盖监督分类、变化检测以及 NDVI、NDWI、MNDWI 和 LSWI 计算；使用 NASA POWER 的温度和降水数据进行环境趋势分析，并使用 Global Surface Water 数据集评估长期地表水变化，Google Earth 影像用于训练和验证。",
+      "method_paradigm": "遥感变化检测与生境评价",
+      "used_assets": [
+        "Landsat 4–5 TM C2 L2",
+        "Landsat 7 ETM+ C2 L2",
+        "Landsat 8–9 OLI/TIRS C2 L2",
+        "NASA Langley Research Center (LaRC) Prediction of Worldwide Energy Resources (POWER) project",
+        "Global Surface Water datasets",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Muhammad Suliman",
+        "Lv Hongxue",
+        "Faisal Khalid",
+        "Wu Qingming",
+        "SUN Xueying",
+        "Majid Hussain",
+        "Zou Hongfei",
+        "Tariq Ahmad",
+        "I. ULLAH",
+        "Sami Ullah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Geospatial assessment of habitat degradation and climate impacts on migratory crane habitat in Pakistan’s Wetland ecosystems",
+        "doi": "10.1038/s41598-026-41758-y",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究处方燃烧是否能够降低随后野火的严重度，以及火灾天气、燃料年龄、重复燃烧概率和地形如何影响这种减灾效果。",
+      "hypothesis_or_mechanism": "处方燃烧通过减少燃料并延缓燃料恢复来降低野火严重度，但在极端火险天气下其缓解作用会减弱。",
+      "variables_and_data_use": "使用 Landsat TM、ETM+ 和 OLI Collection 2 Tier 1 Level 2 surface reflectance products计算火灾前后的 RBR 和 dNBR，分别表征野火严重度和处方燃烧严重度；结合处方燃烧单元、野火周界、ERA-5 FWI、EU-DEM 派生的 TRI/TPI、燃料年龄和燃烧概率，评估处理效果及其驱动因素。",
+      "method_paradigm": "影响评估与机器学习归因",
+      "used_assets": [
+        "Landsat TM, ETM +, or OLI Level 2 (Collection 2, Tier 1) surface reflectance products",
+        "spatial database of PB units from 2005 to 2021",
+        "Portuguese atlas of wildfire perimeters for the period 1990–2022",
+        "mainland Portugal orthophotographs (acquisition period 2004–2021; spatial resolution of 25–50 cm)",
+        "European Digital Elevation Model (EU-DEM), version 1.1 with a 25-m grid size",
+        "ERA-5 FWI reanalysis dataset available from the Copernicus Data Store"
+      ],
+      "author_team": [
+        "José Manuel Fernández‐Guisuraga",
+        "Paulo M. Fernandes"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Prescribed burning mitigates the severity of subsequent wildfires in Mediterranean shrublands",
+        "doi": "10.1186/s42408-023-00233-z",
+        "year": 2024,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何利用多源卫星遥感植被指数与环境气象数据构建随机森林模型来精准预测匈牙利特定区域的春大豆产量？",
+      "hypothesis_or_mechanism": "作物生长关键期（营养生长期至开花期）的冠层光谱反射率特征（通过NDVI、GNDVI等植被指数表征）与最终籽粒产量存在显著的非线性正相关关系，结合微气候与地形变量可显著提升预测精度。",
+      "variables_and_data_use": "使用Landsat 8 OLI C2 L2地表反射率计算NDVI、GNDVI、SAVI、MTVI2等植被指数作为核心预测变量；辅以PlanetScope和Sentinel-2反射率数据、TerraClimate温湿度降水数据及LiDAR地形数据输入随机森林回归模型进行产量预测。",
+      "method_paradigm": "多源遥感特征融合与机器学习回归预测",
+      "used_assets": [
+        "L8 OLI Level-2 Collection 2, Tier 1",
+        "PlanetScope Level-3 Surface Reflectance",
+        "Sentinel-2 Level-2A",
+        "TerraClimate",
+        "LiDAR DTM"
+      ],
+      "author_team": [
+        "Khilola Amankulova",
+        "Nizom Farmonov",
+        "Parvina Akramova",
+        "Ikrom Tursunov",
+        "László Mucsi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Comparison of PlanetScope, Sentinel-2, and landsat 8 data in soybean yield estimation within-field variability with random forest regression",
+        "doi": "10.1016/j.heliyon.2023.e17432",
+        "year": 2023,
+        "venue": "Heliyon",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "过去二十年全球主要城市的人类绿地暴露不平等性如何演变，其核心驱动因素是什么？",
+      "hypothesis_or_mechanism": "绿地供给的空间变化与人口分布的时空变化通过个体与联合效应，共同决定城市绿地暴露不平等的增减趋势。",
+      "variables_and_data_use": "使用Landsat C2 L2地表反射率波段计算NDVI/NDWI并进行线性光谱解混获取绿地覆盖率；结合WorldPop人口密度构建人口加权暴露指标；利用Gini/Atkinson/Theil指数量化不平等，并通过Venn变异分解模型归因贡献度。",
+      "method_paradigm": "线性光谱解混与变异分解",
+      "used_assets": [
+        "Landsat Collection 2 Tier 1 Level-2",
+        "WorldPop",
+        "NAIP",
+        "Sentinel-2"
+      ],
+      "author_team": [
+        "Shengbiao Wu",
+        "Бин Чэн",
+        "Chris Webster",
+        "Bing Xu",
+        "Peng Gong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Improved human greenspace exposure equality during 21st century urbanization",
+        "doi": "10.1038/s41467-023-41620-z",
+        "year": 2023,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "该论文研究 Johannesburg 各 ward 的环境暴露、社会经济条件和医疗可及性如何共同塑造城市热脆弱性空间格局。",
+      "hypothesis_or_mechanism": "地表高温、低植被覆盖、高建成区密度与社会经济和健康适应能力不足叠加，会形成更高的局地热脆弱性。",
+      "variables_and_data_use": "论文使用 Landsat 8 Level 2, Collection 2 surface reflectance satellite imagery 派生 LST、NDVI、UTFVI 和 NDBI；使用 MODIS atmospheric profiles 辅助 LST 分裂窗校正；使用 ERA5 reanalysis data 提供城市尺度气候背景；使用 GCRO Quality of Life Survey 2020–2021 和 GCRO 2017/18 survey 构建并检验社会经济、医疗可及性和健康变量。",
+      "method_paradigm": "空间脆弱性评估",
+      "used_assets": [
+        "Landsat 8 Level 2, Collection 2 surface reflectance satellite imagery",
+        "Google Earth Engine",
+        "MODIS atmospheric profiles",
+        "ERA5 reanalysis data",
+        "ERA5-Land",
+        "GCRO Quality of Life Survey 2020–2021",
+        "GCRO 2017/18 survey"
+      ],
+      "author_team": [
+        "Craig Parker",
+        "Craig Mahlasi",
+        "Tamara Govindasamy",
+        "Lebohang Radebe",
+        "Nicholas Brink",
+        "Christopher Jack",
+        "Madina Doumbia",
+        "Yao Etienne Kouakou",
+        "Matthew Chersich",
+        "Guéladio Cissé",
+        "Sibusisiwe Makhanya",
+        "Aakin Bobola",
+        "Abdoulaye Tall",
+        "Achiri Ndikum",
+        "Adaji Aishatu",
+        "Adja Ferdinand Vanga",
+        "Admire Chikandiwa",
+        "Akbar Waljee",
+        "Amy Beukes",
+        "Anna Steynor",
+        "Bonnie Joubert",
+        "Brama Koné",
+        "Bruce Hewitson",
+        "Cathy Mwangi",
+        "Cherlynn Dumbura",
+        "Chuansi Gao",
+        "Darshnika Lakhoo",
+        "Donrich Thaldar",
+        "Duncan Mitchell",
+        "Dusty‐Lee Donnelly",
+        "Elizabeth Frederick",
+        "Etienne Vos",
+        "Gciniwe Baloyi",
+        "Gillian Marmelstein",
+        "Iba Dieudonné Dely",
+        "Ijeoma Solarin",
+        "Ilias Maliha",
+        "Jasper Maguma",
+        "Jetina Tsvaki",
+        "Ji Zhu",
+        "Khady Sall",
+        "McAlpine Kl",
+        "Kwesi Quagraine",
+        "Leon Mbano",
+        "Lisa Lois Harden",
+        "Lukman Abdulrauf",
+        "Margaret Brennan",
+        "K S McAllister",
+        "Nontokozo Langa",
+        "Okoue Emerence",
+        "Olumuyiwa Adegun",
+        "Paul Ogendi",
+        "Peter Marsh",
+        "Peter Munyi",
+        "Pierre Kloppers",
+        "Piotr Wolski",
+        "Reneilwe Satekge",
+        "Rodger Duffett",
+        "Rutendo Sibanda",
+        "Ruvimbo Forget",
+        "Sabina Omar",
+        "Stanley Luchters",
+        "Tatenda Makanga"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Quantifying intra-urban socio-economic and environmental vulnerability to extreme heat events in Johannesburg, South Africa",
+        "doi": "10.1007/s00484-025-02971-y",
+        "year": 2025,
+        "venue": "International Journal of Biometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "该论文研究能否结合 Landsat 卫星反演温度与现场监测数据，重建小型高山湖泊自 1985 年以来的夏季湖表水温变化。",
+      "hypothesis_or_mechanism": "如果 Landsat Collection 2 Level-2 地表温度与现场近表层水温高度相关，则经过校准后的卫星温度可以用于无长期监测湖泊的历史 LSWT 重建。",
+      "variables_and_data_use": "论文使用 USGS EROS Archive - Landsat Archives - Collection 2 Level-2 Science Products 中的 LST，通过 GEE 提取湖泊中心水体像元，筛除云、阴影和异常影像；用 REPLIM network 的 HOBO thermistors 近表层实测温度进行对比、误差评估和校准，再将关系应用于 Landsat 5、7、8/9 数据以重建 1985–2022 年夏季 LSWT。",
+      "method_paradigm": "遥感验证与重建",
+      "used_assets": [
+        "Google Earth Engine",
+        "USGS EROS Archive - Landsat Archives - Collection 2 Level-2 Science Products",
+        "USGS LST provisional product",
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat-8/9",
+        "REPLIM network",
+        "HOBO thermistors"
+      ],
+      "author_team": [
+        "Kilian Jungkeit-Milla",
+        "Fernando Pérez",
+        "Alejandra Vicente de Vera-García",
+        "Marcel Galofré",
+        "Blas L. Valero‐Garcés"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Lake Surface Water Temperature in high altitude lakes in the Pyrenees: Combining satellite with monitoring data to assess recent trends",
+        "doi": "10.1016/j.scitotenv.2024.173181",
+        "year": 2024,
+        "venue": "The Science of The Total Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "该论文研究如何利用 Landsat 时间序列重建 2001 至 2020 年城市不透水面覆盖的年度变化。",
+      "hypothesis_or_mechanism": "建成区、植被、裸土和火烧迹地相关光谱指数的年度合成能够表征不透水面覆盖，并通过时间序列分割降低噪声、补全缺测和识别城市扩张趋势。",
+      "variables_and_data_use": "论文使用 Landsat 7 and 8 Collection 2 level-2 surface reflectance science products，经 CFMASK 云和云影掩膜后计算 BAEI、BCI、BRBA、CBCI、NBAI、NDBI、UI、VRBI、NDVI、BSI 和 NBRI 等光谱指数，再生成年度百分位合成作为随机森林预测变量；使用 Google Earth Pro 中的 very high-resolution (VHR) images 目视估计不透水面覆盖作为训练和验证数据，并用 LandTrendr 对年度预测进行时间序列平滑和变化建模。",
+      "method_paradigm": "遥感时间序列建模",
+      "used_assets": [
+        "Landsat 7 and 8 Collection 2 level-2 surface reflectance science products",
+        "pixel-quality layer",
+        "CFMASK",
+        "very high-resolution (VHR) images in Google Earth Pro",
+        "Africapolis city boundaries",
+        "LandTrendr"
+      ],
+      "author_team": [
+        "Andrews Korah",
+        "Michael C. Wimberly"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Annual Impervious Surface Data from 2001–2020 for West African Countries: Ghana, Togo, Benin and Nigeria",
+        "doi": "10.1038/s41597-024-03610-8",
+        "year": 2024,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "该论文研究 1994 年至 2022 年古巴 Ciego de Ávila 省 marabú 入侵物种及土地利用/土地覆盖的时空变化。",
+      "hypothesis_or_mechanism": "marabú 在开花期具有可由 Landsat 地表反射率波段区分的光谱特征，因此可通过监督分类识别其扩张并量化其对其他土地覆盖类型的侵占。",
+      "variables_and_data_use": "研究使用 Landsat 5 TM 和 Landsat 8 OLI Collection 2 Level 2 地表反射率产品的蓝、绿、红、近红外、SWIR1 和 SWIR2 波段，构建波段组合后用 ML、SVM 和 RF 分类，并结合 Google Satellite images 与实地参考数据进行训练和验证，最终进行 LULC 变化分析。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Landsat 5 TM",
+        "Landsat 8 OLI",
+        "Collection 2 Level 2",
+        "Google Satellite images",
+        "Field reference data"
+      ],
+      "author_team": [
+        "Alexey Valero-Jorge",
+        "Roberto González–De Zayas",
+        "Felipe Matos-Pupo",
+        "Angel Luis Becerra-González",
+        "María Flor Álvarez Taboada"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Mapping and Monitoring of the Invasive Species Dichrostachys cinerea (Marabú) in Central Cuba Using Landsat Imagery and Machine Learning (1994–2022)",
+        "doi": "10.3390/rs16050798",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "该论文研究能否用 Landsat-8 地表反射率派生的植被指数结合气象驱动机器学习模型检测香蕉病害异常。",
+      "hypothesis_or_mechanism": "健康香蕉冠层的植被指数可由近期温度和降水条件预测，而病害会导致观测植被指数偏离健康预期值。",
+      "variables_and_data_use": "论文使用 LANDSAT/LC08/C02/T1_L2 的 Landsat 8 OLI surface reflectance bands 计算 11 个植被指数，将 MOD11A1 V6 的日间和夜间地表温度以及 NASA/GPM_L3/IMERG_MONTHLY_V06 降水作为预测变量，并用 published surveillance data 验证植被指数异常与病害记录的关系。",
+      "method_paradigm": "异常检测机器学习",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "Landsat 8 OLI surface reflectance data",
+        "MOD11A1 V6",
+        "NASA/GPM_L3/IMERG_MONTHLY_V06",
+        "Published surveillance data",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Renata Retkutė",
+        "Kathleen S. Crew",
+        "John E. Thomas",
+        "Christopher A. Gilligan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Detection of Banana Diseases Based on Landsat-8 Data and Machine Learning",
+        "doi": "10.3390/rs17132308",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "该论文研究美属萨摩亚村庄尺度环境因素与淋巴丝虫病感染标志物空间分布之间的关联。",
+      "hypothesis_or_mechanism": "植被、降雨、地形、人口密度和土地覆盖等环境条件可能通过影响蚊媒栖息与人群暴露改变感染标志物风险。",
+      "variables_and_data_use": "论文使用 Landsat Collection 2 Level-2: Surface Reflectance and Surface Temperature images 的近红外和红光波段计算 NDVI，并按 inhabited buffer zones 进行年度平均；同时结合降雨、海拔、坡度、人口密度、土地覆盖、村庄边界和建筑位置等数据作为村庄级预测变量，与 LF 感染标志物计数进行建模。",
+      "method_paradigm": "空间流行病学关联分析",
+      "used_assets": [
+        "Landsat Collection 2 Level-2: Surface Reflectance and Surface Temperature images",
+        "American Samoa National Marine Sanctuary GIS data archive",
+        "ESRI"
+      ],
+      "author_team": [
+        "Morgan E. Lemin",
+        "Angela Cadavid Restrepo",
+        "Helen J. Mayfield",
+        "Colleen L. Lau"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatially Explicit Environmental Factors Associated with Lymphatic Filariasis Infection in American Samoa",
+        "doi": "10.3390/tropicalmed7100295",
+        "year": 2022,
+        "venue": "Tropical Medicine and Infectious Disease",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "该论文研究如何利用 32 年 Landsat 影像档案自动绘制高山地区年度雪崩堆积区并估计其发生频率。",
+      "hypothesis_or_mechanism": "晚春至初夏普通积雪大多消融后，沿河谷残留的高 NDSI 雪包更可能代表雪崩堆积区，因此可通过时序 Landsat 光谱差异进行自动检测。",
+      "variables_and_data_use": "研究使用 LANDSAT_LT05_C02_T1_L2、LANDSAT_LE07_C02_T1_L2 和 LANDSAT_LC08_C02_T1_L2 影像构建年度镶嵌，基于可见光与短波红外波段计算 NDSI 并结合 QA bands 云掩膜识别雪崩堆积区；使用 SRTM-30 派生河流缓冲区和地形约束；使用 Terra MODIS MOD10A2.006 提取多年夏季雪线以设定高低海拔时间窗口；使用 MOD11C3.006 分析地表温度趋势。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "LANDSAT_LT05_C02_T1_L2",
+        "LANDSAT_LE07_C02_T1_L2",
+        "LANDSAT_LC08_C02_T1_L2",
+        "Shuttle Radar Topography Mission-30 (SRTM-30)",
+        "Terra MODIS MOD10A2.006",
+        "MOD11C3.006"
+      ],
+      "author_team": [
+        "Arnaud Caiserman",
+        "Roy C. Sidle",
+        "Deo Raj Gurung"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Snow Avalanche Frequency Estimation (SAFE): 32 years of monitoring remote avalanche depositional zones in high mountains of Afghanistan",
+        "doi": "10.5194/tc-16-3295-2022",
+        "year": 2022,
+        "venue": "The cryosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "该论文研究 Amu Darya Basin 灌溉农业中实际蒸散发的长期变化及其由气候变化和土地利用变化分别造成的贡献。",
+      "hypothesis_or_mechanism": "气候条件变化会改变单位面积作物耗水，而种植制度和农田面积变化会通过面积加权效应改变区域总 ETa。",
+      "variables_and_data_use": "论文使用 Landsat Collection 2 Tier 1 surface reflectance products 和 Landsat LST 通过 SSEBop/FANO 估算日尺度 ETa，并聚合为月度和生长季 ETa；使用 Landsat-based cropland maps 提取种植实践范围，使用 CHIRPS precipitation、ERA5-Land maximum air temperature、PET reference evapotranspiration 和 SRTM DEM 作为气候与模型辅助输入，并用站点气象数据结合 Landsat-derived monthly NDVI 进行 Kc-based ETa 对比验证。",
+      "method_paradigm": "遥感能量平衡归因",
+      "used_assets": [
+        "Landsatcollection2Tier1surface re\u0001ectanceproducts",
+        "LandsatCollection2 surfacere\u0001ectanceproducts",
+        "Landsat-basedcroplandmapsat30-m spatialresolutionoftheAmuDaryaBasin",
+        "Climate HazardGroupInfraRedPrecipitationwithStationData(CHIRPSversion2)",
+        "ERA5-Land",
+        "PotentialEvapotranspiration (PET)dataset",
+        "ShuttleRadar TopographyMission(SRTM)",
+        "SSEBopFANO (v.0.2.8)",
+        "meteorologicalstationdata"
+      ],
+      "author_team": [
+        "Mayra Daniela Peña‐Guerrero",
+        "G. B. Senay",
+        "Atabek Umirbekov",
+        "Larisa Tarasova",
+        "Philippe Rufin",
+        "Bakhtiyor Pulatov",
+        "Daniel Müller"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Climate change has increased crop water consumption in Central Asia despite less water-intensive cropping",
+        "doi": "10.1038/s43247-025-03142-y",
+        "year": 2026,
+        "venue": "Communications Earth & Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "该论文研究 Planet 训练的 10x 超分辨率模型是否可用于 Landsat 5/8 地表反射率影像中小型和亚像元湖泊的检测。",
+      "hypothesis_or_mechanism": "通过对 Landsat Level-2 地表反射率影像进行超分辨率重建，可以在保持核心辐射信息基本一致的同时提高小湖泊计数和湖泊大小分布估计能力。",
+      "variables_and_data_use": "论文使用 Landsat Collection 2 Level 2 surface reflectance 的 NIR、green、red 三波段影像，经 8-bit 拉伸、切片、超分辨率重建后，用近红外阈值在 LR 和 SR 影像中分类水体，并与航空相机派生湖泊矢量数据比较湖泊数量、面积、精度、召回率和湖泊大小分布。",
+      "method_paradigm": "超分辨率遥感验证",
+      "used_assets": [
+        "Collection 2, level 2 (surface reflectance) products",
+        "LC08_L2SP_068014_20170708_20200903_02_T1",
+        "LC08_L2SP_068013_20170708_20201015_02_T1",
+        "LC08_L2SP_067012_20170903_20200903_02_T1",
+        "LC08_L2SP_064011_20170728_20200903_02_T1",
+        "LC08_L2SP_064012_20170728_20200903_02_T1",
+        "LC08_L2SP_050015_20170811_20200903_02_T1",
+        "LC08_L2SP_048016_20170829_20200903_02_T1",
+        "LC08_L2SP_046016_20170831_20200903_02_T1",
+        "LC08_L2SP_045015_20170723_20201015_02_T1",
+        "LC08_L2SP_043019_20170810_20200903_02_T1",
+        "LC08_L2SP_041021_20170812_20200903_02_T1",
+        "LC08_L2SP_041022_20170812_20200903_02_T1",
+        "LC08_L2SP_038023_20170823_20200903_02_T1",
+        "LC08_L2SP_031027_20170907_20200903_02_T1",
+        "LT05_L2SP_070014_19850831_20200918_02_T1",
+        "1 m resolution color-infrared camera orthomosaic",
+        "AirSWOT Ka-band radar data",
+        "Planet scenes",
+        "DIV2K dataset"
+      ],
+      "author_team": [
+        "Ethan D. Kyzivat",
+        "L. C. Smith"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Contemporary and historical detection of small lakes using super resolution Landsat imagery: promise and peril",
+        "doi": "10.1080/15481603.2023.2207288",
+        "year": 2023,
+        "venue": "GIScience & Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "该论文研究伊斯坦布尔 Esenyurt 区 2014-2022 年城市化过程中建筑扩张如何改变洪水风险、受影响人口和潜在经济损失。",
+      "hypothesis_or_mechanism": "城市化导致不透水建筑表面增加，改变地表覆盖与径流条件，从而使洪水暴露人口和建筑经济损害上升。",
+      "variables_and_data_use": "论文使用 LANDSAT/LC08/C02/T1_L2 的地表反射率相关波段计算 NDVI、NDBI 和 BU，用于识别建筑印迹和推断建筑建设年份；再结合 100 年一遇洪水淹没范围、淹没深度、建筑单位造价和深度-损失函数，计算建筑尺度的受影响人口、经济损害和总洪水风险。",
+      "method_paradigm": "遥感 GIS 风险评估",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "Google Earth Engine",
+        "historical Google Earth imagery",
+        "Global flood depth-damage functions",
+        "Announcement on Building Approximate Unit Costs to be Used in the Calculation of Architecture and Engineering Service Fees for the Year 2022/3"
+      ],
+      "author_team": [
+        "Buse Özer",
+        "Özge Yalçıner Ercoşkun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Integration of RS and GIS in assessing flood risk: A Case Study on Istanbul - Esenyurt",
+        "doi": "10.25034/ijcua.2024.v8n1-4",
+        "year": 2024,
+        "venue": "Journal of Contemporary Urban Affairs",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "该论文研究 Chattogram City 城市表面分布的空间格局及其自然、地形、基础设施和社会经济驱动因素。",
+      "hypothesis_or_mechanism": "城市建成表面的空间分布受地形条件、交通可达性、公共服务、商业中心、河流海岸和内涝风险等因素的非线性和空间异质性共同影响。",
+      "variables_and_data_use": "论文使用 Landsat Collection-2 Level-2 的 SWIR 和 NIR 波段计算 NDBI 来识别城市建成表面；使用 SRTM(DEM) 派生高程和坡度；使用 GoogleEarthPro/Worldview GIS 图层生成道路、铁路、运河、河流、海岸、机构、医院、教育设施、交通站点、CBD 等距离变量；并使用 WaterloggingRisk(WlR) 作为环境风险因子，随后用于 GeoDetector、DRF 和 GWRF 建模。",
+      "method_paradigm": "空间驱动机制建模",
+      "used_assets": [
+        "LandsatCollection-2Level-2dataofOLI-2sensor",
+        "TMsensor",
+        "Landsat05(TM)/LT51360451993104BKT01",
+        "Landsat09(OLI-2)/LC91360452023115LGN00",
+        "SRTM(DEM)",
+        "GoogleEarthPro (GISlayersfrom Worldview)",
+        "WaterloggingRisk(WlR)"
+      ],
+      "author_team": [
+        "Kazi Jihadur Rashid",
+        "Rajsree Das Tuli",
+        "Weibo Liu",
+        "Victor Mesev"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Quantifying the Drivers of the Spatial Distribution of Urban Surfaces in Bangladesh: A Multi-Method Geospatial Analysis",
+        "doi": "10.3390/rs17122050",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "如何结合 Landsat 光谱信息、植被结构、地形和气候变量，在澳大利亚范围内估算和制图地上植被生物量？",
+      "hypothesis_or_mechanism": "Landsat 地表反射率及其植被指数与纹理特征能够表征植被光谱状态，而冠层结构、地形和温度降水条件可提供互补信息，从而提高地上生物量估算精度。",
+      "variables_and_data_use": "以 Australian Tern biomass library 样地地上生物量为目标变量，使用 USGS Landsat 5 Level 2, Collection 2, Tier 1 的蓝、绿、红、近红外和短波红外地表反射率，计算 RVI、NDVI、GNDVI、SAVI、VARI、ARVI、EVI、DVI 等植被指数及 GLCM 纹理特征；同时加入 canopy height product 的冠层高度特征、ESA land cover、SRTM 地形变量、ERA5-Land hourly dataset 的气温和土壤温度，以及 CHIRPS daily dataset 的降水量作为预测变量。",
+      "method_paradigm": "机器学习生物量制图",
+      "used_assets": [
+        "USGS Landsat 5 Level 2, Collection 2, Tier 1",
+        "Australian Tern biomass library",
+        "canopy height product",
+        "ICESat GLAS",
+        "ALOS PALSAR",
+        "ESA land cover",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "ERA5-Land hourly dataset",
+        "CHIRPS daily dataset",
+        "Avitabile",
+        "NASA ORNL biomass carbon density v1"
+      ],
+      "author_team": [
+        "Chenxi Liu",
+        "Shuo Shi",
+        "Zhanmang Liao",
+        "Tong Wang",
+        "Wei Gong",
+        "Zixi Shi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Estimation of woody vegetation biomass in Australia based on multi-source remote sensing data and stacking models",
+        "doi": "10.1038/s41598-025-18891-1",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "该论文研究如何利用少量 Sentinel-2 影像、历史 AIS 图层和自动训练样本生成当前人工不透水面范围图。",
+      "hypothesis_or_mechanism": "历史 AIS 图层结合光谱指数、反射率、纹理、距离规则和年度 NDVI 变化特征，可以自动筛选可靠训练样本并提升当前 AIS 分类精度。",
+      "variables_and_data_use": "论文使用 Sentinel-2 L2A 20 m BoA reflectance 计算 NDVI、MNDWI 等光谱指数并作为随机森林主特征；使用 GMIS percent impervious 和 GISA 二值 AIS 图层生成 AIS 训练掩膜；使用 Landsat 8 Level 2, Collection 2 surface reflectance 生成年度 NDVI 标准差合成以区分 AIS 与季节性变化地物；使用 SRTM DEM 坡度修正地形假阳性；使用 Esri Land Cover built area 和 high resolution worldview imagery 支持比较与精度评估。",
+      "method_paradigm": "自动训练分类",
+      "used_assets": [
+        "Sentinel-2 MSI",
+        "Sentinel-2 L2A",
+        "SRTM Digital Elevation Model",
+        "Global Manmade Impervious Surface (GMIS) layer",
+        "Global Impervious Surface Area (GISA)",
+        "Landsat 8 Level 2, Collection 2 dataset (surface reflectance)",
+        "Sentinel-2 10m Land Use/Land Cover",
+        "high resolution worldview imagery"
+      ],
+      "author_team": [
+        "Kristofer Lasko",
+        "Francis D. O’Neill"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Automated Method for Artificial Impervious Surface Area Mapping in Temperate, Tropical, and Arid Environments Using Hyperlocal Training Data With Sentinel-2 Imagery",
+        "doi": "10.1109/jstars.2023.3328301",
+        "year": 2023,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "能否利用卫星近红外光谱影像识别西班牙 Rio Tinto 地区的黄铁矿及硫化物矿床位置？",
+      "hypothesis_or_mechanism": "黄铁矿及相关硫化物矿物具有可从近红外波段组合、波段运算和光谱特征中识别的特征响应。",
+      "variables_and_data_use": "使用 Landsat 8 Collection 2 Level 2 images、ASTER L2 Surface Radiance VNIR and Crosstalk Corrected SWIR (09XT) 和 Sentinel 2 of Level 2a 的近红外及相关波段，测试 RGB 波段组合和波段运算，并将选定区域的光谱特征与实验室光谱模式比较，以定位潜在黄铁矿区域。",
+      "method_paradigm": "多源光谱识别与验证",
+      "used_assets": [
+        "Landsat 8 Collection 2 Level 2 images",
+        "ASTER L2 Surface Radiance VNIR and Crosstalk Corrected SWIR (09XT)",
+        "Sentinel 2 of Level 2a"
+      ],
+      "author_team": [
+        "Marta Ciążela",
+        "Bartosz Pieterek",
+        "Jakub Ciążela",
+        "Dariusz Marciniak"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Sulfide ore deposits remote detection in the Rio Tinto area, terrestrial analog of Mars",
+        "doi": "10.46427/gold2022.9815",
+        "year": 2022,
+        "venue": "Goldschmidt2022 abstracts",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究如何利用多源地理空间数据识别 Ambon City 河流流域中的洪水易发区域及可能受影响的居民点。",
+      "hypothesis_or_mechanism": "距离河流较近、地势较低、相对地形不利、植被状况不同且具有水体特征的区域更容易发生洪水或积水。",
+      "variables_and_data_use": "研究使用 USGS Landsat 8 Level 2, Collection 2, Tier 1 数据计算 NDVI，并结合 JRC Global Surface Water Mapping Layers, v1.4 计算 NDWI；使用 NASA SRTM Digital Elevation 30 m 获取高程并计算 TPI，同时加入距河流距离和建成区分布，将这些变量加权叠加以绘制洪水易发区并评估受影响聚落。",
+      "method_paradigm": "洪水风险空间建模",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers, v1.4",
+        "NASA SRTM Digital Elevation 30 m",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+        "Google Earth Engine (GEE)"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Benson Joshua",
+        "Glendy Somae"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Modeling Flood Hazards in Ambon City Watersheds: Case Studies of Wai Batu Gantung",
+        "doi": "10.55537/jistr.v3i2.836",
+        "year": 2024,
+        "venue": "Journal of Information Systems and Technology Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "如何利用多源地理空间数据和 Google Earth Engine 对 Ambon City 多个河流流域的洪水危险区域及其受影响聚居地进行建模和识别？",
+      "hypothesis_or_mechanism": "河流距离、地表水分布、地形高程、相对地形位置和植被状况共同影响地表径流与积水风险，因此多变量叠加能够识别洪水易发区域及潜在受影响建成区。",
+      "variables_and_data_use": "研究使用 JRC Global Surface Water Mapping Layers, v1.4 生成 NDWI 和水面信息，使用 NASA SRTM Digital Elevation 30 m 生成高程和 TPI，使用 USGS Landsat 8 Level 2, Collection 2, Tier 1 数据基于近红外和红光反射率生成 NDVI，并结合河流距离、建成区分布和洪水历史进行加权叠加和洪水危险区制图。",
+      "method_paradigm": "多源空间叠加决策支持",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers, v1.4",
+        "NASA SRTM Digital Elevation 30 m",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+        "Normalized Difference Water Index (NDWI)",
+        "Topographic Position Index (TPI)",
+        "Normalized Difference Vegetation Index (NDVI)"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Philia Christi Latue"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "MODELING FLOOD HAZARDS IN AMBON CITY WATERSHEDS: CASE STUDIES OF WAI BATU GANTUNG, WAI BATU GAJAH, WAI TOMU, WAI BATU MERAH AND WAI RUHU",
+        "doi": "10.59407/jdaics.v1i2.635",
+        "year": 2024,
+        "venue": "Journal of Data Analytics Information and Computer Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "研究如何利用多源遥感和地形数据对 Wai Ruhu 流域的洪水易发区域及其中可能受影响的建成区进行建模。",
+      "hypothesis_or_mechanism": "低高程、相对低洼地形、靠近河流、地表水分布以及植被状况共同影响区域的洪水易感性和潜在淹没风险。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers data, v1.4 生成 NDWI，使用 NASA SRTM Digital Elevation 30m data 提取高程并计算 TPI，使用 USGS Landsat 8 Level 2, Collection 2, Tier 1 data 基于红光和近红外地表反射率计算 NDVI；同时结合距河流距离，对各变量赋权叠加生成洪水易发区，并与建成区分布叠加。",
+      "method_paradigm": "多源空间叠加建模",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers data, v1.4",
+        "NASA SRTM Digital Elevation 30m data",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1 data"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "APPLICATION OF REMOTE SENSING DATA AND GEOGRAPHIC INFORMATION SYSTEM FOR FLOOD MODELING IN WAI RUHU WATERSHED AMBON CITY BASED ON GEOGLE EARTH ENGINE",
+        "doi": "10.59407/jdaics.v1i2.739",
+        "year": 2024,
+        "venue": "Journal of Data Analytics Information and Computer Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "如何结合长时序Landsat地表反射率数据与历史制图资料，实现阿尔卑斯山区复杂生境的高精度动态分类与长期变化检测？",
+      "hypothesis_or_mechanism": "通过Z统计量筛选稳定纯像元并结合多源光谱指数与地形特征，可有效克服高山环境云雪干扰与混合像元问题，从而提升长时序生境分类的一致性与可靠性。",
+      "variables_and_data_use": "使用Landsat C2 L2地表反射率数据计算NDVI等光谱指数作为主要预测变量；结合LiDAR衍生的DEM/DSM生成冠层高度模型(CHM)；引入CHELSA气候数据集作为环境变量；利用历史公园土地覆盖图件与人工判读正射影像构建训练集与验证集。",
+      "method_paradigm": "长时序遥感分类与Z统计量回溯",
+      "used_assets": [
+        "Landsat Collection 2 Level 2, Tier 1",
+        "LiDAR-derived DTMs/DSMs",
+        "CHELSA v2.1",
+        "Historical Park LULC cartography",
+        "Orthoimages"
+      ],
+      "author_team": [
+        "Chiara Richiardi",
+        "Consolata Siniscalco",
+        "Matteo Garbarino",
+        "Maria Adamo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Unravelling decades of habitat dynamics in protected areas: A hierarchical approach applied to the Gran Paradiso National Park (NW Italy)",
+        "doi": "10.1007/s10661-025-14669-0",
+        "year": 2025,
+        "venue": "Environmental Monitoring and Assessment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "埃塞俄比亚Dinki流域1994至2023年间土地利用/土地覆盖的动态演变特征及其对生态系统服务价值的影响机制为何？",
+      "hypothesis_or_mechanism": "土地利用/土地覆盖类型的时空转换会直接驱动不同生物群系生态系统服务价值的增减，且结合本地化参数的估值模型能更准确地量化该区域生态经济系统的响应轨迹。",
+      "variables_and_data_use": "使用Landsat C2 L2地表反射率产品提取水体并分类六类土地利用/覆盖类型；结合实地GPS点与Google Earth高分辨率影像进行独立精度验证；利用Costanza全球系数与Kindu本地化系数计算各时期生态系统服务价值（ESV）。",
+      "method_paradigm": "监督分类与生态系统服务估值",
+      "used_assets": [
+        "Landsat 5 TM C2 L2",
+        "Landsat 7 ETM+ C2 L2",
+        "Landsat 8 OLI C2 L2",
+        "SRTM DEM",
+        "Google Earth imagery",
+        "TEEB valuation database"
+      ],
+      "author_team": [
+        "Yared Worku",
+        "Mengistu Asmamaw",
+        "Argaw Ambelu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Impacts of land use/land cover change on ecosystem service values in the Dinki Watershed, central highlands of Ethiopia",
+        "doi": "10.1038/s41598-026-44717-9",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "能否利用 Landsat 表面反射率派生的植被指数与历史气象条件预测健康香蕉植株状态，并通过偏离健康基线识别香蕉疾病暴发区域？",
+      "hypothesis_or_mechanism": "疾病胁迫会改变香蕉冠层的可见光、近红外和短波红外反射特征，使观测植被指数偏离由历史温度和降水条件预测的健康状态基线。",
+      "variables_and_data_use": "使用 LANDSAT/LC08/C02/T1_L2 的 SR_B2、SR_B4、SR_B5 和 SR_B6 表面反射率计算 11 个植被指数，并将其作为健康状态观测和模型目标；使用 MOD11A1V6 的白天、夜间地表温度以及 NASA/GPM_L3/IMERG_MONTHLY_V06 的降水估计作为带滞后窗口的预测变量；通过观测植被指数与预测健康植被指数之间的偏差检测疾病。",
+      "method_paradigm": "机器学习异常检测",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "MOD11A1V6",
+        "NASA/GPM_L3/IMERG_MONTHLY_V06",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Renata Retkutė",
+        "Kathleen S. Crew",
+        "John E. Thomas",
+        "Christopher A. Gilligan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Detection of Banana Diseases Based on Landsat-8 Data and Machine Learning",
+        "doi": "10.20944/preprints202504.0087.v1",
+        "year": 2025,
+        "venue": "Preprints.org",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "如何利用 Landsat 长时间序列自动估计全球不同地点的雪盖持续时间、融雪时间和新雪出现时间？",
+      "hypothesis_or_mechanism": "基于 Landsat 地表反射率及空间和时间光谱特征的概率分类器能够比基于 NDSI 的方法更准确、更充分地识别雪和非雪状态，从而改善雪季动态估计。",
+      "variables_and_data_use": "论文使用 Landsat Collection-2 Level-2 地表反射率波段、QA 分类信息、光谱差异、局部统计量、月度中位数光谱和 NDVI、NDSI 等派生指数作为分类变量，并结合 WorldCover 和 ALOS DSM 的土地覆盖与地形变量，通过 Random Forest 生成雪、非雪和云的概率，再用像元级 GAM 估计雪盖持续时间、融雪日期和新雪日期。PlanetScope、气象站雪深、GHCN-Daily 和微气候数据用于独立验证。",
+      "method_paradigm": "机器学习与时序重建",
+      "used_assets": [
+        "Landsat Collection-2 Level-2 Science Products",
+        "Landsat TM4",
+        "Landsat TM5",
+        "Landsat ETM+7",
+        "Landsat OLI8",
+        "Landsat OLI9",
+        "WorldCover land cover classification (version 2021 v200)",
+        "ALOS World 3D-30m Global Digital Surface Model (DSM; version 3.2)",
+        "Global Historical Climatology Network - Daily (GHCN-Daily), Version 3",
+        "snow depth data from the Finnish Meteorological Institute",
+        "local microclimate dataset",
+        "PlanetScope"
+      ],
+      "author_team": [
+        "Pekka Niittynen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "snowman: an open-source R package for automated 30-m snow and ice cover mapping using the Landsat archive",
+        "doi": "10.31223/x5ff32",
+        "year": 2026,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "研究不同生态系统分类层级、卫星影像协变量和附加生态协变量如何影响 Tiwi Islands 生态系统地图的模型可靠性。",
+      "hypothesis_or_mechanism": "加入土壤、地形和植被结构等生态协变量，并选择信息表现更好的卫星影像，能够提升生态系统分类模型的预测和评价性能。",
+      "variables_and_data_use": "使用 Landsat-9 OLI-2 Collection 2 Level-2 影像的红、绿、蓝和近红外波段及 NDVI 作为卫星预测变量，并与 Sentinel-2 影像进行比较；同时加入 Soil and Landscape Grid of Australia 的土壤变量、SRTM DEM 派生的高程和地形变量，以及植被高度变量，用于随机森林生态系统分类和空间预测。",
+      "method_paradigm": "遥感协变量分类建模",
+      "used_assets": [
+        "Landsat-9 satellite (level 2, collection 2, tier 1)",
+        "Sentinel-2 satellite from the surface reflectance harmonised collection (level-2A)",
+        "Soil and Landscape Grid of Australia",
+        "Shuttle Radar Topography Mission (SRTM) 5-m Smoothed Digital Elevation Model (DEM-S)"
+      ],
+      "author_team": [
+        "Alys Young",
+        "Nicholas Murray",
+        "Jane Elith",
+        "Brett A. Bryan",
+        "Hugh F. Davies",
+        "Emily Nicholson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Evaluating modelling decisions and spatial predictions in ecosystem mapping",
+        "doi": "10.32942/x2vk7w",
+        "year": 2025,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 36,
+    "source_paper_count": 36,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

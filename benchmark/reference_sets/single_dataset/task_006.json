@@ -1,0 +1,1349 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_006",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "GPM: Global Precipitation Measurement (GPM) Release 06 [deprecated]",
+    "spatial_coverage": {
+      "region_name": "Hengduan Mountains, China",
+      "coverage": "Global precipitation estimates covering the Hengduan Mountains region in southwest China."
+    },
+    "temporal_coverage": "2000-06-01 00:00 to 2024-06-02 18:30 UTC",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "11132 m (approximately 0.1 degree)",
+    "temporal_unit": "30-minute cadence",
+    "analytical_capabilities": [
+      "Map spatial patterns of precipitation intensity across the region",
+      "Aggregate rainfall over custom hourly, daily, monthly, or seasonal periods",
+      "Detect heavy rainfall events and precipitation extremes",
+      "Analyze temporal variability, trends, and anomalies in rainfall records",
+      "Compare rainfall distributions across elevations, watersheds, or subregions"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Calibrated precipitation rate (mm/hr)",
+      "runtime_hint": "Use precipitationCal (estimated 0-174 mm/hr) as the primary calibrated rate. Other catalog bands include precipitationUncal and HQprecipitation (0-120 mm/hr), IRprecipitation (0-79.5 mm/hr), IRkalmanFilterWeight (0-100%), randomError (estimated 0.24-250 mm/hr), probabilityLiquidPrecipitation (0-100%), HQobservationTime, and HQprecipSource. HQprecipSource is a 4-bit passive-microwave sensor identifier, not a general quality flag. Convert a 30-minute rate to depth by multiplying by 0.5 hour; obtain a 3-hour depth by summing six half-hour depths rather than averaging rates and labeling the result as an accumulation. Filter the image metadata property status to permanent for finalized research products because the collection can contain provisional images that are later replaced."
+    },
+    "data_source": "NASA Global Precipitation Measurement mission, distributed by NASA GES DISC",
+    "gee_asset": {
+      "id": "NASA/GPM_L3/IMERG_V06",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/GPM_L3/IMERG_V06",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_006.json",
+    "source_sha256": "496cd273879ef05e0fe240c6c82f659d01764a386b7c77eec33c44dd06262acb",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_006/prompt.json",
+    "current_prompt_sha256": "fe2c2e7e6c3179a36d25651636a0a44f34269957cfc86c599affc7cf34087659",
+    "original_anchor_asset": {
+      "id": "NASA/GPM_L3/IMERG_V06",
+      "observable_group": "gpm_imerg_final_run_precipitation",
+      "observation_identity_contract": {
+        "physical_object": "surface precipitation amount or rate",
+        "source_lineage": "GPM IMERG multi-satellite precipitation production lineage",
+        "core_measurement_semantics": "IMERG research-quality Final Run precipitation including its retrospective calibration or gauge adjustment",
+        "non_material_variations": "IMERG release, archive, grid reprojection, resampling or temporal aggregation that retains Final Run precipitation",
+        "material_mismatches": "non-IMERG precipitation lineage or Early/Late/NRT-only latency products when no Final Run observation is used"
+      },
+      "asset_alias_policy": "The IMERG Final Run precipitation family is admitted when it is operationally analyzed, including NASA/GPM_L3/IMERG_V06 and NASA/GPM_L3/IMERG_V07 collections. Early-Run-only or Late-Run-only studies are excluded because the seed uses Final Run. V07 is retained as a confirmed version variant of the V06 task anchor; the product version must be stated in each paper direction."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "How do IMERG V07 early, late, and final products improve on V06 precipitation estimates in Sichuan?",
+      "hypothesis_or_mechanism": "Algorithm and calibration changes alter bias differently by rainfall intensity, terrain, and product latency.",
+      "variables_and_data_use": "IMERG V06 and V07 precipitation estimates are compared with gauge-based observations across space, season, and event intensity.",
+      "method_paradigm": "Version-intercomparison and ground-reference error decomposition.",
+      "used_assets": [
+        "GPM IMERG V06",
+        "GPM IMERG V07",
+        "rain gauges"
+      ],
+      "author_team": [
+        "Xuegang Li",
+        "Jiufu Liu",
+        "Wei Cui",
+        "Huan Wang",
+        "Aimin Liao",
+        "Yue Wang",
+        "Weijie Gao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparative evaluation of GPM IMERG V07 early, late and final run products compared to IMERG V06 in Sichuan Province, China",
+        "doi": "10.1007/s00704-025-05569-x",
+        "year": 2025,
+        "venue": "Theoretical and Applied Climatology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Evaluates linear scaling and random forest bias correction models for GPM-IMERG V7 daily rainfall over six coastal watersheds in Indonesia.",
+      "hypothesis_or_mechanism": "RF-based correction can provide hydrologically credible daily rainfall estimates for data-scarce tropical island watersheds by capturing non-linear satellite-gauge relationships.",
+      "variables_and_data_use": "Daily GPM-IMERG V7 precipitation estimates paired with ground gauge observations from 2022-2025 to train LS and RF bias-correction models and evaluate performance using NSE, R, and RSR.",
+      "method_paradigm": "Daily IMERG precipitation bias correction with linear scaling and random forest",
+      "used_assets": [
+        "NASA/GPM_L3/IMERG_V07",
+        "Moluccas River Basin Agency rain-gauge observations"
+      ],
+      "author_team": [
+        "Hayatuddin Tuasikal",
+        "Pitojo Tri Juwono",
+        "Moh. Sholichin",
+        "Ery Suhartanto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating Linear Scaling and Random Forest Bias Correction of GPM-IMERG V7 Rainfall in Moluccas Islands Watersheds",
+        "doi": "10.48084/etasr.17008",
+        "year": 2026,
+        "venue": "Engineering, Technology &amp; Applied Science Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "Evaluates whether a hybrid RF+QM bias correction framework improves hydroclimatically meaningful variability and high-rainfall tails in satellite precipitation estimates for a tropical urban catchment.",
+      "hypothesis_or_mechanism": "Integrating RF-based conditional correction with QM-based residual distributional calibration will preserve interannual variability and extreme-event magnitudes better than standalone QM or RF corrections.",
+      "variables_and_data_use": "Uses GPM-IMERG Final Run V07 daily precipitation as the primary satellite predictor, corrected via RF and QM against rain-gauge observations; evaluates performance using NSE, R, RSR, and tail/regime-sensitive metrics.",
+      "method_paradigm": "Hybrid random-forest and quantile-mapping precipitation bias correction",
+      "used_assets": [
+        "NASA/GPM_L3/IMERG_V07",
+        "Malang City rain-gauge observations"
+      ],
+      "author_team": [
+        "Ery Suhartanto",
+        "Mohammad Bisri",
+        "Rizki Tri Utami",
+        "Ahmad Yassin Fuady"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Hybrid Random Forest-Quantile Mapping Bias Correction of GPM-IMERG Rainfall for Extremes and Interannual Variability in a Tropical Urban Catchment",
+        "doi": "10.48084/etasr.19073",
+        "year": 2026,
+        "venue": "Engineering, Technology &amp; Applied Science Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "How well does GPM IMERG V07 match in-situ precipitation observations at Adana Meteorological Station across monthly and yearly scales?",
+      "hypothesis_or_mechanism": "IMERG V07 should provide precipitation estimates that are sufficiently correlated with gauge measurements to support hydrological and climate analyses.",
+      "variables_and_data_use": "Monthly precipitation from NASA/GPM_L3/IMERG_MONTHLY_V07 was retrieved in Google Earth Engine and compared against daily-to-monthly aggregated precipitation observations from the Turkish State Meteorological Service station 17351 using correlation, RMSE, F-tests, and t-tests.",
+      "method_paradigm": "Monthly IMERG precipitation validation against gauge observations",
+      "used_assets": [
+        "NASA/GPM_L3/IMERG_MONTHLY_V07",
+        "Turkish State Meteorological Service station 17351 precipitation observations"
+      ],
+      "author_team": [
+        "Omar Alsenjar",
+        "Mahmut Çetin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of GPM-IMERG V07 Precipitation Data Against In-Situ Measurements in a Semi-Arid Region of Türkiye",
+        "doi": "10.24232/jmd.1708249",
+        "year": 2025,
+        "venue": "Jeoloji Mühendisliği Dergisi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文评估并比较 IMERG Final V06B 与 V07B 降水产品在季节尺度和不同降水制度下的表现差异。",
+      "hypothesis_or_mechanism": "IMERG Final 新旧版本因算法更新和雨量计校准整合差异，可能在降水强度、误差和分类检出能力上表现不同。",
+      "variables_and_data_use": "论文使用 IMERG Final V06B 和 V07B 的30分钟降水估计，将其聚合为与观测一致的24小时降水量，并进一步转换为季节尺度；同时使用地面雨量计观测作为验证基准，计算 RMSE、POD、FAR、BIAS、CSI 和 ETSa 等指标。",
+      "method_paradigm": "卫星降水验证",
+      "used_assets": [
+        "IMERGFinal(V06BandV07B)",
+        "IMERGV06B",
+        "IMERGV07B",
+        "MERGE",
+        "INPE rain gauges"
+      ],
+      "author_team": [
+        "José Roberto Rozante",
+        "Gabriela Rozante"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "IMERG V07B and V06B: A Comparative Study of Precipitation Estimates Across South America with a Detailed Evaluation of Brazilian Rainfall Patterns",
+        "doi": "10.3390/rs16244722",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该论文研究 IMERG Final Run 降水数据在月尺度、季节尺度以及 ENSO 事件条件下相对于雨量站观测的降水估计准确性。",
+      "hypothesis_or_mechanism": "论文假设 IMERG 降水估计与地面雨量站观测具有可验证的一致性，但其误差会受到季节、地形和 ENSO 状态的影响。",
+      "variables_and_data_use": "论文使用 IMERG level 3 Final Run 的日降水和月降水数据，并通过 NASA Earth Data 下载、OPeNDAP 子集化、NetCDF 和 ASCII 格式保存、QGIS 投影与网格提取，将 IMERG 网格时间序列与 BMKG 雨量站月降水、SOI/ENSO 事件数据进行相关、偏差和 RMSE 验证分析。",
+      "method_paradigm": "卫星降水验证",
+      "used_assets": [
+        "IMERG level 3 Final Run dataset",
+        "GPM_3IMERGM_06",
+        "GPM-IMERG"
+      ],
+      "author_team": [
+        "Putu Eka Tulistiawan",
+        "I Wayan Gede Astawa Karang",
+        "Takahiro Osawa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of Satellite Rainfall Product (GPM-IMERG) an Bali and Nusa Tenggara:  A Comparison of Normal Seasons,  El Nino and La Nina Events",
+        "doi": "10.24114/jg.v15i2.44967",
+        "year": 2023,
+        "venue": "JURNAL GEOGRAFI",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "GPM IMERG Final Run降雨估计在半干旱流域降雨监测和长期降雨分析中的表现如何？",
+      "hypothesis_or_mechanism": "GPM IMERG Final Run能够补充地面雨量站数据不足，但其估计精度会随降雨强度变化，并可能在极端降雨下出现低估。",
+      "variables_and_data_use": "研究实际使用GPM-IMERG降雨数据，并将其日、月降雨量与地面雨量站观测进行相关性、RMSE和NSE比较，同时对GPM IMERG Final Run产品进行降雨特征和偏差分析。",
+      "method_paradigm": "卫星降雨验证",
+      "used_assets": [
+        "GPM-IMERG",
+        "GPM IMERG Final Run"
+      ],
+      "author_team": [
+        "Denik Sri Krisnayanti",
+        "Jusuf J. S. Pah",
+        "Ralno R. Klau",
+        "Alex Decaprio",
+        ". Syamsumarlin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of GPM IMERG Product Against Ground Station Rainfall Data in Semi-Arid Region",
+        "doi": "10.28991/cej-2024-010-12-09",
+        "year": 2024,
+        "venue": "Civil Engineering Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "该论文研究如何对 GPM IMERG Final Run V06 月降水进行偏差校正并评估不同校正方法的性能。",
+      "hypothesis_or_mechanism": "论文假设能够刻画非线性和季节性误差结构的方法会比简单线性方法更有效地降低 IMERG 与雨量站观测之间的偏差。",
+      "variables_and_data_use": "论文使用 GPM IMERG Final Run V06 的降水估计与三个雨量站月降水记录配对，将原生亚日尺度 IMERG 聚合为月总量，并通过点采样、Thiessen 汇总、时间对齐和多种偏差校正方法生成校正后的降水序列，再用 NSE、R 和 RSR 评估效果。",
+      "method_paradigm": "偏差校正验证",
+      "used_assets": [
+        "GPM IMERG Final Run V06"
+      ],
+      "author_team": [
+        "Rahmah Dara Lufira",
+        "Ery Suhartanto",
+        "Ussy Andawayanti",
+        "Runi Asmaranto",
+        "Rizki Tri Utami"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Comparative Assessment of Advanced Bias Correction Methods for GPM IMERG in Banjir Kanal Timur Watershed",
+        "doi": "10.48084/etasr.15484",
+        "year": 2026,
+        "venue": "Engineering, Technology &amp; Applied Science Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "该论文研究将 GPM IMERG Final 降水与雨量站数据合并后，是否能改进水文模型对洪水流量的模拟表现。",
+      "hypothesis_or_mechanism": "卫星降水可补充雨量站空间覆盖不足，经过插值、同化和合并后可改善降水场重建并提升径流模拟精度。",
+      "variables_and_data_use": "论文使用 IMERG-F uncalibrated 和 calibrated 半小时 0.1°×0.1° rainfall rate estimates，单独作为水文模型降水输入，或与雨量站数据通过 NoModular/Modular 方法合并后强迫 CHyM 模型，并用流量观测评价结果。",
+      "method_paradigm": "降水验证与水文模拟",
+      "used_assets": [
+        "Global Precipitation Measurement (GPM) Integrated Multi-satellitE Retrievals for GPM (IMERG)",
+        "IMERG version 5 Final (IMERG-F)",
+        "GPM IMERG Final CAL",
+        "GPM IMERG Final UNCAL"
+      ],
+      "author_team": [
+        "Annalina Lombardi",
+        "Barbara Tomassetti",
+        "Valentina Colaiuda",
+        "Ludovico Di Antonio",
+        "Paolo Tuccella",
+        "Mario Montopoli",
+        "Giovanni Ravazzani",
+        "Frank Silvio Marzano",
+        "Raffaele Lidori",
+        "Giulia Panegrossi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "On the combined use of rain gauges and GPM IMERG  satellite rainfall products for hydrological modelling:  impact assessment of the cellular-automata-based  methodology in the Tanaro River basin in Italy",
+        "doi": "10.5194/hess-28-3777-2024",
+        "year": 2024,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "GPM 3IMERGDF v06 Final Run日降水数据在不同时间聚合尺度上与地面实测降水的一致性如何，以及能否通过校正因子提高其精度？",
+      "hypothesis_or_mechanism": "将IMERG降水从日尺度聚合至旬尺度和月尺度，并利用地面雨量站数据建立回归或平均比率校正关系，可以降低估计偏差并提高与实测降水的一致性。",
+      "variables_and_data_use": "研究使用Daily accumulated precipitation (Combined microwave-IR) estimate - Final Run (GPM 3IMERGDF v06)的降水量作为待评估和校正变量，使用data curah hujan terukur di wilayah Bima dan Dompu作为地面参照，在日、旬和月尺度上进行质量检验、校准与验证，并以R、RMSE、NSE和RB评价校正前后的精度。",
+      "method_paradigm": "测量验证与偏差校正",
+      "used_assets": [
+        "Daily accumulated precipitation (Combined microwave-IR) estimate - Final Run (GPM 3IMERGDF v06)",
+        "data curah hujan terukur di wilayah Bima dan Dompu"
+      ],
+      "author_team": [
+        "Rostihanji",
+        "Humairo Saidah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validitas data curah hujan produk satelit IMERG terhadap data curah hujan terukur di wilayah Bima dan Dompu",
+        "doi": "10.22225/pd.12.2.6461.137-152",
+        "year": 2023,
+        "venue": "PADURAKSA: Jurnal Teknik Sipil Universitas Warmadewa",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何利用MGWR以及植被和地形变量，将IMERG V06 (IMERG_Final)月尺度和年尺度降水从0.1°空间分辨率下推至1 km，并评估下推结果的精度？",
+      "hypothesis_or_mechanism": "降水与NDVI、高程、坡度、坡向和地形起伏度之间存在空间非平稳且作用尺度不同的关系，MGWR通过为各解释变量估计不同空间带宽可提高降水空间下推精度。",
+      "variables_and_data_use": "以IMERG V06 (IMERG_Final)日降水聚合得到的月、年降水为目标变量，以MOD13A3 NDVI及SRTM派生的高程、坡度、坡向和地形起伏度为解释变量，建立MGWR模型并将系数、截距和残差插值至1 km；使用Meteorological station precipitation data from 2001 to 2019验证原始和下推降水。",
+      "method_paradigm": "统计空间下推",
+      "used_assets": [
+        "IMERG V06 (IMERG_Final)",
+        "Shuttle Radar Topography Mission (SRTM) data",
+        "MOD13A3 monthly composite NDVI data",
+        "Meteorological station precipitation data from 2001 to 2019"
+      ],
+      "author_team": [
+        "Lihui Tu",
+        "Limin Duan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatial downscaling analysis of GPM IMERG precipitation dataset based on multiscale geographically weighted regression model: a case study of the Inner Mongolia Reach of the Yellow River basin",
+        "doi": "10.3389/fenvs.2024.1389587",
+        "year": 2024,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "GPM IMERG precipitation Level 3 data product (version 06)对3日和5日降水事件的估计与地面雨量计观测相比表现如何，以及局地与上游流域平均降水能否共同表征潜在洪水风险？",
+      "hypothesis_or_mechanism": "IMERG-F事件降水与雨量计观测之间的误差和事件探测能力可能随降水事件强度、ENSO状态及地形高程而变化，而上游降水汇集可揭示仅靠局地降水无法反映的洪水风险。",
+      "variables_and_data_use": "使用GPM IMERG precipitation Level 3 data product (version 06)的日降水构建3日和5日累积事件，并依据MERIT Hydro河网和集水区计算局地及上游流域平均降水；以NOAA’s Global Historical Climate Network雨量计数据匹配和验证卫星事件，通过多种误差、偏差、探测概率和虚警率指标评价表现，同时使用multivariate ENSO Index Version 2和MERIT Digital Elevation Model (DEM)分析ENSO状态与高程的影响。",
+      "method_paradigm": "卫星降水验证",
+      "used_assets": [
+        "GPM IMERG precipitation Level 3 data product (version 06)",
+        "MERIT Hydro",
+        "NOAA’s Global Historical Climate Network",
+        "multivariate ENSO Index Version 2",
+        "MERIT Digital Elevation Model (DEM)"
+      ],
+      "author_team": [
+        "Elizabeth Bartuska",
+        "R. Edward Beighley"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing precipitation event characteristics throughout North Carolina derived from GPM IMERG data products",
+        "doi": "10.3389/frwa.2024.1296586",
+        "year": 2024,
+        "venue": "Frontiers in Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何利用不同时间分辨率的final IMERG v06B product计算全球动态降雨侵蚀力，并判断简化计算方法能否可靠复现地面站侵蚀力估计？",
+      "hypothesis_or_mechanism": "高时间分辨率降雨观测能够更准确地刻画降雨强度、事件持续时间和30分钟峰值强度，因此30分钟IMERG数据应比月度或3小时简化方法更接近地面站侵蚀力估计。",
+      "variables_and_data_use": "使用final IMERG v06B product的总降水量和液态降水比例计算液态降水，并分别基于月度、3小时和30分钟数据计算Modified Fournier Index及RUSLE降雨侵蚀力；将结果与重采样至0.1度的GloREDa进行逐网格及均值、中位数和标准差比较。",
+      "method_paradigm": "卫星反演与基准验证",
+      "used_assets": [
+        "final IMERG v06B product",
+        "GloREDa"
+      ],
+      "author_team": [
+        "Robert A. Emberson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Dynamic rainfall erosivity estimates derived from IMERG data",
+        "doi": "10.5194/hess-27-3547-2023",
+        "year": 2023,
+        "venue": "Hydrology and Earth System Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究IMERG降水资料能否用于识别印度各网格点的雨季起止日期，并据此改进雨季长度和季节降水异常的概率性季节预报。",
+      "hypothesis_or_mechanism": "较早的雨季开始日期与更长且更湿的雨季相关，而基于降水时间序列扰动生成的集合可以刻画起止日期诊断的不确定性。",
+      "variables_and_data_use": "使用IMERG version 6的日降水数据计算累计降水异常曲线，识别雨季开始和结束日期，并进一步计算季节长度、季节累计降水及其异常；主要分析采用12小时延迟产品，同时将对应的IMERG Final product用于一致性评估，并使用IMD网格降水和NOAA CPC降水资料进行验证。",
+      "method_paradigm": "降水诊断与集合预报",
+      "used_assets": [
+        "IMERG version 6",
+        "IMERG 12 h latency product",
+        "corresponding Final product of IMERG",
+        "rain gauge-based IMD gridded rainfall data",
+        "daily NOAA Climate Prediction Center (CPC) precipitation data set"
+      ],
+      "author_team": [
+        "Chempampadam Balasubramannian Jayasankar",
+        "Vasubandhu Misra"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Probabilistic seasonal outlook for the rainy season over India by monitoring the onset dates using GPM IMERG satellite-based precipitation",
+        "doi": "10.5194/wcd-6-981-2025",
+        "year": 2025,
+        "venue": "Weather and Climate Dynamics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "GPM_IMERG version 6 和 CHIRPS Version 2.0 降水数据驱动 HEC-HMS 时，能否可靠模拟流域径流，以及哪种卫星降水产品的模型表现更好？",
+      "hypothesis_or_mechanism": "不同卫星降水产品对降水时空分布的表征差异会传递至 HEC-HMS 径流模拟，而 GPM_IMERG version 6 预计比 CHIRPS Version 2.0 产生更接近实测流量的结果。",
+      "variables_and_data_use": "将 GPM_IMERG version 6、CHIRPS Version 2.0 和地面雨量站的日降水作为 HEC-HMS 输入，使用 SRTM (Shuttle Radar Topography Model) 划分流域并提取流域特征，以 SWALIM 实测流量进行七年校准和七年验证，并通过 NSE、R2、RMSE 和 PBIAS 比较模拟性能。",
+      "method_paradigm": "产品比较验证",
+      "used_assets": [
+        "GPM_IMERG version 6",
+        "CHIRPS Version 2.0",
+        "SRTM (Shuttle Radar Topography Model)",
+        "Ethiopian Meteorological Agency",
+        "SWALIM Somali Water and Land Information Management"
+      ],
+      "author_team": [
+        "Abdinour Abshir Hussein",
+        "Ahmet Baylar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Hydrological Model Evaluation of Ground, GPM IMERG, and CHIRPS precipitation data for Shabelle Basin in Ethiopia",
+        "doi": "10.55529/jecnam.31.41.60",
+        "year": 2023,
+        "venue": "Journal of Electronics,Computer Networking and Applied Mathematics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "IMERG Final日降水在不同气候和地形条件的雨量站位置上表现如何，经过偏差订正后能否可靠估计极端降水的重现水平？",
+      "hypothesis_or_mechanism": "IMERG Final存在区域性系统偏差，而基于地面月降水均值的线性缩放可降低该偏差，从而改善基于POT-GPD模型得到的极端降水频率估计。",
+      "variables_and_data_use": "提取IMERG Final在九个TSMS雨量站位置上的2001—2020年日降水像元值，以雨量站日降水作为独立参考，计算KGE、BIAS和MAE；随后采用月尺度线性缩放订正IMERG降水，并对原始IMERG、订正IMERG和地面观测分别进行超过95百分位阈值的POT-GPD分析，估计不同重现期的降水水平。",
+      "method_paradigm": "测量验证与极值分析",
+      "used_assets": [
+        "IMERG Final product",
+        "Turkish State Meteorological Service (TSMS) daily precipitation data"
+      ],
+      "author_team": [
+        "Hakan Aksu",
+        "Sait Genar Yaldiz",
+        "Gaye Yesim Taflan",
+        "Mehmet Ali Akgül"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Frequency analysis based on Peaks-Over-Threshold approach for GPM IMERG precipitation product",
+        "doi": "10.1007/s00704-023-04555-5",
+        "year": 2023,
+        "venue": "Theoretical and Applied Climatology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "能否利用季风降水的幅度和时间分布构建 Monsoon Index，以筛选最适合高海拔无资料流域的遥感降水产品，并验证其径流模拟能力？",
+      "hypothesis_or_mechanism": "同时刻画季风降水占全年降水的比例及季风持续时间的指标，能够识别更准确反映区域季风变化的降水产品，而该产品也应产生更接近观测流量的模拟径流。",
+      "variables_and_data_use": "使用 IMERG (Final Run，具体版本未报告)、PERSIANN-CDR、MSWEP 和 GPCP 1dd 的日降水计算年降水、季风降水及 Monsoon Index，并以 IMD 日降水作为观测参考进行比较；使用 IMD 最高和最低温度估算潜在蒸散，以降水和潜在蒸散驱动 HYSIM，再用 CWC 日流量进行模型校准、验证和水文效用评价。",
+      "method_paradigm": "产品验证与水文模拟",
+      "used_assets": [
+        "IMERG (Final Run)",
+        "PERSIANN-CDR",
+        "MSWEP",
+        "GPCP 1dd",
+        "IMD",
+        "CWC",
+        "high-resolution Digital Elevation Model (DEM)"
+      ],
+      "author_team": [
+        "Dibyandu Roy",
+        "J. Indu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of Remote Sensing Precipitation Products for Hydrological Analysis in an Ungauged Watershed",
+        "doi": "10.1007/s11269-025-04459-1",
+        "year": 2026,
+        "venue": "Water Resources Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "IMERG V6 Final Calibration在日、月和年尺度上能否可靠表征降水及其长期趋势，并且其误差如何随地形和海拔条件变化？",
+      "hypothesis_or_mechanism": "IMERG V6 Final Calibration总体能够重建降水的时空变化，但迎风坡和背风坡等地形效应会导致系统性的高估或低估。",
+      "variables_and_data_use": "使用IMERG V6 Final Calibration的30分钟降水强度记录，聚合为日、月和年累计降水，并用于2001—2020年像元趋势和变化分析；使用CONAGUA weather stations的日降水记录进行异常值筛查、时空配对和2001—2018年精度验证，通过Spearman相关系数、rBIAS和RMSE评价性能，并以Sen斜率和修正Mann-Kendall检验分析趋势。",
+      "method_paradigm": "测量验证与趋势分析",
+      "used_assets": [
+        "IMERG V6 Final Calibration",
+        "CONAGUA weather stations"
+      ],
+      "author_team": [
+        "Miguel-Ángel Acosta-Reyes",
+        "Jesús-Horacio Hernández-Anguiano",
+        "Francisco-Javier Carrión-Viramontes",
+        "Yanmei Li",
+        "Juan-Antonio Quintana-Rodríguez",
+        "Julián-David Rojo-Hernández",
+        "Juan-Manuel Navarro-Céspedes",
+        "Viridiana Piña-González",
+        "Xiaoxiao Zha",
+        "Xu Liao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analysis of IMERG precipitation product in Mexican states to evaluate the spatial and temporal variation in precipitation",
+        "doi": "10.1007/s40899-024-01171-7",
+        "year": 2024,
+        "venue": "Sustainable Water Resources Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "IMERG-F V06 在月度和季节尺度上相对于地面雨量计记录的降水估计性能如何，以及其误差是否随地形、气候条件和降水强度变化？",
+      "hypothesis_or_mechanism": "IMERG-F V06 的估计精度受地形高度、气候条件和降水强度影响，并可能在高海拔地区低估降水、在低海拔地区高估降水。",
+      "variables_and_data_use": "使用 IMERG-F V06 的累计降水估计作为待验证变量，将其聚合到月度和季节尺度；使用 Sebou Hydraulic Basin Agency (ABHS) 提供的30个站点月降水记录作为地面参照，并通过相关系数、相对偏差、均方根误差和平均绝对误差以及空间分析评价产品性能。",
+      "method_paradigm": "卫星降水验证",
+      "used_assets": [
+        "IMERG-F V06",
+        "in situ precipitation data provided by the Sebou Hydraulic Basin Agency (ABHS)",
+        "NASA Giovanni"
+      ],
+      "author_team": [
+        "Abdelaziz El-Bouhali",
+        "Khadija El Ouazani Ech-Chahdi",
+        "Mohammed Yazami Ztait",
+        "Mhamed Amyay",
+        "Mohamed El Mazi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Performance Evaluation of IMERG Satellite-Based Precipitation Estimates Against Rain Gauge Records in the Sebou Watershed, Morocco",
+        "doi": "10.1007/s41976-025-00262-z",
+        "year": 2025,
+        "venue": "Remote Sensing in Earth Systems Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究区2022年洪灾及相关降雨如何影响Sindh省农田洪涝范围、作物绿度、农业损失和经济损失？",
+      "hypothesis_or_mechanism": "洪水淹没和额外降雨会造成作物冠层绿度下降，并通过受淹农田面积和作物损害程度增加农业及相关经济损失。",
+      "variables_and_data_use": "使用 GPM_L3/IMERG_V06 的小时降雨估计生成日降雨和月累计降雨，用于刻画降雨空间分布并与 Pakistan Meteorological Department (PMD) 地面站观测关联；使用 Sentinel-1B 的 COPERNICUS/S1_GRD 影像提取洪水范围；使用 Sentinel-2 红光和近红外反射率计算洪涝前后NDVI及其差值；使用 ESA WorldCover 10 m 2020 v100 生成农田掩膜，并结合 LandScan™ Global Population Distribution Dataset (ORNL)、现场灾情资料和农业统计开展分区损失及经济损失分析。",
+      "method_paradigm": "多源遥感叠加与损失评估",
+      "used_assets": [
+        "GPM_L3/IMERG_V06",
+        "Sentinel-1B",
+        "COPERNICUS/S1_GRD",
+        "Sentinel-2",
+        "ESA WorldCover 10 m 2020 v100",
+        "LandScan™ Global Population Distribution Dataset (ORNL)",
+        "Pakistan Meteorological Department (PMD)",
+        "field-based damage reporting data by the Provincial Disaster Management Authority, Sindh (PDMA)",
+        "Pakistan Crop statistics: Pakistan Bureau of Statistics"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "A framework for multi-sensor satellite data to evaluate crop production losses: the case study of 2022 Pakistan floods",
+        "doi": "10.1038/s41598-023-30347-y",
+        "year": 2023,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "如何结合GRACE/GRACE-FO、GLDAS、IMERG及机器学习方法重建高分辨率地下水储量异常，并分析和预测地下水干旱及其气候驱动因素？",
+      "hypothesis_or_mechanism": "地形、降水和陆面水文变量可用于下尺度GRACE总水储量，而持续开采、降水变化及海洋—大气遥相关共同控制地下水干旱的长期趋势和传播时间。",
+      "variables_and_data_use": "以TELLUS_GRAC-GRFOMASCON_CRI_GRID_RL06.1_V3的TWSA为下尺度目标，以GLDAS_NOAH025_M_2.1的SWE、SMS、CWS、Qs、T和ET、IMERG-GIS月累计降水及SRTM高程为预测变量；从下尺度TWSA中扣除陆面储量分量得到GWSA，以观测井数据验证，使用SARIMA填补GRACE与GRACE-FO间隔，以IMERG-GIS计算SPI，并用NEX-GDDP-CMIP6中的CanESM5气候变量预测至2030年，同时用NINO3.4、SOI、AO、MEI和PDO开展小波相干分析。",
+      "method_paradigm": "状态重建与预测",
+      "used_assets": [
+        "IMERG-GIS",
+        "TELLUS_GRAC-GRFOMASCON_CRI_GRID_RL06.1_V3",
+        "GLDAS_NOAH025_M_2.1",
+        "SRTM",
+        "NEX-GDDP-CMIP6",
+        "CanESM5",
+        "NINO3.4",
+        "SOI",
+        "AO",
+        "MEI",
+        "PDO",
+        "Groundwater level data from 40,000 observational wells"
+      ],
+      "author_team": [
+        "Ali Kashani",
+        "Hamid R. Safavi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Assessing groundwater drought in Iran using GRACE data and machine learning",
+        "doi": "10.1038/s41598-025-99342-9",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "GPM IMERG 降水估计在上游 Bengawan Solo 流域的表现如何，以及参数化偏差校正能否改善其降水估计结果？",
+      "hypothesis_or_mechanism": "利用地面雨量站观测估计系统性偏差并进行参数化校正，可以降低 GPM IMERG 降水估计与真实降雨之间的误差。",
+      "variables_and_data_use": "使用 GPM 3 IMERG DF V06 的每日卫星降水估计作为待评价和校正的降水变量，使用 14 个地面雨量站的每日降水观测作为参考，通过 Pearson 相关系数、RMSE、MAE 和相对偏差评价校正前后的结果，并采用蒙特卡洛交叉验证进行校准与验证。",
+      "method_paradigm": "降水产品验证与偏差校正",
+      "used_assets": [
+        "GPM 3 IMERG DF V 0 6",
+        "ground-based rainfall stations measurements"
+      ],
+      "author_team": [
+        "S Sanjaya",
+        "D Yudianto",
+        "F Fitriana",
+        "S R Rusli"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation and Correction of Satellite-Based Rainfall Products (GPM) in the Upstream Part of Bengawan Solo Basin using MCCV Parameterization",
+        "doi": "10.1088/1755-1315/1343/1/012008",
+        "year": 2024,
+        "venue": "IOP Conference Series: Earth and Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "利用NDVI和Random Forest对IMERG V06 Daily Final Run降水进行空间降尺度和雨量站校准后，能否提高其相对于地面雨量站观测的精度？",
+      "hypothesis_or_mechanism": "NDVI所表征的空间环境差异可用于学习粗分辨率IMERG降水的空间分布，而地面雨量站误差场校准可进一步减少降尺度结果的系统偏差。",
+      "variables_and_data_use": "以GPM_3IMERGDF_06日降水为主要观测，先聚合为年尺度并从约10 km降尺度至250 m；以MOD13A3v006的NDVI作为Random Forest环境预测变量；以BBWS Bengawan Solo雨量站降水划分训练与测试数据，分别用于校准和通过RMSE、R-Squared及Bias进行验证。",
+      "method_paradigm": "降尺度与测量验证",
+      "used_assets": [
+        "GPM_3IMERGDF_06",
+        "MOD13A3v006",
+        "data curah hujan stasiun yang diperoleh melalui Balai Besar Wilayah Sungai (BBWS) Bengawan Solo"
+      ],
+      "author_team": [
+        "Muhammad Hadziq Munajih",
+        "Raden Harya Dananjaya",
+        "Galuh Chrismaningwang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analisis Data Downscaled IMERG Terkalibrasi dan Stasiun Curah Hujan dengan Metode Regresi Random Forest",
+        "doi": "10.32585/modulus.v5i2.4338",
+        "year": 2024,
+        "venue": "MoDuluS Media Komunikasi Dunia Ilmu Sipil",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "不同卫星降水产品在旬尺度和月尺度上重现参考降水的能力如何，并且哪些产品最适合区域降水监测、干旱预警和水资源评估？",
+      "hypothesis_or_mechanism": "卫星降水产品的精度会随生物气候区、雨季阶段、时间尺度及产品输入与校准方式而变化，综合性能指标和产品属性可识别最适合不同业务用途的产品。",
+      "variables_and_data_use": "研究使用IMERGv6-Final、IMERGv6-Late、ARC2、RFE2、MSWEPv2.2、CMORPHv1.0、PERSIANN-CCS-CDR、PDIR-Now和TAMSATv3.1的降水估计，以AGRHYMET RCC-WAS merged product作为参考；在统一的0.1°网格上按旬和月计算相关系数、相对偏差、平均绝对误差和KGE，并结合季节循环再现能力、时间覆盖、空间分辨率和延迟进行PROMETHEE II排序。",
+      "method_paradigm": "多产品验证与MCDA排序",
+      "used_assets": [
+        "AGRHYMET RCC-WAS merged product",
+        "CHIRPSv2.0",
+        "ARC2",
+        "RFE2",
+        "MSWEPv2.2",
+        "IMERGv6-Late",
+        "IMERGv6-Final",
+        "CMORPHv1.0",
+        "PERSIANN-CCS-CDR",
+        "PDIR-Now",
+        "TAMSATv3.1"
+      ],
+      "author_team": [
+        "Mandela C. M. Houngnibo",
+        "Bernard Minoungou",
+        "Seydou B. Traore",
+        "Ross I. Maidment",
+        "Agali Alhassane",
+        "Abdou Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of high-resolution satellite precipitation products over West Africa for rainfall monitoring and early warning",
+        "doi": "10.3389/fclim.2023.1185754",
+        "year": 2023,
+        "venue": "Frontiers in Climate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "如何利用GPM-IMERG V06 Final小时降水与SENAMHI自动气象站记录构建并验证2000—2020年秘鲁降雨侵蚀力和侵蚀力密度格网数据集？",
+      "hypothesis_or_mechanism": "IMERG Final降水能够表征降雨侵蚀力的时空变化，而基于自动气象站的季节性乘法校正可降低卫星推导侵蚀力的偏差并提高区域精度。",
+      "variables_and_data_use": "使用IMERGF的PrecipitationCal小时降水识别降雨事件，并根据RUSLE方法计算RE-IMERGF及ED；使用SENAMHI小时和10分钟AWS降水计算RE-AWS、估计时间分辨率校正系数、生成季节乘法因子并验证结果；将校正后的PISCO_reed与GloREDa和CMORPH RE product进行多年平均和像元尺度比较，同时分析RE与ED的趋势及侵蚀风险。",
+      "method_paradigm": "融合校正与验证",
+      "used_assets": [
+        "GPM-IMERG-V06-Final product (IMERGF)",
+        "PrecipitationCal",
+        "AWS from SENAMHI",
+        "GloREDa",
+        "CMORPH RE product",
+        "PISCO_reed"
+      ],
+      "author_team": [
+        "Leonardo Gutierrez",
+        "Adrian Huerta",
+        "Evelin Sabino",
+        "Luc Bourrel",
+        "Frédéric Frappart",
+        "Waldo Lavado-Casimiro"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Rainfall Erosivity in Peru: A New Gridded Dataset Based on GPM-IMERG and Comprehensive Assessment (2000–2020)",
+        "doi": "10.3390/rs15225432",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "2001—2020年间，印度尼西亚新首都及其缓冲区的极端降水指标呈现何种时空变化趋势？",
+      "hypothesis_or_mechanism": "区域总降水和部分强度指标可能总体下降并表现出趋干变化，但高阈值降水频次及连续五日最大降水可能上升，从而形成干旱与洪涝风险并存的变化格局。",
+      "variables_and_data_use": "使用IMERG-F Version 06半小时降水并聚合为日降水，逐年逐网格计算PRCPTOT、R85p、R95p、R99p、CDD、CWD、R1mm至R150mm、RX1day、RX5day和SDII等ETCCDI指数，再使用Sen斜率估计各极端降水指标的长期趋势。",
+      "method_paradigm": "时序趋势检测",
+      "used_assets": [
+        "IMERG-F Version 06"
+      ],
+      "author_team": [
+        "Marzuki Marzuki",
+        "Ravidho Ramadhan",
+        "Helmi Yusnaini",
+        "Mutya Vonnisa",
+        "Ramadani Safitri",
+        "Elsa Yanfatriani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Changes in Extreme Rainfall in New Capital of Indonesia (IKN) Based on 20 Years of GPM-IMERG Data",
+        "doi": "10.48048/tis.2023.6935",
+        "year": 2023,
+        "venue": "Trends in Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "每日 GRACE terrestrial water storage 与 IMERG Final Run 极端降水能否联合重建2002年至2016年的历史洪水日？",
+      "hypothesis_or_mechanism": "强降水导致区域蓄水快速增加，当 GRACE terrestrial water storage 的高频正异常或 flood potential index 超过相应条件且同时出现极端降水时，可将该日期识别为降水诱发洪水日。",
+      "variables_and_data_use": "研究使用 ITSG-Grace2018 的每日 GRACE terrestrial water storage，经过 STL 分解和 GESD 异常检测提取高频正异常，并与 IMERG Final Run product 的日降水、3日累计降水和5日累计降水共同计算 flood potential index 和极端降水约束；Dartmouth Flood Observatory (DFO)、GLOBAL_FLOOD_DB_MODIS_EVENTS_V1 和 Global Runoff Data Centre (GRDC) discharge data 用于验证重建的洪水日。",
+      "method_paradigm": "多源遥感状态重建",
+      "used_assets": [
+        "IMERG Final Run product（版本未说明）",
+        "ITSG-Grace2018",
+        "Dartmouth Flood Observatory (DFO)",
+        "GLOBAL_FLOOD_DB_MODIS_EVENTS_V1",
+        "Global Runoff Data Centre (GRDC) discharge data"
+      ],
+      "author_team": [
+        "Jianxin Zhang",
+        "Kai Liu",
+        "Ming Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Flood detection using Gravity Recovery and Climate Experiment (GRACE)  terrestrial water storage and extreme precipitation data",
+        "doi": "10.5194/essd-15-521-2023",
+        "year": 2023,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "IMERG V06B Final Run 在海洋区域的降水率误差如何从 GPROF-CLIM 输入经过 PMW 网格化、CORRA 校准和地理定位偏移逐步形成？",
+      "hypothesis_or_mechanism": "IMERG 的 CORRA 校准和 V06B 网格地理定位偏移会以区域及降水强度相关的方式改变 GPROF-CLIM 原始误差，其中 CORRA 校准主导高纬海洋误差，而定位偏移对热带海洋影响更大。",
+      "variables_and_data_use": "使用 IMERG V06B Final Run 的 HQprecipitation、precipitationUncal、precipitationCal 及构造的 IMERG-GMI [PMW]、IMERG-GMI [PMW 1 CORRA Cal.] 和偏移校正变量；使用 GPROF-CLIM V05 的 surfacePrecipitation 作为算法输入基线；使用 GRtoGPROF V2.3 的 GR_RC_rainrate_VPR 近地表雷达降水率作为验证参考，并计算相对偏差、绝对偏差、随机误差、标准差、相关系数及降水概率分布。",
+      "method_paradigm": "降水产品误差追踪",
+      "used_assets": [
+        "Level 3 IMERG V06B Final Run product",
+        "Level 2 GPROF V05 climate product",
+        "Level 2 GRtoGPROF V2.3 product"
+      ],
+      "author_team": [
+        "Daniel C. Watters",
+        "Patrick N. Gatlin",
+        "David T. Bolvin",
+        "George J. Huffman",
+        "Robert Joyce",
+        "Pierre Kirstetter",
+        "Eric J. Nelkin",
+        "Sarah Ringerud",
+        "Jackson Tan",
+        "Jianxin Wang",
+        "David Wolff"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Oceanic Validation of IMERG-GMI Version 6 Precipitation Using the GPM Validation Network",
+        "doi": "10.1175/jhm-d-23-0134.1",
+        "year": 2024,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "GPM IMERG Final Run Version 06 在月、日和小时等不同时间尺度上与自动雨量记录站观测的一致性和误差表现如何？",
+      "hypothesis_or_mechanism": "时间聚合能够削弱卫星网格与点位雨量计之间的时空代表性误差，因此月尺度 IMERG 降水应比日尺度和小时尺度表现出更高相关性和更低相对误差。",
+      "variables_and_data_use": "使用 GPM_3IMERGDF v06 的日降水和 GPM_3IMERGHH v06 的半小时降水，并形成月、日和小时尺度分析；按各 ARR 站坐标提取空间重合的最近 IMERG 网格值，不进行空间插值，再与 Automatic Rainfall Recorder (ARR) stations 的地面降雨量比较，计算 Pearson 相关系数、RSR 和 PBIAS。",
+      "method_paradigm": "卫星降水验证",
+      "used_assets": [
+        "GPM IMERG Final Run",
+        "GPM_3IMERGDF v06",
+        "GPM_3IMERGHH v06",
+        "Automatic Rainfall Recorder (ARR) stations",
+        "Giovanni, NASA's GES DISC data portal"
+      ],
+      "author_team": [
+        "Yunita Ayu Setiyowati",
+        "Donny Harisuseno",
+        "M. Amar Sajali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison of Correlation, PBIAS and RSR between Monthly, Daily, and Hourly GPM Rainfall Data",
+        "doi": "10.29303/jppipa.v11i6.11068",
+        "year": 2025,
+        "venue": "Jurnal Penelitian Pendidikan IPA",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "能否利用GPM降水、MODIS环境变量和SRTM高程，通过随机森林将粗分辨率GRACE总水储量数据降尺度至1 km，并使结果可靠反映局地地下水和含水层动态？",
+      "hypothesis_or_mechanism": "总水储量与降水、植被、地表温度、蒸散发、高程和积雪之间存在可由随机森林学习的非线性关系，结合粗尺度GRACE残差校正后可在保留原始质量变化的同时恢复细尺度水储量格局。",
+      "variables_and_data_use": "以Center for Space Research (CSR) Monthly GRACE Level-3 Surface Water Density Equivalent Mass-Anomaly Dataset version 6.0的月度TWS异常为目标变量；以GPM_3IMERGM_06降水、MOD13A2 Version 6.1 NDVI、MOD11A2 Version 6.1地表温度、MOD16A2 Version 6.1蒸散发、USGS_SRTMGL1_003高程和MOD10A1 V6.1 NDSI作为预测变量。研究先将环境变量聚合到1°训练随机森林，再把模型应用于1 km变量，并叠加插值后的GRACE残差生成1 km月度TWS；最终使用原始GRACE、139口井的地下水位以及66个含水层的已知动态进行验证。",
+      "method_paradigm": "机器学习空间降尺度",
+      "used_assets": [
+        "GPM_3IMERGM_06",
+        "Center for Space Research (CSR) Monthly GRACE Level-3 Surface Water Density Equivalent Mass-Anomaly Dataset version 6.0",
+        "TELLUS_GRAC_L3_CSR_RL06_LND_v03",
+        "MOD13A2 Version 6.1",
+        "MOD11A2 Version 6.1",
+        "MOD16A2 Version 6.1",
+        "USGS_SRTMGL1_003",
+        "MOD10A1 V6.1 Snow Cover Daily Global",
+        "in situ groundwater level data"
+      ],
+      "author_team": [
+        "Youssef Hamou-Ali",
+        "Nourlhouda Karmouda",
+        "Ismail Mohsine",
+        "Tarik Bouramtane",
+        "Ilias Kacimi",
+        "Sarah Tweed",
+        "Mounia Tahiri",
+        "Nadia Kassou",
+        "Ali El Bilali",
+        "Omar Chafki",
+        "Mohamed Abdellah Ezzaouini",
+        "Siham Laraichi",
+        "Abdelaaziz Zerouali",
+        "Marc Leblanc"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE total water storage data using random forest: a three-round validation approach under drought conditions",
+        "doi": "10.3389/frwa.2025.1545821",
+        "year": 2025,
+        "venue": "Frontiers in Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "能否使用IMERG Final Run降水统计量校准Bartlett–Lewis随机降雨模型，从日降雨记录重建并估计每日峰值15分钟降雨强度？",
+      "hypothesis_or_mechanism": "IMERG的亚日尺度降水结构可约束随机雨胞模型参数，从而将日尺度雨量计降水降尺度到15分钟，但IMERG像元面积平均值与点尺度雨量计之间的空间尺度差异会造成峰值强度低估。",
+      "variables_and_data_use": "研究提取IMERG final run product (Version 06B)的30分钟降水量，聚合至0.5、1、2、6、12和24小时并计算均值、方差、滞后自协方差、干期比例和偏度，用于校准RBL-E与RBL-G模型；同时使用pluviograph data的1分钟降水记录，聚合成15分钟和日总量，用于IMERG比例校正、日降雨降尺度和I15验证。",
+      "method_paradigm": "随机降尺度建模",
+      "used_assets": [
+        "IMERG final run product (Version 06B)",
+        "pluviograph data",
+        "Australian Bureau of Meteorology"
+      ],
+      "author_team": [
+        "Md. Atiqul Islam",
+        "Bofu Yu",
+        "Nick Cartwright"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Bartlett–Lewis Model Calibrated with Satellite-Derived Precipitation Data to Estimate Daily Peak 15 Min Rainfall Intensity",
+        "doi": "10.3390/atmos14060985",
+        "year": 2023,
+        "venue": "Atmosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "能否通过聚类 GPM-IMERG Final Run V06 的热带气旋降水时空序列，构建具有代表性的降水情景，并揭示不同降水情景造成的洪水响应差异？",
+      "hypothesis_or_mechanism": "热带气旋降水具有显著的时空异质性，将相似像元降水序列聚类并构建代表性降水信号，可以保留不同强度和时间结构，而这些差异会通过入渗、产流和汇流过程形成不同的洪水范围、深度、体积及持续时间。",
+      "variables_and_data_use": "使用 NASA’s GPM-IMERG Final Run Level-3 (V06) product 的半小时、0.1°卫星—雨量计校准降水估计，提取像元降水时间序列并进行 K-means 聚类、起始阈值处理、时间对齐和0.5、0.75、0.9分位数分析，形成代表性降水信号；使用 Atlantic hurricane database (HURDRAT2) 确定风暴路径和数据时间窗口，并结合 Digital Elevation Model (DEM)、soil texture、land use/land cover 和 infrastructure，通过 openLISEM 模拟洪水范围、深度、体积、径流比、入渗量和持续时间。",
+      "method_paradigm": "聚类与洪水模拟",
+      "used_assets": [
+        "NASA’s GPM-IMERG Final Run Level-3 (V06) product",
+        "Atlantic hurricane database (HURDRAT2)",
+        "Digital Elevation Model (DEM)",
+        "soil texture",
+        "land use/land cover",
+        "infrastructure",
+        "openLISEM"
+      ],
+      "author_team": [
+        "Catherine Nabukulu",
+        "Victor G. Jetten",
+        "Janneke Ettema",
+        "Bastian van den Bout",
+        "Reindert J. Haarsma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Deriving Tropical Cyclone-Associated Flood Hazard Information Using Clustered GPM-IMERG Rainfall Signatures: Case Study in Dominica",
+        "doi": "10.3390/atmos15091042",
+        "year": 2024,
+        "venue": "Atmosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "GPM_3IMERGHH和GPM_3IMERGDF能否准确估算长期平均年降雨侵蚀力与10年一遇暴雨侵蚀力，并可否通过分区偏差订正提高估算精度？",
+      "hypothesis_or_mechanism": "IMERG Final Run降水能够刻画降雨侵蚀力的空间格局，但卫星降水误差和时间尺度差异会造成系统偏差，而依据不同水蚀分区建立幂函数订正关系可降低该偏差。",
+      "variables_and_data_use": "使用版本未报告的GPM_3IMERGHH之30分钟降水划分降雨事件并计算动能、最大30分钟强度、EI30、R-factor和10年一遇storm EI；使用版本未报告的GPM_3IMERGDF日降水通过日侵蚀力模型计算对应指标；以gauge-observed hourly precipitation data和daily precipitation data生成Gauge-H及Gauge-DE基准，开展站点匹配、五折交叉验证、误差评价和分区偏差订正。",
+      "method_paradigm": "产品验证与偏差订正",
+      "used_assets": [
+        "GPM_3IMERGHH",
+        "GPM_3IMERGDF",
+        "gauge-observed hourly precipitation data",
+        "daily precipitation data"
+      ],
+      "author_team": [
+        "Wenting Wang",
+        "Yuantian Jiang",
+        "Bofu Yu",
+        "Xiaoming Zhang",
+        "Yun Xie",
+        "Bing Yin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of GPM IMERG-FR Product for Computing Rainfall Erosivity for Mainland China",
+        "doi": "10.3390/rs16071186",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "如何利用环境辅助变量和多种机器学习算法，将 2018 年 GPM IMERG V06 Final Run 年降水从约 0.1°空间分辨率降尺度至 1 km？",
+      "hypothesis_or_mechanism": "降水与植被指数、地表温度、高程、土地覆盖及地理位置之间存在可由机器学习学习的非线性关系，结合残差校正可重建更精细且保持原始 IMERG 空间格局的降水场。",
+      "variables_and_data_use": "以 GPM IMERG V06 Final Run PrecipitationCal 为目标降水变量，使用 MOD13A2 的 NDVI 或 EVI、MOD11A1 version 6 的 LST、SRTM 高程及经纬度、MCD12Q1 土地覆盖作为预测变量；在 10 km 尺度训练模型并计算相对于原始 IMERG 的残差，再将预测结果和插值残差结合生成 1 km 年降水。",
+      "method_paradigm": "机器学习空间降尺度",
+      "used_assets": [
+        "GPM IMERG V06",
+        "Final Run IMERG",
+        "PrecipitationCal",
+        "MOD13A2",
+        "MOD11A1 version 6",
+        "SRTM",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "M. Sathianarayanan",
+        "P.-H. Hsu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "SPATIAL DOWNSCALING OF GPM IMERG V06 GRIDDED PRECIPITATION USING MACHINE LEARNING ALGORITHMS",
+        "doi": "10.5194/isprs-archives-xlviii-4-w6-2022-327-2023",
+        "year": 2023,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "IMERG Final Run V07B相较于V06B，能否更准确地估计2001—2020年月降水并捕捉季节降水主峰的幅度和出现时间？",
+      "hypothesis_or_mechanism": "V07B对空间偏移、地表类型、传感器间校准、被动微波反演和红外降水估算算法的更新，将降低月降水偏差和误差，并提高季节峰值时间的识别准确率。",
+      "variables_and_data_use": "使用IMERG Final Run V06B和V07B的月降水估计，与BMKG 69个雨量站的月降水进行最近网格点匹配，计算相关系数、均方根误差和相对偏差；同时基于月降水气候态，通过直接取最大值和一阶、二阶谐波拟合提取年度主峰幅度及峰值月份。GEBCO 15弧秒高程数据用于地形和站点分布制图。",
+      "method_paradigm": "产品验证比较",
+      "used_assets": [
+        "IMERG Final Run V06B",
+        "IMERG Final Run V07B",
+        "Monthly rain gauge data from BMKG",
+        "15-arcsecond grid provided by the General Bathymetric Chart of the Oceans (GEBCO)"
+      ],
+      "author_team": [
+        "Ravidho Ramadhan",
+        "Helmi Yusnaini",
+        "Marzuki Marzuki",
+        "Robi Muharsyah",
+        "Mutya Vonnisa",
+        "Hermansah Hermansah",
+        "Fredolin Tangang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Performance of IMERG V07B and V06B Monthly Rainfall Data in Capturing Seasonal Magnitude and Peak Timing over Indonesia",
+        "doi": "10.61310/mjst.v24i1.2603",
+        "year": 2026,
+        "venue": "Mindanao Journal of Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "GPM-IMERG Final Run V06所记录的2002至2022年降水在四个河流流域中呈现怎样的时空变异、干湿异常和长期趋势？",
+      "hypothesis_or_mechanism": "多卫星融合并经雨量计校准的IMERG Final Run降水能够揭示不同流域之间不均匀的降水分布、年际波动及总体增长趋势。",
+      "variables_and_data_use": "使用GPM-IMERG Final Run V06的降水数据，提取2002至2022年的年度降水序列，并计算标准差、变异系数和标准化降水指数，以比较各流域的降水变异程度、干湿状态和时间趋势。",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "GPM-IMERG Final Run V06"
+      ],
+      "author_team": [
+        "IBRAHIM MUHAMMAD MAGAJI",
+        "IBRAHIM MUHAMMED",
+        "MUBI AISHATU MOHAMMED"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "EVALUATING THE INTEGRATED MULTI-SATELLITE RETRIEVAL FOR GLOBAL PRECIPITATION MEASUREMENT (IMERG) SATELLITE DATA FOR DISASTER RISK REDUCTION IN FOUR RIVER BASINS OF WEST AFRICA",
+        "doi": "10.70382/mejedir.v8i4.038",
+        "year": 2025,
+        "venue": "International Journal of Earth Design and Innovation Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "IMERG V06B Final Run能否准确再现降水事件的特征、检出情况以及起始、峰值和结束时间？",
+      "hypothesis_or_mechanism": "IMERG的多传感器采样、插值融合和卫星对空中冰散射信号的观测机制会造成持续时间依赖且具有季节和空间差异的事件漏检、虚警与时间偏移。",
+      "variables_and_data_use": "使用IMERG V06B Final Run半小时降水率识别降水事件并计算事件深度、持续时间、平均降水率、峰值强度、相对峰值位置及起止和峰值时间；使用GV-MRMS作为地面参考进行一对一事件匹配，计算事件检出概率、事件虚警比和时间偏移。",
+      "method_paradigm": "事件式测量验证",
+      "used_assets": [
+        "IMERG V06B Final Run",
+        "GV-MRMS"
+      ],
+      "author_team": [
+        "Runze Li",
+        "Clement Guilloteau",
+        "Pierre-Emmanuel Kirstetter",
+        "Efi Foufoula-Georgiou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "How well does the IMERG satellite precipitation product capture the timing of precipitation events?",
+        "doi": "10.1016/j.jhydrol.2023.129563",
+        "year": 2023,
+        "venue": "Journal of Hydrology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "在 SMAP L4_SM 系统中引入 IMERG-Final 降水气候态和逐日降水校正后，Version 6 相对于 Version 5 的土壤湿度技能是否提高，以及切换至 IMERG-Late 会造成多大技能损失？",
+      "hypothesis_or_mechanism": "经卫星与雨量计融合的 IMERG-Final 能在雨量计稀疏区域改善降水强迫的时空变化，从而提高模拟土壤湿度异常的一致性并减小 SMAP 亮温观测减预报残差，而卫星独立的 IMERG-Late 会因缺少雨量计调整而产生一定技能损失。",
+      "variables_and_data_use": "研究以 IMERG-Final Version 06B 的月尺度数据构建参考降水气候态，将其原生半小时、0.1°降水聚合为逐日、0.25°总量并校正 GEOS-FP 逐小时降水；随后比较 L4_SM Version 5、L4_SM Version 6、OLv5、OLv6 和 L4v6_Late 的地表与根区土壤湿度、降水和 Tb O-F 残差，并使用 SMAP core validation sites 原位土壤湿度及 ASCAT H115/H116 反演进行验证。",
+      "method_paradigm": "对比验证与归因",
+      "used_assets": [
+        "IMERG-Final (Version 06B)",
+        "IMERG-Late",
+        "L4_SM Version 5",
+        "L4_SM Version 6",
+        "L4v5",
+        "L4v6",
+        "OLv5",
+        "OLv6",
+        "L4v6_Late",
+        "GEOS-FP",
+        "CPCU",
+        "GPCP version 2.3",
+        "SMAP Level-1C Tb observations",
+        "ASCAT dataset versions H115 and H116",
+        "SMAP core validation sites"
+      ],
+      "author_team": [
+        "Rolf H. Reichle",
+        "Qing Liu",
+        "Joseph V. Ardizzone",
+        "Wade T. Crow",
+        "Gabrielle J. M. De Lannoy",
+        "John S. Kimball",
+        "Randal D. Koster"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "IMERG Precipitation Improves the SMAP Level-4 Soil Moisture Product",
+        "doi": "10.1175/jhm-d-23-0063.1",
+        "year": 2023,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 38,
+    "source_paper_count": 38,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

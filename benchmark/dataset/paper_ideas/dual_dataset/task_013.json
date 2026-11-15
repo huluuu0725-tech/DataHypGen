@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.1029/2024wr039346",
+  "task_id": "dual_dataset/task_013",
+  "title": "Groundwater Storage Changes Using GRACE and ESA CCI Soil Moisture Products in Southern Victoria, Australia",
+  "category": "grace_sm_data",
+  "year": 2025,
+  "journal": "Water Resources Research",
+  "impact_level": "medium",
+  "datasets": [
+    "GRACE/GRACE-FO terrestrial water-storage mass grids",
+    "GLDAS Noah Land Surface Model L4 3-hourly 0.25 degree"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "grace_storage_input",
+      "dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids"
+    },
+    {
+      "role": "soil_moisture_state",
+      "dataset": "GLDAS Noah Land Surface Model L4 3-hourly 0.25 degree"
+    }
+  ],
+  "idea": {
+    "research_question": "Can GRACE storage anomalies and soil-moisture observations separate groundwater storage change from vadose-zone moisture variability?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    ],
+    "required_component_usage": [
+      "grace_storage_input",
+      "soil_moisture_state"
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently audited full-text seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_013:composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "audited_candidate_space": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\grace_sm_data.json",
+    "extracted_methods_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\pdf_reextract\\Water_Resources_Research_-_2025_-_Park_-_Groundwater_Storage_Changes_Using_GRACE_and_ESA_CCI_Soil_Moisture_Products_in.methods.txt",
+    "evidence_terms": {
+      "GRACE": true,
+      "soil moisture": true,
+      "in situ": true
+    }
+  }
+}

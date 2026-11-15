@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Central Europe (Germany and neighboring countries)",
+  "data_description": {
+    "dataset_name": "MCD19A2.061: Terra & Aqua MAIAC Land Aerosol Optical Depth Daily 1km",
+    "spatial_coverage": {
+      "region_name": "Central Europe (Germany and neighboring countries)",
+      "coverage": "Global 1 km gridded land coverage; valid retrievals are limited by observation geometry, clouds, surface conditions and MAIAC quality masks."
+    },
+    "temporal_coverage": "2000-02-24T00:00:00Z to 2026-06-26T23:45:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1000 m (1 km)",
+    "temporal_unit": "Daily cadence (granule timestamps)",
+    "analytical_capabilities": [
+      "Map the spatial distribution and regional gradients of land aerosol optical depth",
+      "Analyze daily, seasonal and interannual variability in aerosol loading",
+      "Compare the 0.47 micrometre and 0.55 micrometre AOD retrievals",
+      "Use uncertainty and quality fields to screen and characterize retrieval reliability",
+      "Aggregate daily granules to regular grids or time windows for regional analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Land aerosol optical depth at 0.47 micrometres (Optical_Depth_047) and 0.55 micrometres (Optical_Depth_055), dimensionless.",
+      "runtime_hint": "Use the catalog band names Optical_Depth_047 and Optical_Depth_055 with scale 0.001; AOD_Uncertainty uses scale 0.0001. AOD_QA is a 16-bit bitmask: bits 0-2 cloud mask, bits 3-4 land/water/snow/ice mask, bits 5-7 adjacency mask, bits 8-11 AOD QA, bit 12 glint mask, bits 13-14 aerosol model, and bit 15 reserved. Catalog ranges are -100 to 8000 for both AOD bands and 0 to 30000 for AOD_Uncertainty; no separate fill value is specified in the catalog metadata. Apply the documented scales and QA masks before analysis."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, hosted by Google Earth Engine",
+    "gee_asset": {
+      "id": "MODIS/061/MCD19A2_GRANULES",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MCD19A2_GRANULES"
+}

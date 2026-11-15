@@ -1,0 +1,39 @@
+{
+  "paper_id": "10.1038/s41467-023-41875-6",
+  "task_id": "single_dataset/task_047",
+  "title": "Meteorological Drivers of Resource Adequacy Failures in Current and High Renewable Western U.S. Power Systems",
+  "category": "climate_surface_interaction",
+  "year": 2023,
+  "journal": "Nature Communications",
+  "impact_level": "high",
+  "datasets": [
+    "ECMWF ERA5 hourly reanalysis",
+    "Power-system demand, generation, and network data"
+  ],
+  "idea": {
+    "research_question": "多年代ERA5天气序列中的低风、低太阳辐射和极端温度如何共同塑造高比例可再生电力系统的资源充足性失败，空间多样化能否降低同时短缺风险？",
+    "hypothesis": "供电不足并非由单一极端变量决定，而由持续低可再生出力与温度驱动高负荷的复合天气状态触发；跨区域资源组合会降低局地天气相关性，但大尺度同步事件仍形成系统性尾部风险。",
+    "mechanism": "把ERA5逐小时风、辐射和温度通过物理功率曲线与负荷响应模型转换为风光容量因子和电力需求，再把这些时间序列输入容量扩张与调度模型，计算失负荷概率、期望未供电量和资源充足性。桥梁来自电力系统可靠性理论，而不是天气变量本身。",
+    "key_variables": {
+      "target": "失负荷小时、失负荷概率、期望未供电量、短缺事件持续时间和跨区同步程度",
+      "predictors": [
+        "ERA5逐小时风速、温度、露点、气压和辐射相关变量",
+        "风机功率曲线、光伏转换模型和装机位置",
+        "温度敏感负荷及历史需求",
+        "储能、常规机组、输电和备用约束",
+        "跨区域天气相关性与复合极端状态"
+      ]
+    },
+    "data_sources": [
+      "ECMWF/ERA5/HOURLY及完整ERA5单层小时变量",
+      "电网负荷、机组、储能和输电网络数据",
+      "风光装机位置与技术参数",
+      "容量扩张或生产成本模型输入"
+    ],
+    "analytical_approach": "用多年逐小时ERA5构建天气年份集合，将风速外推到轮毂高度并经功率曲线得到风电容量因子，将辐射与温度转换为光伏出力，以温度模型估计负荷。对当前与高可再生情景进行逐小时调度或资源充足性模拟，识别短缺事件并用复合天气型、持续性和空间同步性解释；以留一年天气、替代功率曲线、输电和储能情景检验稳健性。",
+    "expected_contribution": "建立从气象再分析到电力可靠性尾部风险的跨领域链条，揭示平均资源优良并不保证极端时段充足，并量化空间多样化、储能和输电对复合短缺的缓解边界。",
+    "falsification_condition": "若短缺事件在不同天气年份和系统情景中与复合天气状态无稳定关系，空间多样化效应不随天气相关性变化，或结果完全由任意负荷和功率曲线设定驱动，则不能把ERA5天气结构解释为资源充足性机制。"
+  },
+  "enriched": true,
+  "enrichment_source": "europe_pmc_open_fulltext_methods"
+}

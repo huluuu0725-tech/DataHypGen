@@ -1,0 +1,315 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "São Francisco River Basin, Brazil",
+  "datasets": [
+    {
+      "role": "precipitation_driver",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+        "temporal_unit": "Daily precipitation estimates",
+        "temporal_coverage": "1981-01-01 to near present",
+        "data_source": "Climate Hazards Center CHIRPS v2.0",
+        "gee_asset": {
+          "id": "UCSB-CHG/CHIRPS/DAILY",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "analytical_capabilities": [
+          "Daily-to-seasonal rainfall accumulation",
+          "Extreme-rainfall and return-period summaries",
+          "Rainfall anomaly and antecedent-moisture indicators",
+          "Hydroclimatic covariate construction"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Daily precipitation depth in millimetres",
+          "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+        },
+        "spatial_coverage": {
+          "region_name": "São Francisco River Basin, Brazil",
+          "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+        }
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    },
+    {
+      "role": "topographic_driver",
+      "data_description": {
+        "dataset_name": "ASTER Global Digital Elevation Model V003",
+        "data_type": "Raster collection",
+        "data_format": "NASA Earthdata tiled elevation product",
+        "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+        "temporal_unit": "Static global elevation composite",
+        "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+        "data_source": "NASA/METI ASTER GDEM",
+        "data_path": "NASA_CMR:ASTGTM_003",
+        "analytical_capabilities": [
+          "Megarelief and landform derivation",
+          "Elevation and hypsometric profiles",
+          "Terrain stratification of ecological units",
+          "Topographic support for landscape classification"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Elevation in metres above the EGM96 geoid",
+          "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+        },
+        "spatial_coverage": {
+          "region_name": "São Francisco River Basin, Brazil",
+          "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+        }
+      },
+      "data_path": "NASA_CMR:ASTGTM_003"
+    },
+    {
+      "role": "target_observation",
+      "data_description": {
+        "dataset_name": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+        "data_type": "Point/event observation collection",
+        "data_format": "NASA Earthdata event and gridded lightning records",
+        "spatial_resolution": "Event observations aggregated to the declared analysis grid",
+        "temporal_unit": "Orbital event observations aggregated to seasonal and annual counts",
+        "temporal_coverage": "1998-01-01 to 2013-12-31",
+        "data_source": "NASA TRMM Lightning Imaging Sensor",
+        "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING",
+        "analytical_capabilities": [
+          "Lightning flash-rate density mapping",
+          "Seasonal and diurnal hotspot analysis",
+          "Event-count aggregation to environmental grids",
+          "Threshold and cluster analysis"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Lightning event counts or flash-rate density",
+          "runtime_hint": "Aggregate events to a common spatial-temporal grid before comparing with precipitation, terrain and land-use variables."
+        },
+        "spatial_coverage": {
+          "region_name": "São Francisco River Basin, Brazil",
+          "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+        }
+      },
+      "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING"
+    }
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "Lightning-terrain-climate composite observation",
+    "observable_group": "lightning_terrain_precipitation_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Lightning-terrain-climate composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "São Francisco River Basin, Brazil",
+        "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+      },
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+          "temporal_unit": "Daily precipitation estimates",
+          "temporal_coverage": "1981-01-01 to near present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Daily-to-seasonal rainfall accumulation",
+            "Extreme-rainfall and return-period summaries",
+            "Rainfall anomaly and antecedent-moisture indicators",
+            "Hydroclimatic covariate construction"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Daily precipitation depth in millimetres",
+            "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      },
+      {
+        "role": "topographic_driver",
+        "data_description": {
+          "dataset_name": "ASTER Global Digital Elevation Model V003",
+          "data_type": "Raster collection",
+          "data_format": "NASA Earthdata tiled elevation product",
+          "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+          "temporal_unit": "Static global elevation composite",
+          "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+          "data_source": "NASA/METI ASTER GDEM",
+          "data_path": "NASA_CMR:ASTGTM_003",
+          "analytical_capabilities": [
+            "Megarelief and landform derivation",
+            "Elevation and hypsometric profiles",
+            "Terrain stratification of ecological units",
+            "Topographic support for landscape classification"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Elevation in metres above the EGM96 geoid",
+            "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "NASA_CMR:ASTGTM_003"
+      },
+      {
+        "role": "target_observation",
+        "data_description": {
+          "dataset_name": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "data_type": "Point/event observation collection",
+          "data_format": "NASA Earthdata event and gridded lightning records",
+          "spatial_resolution": "Event observations aggregated to the declared analysis grid",
+          "temporal_unit": "Orbital event observations aggregated to seasonal and annual counts",
+          "temporal_coverage": "1998-01-01 to 2013-12-31",
+          "data_source": "NASA TRMM Lightning Imaging Sensor",
+          "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING",
+          "analytical_capabilities": [
+            "Lightning flash-rate density mapping",
+            "Seasonal and diurnal hotspot analysis",
+            "Event-count aggregation to environmental grids",
+            "Threshold and cluster analysis"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Lightning event counts or flash-rate density",
+            "runtime_hint": "Aggregate events to a common spatial-temporal grid before comparing with precipitation, terrain and land-use variables."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Lightning event-rate response interpreted jointly with terrain and precipitation on a common basin grid.",
+      "alignment": "CHIRPS, ASTER terrain and LIS/TRMM lightning are aggregated to the declared basin grid and seasonal/annual support.",
+      "required_roles": [
+        "precipitation_driver",
+        "topographic_driver",
+        "target_observation"
+      ],
+      "component_count": 3
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "NASA_CMR:ASTGTM_003",
+    "NASA_CMR:LIS_TRMM_LIGHTNING"
+  ],
+  "schema_version": "2.0-composite-anchor",
+  "data_descriptions": [
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+      "temporal_unit": "Daily precipitation estimates",
+      "temporal_coverage": "1981-01-01 to near present",
+      "data_source": "Climate Hazards Center CHIRPS v2.0",
+      "gee_asset": {
+        "id": "UCSB-CHG/CHIRPS/DAILY",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "analytical_capabilities": [
+        "Daily-to-seasonal rainfall accumulation",
+        "Extreme-rainfall and return-period summaries",
+        "Rainfall anomaly and antecedent-moisture indicators",
+        "Hydroclimatic covariate construction"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Daily precipitation depth in millimetres",
+        "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+      },
+      "spatial_coverage": {
+        "region_name": "São Francisco River Basin, Brazil",
+        "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+      }
+    },
+    {
+      "dataset_name": "ASTER Global Digital Elevation Model V003",
+      "data_type": "Raster collection",
+      "data_format": "NASA Earthdata tiled elevation product",
+      "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+      "temporal_unit": "Static global elevation composite",
+      "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+      "data_source": "NASA/METI ASTER GDEM",
+      "data_path": "NASA_CMR:ASTGTM_003",
+      "analytical_capabilities": [
+        "Megarelief and landform derivation",
+        "Elevation and hypsometric profiles",
+        "Terrain stratification of ecological units",
+        "Topographic support for landscape classification"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Elevation in metres above the EGM96 geoid",
+        "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+      },
+      "spatial_coverage": {
+        "region_name": "São Francisco River Basin, Brazil",
+        "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+      }
+    },
+    {
+      "dataset_name": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+      "data_type": "Point/event observation collection",
+      "data_format": "NASA Earthdata event and gridded lightning records",
+      "spatial_resolution": "Event observations aggregated to the declared analysis grid",
+      "temporal_unit": "Orbital event observations aggregated to seasonal and annual counts",
+      "temporal_coverage": "1998-01-01 to 2013-12-31",
+      "data_source": "NASA TRMM Lightning Imaging Sensor",
+      "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING",
+      "analytical_capabilities": [
+        "Lightning flash-rate density mapping",
+        "Seasonal and diurnal hotspot analysis",
+        "Event-count aggregation to environmental grids",
+        "Threshold and cluster analysis"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Lightning event counts or flash-rate density",
+        "runtime_hint": "Aggregate events to a common spatial-temporal grid before comparing with precipitation, terrain and land-use variables."
+      },
+      "spatial_coverage": {
+        "region_name": "São Francisco River Basin, Brazil",
+        "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "NASA_CMR:ASTGTM_003",
+    "NASA_CMR:LIS_TRMM_LIGHTNING"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "precipitation_driver",
+      "topographic_driver",
+      "target_observation"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

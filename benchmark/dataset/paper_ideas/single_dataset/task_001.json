@@ -1,0 +1,96 @@
+{
+  "paper_id": "10.1007/s11069-020-03899-9",
+  "task_id": "single_dataset/task_001",
+  "title": "The influence of DEM spatial resolution on landslide susceptibility mapping",
+  "category": "geological_hazards",
+  "year": 2020,
+  "journal": "Natural Hazards",
+  "impact_level": "medium",
+  "datasets": [
+    "ASTER GDEM, 30 m source grid, resampled to 40, 50, 60, 70, 80 and 90 m in the Baxie River basin",
+    "Google Earth imagery for landslide inventory interpretation",
+    "Landsat 8 satellite imagery from USGS EarthExplorer for landslide inventory interpretation",
+    "Aerial and satellite imagery acquired during 2002-2015 for landslide inventory interpretation",
+    "1:200,000 geological map",
+    "Road map",
+    "Field-surveyed landslide inventory with 249 mapped landslide polygons"
+  ],
+  "study_area_verified": {
+    "name": "Baxie River basin, northwestern China",
+    "study_period": "Landslide inventory imagery spans 2002-2015; the provided excerpt does not assign an acquisition date to the static ASTER GDEM surface.",
+    "analysis_grid": "ASTER GDEM at 30 m, independently resampled to 40, 50, 60, 70, 80 and 90 m.",
+    "landslide_inventory": "249 landslides mapped as GIS polygons; 174 were assigned to training and 75 to testing.",
+    "review_date": "2026-08-28"
+  },
+  "anchor_resolution": {
+    "paper_used": "ASTER GDEM at 30 m, resampled to 40, 50, 60, 70, 80 and 90 m",
+    "task_anchor": "NASA_CMR:ASTGTM_003",
+    "former_anchor": "NASA/NASADEM_HGT/001",
+    "why_the_former_anchor_was_wrong": [
+      "The source explicitly uses ASTER GDEM and does not name NASADEM.",
+      "NASADEM is an SRTM reprocessing that uses ASTER GDEM only as auxiliary input; it does not preserve ASTER GDEM elevation values or error characteristics."
+    ],
+    "resolution_reason": "The unified catalog contains the authoritative NASA CMR ASTGTM_003 collection, so the task can use the same ASTER GDEM product family as the seed rather than a Google Earth Engine substitute.",
+    "corrections": [
+      "The earlier datasets field listed a bare DEM and SRTM. The provided Methods excerpt instead identifies 30 m ASTER GDEM, Google Earth and Landsat 8 imagery, 2002-2015 aerial/satellite imagery, a 1:200,000 geological map, a road map and a field-verified landslide inventory.",
+      "idea.key_variables and idea.data_sources contain SRTM wording introduced during enrichment. The source excerpt identifies ASTER GDEM, not SRTM; the idea fields are retained unchanged under the audit rule."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "ASTER GDEM V3 is represented by NASA_CMR:ASTGTM_003",
+        "Landsat 8 imagery is represented by Landsat collections in the Earth Engine catalog"
+      ],
+      "not_available_as_the_identified_source": [
+        "Google Earth interpretation imagery as a reusable scientific catalog asset",
+        "The study-specific 1:200,000 geological map",
+        "The study-specific road map",
+        "The field-surveyed 249-polygon landslide inventory"
+      ],
+      "unresolved_from_excerpt": [
+        "The platforms and product identities of the other aerial and satellite images acquired during 2002-2015"
+      ]
+    },
+    "sibling_task_boundary": "single_dataset/task_014 retains NASADEM for its own terrain input. single_dataset/task_001 uses ASTER GDEM and concerns DEM-resolution sensitivity; NASADEM and SRTMGL1 remain different production lineages.",
+    "version_note": "The seed excerpt names ASTER GDEM without a version. The task anchor resolves to the current ASTGTM_003 catalog collection while the reference policy records V2/V3 explicitly and treats them as product-family variants.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "note": "The task now uses the authoritative NASA CMR ASTER GDEM collection directly.",
+    "review_date": "2026-09-19"
+  },
+  "idea": {
+    "research_question": "DEM空间分辨率如何影响基于坡单元的滑坡易发性制图及不同统计模型的易发性建模表现？",
+    "hypothesis": "DEM空间分辨率会通过改变地形因子的表达精度和坡单元划分特征，影响滑坡易发性模型对地形控制因素的刻画能力；不同统计模型对DEM分辨率变化的敏感性可能不同。",
+    "mechanism": "DEM分辨率决定坡度、坡向、曲率、相对高差、地形湿度指数等地形变量的计算精度，并影响坡单元的边界、面积和内部地貌异质性。较细或较粗的DEM分辨率会改变滑坡控制因子的空间表达，从而影响统计模型学习滑坡发生条件与环境因子之间关系的过程，最终影响滑坡易发性分区结果。",
+    "key_variables": {
+      "target": "滑坡易发性或滑坡发生概率",
+      "predictors": [
+        "DEM空间分辨率",
+        "坡单元划分结果",
+        "坡度",
+        "坡向",
+        "高程",
+        "曲率",
+        "地形起伏度",
+        "地形湿度指数",
+        "其他由DEM或SRTM派生的地形因子"
+      ]
+    },
+    "data_sources": [
+      "不同空间分辨率的DEM数据",
+      "SRTM数据",
+      "研究区滑坡编录数据",
+      "Baxie River basin, NW China的地形与地貌数据"
+    ],
+    "analytical_approach": "以坡单元作为基本制图单元，基于不同空间分辨率DEM提取地形预测因子，并分别输入三种统计滑坡易发性模型中进行建模；通过比较不同DEM分辨率和不同模型组合下的易发性制图方案，评估DEM分辨率对滑坡易发性建模设计和模型敏感性的影响。",
+    "expected_contribution": "为滑坡易发性制图中的DEM分辨率选择提供方法学依据，阐明地形数据尺度、坡单元表达和统计模型之间的关系，并为类似山区流域的滑坡灾害空间预测提供可迁移的研究框架。",
+    "falsification_condition": "如果不同DEM空间分辨率下提取的地形因子、坡单元特征和滑坡易发性模型输出在空间格局和预测能力上均无系统性差异，且三种统计模型对分辨率变化表现出一致的不敏感性，则该假设将受到推翻。"
+  }
+}

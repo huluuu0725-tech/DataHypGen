@@ -1,0 +1,40 @@
+{
+  "paper_id": "10.1155/2012/705326",
+  "task_id": "single_dataset/task_043",
+  "title": "Geographic Distribution of Chagas Disease Vectors in Brazil Based on Ecological Niche Modeling",
+  "category": "environmental_monitoring",
+  "year": 2012,
+  "journal": "Journal of Tropical Medicine",
+  "impact_level": "medium",
+  "datasets": [
+    "WorldClim V1 bioclimatic variables",
+    "Georeferenced triatomine occurrence records",
+    "Vegetation phenology and Brazilian biome data"
+  ],
+  "idea": {
+    "research_question": "巴西本土锥蝽物种的气候生态位如何共同塑造其地理分布与物种丰富度？哪些地区因同时具备多个具有入室倾向物种的适宜气候条件，而形成不可由既有行政记录完整揭示的查加斯病媒介传播风险？",
+    "hypothesis": "锥蝽物种不会在巴西各地均匀出现，而会依据温度、降水季节性和极端气候条件沿主要生物群系发生生态位分选；少数生态幅较宽且具有入室倾向的物种会扩大潜在暴露范围，多物种预测叠加后几乎全国都存在至少一种媒介的适宜环境。",
+    "mechanism": "将疾病媒介的地理记录重新解释为生态学中的物种出现点，把WorldClim气候变量视为限制媒介存活和繁殖的生态位轴。基于最大熵的presence-only模型估计每个物种在气候空间中的约束分布，再投影回地理空间并跨物种叠加，可从生物地理适生性推导公共卫生监测所需的潜在媒介风险面，而不把已报告病例分布误当作真实风险边界。",
+    "key_variables": {
+      "target": "各锥蝽物种的潜在分布、阈值化适宜区、多物种丰富度及具有入室倾向物种的潜在覆盖范围",
+      "predictors": [
+        "WorldClim年均温、昼夜温差、最暖月最高温和最冷月最低温",
+        "WorldClim年降水、最湿月与最干月降水",
+        "植被物候及巴西主要生物群系",
+        "经空间去偏和地理核验的物种出现记录",
+        "采样努力、背景点定义和阈值选择造成的预测不确定性"
+      ]
+    },
+    "data_sources": [
+      "Google Earth Engine WORLDCLIM/V1/BIO",
+      "博物馆、文献与公共卫生调查汇编的锥蝽出现记录",
+      "卫星植被物候数据",
+      "巴西生物群系和行政区边界"
+    ],
+    "analytical_approach": "对物种记录进行分类学核验、坐标清洗与空间稀疏化，仅为记录量和入室倾向达到预设门槛的物种建模；从19个WorldClim变量中按生态意义和共线性筛选气候轴，分别拟合带重复bootstrap的MaxEnt模型，并用空间分块留出、偏差匹配背景和空模型检验评估可迁移性。对连续预测做阈值敏感性分析后叠加为丰富度图，再在气候主成分空间比较不同物种和生物群系的生态位分选。最后用未参与训练的调查点、不同背景范围和植被物候替代模型检查风险热点是否稳健。",
+    "expected_contribution": "把物种分布生态学的生态位约束和presence-only推断迁移到疾病媒介监测，给出超越已报告病例与行政采样边界的潜在传播风险地图，并明确区分媒介环境适生性、实际出现和人类感染三种不同层次。",
+    "falsification_condition": "若经过采样偏差控制和空间留出后，模型对独立出现点的判别力不优于环境与采样努力匹配的空模型；不同物种的预测不呈现可重复的气候或生物群系分选；或多物种热点对背景范围、变量选择和阈值极度敏感，则气候生态位能够稳定界定媒介潜在风险的机制应被否定。"
+  },
+  "enriched": true,
+  "enrichment_source": "europe_pmc_open_fulltext_methods+openalex_abstract"
+}

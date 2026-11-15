@@ -1,0 +1,64 @@
+{
+  "paper_id": "10.3390/rs14112521",
+  "task_id": "single_dataset/task_031",
+  "title": "Spatiotemporal Dynamics of NDVI, Soil Moisture and ENSO in Tropical South America",
+  "category": "climate_surface_interaction",
+  "year": 2022,
+  "journal": "Remote Sensing",
+  "impact_level": null,
+  "datasets": [
+    "AVHRR CDR NDVI (0.05 degrees, daily, 1981-2018)",
+    "SMOS Level 3 soil moisture (monthly, 2010-2018)",
+    "Nino 3 and Nino 4 sea-surface temperature indices"
+  ],
+  "study_area_verified": {
+    "name": "Tropical South America",
+    "detail": "six study regions used for regional monthly averaging",
+    "period": "1981-2018 for NDVI; 2010-2018 for soil moisture",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NOAA/CDR/AVHRR/NDVI/V4",
+    "operationally_used": true,
+    "role": "sole vegetation-index input; daily values averaged to monthly means within each of the six study regions to support annual and interannual coupling analysis",
+    "evidence": "Section 2.2.2 states the daily NDVI data come from the Climate Data Record at 0.05 by 0.05 degrees spanning 1981 to 2018, derived from AVHRR.",
+    "companion_datasets": [
+      "SMOS Level 3 research product monthly soil moisture from the Barcelona Expert Centre, 2010-2018, representing the top 5 cm",
+      "Nino 3 (5N-5S, 150W-90W) and Nino 4 (5N-5S, 160E-150W) monthly standardized sea-surface temperature indices"
+    ],
+    "anchor_history": "Anchor was MODIS/061/MOD13Q1 (250 m, 16-day, from 2000) until 2026-08-28. MODIS cannot reach 1981, so the multi-decadal ENSO coupling analysis was impossible under the former anchor.",
+    "version_note": "V4 was chosen over the current V5 because V5 ends 2013-12-31 while the source period runs to 2018; V4 covers 1981-06 to 2019-05. V4 carries a deprecated status in the catalog.",
+    "gee_availability_note": "SMOS soil moisture is not published in the Earth Engine catalog, so the companion dataset cannot be reproduced there.",
+    "corrections": [
+      "The earlier datasets list named MODIS NDVI. The source uses the AVHRR Climate Data Record, not MODIS."
+    ],
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "热带南美不同区域中，NDVI与土壤湿度的月尺度耦合是否存在稳定的滞后关系、非线性因果方向和空间传播差异，并且这种耦合如何受到EP与CP型ENSO调制？",
+    "hypothesis": "NDVI对土壤湿度变化存在1-3个月的滞后响应，且这种响应在干季更强；土壤湿度的时间记忆强于NDVI，二者之间存在双向非线性因果作用；ENSO通过先改变土壤湿度，再经由水分胁迫和植被生理响应影响NDVI，并呈现从西北向东南传播的区域差异，其中CP型ENSO对土壤湿度和植被耦合的驱动强于EP型ENSO。",
+    "mechanism": "ENSO异常 -> 区域降水与蒸散发异常 -> 表层与根区土壤湿度变化 -> 植被水分可利用性与光合活动改变 -> NDVI发生滞后响应；在干季，土壤湿度的下降与回升通过植被绿起和衰退过程形成记忆效应，并可能通过植被蒸散反馈反向影响土壤湿度，构成双向非线性耦合；ENSO信号沿大尺度水汽输送与降水带在热带南美内部传播，形成空间上由西北到东南的时滞梯度。",
+    "key_variables": {
+      "target": "NDVI（月尺度植被指数）与SMOS/soil moisture（月尺度土壤湿度）",
+      "predictors": [
+        "EP ENSO指数",
+        "CP ENSO指数",
+        "土壤湿度滞后项",
+        "NDVI滞后项",
+        "季节相位/月序",
+        "区域分区（西部、东部、亚马孙流域不同子区）"
+      ]
+    },
+    "data_sources": [
+      "热带南美月尺度NDVI长时序栅格产品（摘要未注明具体产品名，需选取与研究时段重叠的连续遥感NDVI数据）",
+      "热带南美月尺度土壤湿度长时序栅格产品（摘要未注明具体产品名，需选取与NDVI同时间覆盖的遥感或再分析土壤湿度数据）",
+      "EP型与CP型ENSO指数时间序列（按东太平洋与中太平洋分型的月尺度ENSO指标）",
+      "研究区分区边界数据：热带南美及亚马孙河流域子区域划分"
+    ],
+    "analytical_approach": "先做月尺度异常值标准化与去季节化，再在区域平均序列上计算Pearson滞后交叉相关（重点检验SMOS领先NDVI 1-3个月的窗口）；使用连续小波变换（wavelet transform）识别12个月及更长周期带；用交叉小波分析（cross-wavelet analysis, CWA）和相干谱评估2-32个月尺度的共同振荡；进一步采用三类非线性因果推断方法ParrCorr、GPDC和PCMCIplus，在多滞后框架下识别NDVI、土壤湿度与ENSO之间的方向性依赖，并对区域分组比较西部/东部及不同子区的因果结构。",
+    "expected_contribution": "构建一个同时包含时间滞后、频带耦合、非线性因果和空间传播的NDVI-土壤湿度-ENSO研究框架，区分植被与土壤水分的双向作用及ENSO的区域异质性；为理解热带南美干季绿起机制、亚马孙水文-植被耦合和ENSO遥相关路径提供可检验的动力学证据。",
+    "falsification_condition": "若在去季节化月尺度序列中，SMOS领先NDVI 1-3个月的Pearson相关系数在主要子区均不达到|r|>=0.20，或CWA在2-32个月频带上的平均相干度低于0.30，或PCMCIplus在FDR校正p<0.05下不能同时识别出至少一个NDVI->SMOS和一个SMOS->NDVI的显著因果边，则“土壤湿度主导且存在双向非线性耦合”的假设被否证；若EP与CP指数对SMOS/NDVI的因果边数量差异不大于1条，或区域时滞梯度不呈现从西北向东南递增的方向性，则ENSO分型驱动与传播机制假设被否证。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

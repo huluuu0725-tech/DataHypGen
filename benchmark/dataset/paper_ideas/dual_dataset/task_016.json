@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1038/s41598-020-70816-2",
+  "task_id": "dual_dataset/task_016",
+  "title": "Climate change impact on flood and extreme precipitation increases with water availability",
+  "category": "climate_forcing_flood_discharge",
+  "year": 2020,
+  "journal": "Scientific Reports",
+  "impact_level": "medium",
+  "datasets": [
+    "CMIP5 climate forcing",
+    "Hydrologic flood and discharge simulations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "climate_forcing",
+      "dataset": "CMIP5 climate forcing"
+    },
+    {
+      "role": "flood_discharge",
+      "dataset": "Hydrologic flood and discharge simulations"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between climate forcing and flood or discharge simulations?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:NASA/NEX-GDDP",
+      "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1"
+    ],
+    "required_component_usage": [
+      "climate_forcing",
+      "flood_discharge"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_016:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

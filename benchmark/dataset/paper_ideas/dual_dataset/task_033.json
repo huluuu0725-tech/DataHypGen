@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.3390/w17152232",
+  "task_id": "dual_dataset/task_033",
+  "title": "Spatiotemporal Variation in NDVI in the Sunkoshi River Watershed During 2000–2021 and Its Response to Climate Factors and Soil Moisture",
+  "category": "ndvi_soil_moisture",
+  "year": 2025,
+  "journal": "Water",
+  "impact_level": "medium",
+  "datasets": [
+    "MODIS NDVI vegetation observations",
+    "Soil-moisture observations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "modis_ndvi",
+      "dataset": "MODIS NDVI vegetation observations"
+    },
+    {
+      "role": "soil_moisture",
+      "dataset": "Soil-moisture observations"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial or temporal associations are present between MODIS NDVI vegetation observations and Soil-moisture observations?",
+    "hypothesis": "The required components contain a joint signal not represented by either component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:MODIS/061/MOD13A1",
+      "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    ],
+    "required_component_usage": [
+      "modis_ndvi",
+      "soil_moisture"
+    ],
+    "expected_contribution": "A benchmark task that requires both components of a composite observation.",
+    "falsification_condition": "Reject an idea if either required component is absent, background-only, or not operationally used with the other required component."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_033:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"
+  }
+}

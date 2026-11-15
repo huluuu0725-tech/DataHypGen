@@ -1,0 +1,64 @@
+{
+  "paper_id": "10.1029/2019WR025577",
+  "task_id": "single_dataset/task_005",
+  "title": "Assessing the Feasibility of Satellite-Based Thresholds for Hydrologically Driven Landsliding",
+  "category": "geological_hazards",
+  "year": 2020,
+  "journal": "Water Resources Research",
+  "impact_level": "high",
+  "datasets": [
+    "SMAP L4_SM",
+    "GPM IMERG"
+  ],
+  "study_area_verified": {
+    "name": "East Bay Hills, Alameda County, San Francisco Bay Area, California",
+    "detail": "10 focus catchments monitored over water year 2016-2017; ground soil-moisture from the USGS BALT1 shallow-landslide station in the San Leandro catchment; 96 rain-gauge records within 5 km of the East Bay Hills",
+    "source": "seed full text (10.1029/2019WR025577) data section",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NASA/SMAP/SPL4SMGP/008",
+    "operationally_used": true,
+    "role": "primary satellite soil-moisture input; the 0-100 cm root-zone estimate was used for threshold analysis and converted to degree of saturation via model porosity",
+    "evidence": "Data section names 'SMAP L4_SM (Reichle, De Lannoy, et al., 2018)', the GEOS-5 Catchment land-surface model, 3-hourly estimates at roughly 9 km, surface 0-5 cm and root-zone 0-100 cm layers, and states the 100 cm value was used for analysis.",
+    "companion_datasets": [
+      "GPM IMERG half-hourly precipitation",
+      "96 tipping-bucket rain gauges",
+      "USGS BALT1 in-situ volumetric soil moisture at 25/70 and 30/140 cm"
+    ],
+    "anchor_history": "Anchor was NASA_USDA/HSL/SMAP10KM_soil_moisture until 2026-08-28; repointed to SPL4SMGP/008 because the seed uses SMAP L4, which the former alias policy excluded.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "在旧金山湾区浅层滑坡易发坡地中，基于卫星反演土壤湿度和降水构建的水文气象阈值，能否达到或接近基于雨量计和原位土壤含水量构建的滑坡预警阈值性能，并在无地面监测网络区域可靠识别滑坡发生日？",
+    "hypothesis": "基于原位土壤饱和度与雨量计降水构建的阈值，其预警性能将优于卫星阈值，尤其表现为更高的精确率和更低的误报率；卫星阈值仍可保持较高的滑坡日探测率，但会因主要风暴间隔期间高估近地表土壤湿度而产生更多误报。",
+    "mechanism": "持续降雨首先增加近地表土壤含水量和土壤饱和度，随后通过重力主导的坡体内部排水过程使地下水位或孔隙水压力升高；当先期湿润程度与当前降雨输入共同超过坡体的水文响应阈值时，土体有效应力降低、抗剪强度减小，最终诱发浅层滑坡。原位土壤湿度传感器能够直接响应坡体内部、尤其是重力排水控制的饱和状态，而卫星土壤湿度主要表征浅表层并可能在风暴后高估残余湿度，因此卫星输入会将部分尚未达到临界孔隙水压力的日期误判为滑坡风险日。",
+    "key_variables": {
+      "target": "日尺度浅层滑坡发生状态（landslide day = 1，非滑坡日 = 0），并以命中率、误报率、精确率、漏报率和F1-score评价预警性能",
+      "predictors": [
+        "前期累计降水量（API，Antecedent Precipitation Index；1、3、7、15、30日窗口）",
+        "当前事件累计降水量和最大日降水量",
+        "降水强度指标（1小时、3小时、6小时和24小时最大降水）",
+        "原位土壤体积含水量或土壤饱和度",
+        "卫星近地表土壤湿度（SMAP L3/L4或同等产品）",
+        "卫星降水量（GPM IMERG Final或同等产品）",
+        "土壤湿度距平和降水距平",
+        "风暴事件间隔期间的土壤湿度衰减量或排水校正项",
+        "观测站点到滑坡清单位置的空间距离及坡地地形单元"
+      ]
+    },
+    "data_sources": [
+      "美国旧金山湾区浅层滑坡清单：重点覆盖2016年10月至2017年4月冬季暴雨和区域性滑坡活动季，时间精度统一到日尺度，空间位置与发生日期用于构建滑坡日标签",
+      "地面雨量计数据：湾区气象站或NOAA/NCEI地面站逐小时降水记录，建议使用2015年10月至2017年6月的数据，以覆盖滑坡季前至少一个完整水文年的先期湿润条件，空间分辨率为站点尺度",
+      "原位土壤水分监测数据：坡地监测站点的逐小时体积含水量、土壤饱和度或张力观测，建议覆盖2015年10月至2017年6月，按传感器埋深分别记录近地表和浅层根区水分状态",
+      "SMAP L3或L4土壤湿度产品：2015年4月至2017年6月，原始空间分辨率约9至36公里、时间分辨率约3小时至日尺度；根据研究区和观测模式筛选有效过境并聚合到日尺度",
+      "GPM IMERG Final降水产品：2015年4月至2017年6月，约0.1度空间分辨率、30分钟时间分辨率；聚合为1小时、6小时、24小时和事件尺度降水指标",
+      "数字高程模型和土地覆盖数据：USGS 3DEP DEM或同等产品，用于坡度、坡向、汇流区和地形湿度指数计算；建议使用10至30米空间分辨率，并与滑坡位置和卫星像元进行空间匹配"
+    ],
+    "analytical_approach": "首先对地面与卫星数据进行时间同步、质量控制、缺测处理和空间匹配，并采用偏差校正或分位数映射（quantile mapping）校正GPM降水和SMAP土壤湿度相对于地面观测的系统偏差。其次分别利用雨量计加原位土壤湿度、GPM加SMAP构建两套候选阈值。对降水采用API和1至30日滑动累计量，对土壤湿度采用绝对值、百分位数和距平指标；通过网格搜索或贝叶斯优化确定降水与前期土壤湿度的二维阈值，并使用逻辑回归、广义加性模型（GAM）和随机森林（Random Forest）比较线性与非线性响应。以留一风暴事件交叉验证和时间阻塞交叉验证避免同一风暴内样本泄漏，使用ROC-AUC、PR-AUC、Probability of Detection、False Alarm Ratio、Critical Success Index、F1-score和预警提前量评价模型。针对卫星在风暴间隔期间高估土壤湿度的问题，增加指数衰减排水模型（soil-moisture recession model）或基于观测站校准的后处理项，将卫星近地表土壤湿度转换为重力排水校正后的有效坡体湿润度，并通过McNemar检验或bootstrap置信区间比较地面阈值、原始卫星阈值和后处理卫星阈值的分类性能。",
+    "expected_contribution": "建立一个可直接比较地面观测阈值与卫星阈值的统一评估框架，明确卫星土壤湿度和降水数据在浅层滑坡预警中的适用边界；识别近地表卫星土壤湿度与坡体重力主导排水状态之间的关键机制缺口；量化卫星阈值在探测率、误报率和预警提前量方面的代价，并提出可嵌入遥感预警系统的排水衰减后处理方法；为地面监测站布设优先级、无站点区域的卫星预警应用以及区域尺度滑坡预警系统设计提供可检验的技术依据。",
+    "falsification_condition": "若在留一风暴事件交叉验证中，原始卫星阈值的PR-AUC和Critical Success Index均不低于地面阈值的95%，且其False Alarm Ratio不高于地面阈值0.10，同时在至少80%的滑坡事件中保持Probability of Detection不低于0.80，则“地面阈值具有更优性能、卫星阈值主要受风暴间隔土壤湿度高估导致误报”这一假设将被否证；若加入排水衰减后处理后，卫星阈值的False Alarm Ratio下降不足0.10或误报下降未达到统计显著性，也将否证排水后处理能够解释并改善卫星阈值误报的机制路径。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

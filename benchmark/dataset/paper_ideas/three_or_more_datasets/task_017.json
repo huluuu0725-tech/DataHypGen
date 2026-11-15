@@ -1,0 +1,54 @@
+{
+  "paper_id": "10.1088/1748-9326/ac462e",
+  "task_id": "three_or_more_datasets/task_017",
+  "title": "Assessing the role of compound drought and heatwave events on unprecedented 2020 wildfires in the Pantanal",
+  "category": "drought_fire_burned_area",
+  "year": 2021,
+  "journal": "Environmental Research Letters",
+  "impact_level": "medium",
+  "datasets": [
+    "Satellite soil-moisture time series",
+    "Precipitation and temperature forcing",
+    "MODIS/FireCCI burned-area product"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "soil_moisture_state",
+      "dataset": "Satellite soil-moisture time series"
+    },
+    {
+      "role": "climate_extremes",
+      "dataset": "Precipitation and temperature forcing"
+    },
+    {
+      "role": "burned_area_observation",
+      "dataset": "MODIS/FireCCI burned-area product"
+    }
+  ],
+  "idea": {
+    "research_question": "How do soil-moisture drought and climate extremes jointly explain burned-area variability?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align every required role, construct role-specific features, test interactions, and compare against single-role ablations.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:NASA/SMAP/SPL4SMGP/008",
+      "GEE:ECMWF/ERA5_LAND/HOURLY",
+      "GEE:ESA/CCI/FireCCI/5_1"
+    ],
+    "required_component_usage": [
+      null,
+      null,
+      null
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently screened multidataset seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_017:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_online_seed_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\online_recall_underrepresented_20260929\\independent_seed_audit.json",
+    "audit_verdict": "admit_candidate"
+  }
+}

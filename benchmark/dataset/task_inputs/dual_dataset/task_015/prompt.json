@@ -1,0 +1,188 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Continental streamflow observation space",
+  "datasets": [
+    {
+      "role": "streamflow_observation",
+      "data_description": {
+        "dataset_name": "USGS NWIS Daily Values Streamflow Observations",
+        "data_type": "Hydrological gauge discharge time series",
+        "data_format": "USGS Water Services JSON API",
+        "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+        "spatial_resolution": "Gauge/station locations",
+        "temporal_unit": "Daily mean discharge values",
+        "temporal_coverage": "Historical and active USGS daily values; query window set by API parameters",
+        "data_source": "USGS NWIS Daily Values Service; parameterCd=00060 denotes discharge",
+        "analytical_capabilities": [
+          "Gauge-based streamflow observation",
+          "Daily discharge time-series aggregation",
+          "Hydrometeorological alignment with forcing fields"
+        ],
+        "spatial_coverage": {
+          "region_name": "Continental streamflow observation space",
+          "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+        }
+      },
+      "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active"
+    },
+    {
+      "role": "meteorological_forcing",
+      "data_description": {
+        "dataset_name": "NLDAS-2 Primary Forcing Data (Hourly)",
+        "data_type": "Meteorological forcing raster time series",
+        "data_format": "Google Earth Engine ImageCollection",
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+        "gee_asset": {
+          "id": "NASA/NLDAS/FORA0125_H002",
+          "type": "image_collection"
+        },
+        "spatial_resolution": "0.125 degree",
+        "temporal_unit": "Hourly images",
+        "temporal_coverage": "1979-01-01 to near present",
+        "data_source": "NASA GSFC NLDAS-2 (GES DISC collection mirrored in GEE)",
+        "analytical_capabilities": [
+          "Hourly precipitation and temperature forcing",
+          "Humidity, pressure and wind forcing",
+          "Long-term hydrometeorological aggregation"
+        ],
+        "spatial_coverage": {
+          "region_name": "Continental streamflow observation space",
+          "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+        }
+      },
+      "data_path": "GEE:NASA/NLDAS/FORA0125_H002"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "USGS NWIS Daily Values Streamflow Observations",
+      "data_type": "Hydrological gauge discharge time series",
+      "data_format": "USGS Water Services JSON API",
+      "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+      "spatial_resolution": "Gauge/station locations",
+      "temporal_unit": "Daily mean discharge values",
+      "temporal_coverage": "Historical and active USGS daily values; query window set by API parameters",
+      "data_source": "USGS NWIS Daily Values Service; parameterCd=00060 denotes discharge",
+      "analytical_capabilities": [
+        "Gauge-based streamflow observation",
+        "Daily discharge time-series aggregation",
+        "Hydrometeorological alignment with forcing fields"
+      ],
+      "spatial_coverage": {
+        "region_name": "Continental streamflow observation space",
+        "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+      }
+    },
+    {
+      "dataset_name": "NLDAS-2 Primary Forcing Data (Hourly)",
+      "data_type": "Meteorological forcing raster time series",
+      "data_format": "Google Earth Engine ImageCollection",
+      "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+      "gee_asset": {
+        "id": "NASA/NLDAS/FORA0125_H002",
+        "type": "image_collection"
+      },
+      "spatial_resolution": "0.125 degree",
+      "temporal_unit": "Hourly images",
+      "temporal_coverage": "1979-01-01 to near present",
+      "data_source": "NASA GSFC NLDAS-2 (GES DISC collection mirrored in GEE)",
+      "analytical_capabilities": [
+        "Hourly precipitation and temperature forcing",
+        "Humidity, pressure and wind forcing",
+        "Long-term hydrometeorological aggregation"
+      ],
+      "spatial_coverage": {
+        "region_name": "Continental streamflow observation space",
+        "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+      }
+    }
+  ],
+  "data_paths": [
+    "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+    "GEE:NASA/NLDAS/FORA0125_H002"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_015:composite_observation",
+    "type": "composite_observation",
+    "name": "streamflow_meteorological_forcing composite observation",
+    "observable_group": "streamflow_meteorological_forcing_multidataset_observation",
+    "components": [
+      {
+        "role": "streamflow_observation",
+        "data_description": {
+          "dataset_name": "USGS NWIS Daily Values Streamflow Observations",
+          "data_type": "Hydrological gauge discharge time series",
+          "data_format": "USGS Water Services JSON API",
+          "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+          "spatial_resolution": "Gauge/station locations",
+          "temporal_unit": "Daily mean discharge values",
+          "temporal_coverage": "Historical and active USGS daily values; query window set by API parameters",
+          "data_source": "USGS NWIS Daily Values Service; parameterCd=00060 denotes discharge",
+          "analytical_capabilities": [
+            "Gauge-based streamflow observation",
+            "Daily discharge time-series aggregation",
+            "Hydrometeorological alignment with forcing fields"
+          ],
+          "spatial_coverage": {
+            "region_name": "Continental streamflow observation space",
+            "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+          }
+        },
+        "data_path": "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active"
+      },
+      {
+        "role": "meteorological_forcing",
+        "data_description": {
+          "dataset_name": "NLDAS-2 Primary Forcing Data (Hourly)",
+          "data_type": "Meteorological forcing raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+          "gee_asset": {
+            "id": "NASA/NLDAS/FORA0125_H002",
+            "type": "image_collection"
+          },
+          "spatial_resolution": "0.125 degree",
+          "temporal_unit": "Hourly images",
+          "temporal_coverage": "1979-01-01 to near present",
+          "data_source": "NASA GSFC NLDAS-2 (GES DISC collection mirrored in GEE)",
+          "analytical_capabilities": [
+            "Hourly precipitation and temperature forcing",
+            "Humidity, pressure and wind forcing",
+            "Long-term hydrometeorological aggregation"
+          ],
+          "spatial_coverage": {
+            "region_name": "Continental streamflow observation space",
+            "coverage": "Catalog coverage intersected with Continental streamflow observation space."
+          }
+        },
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "streamflow_observation",
+        "meteorological_forcing"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_015:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+    "GEE:NASA/NLDAS/FORA0125_H002"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "streamflow_observation",
+      "meteorological_forcing"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

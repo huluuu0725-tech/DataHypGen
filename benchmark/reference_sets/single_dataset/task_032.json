@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_032",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MOD09CMG.061 Terra Surface Reflectance Daily L3 Global 0.05 Deg CMG",
+    "spatial_coverage": {
+      "region_name": "Northern Hemisphere high-latitude and high-altitude regions",
+      "coverage": "Global land coverage on the 0.05 degree Climate Modeling Grid, including boreal forest, tundra, alpine meadow and high-altitude sparse vegetation of the Northern Hemisphere."
+    },
+    "temporal_coverage": "2000-02-24 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.05 degrees (about 5.6 km)",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Computing vegetation, water or burn indices from atmospherically corrected reflectance",
+      "Building sub-monthly composites and deriving seasonal transition dates by curve fitting",
+      "Mapping spatial gradients in surface state across latitude and elevation belts",
+      "Detecting long-term trends, anomalies and abrupt changes in reflectance-derived indices",
+      "Combining reflectance with thermal brightness temperature for joint surface-state analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Surface reflectance as a dimensionless fraction (bands 1-7); brightness temperature in kelvin (thermal bands 20, 21, 31, 32)",
+      "runtime_hint": "Reflectance lives in `Coarse_Resolution_Surface_Reflectance_Band_1` through `_Band_7`; valid range is about -0.01 to 1.6. Scale factors and offsets are already applied in Earth Engine, so use values as-is. Red is band 1 and near-infrared is band 2, so NDVI is (Band_2 - Band_1) / (Band_2 + Band_1). Screen observations with `Coarse_Resolution_QA` (bits 0-1 carry overall quality, bits 2-29 give per-band quality), `Coarse_Resolution_State_QA` (cloud state, cloud shadow, land/water, aerosol, snow) and `Coarse_Resolution_Internal_CM` (internal cloud, snow, fire, sun glint, dust flags). Daily acquisition means heavy cloud and snow gaps at high latitudes, so build composites and interpolate explicitly before fitting seasonal curves. `number_of_500m_pixels_averaged_b3` and `n_pixels_averaged` report how many finer pixels contributed, flagging cells built from sparse observations. `Coarse_Resolution_Granule_Time` encodes acquisition time as HHMM, and `Coarse_Resolution_Solar_Zenith_Angle` matters at high latitudes where low sun angles bias retrievals."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD09CMG",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD09CMG",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_032.json",
+    "source_sha256": "cdcb12c9b6914cbcb382cffb9c1d257941dc3b0ea1db947da52b1ac65f06b56b",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_032/prompt.json",
+    "current_prompt_sha256": "6bc8ee7751b8856bb8ee60288b4ff34f2dc6de70b5bd7d918b280b827bd1cfa4",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD09CMG",
+      "observable_group": "modis_climate_modeling_grid_surface_reflectance",
+      "observation_identity_contract": {
+        "physical_object": "land-surface directional spectral reflectance",
+        "source_lineage": "Terra/Aqua MODIS MOD09/MYD09 surface-reflectance production lineage",
+        "core_measurement_semantics": "atmospherically corrected MODIS surface reflectance",
+        "non_material_variations": "MOD09/MYD09 collection version, grid, cadence, archive, resampling or aggregation retaining surface-reflectance bands",
+        "material_mismatches": "TOA reflectance, vegetation-index-only products or another sensor lineage without MODIS surface reflectance"
+      },
+      "asset_alias_policy": "MOD09CMG Collection 6/6.1 daily surface reflectance on the 0.05 degree Climate Modeling Grid is admitted, as is the Aqua counterpart MYD09CMG; MOD09GA/GQ/A1 at finer grids, the MOD13 vegetation-index tiers, GIMMS, SPOT VEGETATION and PROBA-V are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other products. Deriving vegetation indices or phenology metrics from the admitted reflectance is expected, not disqualifying.",
+      "substituted_for": {
+        "paper_used": "MODIS Seamless Data Cube (SDC) surface reflectance at 0.05 degrees on a 4-day step, a gap-filled reprocessing of daily MOD09GA 500 m distributed through the Pengcheng Cloud Brain platform",
+        "reason": "The Earth Engine catalog publishes no Seamless Data Cube. SDC is a value-added reprocessing distributed only through its own platform.",
+        "why_this_substitute": "MOD09CMG is the closest available product on three counts at once. It sits on the same 0.05 degree Climate Modeling Grid the source selected. It carries surface reflectance rather than a downstream vegetation index, which is the same observable class as SDC, itself a MOD09 reprocessing. And its daily step is finer than the source's 4-day step, so it can be aggregated to match; a coarser product could not be refined.",
+        "rejected_alternatives": {
+          "MODIS/061/MOD13C1": "same 0.05 degree grid and a fully specified catalog entry, but composites over 16 days against the source's 4-day step. That gap is irreversible and would degrade phenological transition-date estimation, the central measurement here. It also supplies vegetation indices rather than reflectance, one processing step further from SDC.",
+          "MODIS/061/MOD13Q1": "the former anchor: 250 m, two orders of magnitude finer than the 0.05 degree grid this study works on, and inconsistent with every co-registered covariate",
+          "MODIS/061/MOD09GA": "500 m daily reflectance, the base product SDC is built from, but at the wrong grid and without the gap filling that makes SDC usable for phenology",
+          "MODIS/061/MOD09A1": "500 m 8-day reflectance, again the wrong grid"
+        },
+        "residual_gap": "MOD09CMG carries no gap filling. SDC's value is precisely that discrete observations are interpolated into a continuous series, so work on this anchor must handle cloud and snow gaps explicitly using the QA and internal cloud-mask bands rather than inheriting a filled series.",
+        "catalog_metadata_note": "The locally cached catalog entry shipped with an empty eo:bands array. The 25 band definitions were retrieved from the published Earth Engine catalog page on 2026-08-28 and patched into the local copy, recorded under local_metadata_patch in that file.",
+        "review_date": "2026-08-28"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "Where are subtropical chir-pine forests most vulnerable to wildfire? Task transfer scope: assess the same question for high-latitude phenology shifts under warming and changing land use.",
+      "hypothesis_or_mechanism": "Vegetation condition interacts with terrain, climate, and human access to shape ignition and fire-spread susceptibility. Task mechanism condition: interpret the mechanism under high-latitude phenology shifts under warming and changing land use, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are combined with terrain, climate, infrastructure, and fire observations. Task operationalization: use the anchor asset and task-specific covariates needed to represent high-latitude phenology shifts under warming and changing land use.",
+      "method_paradigm": "Machine-learning fire-vulnerability mapping with predictor importance and validation. Task evaluation frame: stratify, compare, or validate results against the constraints of high-latitude phenology shifts under warming and changing land use.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "terrain and climate",
+        "human-access and fire data"
+      ],
+      "author_team": [
+        "Sultan Muhammad",
+        "Syed Moazzam Nizami",
+        "Qunou Jiang",
+        "Kaleem Mehmood",
+        "M. Hussain",
+        "Shoaib Ahmad Anees",
+        "Fahad Shahzad",
+        "Waseem Razzaq Khan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning-based forest fire vulnerability assessment in subtropical chir pine forests of Pakistan",
+        "doi": "10.1186/s42408-025-00408-w",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "high-latitude phenology shifts under warming and changing land use",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Where is land productivity declining along the Great Green Wall, and how much change is attributable to human restoration or degradation? Task transfer scope: assess the same question for high-latitude phenology shifts under warming and changing land use.",
+      "hypothesis_or_mechanism": "Climate-adjusted vegetation productivity residuals separate human-associated departures from environmentally expected trends. Task mechanism condition: interpret the mechanism under high-latitude phenology shifts under warming and changing land use, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation time series are analyzed with climate, land-cover, and restoration information. Task operationalization: use the anchor asset and task-specific covariates needed to represent high-latitude phenology shifts under warming and changing land use.",
+      "method_paradigm": "Land-productivity trend assessment with human-versus-climate attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of high-latitude phenology shifts under warming and changing land use.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate",
+        "land management and land cover"
+      ],
+      "author_team": [
+        "Yubo Zhi",
+        "Xiaosong Li",
+        "Tong Shen",
+        "Graciela Metternicht",
+        "Anne Grainger",
+        "Yude Pan",
+        "Qi Lu",
+        "Amos T. Kabo–bah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Land productivity declines in the GGW while human contributions to restoration far outweighing degradation",
+        "doi": "10.1038/s41598-025-18963-2",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "high-latitude phenology shifts under warming and changing land use",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "How does vegetation respond to interacting climate factors after removing long-term and temporal confounding? Task transfer scope: assess the same question for high-latitude phenology shifts under warming and changing land use.",
+      "hypothesis_or_mechanism": "Climate-trend and residual-trend decomposition distinguishes direct climatic response from persistent residual vegetation change. Task mechanism condition: interpret the mechanism under high-latitude phenology shifts under warming and changing land use, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are analyzed with four climate factors using CTSS-RESTREND. Task operationalization: use the anchor asset and task-specific covariates needed to represent high-latitude phenology shifts under warming and changing land use.",
+      "method_paradigm": "Climate time-series decomposition and residual trend attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of high-latitude phenology shifts under warming and changing land use.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate variables"
+      ],
+      "author_team": [
+        "Baihui Hao",
+        "Songlin Ding",
+        "Zhengfang Wu",
+        "Z. Ruan",
+        "Li Mai",
+        "Yaning Kuang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of vegetation response to four climate factors based on the CTSS-RESTREND method",
+        "doi": "10.1007/s13762-025-06527-w",
+        "year": 2025,
+        "venue": "International Journal of Environmental Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "high-latitude phenology shifts under warming and changing land use",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "该研究考察AVHRR陆地气候数据记录在地理定位、辐射定标、云检测、表面反射率精度和农业产量监测方面的性能与适用性。",
+      "hypothesis_or_mechanism": "由于MODIS表面反射率产品经过准确校准和验证，其数据可作为参考基准，用于识别和评估AVHRR产品的误差与性能。",
+      "variables_and_data_use": "研究使用MODIS CMG Collection 6每日表面反射率数据（M{OY}D09CMG）及其波段反射率、亮温、观测几何、质量评估、云掩膜、气溶胶光学厚度和水汽等变量，作为AVHRR产品地理定位、定标、云掩膜和表面反射率直接互比较的参考；同时使用AVHRR表面反射率与亮温、CALIOP云观测、AERONET大气数据以及MODIS Terra数据开展相关评估。",
+      "method_paradigm": "多源产品验证与互比较",
+      "used_assets": [
+        "MODIS CMG daily surface reflectance Collection 6 data (M{OY}D09CMG)",
+        "AVHRR Global Area Coverage (GAC) data",
+        "Land Climate Data Record (LCDR)",
+        "MODIS Terra data set",
+        "MODIS Aqua",
+        "CALIPSO/CALIOP"
+      ],
+      "author_team": [
+        "Belen Franch",
+        "Eric Vermote",
+        "Jean-Claude Roger",
+        "Emilie Murphy",
+        "Inbal Becker-Reshef",
+        "Chris Justice",
+        "Martin Claverie",
+        "Jyoteshwar Nagol",
+        "Ivan Csiszar",
+        "Dave Meyer",
+        "Frederic Baret",
+        "Edward Masuoka",
+        "Robert Wolfe",
+        "Sadashiva Devadiga"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A 30+ Year AVHRR Land Surface Reflectance Climate Data Record and Its Application to Wheat Yield Monitoring",
+        "doi": "10.3390/rs9030296",
+        "year": 2017,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究裸冰变质及其物理属性变化如何影响格陵兰冰盖的裸冰—积雪反照率反馈以及近地表气候响应。",
+      "hypothesis_or_mechanism": "裸冰密度、气泡有效半径和等效黑碳浓度的变化会降低裸冰反照率，增强短波辐射吸收，从而加剧表面融化、裸冰暴露和正反照率反馈。",
+      "variables_and_data_use": "使用 MOD09CMG band 2 地表反射率区分裸冰与积雪，使用 MCD12C1 进行冰冻圈分类，使用 MOD10C1 进行云和积雪掩膜，使用 MCD43C3 的 band 2 BSA、宽波段 BSA、太阳天顶角和质量指数反演裸冰密度、气泡有效半径及等效黑碳浓度，并将这些属性输入 SNICAR-ADv4 和 CoLM；ERA5 提供大气驱动，CESM2-WACCM 提供气溶胶沉降通量。",
+      "method_paradigm": "物理模型反演与影响评估",
+      "used_assets": [
+        "MCD12C1",
+        "MOD09CMG",
+        "MOD10C1",
+        "MCD43C3",
+        "SNICAR-ADv4",
+        "CoLM",
+        "ERA5",
+        "CESM2-WACCM"
+      ],
+      "author_team": [
+        "Shuyang Guo",
+        "Yongjiu Dai",
+        "Hua Yuan",
+        "Hongbin Liang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Enhanced MODIS-derived ice physical properties within the Common Land Model (CoLM) revealing bare-ice–snow albedo feedback over Greenland",
+        "doi": "10.5194/tc-19-3553-2025",
+        "year": 2025,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 5,
+    "source_paper_count": 5,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

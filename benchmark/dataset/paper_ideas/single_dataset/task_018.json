@@ -1,0 +1,82 @@
+{
+  "paper_id": "10.1038/s41893-022-00854-3",
+  "task_id": "single_dataset/task_018",
+  "title": "Doubling of annual forest carbon loss over the tropics during the early twenty-first century",
+  "category": "land_use_land_cover",
+  "year": 2022,
+  "journal": "Nature Sustainability",
+  "impact_level": "high",
+  "datasets": [
+    "Hansen Global Forest Change v1.7 (GFC 15), 30.92 m nominal, 2000 baseline tree cover and 2001-2019 annual loss-year map",
+    "Landsat time series from 1999-2020 for stratified-random reference interpretation and validation",
+    "Baccini 500 m tropical above-ground live biomass map",
+    "Saatchi 1 km tropical forest total carbon-stock map",
+    "Avitabile 1 km tropical above-ground biomass map",
+    "Zarin 30 m global above-ground biomass map",
+    "SoilGrids 2.0 250 m 0-30 cm soil organic carbon stock",
+    "10 km forest-loss-driver map for 2001-2019",
+    "2001 primary humid tropical forest map and 2020 cloud-free Planet RapidEye/Dove imagery for post-loss land-use interpretation"
+  ],
+  "study_area_verified": {
+    "name": "Global tropical terrestrial regions between approximately 23.5°N and 23.5°S, excluding northern Australia",
+    "time": "GFC loss analysis covers 2001-2019, divided into 2001-2005, 2006-2010, 2011-2014, and 2015-2019; validation imagery spans 1999-2020.",
+    "analysis_grid": "GFC nominal 30.92 m pixels; biomass and SOC layers are resampled to this scale where required. Stratified validation samples 50 WRS-2 path/row locations per tropical continent.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_repoint": {
+    "paper_used": "Hansen Global Forest Change v1.7 / GFC 15",
+    "task_anchor": "UMD/hansen/global_forest_change_2019_v1_7",
+    "former_anchor": "LANDSAT/LC08/C02/T1_L2 / LANDSAT/LE07/C02/T1_L2 / LANDSAT/LT05/C02/T1_L2",
+    "why_former_anchor_was_wrong": "The paper analyzes the precomputed Hansen GFC v1.7 loss and lossyear products. Landsat scenes are used as visual reference data for validation, not as the primary forest-loss observable.",
+    "why_this_asset": "The exact GFC v1.7 catalog record provides the 2000 canopy baseline, binary loss, 2001-2019 lossyear codes, datamask and 30.92 m nominal resolution required by the Methods.",
+    "processing_level_uncertainty": "The exact v1.7 image is cataloged but deprecated. Later Hansen versions are lineage successors, not guaranteed pixel-equivalent replacements for the v1.7 trend and validation results.",
+    "corrections": [
+      "The former datasets summary incorrectly treated raw Landsat Collection 2 surface reflectance as the anchor.",
+      "MODIS and Landsat-derived biomass maps are companion carbon-density inputs; they do not replace the GFC loss-year anchor."
+    ],
+    "companion_dataset_availability": {
+      "UMD/hansen/global_forest_change_2019_v1_7": "exact GFC v1.7 image is present in the local GEE catalog but marked deprecated",
+      "NASA/ORNL/biomass_carbon_density/v1": "ready 300 m above- and below-ground carbon map, but not an exact Baccini/Saatchi/Avitabile/Zarin replacement",
+      "WHRC/biomass/tropical": "ready 500 m Baccini-lineage above-ground biomass product",
+      "ISRIC/SoilGrids250m/v2_0": "ready catalog soil-water-content collection; it is not the paper's 0-30 cm organic-carbon-stock layer",
+      "UMD/GLAD/PRIMARY_HUMID_TROPICAL_FORESTS/v1": "ready 30 m 2001 primary humid tropical forest map",
+      "ESA/GLOBCOVER_L4_200901_200912_V2_3": "ready 300 m GlobCover comparison map",
+      "WRI/Google DeepMind forest-loss drivers": "ready 1 km products exist, but catalog versions cover later periods and are not exact 2001-2019 driver data",
+      "Planet RapidEye/Dove validation imagery and author-provided reference samples": "not identified as public GEE assets in the supplied Methods"
+    },
+    "sibling_task_boundary": "single_dataset/task_018 is anchored on Hansen GFC v1.7 loss-year observations and tropical carbon-loss accounting. Tasks anchored on raw Landsat reflectance, GLCF/GFCC canopy cover, or later Hansen versions are separate product/version lineages.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在2001—2019年间，热带地区森林清除造成的年均总碳损失是否呈现区域分异的加速增长，其变化是否主要由大宗商品农业和小规模农业驱动，并且森林转换后的农业土地利用是否具有长期持续性？",
+    "hypothesis": "热带森林清除造成的年均总碳损失将在2001—2019年显著上升，2015—2019年的年均损失高于2001—2005年；该增长主要由地上生物量碳损失贡献，并在热带非洲和亚洲表现出更强的上升趋势。森林损失与农业扩张之间存在明确的机制联系，其中大规模商品农业在热带美洲和部分东南亚地区占主导，小规模农业在热带非洲及部分亚洲地区更重要；2001—2019年由森林转为农业的土地中，至2020年仍保持农业用途的比例预计超过50%。",
+    "mechanism": "森林清除首先造成地上木本植被损失，随后通过根系死亡和土壤有机碳周转产生滞后的地下生物量碳和土壤有机碳承诺损失。其外部驱动路径为：商品需求或地方生计压力上升，促进大规模商品农业、牧场和小规模农业扩张，导致森林覆盖转变为农业用地；农业转换的空间扩张进一步提高森林损失面积，并通过损失区域原有森林碳密度将面积变化转化为碳通量变化。山地森林因单位面积碳储量和空间分布特征不同，可能对区域森林碳损失增长产生不成比例的贡献。由于研究计算的是森林移除造成的总损失，并不抵扣次生林和人工林的部分碳恢复，因此地下碳和土壤碳被作为地上森林损失后的承诺损失进行估算。",
+    "key_variables": {
+      "target": "年尺度热带森林清除总碳损失（PgC yr^-1），由地上生物量碳损失、地下根系生物量承诺碳损失和土壤有机碳承诺损失组成；同时分析森林损失面积（km^2 yr^-1）及其分量、区域趋势和森林转换后农业土地的持续比例。",
+      "predictors": [
+        "Global Forest Change（GFC）森林覆盖损失年份图，年度森林损失像元（30 m空间分辨率，2001—2019）",
+        "森林地上生物量碳密度（与GFC森林损失像元空间配准，单位为Mg C ha^-1）",
+        "森林地下根系生物量碳密度及其承诺损失参数",
+        "森林土壤有机碳密度及其承诺损失参数",
+        "森林损失驱动类型：大规模商品农业、小规模农业、牧场、油籽和谷物种植等",
+        "土地利用转换后状态：农业用地、牧场、其他土地利用类型，以及2020年土地利用持续状态",
+        "区域分区：热带美洲、热带非洲、热带亚洲；研究范围为南北纬23.5°之间且排除澳大利亚北部",
+        "地形分区：山地与非山地，用于比较山地森林碳损失贡献"
+      ]
+    },
+    "data_sources": [
+      "Global Forest Change（GFC）产品：年度森林覆盖损失数据，30 m空间分辨率，2001—2019；用于识别森林损失发生年份和空间范围",
+      "与GFC像元配准的森林地上生物量、地下根系生物量和土壤有机碳数据：用于将森林损失面积转换为地上、地下和土壤碳损失；原文节选未明确给出具体产品名称、时间范围和空间分辨率",
+      "森林损失驱动类型地图：用于区分大规模商品农业、小规模农业及其他森林损失驱动；原文节选未明确给出数据集名称、空间分辨率和制图年份",
+      "2020年土地利用或森林转换后土地覆盖数据：用于判断2001—2019年森林转换为农业后的土地利用是否持续至2020年；原文节选未明确给出具体数据集名称和空间分辨率",
+      "热带区域、山地范围及行政区域边界数据：用于限定23.5°N—23.5°S研究区、排除北澳大利亚，并进行大陆、国家和山地分区统计；原文节选未明确给出具体数据集名称"
+    ],
+    "analytical_approach": "首先将30 m年度GFC森林损失图与地上生物量、地下根系生物量和土壤有机碳栅格进行像元级配准，计算每个森林损失像元的碳损失，并按年度、国家、次区域和热带大陆汇总。针对GFC产品可能存在的算法和卫星数据变化造成的时间不一致，采用分层随机抽样估计森林损失面积趋势：按区域、森林类型、山地/非山地及损失年份等变量进行分层，在各层内随机抽取样本，估计样本层森林损失比例，再通过“stratify and multiply”方法将比例外推至各层总面积；通过抽样方差计算95%置信区间。将总碳损失分解为地上生物量、地下根系和土壤有机碳三个分量，并比较2001—2005、2006—2010、2011—2014和2015—2019四个时期。对2001—2019年年度碳损失序列及区域序列采用双侧Mann—Kendall趋势检验，显著性阈值设为P<0.05，并以Sen斜率估计变化速率及其95%置信区间。将森林损失空间图与森林损失驱动图叠加，按驱动类型统计各类农业转换造成的森林损失面积和碳损失贡献；进一步将2001—2019年森林转农业像元与2020年土地利用状态叠加，计算农业用途保持比例。通过分辨率、森林损失识别算法、区域分区和碳密度数据替换等敏感性分析，检验趋势及碳损失估计的稳健性。",
+    "expected_contribution": "建立一个同时考虑森林损失面积、空间碳密度、地下生物量和土壤有机碳承诺损失的高空间分辨率热带森林碳损失估算框架；通过分层随机抽样降低GFC长期时间序列中算法变化造成的趋势偏差；揭示热带美洲、非洲和亚洲森林碳损失的区域轨迹及山地贡献；将森林损失与大规模商品农业、小规模农业等具体驱动相联系，并用2020年土地利用持续状态评估森林转换后土地利用的长期性，从而为全球碳收支核算、森林损失监测和减少毁林政策评估提供空间显式依据。",
+    "falsification_condition": "若在采用分层随机抽样并进行95%置信区间估计后，2001—2019年热带森林总碳损失的Sen斜率不显著高于0（Mann—Kendall检验P>=0.05），或2015—2019与2001—2005的年均总碳损失比值不超过1.5，则否定“二十一世纪前20年森林碳损失显著加速并接近翻倍”的假设；若农业相关驱动占森林碳损失的比例低于50%，则否定“农业扩张是热带森林碳损失主导机制”的假设；若2001—2019年转为农业的森林土地中至2020年仍为农业的比例低于50%，则否定“森林转换后的农业土地利用具有多数持续性”的假设；若上述结论在替换森林损失识别算法、碳密度数据或区域分区后发生方向反转，则认为研究结论缺乏稳健性。"
+  },
+  "pdf_url": "https://www.nature.com/articles/s41893-022-00854-3.pdf",
+  "enriched": true,
+  "enrichment_source": "pdf_fulltext"
+}

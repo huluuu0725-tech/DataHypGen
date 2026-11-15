@@ -1,0 +1,47 @@
+{
+  "paper_id": "10.3390/rs17132129",
+  "task_id": "dual_dataset/task_009",
+  "title": "High Spatial Resolution Soil Moisture Mapping over Agricultural Field Integrating SMAP, IMERG, and Sentinel-1 Data in Machine Learning Models",
+  "category": "precipitation_sm_data",
+  "year": 2025,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "CHIRPS Daily Final Precipitation v2.0",
+    "SMAP Level-4 soil-moisture product"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "precipitation_driver",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    },
+    {
+      "role": "soil_moisture_state",
+      "dataset": "SMAP Level-4 soil-moisture product"
+    }
+  ],
+  "idea": {
+    "research_question": "How do precipitation anomalies translate into soil-moisture states and drought or ecological response?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "GEE:NASA/SMAP/SPL4SMGP/008"
+    ],
+    "required_component_usage": [
+      "precipitation_driver",
+      "soil_moisture_state"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves the audited multidataset observation contract.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_009:composite_observation",
+    "task_seed_audit": "independent_combination_seed_audit_20260929.json",
+    "seed_selection_basis": "independent_section_ready_audit",
+    "audited_combination_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\batch_reference_spaces_20260929\\precipitation_sm_data.json",
+    "selected_candidate_evidence": "section_ready"
+  }
+}

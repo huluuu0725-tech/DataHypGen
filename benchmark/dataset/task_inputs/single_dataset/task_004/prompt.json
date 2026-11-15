@@ -1,0 +1,34 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Rainfall-triggered shallow-landslide slopes",
+  "data_description": {
+    "dataset_name": "NASA-USDA Enhanced SMAP Global Soil Moisture Data",
+    "spatial_coverage": {
+      "region_name": "Rainfall-triggered shallow-landslide slopes",
+      "coverage": "Hillslopes susceptible to rainfall-triggered shallow soil slides, where SMAP-enhanced Palmer-model soil moisture is available between 60°S and 90°N."
+    },
+    "temporal_coverage": "2015-04-02 to 2022-08-02",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "10 km",
+    "temporal_unit": "3-day cadence",
+    "analytical_capabilities": [
+      "Track surface and subsurface soil moisture variability across global land areas",
+      "Analyze precomputed surface and subsurface soil-moisture anomalies against the SMAP-record climatology",
+      "Map wet and dry spatial patterns and their evolution through time",
+      "Summarize long-term trends, persistence, and extreme moisture conditions",
+      "Combine with other gridded climate or hazard datasets for spatiotemporal comparison"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Surface and subsurface soil moisture in millimeters (mm); soil-moisture profile as a fraction; anomalies dimensionless",
+      "runtime_hint": "Use `ssm` for surface soil moisture and `susm` for subsurface soil moisture, both in mm; `smp` is the soil-moisture profile fraction; `ssma` and `susma` are dimensionless anomalies relative to the SMAP-record climatology. Images follow a 3-day cadence rather than daily, so align temporal aggregation to that interval."
+    },
+    "data_source": "NASA Goddard Space Flight Center Hydrological Sciences Laboratory in cooperation with USDA Foreign Agricultural Services and the USDA Hydrology and Remote Sensing Laboratory",
+    "gee_asset": {
+      "id": "NASA_USDA/HSL/SMAP10KM_soil_moisture",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "paper_ideas/single_dataset/task_004.json research_question names 降雨诱发浅层土滑坡; no single site is named, so the scope stays a slope class rather than a place"
+  },
+  "data_path": "GEE:NASA_USDA/HSL/SMAP10KM_soil_moisture"
+}

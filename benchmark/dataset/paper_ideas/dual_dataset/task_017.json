@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1073/pnas.1607171113",
+  "task_id": "dual_dataset/task_017",
+  "title": "Impact of anthropogenic climate change on wildfire across western US forests",
+  "category": "climate_forcing_burned_area",
+  "year": 2016,
+  "journal": "Proceedings of the National Academy of Sciences",
+  "impact_level": "medium",
+  "datasets": [
+    "Gridded climate forcing and counterfactual simulations",
+    "Forest burned-area observations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "climate_forcing",
+      "dataset": "Gridded climate forcing and counterfactual simulations"
+    },
+    {
+      "role": "burned_area",
+      "dataset": "Forest burned-area observations"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between climate forcing and burned area?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "External: gridded temperature and precipitation observations and climate simulations",
+      "External: forest-fire area and burned-area observations"
+    ],
+    "required_component_usage": [
+      "climate_forcing",
+      "burned_area"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_017:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global human-settlement space",
+  "datasets": [
+    {
+      "role": "built_up_area",
+      "data_description": {
+        "dataset_name": "Built-up area",
+        "data_type": "Built-up-area raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+        "spatial_coverage": {
+          "region_name": "Global human-settlement space",
+          "coverage": "Declared analysis region within Global human-settlement space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10"
+    },
+    {
+      "role": "population_density",
+      "data_description": {
+        "dataset_name": "Population density",
+        "data_type": "Population-density raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+        "spatial_coverage": {
+          "region_name": "Global human-settlement space",
+          "coverage": "Declared analysis region within Global human-settlement space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Built-up area",
+      "data_type": "Built-up-area raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+      "spatial_coverage": {
+        "region_name": "Global human-settlement space",
+        "coverage": "Declared analysis region within Global human-settlement space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Population density",
+      "data_type": "Population-density raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+      "spatial_coverage": {
+        "region_name": "Global human-settlement space",
+        "coverage": "Declared analysis region within Global human-settlement space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+    "GEE:CIESIN/GPWv411/GPW_Population_Density"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_022:composite_observation",
+    "type": "composite_observation",
+    "name": "built_up_population composite observation",
+    "observable_group": "built_up_population_multidataset_observation",
+    "components": [
+      {
+        "role": "built_up_area",
+        "data_description": {
+          "dataset_name": "Built-up area",
+          "data_type": "Built-up-area raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+          "spatial_coverage": {
+            "region_name": "Global human-settlement space",
+            "coverage": "Declared analysis region within Global human-settlement space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10"
+      },
+      {
+        "role": "population_density",
+        "data_description": {
+          "dataset_name": "Population density",
+          "data_type": "Population-density raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+          "spatial_coverage": {
+            "region_name": "Global human-settlement space",
+            "coverage": "Declared analysis region within Global human-settlement space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "built_up_area",
+        "population_density"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_022:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+    "GEE:CIESIN/GPWv411/GPW_Population_Density"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "built_up_area",
+      "population_density"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

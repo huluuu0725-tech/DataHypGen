@@ -1,0 +1,32 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Karachi urban vegetation observation space",
+  "data_description": {
+    "dataset_name": "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+    "spatial_coverage": {
+      "region_name": "Karachi, Pakistan",
+      "coverage": "Urban and peri-urban Karachi study area; users may define a reproducible analysis geometry within this area."
+    },
+    "temporal_coverage": "2013-01-01 to present, subject to catalog holdings at evaluation time.",
+    "spatial_resolution": "30 m multispectral surface reflectance",
+    "temporal_unit": "Landsat acquisition; aggregate valid observations to monthly composites when required",
+    "analytical_capabilities": [
+      "Compute monthly NDVI from Landsat 8 Level 2 surface-reflectance red and near-infrared bands",
+      "Analyse urban vegetation-index time series, trend and seasonality",
+      "Fit and evaluate ARIMA or SARIMA forecasts of monthly NDVI"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Landsat 8 Level 2 surface reflectance. NDVI is a derived feature computed from the red and near-infrared surface-reflectance bands, not a separate required data source.",
+      "runtime_hint": "Use LANDSAT/LC08/C02/T1_L2; apply the documented scale and offset to SR_B4 and SR_B5, mask unsuitable pixels, then calculate NDVI and aggregate to monthly values before time-series modelling."
+    },
+    "data_source": "USGS Landsat 8 Collection 2 Level 2, distributed through Google Earth Engine",
+    "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1_L2",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+}

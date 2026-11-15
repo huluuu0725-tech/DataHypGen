@@ -1,0 +1,336 @@
+{
+  "schema_version": "2.1",
+  "task_id": "dual_dataset/task_026",
+  "reference_coverage": "audited_semantic_reference_set",
+  "evaluation_year": 2026,
+  "source_pools_scanned": {
+    "complete_literature_pool_20260929_records": 57884,
+    "online_recall_atmosphere_nontraditional_20260930_records": 449
+  },
+  "eligibility_exclusions": [
+    "Zenodo",
+    "dataset-description papers",
+    "code/software records",
+    "reviews",
+    "book chapters",
+    "comments",
+    "conference abstracts"
+  ],
+  "required_roles": [
+    "aerosol_optical_depth",
+    "soil_moisture"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_026:composite_observation",
+    "type": "composite_observation",
+    "name": "aerosol_optical_depth_soil_moisture composite observation",
+    "observable_group": "aerosol_optical_depth_soil_moisture_multidataset_observation",
+    "components": [
+      {
+        "role": "aerosol_optical_depth",
+        "data_description": {
+          "dataset_name": "Aerosol optical depth",
+          "data_type": "Satellite aerosol-optical-depth observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MCD19A2_GRANULES",
+          "spatial_coverage": {
+            "region_name": "East Asian dust-source observation space",
+            "coverage": "Declared analysis region within East Asian dust-source observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MCD19A2_GRANULES"
+      },
+      {
+        "role": "soil_moisture",
+        "data_description": {
+          "dataset_name": "Volumetric soil moisture",
+          "data_type": "Land-surface volumetric-soil-moisture observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+          "spatial_coverage": {
+            "region_name": "East Asian dust-source observation space",
+            "coverage": "Declared analysis region within East Asian dust-source observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "aerosol_optical_depth",
+        "soil_moisture"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context or validation cannot replace a required role."
+    }
+  },
+  "seed_paper": {
+    "title": "Impact of soil moisture on dust outbreaks in East Asia: Using satellite and assimilation data",
+    "doi": "10.1002/2015gl063325",
+    "year": 2015,
+    "venue": "Geophysical Research Letters",
+    "datasets": [
+      "Aerosol optical depth",
+      "Volumetric soil moisture"
+    ],
+    "dataset_roles": [
+      {
+        "role": "aerosol_optical_depth",
+        "dataset": "Aerosol optical depth"
+      },
+      {
+        "role": "soil_moisture",
+        "dataset": "Volumetric soil moisture"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:dual_dataset/task_026:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "reference_count": 3,
+  "exact_admitted_count": 3,
+  "variant_admitted_count": 0,
+  "references": [
+    {
+      "doi": "10.1002/2015gl063325",
+      "title": "Impact of soil moisture on dust outbreaks in East Asia: Using satellite and assimilation data",
+      "year": 2015,
+      "venue": "Geophysical Research Letters",
+      "authors": [
+        "Hyunglok Kim",
+        "Minha Choi"
+      ],
+      "source_pool": "online_recall_atmosphere_nontraditional_20260930",
+      "record_type": "research_article",
+      "admission_status": "admitted",
+      "admission_basis": "Data sections name MODIS Deep Blue 550-nm AOD and GLDAS volumetric soil moisture, resampled to common support; the study estimates their relation under wind-speed conditions. Wind speed is a control, not a required role.",
+      "semantic_match": "Reviewed for aerosol_optical_depth_soil_moisture; all required roles are explicit in the abstract or audited full text.",
+      "abstract": "Abstract This study is the first assessment of the effects of soil moisture on dust outbreaks using satellite‐derived aerosol optical depth (AOD) and global assimilation data on the sand regions across East Asia. The relationships among dust outbreaks, soil moisture, and wind speed were estimated using data sets of the Moderate Resolution Imaging Spectroradiometer and Global Land Data Assimilation System collected over 11 years (2003–2013). The mean AOD exponentially decreased with increasing soil moisture under different wind speed conditions (average determination coefficient = 0.95). As the wind speed conditions became stronger, the probability of a dust outbreak became greatly affected by soil moisture. The threshold soil moisture for dust outbreaks increased with increasing wind speed and decreased with increasing dust‐outbreak criteria of AOD. Our results have the capability to be applied to satellite‐based dust‐outbreak prediction and global‐scale dust‐emission studies."
+    },
+    {
+      "doi": "10.1155/2017/1917372",
+      "title": "Development and Assessment of the Sand Dust Prediction Model by Utilizing Microwave-Based Satellite Soil Moisture and Reanalysis Datasets in East Asian Desert Areas",
+      "year": 2017,
+      "venue": "Advances in Meteorology",
+      "authors": [
+        "Hyunglok Kim",
+        "Muhammad Zohaib",
+        "Eunsang Cho",
+        "Yann H. Kerr",
+        "Minha Choi"
+      ],
+      "source_pool": "online_recall_atmosphere_nontraditional_20260930",
+      "record_type": "research_article",
+      "admission_status": "admitted",
+      "admission_basis": "Abstract was reviewed and explicitly identifies all required data roles in one research instance.",
+      "semantic_match": "Reviewed for aerosol_optical_depth_soil_moisture; all required roles are explicit in the abstract or audited full text.",
+      "abstract": "For several decades, satellite-based microwave sensors have provided valuable soil moisture monitoring in various surface conditions. We have first developed a modeled aerosol optical depth (AOD) dataset by utilizing Soil Moisture and Ocean Salinity (SMOS), Advanced Microwave Scanning Radiometer 2 (AMSR2), and the Global Land Data Assimilation System (GLDAS) soil moisture datasets in order to estimate dust outbreaks over desert areas of East Asia. Moderate Resolution Imaging Spectroradiometer- (MODIS-) based AOD products were used as reference datasets to validate the modeled AOD (MA). The SMOS-based MA (SMOS-MA) dataset showed good correspondence with observed AOD ( R -value: 0.56) compared to AMSR2- and GLDAS-based MA datasets, and it overestimated AOD compared to observed AOD. The AMSR2-based MA dataset was found to underestimate AOD, and it showed a relatively low R -value (0.35) with respect to observed AOD. Furthermore, SMOS-MA products were able to simulate the short-term AOD trends, having a high R -value (0.65). The results of this study may allow us to acknowledge the utilization of microwave-based soil moisture datasets for investigation of near-real time dust outbreak predictions and short-term dust outbreak trend analysis."
+    },
+    {
+      "doi": "10.3390/rs13061045",
+      "title": "Aerosol Trends during the Dusty Season over Iran",
+      "year": 2021,
+      "venue": "Remote Sensing",
+      "authors": [
+        "Robabeh Yousefi",
+        "Fang Wang",
+        "Quansheng Ge",
+        "Jos Lelieveld",
+        "Abdallah Shaheen"
+      ],
+      "source_pool": "online_recall_atmosphere_nontraditional_20260930",
+      "record_type": "research_article",
+      "admission_status": "admitted",
+      "admission_basis": "Abstract was reviewed and explicitly identifies all required data roles in one research instance.",
+      "semantic_match": "Reviewed for aerosol_optical_depth_soil_moisture; all required roles are explicit in the abstract or audited full text.",
+      "abstract": "This study assessed the aerosol climatology over Iran, based on the monthly data of aerosol optical depth (AOD) derived from the reanalysis-based Modern Era Retrospective Analysis for Research and Applications (MERRA-2) and the satellite-based Moderate Resolution Imaging Spectroradiometer (MODIS). In addition, sea level pressure, wind speed, temperature, relative humidity, precipitation, and soil moisture from the ERA5 reanalysis dataset were applied to investigate the climate-related effects on temporal AOD changes. Our analysis identified positive and negative AOD trends during 2000–2010 and 2010–2018, respectively, which are likely linked to aeolian dust changes. The dust-driven AOD trends were supported by changes in the Ångström exponent (AE) and fine mode fraction (FMF) of aerosols over Iran. During the early period (2000–2010), results of AOD-meteorology correlation analyses suggest reduced soil moisture, leading to increased dust emissions, whereas our results suggest that during the later period (2010–2018) an increase of soil moisture led to decreased AOD levels. Soil moisture appears to be a key factor in dust mobilization in the region, notably in southwestern Iran, being influenced by adjacent mineral dust sources. These phenomena were affected by large-scale sea level pressure transformations and the associated meteorology in the preceding winter seasons. Using a multiple linear regression model, AOD variability was linked to various meteorological factors in different regions. Our results suggest that climatic variations strongly affect the dust cycle, with a strong dependence on wintertime conditions in the region."
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "task_026_nonseed_ref_01",
+      "source_paper_doi": "10.1155/2017/1917372",
+      "source_paper": {
+        "doi": "10.1155/2017/1917372",
+        "title": "Development and Assessment of the Sand Dust Prediction Model by Utilizing Microwave-Based Satellite Soil Moisture and Reanalysis Datasets in East Asian Desert Areas",
+        "year": 2017,
+        "venue": "Advances in Meteorology"
+      },
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "nonseed_fulltext_instance_extraction_20261011",
+      "research_question": "能否利用SMOS、AMSR2和GLDAS土壤湿度及风速构建东亚沙漠沙尘AOD预测，并用MODIS观测评估不同输入产品的表现？",
+      "hypothesis_or_mechanism": "土壤湿度影响沙尘起动，AOD与土壤湿度及风速的关系用于预测沙尘状态；研究以观测AOD检验该经验模型。",
+      "variables_and_data_use": "SMOS、AMSR2和GLDAS土壤湿度及GLDAS风速用于生成模型AOD；MODIS Aqua AOD与Ångström指数用于验证和区分沙尘状态。",
+      "method_paradigm": "建立土壤湿度—风速—AOD经验预测模型，对齐不同卫星过境时间，并用MODIS AOD相关性及短期趋势评估模型。",
+      "actual_datasets": [
+        "MODIS Aqua aerosol optical depth",
+        "SMOS soil moisture",
+        "AMSR2 soil moisture",
+        "GLDAS soil moisture",
+        "GLDAS wind speed"
+      ],
+      "dataset_assets": [
+        {
+          "dataset_name": "MODIS Aqua aerosol optical depth",
+          "analysis_role": "aerosol_optical_depth"
+        },
+        {
+          "dataset_name": "SMOS soil moisture",
+          "analysis_role": "soil_moisture"
+        },
+        {
+          "dataset_name": "AMSR2 soil moisture",
+          "analysis_role": "soil_moisture"
+        },
+        {
+          "dataset_name": "GLDAS soil moisture",
+          "analysis_role": "soil_moisture"
+        },
+        {
+          "dataset_name": "GLDAS wind speed",
+          "analysis_role": "wind_speed"
+        }
+      ],
+      "covered_member_count": 2,
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "remote sensing datasets and global assimilated datasets is       desert regions of East Asia. The relationships among the SM,\ninvaluable. This enables global-scale dust emission studies      wind speed, and aerosol optical depth (AOD) are utilized to\nto be conducted beyond observatory-scale dust research [24,      estimate dust outbreak phenomena. The main objectives of\n25].                                                             this study are (1) to estimate the modeled AOD (hereafter\n     In recent years, many efforts have been made to identify    MA) datasets based on different SM and GLDAS wind speed\ndust source regions and to detect dust events based on           datasets, (2) to validate MAs with the observed MODIS-AOD\nsatellite remote sensing techniques [10, 26–34]. However,        products and short-term trend analysis, and (3) to analyze\nthe previous studies hardly explain the conditions in the        the spatial distribution of MA products and observed AOD\ndust source regions that produce dust outbreaks because          datasets in different seasons. To the best of our knowledge,\nmost analyses are based on data obtained from visible            this study is the first to use SMOS and AMSR2 products to\nand infrared sensed datasets which have limitations under        predict dust outbreaks at the global-scale.\ncloudy and dusty weather conditions. Thus, this study",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/1917372.txt",
+          "doi": "10.1155/2017/1917372",
+          "locator": "text lines 74-85",
+          "source_sha256": "103662e3b7c73d6517219da88ef8682aa93c984f2ecb0062aa410074279dc56b"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "to provide the best estimation of the land surface conditions      AOD values decreased exponentially according to the various\nin near-real time [75–77]. The analyses were based on the          conditions of the WS and SM contents [24]. The exponential\nGLDAS/Noah products because these provide various land             decrease in the averaged-AOD patterns with the increase in\nsurface products with a high spatial resolution (0.25∘ ) for       SM and decrease in WS is similar to trends presented in prior\nevery 3-hour period. In this study, WS (m/s, height of 10.0 m),    studies. The physical meaning of the patterns in Figure 3 is\nsoil temperature (K, depth of 0–10.0 cm), and precipitation        that a stronger WS (i.e., 6.5 m/s) is required to generate dust\n(mm/3 h) products were also obtained from GLDAS. These             events under wet soil conditions because highly moistened\n",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/1917372.txt",
+          "doi": "10.1155/2017/1917372",
+          "locator": "text lines 242-249",
+          "source_sha256": "103662e3b7c73d6517219da88ef8682aa93c984f2ecb0062aa410074279dc56b"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "to detect the frozen or thawed state of soils [39]. Many         the land. The SM contents were retrieved from SMOS and\nother promising satellites have been launched to acquire         AMSR2; SM, wind speed (WS), surface temperature, and\nglobal SM contents, such as the Advanced Scatterometer           precipitation datasets from GLDAS were utilized for gener-\n(ASCAT), Advanced Microwave Scanning Radiometer 2                ating MA products. Atmospheric properties were obtained\n(AMSR2), and Fengyun [40–48]. Of these, certain satel-           using the Moderate Resolution Imaging Spectroradiometer\nlites have shown better performance in determining the           (MODIS) sensors on the Aqua satellite (Refer to the following\nSM products in specific regions because of their specific        sections for further details regarding those datasets). All of\ncharacteristics, such as the sensor type (e.g., active and       the datasets were gathered during 2015 and were resampled\npassive), platform overpass time, band frequency, polariza-      to a spatial resolution of 0.25∘ × 0.25∘ .\ntion, retrieval algorithm, and calibration systems [42, 49,",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/1917372.txt",
+          "doi": "10.1155/2017/1917372",
+          "locator": "text lines 98-107",
+          "source_sha256": "103662e3b7c73d6517219da88ef8682aa93c984f2ecb0062aa410074279dc56b"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "to provide the best estimation of the land surface conditions      AOD values decreased exponentially according to the various\nin near-real time [75–77]. The analyses were based on the          conditions of the WS and SM contents [24]. The exponential\nGLDAS/Noah products because these provide various land             decrease in the averaged-AOD patterns with the increase in\nsurface products with a high spatial resolution (0.25∘ ) for       SM and decrease in WS is similar to trends presented in prior\nevery 3-hour period. In this study, WS (m/s, height of 10.0 m),    studies. The physical meaning of the patterns in Figure 3 is\nsoil temperature (K, depth of 0–10.0 cm), and precipitation        that a stronger WS (i.e., 6.5 m/s) is required to generate dust\n(mm/3 h) products were also obtained from GLDAS. These             events under wet soil conditions because highly moistened\n\nAdvances in Meteorology                                                                                                                                                                                                                                                       5\n\n                                                                                                 AOD observed 7.5 hours later from Aqua\n            Zone 1",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/1917372.txt",
+          "doi": "10.1155/2017/1917372",
+          "locator": "text lines 242-253",
+          "source_sha256": "103662e3b7c73d6517219da88ef8682aa93c984f2ecb0062aa410074279dc56b"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "to detect the frozen or thawed state of soils [39]. Many         the land. The SM contents were retrieved from SMOS and\nother promising satellites have been launched to acquire         AMSR2; SM, wind speed (WS), surface temperature, and\nglobal SM contents, such as the Advanced Scatterometer           precipitation datasets from GLDAS were utilized for gener-\n(ASCAT), Advanced Microwave Scanning Radiometer 2                ating MA products. Atmospheric properties were obtained\n(AMSR2), and Fengyun [40–48]. Of these, certain satel-           using the Moderate Resolution Imaging Spectroradiometer\nlites have shown better performance in determining the           (MODIS) sensors on the Aqua satellite (Refer to the following\nSM products in specific regions because of their specific        sections for further details regarding those datasets). All of\ncharacteristics, such as the sensor type (e.g., active and       the datasets were gathered during 2015 and were resampled\npassive), platform overpass time, band frequency, polariza-      to a spatial resolution of 0.25∘ × 0.25∘ .\ntion, retrieval algorithm, and calibration systems [42, 49,"
+      ],
+      "extraction_confidence": "fulltext_verified",
+      "evidence_granularity": "fulltext_lines"
+    },
+    {
+      "direction_id": "task_026_nonseed_ref_02",
+      "source_paper_doi": "10.3390/rs13061045",
+      "source_paper": {
+        "doi": "10.3390/rs13061045",
+        "title": "Aerosol Trends during the Dusty Season over Iran",
+        "year": 2021,
+        "venue": "Remote Sensing"
+      },
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "nonseed_fulltext_instance_extraction_20261011",
+      "research_question": "伊朗2000—2018年沙尘季AOD趋势为何在2010年前后转向，哪些气象变量与变化有关？",
+      "hypothesis_or_mechanism": "土壤湿度降低可能促进沙尘排放，冬季环流及气象条件影响后续沙尘季AOD；用趋势、相关和回归分析考察该关系，不能将相关性视为独立因果识别。",
+      "variables_and_data_use": "MERRA-2和MODIS月度AOD、沙尘及气溶胶粒径指标刻画气溶胶变化；ERA5土壤湿度、风速、海平面气压、温度、湿度和降水作为气象解释变量。",
+      "method_paradigm": "计算月度距平及线性趋势，以t检验评估趋势；分冬季和沙尘季进行Pearson相关分析，在伊朗三个区域构建逐步多元线性回归模型。",
+      "actual_datasets": [
+        "MERRA-2 aerosol optical depth",
+        "MODIS aerosol optical depth",
+        "ERA5 soil moisture",
+        "ERA5 meteorological variables"
+      ],
+      "dataset_assets": [
+        {
+          "dataset_name": "MERRA-2 aerosol optical depth",
+          "analysis_role": "aerosol_optical_depth"
+        },
+        {
+          "dataset_name": "MODIS aerosol optical depth",
+          "analysis_role": "aerosol_optical_depth"
+        },
+        {
+          "dataset_name": "ERA5 soil moisture",
+          "analysis_role": "soil_moisture"
+        },
+        {
+          "dataset_name": "ERA5 meteorological variables",
+          "analysis_role": "meteorological_predictors"
+        }
+      ],
+      "covered_member_count": 2,
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "In our previous study [13] we demonstrated an obvious change in AOD trends over Iran during the last decade. Klingmüller [24] investigated the reason behind the AOD increased over the Middle East. For example, over small regions in Iraq, Saudi Arabia and Iran during the years 2000–2011. However deep knowledge about the main reasons behind the changes in AOD trends during the years 2000–2018 over Iran are not clear and need to be investigated. The present study explores whether meteorological parameters are responsible for the AOD variations, and identifies parameters that are major factors in the observed trends. In Section 3.1, the spatial distributions of the trends of MERRA-2 and MODIS AODs were calculated over Iran for two increasing (2000–2010) and decreasing (2010–2018) AOD periods. To evaluate the key role of dust on AOD in Iran, the distribution of MERRA-2 dust and AE trends are shown. For the trend assessment, monthly anomalies of AOD, fine mode fraction (FMF500), and Ångström exponent (AE440–870) were used. The influence of the main meteorological parameters from the ERA5 dataset, such as sea level pressure, soil moisture, and surface wind speed on AOD changes are investigated individually in Section 3.2. Trends of these variables and the role of the preceding winter meteorology (DJFM) on AOD during the dusty period (MJJA) are also analyzed. In Section 3.3, a multiple linear Regression (MLR), based on meteorological data, is presented to reproduce the MERRA-2 AOD in dusty season trends.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/rs13061045.txt",
+          "doi": "10.3390/rs13061045",
+          "locator": "text lines 14-14",
+          "source_sha256": "425fd4d79ebcb48b236699b85040ff6e8e80e0b273e77a35825b4f61779de0d9"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "This study assessed the aerosol climatology over Iran, based on the monthly data of aerosol optical depth (AOD) derived from the reanalysis-based Modern Era Retrospective Analysis for Research and Applications (MERRA-2) and the satellite-based Moderate Resolution Imaging Spectroradiometer (MODIS). In addition, sea level pressure, wind speed, temperature, relative humidity, precipitation, and soil moisture from the ERA5 reanalysis dataset were applied to investigate the climate-related effects on temporal AOD changes. Our analysis identified positive and negative AOD trends during 2000–2010 and 2010–2018, respectively, which are likely linked to aeolian dust changes. The dust-driven AOD trends were supported by changes in the Ångström exponent (AE) and fine mode fraction (FMF) of aerosols over Iran. During the early period (2000–2010), results of AOD-meteorology correlation analyses suggest reduced soil moisture, leading to increased dust emissions, whereas our results suggest that during the later period (2010–2018) an increase of soil moisture led to decreased AOD levels. Soil moisture appears to be a key factor in dust mobilization in the region, notably in southwestern Iran, being influenced by adjacent mineral dust sources. These phenomena were affected by large-scale sea level pressure transformations and the associated meteorology in the preceding winter seasons. Using a multiple linear regression model, AOD variability was linked to various meteorological factors in different regions. Our results suggest that climatic variations strongly affect the dust cycle, with a strong dependence on wintertime conditions in the region.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/rs13061045.txt",
+          "doi": "10.3390/rs13061045",
+          "locator": "text lines 4-4",
+          "source_sha256": "425fd4d79ebcb48b236699b85040ff6e8e80e0b273e77a35825b4f61779de0d9"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "In the present study, the mean monthly meteorological factors from the ERA5 reanalysis dataset at 0.5 × 0.5 degree in spatial resolution were utilized, and included atmospheric sea level pressure (SLP), surface wind speed (WS), surface temperature (T2M), surface relative humidity (RH), total surface precipitation (TP), and soil moisture at the surface (SM). ERA5, the 5th generation reanalysis from the European Centre for Medium-Range Weather Forecasts (ECMWF) produce a large number of atmospheric, land, and oceanic climate hourly variables, with information regarding all variable uncertainties at reduced spatial and temporal resolutions. ERA5 data with a significantly higher resolution replaced ERA-Interim. This data has also been applied in recent research [35,36,37,38]. Morerever, recent studies have evaluated and cross-checked the meteorological parameters from ERA5 data using different observation data [38,39,40,41] and high agreement has been reported. Moreover, ERA5 data assimilated ground base data from the developed countries in the Middle East region (https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5 (accessed on 8 March 2021)).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/rs13061045.txt",
+          "doi": "10.3390/rs13061045",
+          "locator": "text lines 32-32",
+          "source_sha256": "425fd4d79ebcb48b236699b85040ff6e8e80e0b273e77a35825b4f61779de0d9"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "Multiple linear regression (MLR) models of the mean MJJA MERRA-2 AOD were constructed for the three divided regions of Iran (north, west, and center (Figure 1)) using both MERRA-2 dust concentration (MJJA) and meteorological parameters (MJJA and DJFM) as predictors. To measure the correlation between aerosols and meteorological parameters, the Pearson’s R was computed. For each region, the MLR model takes the following equation:(1)y = βο+∑i=1nβixi + ɛ\n\nIn this study, y is the mean MJJA AOD, βο is the intercept values. (xi .. xi) is the total number of years during the calculation period (2000–2018, x = 19), βi is determined by the least-squares regression method and ɛ is known as the error term. To find the best model fit, the stepwise regression method was used with the 90% confidence level. This method has been widely used in previous studies [23,24,26,27,44].",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/task026_instances_withdrawal_20261011/sources/rs13061045.txt",
+          "doi": "10.3390/rs13061045",
+          "locator": "text lines 38-40",
+          "source_sha256": "425fd4d79ebcb48b236699b85040ff6e8e80e0b273e77a35825b4f61779de0d9"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "In the present study, the mean monthly meteorological factors from the ERA5 reanalysis dataset at 0.5 × 0.5 degree in spatial resolution were utilized, and included atmospheric sea level pressure (SLP), surface wind speed (WS), surface temperature (T2M), surface relative humidity (RH), total surface precipitation (TP), and soil moisture at the surface (SM). ERA5, the 5th generation reanalysis from the European Centre for Medium-Range Weather Forecasts (ECMWF) produce a large number of atmospheric, land, and oceanic climate hourly variables, with information regarding all variable uncertainties at reduced spatial and temporal resolutions. ERA5 data with a significantly higher resolution replaced ERA-Interim. This data has also been applied in recent research [35,36,37,38]. Morerever, recent studies have evaluated and cross-checked the meteorological parameters from ERA5 data using different observation data [38,39,40,41] and high agreement has been reported. Moreover, ERA5 data assimilated ground base data from the developed countries in the Middle East region (https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5 (accessed on 8 March 2021))."
+      ],
+      "extraction_confidence": "fulltext_verified",
+      "evidence_granularity": "fulltext_lines"
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261011",
+  "quality": {
+    "paper_count": 3,
+    "direction_count": 2,
+    "nonseed_instance_count": 2,
+    "seed_excluded_doi": "10.1002/2015gl063325",
+    "evidence_basis": "verified_fulltext",
+    "instance_extraction_batch": "task026_instances_withdrawal_20261011"
+  }
+}

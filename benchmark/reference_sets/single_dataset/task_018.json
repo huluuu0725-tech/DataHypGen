@@ -1,0 +1,858 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_018",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Hansen Global Forest Change v1.7 (2000-2019) [deprecated]",
+    "spatial_coverage": {
+      "region_name": "Global tropical terrestrial regions",
+      "coverage": "Global mapped land surface; analyses may be restricted to tropical terrestrial regions and valid mapped-land pixels with the `datamask` band."
+    },
+    "temporal_coverage": "2000-01-01 to 2020-01-01; baseline canopy cover is for 2000 and loss-year codes cover 2001-2019",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine image asset",
+    "spatial_resolution": "30.92 m nominal ground sampling distance",
+    "temporal_unit": "Annual loss-year classification within a static multiband image",
+    "analytical_capabilities": [
+      "Map percent tree-canopy cover for the year 2000",
+      "Create threshold-based forest masks from baseline canopy cover",
+      "Locate stand-replacement tree-cover loss and identify its detected year from 2001 through 2019",
+      "Aggregate loss area by year, interval, region, or baseline canopy-cover class",
+      "Use the first- and last-period Landsat spectral composites as contextual reference imagery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "`treecover2000` is tree-canopy cover in percent; `loss` and `gain` are binary indicators; `lossyear` is an integer year code; `datamask` is a categorical validity and water mask.",
+      "runtime_hint": "Use `treecover2000` directly in its documented 0-100 percent range; no scale factor is specified. For a 30% forest definition, require `treecover2000 >= 30`. `loss` uses 0 for no loss and 1 for loss. `lossyear` uses 0 for no detected loss and values 1-19 for years 2001-2019. `gain` only represents gain during 2000-2012 and was not updated afterward. `datamask` values are 0=no data, 1=mapped land, and 2=permanent water. This exact catalog asset is deprecated, so availability must be checked before execution; later Hansen versions are not numerically guaranteed to reproduce v1.7."
+    },
+    "data_source": "Hansen/University of Maryland/Google/USGS/NASA, derived from Landsat time-series analysis",
+    "gee_asset": {
+      "id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "type": "image"
+    }
+  },
+  "current_data_path": "GEE:UMD/hansen/global_forest_change_2019_v1_7",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_018.json",
+    "source_sha256": "8cc3319253056e652b17bc3b15eadd53b5f002cdbaff8e7fb8cef206f38727dd",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_018/prompt.json",
+    "current_prompt_sha256": "1cce33fc8158079a54af37984e1519015a00507687f4733b24dca411ddb36c2f",
+    "original_anchor_asset": {
+      "id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "observable_group": "hansen_global_forest_change_v1_7_2001_2019_lossyear",
+      "asset_alias_policy": "Only operational use of Hansen Global Forest Change v1.7 is admitted. Raw Landsat scenes, generic Global Forest Watch data, GFCC/GLCF canopy cover, JRC forest cover, and Hansen v1.8 or later are excluded unless v1.7 is also explicitly used in Methods; later Hansen versions may revise the historical record and are not treated as automatic aliases.",
+      "repointed_from": {
+        "former_anchor": "LANDSAT/LC08/C02/T1_L2 / LANDSAT/LE07/C02/T1_L2 / LANDSAT/LT05/C02/T1_L2",
+        "why_the_former_anchor_was_wrong": "The supplied Methods use the derived Hansen GFC v1.7 loss-year map as the operational forest-loss observable. Landsat 1999-2020 scenes support visual interpretation of validation samples only.",
+        "why_this_asset": "UMD/hansen/global_forest_change_2019_v1_7 exactly names GFC v1.7, provides 30.92 m treecover2000, loss and lossyear bands, and encodes loss years 2001-2019 as values 1-19.",
+        "asset_status_note": "The exact catalog image is marked deprecated. The ready v1.13 successor is not substituted because the source's stratified validation and trend inference are version-specific and later versions are not guaranteed pixel-equivalent.",
+        "review_date": "2026-08-29"
+      },
+      "verification": {
+        "status": "verified_against_supplied_methods_and_catalog",
+        "evidence": "The Methods explicitly state GFC v1.7, 30 m annual loss observations for 2001-2019 and a 30% tree-cover threshold, followed by an independent stratified Landsat reference assessment.",
+        "catalog_match": "The GEE catalog record for UMD/hansen/global_forest_change_2019_v1_7 reports 30.92 m treecover2000, binary loss and lossyear values 1-19 for 2001-2019; its current status is deprecated.",
+        "review_date": "2026-08-29"
+      },
+      "observation_identity_contract": {
+        "physical_object": "Hansen Global Forest Change v1.7 (2000-2019) [deprecated], representing hansen global forest change v1 7 2001 2019 lossyear.",
+        "source_lineage": "Task Prompt source: Hansen/University of Maryland/Google/USGS/NASA, derived from Landsat time-series analysis. Current task anchor: UMD/hansen/global_forest_change_2019_v1_7 (hansen_global_forest_change_v1_7_2001_2019_lossyear). Catalog-substitution context recorded in the task definition: UMD/hansen/global_forest_change_2019_v1_7 exactly names GFC v1.7, provides 30.92 m treecover2000, loss and lossyear bands, and encodes loss years 2001-2019 as values 1-19.",
+        "core_measurement_semantics": "`treecover2000` is tree-canopy cover in percent; `loss` and `gain` are binary indicators; `lossyear` is an integer year code; `datamask` is a categorical validity and water mask.; spatial resolution: 30.92 m nominal ground sampling distance; temporal structure: Annual loss-year classification within a static multiband image",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: Only operational use of Hansen Global Forest Change v1.7 is admitted. Raw Landsat scenes, generic Global Forest Watch data, GFCC/GLCF canopy cover, JRC forest cover, and Hansen v1.8 or later are excluded unless v1.7 is also explicitly used in Methods; later Hansen versions may revise the historical record and are not treated as automatic aliases."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "研究气候和景观变量如何影响Callithrix flaviceps的当前栖息地适宜性，以及气候变化情景下其未来分布将如何变化。",
+      "hypothesis_or_mechanism": "树冠覆盖和气候季节性共同影响Callithrix flaviceps的分布，其中较高的树冠覆盖能够提高景观适宜性，而未来气候变化可能导致适宜栖息地收缩或重新分布。",
+      "variables_and_data_use": "研究使用Hansen Global Forest Change v1.7的treecover2000作为树冠覆盖预测变量，使用EarthEnv高程数据作为另一项景观变量，并结合WorldClim当前和未来气候变量、HADGEM2-ES气候模型及RCP4.5和RCP8.5情景，利用物种出现点和随机伪缺失点建立气候、景观及综合栖息地适宜性模型。",
+      "method_paradigm": "物种分布集成建模",
+      "used_assets": [
+        "Planilha Geral de Dados versão Agosto de 2020",
+        "WorldClim v2.1",
+        "WorldClim version 1.4",
+        "HADGEM2-ES",
+        "EarthEnv",
+        "Hansen Global Forest Change v1.7",
+        "treecover2000"
+      ],
+      "author_team": [
+        "Léa Bataillard",
+        "Ane Eriksen",
+        "Fabiano Rodrigues de Melo",
+        "Adriana Pereira Milagres",
+        "Olivier Devineau",
+        "Orlando Vital"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Using ecological niche modelling to prioritise areas for conservation of the critically endangered Buffy‐Headed marmoset (Callithrix flaviceps)",
+        "doi": "10.1002/ece3.11203",
+        "year": 2024,
+        "venue": "Ecology and Evolution",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "Create and validate national maps of forest vertical structure metrics for Colombia in 2020.",
+      "hypothesis_or_mechanism": "GEDI-derived forest structural metrics can be modeled into regional and national forest-structure maps, with forest-only masking reducing uncertainty for forest-specific applications.",
+      "variables_and_data_use": "The study maps canopy height, total cover, foliage height diversity, plant area index, and RH50 for Colombia; Hansen Global Forest Change database v1.12 (2000-2024) is used to identify forest areas by masking out areas with less than 70% tree cover.",
+      "method_paradigm": "Remote-sensing map production with forest masking, mosaicking of regional maps, and validation using GEDI footprints, simulated GEDI footprints from ALS-LiDAR, and interrelationship-curve checks.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.12:2000-2024"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_d65d7f488b7236676cae",
+      "source_paper": {
+        "doi": "10.1038/s41597-025-06297-7",
+        "title": "Maps of forest vertical structure for Colombia, a megadiverse country",
+        "year": 2025,
+        "venue": "Scientific Data",
+        "authors": [
+          "Jose  Camilo Fagua",
+          "Patrick A. Jantz",
+          "Patrick Burns",
+          "Samuel Martin Jantz",
+          "John B. Kilbride",
+          "S. J. Goetz"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.12:2000-2024",
+        "name": "Hansen Global Forest Change v1.12 (2000-2024)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "publication correspond to the 2020 year (Fig.  2 ), have the coordinate reference system EPSG:4326, spatial resolution of 25 m, and the data type Float32. Forest areas were identify by masking out all areas with <70% tree cover based on ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.1038/s41597-025-06297-7",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.12:2000-2024",
+      "actual_product_name": "Hansen Global Forest Change v1.12 (2000-2024)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "c967d40312e9b8e1c7de9aadc463a17099f6d8edf9b932193f31933323be93d8",
+      "product_use_quote": "Hansen Global Forest Change database v1.12 (2000–2024) 34 . The map of Canopy height (CH) is in meters, the map of total cover (COVER) in percentage of cover, the map of Foliage Height Diversity (FHD) in the FHD index, the map of Total ",
+      "operational_use_quote": "publication correspond to the 2020 year (Fig.  2 ), have the coordinate reference system EPSG:4326, spatial resolution of 25 m, and the data type Float32. Forest areas were identify by masking out all areas with <70% tree cover based on ",
+      "application_scope_quote": "Another point to highlight is that our maps were made for the forest areas of Colombia for the year 2020, using sample data for forested areas only. Forest areas were identify based on Hansen Global Forest Change database v1.12 (2000–2024) ",
+      "supporting_quote": "publication correspond to the 2020 year (Fig.  2 ), have the coordinate reference system EPSG:4326, spatial resolution of 25 m, and the data type Float32. Forest areas were identify by masking out all areas with <70% tree cover based on ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods identify Hansen Global Forest Change v1.12 and operationally use tree-cover percentage to define the forest mask (<70%) for the 2020 outputs. Preserve v1.12, the cover-mask operation and the distinct 25 m output grid; do not equate the output maps with the GFC source grid.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Jose  Camilo Fagua",
+        "Patrick A. Jantz",
+        "Patrick Burns",
+        "Samuel Martin Jantz",
+        "John B. Kilbride",
+        "S. J. Goetz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do tropical mountain forest-loss patch sizes and their temporal trends vary across regions, elevations, and forest biomes from 2001 to 2021?",
+      "hypothesis_or_mechanism": "Forest-loss patch-size distributions and trends differ among tropical mountain regions, elevation bands, and forest biomes, with spatially contiguous disturbance patterns measurable from annual GFC loss events.",
+      "variables_and_data_use": "GFC v1.9 annual forest-loss maps and loss timing are used to delineate forest-loss patches, calculate patch area and size classes, estimate annual loss, and analyze temporal trends. A 25% tree-cover threshold defines forest, an eight-neighbor rule defines contiguity, and a three-pixel minimum mapping unit is applied. GMBA mountain polygons define the study domain, ASTER GDEM elevation data define elevation bins, Olson et al. biome maps define biome classes, and stratified reference samples support validation and area estimation.",
+      "method_paradigm": "Global gridded remote-sensing change detection combined with spatial patch analysis, stratified accuracy assessment, sample-based area estimation, temporal smoothing, and non-parametric trend estimation.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.9:2000-2021"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_7c4e29c561b72ad61abc",
+      "source_paper": {
+        "doi": "10.1088/1748-9326/adabfb",
+        "title": "Tropical montane forest loss dominated by increased 1–10 hectare-sized patches",
+        "year": 2025,
+        "venue": "Environmental Research Letters",
+        "authors": [
+          "Xinyue He",
+          "Dominick Vincent Spracklen",
+          "Joseph Holden",
+          "Zhenzhong Zeng"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+        "name": "Hansen Global Forest Change v1.9 (2000-2021)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "sample approach for validation (Olofsson et al 2014,\nFeng et al 2022). This approach for accuracy assess-\nment is recognized as one of the most robust means\nof examining forest loss trends in the GFC product\nand canmitigate inconsistencies ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.1088/1748-9326/adabfb",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+      "actual_product_name": "Hansen Global Forest Change v1.9 (2000-2021)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "f07071da65ebfe4bbe3953273b1e2d9f9a45e542dcf934456a1fb1c30430c557",
+      "product_use_quote": "time of the initial forest loss in that\narea.\nOur study relies on the GFC v1.9 dataset, which\ncovers the period from 2001 to 2021 for ana-\nlysis. To assess the accuracy of the GFC data in\nmountain regions, we applied a stratified random-\n",
+      "operational_use_quote": "S1). We used annual forest loss\nmaps to determine the area of forest loss each year\nduring 2001–2021 and the size distribution of forest\nloss patches in that year. On the choice of the min-\nimum mapping unit for forest loss patches, we ",
+      "application_scope_quote": "pixels in this analysis.\nForest loss patches were classified into four categor-\nies: small (<1 ha), intermediate (1–10 ha), large\n(10–100 ha), and very large (>100 ha). We used\nthe Theil-Sen estimator to identify trends in size of\nforest ",
+      "supporting_quote": "S1). We used annual forest loss\nmaps to determine the area of forest loss each year\nduring 2001–2021 and the size distribution of forest\nloss patches in that year. On the choice of the min-\nimum mapping unit for forest loss patches, we ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods explicitly use GFC v1.9 for 2001–2021 forest loss and apply a 25% tree-cover threshold to define forest pixels. Preserve its loss event and threshold definitions.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Xinyue He",
+        "Dominick Vincent Spracklen",
+        "Joseph Holden",
+        "Zhenzhong Zeng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How have forest cover and shoreline position changed across Albania over the 2000-2025 period, and where are deforestation and coastal erosion hotspots concentrated?",
+      "hypothesis_or_mechanism": "Multi-temporal Landsat-derived vegetation and water indices, complemented by Hansen GFC tree-cover-loss data, can reveal spatially localized canopy disturbance and shoreline retreat patterns across Albania.",
+      "variables_and_data_use": "The study computes NDVI from Landsat surface-reflectance composites for deforestation assessment, uses Hansen Global Forest Change v1.8 treecover2000 and lossyear bands to map 2000 forest cover and cumulative 2001-2020 tree-cover loss, and computes MNDWI from Landsat imagery to map shoreline retreat and land/water transitions.",
+      "method_paradigm": "Google Earth Engine remote-sensing change detection using cloud-masked seasonal Landsat composites, spectral-index differencing, Hansen GFC reference-layer integration, pixel-based masking, cumulative loss aggregation, and map export at 30 m resolution.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.8:2000-2020"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_f903acfbe9825e0c6786",
+      "source_paper": {
+        "doi": "10.21163/gt_2026.211.08",
+        "title": "DEFORESTATION AND COASTAL EROSION IN ALBANIA ASSESSED BY REMOTE SENSING",
+        "year": 2025,
+        "venue": "Geographia Technica",
+        "authors": [
+          "Medjon Hysenaj",
+          "Dritan Rustja"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.8:2000-2020",
+        "name": "Hansen Global Forest Change v1.8 (2000-2020)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "cumulative loss between 2001 and 2020 was then calculated as the sum of all loss years\nwi\nthin this baseline mask.\n\nThe dataset defines forest as areas with >30% canopy cover in 2000, with annual loss layers\nidentifying tree cover removal ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.21163/gt_2026.211.08",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.8:2000-2020",
+      "actual_product_name": "Hansen Global Forest Change v1.8 (2000-2020)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "4240c44fa1881b6de370282a18eee93fc4ee91adeba706348fb8589ec4a5b3eb",
+      "product_use_quote": "complementary approaches were applied. First, the Hansen Global Forest\nChange dataset (v1.8) was used to map tree cover in 2000 and cumulative forest loss between 2001\nand 2020 at 30 m resolution. This classification, using a 30% can\nopy ",
+      "operational_use_quote": "environment through a\n\ncanopy cover in\n2000\n\nusing the treecover\n2000\n\nband, while annual tree cover loss for 2001\n\n2020 was\nderived from the lossyear band. A mask operation limited the analysis to areas classified as forest in\n2000, and ",
+      "application_scope_quote": "complementary approaches were applied. First, the Hansen Global Forest\nChange dataset (v1.8) was used to map tree cover in 2000 and cumulative forest loss between 2001\nand 2020 at 30 m resolution. This classification, using a 30% can\nopy ",
+      "supporting_quote": "environment through a\n\ncanopy cover in\n2000\n\nusing the treecover\n2000\n\nband, while annual tree cover loss for 2001\n\n2020 was\nderived from the lossyear band. A mask operation limited the analysis to areas classified as forest in\n2000, and ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "The operational description identifies Hansen GFC v1.8, treecover2000 and lossyear for 2001–2020. Another overview sentence says cumulative loss through 2025; preserve the explicit band-processing period and record the internal 2025/2020 discrepancy.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Medjon Hysenaj",
+        "Dritan Rustja"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How much and when did old-growth forest conversion associated with global industrial and smallholder oil-palm expansion occur from 2001 to 2024, and how did the timing of forest loss relate to oil-palm establishment?",
+      "hypothesis_or_mechanism": "Oil-palm expansion contributes to old-growth forest loss, with the lag between forest clearing and plantation establishment providing evidence about the timing and mechanism of conversion; forest loss associated with smallholder oil-palm expansion did not increase after 2015.",
+      "variables_and_data_use": "The study maps industrial and smallholder oil-palm extent and planting year, uses Hansen GFC v1.12 calendar-year tree loss within a 2000 old-growth evergreen forest baseline, assigns forest-loss years to oil-palm-overlap areas, uses planting year as a proxy when Hansen loss is absent, and validates extent and land-cover-change classes with reference samples and accuracy and area estimates.",
+      "method_paradigm": "Global multi-source remote-sensing mapping and change detection combined with deep-learning classification, expert visual interpretation, temporal reconstruction, spatial overlay, rule-based post-processing, and design-based validation.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.12:2000-2024"
+      ],
+      "idea_type": "process_attribution",
+      "direction_id": "exp_faee2b3d1fc418d16970",
+      "source_paper": {
+        "doi": "10.21203/rs.3.rs-10762359/v1",
+        "title": "Global oil palm deforestation declines after zero-deforestation commitments",
+        "year": 2026,
+        "venue": "Research Square",
+        "authors": [
+          "Adrià Descals",
+          "Mohammad Agus Salim",
+          "Husna Yaen",
+          "Reji Gunawan",
+          "Fadiya Salsabila",
+          "Douglas Sheil",
+          "Erik Meijaard",
+          "David Gaveau"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.12:2000-2024",
+        "name": "Hansen Global Forest Change v1.12 (2000-2024)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "3x3 squared kernel and excluded patches smaller than 1 ha. The year of oil palm driven deforestation represented the year of tree loss in pixels where the 2000 old-growth forest layer overlapped with the 2024 oil palm extent. If forest ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.21203/rs.3.rs-10762359/v1",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.12:2000-2024",
+      "actual_product_name": "Hansen Global Forest Change v1.12 (2000-2024)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "2aa98699b0c4d9569ba18b8dd1574d762962229939f5cbd5401aec0e081bf597",
+      "product_use_quote": "mapping is well suited to closed-canopy evergreen forests in humid regions but is less effective in more open systems, such as wooded savannas or deciduous forests.\n\n For mapping annual deforestation, we used the UMD Global Forest Change ",
+      "operational_use_quote": "v1.12 dataset 4 , which reports tree loss on a calendar-year basis (January to December). We retained tree loss pixels only within old-growth forest. In addition, to reduce noise in the dataset, we applied a mode smoothing filter using a ",
+      "application_scope_quote": "than 7 were considered elongated edge artifacts and were reclassified as class Other . \n\n 2. Mapping annual oil palm expansion (2016-2024) \n\n 2.1. Overview \n\n Our global oil palm dataset provides two metrics of oil palm expansion. The ",
+      "supporting_quote": "v1.12 dataset 4 , which reports tree loss on a calendar-year basis (January to December). We retained tree loss pixels only within old-growth forest. In addition, to reduce noise in the dataset, we applied a mode smoothing filter using a ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods identify UMD Global Forest Change v1.12 and use its calendar-year tree-loss observations for annual deforestation mapping, with stated forest masking and spatial filtering. Preserve the later release and its distinct temporal coverage.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Adrià Descals",
+        "Mohammad Agus Salim",
+        "Husna Yaen",
+        "Reji Gunawan",
+        "Fadiya Salsabila",
+        "Douglas Sheil",
+        "Erik Meijaard",
+        "David Gaveau"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can modern phytolith assemblages from Amazonian lake sediments be calibrated to satellite-derived forest cover around lakes?",
+      "hypothesis_or_mechanism": "Phytolith morphotype and taxonomic composition in surface lake sediments reflects surrounding forest cover, allowing beta regression models to estimate landscape forest-cover proportion.",
+      "variables_and_data_use": "The study uses phytolith counts from surface sediments, GFC v1.8 forest-cover percentages and 2000-2019 forest-cover loss to derive 2019 forested-pixel proportions in lake buffers, JRC Global Surface Water Mapping Layers v1.3 for lake masking, and climate/elevation covariates fitted to ordination scores.",
+      "method_paradigm": "Surface-sediment calibration using spatial buffer extraction in Google Earth Engine, water masking, forest/non-forest thresholding, ordination, and beta regression prediction of forest-cover proportions.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.8:2000-2020"
+      ],
+      "idea_type": "measurement_validation",
+      "direction_id": "exp_0335a8ef4715f3a0ac40",
+      "source_paper": {
+        "doi": "10.21425/f5fbg62254",
+        "title": "Quantifying local-scale changes in Amazonian forest cover using phytoliths",
+        "year": 2024,
+        "venue": "Frontiers of Biogeography",
+        "authors": [
+          "Nina Hylkje Witteveen",
+          "Ansis Blaus",
+          "Marco Felipe Raczka",
+          "C Herrick",
+          "Mike Palace",
+          "Majoi N. Nascimento",
+          "E. Emiel van Loon",
+          "William D. Gosing",
+          "Mark B. Bush",
+          "Crystal N. H. McMichael"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.8:2000-2020",
+        "name": "Hansen Global Forest Change v1.8 (2000-2020)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "reflect forest cover in Amazonia\nFrontiers of Biogeography 2024, 16.1, e62254 © the authors, CC-BY 4.0 license  4\ndataset is based on 2000 CE, the forest cover loss \nfrom 2000 to 2019 CE was summed and subtracted \nfrom the forest cover ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.21425/f5fbg62254",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.8:2000-2020",
+      "actual_product_name": "Hansen Global Forest Change v1.8 (2000-2020)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "19e2ca4e5a133122a53dd30ed0fe11159b9d870486b41b2dbddb38b9798e7a10",
+      "product_use_quote": "minimum of 200 arboreal \nphytoliths for forested sites or 200 non-grass phytoliths \nfor savanna sites.\nForest cover was calculated using the Global \nForest Change v1.8 database that contains pixels \nwith percentages of forest cover (from ",
+      "operational_use_quote": "database, forest cover was calculated for \n5 buffers (100 m, 200 m, 500 m, 1 km, 2 km) around \nthe perimeter of each of the 50 lakes using Google \nEarth Engine (Gorelick et al. 2017). Lake perimeters \nwere defined using the JRC Global ",
+      "application_scope_quote": "calibrate phytolith assemblages with \nforest cover. Sites are color-coded by biogeographic region and symbol size reflects the forest cover (%) within 200 m of \neach lake. NW = northwestern, SW = southwestern\nWitteveen et al. Phytoliths ",
+      "supporting_quote": "database, forest cover was calculated for \n5 buffers (100 m, 200 m, 500 m, 1 km, 2 km) around \nthe perimeter of each of the 50 lakes using Google \nEarth Engine (Gorelick et al. 2017). Lake perimeters \nwere defined using the JRC Global ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods identify GFC v1.8 percent forest cover and operationally calculate forest cover around lake buffers, then adjust the year-2000 baseline with 2000–2019 loss. Preserve the baseline and derived 2019 estimate as distinct from a direct annual cover observation.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Nina Hylkje Witteveen",
+        "Ansis Blaus",
+        "Marco Felipe Raczka",
+        "C Herrick",
+        "Mike Palace",
+        "Majoi N. Nascimento",
+        "E. Emiel van Loon",
+        "William D. Gosing",
+        "Mark B. Bush",
+        "Crystal N. H. McMichael"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How are historical deforestation patterns and their drivers related to coffee plantation suitability and distribution in Tanggamus and Central Aceh districts of Sumatra?",
+      "hypothesis_or_mechanism": "Deforestation probability is associated with biogeophysical and anthropogenic drivers such as topography, climate, protected-area distance, access to plantations, roads, logging concessions, and land-use planning variables.",
+      "variables_and_data_use": "The study maps coffee and land cover using Planet-NICFI imagery, field and visual training samples, vegetation indices, DEM-derived topography, and Random Forest classification; assesses coffee suitability using CHELSA, SRTM, and SoilGrids variables; and analyzes historical deforestation using GFC v1.9 forest loss from 2001-2021 as a dependent variable, verified with Planet-NICFI imagery and summarized with zonal statistics.",
+      "method_paradigm": "Remote-sensing land-cover classification, agroclimatic suitability analysis, zonal forest-loss summarization, and Random Forest correlative modeling of deforestation probability.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.9:2000-2021"
+      ],
+      "idea_type": "process_attribution",
+      "direction_id": "exp_fbc4b05ad603f0cfca9c",
+      "source_paper": {
+        "doi": "10.29244/jpsl.14.3.438",
+        "title": "Environmental Dynamics in The Sumatran Coffee Landscapes: Opportunities and Challenges Through Spatial Perspectives",
+        "year": 2024,
+        "venue": "Jurnal Pengelolaan Sumberdaya Alam dan Lingkungan (Journal of Natural Resources and Environmental Management)",
+        "authors": [
+          "Intan Diani Fardinatri",
+          "Aryo Adhi Condro",
+          "Durrah Hayati",
+          "Ashabul Anhar"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+        "name": "Hansen Global Forest Change v1.9 (2000-2021)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This exact Hansen release is a separately versioned 30 m forest-change product with its own baseline, loss-year range and reprocessing lineage; preserve its stated cover/loss variables and period rather than merging it with the v1.7 anchor.",
+      "comparability_quote": "resolution [19]. We defined \n‘deforestation’ as detected forest loss from GFC data that occurred within the forest cover. In this study, we \nperformed GFC forest loss data verification by visual interpretation of deforested areas using ",
+      "differences_vs_anchor": [
+        "Different exact release/product identity from the task anchor; retained as a separate expansion product.",
+        "Spatial and temporal support, source lineage, field/year encoding, thresholds, and any output-grid changes are recorded from the paper and not treated as equivalent observations."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.29244/jpsl.14.3.438",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+      "actual_product_name": "Hansen Global Forest Change v1.9 (2000-2021)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "69f41683bc3ad5805b313b1fefedc4d42313618ad1a82055d52482439a1edcd7",
+      "product_use_quote": "Topography Mission. \nHistorical Deforestation and Its Drivers \nWe analyzed historical deforestation within the study area based on the Global Forest Change dataset (GFC) \nv1.9, which captures forest loss between 2001 and 2021 with a 30 m ",
+      "operational_use_quote": "We examined deforestation probability in three periods using the Random Forest algorithm [15]. \nDeforestation from GFC v1.9 was used to capture the dependent variable, and various other variables were \nused to capture the model predictors ",
+      "application_scope_quote": "statistics in geospatial analysis. This study also explored the drivers of deforestation based on correlative \nmodeling. A previous study showed that the main drivers of deforestation consist of: i) poverty-driven, \ndefined by permanent ",
+      "supporting_quote": "We examined deforestation probability in three periods using the Random Forest algorithm [15]. \nDeforestation from GFC v1.9 was used to capture the dependent variable, and various other variables were \nused to capture the model predictors ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods identify GFC v1.9 loss for 2001–2021 and use the loss record as the deforestation outcome in modeling, with visual verification. Preserve the v1.9 release, loss-event definition and period.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r001_repair1",
+      "source_pool_sha256": "0bfd08e2cee4fc98f972fd276f34ba76cea3cbdecc94f3759960f4600d3b9ff7",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Intan Diani Fardinatri",
+        "Aryo Adhi Condro",
+        "Durrah Hayati",
+        "Ashabul Anhar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can multidimensional Sentinel-1 radar features and unsupervised clustering detect forest disturbance across tropical study regions?",
+      "hypothesis_or_mechanism": "A separable feature space combining radar backscatter, vegetation indices and polarimetric features can distinguish deforested from non-deforested pixels without training samples.",
+      "variables_and_data_use": "Sentinel-1 GRD/SLC features drive clustering. Hansen GFC v1.9 annual tree-loss maps provide reference evaluation, and prior-year GFC forest cover masks non-forest areas; Planet/GFW and Google Earth imagery support sample interpretation.",
+      "method_paradigm": "Remote-sensing change detection using engineered SAR features, separability analysis, unsupervised K-means clustering and comparison with reference maps.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+        "Sentinel-1 GRD and SLC data",
+        "Planet/GFW maps",
+        "Google Earth imagery",
+        "DEM and precision-orbit data"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_021080353e923888bb16",
+      "source_paper": {
+        "doi": "10.3389/ffgc.2023.1257806",
+        "title": "Monitoring of deforestation events in the tropics using multidimensional features of Sentinel 1 radar data",
+        "year": 2023,
+        "venue": "Frontiers in Forests and Global Change",
+        "authors": [
+          "Chuanwu Zhao",
+          "Yaozhong Pan",
+          "Xiufang Zhu",
+          "Li Le",
+          "Xingsheng Xia",
+          "Shoujia Ren",
+          "Yuan Gao"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+        "name": "Hansen Global Forest Change v1.9 (2000-2021)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Approved GFC v1.9 is a later release in the same Hansen GFC family as strict v1.7. It is used for annual tree loss reference evaluation and a prior-year forest-cover mask, with a 2000–2021 product horizon and nominal 30 m pixels.",
+      "comparability_quote": "GFC maps were generated using 654,178 Landsat images with a spatial resolution of 30 m (Hansen et al., 2013).",
+      "differences_vs_anchor": {
+        "version": "Approved v1.9 versus strict anchor v1.7; this is a separately versioned related product, not a strict alias.",
+        "temporal": "The cited v1.9 release covers 2000–2021; annual loss maps are used to evaluate study dates including 2019, 2021 and 2022, while the forest-cover mask is taken from the year before each study period.",
+        "spatial": "The paper reports nominal 30 m GFC maps; Sentinel-1 observations and study regions have different spatial support.",
+        "variable": "GFC annual tree-loss maps are validation/reference data, and GFC forest cover is a mask; the primary detections come from Sentinel-1 features and clustering."
+      },
+      "comparability_handling": "Retain this as a related-product expansion because the paper explicitly identifies v1.9 and uses its annual tree-loss and cover information operationally. Keep the GFC layer roles distinct from the Sentinel-1 detection outputs and the v1.7 anchor.",
+      "doi": "10.3389/ffgc.2023.1257806",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.9:2000-2021",
+      "actual_product_name": "Hansen Global Forest Change v1.9 (2000-2021)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "1e7b6ae6c8492ea7fcbd91cda3105bc30a405762c45c5a0d6fee951997db3a6d",
+      "product_use_quote": "In addition, we used Global Forest Change v1.9 (2000–2021) (GFC) data as reference maps (Hansen and Loveland, 2012; Hansen et al., 2013).",
+      "operational_use_quote": "We evaluated the accuracy of the proposed method using annual tree loss maps of the GFC.",
+      "application_scope_quote": "To ensure the applicability of the 3DC, we selected three study areas in Paraguay, Brazil, and Mexico (Figure 2).",
+      "supporting_quote": "First, we used GFC forest cover data from the year before the study period to mask the Sentinel-1 data.",
+      "human_reviewer": "Codex assistant (manual source review)",
+      "human_reviewed_at_utc": "2026-10-08T16:17:41Z",
+      "human_reason": "Admitted: the paper explicitly identifies the approved GFC v1.9 release and operationally uses annual tree-loss reference maps and prior-year forest-cover masks. The distinct GFC and Sentinel-1 roles are retained in the comparison.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r002",
+      "source_pool_sha256": "80d0fffaba2a24759f7ff04987ed7456e30c0cc9ec278ccb036520a70acd088c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Chuanwu Zhao",
+        "Yaozhong Pan",
+        "Xiufang Zhu",
+        "Li Le",
+        "Xingsheng Xia",
+        "Shoujia Ren",
+        "Yuan Gao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How much forest-cover loss is detected within two rubber-plantation areas in Way Kanan, Lampung, using Google Earth Engine?",
+      "hypothesis_or_mechanism": "Pixel-level Hansen GFC loss information can be summarized over plantation AOIs to estimate the area and proportion of observed forest-cover loss.",
+      "variables_and_data_use": "The study uses Hansen GFC v1.11 treecover2000, loss, gain and lossyear; lossyear > 0 is filtered and area is calculated with reduceRegion. Sentinel-2 imagery and 2023 field photographs support validation.",
+      "method_paradigm": "Google Earth Engine geospatial extraction and zonal area calculation with point-based validation.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+        "Sentinel-2 imagery",
+        "2023 field photographs",
+        "Rubber-plantation AOI polygons"
+      ],
+      "idea_type": "measurement_validation",
+      "direction_id": "exp_952a90ef07d73263a8a6",
+      "source_paper": {
+        "doi": "10.36448/expert.v15i1.4283",
+        "title": "Analisis Deforestasi Lahan Karet Menggunakan Google Earth Engine",
+        "year": 2025,
+        "venue": "EXPERT Jurnal Manajemen Sistem Informasi dan Teknologi",
+        "authors": [
+          "Dwi Romadhan",
+          "Dika Hastanto",
+          "Wiwin Susanty"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+        "name": "Hansen Global Forest Change v1.11 (2000-2023)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper uses GFC v1.11 for two rubber-plantation AOIs, extracting baseline tree cover and forest-loss fields and calculating area from loss-year values. It is a later related release than strict v1.7; the gain layer has a fixed 2000–2012 interval and is not an annual series.",
+      "comparability_quote": "lossyear: Menyediakan informasi mengenai tahun terjadinya kehilangan tutupan hutan.",
+      "differences_vs_anchor": {
+        "version": "Approved v1.11 versus strict anchor v1.7; a separate release with a 2000–2023 endpoint.",
+        "temporal": "The paper filters lossyear > 0, representing loss from 2001 onward; treecover2000 is a static baseline and gain is fixed to 2000–2012.",
+        "spatial": "The paper notes the 30 m product resolution and that small clearings below 0.5 ha may be underestimated.",
+        "variable": "The analysis uses treecover2000, loss, gain and lossyear to calculate area proportions for two rubber-plantation AOIs."
+      },
+      "comparability_handling": "Record v1.11 as the actual product and preserve each band’s time meaning: treecover2000 is a baseline, lossyear encodes event year, and gain is fixed at 2000–2012. Do not describe gain as an annually updated measure or infer that every loss event is permanent deforestation.",
+      "doi": "10.36448/expert.v15i1.4283",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+      "actual_product_name": "Hansen Global Forest Change v1.11 (2000-2023)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "aaaa8f0fc3eb75c0daf542174b8d6a933ba4590971780a8f3cee79d83bb32354",
+      "product_use_quote": "gunakan dataset Hansen Global Forest Change 2023 v1.11 untuk ekstraksi data tutupan hutan.",
+      "operational_use_quote": "Perhitungan deforestasi dilakukan untuk mengetahui total luas area yang kehilangan tutupan hutan setelah tahun 2000.",
+      "application_scope_quote": "Studi ini berfokus pada dua kebun karet yang dipilih",
+      "supporting_quote": "Dalam proses ini, digunakan beberapa parameter penting, yaitu: treecover2000",
+      "human_reviewer": "Codex assistant (manual source review)",
+      "human_reviewed_at_utc": "2026-10-08T16:17:41Z",
+      "human_reason": "Admitted: the Methods/Data text identifies GFC v1.11, names the operational bands, and describes the lossyear filter and area calculation. Publication metadata was checked against the journal issue, which identifies this article in Volume 15, Issue 1 (June 2025).",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r002",
+      "source_pool_sha256": "80d0fffaba2a24759f7ff04987ed7456e30c0cc9ec278ccb036520a70acd088c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Dwi Romadhan",
+        "Dika Hastanto",
+        "Wiwin Susanty"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do forest-carbon loss estimates in Nigeria vary over 2001–2023 and relate to climate and vegetation-productivity indicators?",
+      "hypothesis_or_mechanism": "Spatial and temporal variation in forest disturbance and assumed biomass, alongside climate and productivity covariates, can characterize carbon-loss patterns relevant to climate-resilience planning.",
+      "variables_and_data_use": "Hansen GFC v1.11 annual loss-year data and pixel area are combined with assumed biomass and carbon fraction to estimate loss; NDVI, LST, precipitation and NPP provide climate/vegetation context.",
+      "method_paradigm": "Multi-source remote sensing, annual carbon accounting and zonal/statistical analysis over Nigerian forest polygons.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+        "MODIS NDVI",
+        "MODIS LST",
+        "CHIRPS precipitation",
+        "MODIS NPP",
+        "Forest polygons"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_7ab8223a85c45999b44f",
+      "source_paper": {
+        "doi": "10.47514/kjg.2025.07.01.043",
+        "title": "Geospatial Assessment of Forest Carbon Dynamics and Climate Drivers in Nigeria: Implications for Climate-Resilient Strategies",
+        "year": 2025,
+        "venue": "Kaduna Journal of Geography",
+        "authors": [
+          "Nnachi Ikwou nnachi",
+          "Emmanuel O. Achegbulu",
+          "Happy Oyenje John-Nwagwu",
+          "Pankyes Bulus Fwang’ar",
+          "Dayil Chindang Donatus"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+        "name": "Hansen Global Forest Change v1.11 (2000-2023)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper uses GFC v1.11 annual loss-year data from 2001–2023 to estimate carbon loss. It is a separate later release than strict v1.7, and derives carbon estimates using assumed biomass and carbon fraction. The paper itself distinguishes the fixed 2000–2012 gain layer from annual gain.",
+      "comparability_quote": "at any time between 2000 and 2012, rather than providing annual gain data.",
+      "differences_vs_anchor": {
+        "version": "Approved v1.11 versus strict anchor v1.7; distinct release and endpoint.",
+        "temporal": "The operational loss-year band spans 2001–2023. The paper states GFC gain is cumulative and fixed to 2000–2012.",
+        "spatial": "GFC is used at 30 m; climate and productivity covariates have coarser grids and different temporal cadence.",
+        "variable": "Annual loss-year events are converted into estimated carbon loss using assumed biomass and a carbon fraction; this derived quantity is not the GFC band itself."
+      },
+      "comparability_handling": "Record GFC v1.11 loss-year as an event/disturbance input and the paper’s carbon values as derived estimates. Do not equate a GFC loss event alone with permanent deforestation. Preserve the paper’s fixed 2000–2012 gain limitation and biomass/carbon assumptions.",
+      "doi": "10.47514/kjg.2025.07.01.043",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.11:2000-2023",
+      "actual_product_name": "Hansen Global Forest Change v1.11 (2000-2023)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "ea5d7b88b16f983e1f062c01752c848a07227192daecf7d2ecf982fadba6ce75",
+      "product_use_quote": "For assessing forest carbon loss, we utilized the Global Forest Change (GFC) v1.11 dataset by Hansen et al. (2023), specifically the annual loss year band, which provides",
+      "operational_use_quote": "We estimated carbon loss annually using Hansen's forest loss year band, pixel-level area, and biomass assumptions.",
+      "application_scope_quote": "to estimate forest carbon flux",
+      "supporting_quote": "carbon loss by combining forest loss area with assumed biomass and carbon fraction values.",
+      "human_reviewer": "Codex assistant (manual source review)",
+      "human_reviewed_at_utc": "2026-10-08T16:17:41Z",
+      "human_reason": "Admitted: Methods explicitly identify the approved v1.11 annual loss-year band and its 2001–2023 period. The paper’s carbon estimate is recorded as a derived use, with the dataset’s disturbance meaning and fixed gain interval preserved.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r002",
+      "source_pool_sha256": "80d0fffaba2a24759f7ff04987ed7456e30c0cc9ec278ccb036520a70acd088c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Nnachi Ikwou nnachi",
+        "Emmanuel O. Achegbulu",
+        "Happy Oyenje John-Nwagwu",
+        "Pankyes Bulus Fwang’ar",
+        "Dayil Chindang Donatus"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How are climate-related variables and forest-area change characterized across Türkiye using Google Earth Engine?",
+      "hypothesis_or_mechanism": "Joint analysis of climate, vegetation and forest-change indicators can describe spatial and temporal patterns associated with climate change across Türkiye’s regions.",
+      "variables_and_data_use": "The paper lists Hansen GFC v1.10 with treecover2000, loss, lossyear and gain fields, alongside precipitation, land-surface temperature, evapotranspiration and vegetation indices.",
+      "method_paradigm": "Google Earth Engine multi-source geospatial analysis combined with time-series trend analysis and regional comparison.",
+      "used_assets": [
+        "UMD_GLAD:Hansen_GFC:v1.10:2000-2022",
+        "CHIRPS precipitation",
+        "MODIS land-surface temperature",
+        "MODIS evapotranspiration",
+        "MODIS NDVI/EVI"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_1a28fc07a26bfdb998c2",
+      "source_paper": {
+        "doi": "10.48123/rsgis.1412642",
+        "title": "Examination of the Effects of Climate Change on Türkiye through the Google Earth Engine Platform",
+        "year": 2024,
+        "venue": "Turkish Journal of Remote Sensing and GIS",
+        "authors": [
+          "Eren ERDOĞAN",
+          "Volkan Yılmaz"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "UMD_GLAD:Hansen_GFC:v1.10:2000-2022",
+        "name": "Hansen Global Forest Change v1.10 (2000-2022)"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper uses the exact GFC 2022 v1.10 collection to analyse forested-area change and documents its 2000–2022 coverage, 30.92 m resolution, and bands. The paper’s listed gain band is fixed to 2000–2012; loss is stand-replacement disturbance and lossyear records event year.",
+      "comparability_quote": "The increase in forest cover from 2000 to 2012",
+      "differences_vs_anchor": {
+        "version": "Approved v1.10 versus strict anchor v1.7; a separate release with a 2022 endpoint.",
+        "temporal": "The collection spans 2000–2022; treecover2000 is the baseline, lossyear encodes event year, and gain covers 2000–2012.",
+        "spatial": "The paper reports 30.92 m pixels; climate, ET and vegetation covariates have coarser resolutions.",
+        "variable": "GFC is one forest-change data collection among several climate/vegetation datasets; its stand-replacement loss, event-year and fixed gain fields have distinct meanings."
+      },
+      "comparability_handling": "Record the exact collection ID as GFC v1.10. Preserve the paper’s 2000–2022 availability window and field definitions, including the 2000–2012 gain period; do not interpret the loss field alone as permanent deforestation.",
+      "doi": "10.48123/rsgis.1412642",
+      "task_id": "single_dataset/task_018",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "UMD/hansen/global_forest_change_2019_v1_7",
+      "actual_dataset_id": "UMD_GLAD:Hansen_GFC:v1.10:2000-2022",
+      "actual_product_name": "Hansen Global Forest Change v1.10 (2000-2022)",
+      "expansion_contract_id": "single_dataset/task_018_expansion_v1",
+      "expansion_contract_sha256": "0d8a1e999d96d4bb25ef87bf6a08872bcfcac378f36b4932fb628480ff70b3d8",
+      "task_card_sha256": "7c72c1426bc3de281b20fed8b2c962840c7c892c87e808f7a5237cbd8d0210e3",
+      "source_text_sha256": "afd467c94b285d9c19b2731246742028c4cfb695ba8a98b2ceb16bb0f4f508a0",
+      "product_use_quote": "In the study, data collection identified as UMD/hansen/global_forest_change_2022_v1_10 was used to analyse the changes in forested areas.",
+      "operational_use_quote": "In the study, data collection identified as UMD/hansen/global_forest_change_2022_v1_10 was used to analyse the changes in forested areas.",
+      "application_scope_quote": "The ID, resolution, and available date range information of the precipitation, land surface temperature, ET, vegetation index, and global forest change data collection used in the study are summarized in Table 1.",
+      "supporting_quote": "The bands and features of the dataset used in the study are provided in Table 6.",
+      "human_reviewer": "Codex assistant (manual source review)",
+      "human_reviewed_at_utc": "2026-10-08T16:17:41Z",
+      "human_reason": "Admitted: Methods explicitly names the v1_10 Earth Engine collection as used for forest-area change analysis and documents its coverage, resolution and band definitions. The underscore version spelling is the collection ID’s exact encoding of v1.10.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_018_r002",
+      "source_pool_sha256": "80d0fffaba2a24759f7ff04987ed7456e30c0cc9ec278ccb036520a70acd088c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Eren ERDOĞAN",
+        "Volkan Yılmaz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 11,
+    "source_paper_count": 11,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

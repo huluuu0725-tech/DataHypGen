@@ -1,0 +1,1245 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_007",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "USGS Landsat 5 TM Level 2, Collection 2, Tier 1",
+    "spatial_coverage": {
+      "region_name": "Eastern Victoria public forests, Australia",
+      "coverage": "Eastern Victoria, Australia, within Landsat WRS paths 91-92 and rows 85-86."
+    },
+    "temporal_coverage": "1984-03-16 16:18:01 to 2012-05-05 17:54:06 UTC",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Scene-level Landsat 5 TM observations with a 16-day revisit interval",
+    "analytical_capabilities": [
+      "Map visible, near-infrared, and shortwave-infrared surface reflectance",
+      "Build Landsat 5 TM reflectance time series on a common 30 m band schema",
+      "Derive vegetation, moisture, and normalized-difference spectral indices",
+      "Detect temporal changes in land-surface spectral response",
+      "Measure neighborhood texture and spatial heterogeneity from reflectance or derived indices"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Orthorectified surface reflectance as scaled unitless values in six optical bands",
+      "runtime_hint": "Use LANDSAT/LT05/C02/T1_L2 only. Optical bands are SR_B1 blue, SR_B2 green, SR_B3 red, SR_B4 near infrared, SR_B5 shortwave infrared 1, and SR_B7 shortwave infrared 2. Stored optical values have a catalog range of 1-65455; convert to surface reflectance with DN*0.0000275-0.2 before computing indices. Mask QA_PIXEL bit 0 fill, bit 1 dilated cloud, bit 3 cloud, bit 4 cloud shadow, and bit 5 snow; bit 6 marks clear conditions and bit 7 water. QA_RADSAT bits 0-4 and 6 flag saturation in optical bands 1-5 and 7. SR_ATMOS_OPACITY uses scale 0.001; values below 0.1 are generally clear, 0.1-0.3 average, and above 0.3 hazy, but the catalog recommends QA_PIXEL for cloud discrimination. Surface reflectance is produced with LEDAPS. Do not add Landsat 7, Landsat 8/9, TOA, raw DN, annual composites, or index-only products as required anchor data."
+    },
+    "data_source": "USGS / NASA Landsat program",
+    "gee_asset": {
+      "id": "LANDSAT/LT05/C02/T1_L2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:LANDSAT/LT05/C02/T1_L2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_007.json",
+    "source_sha256": "8ed0d69a4045ce05ce3a882f1bb44c4cbfd4e60c3cfdee1746745c5452c1c105",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_007/prompt.json",
+    "current_prompt_sha256": "f850b40b06b87ea9bddc8fcbf0870eecc00c997cf01f441a4e7047a4bbaf42b8",
+    "original_anchor_asset": {
+      "id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "observable_group": "landsat5_tm_landsat7_etm_collection2_level2_tier1_surface_reflectance",
+      "asset_alias_policy": "The admitted anchor is the paired Landsat 5 TM and Landsat 7 ETM+ Collection 2 Level-2 Tier-1 surface-reflectance family: LANDSAT/LT05/C02/T1_L2 and LANDSAT/LE07/C02/T1_L2. A paper may use one or both collections, but it must operationally process Collection 2 Level-2 Tier-1 TM/ETM+ surface reflectance and must not extend the time series with Landsat 8/9 OLI. Collection 1, Collection 2 Level-1 DN or TOA products, Tier-2 products, annual precomputed composites and index-only collections are excluded. Level-1 raw scenes are excluded to keep the task separate from single_dataset/task_009; Landsat 8/9 OLI is excluded to keep it separate from single_dataset/task_018, single_dataset/task_019, single_dataset/task_027, single_dataset/task_028, single_dataset/task_035 and single_dataset/task_042 anchor families.",
+      "alias_policy_scope": "The supplied Methods identify TM/ETM+ LEDAPS surface reflectance but do not state the collection number. Collection 2 Level-2 Tier-1 is the ready catalog representation selected for scoring. Exact membership of the source scenes in Collection 2 remains unresolved; candidate papers must nevertheless satisfy the current exact-asset gate.",
+      "repointed_from": {
+        "former_anchor": "LANDSAT/LC08/C02/T1_L2",
+        "why_the_former_anchor_was_wrong": "The source explicitly uses Landsat 5 TM and Landsat 7 ETM+ surface-reflectance scenes from 1992-2016 and does not use Landsat 8 OLI. LC08 begins in 2013 and cannot supply the 1992-2012 portion, so both sensor identity and temporal feasibility were wrong.",
+        "why_this_asset": "The LT05 and LE07 Collection 2 Level-2 Tier-1 collections provide the exact TM and ETM+ sensor branches, 30 m orthorectified surface reflectance, 16-day revisit metadata and LEDAPS processing named by the source. Their catalog intervals jointly cover the full 1992-2016 analysis period.",
+        "processing_version_uncertainty": "The supplied Methods do not name Collection 1 or Collection 2. The C2 collections are selected because they are the ready local-catalog products matching the stated sensors, processing level and LEDAPS algorithm. This does not prove that the source downloaded C2 scenes or that C2 reflectance and QA values are numerically identical to the source archive; a source record proving Collection 1 would require reclassifying this as a catalog substitution.",
+        "review_date": "2026-08-29"
+      },
+      "observation_identity_contract": {
+        "physical_object": "USGS Landsat 5 TM and Landsat 7 ETM+ Level 2, Collection 2, Tier 1, representing landsat5 tm landsat7 etm collection2 level2 tier1 surface reflectance.",
+        "source_lineage": "Task Prompt source: USGS / NASA Landsat program. Current task anchor: LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2 (landsat5_tm_landsat7_etm_collection2_level2_tier1_surface_reflectance). Catalog-substitution context recorded in the task definition: The LT05 and LE07 Collection 2 Level-2 Tier-1 collections provide the exact TM and ETM+ sensor branches, 30 m orthorectified surface reflectance, 16-day revisit metadata and LEDAPS processing named by the source. Their catalog intervals jointly cover the full 1992-2016 analysis period.",
+        "core_measurement_semantics": "Orthorectified surface reflectance as scaled unitless values in six optical bands; spatial resolution: 30 m; temporal structure: Scene-level observations with a 16-day revisit interval for each satellite",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: The admitted anchor is the paired Landsat 5 TM and Landsat 7 ETM+ Collection 2 Level-2 Tier-1 surface-reflectance family: LANDSAT/LT05/C02/T1_L2 and LANDSAT/LE07/C02/T1_L2. A paper may use one or both collections, but it must operationally process Collection 2 Level-2 Tier-1 TM/ETM+ surface reflectance and must not extend the time series with Landsat 8/9 OLI. Collection 1, Collection 2 Level-1 DN or TOA products, Tier-2 products, annual precomputed composites and index-only collections are excluded. Level-1 raw scenes are excluded to keep the task separate from single_dataset/task_009; Landsat 8/9 OLI is excluded to keep it separate from single_dataset/task_018, single_dataset/task_019, single_dataset/task_027, single_dataset/task_028, single_dataset/task_035 and single_dataset/task_042 anchor families."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "研究 2011—2020 年间 Sian Ka’an Biosphere Reserve 南北区域沿海沙丘植被覆盖密度如何随时间、季节和气候变量变化。",
+      "hypothesis_or_mechanism": "温度和降水的季节性变化会影响基于 SAVI 和 NDVI 表征的植被覆盖密度，并导致南北区域呈现不同的植被变化趋势。",
+      "variables_and_data_use": "使用 Landsat 7 Level 2, Collection 2, and Tier 1 的 SR_B3 和 SR_B4 表面反射率计算 NDVI 和 SAVI，经云与云影掩膜后提取月度值并构建双年度和年度图层；使用 TerraClimate 的最高温度、最低温度和降水作为气候解释变量；使用 DJI Mavic 2 RPAS 进行沿海沙丘人为影响的探索性航拍记录。",
+      "method_paradigm": "遥感变化检测与气候关系分析",
+      "used_assets": [
+        "Landsat 7 Level 2, Collection 2, and Tier 1",
+        "TerraClimate",
+        "DJI Mavic 2 RPAS"
+      ],
+      "author_team": [
+        "Eloy Gayosso-Soto",
+        "Sergio Cohuo",
+        "Joan Alberto Sánchez-Sánchez",
+        "Carmen Amelia Villegas-Sánchez",
+        "José Manuel Castro‐Pérez",
+        "Leopoldo Q. Cutz-Pool",
+        "Laura Anahí Macario-González"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Coastal Dune Vegetation Dynamism and Anthropogenic-Induced Transitions in the Mexican Caribbean during the Last Decade",
+        "doi": "10.3390/plants13131734",
+        "year": 2024,
+        "venue": "Plants",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "火灾严重程度、燃烧面积、火灾前植被条件和火灾后气候条件如何影响地中海地区不同森林类型的火后植被恢复速率",
+      "hypothesis_or_mechanism": "火灾严重程度和火灾前植被条件（通过 NDVI 代表的生产力和树木密度）以及火灾后气候条件（降水和温度）共同驱动地中海森林生态系统的火后植被恢复过程，不同森林类型的恢复响应存在差异",
+      "variables_and_data_use": "使用 Landsat 7 Collection 2 Level-2 Tier 1 地表反射率计算 NBR（归一化燃烧比率）时间序列，基于 NBR 导出 RRI（相对恢复指标）作为植被恢复响应变量；计算 RdNBR（相对差异 NBR）作为火灾严重程度代理变量；使用火灾前 NDVI 最大值作为火灾前植被条件代理变量；结合 TerraClimate 降水和温度数据评估火灾后气候条件对植被恢复的影响",
+      "method_paradigm": "时间序列遥感分析 线性混合效应模型",
+      "used_assets": [
+        "LANDSAT/LE07/C02/T1_L2",
+        "TerraClimate",
+        "Basilicata fire dataset",
+        "Basilicata Regional Forest map"
+      ],
+      "author_team": [
+        "Maria Floriana Spatola",
+        "Marco Borghetti",
+        "Angelo Nolè"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Elucidating factors driving post-fire vegetation recovery in the Mediterranean forests using Landsat spectral metrics",
+        "doi": "10.1016/j.agrformet.2023.109731",
+        "year": 2023,
+        "venue": "Agricultural and Forest Meteorology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "研究火灾后不同阶段森林植被恢复过程能否通过 Landsat 光谱指数与地面植物群落观测进行评估。",
+      "hypothesis_or_mechanism": "火灾造成的植被损失会降低 NBR，而随着植被演替和恢复，NBR 及其差分指标将反映植被结构和覆盖度的逐步恢复。",
+      "variables_and_data_use": "使用 USGS Landsat 7 Level 2, Collection 2, Tier 1 surface reflectance 的近红外和短波红外波段计算 NBR，并进一步计算 dNBR、dNBRs 和 dNBRr；将这些指标按年份和生长季汇总，并与地面调查得到的植物组成、高度和盖度进行比较。",
+      "method_paradigm": "变化检测与野外验证",
+      "used_assets": [
+        "Landsat 7 satellite imagery",
+        "USGS Landsat 7 Level 2, Collection 2, Tier 1 surface reflectance",
+        "Normalised Burn Ratio (NBR)",
+        "differenced Normalised Burn Ratio (dNBR)",
+        "dNBRseverity (dNBRs)",
+        "dNBRregrowth (dNBRr)"
+      ],
+      "author_team": [
+        "Zhanna Atutova",
+        "Elena A. Rasputina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Applicability Of NBR And dNBR Indices In Assessment Of Pyrogenic Transformation And Post-Fire Forest Regeneration: Case Study Of Southeastern Siberia Coniferous Forests",
+        "doi": "10.24057/2071-9388-2025-3963",
+        "year": 2026,
+        "venue": "GEOGRAPHY ENVIRONMENT SUSTAINABILITY",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "How did mining-tailings exposure alter soil exposure, vegetation condition and surface temperature over time, and how did these patterns change with distance from the Fundão dam?",
+      "hypothesis_or_mechanism": "Tailings deposition increases bare-soil exposure and surface temperature while reducing vegetation greenness; degradation and recovery vary with distance and across pre-collapse, impact and recovery periods.",
+      "variables_and_data_use": "Landsat 5 TM and Landsat 8 OLI C2 L2 SR; NDVI, bare-surface frequency, soil index and land-surface temperature across regions and years; cross-sensor band matching and uniform QA masks.",
+      "method_paradigm": "Multitemporal remote-sensing impact assessment using annual time series, pre/post distributions, correlations and spatial overlays.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "LANDSAT/LT05/C02/T1_L2"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_f25ae2e2522e75f001da",
+      "source_paper": {
+        "doi": "10.36783/18069657rbcs20250204",
+        "title": "Long-term soil, vegetation, and surface temperature dynamics in mining tailings–affected landscapes revealed by multitemporal remote sensing",
+        "year": 2026,
+        "venue": "Revista Brasileira de Ciência do Solo",
+        "authors": [
+          "Jean Jesus Novais",
+          "Danilo César de Mello",
+          "Gustavo Vieira Veloso",
+          "Borges Marfrann Dias Melo",
+          "Uemeson José dos Santos",
+          "Jorge Tadeu Fim Rosas",
+          "Ana Clara Braga",
+          "Bruno dos Anjos Bartsch",
+          "Gabriel Pimenta Barbosa de Sousa",
+          "Merilyn Taynara Accorsi Amorim",
+          "Fernando Yutaro Makino",
+          "Nícolas Augusto Rosin",
+          "Heidy Soledad Rodríguez Albarracín",
+          "Heitor Paiva Palma",
+          "Márcio Rocha Francelino",
+          "Renan Falcioni",
+          "Marcos Rafael Nanni",
+          "Eduardo Guimarães Couto",
+          "José Alexandre Melo Demattê"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit as same_class_dataset using the explicitly approved LC08 C2 T1 L2 SR product. The study also uses LT05 C2 L2, but reports LEDAPS/LaSRC processing, equivalent-band selection and uniform QA masks to handle the cross-sensor series. Count only the approved LC08 contribution; do not represent LT05 as separately approved.",
+      "comparability_quote": "for Landsat 5 and LaSRC for Landsat 8). Cross-sensor consistency was further ensured by selecting spectrally equivalent bands to align TM and OLI wavelength ranges and by applying uniform quality assessment masks. Temporal standardization was achieved by restricting the analysis to the dry season (AprilSeptember), minimizing phenological and",
+      "differences_vs_anchor": {
+        "product_processing": "This is a distinct, explicitly approved same_class_dataset relation, not a strict alias.",
+        "comparability_handling": "Record the LC08 product as same_class_dataset. Preserve the additional LT05 L2 product as a non-approved source and the paper’s cross-sensor harmonization. Do not infer an unreported scale application or call the combined series one product."
+      },
+      "comparability_handling": "Record the LC08 product as same_class_dataset. Preserve the additional LT05 L2 product as a non-approved source and the paper’s cross-sensor harmonization. Do not infer an unreported scale application or call the combined series one product.",
+      "doi": "10.36783/18069657rbcs20250204",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "3a894c146f53050d8d61f94586d36b3ac5859a0695c24b6d56c4b7909bf99202",
+      "product_use_quote": "Landsat 5 TM and Landsat 8 OLI imagery (LANDSAT/LT05/C02/T1_L2 and LANDSAT/LC08/C02/T1_L2, respectively), a harmonized (GEE) platform (Gorelick et al., 2017). The analysis relied on Collection 2 Level-2 surface thereby reducing inter-sensor radiometric discrepancies. Then, atmospheric correction was perfor",
+      "operational_use_quote": "Landsat Collection 2 Level-2 products (LEDAPS for Landsat 5 and LaSRC for Landsat 8). Cross-sensor consistency was further ensured by selecting spectrally equivalent bands to align TM and OLI wavelength ranges and by applying uniform quality assessment masks. Temporal standardization was achieved by re",
+      "application_scope_quote": "ionally, annual time-series analyses of NDVI, BSF, SySI, and LST detail the dynamics of these factors over time. This approach captures potential non-linear changes between these milestones. atmospheric correction, and cloud and shadow masking using quality assessment (QA) bands, as",
+      "supporting_quote": "ionally, annual time-series analyses of NDVI, BSF, SySI, and LST detail the dynamics of these factors over time. This approach captures potential non-linear changes between these milestones. atmospheric correction, and cloud and shadow masking using quality assessment (QA) bands, as",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T12:55:28.359509Z",
+      "human_reason": "Admit as same_class_dataset using the explicitly approved LC08 C2 T1 L2 SR product. The study also uses LT05 C2 L2, but reports LEDAPS/LaSRC processing, equivalent-band selection and uniform QA masks to handle the cross-sensor series. Count only the approved LC08 contribution; do not represent LT05 as separately approved.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r001",
+      "source_pool_sha256": "f22cf75dd0fe7ad9e82e3384d330401166dfbb6f0add00163d13aab1ec39a10c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Jean Jesus Novais",
+        "Danilo César de Mello",
+        "Gustavo Vieira Veloso",
+        "Borges Marfrann Dias Melo",
+        "Uemeson José dos Santos",
+        "Jorge Tadeu Fim Rosas",
+        "Ana Clara Braga",
+        "Bruno dos Anjos Bartsch",
+        "Gabriel Pimenta Barbosa de Sousa",
+        "Merilyn Taynara Accorsi Amorim",
+        "Fernando Yutaro Makino",
+        "Nícolas Augusto Rosin",
+        "Heidy Soledad Rodríguez Albarracín",
+        "Heitor Paiva Palma",
+        "Márcio Rocha Francelino",
+        "Renan Falcioni",
+        "Marcos Rafael Nanni",
+        "Eduardo Guimarães Couto",
+        "José Alexandre Melo Demattê"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do vegetation-cover changes and climatic conditions across protected coastal reserves relate to bird diversity and ecosystem-service provisioning in South Africa’s Eastern Cape?",
+      "hypothesis_or_mechanism": "Vegetation greenness and habitat conditions covary with bird diversity and functional composition; climate and habitat context influence these relationships.",
+      "variables_and_data_use": "Landsat 8 C2 T1 L2 SR VNIR bands are used for NDVI and vegetation-cover trends for 2017–2020; field bird counts and traits provide ecological outcomes; MODIS MOD11A2 V6 provides LST context.",
+      "method_paradigm": "Field ecological observations with Landsat NDVI time-series and statistical association analysis.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "MODIS MOD11A2 V6",
+        "Bird survey observations"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_78b1e64b2c47588a29cc",
+      "source_paper": {
+        "doi": "10.1002/ece3.10452",
+        "title": "The critical role of coastal protected areas in buffering impacts of extreme climatic conditions on bird diversity and their ecosystem services' provisioning in the Eastern Cape Province, South Africa",
+        "year": 2023,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Thabiso Michael Mokotjomela",
+          "Loyd Rodney Vukeya",
+          "Lwandiso Pamla",
+          "Zimbini Scott"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit as same_class_dataset. Methods explicitly name the approved LC08 C2 T1 L2 SR product and apply VNIR bands to NDVI/vegetation analysis at 30 m during 2017–2020, with LaSRC and CFMask processing. The paper does not report scale/offset handling; record this limitation without inferring it was applied.",
+      "comparability_quote": "generated using the C Function of Mask (CFMask) algorithm (Amani et al., 2019 ; Foga et al., 2017 ). These images also contained five visible and near‐infrared (VNIR) bands and two short‐wave infrared (SWIR) bands processed to orthorectified surface reflectance, a",
+      "differences_vs_anchor": {
+        "product_processing": "This is a distinct, explicitly approved same_class_dataset relation, not a strict alias.",
+        "comparability_handling": "Count only LC08 C2 L2 as same_class_dataset. Preserve reported LaSRC, CFMask, 30 m VNIR and 2017–2020. Do not claim paper-reported scale/offset conversion."
+      },
+      "comparability_handling": "Count only LC08 C2 L2 as same_class_dataset. Preserve reported LaSRC, CFMask, 30 m VNIR and 2017–2020. Do not claim paper-reported scale/offset conversion.",
+      "doi": "10.1002/ece3.10452",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "bedd30839f479e822f67d4900ce5f3ce39ce7baaef3bef9305f71c8d353934fb",
+      "product_use_quote": "E [Tier 1 products, ee.ImageCollection(‘LANDSAT/LC08/C02/T1_L2’)] was applied in this study. These images were collected from 1 January 2017 to 31 December 2020 (i.e., during years of bird observations). These products were atmospherically corrected using the Landsat‐8 Surface Refl",
+      "operational_use_quote": "C02/T1_L2’)] was applied in this study. These images were collected from 1 January 2017 to 31 December 2020 (i.e., during years of bird observations). These products were atmospherically corrected using the Landsat‐8 Surface Reflectance Code (LaSRC) and contain cloud, shadow, water and snow masks, which were generated using t",
+      "application_scope_quote": "requencies (see Vukeya et al., 2023 ). The Landsat 8 sensor reflects both the near‐infrared spectrum in band 5 and visible red (RED) in band 4. The NDVI value ranges between −1.0 and +1.0 and reflects the healthiness of plants (greens). A low NDVI value of 0.1 and below corresponds with",
+      "supporting_quote": "requencies (see Vukeya et al., 2023 ). The Landsat 8 sensor reflects both the near‐infrared spectrum in band 5 and visible red (RED) in band 4. The NDVI value ranges between −1.0 and +1.0 and reflects the healthiness of plants (greens). A low NDVI value of 0.1 and below corresponds with",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T12:55:28.359509Z",
+      "human_reason": "Admit as same_class_dataset. Methods explicitly name the approved LC08 C2 T1 L2 SR product and apply VNIR bands to NDVI/vegetation analysis at 30 m during 2017–2020, with LaSRC and CFMask processing. The paper does not report scale/offset handling; record this limitation without inferring it was applied.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r001",
+      "source_pool_sha256": "f22cf75dd0fe7ad9e82e3384d330401166dfbb6f0add00163d13aab1ec39a10c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Thabiso Michael Mokotjomela",
+        "Loyd Rodney Vukeya",
+        "Lwandiso Pamla",
+        "Zimbini Scott"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How does vegetation condition in Guilan Province vary with precipitation and temperature from 2020 to 2024?",
+      "hypothesis_or_mechanism": "Vegetation greenness responds to moisture and thermal conditions across seasonal and interannual scales.",
+      "variables_and_data_use": "Landsat 8 C2 T1 L2 surface reflectance supports NDVI (B4/B5) and EVI (B2/B4/B5); valid images are cloud-masked and annual-mean composited. MODIS LST and CHIRPS precipitation are separate covariates. Vegetation indices are resampled to 1 km for joint analysis.",
+      "method_paradigm": "Satellite-derived vegetation-index time series and spatial analysis of vegetation–climate relationships.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "MODIS Terra MOD11A2 V6.1 LST",
+        "CHIRPS/DAILY precipitation"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_016d6b31964851e16f63",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-49433-y",
+        "title": "Mapping spatiotemporal variability of vegetation and climate sensitivity in northern Iran using google earth engine",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Mehrdad Mehrjou",
+          "Hassan Ahmadi"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "This is the exact approved Landsat 8 C2 T1 L2 SR product, at 30 m, with specified B2/B4/B5 indices, CFMask/pixel_qa filtering, and annual 2020–2024 composites. It is an OLI/LaSRC Level-2 SR product and remains distinct from the TM/ETM+ anchor. The paper does not say whether the collection scale/offset is applied; this is a documented limitation, not evidence of product identity mismatch.",
+      "comparability_quote": "NDVI and EVI were derived from atmospherically corrected Landsat 8 surface reflectance data (LANDSAT/LC08/C02/T1_L2) at a native spatial resolution of 30 m.",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI rather than Landsat 5 TM / Landsat 7 ETM+.",
+        "processing": "C2 T1 L2 surface reflectance; the anchor’s sensor lineage/processing differs.",
+        "variables": "NDVI from B4/B5 and EVI from B2/B4/B5.",
+        "space_time": "Native 30 m scene observations, annual mean composites for 2020–2024; final vegetation indices resampled to 1 km.",
+        "qa": "CFMask and pixel_qa are reported.",
+        "scale": "The product scale factor and offset are not reported as applied in the paper; LC08 catalog values are 2.75e-5 and -0.2."
+      },
+      "comparability_handling": "Admit the exact LC08 product as a separate same_class_dataset. Preserve the native 30 m input and 1 km analysis grid. Record the article’s unreported SR scale/offset handling; do not treat this omission as proof of a wrong product, and do not claim verified reflectance-unit index calculations. MODIS and CHIRPS covariates remain separate.",
+      "doi": "10.1038/s41598-026-49433-y",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "01d32c63a794d8933a4632f72bcf92a7337e3a2ab633930bc12a4881a0967307",
+      "product_use_quote": "NDVI and EVI were derived from atmospherically corrected Landsat 8 surface reflectance data (LANDSAT/LC08/C02/T1_L2) at a native spatial resolution of 30 m.",
+      "operational_use_quote": "NDVI was calculated using red (Band 4) and near-infrared (Band 5) reflectance, whereas EVI incorporated blue (Band 2), red, and near-infrared bands",
+      "application_scope_quote": "NDVI and EVI were derived from atmospherically corrected Landsat 8 surface reflectance data (LANDSAT/LC08/C02/T1_L2) at a native spatial resolution of 30 m.",
+      "supporting_quote": "All valid images within each year were cloud-masked and aggregated to annual mean composites to reduce noise and enhance interannual comparability",
+      "human_reviewer": "Codex source-text review",
+      "human_reviewed_at_utc": "2026-10-08T13:17:48Z",
+      "human_reason": "Admitted as LANDSAT/LC08/C02/T1_L2 same_class_dataset. The paper explicitly identifies the product and operationally computes NDVI/EVI with specified bands and QA. The applied reflectance scale/offset is not reported, so this limitation is retained; the admission does not imply that scaling was verified.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r001",
+      "source_pool_sha256": "f22cf75dd0fe7ad9e82e3384d330401166dfbb6f0add00163d13aab1ec39a10c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Mehrdad Mehrjou",
+        "Hassan Ahmadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How can satellite image processing and machine-learning classification map land use and land cover and detect change across the study locations and dates?",
+      "hypothesis_or_mechanism": "Cloud filtering, mosaicking and composite generation can produce usable optical image inputs for LULC classification and change mapping.",
+      "variables_and_data_use": "The paper names LANDSAT/LC08/C02/T1_L2 and COPERNICUS/S2, filters imagery by location, cloud percentage and 2020–2021 dates, creates mosaics and median composites, applies cloud masking, and uses the imagery for LULC classification. Only LC08 is counted as the approved expansion product.",
+      "method_paradigm": "Google Earth Engine optical-image preprocessing with separate per-collection filtering/compositing/cloud-mask workflows followed by supervised and unsupervised LULC classification and change detection.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "COPERNICUS/S2",
+        "Google Earth Engine"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_6999046b26dad541b180",
+      "source_paper": {
+        "doi": "10.15282/mekatronika.v7i2.11321",
+        "title": "Machine Learning-Based Change Detection for Land Use Land Cover in Malaysia",
+        "year": 2025,
+        "venue": "Mekatronika",
+        "authors": [
+          "Muhammad Fareed Mohd Noor",
+          "Noor Zarikh Khuzaimi Rahmat",
+          "Nor Azam Abdullah",
+          "Azhar Mohd Ibrahim",
+          "Suaib Al Mahmud",
+          "Muhammad Imran Mardzuki"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The exact LC08 C2 T1 L2 surface-reflectance product is an approved same-class dataset with a 30 m grid and nominal 16-day scene cadence. The paper applies it to dated optical image processing and LULC classification for 2020–2021. It also uses Sentinel-2 separately. The paper does not report LC08 scale/offset handling; this is recorded as a limitation and is not inferred.",
+      "comparability_quote": "we implemented and coded them separately for each image collection.",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI/TIRS rather than the strict Landsat 5 TM / Landsat 7 ETM+ family.",
+        "processing": "LC08 Collection 2 Tier 1 Level-2 surface reflectance (LaSRC) rather than the anchor TM/ETM+ LEDAPS product family.",
+        "coverage_and_scale": "The paper applies Landsat 8 to 2020–2021 imagery; the approved product is scene-based at 30 m with nominal 16-day revisit.",
+        "other_inputs": "Sentinel-2 is also used, but the paper states that processing code differs by image collection; only the LC08 product is counted here."
+      },
+      "comparability_handling": "The source states that Sentinel-2 and Landsat-8 image-processing code was implemented separately. This review counts only the exact LC08 C2 T1 L2 product and treats it as similar_dataset, not as the strict anchor. The paper does not document scale/offset or TM/ETM+ harmonization; no cross-sensor equivalence is claimed.",
+      "doi": "10.15282/mekatronika.v7i2.11321",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "c94ccf4383d01a0d164f7c5519519f9cf8a39f47ffdc76f13002d7151a91b01b",
+      "product_use_quote": "LANDSAT/LC08/C02/T1_L2",
+      "operational_use_quote": "we applied cloud masking to improve product generation",
+      "application_scope_quote": "surface reflectance datasets",
+      "supporting_quote": "we implemented and coded them separately for each image collection.",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T13:49:21Z",
+      "human_reason": "Admitted as LANDSAT/LC08/C02/T1_L2 same_class_dataset. The Data section explicitly names the approved product and operationally filters, composites, mosaics, cloud-masks, and uses Landsat 8 imagery for LULC analysis. Sentinel-2 remains a separate input; no strict-anchor equivalence is claimed. Missing scale/offset reporting is retained as a limitation.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r001",
+      "source_pool_sha256": "f22cf75dd0fe7ad9e82e3384d330401166dfbb6f0add00163d13aab1ec39a10c",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Muhammad Fareed Mohd Noor",
+        "Noor Zarikh Khuzaimi Rahmat",
+        "Nor Azam Abdullah",
+        "Azhar Mohd Ibrahim",
+        "Suaib Al Mahmud",
+        "Muhammad Imran Mardzuki"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "比较巴塞罗那与马德里公立小学场地的夏季地表热环境及其年度变化。",
+      "hypothesis_or_mechanism": "植被、水分、建成面和裸地反射信号与校园尺度地表温度相关；模型解释限于预测关系，不作因果推断。",
+      "variables_and_data_use": "以 Landsat 8 Collection 2 Level-2 的 ST_B10 估算地表温度，并用缩放后的反射率计算 NDVI、NDMI、NDBI、NDBSI 和短波反射率代理；按 QA_PIXEL 质控、夏季合成并按校园边界统计。",
+      "method_paradigm": "年度夏季遥感面板，结合趋势检验、相关分析、分组交叉验证和回归预测。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_470365f1532ec22b524e",
+      "source_paper": {
+        "doi": "10.21203/rs.3.rs-10736277/v1",
+        "title": "Hot School Grounds, Mismatched Evidence: Facility-Scale Urban Heat in Barcelona and Madrid",
+        "year": 2026,
+        "venue": "Research Square",
+        "authors": [
+          "Jiarui Shen"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "产品身份和地表反射率测量形式可与锚点族作扩展比较，但传感器光谱响应不同；论文自身是单传感器 OLI 研究。",
+      "comparability_quote": "relevant Landsat 8 bands. Equation (6) preserves the\n243\narchived mapped-band shortwave-reflectance transformation. Its conceptual origin is Liang's\n244\n(2001) narrowband-to-broadband approach, but those coefficients were developed for\n245\n",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 相对锚点 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 Collection 2 Tier 1 Level-2 SR/ST；30 m 网格",
+        "temporal": "2014–2024 年 7–8 月夏季窗口",
+        "interpretation": "论文的短波反射率式结果按原文作为相对 albedo proxy，不视为经跨传感器校准的宽波段 albedo"
+      },
+      "comparability_handling": "保持 LC08 OLI 独立，不拼接到 LT05/LE07 时间序列，不把 OLI 与 TM/ETM 的系数直接互换；未来合并分析须先做传感器响应与辐射校准。",
+      "doi": "10.21203/rs.3.rs-10736277/v1",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "a54053ca2272486f8c03b7060cd7dc26e78ff3623f66b3a577688f8590ba044e",
+      "product_use_quote": "sat 8 Collection 2 Level-2 imagery\n\n176\nLandsat 8 Operational Land Imager/Thermal Infrared Sensor Collection 2, Tier 1, Level177\n2 scenes are accessed through Google Earth Engine (LANDSAT/LC08/C02/T1_L2). The\n178\nproduct provides surface reflectance and surface-temperature bands, allowing one spectral179\nindex/LST workflow across the observation period. Earth Engine is used for f",
+      "operational_use_quote": "relevant Landsat 8 bands. Equation (6) preserves the\n243\narchived mapped-band shortwave-reflectance transformation. Its conceptual origin is Liang's\n244\n(2001) narrowband-to-broadband approach, but those coefficients were developed for\n245\n",
+      "application_scope_quote": "relevant Landsat 8 bands. Equation (6) preserves the\n243\narchived mapped-band shortwave-reflectance transformation. Its conceptual origin is Liang's\n244\n(2001) narrowband-to-broadband approach, but those coefficients were developed for\n245\n",
+      "supporting_quote": "relevant Landsat 8 bands. Equation (6) preserves the\n243\narchived mapped-band shortwave-reflectance transformation. Its conceptual origin is Liang's\n244\n(2001) narrowband-to-broadband approach, but those coefficients were developed for\n245\n",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "原文明确使用 LC08 Collection 2 Tier 1 Level-2 场景，处理 SR 与 ST_B10、30 m 栅格、夏季窗口和 QA_PIXEL，并把 albedo 明确作为相对筛查代理。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Jiarui Shen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "描述中加里曼丹前大型稻米项目区 2015、2020 与 2024 年土地覆盖变化。",
+      "hypothesis_or_mechanism": "多期光谱特征与监督分类可识别森林、油棕及其他土地覆盖类别间的转变。",
+      "variables_and_data_use": "使用 Landsat 8 C2 T1 L2 影像的光谱和纹理特征，进行土地覆盖分类、后处理及多期转移统计。",
+      "method_paradigm": "最大似然监督分类、多数滤波和后分类变化检测。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_de5d2c1003c9ad6f3c8f",
+      "source_paper": {
+        "doi": "10.21475/ajcs.25.19.09.p28",
+        "title": "Land transformation through the development of oil palm plantations in the ex-mega rice project (EMRP) area, Central Kalimantan",
+        "year": 2025,
+        "venue": "Australian Journal of Crop Science",
+        "authors": [
+          "Darmawan Darmawan",
+          "Suwardi Suwardi",
+          "Octaviana Randrikasari"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "产品族同为 Landsat Level-2 地表反射率且空间网格为 30 m；本文只分析 LC08 OLI，跨传感器差异不会在本文内部形成混合序列。",
+      "comparability_quote": "2015, 2020, and 2024. These images required no additional correction processes, as they met the necessary quality standards f\nor an\nalysis.\nThe images were subsequently cropped into a sub\n-\nset to focus specifically on the study area by ",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI，锚点为 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 C2 T1 L2",
+        "temporal": "2015、2020、2024 分类时点",
+        "analysis": "单传感器土地覆盖分类"
+      },
+      "comparability_handling": "单独保留该 OLI 产品关系；不与 TM/ETM 锚点直接合并。跨传感器对比另行处理波段响应与辐射校准。",
+      "doi": "10.21475/ajcs.25.19.09.p28",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "6878b95188f5f71357390683afe538acd02c589157ffd7ef71fb9a58f9018b98",
+      "product_use_quote": "These categories formed the basis o\nf the\nclassification system used in this study.\n\nLand Use/Land Cover (LULC) Classification\n\nHigh\n-\nresolution satellite imagery from Landsat 8 (LANDSAT/LC08/C02/T1_L2) was obtained from Google Earth Engine for the years\n2015, 2020, and 2024. These images required no additional correction processes, as they met the necessary quality standards f\n",
+      "operational_use_quote": "2015, 2020, and 2024. These images required no additional correction processes, as they met the necessary quality standards f\nor an\nalysis.\nThe images were subsequently cropped into a sub\n-\nset to focus specifically on the study area by ",
+      "application_scope_quote": "2015, 2020, and 2024. These images required no additional correction processes, as they met the necessary quality standards f\nor an\nalysis.\nThe images were subsequently cropped into a sub\n-\nset to focus specifically on the study area by ",
+      "supporting_quote": "2015, 2020, and 2024. These images required no additional correction processes, as they met the necessary quality standards f\nor an\nalysis.\nThe images were subsequently cropped into a sub\n-\nset to focus specifically on the study area by ",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "原文直接列出 LANDSAT/LC08/C02/T1_L2，并用其影像开展 2015、2020、2024 年土地覆盖分类。符合单一 OLI 产品的扩展用途。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Darmawan Darmawan",
+        "Suwardi Suwardi",
+        "Octaviana Randrikasari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "评估如何结合遥感识别的种植模式与土壤养分调查，支持印尼 Jombang 的补贴肥料配置。",
+      "hypothesis_or_mechanism": "时序 NDVI 识别的种植强度与土壤 NPK 状况结合，可形成空间化肥料需求估算。",
+      "variables_and_data_use": "利用 Landsat 8 OLI 地表反射率红光和近红外计算 NDVI；结合土壤样本、田块边界与实地核验估算作物种植模式和养分需求。",
+      "method_paradigm": "GIS 空间分析、NDVI 时序判读、土壤实测与土地单元外推。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_30a5f3219ea9781f5faa",
+      "source_paper": {
+        "doi": "10.24425/jwld.2024.151788",
+        "title": "Utilising GIS-based spatial land resource analysis for subsidised fertiliser allocation in Jombang Regency, Indonesia",
+        "year": 2024,
+        "venue": "Journal of Water and Land Development",
+        "authors": [
+          "Chendy Tafakresnanto",
+          "Antonius Kasno",
+          "Zuziana Susanti",
+          "Elna Karmawati",
+          "Setyono Hari Adi",
+          "Muhamad Hidayanto",
+          "Suratman Suratman",
+          "Achmad Arivin Rivaie"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "均为 Landsat 地表反射率观测，论文使用单一 OLI 产品；与 TM/ETM 锚点仍有传感器响应差异。",
+      "comparability_quote": "demand for each land \nunit was then calculated based on the identified cropping \nGoogle Earth Engine\nLandsat collection\n\"LANDSAT/LC08/C02/T1_L2\"\nFormula NDVI:\n(NIR-Red/NIR+Red)\nNDVI images\nDetermination of samples\non paddy fields\n(CI-100, ",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 对比 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 C2 T1 L2 地表反射率",
+        "variables": "红光、近红外反射率派生 NDVI",
+        "application": "种植模式与肥料需求空间配置"
+      },
+      "comparability_handling": "作为单传感器 LC08 扩展项保留，不把本文 NDVI 序列直接接到 TM/ETM 序列；跨传感器整合需单独校准。",
+      "doi": "10.24425/jwld.2024.151788",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "3d539304d83c23ce8fdadc38fe211257ed0a2917c81fbc04a9b2dbbae72d1d00",
+      "product_use_quote": "and NPK status \nto form a land unit. The annual fertiliser demand for each land \nunit was then calculated based on the identified cropping \nGoogle Earth Engine\nLandsat collection\n\"LANDSAT/LC08/C02/T1_L2\"\nFormula NDVI:\n(NIR-Red/NIR+Red)\nNDVI images\nDetermination of samples\non paddy fields\n(CI-100, CI-200, CI-300, sugarcane)\nCropping patterns\non paddy fields\nFig. 3. Research flowch",
+      "operational_use_quote": "demand for each land \nunit was then calculated based on the identified cropping \nGoogle Earth Engine\nLandsat collection\n\"LANDSAT/LC08/C02/T1_L2\"\nFormula NDVI:\n(NIR-Red/NIR+Red)\nNDVI images\nDetermination of samples\non paddy fields\n(CI-100, ",
+      "application_scope_quote": "demand for each land \nunit was then calculated based on the identified cropping \nGoogle Earth Engine\nLandsat collection\n\"LANDSAT/LC08/C02/T1_L2\"\nFormula NDVI:\n(NIR-Red/NIR+Red)\nNDVI images\nDetermination of samples\non paddy fields\n(CI-100, ",
+      "supporting_quote": "demand for each land \nunit was then calculated based on the identified cropping \nGoogle Earth Engine\nLandsat collection\n\"LANDSAT/LC08/C02/T1_L2\"\nFormula NDVI:\n(NIR-Red/NIR+Red)\nNDVI images\nDetermination of samples\non paddy fields\n(CI-100, ",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "Methods/Data 明确使用 LC08 C2 T1 L2 地表反射率并由红光、近红外计算 NDVI，以识别种植模式。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Chendy Tafakresnanto",
+        "Antonius Kasno",
+        "Zuziana Susanti",
+        "Elna Karmawati",
+        "Setyono Hari Adi",
+        "Muhamad Hidayanto",
+        "Suratman Suratman",
+        "Achmad Arivin Rivaie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "重建伊斯坦布尔 Esenyurt 建筑扩展，并结合洪水淹没情景评估建筑暴露和损失风险。",
+      "hypothesis_or_mechanism": "建筑扩张改变可见光、近红外和短波红外指数，可支持建设年代识别及建筑洪水暴露评估。",
+      "variables_and_data_use": "使用 Landsat 8 LC08 C2 L2 反射率计算 NDVI、NDBI 与 BU，按建筑多边形计算年度及季节统计，再结合洪水深度、建筑面积和损失函数。",
+      "method_paradigm": "遥感时间序列指数分析与建筑级洪水风险评估相结合。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_fea1d1b073b36e3b023d",
+      "source_paper": {
+        "doi": "10.25034/ijcua.2024.v8n1-4",
+        "title": "Integration of RS and GIS in assessing flood risk: A Case Study on Istanbul - Esenyurt",
+        "year": 2024,
+        "venue": "Journal of Contemporary Urban Affairs",
+        "authors": [
+          "Buse Özer",
+          "Özge Yalçıner Ercoşkun"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "确认其为 30 m Landsat 8 OLI C2 L2 反射率研究；产品测量类型可比较，但其光谱响应与锚点 TM/ETM 不同。",
+      "comparability_quote": "corrected surface reflectance and land surface temperature derived from Landsat 8 OLI/TIRS sensors\n(Google-GEE, 2023). Images with more than 20% cloud cover were excluded from the study. In\naddition to annual averages, three-month averages ",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 对比 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 C2 T1 L2，原文称大气校正反射率",
+        "variables": "NDVI、NDBI、BU 建筑多边形统计",
+        "application": "建筑年代与洪水风险"
+      },
+      "comparability_handling": "按独立 OLI 产品关系入池；保持单传感器研究边界，不把结果和锚点观测拼成同一时间序列。",
+      "doi": "10.25034/ijcua.2024.v8n1-4",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "3fe44776d36c93a343be76c20adedb7639ed50c0c69e7ca387ad6b97ec3320e0",
+      "product_use_quote": "rocess the Landsat-8 library in this study.\nInstead of downloading each data individually, all analyses were conducted on the GEE platform. The\ndataset used is specifically named \"LANDSAT/LC08/C02/T1_L2\" and provides atmospherically\ncorrected surface reflectance and land surface temperature derived from Landsat 8 OLI/TIRS sensors\n(Google-GEE, 2023). Images with more than 20% clou",
+      "operational_use_quote": "corrected surface reflectance and land surface temperature derived from Landsat 8 OLI/TIRS sensors\n(Google-GEE, 2023). Images with more than 20% cloud cover were excluded from the study. In\naddition to annual averages, three-month averages ",
+      "application_scope_quote": "corrected surface reflectance and land surface temperature derived from Landsat 8 OLI/TIRS sensors\n(Google-GEE, 2023). Images with more than 20% cloud cover were excluded from the study. In\naddition to annual averages, three-month averages ",
+      "supporting_quote": "corrected surface reflectance and land surface temperature derived from Landsat 8 OLI/TIRS sensors\n(Google-GEE, 2023). Images with more than 20% cloud cover were excluded from the study. In\naddition to annual averages, three-month averages ",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "原文明确列出 LC08/C02/T1_L2，说明其大气校正地表反射率，并用 Landsat 指数分析建筑多边形。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Buse Özer",
+        "Özge Yalçıner Ercoşkun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "分析北京、上海、广州不同季节和局地气候区中植被、反照率与地表城市热岛强度的关联。",
+      "hypothesis_or_mechanism": "植被和反射率与热岛强度的关系随城市形态、城市和季节而变。",
+      "variables_and_data_use": "论文表格列出 LC08 C2 L2 的 SR_B1/B3/B4/B5/B7、ST_B10；这些反射率用于地表参数分析。另有单独的 LC08 C1 8-day NDVI 产品，复核时不把它误记为 C2。",
+      "method_paradigm": "遥感地表参数与 LCZ 分层结合，开展季节相关和回归分析。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_ac3fd056cba26f73eb66",
+      "source_paper": {
+        "doi": "10.3390/rs15235478",
+        "title": "Seasonal Cooling Effect of Vegetation and Albedo Applied to the LCZ Classification of Three Chinese Megacities",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "authors": [
+          "Yifan Luo",
+          "Jinxin Yang",
+          "Qian Shi",
+          "Yong Peng Xu",
+          "Massimo Menenti",
+          "Man Sing Wong"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "LC08 C2 L2 的反射率观测在空间尺度和测量类型上可作为扩展关系；传感器波段响应与 TM/ETM 不同。",
+      "comparability_quote": "included atmospherically corrected surface reflectance, which was derived\nfrom Landsat 8 OLI/TIRS sensor data. All LST products were jointly developed by the\nJet Propulsion Laboratory (JPL) of NASA and the Rochester Institute of Technology ",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 对比 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "C2 T1 L2 SR 与单独列示的 C1 8-day NDVI 是不同产品",
+        "variables": "C2 使用 SR_B1/B3/B4/B5/B7；亦列有 ST_B10",
+        "application": "季节和 LCZ 分层的热岛关联分析"
+      },
+      "comparability_handling": "只把表格中明确列出的 LC08 C2 L2 SR 波段作为本次扩展证据；C1 8-day NDVI 保持独立，不冒充 C2。维持 OLI 单传感器解释，不声称已做跨传感器校准。",
+      "doi": "10.3390/rs15235478",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "337573bc5242dc4a3fa172ee780e27a1b0099919e1feabf51d9c2ab25fafc748",
+      "product_use_quote": "hich provides a library of operators\n(Table 2).\nRemote Sens. 2023, 15, 5478 8 of 25\nTable 2. Description of the data.\nDate Collection Band\n1 November 2020–30 January 2021 (winter) LANDSAT/LC08/C02/T1_L2LANDSAT/LC08/C01/T1_8DAY_NDVI\nSR_B1, SR_B3, SR_B4, SR_B5, SR_B7, ST_B10\nNDVI\n1 February 2021–30 April 2021 (spring) LANDSAT/LC08/C02/T1_L2LANDSAT/LC08/C01/T1_8DAY_NDVI\nSR_B1, SR_B3",
+      "operational_use_quote": "included atmospherically corrected surface reflectance, which was derived\nfrom Landsat 8 OLI/TIRS sensor data. All LST products were jointly developed by the\nJet Propulsion Laboratory (JPL) of NASA and the Rochester Institute of Technology ",
+      "application_scope_quote": "included atmospherically corrected surface reflectance, which was derived\nfrom Landsat 8 OLI/TIRS sensor data. All LST products were jointly developed by the\nJet Propulsion Laboratory (JPL) of NASA and the Rochester Institute of Technology ",
+      "supporting_quote": "included atmospherically corrected surface reflectance, which was derived\nfrom Landsat 8 OLI/TIRS sensor data. All LST products were jointly developed by the\nJet Propulsion Laboratory (JPL) of NASA and the Rochester Institute of Technology ",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "原文表格明确列出 LC08 C2 L2 及多个 SR 波段和 ST_B10；工作流明确使用 Landsat 8 地表反射率。论文另列 LC08 C1 8-day NDVI，本次仅凭 C2 SR 的实际用途确认入池，不混同两个产品。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Yifan Luo",
+        "Jinxin Yang",
+        "Qian Shi",
+        "Yong Peng Xu",
+        "Massimo Menenti",
+        "Man Sing Wong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "检验 Landsat 植被指数偏离气象条件下健康作物预期值时能否识别香蕉病害暴发区域。",
+      "hypothesis_or_mechanism": "病害胁迫改变冠层反射特征，使观测植被指数偏离健康状态的预测值。",
+      "variables_and_data_use": "使用 Landsat 8 OLI C2 L2 地表反射率的蓝、红、近红外和短波红外波段构造植被指数；结合 MODIS 温度、降水及病害调查记录。",
+      "method_paradigm": "像元级时间序列机器学习回归与偏差异常识别。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "MODIS MOD11A1 V6",
+        "NASA GPM IMERG",
+        "香蕉病害调查记录"
+      ],
+      "idea_type": "anomaly_discrepancy",
+      "direction_id": "exp_d6d087cdbf32561b2e0f",
+      "source_paper": {
+        "doi": "10.3390/rs17132308",
+        "title": "Detection of Banana Diseases Based on Landsat-8 Data and Machine Learning",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "authors": [
+          "Renata Retkutė",
+          "Kathleen S. Crew",
+          "John E. Thomas",
+          "Christopher Aidan Gilligan"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "同属 Landsat Level-2 表面反射率测量，本文单独使用 OLI 的 30 m、16 天观测；与 TM/ETM 的传感器响应仍不同。",
+      "comparability_quote": "Table1.VIsusedintheanalyses,whereBLUE,RED,NIR,andSWIRcorrespondtotheblue(`SR_B2'),\nred(`SR_B4'),near-infrared(`SR_B5'),andshortwaveinfrared(`SR_B6')spectralbands,respectively.\n\nIndexFormulaRef.\n\nNormalizeddifferencevegetationindexNDVI=\n",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 对比锚点 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 C2 T1 L2 SR，30 m，16 天重访",
+        "temporal": "2013-04 至 2019-01",
+        "deduplication": "同文预印本记录暂缓并由正式刊文 DOI 代表"
+      },
+      "comparability_handling": "只按正式刊文 DOI 计一篇；保持 LC08 OLI 单传感器时序，不与 TM/ETM 锚点拼接或声称已校准。",
+      "doi": "10.3390/rs17132308",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "53715f9bfdfae6b654f7b8e1aedc8eba244d12b370db657d2ee2b5fdc528f05b",
+      "product_use_quote": "bad-qualityobservationsthatwere\nidenti\u0002edasclouds,cloudshadows,andsnow.AlldatawereexportedfromGoogleEarth\nEngine[38TheimagedataIDforthesurfacere\u0003ectancedataonGoogleEarthEnginewas\n`LANDSAT/LC08/C02/T1_L2'.\n2.3.2.TemperatureData\nTheMOD11A1V6productprovidesdaytimelandsurfacetemperature(band\n`LST_Day_1km')andnighttimelandsurfacetemperature(band`LST_Night_1km')[39\nThedatahavea1kmspati",
+      "operational_use_quote": "Table1.VIsusedintheanalyses,whereBLUE,RED,NIR,andSWIRcorrespondtotheblue(`SR_B2'),\nred(`SR_B4'),near-infrared(`SR_B5'),andshortwaveinfrared(`SR_B6')spectralbands,respectively.\n\nIndexFormulaRef.\n\nNormalizeddifferencevegetationindexNDVI=\n",
+      "application_scope_quote": "Table1.VIsusedintheanalyses,whereBLUE,RED,NIR,andSWIRcorrespondtotheblue(`SR_B2'),\nred(`SR_B4'),near-infrared(`SR_B5'),andshortwaveinfrared(`SR_B6')spectralbands,respectively.\n\nIndexFormulaRef.\n\nNormalizeddifferencevegetationindexNDVI=\n",
+      "supporting_quote": "Table1.VIsusedintheanalyses,whereBLUE,RED,NIR,andSWIRcorrespondtotheblue(`SR_B2'),\nred(`SR_B4'),near-infrared(`SR_B5'),andshortwaveinfrared(`SR_B6')spectralbands,respectively.\n\nIndexFormulaRef.\n\nNormalizeddifferencevegetationindexNDVI=\n",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "正式刊文原文明确列出 LC08/C02/T1_L2，使用 Landsat 8 OLI 表面反射率，说明 30 m、16 天重访及 SR 波段。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Renata Retkutė",
+        "Kathleen S. Crew",
+        "John E. Thomas",
+        "Christopher Aidan Gilligan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "绘制阿根廷 Santa Cruz 省土地覆盖和植被类型，并描述其与碳储量、生物多样性及生态系统服务的关系。",
+      "hypothesis_or_mechanism": "光谱、气候和地形变量可区分土地覆盖类别，植被类型为区域生态指标比较提供空间框架。",
+      "variables_and_data_use": "使用 LC08 C2 L2 2017–2022 地表反射率，按 QA_PIXEL 过滤并计算蓝、绿、红、近红外波段季节中位数和植被指数；结合气候、地形和样点数据。",
+      "method_paradigm": "多源环境变量驱动的随机森林土地覆盖分类，并开展空间叠加和统计汇总。",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2",
+        "WorldClim",
+        "ALOS AW3D30",
+        "野外样点"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_48eb84b729bb6539aa91",
+      "source_paper": {
+        "doi": "10.3390/su16052025",
+        "title": "Vegetation Type Mapping in Southern Patagonia and Its Relationship with Ecosystem Services, Soil Carbon Stock, and Biodiversity",
+        "year": 2024,
+        "venue": "Sustainability",
+        "authors": [
+          "Pablo Luis Peri",
+          "Juan Gaitán",
+          "Boris Díaz",
+          "Leandro Almonacid",
+          "Cristian Morales",
+          "Francisco Ferrer",
+          "Romina  G. Lasagno",
+          "Julián Rodríguez‐Souilla",
+          "Guillermo José Martínez Pastur"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "产品和观测类型与锚点同属 Landsat Level-2 表面反射率且为 30 m 级别；传感器响应不同，需保持关系型扩展而非直接等同。",
+      "comparability_quote": "filter those pixels with poor quality that were associated with\nthe presence of clouds, shadows, or aerosols. Then, the images with median reflectance\nvalues for each pixel were obtained using the spectral bands B2 (blue), B3 (green), B4\n",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI 对比 Landsat 5 TM / Landsat 7 ETM+",
+        "product": "LC08 C2 T1 L2 SR，原文使用 QA_PIXEL",
+        "temporal": "2017–2022，六个双月窗口",
+        "application": "区域土地覆盖分类与生态指标空间关系"
+      },
+      "comparability_handling": "保留 LC08 单传感器的产品身份与分析范围；若与 TM/ETM 进行跨期量化，应另外实施波段响应和辐射校准。",
+      "doi": "10.3390/su16052025",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "934b2fd5ab015fc986a1ba000bcfe911ea04f5638e09b81230284c0a60f2dc0a",
+      "product_use_quote": "D at 30 m (AW3D30) digital elevation model (JAXA/ALOS/AW3D30/V3_2\nCollection) were used [42].\nFor spectral variables, Landsat 8 satellite images of surface reflectance (Collection\nLANDSAT/LC08/C02/T1_L2) corresponding to the period 1 January 2017–21 December\n2022 were used. Scenes with cloud cover greater than 30% were eliminated. For this, the\nQA_PIXEL band was used to filter th",
+      "operational_use_quote": "filter those pixels with poor quality that were associated with\nthe presence of clouds, shadows, or aerosols. Then, the images with median reflectance\nvalues for each pixel were obtained using the spectral bands B2 (blue), B3 (green), B4\n",
+      "application_scope_quote": "filter those pixels with poor quality that were associated with\nthe presence of clouds, shadows, or aerosols. Then, the images with median reflectance\nvalues for each pixel were obtained using the spectral bands B2 (blue), B3 (green), B4\n",
+      "supporting_quote": "filter those pixels with poor quality that were associated with\nthe presence of clouds, shadows, or aerosols. Then, the images with median reflectance\nvalues for each pixel were obtained using the spectral bands B2 (blue), B3 (green), B4\n",
+      "human_reviewer": "Codex逐篇原文复核（代理）",
+      "human_reviewed_at_utc": "2026-10-08T16:38:01Z",
+      "human_reason": "原文明确使用 LC08/C02/T1_L2 地表反射率，列出 2017–2022 年、QA_PIXEL、蓝绿红近红外波段和季节合成。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_007_r002",
+      "source_pool_sha256": "915f566f2b5e1e773920038ba8b40d716b987bd2e44da4e4abe49040f405376b",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Pablo Luis Peri",
+        "Juan Gaitán",
+        "Boris Díaz",
+        "Leandro Almonacid",
+        "Cristian Morales",
+        "Francisco Ferrer",
+        "Romina  G. Lasagno",
+        "Julián Rodríguez‐Souilla",
+        "Guillermo José Martínez Pastur"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How did land use and cashew cultivation in Serra do Mel change between the 2015 and 2020 dry-season observations?",
+      "hypothesis_or_mechanism": "The paper examines whether drought conditions and land management are associated with changes in cultivated, native-vegetation, and exposed-soil areas; the reported association is not treated as causal proof.",
+      "variables_and_data_use": "Two Landsat 8 OLI Level-2 surface-reflectance scenes are used to calculate NDVI, SAVI, and BSI and to support pixel-based supervised land-use classification with Random Forest.",
+      "method_paradigm": "Multi-date spectral-index analysis and pixel-based supervised land-cover classification in Google Earth Engine.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_L2"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_20580e0c73ced5ac4dca",
+      "source_paper": {
+        "doi": "10.5752/p.2318-2962.2023v33n72p72",
+        "title": "ANÁLISE ESPAÇO-TEMPORAL DA CAJUCULTURA NO SEMIÁRIDO POTIGUAR:",
+        "year": 2023,
+        "venue": "Caderno de Geografia",
+        "authors": [
+          "Camila Saiury Pereira Silva",
+          "Kátia Alves Arraes",
+          "Leandro Magno Santos da Motta Filho",
+          "Antônio Helton da Silva Barbosa",
+          "Melquisedec Medeiros Moreira"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The exact LC08 Collection 2 Tier 1 Level-2 surface-reflectance product is individually approved as a same-class expansion product. It supplies multispectral optical reflectance at the contract-documented 30 m grid; the paper uses one OLI sensor across both dated scenes and does not stitch sensors. OLI/LaSRC differs from the strict TM/ETM+/LEDAPS Anchor, so this admission remains a distinct same-class relation, not strict equivalence.",
+      "comparability_quote": "Na sequência, do conjunto de dados de imagens de reflectância de superfície do\nsensor OLI do satélite Landsat 8,\nLevel\n\n2,\nCollection\n\n2,\nTier\n\n1 foram selecionadas duas\nimagens do período mais seco do ano, considerando que no período de estiagem é mais\nfácil\n\ndistinguir a vegetação nativa das áreas cultivadas. Além disso, no período de\nestiagem a quantidade de nuvens sobre a região é reduzida, contribuindo para maior\nqualidade da classificação do uso e ocupação do solo. Dessa maneira, foram escolhidas a\ncena (\nLANDSAT/LC08/C02/T1_L2/LC08_215064_20150810) datada de 10 de agosto de\n2015 e a cena (LANDSAT/LC08/C02/T1_L2/LC08_215064_20200908) datada de 08 de\nsetembro de 2020.",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI instead of Landsat 5 TM / Landsat 7 ETM+",
+        "processing": "Collection 2 Level-2 LaSRC surface reflectance instead of the Anchor LEDAPS family",
+        "coverage": "Two OLI scenes dated 2015-08-10 and 2020-09-08; no earlier TM/ETM+ observations are used",
+        "space_time": "Contract-documented nominal 30 m SR grid and 16-day revisit; distinct LC08 relation, not pixel-equivalence claim"
+      },
+      "comparability_handling": "Count as a separate LC08 same-class dataset use. Preserve the paper’s two dates and OLI product identity; do not relabel the study as using the strict TM/ETM+ Anchor. No cross-sensor harmonization claim is made.",
+      "doi": "10.5752/p.2318-2962.2023v33n72p72",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "4429cbb211defb16709deaebdb360117142beb6d7ee62f746d4a5ba6cfce473f",
+      "product_use_quote": "Na sequência, do conjunto de dados de imagens de reflectância de superfície do\nsensor OLI do satélite Landsat 8,\nLevel\n\n2,\nCollection\n\n2,\nTier\n\n1 foram selecionadas duas\nimagens do período mais seco do ano, considerando que no período de estiagem é mais\nfácil\n\ndistinguir a vegetação nativa das áreas cultivadas. Além disso, no período de\nestiagem a quantidade de nuvens sobre a região é reduzida, contribuindo para maior\nqualidade da classificação do uso e ocupação do solo. Dessa maneira, foram escolhidas a\ncena (\nLANDSAT/LC08/C02/T1_L2/LC08_215064_20150810) datada de 10 de agosto de\n2015 e a cena (LANDSAT/LC08/C02/T1_L2/LC08_215064_20200908) datada de 08 de\nsetembro de 2020.",
+      "operational_use_quote": "Nesta pesquisa utilizamos os índices espectrais de\nNormalized Difference Vegetation Index\n\n(NDVI),\nSoil Adjusted Vegetation Index\n\n(SAVI) e\nBare Soil Index\n\n(BSI) que auxiliaram no processo de classificação agregando\ninformações, t\nanto no que se refere à análise visual para coleta de amostras de\ntreinamento, quanto no fornecimento de dados ao classificador\nRandom Forest\n.",
+      "application_scope_quote": "O processo para classificação do uso e ocupação do solo nas duas cenas\nanalisadas se deu por meio da classificação supervisionada baseada em pixel, utilizando\no método de aprendizagem de máquina\nRandom Forest\n\ncom 50 árvores de decisão.\nAdotamos 50 árvores de decisão considerando a aplicação de testes estatísticos e análise\ndos resultados da classificação do ponto de vista qualitativo (análise visual) e quantitativo\n(acurácia).",
+      "supporting_quote": "O processo para classificação do uso e ocupação do solo nas duas cenas\nanalisadas se deu por meio da classificação supervisionada baseada em pixel, utilizando\no método de aprendizagem de máquina\nRandom Forest\n\ncom 50 árvores de decisão.\nAdotamos 50 árvores de decisão considerando a aplicação de testes estatísticos e análise\ndos resultados da classificação do ponto de vista qualitativo (análise visual) e quantitativo\n(acurácia).",
+      "human_reviewer": "Codex independent Methods/Data review",
+      "human_reviewed_at_utc": "2026-10-08T18:19:56Z",
+      "human_reason": "Methods identify two exact LANDSAT/LC08/C02/T1_L2 scenes (2015 and 2020), state they are Landsat 8 OLI Collection 2 Tier 1 Level-2 surface-reflectance images, and use red/NIR/SWIR spectral indices plus supervised classification. This is operational scene-level optical-SR use of an individually approved same-class product. The study uses one sensor for both dates, so no cross-sensor calibration is required. Treat LC08 as a distinct same-class expansion product, not as the strict TM/ETM+ Anchor; catalog scale, 30 m grid, and lineage are fixed product attributes recorded in the contract.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall2_20261009_task_007_r001",
+      "source_pool_sha256": "5cf157e6cb7e5fe342e3c3b3dbf0043d2a856347d6451453bc58fdc80147e92d",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Camila Saiury Pereira Silva",
+        "Kátia Alves Arraes",
+        "Leandro Magno Santos da Motta Filho",
+        "Antônio Helton da Silva Barbosa",
+        "Melquisedec Medeiros Moreira"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How has land use and land cover changed in the Chitwan-Parsa Complex protected landscape from 1985 to 2024, and what are the implications for habitat connectivity and patch structure in this critical tiger, rhino, and elephant conservation area?",
+      "hypothesis_or_mechanism": "Active conservation interventions including human settlement relocation (1995–2013), habitat restoration (grassland and waterhole construction), and corridor maintenance have facilitated forest and grassland regeneration, altering landscape connectivity and patch metrics over the 39-year study period.",
+      "variables_and_data_use": "Landsat Collection 2 Tier 1 Level-2 surface reflectance (Landsat 5 TM for 1985, Landsat 7 ETM+ for 2005, Landsat 9 OLI for 2024) with spectral bands SR_B1–SR_B7, nine derived spectral indices (NDVI, EVI, GCI, SAVI, BSI, NDWI, MNDWI, NDSAI, NDBI), and topographic variables (SRTM-derived slope and elevation). QA_PIXEL cloud masking and median compositing applied. Random Forest classification of land use/land cover classes with training points converted to feature vectors combining all bands, indices, and topographic data.",
+      "method_paradigm": "Supervised machine learning classification (Random Forest) of multi-temporal Landsat surface reflectance imagery in Google Earth Engine, followed by landscape metrics analysis to quantify patch connectivity and fragmentation dynamics across three time periods.",
+      "used_assets": [
+        "LANDSAT/LT05/C02/T1_L2",
+        "LANDSAT/LE07/C02/T1_L2",
+        "LANDSAT/LC09/C02/T1_L2",
+        "SRTM DEM"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_93d209dcaceab5501a51",
+      "source_paper": {
+        "doi": "10.2478/jlecol-2026-0040",
+        "title": "Landscapes Change Dynamics and Patch Connectivity in the Chitwan–Parsa Complex, Nepal",
+        "year": 2026,
+        "venue": "Journal of Landscape Ecology",
+        "authors": [
+          "Anish Dhakal",
+          "Sheila Ghimire",
+          "Roshan Pokhrel",
+          "Aavas Pradhan",
+          "Nirvika Sapkota",
+          "Dinesh Neupane"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC09/C02/T1_L2",
+        "name": "USGS Landsat 9 OLI-2/TIRS-2 Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "原文在 Methods 中明确写明 Landsat Level-2、Collection 2、Tier 1 Surface Reflectance，并将 Landsat 9 OLI 用于 2024 年 LULC 分类；同时报告 30 m 产品、QA_PIXEL 云/阴影掩膜、年度中值合成和基于标准波段公式的光谱指数。依据任务合同，精确产品身份成立后可用合同固定参数补全论文未重述的产品参数。该研究没有声称传感器等效；保留 L5/L7/L9 的谱响应与处理差异，不因未报告单独的跨传感器校准而拒绝。",
+      "comparability_quote": "removed using the QA_PIXEL\nband and cloud mask function in GEE\n(Gorelick\net al\n., 2017)\n, and a one\n-\nyear median\ncomposite image was selected for the study area. Landsat spectral indices are crucial for\nincreasing accuracy in LULC ",
+      "differences_vs_anchor": {
+        "sensor": "Paper uses Landsat 5 TM (anchor), Landsat 7 ETM+ (anchor), and Landsat 9 OLI-2 (expansion product LANDSAT/LC09/C02/T1_L2). Landsat 9 OLI-2 has different spectral response functions and TIRS-2 thermal sensor compared to TM/ETM+.",
+        "processing": "Landsat 9 uses LaSRC atmospheric correction (Level-2 SR) while Landsat 5 TM and Landsat 7 ETM+ use LEDAPS atmospheric correction (Level-2 SR). Both are Collection 2 Tier 1 Level-2 surface reflectance products but with different algorithms.",
+        "bands": "All three sensors provide comparable VNIR/SWIR band sets at 30 m (SR_B1–SR_B7 for Landsat 9, corresponding bands for TM/ETM+), but band response functions differ between OLI and TM/ETM+.",
+        "space_time": "All sensors share 30 m spatial resolution and nominal 16-day revisit. Temporal coverage: Landsat 5 TM for 1985 baseline (1985–1989 composite), Landsat 7 ETM+ for 2005, Landsat 9 OLI for 2024. Landsat 9 archive begins 2021-10-31, consistent with the 2024 study period."
+      },
+      "comparability_handling": "Landsat 5, 7, and 9 are used in separate study periods; the paper applies a common cloud/shadow mask, annual median composites, and the same spectral-index formulas. Sensor-specific differences remain explicit; no equivalence or undocumented cross-sensor calibration is claimed.",
+      "doi": "10.2478/jlecol-2026-0040",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC09/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 9 OLI-2/TIRS-2 Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "ee933b3537eabe39205018e539491070e2505f4f76ed6aab54e4d6ae39145868",
+      "product_use_quote": "2021)\n.\n\nMethodology\n\nCreating Different Spectral Indices in Google Earth Engine (GEE)\n\nWe use Landsat Level\n-\n2, Collection 2, Tier 1 Surface Reflectance (SR) images from\nGoogle Earth Engine (GEE) for three study period: 1985 (Landsat 5 ",
+      "operational_use_quote": "all selected bands (e.g.,\nSR_B1\n\nSR_B7) and derived nine indices (NDVI, NDBI, NDWI, etc.). The classifier then\nlearns patterns by relating these combined feature values to known land cover class of each\ntraining point. Instead of using a ",
+      "application_scope_quote": "classification\n(Aryal\net al\n., 2023; Dash\net al\n., 2023; Ganjirad &\nBagheri, 2024; Lee\net al\n., 2018)\n. Thus, to improve class separability, several indices\nincluding Normalized Difference Vegetation Index (NDVI), Enhanced Vegetation Index\n",
+      "supporting_quote": "TM), 2005 (Landsat 7\nETM+), and 2024 (Landsat 9 OLI) because SR data provides a more accurate representation\nof ground conditions avoiding atmospheric effects, thus making it highly suitable for reliable\nLULC mapping and change detection\n",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T19:53:05Z",
+      "human_reason": "原文在 Methods 中明确写明 Landsat Level-2、Collection 2、Tier 1 Surface Reflectance，并将 Landsat 9 OLI 用于 2024 年 LULC 分类；同时报告 30 m 产品、QA_PIXEL 云/阴影掩膜、年度中值合成和基于标准波段公式的光谱指数。依据任务合同，精确产品身份成立后可用合同固定参数补全论文未重述的产品参数。该研究没有声称传感器等效；保留 L5/L7/L9 的谱响应与处理差异，不因未报告单独的跨传感器校准而拒绝。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_policycorr_20261009_task_007_r001",
+      "source_pool_sha256": "d673b4a2da88f2fcc08b7de2228cb6350c7ed8ece5221b099f1cb5bb802f30c1",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Anish Dhakal",
+        "Sheila Ghimire",
+        "Roshan Pokhrel",
+        "Aavas Pradhan",
+        "Nirvika Sapkota",
+        "Dinesh Neupane"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How have lake water extent and littoral-zone land-cover structure evolved in four major Yangtze River lakes (Taihu, Hongze, Poyang, Dongting) from 1999 to 2019, and what are the dominant pathways of land-cover transitions in these lake–shore systems under seasonal hydrological variation and human regulation?",
+      "hypothesis_or_mechanism": "Lake and littoral-zone systems in the middle and lower Yangtze Plain exhibit long-term structural reorganization driven by seasonal water-level fluctuations, river–lake interactions, regional precipitation changes, and human regulation. Dry-season water extent and land-cover transitions among water, mudflat, field, built-up land, and tree classes reveal pathways of littoral-zone restructuring that differ among lakes with varying degrees of hydraulic connectivity and regulation.",
+      "variables_and_data_use": "Landsat 5 TM (1999–2011), Landsat 7 ETM+ (2012–2013), and Landsat 8 OLI (2013–2019) Collection 2 Tier 1 Level-2 surface reflectance (BLUE, GREEN, RED, NIR, SWIR1, SWIR2 bands) were processed through CCDC time-series segmentation and Random Forest classification to generate annual dry-season land-cover maps (five classes: water, built-up land, mudflat, field, tree). Dry-season water area was extracted at a fixed January–February reference date each year. Land-cover transition matrices quantified changes between 1999 and 2019 within fixed lake–littoral analysis boundaries. Field surveys (2015–2019), Google Earth imagery, GF imagery, and NASA SRTM DEM supported reference sample interpretation and validation.",
+      "method_paradigm": "Time-series change detection and classification using CCDC harmonic modeling of multi-sensor Landsat surface reflectance, segment-based Random Forest classification, and date-specific annual land-cover map extraction within fixed spatial boundaries. Temporal consistency achieved through long-term model fitting rather than annual image compositing.",
+      "used_assets": [
+        "LANDSAT/LT05/C02/T1_L2",
+        "LANDSAT/LE07/C02/T1_L2",
+        "LANDSAT/LC08/C02/T1_L2",
+        "NASA SRTM DEM",
+        "Google Earth historical imagery",
+        "GF-1/2/6 imagery",
+        "Field survey data (2015–2019)"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_30be51bbb70f84faf668",
+      "source_paper": {
+        "doi": "10.3389/frsen.2026.1869619",
+        "title": "Long-term changes in dry-season water bodies and lake-littoral land-cover structure of typical lakes in the middle-lower Yangtze and Huai River basins, China (1999–2019)",
+        "year": 2026,
+        "venue": "Frontiers in Remote Sensing",
+        "authors": [
+          "Nanbo Lu",
+          "Wenping Jin",
+          "Xiangyuan Duan",
+          "Meng Zhang",
+          "Chengsi Zhang"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "原文确认场景级 Landsat 5/7/8 Collection 2 Tier 1 Level-2 地表反射率的实际处理，并明确选择共同蓝、绿、红、近红外、短波红外波段、统一波段名、质量掩膜后联合用于 CCDC 时序；获准 LC08 是其中 2013–2019 的实际观测。原文未报告独立的逐传感器辐射校正，故记录为限制；但存在明确的变量对齐与联合时序处理，未见会阻止扩展入池的实质性产品不匹配。保留传感器与处理谱系，不将 LC08 标为严格锚点或等效产品。",
+      "comparability_quote": "entire 1999–2019 study period. The images were first filtered by study-area boundary and acquisition date. To ensure consistency among sensors, common optical bands available across Landsat 5 TM, Landsat 7 ETM+, and Landsat 8 OLI were ",
+      "differences_vs_anchor": {
+        "sensor": "Landsat 8 OLI added to TM/ETM+ anchor series for 2013–2019 coverage",
+        "processing": "All three sensors use Collection 2 Tier 1 Level-2 surface reflectance; LC08 uses LaSRC while TM/ETM+ use LEDAPS, but both produce surface reflectance",
+        "bands": "Common optical bands (BLUE, GREEN, RED, NIR, SWIR1, SWIR2) standardized across sensors; OLI has different spectral response functions",
+        "space_time": "All sensors provide 30 m resolution and nominal 16-day revisit; LC08 archive begins 2013 and extends anchor coverage to 2019"
+      },
+      "comparability_handling": "The paper selects common Landsat optical bands, standardizes band names, applies quality screening, and uses all sensors jointly in CCDC time-series segments. It does not report a separate radiometric cross-calibration; this limitation is preserved and the products remain identified by sensor and processing lineage.",
+      "doi": "10.3389/frsen.2026.1869619",
+      "task_id": "single_dataset/task_007",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_L2",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Level-2 surface reflectance",
+      "expansion_contract_id": "single_dataset/task_007_expansion_v1",
+      "expansion_contract_sha256": "424b05f3c6fd5cbbc2964a0d56485e8796f5326ae963bf88359ca22c31d9500b",
+      "task_card_sha256": "b1e266d425f5202c588f2e416fd3ddb12230097d34c3a8d29635b1dc7777e066",
+      "source_text_sha256": "1469bcde783f25bc7db8e26e18c7b41970b5dbdd13785eef5f3161c73881efe0",
+      "product_use_quote": "and time-series analysis from 1999 to 2019. The remote-sensing data were obtained from the Landsat surface reflectance products provided by the Google Earth Engine (GEE) platform (Collection 2 Tier 1 Level-2), including Landsat 5 TM, ",
+      "operational_use_quote": "preprocessing\n The Landsat data sources and preprocessing procedures used in this study were described in Section 2.2 . Before applying CCDC, the inputs were organized as quality-controlled surface-reflectance time series, together with ",
+      "application_scope_quote": "preprocessing\n The Landsat data sources and preprocessing procedures used in this study were described in Section 2.2 . Before applying CCDC, the inputs were organized as quality-controlled surface-reflectance time series, together with ",
+      "supporting_quote": "Landsat 7 ETM+, and Landsat 8 OLI. After filtering by the study-area boundaries and time range, a total of 1921 Landsat 5 TM scenes (1999–2011), 309 Landsat 7 ETM + scenes (2012–2013), and 1291 Landsat 8 OLI scenes (2013–2019) were ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T19:53:05Z",
+      "human_reason": "原文确认场景级 Landsat 5/7/8 Collection 2 Tier 1 Level-2 地表反射率的实际处理，并明确选择共同蓝、绿、红、近红外、短波红外波段、统一波段名、质量掩膜后联合用于 CCDC 时序；获准 LC08 是其中 2013–2019 的实际观测。原文未报告独立的逐传感器辐射校正，故记录为限制；但存在明确的变量对齐与联合时序处理，未见会阻止扩展入池的实质性产品不匹配。保留传感器与处理谱系，不将 LC08 标为严格锚点或等效产品。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_policycorr_20261009_task_007_r001",
+      "source_pool_sha256": "d673b4a2da88f2fcc08b7de2228cb6350c7ed8ece5221b099f1cb5bb802f30c1",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Nanbo Lu",
+        "Wenping Jin",
+        "Xiangyuan Duan",
+        "Meng Zhang",
+        "Chengsi Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 17,
+    "source_paper_count": 17,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+  "datasets": [
+    {
+      "role": "spectral_indicators",
+      "data_description": {
+        "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+        "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+        "temporal_coverage": "2017-03-28 to near present",
+        "data_source": "ESA Copernicus Sentinel-2 MSI",
+        "gee_asset": {
+          "id": "COPERNICUS/S2_SR_HARMONIZED",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+        "analytical_capabilities": [
+          "Cloud-masked spectral compositing",
+          "Land-cover and vegetation classification",
+          "NDVI, BSI, NDWI and other index derivation",
+          "Multi-date change detection"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Surface reflectance scaled integer bands",
+          "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+        },
+        "spatial_coverage": {
+          "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+          "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    },
+    {
+      "role": "long_term_spectral_context",
+      "data_description": {
+        "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+        "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+        "temporal_coverage": "2013-04-11 to near present",
+        "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "analytical_capabilities": [
+          "Long-term multispectral vegetation monitoring",
+          "Surface-temperature and bare-soil indicators",
+          "Land-cover transition mapping",
+          "Cross-sensor temporal comparison"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+          "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+        },
+        "spatial_coverage": {
+          "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+          "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+        }
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+    },
+    {
+      "role": "rainfall_stress",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+        "temporal_unit": "Daily precipitation estimates",
+        "temporal_coverage": "1981-01-01 to near present",
+        "data_source": "Climate Hazards Center CHIRPS v2.0",
+        "gee_asset": {
+          "id": "UCSB-CHG/CHIRPS/DAILY",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "analytical_capabilities": [
+          "Daily-to-seasonal rainfall accumulation",
+          "Extreme-rainfall and return-period summaries",
+          "Rainfall anomaly and antecedent-moisture indicators",
+          "Hydroclimatic covariate construction"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Daily precipitation depth in millimetres",
+          "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+        },
+        "spatial_coverage": {
+          "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+          "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+        }
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    }
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "Dryland vegetation-degradation optical-rainfall composite observation",
+    "observable_group": "dryland_vegetation_rainfall_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Dryland vegetation-degradation optical-rainfall composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+        "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+      },
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "spectral_indicators",
+        "data_description": {
+          "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+          "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+          "temporal_coverage": "2017-03-28 to near present",
+          "data_source": "ESA Copernicus Sentinel-2 MSI",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "analytical_capabilities": [
+            "Cloud-masked spectral compositing",
+            "Land-cover and vegetation classification",
+            "NDVI, BSI, NDWI and other index derivation",
+            "Multi-date change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Surface reflectance scaled integer bands",
+            "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      },
+      {
+        "role": "long_term_spectral_context",
+        "data_description": {
+          "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+          "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+          "temporal_coverage": "2013-04-11 to near present",
+          "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "analytical_capabilities": [
+            "Long-term multispectral vegetation monitoring",
+            "Surface-temperature and bare-soil indicators",
+            "Land-cover transition mapping",
+            "Cross-sensor temporal comparison"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+            "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "rainfall_stress",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+          "temporal_unit": "Daily precipitation estimates",
+          "temporal_coverage": "1981-01-01 to near present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Daily-to-seasonal rainfall accumulation",
+            "Extreme-rainfall and return-period summaries",
+            "Rainfall anomaly and antecedent-moisture indicators",
+            "Hydroclimatic covariate construction"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Daily precipitation depth in millimetres",
+            "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Current vegetation condition interpreted jointly with historical optical context and rainfall stress.",
+      "alignment": "Sentinel-2, Landsat and CHIRPS are harmonized over the protected-area study regions and declared screening window.",
+      "required_roles": [
+        "spectral_indicators",
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ],
+      "component_count": 3
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "schema_version": "2.0-composite-anchor",
+  "data_descriptions": [
+    {
+      "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+      "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+      "temporal_coverage": "2017-03-28 to near present",
+      "data_source": "ESA Copernicus Sentinel-2 MSI",
+      "gee_asset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "analytical_capabilities": [
+        "Cloud-masked spectral compositing",
+        "Land-cover and vegetation classification",
+        "NDVI, BSI, NDWI and other index derivation",
+        "Multi-date change detection"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Surface reflectance scaled integer bands",
+        "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+      },
+      "spatial_coverage": {
+        "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+        "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+      }
+    },
+    {
+      "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+      "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+      "temporal_coverage": "2013-04-11 to near present",
+      "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "analytical_capabilities": [
+        "Long-term multispectral vegetation monitoring",
+        "Surface-temperature and bare-soil indicators",
+        "Land-cover transition mapping",
+        "Cross-sensor temporal comparison"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+        "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+      },
+      "spatial_coverage": {
+        "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+        "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+      }
+    },
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+      "temporal_unit": "Daily precipitation estimates",
+      "temporal_coverage": "1981-01-01 to near present",
+      "data_source": "Climate Hazards Center CHIRPS v2.0",
+      "gee_asset": {
+        "id": "UCSB-CHG/CHIRPS/DAILY",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "analytical_capabilities": [
+        "Daily-to-seasonal rainfall accumulation",
+        "Extreme-rainfall and return-period summaries",
+        "Rainfall anomaly and antecedent-moisture indicators",
+        "Hydroclimatic covariate construction"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Daily precipitation depth in millimetres",
+        "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+      },
+      "spatial_coverage": {
+        "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+        "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "spectral_indicators",
+      "long_term_spectral_context",
+      "rainfall_stress"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

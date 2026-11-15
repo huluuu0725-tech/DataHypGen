@@ -1,0 +1,150 @@
+{
+ "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+ "task_description": "The dataset is the companion feature table of a reference paper (see data_description.paper_overview). Use it as the research starting point: propose research ideas that could achieve better performance than the reference paper's reported configuration, evaluated on this same table under a fair comparison protocol.",
+ "region_name": "Monthly fire-activity prediction grid cells, Indonesia (ProbFire companion feature table)",
+ "data_description": {
+  "dataset_name": "ProbFire model input feature table for Indonesia (companion data of Nikonovas et al. 2022, Nat. Hazards Earth Syst. Sci., DOI 10.5194/nhess-22-303-2022)",
+  "spatial_coverage": {
+   "region_name": "Indonesia archipelago, land grid cells",
+   "coverage": "2,080 land grid cells on a 0.25-degree grid spanning Indonesia; identified in the table by integer grid indices lonind (10-191) and latind (11-74)."
+  },
+  "temporal_coverage": "2002-01-31 to 2019-12-31, monthly (216 months = 18 years x 12 months); 'date' holds the month-end timestamp.",
+  "data_type": "Tabular gridded panel (cell x month)",
+  "data_format": "Local CSV (era5_features.csv; parquet original belongs to the source dataset and is not included in this task directory)",
+  "spatial_resolution": "0.25 degree",
+  "coordinate_system": "Grid-cell indices into the 0.25-degree Indonesia grid of the official code. The released Gridder code does not define the 'indonesia' bbox origin, so absolute lon/lat reconstruction is not pinned by the released assets; five sub-region bounding boxes used by the official code are listed in dataset_facts.",
+  "temporal_unit": "One row per grid cell per month; lag columns tp_1..tp_5 / t2m_1..t2m_5 / w10_1..w10_5 / h2m_1..h2m_5 repeat the values of 1-5 months earlier of the same cell.",
+  "records": "449280 rows x 50 columns",
+  "data_type_numeric": "All 50 columns are numeric (integer identifiers/indices/counts, float32 climate values, float64 fire and land-cover values). No categorical string columns; the class target is derived from the integer count column 'frp'.",
+  "total_samples": 449280,
+  "table_content": {
+   "label": "No standalone label column. Per the official code, the modeling target is derived from 'frp' (monthly active-fire pixel count): class 0 = frp == 0 (351,401 rows, 78.2%); class 1 = 0 < frp <= 10 (76,296 rows, 17.0%); class 2 = frp > 10 (21,583 rows, 4.8%). The paper's primary evaluated class is frp > 10.",
+   "column_keys": [
+    "lonind", "latind", "mind", "frp", "year", "month", "frpD", "frpN", "duration", "fsize",
+    "loss_last_prim", "loss_last_sec", "loss_this_prim", "loss_this_sec", "loss_accum_prim",
+    "loss_prim_before", "loss_accum_sec", "loss_sec_before", "loss_three_prim", "loss_three_sec",
+    "frp_acc", "f_prim", "gain", "dem", "peatd", "date",
+    "t2m", "w10", "h2m", "tp",
+    "tp_1", "t2m_1", "w10_1", "h2m_1", "tp_2", "t2m_2", "w10_2", "h2m_2",
+    "tp_3", "t2m_3", "w10_3", "h2m_3", "tp_4", "t2m_4", "w10_4", "h2m_4",
+    "tp_5", "t2m_5", "w10_5", "h2m_5"
+   ],
+   "column_groups": {
+    "grid_identity_and_time": ["lonind", "latind", "mind", "year", "month", "date"],
+    "active_fire_record": ["frp", "frpD", "frpN", "duration", "fsize", "frp_acc"],
+    "forest_cover_and_loss": ["loss_last_prim", "loss_last_sec", "loss_this_prim", "loss_this_sec", "loss_accum_prim", "loss_prim_before", "loss_accum_sec", "loss_sec_before", "loss_three_prim", "loss_three_sec", "f_prim", "gain"],
+    "terrain_and_peatland": ["dem", "peatd"],
+    "climate_current_month": ["t2m", "w10", "h2m", "tp"],
+    "climate_lags_1_to_5_months": ["tp_1", "t2m_1", "w10_1", "h2m_1", "tp_2", "t2m_2", "w10_2", "h2m_2", "tp_3", "t2m_3", "w10_3", "h2m_3", "tp_4", "t2m_4", "w10_4", "h2m_4", "tp_5", "t2m_5", "w10_5", "h2m_5"]
+   },
+   "sample_row_note": "frp/frpD/frpN are monthly aggregated fire-detection counts per cell (frp = frpD + frpN exactly, verified on all rows); terrain, forest-cover and peatland columns are slow-varying cell attributes; climate columns are monthly values with _k suffixes storing the value k months earlier."
+  },
+  "unit_of_measurement": "frp/frpD/frpN: monthly MODIS active-fire pixel counts (integers; max 2,398). duration: integer range 0-422, unit not stated in the file or the paper text. fsize: integer range 0-7,591, unit not stated. frp_acc: integer range 0-11,262, unit not stated. loss_* / f_prim / gain: fractions of cell area (0-1). dem: metres (-34 to 3,150). peatd: integer count of 0.01-degree peat sub-cells inside the 0.25-degree cell (0-625; fraction of cell = peatd/625). t2m*: degrees C (11.6-37.6). h2m*: relative humidity in % (27.9-94.2). w10*: values 0.37-8.48, unit not declared (consistent with m/s). tp*: values 0-4,298; the paper describes this variable as total monthly precipitation, the file does not declare a unit. Lag suffix _k = k months before the target month.",
+  "data_source": "Author-published companion archive, Zenodo record 5206278 (CC-BY-4.0): era5_features.parquet input features plus pretrained MLP weights and scalers for validation years 2002-2019; code archive Zenodo 5939892 (ToFEWSI/ProbFire v1.0.0). The table is the ERA5-reanalysis-based model input set assembled by the authors.",
+  "reference": "Paper DOI 10.5194/nhess-22-303-2022; data DOI 10.5281/zenodo.5206278; code DOI 10.5281/zenodo.5939892",
+  "important_note": "Structural facts a reader needs before use: (1) The panel is complete and balanced - every one of the 2,080 cells has all 216 months, and no column has missing values. (2) The label is derived from 'frp' by the official rule (0 / 1-10 / >10); frp is named after fire radiative power but stores pixel counts. (3) The paper's model uses an 18-feature subset of this table: tp..tp_5, t2m, h2m (8 climate) plus loss_last_prim, loss_last_sec, frp_max, f_prim, peat (=peatd) and 5 sub-region binaries cs/ss/wk/sk/sp. frp_max (running maximum of preceding years' fire counts, extended back to 1997-2001 with an ATSR nighttime product) and the 5 sub-region binary columns are NOT present in this table - they are derived in the official code from this table's history and coordinates, and the ATSR input file is not part of the released assets. (4) Lag columns are shifted duplicates of the current-month columns (tp_1 of row i equals tp of row i-1 for the same cell), so they add no new information beyond ordering. (5) The paper text says '17-year record' and '17 model realizations', but the table and the released per-year models both cover 18 years (2002-2019). (6) The released code does not run as shipped (syntax/reference errors in model.py; the 'indonesia' bbox key is absent from the released gridding module; add_frp_acc reads an unpublished local ATSR parquet), so exact reproduction of the paper's feature engineering requires reconstruction. (7) The table contains only ERA5-reanalysis climate values; SEAS5 forecast-mode features are not included, so forecast-lead-time evaluation requires external SEAS5 hindcasts, not this table.",
+  "column_profiles": {
+   "lonind": {"type": "numeric", "missing": 0, "min": 10, "p50": 96, "max": 191},
+   "latind": {"type": "numeric", "missing": 0, "min": 11, "p50": 44, "max": 74},
+   "mind": {"type": "numeric", "missing": 0, "min": 1, "p50": 108, "max": 216},
+   "year": {"type": "numeric", "missing": 0, "min": 2002, "p50": 2010, "max": 2019},
+   "month": {"type": "numeric", "missing": 0, "min": 1, "p50": 6, "max": 12},
+   "frp": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "p95": 10, "p99": 49, "max": 2398},
+   "frpD": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 1240},
+   "frpN": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 2078},
+   "duration": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 422},
+   "fsize": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 7591},
+   "frp_acc": {"type": "numeric", "missing": 0, "min": 0, "p50": 62, "max": 11262},
+   "loss_last_prim": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.000431, "max": 0.290387},
+   "loss_last_sec": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.00127, "max": 0.188355},
+   "loss_this_prim": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.000383, "max": 0.290387},
+   "loss_this_sec": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.001039, "max": 0.188355},
+   "loss_accum_prim": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.004432, "max": 0.667622},
+   "loss_prim_before": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.003495, "max": 0.667622},
+   "loss_accum_sec": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.011525, "max": 0.790539},
+   "loss_sec_before": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.009353, "max": 0.790539},
+   "loss_three_prim": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.001383, "max": 0.308044},
+   "loss_three_sec": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.003943, "max": 0.439813},
+   "f_prim": {"type": "numeric", "missing": 0, "min": 0, "p50": 0.517375, "max": 0.999956},
+   "gain": {"type": "numeric", "missing": 0, "min": 0.000004, "p50": 0.010772, "max": 0.575107},
+   "dem": {"type": "numeric", "missing": 0, "min": -34.16, "p50": 181.11, "max": 3149.53},
+   "peatd": {"type": "numeric", "missing": 0, "min": 0, "p50": 0, "max": 625},
+   "t2m": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.07, "max": 37.61},
+   "w10": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "h2m": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.44, "max": 94.15},
+   "tp": {"type": "numeric", "missing": 0, "min": 0, "p50": 261.92, "max": 4298.41},
+   "tp_1": {"type": "numeric", "missing": 0, "min": 0, "p50": 261.82, "max": 4298.41},
+   "tp_2": {"type": "numeric", "missing": 0, "min": 0, "p50": 262.62, "max": 4298.41},
+   "tp_3": {"type": "numeric", "missing": 0, "min": 0, "p50": 262.94, "max": 4298.41},
+   "tp_4": {"type": "numeric", "missing": 0, "min": 0, "p50": 263.42, "max": 4298.41},
+   "tp_5": {"type": "numeric", "missing": 0, "min": 0, "p50": 263.38, "max": 4298.41},
+   "t2m_1": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.06, "max": 37.61},
+   "t2m_2": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.05, "max": 37.61},
+   "t2m_3": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.05, "max": 37.61},
+   "t2m_4": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.05, "max": 37.61},
+   "t2m_5": {"type": "numeric", "missing": 0, "min": 11.62, "p50": 29.05, "max": 37.61},
+   "w10_1": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "w10_2": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "w10_3": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "w10_4": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "w10_5": {"type": "numeric", "missing": 0, "min": 0.37, "p50": 1.45, "max": 8.48},
+   "h2m_1": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.43, "max": 94.15},
+   "h2m_2": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.47, "max": 94.15},
+   "h2m_3": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.49, "max": 94.15},
+   "h2m_4": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.51, "max": 94.15},
+   "h2m_5": {"type": "numeric", "missing": 0, "min": 27.89, "p50": 72.51, "max": 94.15}
+  },
+  "dataset_facts": {
+   "panel_structure": "2,080 cells x 216 months = 449,280 rows; 24,960 rows per year; no gaps.",
+   "class_distribution_from_frp_rule": {"class_0_frp_eq_0": 351401, "class_1_1_to_10": 76296, "class_2_gt_10": 21583, "class_2_share": 0.048},
+   "frp_distribution": "median 0, p95 10, p99 49, max 2,398 detections/cell-month; 97,879 rows (21.8%) have frp > 0.",
+   "subregion_bboxes_from_official_code": {
+    "South Kalimantan": "lat -4.0..-1.5, lon 110.5..115",
+    "South Sumatra": "lat -5.0..-2.2, lon 103..106.2",
+    "South Papua": "lat -9.0..-6.0, lon 137..142",
+    "Central Sumatra": "lat -2.2..2.6, lon 99.5..104.5",
+    "West Kalimantan": "lat -1.5..1.0, lon 108.8..112"
+   },
+   "released_model_files": "Per validation year 2002-2019: model_<year>.joblib (MLP) and scaler_<year>.joblib (StandardScaler fitted on the 16 training years), 36 files in ASSET-PROBFIRE-DATA."
+  },
+  "analytical_capabilities": "Supportable from this table: monthly cell-level probabilistic classification (any-fire class and >10 high-fire class), leave-one-year-out temporal validation, drought-lag feature construction, regional stratification via the five documented bounding boxes, peat/forest-cover interaction analysis, class-imbalance and calibration analysis. NOT supportable from this table: sub-monthly fire dynamics, SEAS5 forecast-lead evaluation (external hindcasts needed), absolute-precision geolocation (index-to-coordinate origin not pinned by released assets), and any claim about fire size or radiative energy unless the undeclared units of duration/fsize/frp_acc are first established.",
+  "paper_overview": {
+   "citation": "Nikonovas, T., Spessa, A., Doerr, S. H., Clay, G. D., and Mezbahuddin, S.: ProbFire: a probabilistic fire early warning system for Indonesia, Nat. Hazards Earth Syst. Sci., 22, 303-322, 2022, DOI 10.5194/nhess-22-303-2022.",
+   "research_question": "Can elevated landscape fire activity in Indonesia be predicted probabilistically months in advance by integrating dynamic seasonal climate forecasts (ECMWF SEAS5) with non-climate information (forest cover change, peatland extent, past fire activity), at a spatial resolution fine enough to be useful for fire management?",
+   "data_used": "MODIS active-fire detections aggregated to 0.25-degree monthly counts (target; ATSR WFA nighttime counts extend history to 1997-2001); ERA5 reanalysis monthly climate for training and SEAS5 seasonal forecasts (25 members, bias/variance-adjusted to 0.25 degrees against ERA5 1993-2019) for lead-time prediction; annual forest features from Hansen global forest change v1.6 combined with year-2000 primary-forest extent (Margono et al. 2014); peatland fraction from Haryono et al. (2011) vector maps; five binary sub-region identifiers.",
+   "methods": "Multilayer perceptron classifier (18 inputs, one hidden layer of 15 ReLU nodes, sigmoid output; LBFGS, learning rate 0.001, L2 alpha = 1; standardized inputs; sklearn). Ordinal binary decomposition: P(count > 0) and P(count > 10). Validation = leave-1-year-out over the study record; performance benchmarked against a climatology model that replaces forecast climate with 1993-2019 ERA5 monthly means; ensemble skill = equal-weight mean of 25 member predictions. Metrics: reliability diagrams (10 bins), ROC/AUC, POD, FAR, Brier score, and cost-loss relative economic value.",
+   "main_results": [
+    "SEAS5-based probabilities outperformed the climatology-based model at 2-4 month lead times in south Kalimantan, south Sumatra and south Papua (El Nino-dominated regions).",
+    "In central Sumatra the advantage existed only at 0-month lead; in west Kalimantan SEAS5 gave no benefit at any lead time.",
+    "All skill scores (AUC, Brier, POD) were better in El Nino-dominated regions; central Sumatra and west Kalimantan had lower AUC, higher Brier and much lower POD even for ERA5-based predictions.",
+    "Predicting the rare >10 class carried substantially higher potential economic value than predicting the >0 class; maximum relative value exceeded 60% of a perfect forecast in El Nino-dominated regions.",
+    "Reliability degraded gradually with lead time; high-confidence predictions were least reliable for the >10 class in IOD-dominated regions."
+   ],
+   "stated_scope_and_limitations": [
+    "The system operates at monthly time steps and 0.25-degree cells; short drought-triggered episodes in central Sumatra are not resolvable.",
+    "Predictability is low in IOD-dominated regions (central Sumatra, west Kalimantan) even with ERA5 reanalysis inputs, indicating missing input information rather than only forecast limitation.",
+    "Sub-region heterogeneity is represented only by five binary identifier features, which the authors call primitive.",
+    "Policy, land-management and fire-suppression factors are not represented; the authors call for long-term consistent datasets on vegetation, land management status and socio-economic drivers.",
+    "The 2002 validation year suffers from absent prior MODIS observations (ATSR extension underestimates), and 2019 predictions were overconfident (IOD-driven drought plus policy-driven detection reduction)."
+   ],
+   "not_disclosed_in_paper": [
+    "Exact geographic origin of the 0.25-degree grid index space (lonind/latind to lon/lat mapping is not fixed by the released code).",
+    "Units of the duration, fsize and frp_acc columns in the released feature table.",
+    "The ATSR 1997-2001 nighttime fire file used for frp_max reconstruction is not part of the released archive."
+   ]
+  },
+  "improvement_directive": {
+   "objective": "Treat the ProbFire paper summarized above as the baseline starting point. Propose research ideas that could achieve better performance than the paper's reported configuration, using this companion table as the primary data source.",
+   "better_performance_means": "For this task, better performance is concretely one or more of: higher AUC / lower Brier score for the frp > 10 class under leave-one-year-out validation; better reliability (calibration) especially for high-confidence predictions; higher POD at comparable FAR; skill retained or improved in the IOD-dominated regions (central Sumatra, west Kalimantan) where the paper's model is weakest; improved cost-loss relative value; skill maintained at longer lead times. No particular improvement direction is presumed effective in advance.",
+   "requirements_per_idea": [
+    "Name the specific limitation or deficiency of the original paper's approach that the idea addresses (e.g., one of the stated limitations above, or a structural property of the data you can verify).",
+    "State the concrete change (feature engineering, model class, target definition, validation protocol, or research angle) and why it could plausibly work.",
+    "Explain how the idea would be compared fairly against the paper's original configuration: freeze the baseline (same frp-derived label, same 18-feature MLP, same leave-one-year-out folds, same metrics), change one thing at a time, and report paired per-fold differences.",
+    "Formulate testable claims: state what must be computed, on which rows, with which expected direction, and give falsification conditions (what observed result would refute the claim).",
+    "Check data affordability: every claim must be computable from this table, or explicitly marked as requiring external data (e.g., SEAS5 hindcasts, fire-count history before 2002)."
+   ],
+   "constraints": "The label is the frp-derived class rule; any change to it is a legitimate idea but must be stated and compared against the original rule. Claims about absolute geography are limited by the grid-index caveat; claims about fire energy/size are limited by undeclared units of duration/fsize/frp_acc."
+  }
+ },
+ "data_path": "./datasets/probfire_indonesia_early_warning"
+}

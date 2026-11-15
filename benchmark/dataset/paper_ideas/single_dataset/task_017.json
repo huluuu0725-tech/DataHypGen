@@ -1,0 +1,77 @@
+{
+  "paper_id": "10.1038/ncomms14855",
+  "task_id": "single_dataset/task_017",
+  "title": "High resolution analysis of tropical forest fragmentation and its impact on the global carbon cycle",
+  "category": "land_use_land_cover",
+  "year": 2017,
+  "journal": "Nature Communications",
+  "impact_level": "high",
+  "datasets": [
+    "Sexton et al. GLCF global tree-canopy-cover map for 2000 at 30 m, thresholded at 30% canopy cover as the primary forest mask",
+    "Hansen Global Forest Change: 30 m tree cover for 2000 and forest-cover loss through 2012, used as a forest-map sensitivity comparison",
+    "ESA GlobCover 2009: 300 m MERIS-derived land cover with 22 UNLCS classes, used as a coarse forest-map sensitivity comparison",
+    "Saatchi et al. 1 km tropical above-ground forest biomass map, used as the primary patch-level biomass source",
+    "Baccini et al. 500 m carbon map and Avitabile et al. 1 km biomass map, used as alternative biomass-map sensitivity cases",
+    "Pan et al. continental mean forest biomass densities, used both as a comparison and as the fallback where pixel biomass was unavailable"
+  ],
+  "study_area_verified": {
+    "name": "Global tropical forest regions",
+    "time": "Forest-fragment geometry is based on the 2000 tree-cover baseline; comparison maps include Hansen loss observations through 2012 and GlobCover 2009.",
+    "analysis_grid": "Primary connected-component analysis at 30 m using four-neighbour connectivity; datasets at other resolutions were merged by nearest-neighbour interpolation, and WGS-84 pixel areas were latitude-corrected with the Haversine formula.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_substitution": {
+    "paper_used": "Sexton et al. GLCF global 30 m tree-canopy cover for 2000 (`GLCF/GLS_TCC` is its deprecated Earth Engine catalog representation)",
+    "task_anchor": "NASA/MEASURES/GFCC/TC/v3",
+    "former_anchor": "UMD/hansen/global_forest_change_2022_v1_10",
+    "why_former_anchor_was_wrong": "Hansen Global Forest Change was only a sensitivity-comparison forest map. The primary patch delineation used the independent Sexton/GLCF 2000 continuous tree-canopy-cover map.",
+    "why_this_substitute": "The ready GFCC v3 collection is the catalog-declared successor of deprecated GLCF/GLS_TCC, cites Sexton et al., retains 30 m fractional tree-canopy cover and includes the required 2000 epoch.",
+    "residual_gap": "The source analysis used the historical 2000 GLCF layer. GFCC v3 is a later ready release with four epochs through 2015; catalog lineage is verified, but exact cell-for-cell numerical identity with the historical layer has not been established. A faithful benchmark run must restrict the collection to the 2000 epoch.",
+    "corrections": [
+      "The former datasets summary incorrectly elevated Hansen Global Forest Change from a sensitivity comparison to the sole dataset.",
+      "The primary forest map is continuous canopy cover thresholded at 30%, not Hansen annual loss/gain/loss-year data."
+    ],
+    "companion_dataset_availability": {
+      "NASA/MEASURES/GFCC/TC/v3": "ready Earth Engine catalog collection and successor to deprecated GLCF/GLS_TCC",
+      "Hansen Global Forest Change": "available in the Earth Engine catalog, but only a sensitivity-comparison input for this source",
+      "GlobCover 2009": "available as an ESA GlobCover catalog lineage, but not the task anchor",
+      "Saatchi, Baccini and Avitabile biomass maps": "source-specific biomass inputs; exact catalog assets were not established from the supplied Methods",
+      "Pan continental biomass means": "tabulated forest-inventory summary rather than a gridded Earth Engine asset"
+    },
+    "sibling_task_boundary": "single_dataset/task_017 is anchored on GFCC 30 m fractional canopy cover and tropical fragmentation geometry. Hansen-anchored tasks that analyze annual loss timing or forest regrowth are excluded even when they use a 2000 tree-cover baseline.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在热带森林范围内，基于30 m高分辨率森林覆盖图识别森林斑块及其边缘后，森林破碎化造成的边缘效应将增加多少额外的地上碳损失，并且该损失对边缘渗透深度、边缘生物量损失比例和森林斑块形状的敏感性如何？",
+    "hypothesis": "森林破碎化会在直接毁林造成的碳排放之外产生额外的碳损失；额外损失随森林边缘渗透深度d和边缘区相对生物量损失比例e增加而单调上升，并且在斑块面积较小、形状更复杂或边缘长度与面积比更高的斑块中占比更大。以d=100 m、e=50%作为基准情景时，边缘效应应产生可观的全球热带森林地上碳损失。",
+    "mechanism": "森林清除首先将连续森林划分为多个具有不同面积和形状的森林斑块，增加单位森林面积对应的边缘长度；边缘附近的冠层开口、道路或狭长清除带进一步提高风速、蒸汽压亏缺和扰动压力，并增强火灾、风倒和干燥作用向森林内部的传播。这些微气候和扰动变化提高边缘树木死亡率，导致距边缘d米范围内的地上生物量相对于森林核心区降低e比例。将每个森林斑块的边缘面积与其对应的平均地上碳密度相乘，即可估算破碎化引起的额外碳损失；其中斑块面积、边界长度和几何复杂度决定边缘区占总森林面积的比例。",
+    "key_variables": {
+      "target": "热带森林破碎化导致的额外地上碳损失（Gt C），并辅以斑块级碳损失密度（t C ha−1）、森林边缘面积（ha）、边缘面积占森林总面积比例（%）和森林边缘总长度（km）作为分解指标。",
+      "predictors": [
+        "森林斑块面积（ha）",
+        "森林斑块边界长度（km）",
+        "斑块边界长度/面积比（km ha−1）",
+        "森林斑块形状复杂度或边缘面积比例",
+        "边缘渗透深度d（100、200和300 m）",
+        "边缘区相对地上生物量损失比例e（10%、50%和70%，其中50%为基准情景）",
+        "每个森林斑块的平均地上生物量或地上碳密度（t C ha−1）",
+        "森林覆盖制图数据源（GLCF Sexton数据集、Hansen数据集和GlobCover数据集）",
+        "森林边缘类型（人为形成边缘、自然树线边缘和走廊状清除边缘）"
+      ]
+    },
+    "data_sources": [
+      "GLCF（Global Land Cover Facility）Sexton等发布的全球树冠覆盖数据：2000年，30 m空间分辨率，变量为分数树冠覆盖率，用于构建热带森林二值掩膜、识别森林斑块、计算斑块面积、边界长度和边缘面积。",
+      "Saatchi等发布的全球热带森林地上生物量地图：用于提取每个森林斑块或森林核心区的平均地上生物量，并转换为地上碳密度；碳损失计算仅纳入地上碳，不纳入根系碳和土壤碳。",
+      "Hansen等全球森林覆盖数据：约30 m空间分辨率，使用与GLCF数据相对应的2000年森林覆盖信息，作为森林覆盖制图结果的敏感性分析数据源。",
+      "GlobCover全球土地覆盖数据：300 m空间分辨率，用于评估较粗空间分辨率对小型森林斑块和细尺度边缘结构识别及碳损失估算的影响。",
+      "热带区域边界及洲际分区数据：用于限定热带森林分析范围，并分别汇总热带美洲、非洲和亚洲的森林斑块及碳损失指标。"
+    ],
+    "analytical_approach": "首先依据GLCF 2000年30 m树冠覆盖图构建热带森林栅格掩膜，并使用C++实现的改进Hoshen–Copelman连通域标记算法识别森林斑块；对每个斑块计算面积、边界长度、面积等级和边缘长度/面积比。随后以欧氏距离或栅格距离向森林内部扩张100 m、200 m和300 m，分别划分边缘区与核心区，计算各斑块的边缘面积及边缘面积占比。将Saatchi地上生物量图叠加到森林斑块，计算每个斑块的平均地上生物量并转换为地上碳密度。对每个斑块按CarbonLoss_i = EdgeArea_i × CarbonDensity_i × e计算破碎化碳损失，并在全球和洲际尺度求和。设置e=10%、50%和70%的生物量损失情景，以及d=100、200和300 m的边缘渗透深度情景，开展二维敏感性分析；以d=100 m、e=50%作为基准情景。进一步以Hansen 30 m数据和GlobCover 300 m数据重复斑块识别与碳损失计算，比较不同森林覆盖数据源造成的估计差异。结果验证采用数据源交叉验证和参数敏感性验证：比较不同森林覆盖图得到的斑块面积、边缘长度和总碳损失，并检查碳损失估计在e和d变化下是否保持单调响应；同时将汇总的森林面积、碳密度和边缘指标与已有全球森林碳库及区域统计资料进行数量级一致性检查。",
+    "expected_contribution": "建立一个覆盖整个热带区域、以30 m空间分辨率显式保留森林斑块形状和细尺度边缘结构的破碎化碳核算框架；将传统的直接毁林碳排放估算扩展为包含边缘树木死亡和边缘生物量降低的额外碳损失估算；量化森林斑块面积、形状和边缘渗透深度对全球热带森林碳库评估的影响，并为全球碳循环模型、森林保护优先区识别和破碎化影响评估提供可复现的空间化指标。",
+    "falsification_condition": "若在预先设定的合理参数空间d=100–300 m、e=10%–70%内，边缘区碳损失在全球尺度始终接近零，或其在基准情景d=100 m、e=50%下小于直接毁林年碳损失的1%，则不支持“森林破碎化产生具有全球碳循环意义的额外碳排放”这一假设；若随着d或e增加，总碳损失不呈单调上升，或在GLCF、Hansen和GlobCover三种覆盖数据之间的估计方向完全不一致，也将否定该机制对参数和数据源具有稳定性的预测。"
+  },
+  "enriched": true,
+  "enrichment_source": "pdf_fulltext",
+  "pdf_url": "https://www.nature.com/articles/ncomms14855.pdf"
+}

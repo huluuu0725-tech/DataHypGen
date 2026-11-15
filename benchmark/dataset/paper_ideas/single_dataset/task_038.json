@@ -1,0 +1,88 @@
+{
+  "paper_id": "10.1038/s41612-022-00248-4",
+  "task_id": "single_dataset/task_038",
+  "title": "Global increase in wildfire potential from compound fire weather and drought",
+  "category": "climate_surface_interaction",
+  "year": 2022,
+  "journal": "npj Climate and Atmospheric Science",
+  "impact_level": "high",
+  "datasets": [
+    "JRA-55 daily and monthly atmospheric reanalysis (1958-2020, 1.25 degree), used for FFDI and circulation diagnostics",
+    "ESA CCI FireCCI v5.1 monthly burned area (2001-April 2020, aggregated to 0.25 degree)",
+    "Copernicus C3S v1.0 monthly burned area (2001-April 2020, aggregated to 0.25 degree)",
+    "GPCC monthly precipitation (1957-2020, 0.25 degree), used for antecedent drought",
+    "Hadley Centre sea-ice and sea-surface-temperature data (1958-2020), used for climate diagnostics"
+  ],
+  "idea": {
+    "research_question": "在全球植被覆盖陆地区域，极端火险天气与 antecedent 干旱条件的复合发生是否会以非线性方式提高月尺度燃烧面积异常，并且这种复合风险的长期变化主要由火险天气、先行降水亏缺，还是二者的交互作用驱动？",
+    "hypothesis": "H1：在控制植被覆盖、季节性和长期背景变化后，极端火险天气与先行干旱的共同发生对燃烧面积异常具有显著正向且强于加性模型预期的交互效应。H2：复合事件频率的趋势可由火险天气指数变化和先行干旱变化分解，其中二者的交互项对燃烧面积概率和面积异常具有独立解释力。H3：复合效应在具有连续燃料、季节性干燥和较高历史火活动的植被区更强。",
+    "mechanism": "高温、低相对湿度、强风和少降水首先提高细燃料含水量亏缺及火焰传播效率，使 FFMC、ISI 和 FWI 升高；较长时间尺度的降水亏缺进一步降低深层土壤和粗燃料含水量，使 DMC、DC、BUI 和 KBDI 升高。当短期火险天气叠加于先行干旱背景时，燃料更易点燃、火势传播更快、燃烧持续时间更长，同时抑制火场扩张过程中的自然熄灭，从而提高发生大面积燃烧的概率。机制上通过火险天气主效应、先行干旱主效应及其交互项进行定量检验，并使用嵌套模型比较交互项带来的增量解释力。",
+    "key_variables": {
+      "target": "以 MODIS MCD64A1 Collection 6.1 月度 Burned Area 数据计算的 0.25° 网格月燃烧面积比例及其异常值；同时构造二元目标变量，即月燃烧面积是否超过该网格对应月份 2001-2021 年历史分布的第 90 百分位。",
+      "predictors": [
+        "ERA5 计算的加拿大森林火险天气指数 FWI 及其分量 FFMC、DMC、DC、ISI、BUI；采用每日气温、相对湿度、10 m 风速和 24 h 降水输入，按标准 FWI 日步长算法计算，并以季节起始值 FFMC=85、DMC=6、DC=15 初始化。",
+        "ERA5 日降水计算的 Keetch-Byram Drought Index（KBDI），以及 30、60 和 90 日累计降水距平或标准化降水亏缺，用于检验先行干旱时间尺度的稳健性。",
+        "复合事件指标：当月或火季内 FWI 超过该网格同月 2001-2021 年历史第 90 百分位，且 KBDI 超过第 90 百分位或 30/60/90 日降水亏缺低于第 10 百分位时定义为复合极端事件；分别构造二元共现指标和连续复合强度指标。",
+        "控制变量：ERA5 2 m 气温、相对湿度、10 m 风速、降水量及其季节异常；MODIS MCD12Q1 年度土地覆盖数据中的植被类型和植被覆盖陆地掩膜；网格固定效应、月份固定效应及年固定效应。"
+      ]
+    },
+    "data_sources": [
+      "MODIS MCD64A1 Collection 6.1 Monthly Burned Area Product，500 m 空间分辨率，2001-01 至 2021-12；按 0.25° 网格汇总为月燃烧面积比例，并剔除质量控制标记为无效的像元。",
+      "ECMWF ERA5 reanalysis，0.25° 空间分辨率，2001-01 至 2021-12；使用小时尺度 2 m 气温、2 m 露点温度或相对湿度、10 m 风速及总降水，聚合为日尺度后计算 FWI、FFMC、DMC、DC、ISI、BUI 和 KBDI，再汇总至月尺度。",
+      "MODIS MCD12Q1 Collection 6.1 Land Cover Type，500 m 年度土地覆盖数据，2001-2021；用于识别植被覆盖陆地、区分森林、草地、灌丛和稀疏植被，并作为分层分析依据。",
+      "ERA5-Land 或 ERA5 的月度土壤湿度产品，0.1° 或 0.25° 空间分辨率，2001-2021；作为 KBDI 和降水亏缺指标的独立干旱验证变量，用于稳健性检验。"
+    ],
+    "analytical_approach": "首先将所有数据重投影并汇总至 0.25° 网格，使用 MCD12Q1 保留植被覆盖比例达到 20% 以上的网格；对每个网格和月份分别计算 2001-2021 年历史基准期的第 90 和第 10 百分位，以消除空间气候差异和季节性。其次采用标准 Canadian Forest Fire Weather Index 日尺度算法计算 FWI 及其分量，并用标准 KBDI 日更新算法计算先行干旱。主要模型为带网格固定效应、月份固定效应和年份固定效应的二项 logistic 回归：logit[P(大面积燃烧)] = alpha + beta1*FWI_extreme + beta2*KBDI_extreme + beta3*(FWI_extreme×KBDI_extreme) + gammaX；使用聚类于网格的稳健标准误，并以 L2 正则化 logistic 回归作为高维控制变量的敏感性分析。对连续燃烧面积比例异常使用对数变换后的 beta 回归或 hurdle logistic-lognormal 模型，并报告平均边际效应、交互项边际效应和 95% 置信区间。使用 Pearson/Spearman 相关、偏相关和交叉相关分析检验 FWI、KBDI 与燃烧面积异常的同步及 1-3 个月滞后关系；使用嵌套似然比检验和交叉验证比较仅含主效应模型与含交互项模型。对复合事件频率采用季节性 Mann-Kendall 趋势检验，并以 Sen's slope 估计变化速率；通过预白化或 Yue-Pilon 修正处理自相关，并使用 1000 次 block bootstrap 计算趋势和回归系数的不确定性。最后分别固定降水条件、固定火险天气条件和置换交互项，进行 Shapley 分解或基于反事实预测的风险归因，量化火险天气、先行干旱及其交互作用对复合事件概率变化的相对贡献。",
+    "expected_contribution": "建立一个全球统一、可复现的 500 m 火烧数据与 0.25° 气象干旱指标耦合框架，将短期火险天气和多时间尺度先行干旱从单独风险因子提升为可检验的复合风险机制；给出复合事件对大面积燃烧概率和燃烧面积异常的定量效应、空间异质性及长期趋势归因，并为区域火险预警中联合使用 FWI 与干旱指标提供指标阈值和模型依据。",
+    "falsification_condition": "若在加入网格、月份和年份固定效应以及温度、风速、降水、土地覆盖等控制变量后，FWI_extreme×KBDI_extreme 交互项在全球总体及主要植被类型中均不显著，或其平均边际效应不高于仅含单独火险天气和干旱主效应模型；同时复合指标无法提高燃烧事件预测的交叉验证 AUC、对数损失或伪 R²，并且复合事件频率趋势在季节性 Mann-Kendall 检验和 block bootstrap 不确定性范围内不显著，则拒绝“火险天气与先行干旱通过协同作用提高燃烧风险”的核心假设。"
+  },
+  "study_area_verified": {
+    "name": "Global land grid cells with nonzero total burned area",
+    "study_period": "JRA-55 and climate diagnostics: 1958-2020, with tropical FFDI restricted to 1970 onward; burned-area comparison: 2001 through April 2020",
+    "analysis_grid": "Burned-area and precipitation analyses on a 0.25-degree grid; JRA-55 native fields at 1.25 degrees are aggregated or compared at the required scale",
+    "regional_diagnostics": "Monthly analyses highlight eastern Australia and western North America, but the primary analysis is global",
+    "review_date": "2026-08-31"
+  },
+  "anchor_repoint": {
+    "paper_used": "ESA Climate Change Initiative FireCCI v5.1 monthly burned area",
+    "task_anchor": "ESA/CCI/FireCCI/5_1",
+    "former_anchor": "MODIS/061/MCD64A1",
+    "why_the_former_anchor_was_wrong": [
+      "The supplied Methods name FireCCI v5.1 and C3S v1.0 as the burned-area inputs and do not identify MCD64A1 as an operational dataset.",
+      "The former paper-idea record also substituted ERA5/FWI/KBDI for the Methods' JRA-55/FFDI/GPCC construction."
+    ],
+    "why_this_anchor": "FireCCI51 is an exact publicly indexed asset explicitly used by the paper. JRA-55 is central to FFDI but has no exact entry in the current dataset index, so it remains a companion input rather than being replaced by ERA5 or joined into a multi-dataset anchor.",
+    "corrections": [
+      "The Methods calculate the McArthur Forest Fire Danger Index rather than the Canadian FWI components recorded by the earlier enrichment.",
+      "Antecedent drought is defined from GPCC precipitation rather than ERA5-derived KBDI.",
+      "The burned-area records are FireCCI v5.1 and C3S v1.0 rather than MCD64A1.",
+      "The primary scope is global; southern Australia and western North America are regional diagnostics, not the full study area."
+    ],
+    "companion_dataset_availability": {
+      "in_current_dataset_index": [
+        "ESA/CCI/FireCCI/5_1"
+      ],
+      "public_but_no_exact_current_index_match_verified": [
+        "JRA-55",
+        "GPCC monthly precipitation",
+        "C3S burned area v1.0",
+        "Hadley Centre sea-ice and sea-surface-temperature dataset"
+      ]
+    },
+    "seed_method_structure": "S2 candidate: JRA-55 fire weather, GPCC antecedent drought, FireCCI/C3S burned area and ocean-atmosphere diagnostics are core observables; FireCCI51 alone cannot reproduce the compound-event conclusions.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "note": "The idea.* fields are retained as prior enrichment content under the provenance rule. Their MCD64A1, ERA5, Canadian FWI and KBDI details are contradicted by the supplied Methods and must not be treated as verified facts.",
+    "review_date": "2026-08-31"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

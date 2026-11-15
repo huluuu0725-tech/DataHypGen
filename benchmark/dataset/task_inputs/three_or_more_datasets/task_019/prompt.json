@@ -1,0 +1,200 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Communities exposed to extreme-weather power outages",
+  "datasets": [
+    {
+      "role": "nighttime_light_observation",
+      "data_description": {
+        "dataset_name": "NASA Black Marble daily nighttime lights",
+        "data_type": "Daily nighttime-radiance raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+        "spatial_coverage": {
+          "region_name": "Communities exposed to extreme-weather power outages",
+          "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+        },
+        "analytical_capabilities": [
+          "Storm-time outage proxy",
+          "Baseline-adjusted radiance anomaly"
+        ]
+      },
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+    },
+    {
+      "role": "outage_observation",
+      "data_description": {
+        "dataset_name": "Reported power-outage observations",
+        "data_type": "County, tract or utility outage time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+        "spatial_coverage": {
+          "region_name": "Communities exposed to extreme-weather power outages",
+          "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+        },
+        "analytical_capabilities": [
+          "Outage validation",
+          "Event-time calibration"
+        ]
+      },
+      "data_path": "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1"
+    },
+    {
+      "role": "population_demographic_context",
+      "data_description": {
+        "dataset_name": "Population and demographic context grid",
+        "data_type": "Population/demographic raster or census-linked table",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP",
+        "spatial_coverage": {
+          "region_name": "Communities exposed to extreme-weather power outages",
+          "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+        },
+        "analytical_capabilities": [
+          "Environmental-justice stratification",
+          "Population-weighted impact comparison"
+        ]
+      },
+      "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "NASA Black Marble daily nighttime lights",
+      "data_type": "Daily nighttime-radiance raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+      "spatial_coverage": {
+        "region_name": "Communities exposed to extreme-weather power outages",
+        "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+      },
+      "analytical_capabilities": [
+        "Storm-time outage proxy",
+        "Baseline-adjusted radiance anomaly"
+      ]
+    },
+    {
+      "dataset_name": "Reported power-outage observations",
+      "data_type": "County, tract or utility outage time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+      "spatial_coverage": {
+        "region_name": "Communities exposed to extreme-weather power outages",
+        "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+      },
+      "analytical_capabilities": [
+        "Outage validation",
+        "Event-time calibration"
+      ]
+    },
+    {
+      "dataset_name": "Population and demographic context grid",
+      "data_type": "Population/demographic raster or census-linked table",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP",
+      "spatial_coverage": {
+        "region_name": "Communities exposed to extreme-weather power outages",
+        "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+      },
+      "analytical_capabilities": [
+        "Environmental-justice stratification",
+        "Population-weighted impact comparison"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+    "GEE:JRC/GHSL/P2023A/GHS_POP"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_019:composite_observation",
+    "type": "composite_observation",
+    "name": "nighttime_lights_outage_equity composite observation",
+    "observable_group": "nighttime_lights_outage_equity_multidataset_observation",
+    "components": [
+      {
+        "role": "nighttime_light_observation",
+        "data_description": {
+          "dataset_name": "NASA Black Marble daily nighttime lights",
+          "data_type": "Daily nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Communities exposed to extreme-weather power outages",
+            "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+          },
+          "analytical_capabilities": [
+            "Storm-time outage proxy",
+            "Baseline-adjusted radiance anomaly"
+          ]
+        },
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "outage_observation",
+        "data_description": {
+          "dataset_name": "Reported power-outage observations",
+          "data_type": "County, tract or utility outage time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+          "spatial_coverage": {
+            "region_name": "Communities exposed to extreme-weather power outages",
+            "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+          },
+          "analytical_capabilities": [
+            "Outage validation",
+            "Event-time calibration"
+          ]
+        },
+        "data_path": "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1"
+      },
+      {
+        "role": "population_demographic_context",
+        "data_description": {
+          "dataset_name": "Population and demographic context grid",
+          "data_type": "Population/demographic raster or census-linked table",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP",
+          "spatial_coverage": {
+            "region_name": "Communities exposed to extreme-weather power outages",
+            "coverage": "Declared analysis region within Communities exposed to extreme-weather power outages."
+          },
+          "analytical_capabilities": [
+            "Environmental-justice stratification",
+            "Population-weighted impact comparison"
+          ]
+        },
+        "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "nighttime_light_observation",
+        "outage_observation",
+        "population_demographic_context"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_019:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "HTTP:https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_b_1",
+    "GEE:JRC/GHSL/P2023A/GHS_POP"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "nighttime_light_observation",
+      "outage_observation",
+      "population_demographic_context"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

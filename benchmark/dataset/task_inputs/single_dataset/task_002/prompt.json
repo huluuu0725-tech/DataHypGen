@@ -1,0 +1,34 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Australia",
+  "data_description": {
+    "dataset_name": "CHIRPS Precipitation Daily: Climate Hazards Center InfraRed Precipitation With Station Data (Version 2.0 Final)",
+    "spatial_coverage": {
+      "region_name": "Australia",
+      "coverage": "Quasi-global land precipitation coverage from 50 degrees S to 50 degrees N, including mainland Australia and Tasmania."
+    },
+    "temporal_coverage": "1981-01-01 to near present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+    "temporal_unit": "Daily images",
+    "analytical_capabilities": [
+      "Aggregate daily rainfall to pentad, monthly, seasonal or annual precipitation totals",
+      "Compute precipitation anomalies, drought indicators and return-period summaries",
+      "Drive hydrological, land-surface, vegetation or hazard models with gridded rainfall",
+      "Compare rainfall patterns across basins, climate zones, elevations or land-cover contexts",
+      "Validate or benchmark other precipitation products against a station-blended satellite rainfall record"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Daily precipitation depth in millimeters per day",
+      "runtime_hint": "Use the precipitation band. Summing daily values gives accumulated precipitation over the chosen period; averaging daily values gives mean daily intensity for that period. Do not treat CHIRPS-Prelim, CHIRPS v3 daily SAT/RNL variants, IMERG, ERA5-Land, MSWEP or FLDAS outputs as the same asset unless the task explicitly asks for a separate comparison."
+    },
+    "data_source": "UCSB Climate Hazards Group CHIRPS version 2.0 Final",
+    "gee_asset": {
+      "id": "UCSB-CHG/CHIRPS/DAILY",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "replacement seed full text (10.5194/hess-25-4185-2021) section 2.1 uses Australia as the case study, while section 2.2 uses CHIRPS precipitation forcing on a 0.05 degree grid"
+  },
+  "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+}

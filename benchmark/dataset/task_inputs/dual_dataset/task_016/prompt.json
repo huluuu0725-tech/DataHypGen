@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global climate and flood simulation space",
+  "datasets": [
+    {
+      "role": "climate_forcing",
+      "data_description": {
+        "dataset_name": "CMIP5 climate forcing",
+        "data_type": "Climate forcing raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/NEX-GDDP",
+        "spatial_coverage": {
+          "region_name": "Global climate and flood simulation space",
+          "coverage": "Declared analysis region within Global climate and flood simulation space."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/NEX-GDDP"
+    },
+    {
+      "role": "flood_discharge",
+      "data_description": {
+        "dataset_name": "Hydrologic flood and discharge simulations",
+        "data_type": "Simulated discharge or flood-indicator time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1",
+        "spatial_coverage": {
+          "region_name": "Global climate and flood simulation space",
+          "coverage": "Declared analysis region within Global climate and flood simulation space."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "CMIP5 climate forcing",
+      "data_type": "Climate forcing raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/NEX-GDDP",
+      "spatial_coverage": {
+        "region_name": "Global climate and flood simulation space",
+        "coverage": "Declared analysis region within Global climate and flood simulation space."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Hydrologic flood and discharge simulations",
+      "data_type": "Simulated discharge or flood-indicator time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1",
+      "spatial_coverage": {
+        "region_name": "Global climate and flood simulation space",
+        "coverage": "Declared analysis region within Global climate and flood simulation space."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/NEX-GDDP",
+    "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_016:composite_observation",
+    "type": "composite_observation",
+    "name": "climate_forcing_flood_discharge composite observation",
+    "observable_group": "climate_forcing_flood_discharge_multidataset_observation",
+    "components": [
+      {
+        "role": "climate_forcing",
+        "data_description": {
+          "dataset_name": "CMIP5 climate forcing",
+          "data_type": "Climate forcing raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/NEX-GDDP",
+          "spatial_coverage": {
+            "region_name": "Global climate and flood simulation space",
+            "coverage": "Declared analysis region within Global climate and flood simulation space."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/NEX-GDDP"
+      },
+      {
+        "role": "flood_discharge",
+        "data_description": {
+          "dataset_name": "Hydrologic flood and discharge simulations",
+          "data_type": "Simulated discharge or flood-indicator time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1",
+          "spatial_coverage": {
+            "region_name": "Global climate and flood simulation space",
+            "coverage": "Declared analysis region within Global climate and flood simulation space."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "climate_forcing",
+        "flood_discharge"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_016:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/NEX-GDDP",
+    "GEE:JRC/CEMS_GLOFAS/FloodHazard/v2_1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "climate_forcing",
+      "flood_discharge"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

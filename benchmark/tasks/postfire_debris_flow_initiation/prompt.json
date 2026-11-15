@@ -1,0 +1,354 @@
+{
+ "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+ "region_name": "Postfire debris-flow initiation events, southwestern USA (USGS basin-rainstorm event table)",
+ "data_description": {
+  "dataset_name": "USGS postfire debris-flow basin-rainstorm event table, Southwest USA (companion data of Fernandez Sirgo et al. 2026, JGR: Earth Surface, DOI 10.1029/2025JF008627)",
+  "spatial_coverage": {
+   "region_name": "Burned watersheds in Arizona and New Mexico, USA",
+   "coverage": "Basin-level rainstorm events across ~200 burned watersheds from 14 fires (2010-2021)."
+  },
+  "temporal_coverage": "Fires ignited 2010-2021; each row is one basin-rainstorm event with a dated storm window and days-since-fire fields.",
+  "data_type": "Tabular event table",
+  "data_format": "Local CSV (data_full_events.csv; xlsx copies included)",
+  "spatial_resolution": "Basin (watershed) scale; basin lat/lon in the 'Lat and Lon' sheet of data.xlsx",
+  "coordinate_system": "WGS84 lat/lon",
+  "temporal_unit": "Per-event storm timestamps; 'Time since fire start/end (days)' per event",
+  "records": "3107 events x 47 columns",
+  "data_type_numeric": "Mixed numeric/categorical; Response is the binary label (1 = debris flow occurred in the basin during the storm, 0 = no response).",
+  "total_samples": 3107,
+  "table_content": {
+   "label": "Response (2946 no-response vs 161 debris-flow events; 5.2% positive)",
+   "column_keys": [
+    "Fire",
+    "BasinName",
+    "Physiographic Province",
+    "Dominant Veg Type",
+    "Fire Year",
+    "Fire Start",
+    "Fire End",
+    "Storm Start Time (Local)",
+    "Storm End Time (Local)",
+    "Time since fire start (days)",
+    "Time since fire end (days)",
+    "Response",
+    "Number of prior debris-flow-producing storms",
+    "I2 (mm/h)",
+    "I5 (mm/h)",
+    "I10 (mm/h)",
+    "I15 (mm/h)",
+    "I30 (mm/h)",
+    "I60 (mm/h)",
+    "Cumulative Rain (mm)",
+    "Duration (min)",
+    "Ruggedness_S",
+    "Slope_mean",
+    "s23",
+    "s23MH",
+    "s23H",
+    "a2000s15",
+    "a2000s15MH",
+    "a2000s15H",
+    "a2000s23",
+    "a2000s23MH",
+    "a2000s23H",
+    "MeanSlopeLMH",
+    "MeanSlopeMH",
+    "S23LMH",
+    "S30LMH",
+    "S30MH",
+    "mdNBR/1000",
+    "MH",
+    "L_2_MH",
+    "L_3_MH",
+    "L_4_MH",
+    "Clay",
+    "OM",
+    "KF",
+    "Inverse of permeability",
+    "Thickness (m)"
+   ],
+   "column_groups": {
+    "fire_identity_and_timing": [
+     "Fire",
+     "Fire Year",
+     "Fire Start",
+     "Fire End",
+     "Storm Start Time (Local)",
+     "Storm End Time (Local)",
+     "Time since fire start (days)",
+     "Time since fire end (days)"
+    ],
+    "rainfall": [
+     "I2 (mm/h)",
+     "I5 (mm/h)",
+     "I10 (mm/h)",
+     "I15 (mm/h)",
+     "I30 (mm/h)",
+     "I60 (mm/h)",
+     "Cumulative Rain (mm)",
+     "Duration (min)"
+    ],
+    "terrain_morphometry": [
+     "Ruggedness_S",
+     "Slope_mean",
+     "s23",
+     "s23MH",
+     "s23H",
+     "a2000s15",
+     "a2000s15MH",
+     "a2000s15H",
+     "a2000s23",
+     "a2000s23MH",
+     "a2000s23H",
+     "MeanSlopeLMH",
+     "MeanSlopeMH",
+     "S23LMH",
+     "S30LMH",
+     "S30MH"
+    ],
+    "burn_severity": [
+     "mdNBR/1000",
+     "MH",
+     "L_2_MH",
+     "L_3_MH",
+     "L_4_MH"
+    ],
+    "soil_properties": [
+     "Clay",
+     "OM",
+     "KF",
+     "Inverse of permeability",
+     "Thickness (m)"
+    ],
+    "context": [
+     "BasinName",
+     "Physiographic Province",
+     "Dominant Veg Type",
+     "Number of prior debris-flow-producing storms"
+    ]
+   },
+   "sample_row_note": "Rainfall intensities are event peak intensities per duration window; terrain/burn columns are pre-storm basin attributes; soil columns are per-basin properties."
+  },
+  "unit_of_measurement": "Rainfall intensity I2-I60: mm/h (nested peak intensities over 2-60 min windows, I2 >= I5 >= ... >= I60 by construction); Cumulative Rain: mm; Duration: minutes; mdNBR/1000: normalized burn-ratio delta (/1000, 0-0.88); MH / L_2_MH / L_3_MH / L_4_MH: burned-area proportions (0-1 / 0-2 scales); Clay / OM / KF: fractions (0-1); Inverse of permeability: 1/K (10.4-87.5); Thickness: m",
+  "data_source": "USGS-arizona postfire debris-flow basin-rainstorm event table; companion data published with the paper (GitHub repository attached to the DOI)",
+  "reference": "https://doi.org/10.1029/2025JF008627",
+  "important_note": "Structural facts a reader needs before use: (1) the table covers only the FIRST year after fire ignition - 'Time since fire start (days)' spans 22-310 and 'Time since fire end (days)' spans -69..282, so any >=365-day window is empty in this table; 181 events occurred while the fire was still burning (negative days-since-fire-end). (2) Intensity channels are nested peaks, not independent variables. (3) -9999 is the missing-value sentinel (1 cell in 'Number of prior debris-flow-producing storms'); all other listed columns are complete. (4) The soil columns are regional STATSGO texture attributes (identical values for basins sharing a soil polygon); the source publication excluded them from modeling. (5) Debris-flow-positive events exist only for 'Time since fire start' <= 107 days.",
+  "column_profiles": {
+   "I2 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 10,
+    "p50": 35,
+    "max": 175
+   },
+   "I5 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 5,
+    "p50": 27,
+    "max": 141
+   },
+   "I10 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 3,
+    "p50": 19,
+    "max": 120
+   },
+   "I15 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 2,
+    "p50": 14,
+    "max": 111
+   },
+   "I30 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0,
+    "p50": 9,
+    "max": 82
+   },
+   "I60 (mm/h)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0,
+    "p50": 6,
+    "max": 51
+   },
+   "Cumulative Rain (mm)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 1,
+    "p50": 7,
+    "max": 282
+   },
+   "Duration (min)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.6,
+    "p50": 44,
+    "max": 971
+   },
+   "Ruggedness_S": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 6.55e-05,
+    "p50": 0.00229,
+    "max": 0.0297
+   },
+   "Slope_mean": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 6.84,
+    "p50": 27.3,
+    "max": 49.3
+   },
+   "mdNBR/1000": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.00044,
+    "p50": 0.302,
+    "max": 0.884
+   },
+   "MH": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0,
+    "p50": 0.457,
+    "max": 1
+   },
+   "L_2_MH": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.115,
+    "p50": 1.35,
+    "max": 2
+   },
+   "Clay": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.032,
+    "p50": 0.213,
+    "max": 0.406
+   },
+   "OM": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.001,
+    "p50": 0.001,
+    "max": 0.005
+   },
+   "KF": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0,
+    "p50": 0.13,
+    "max": 0.33
+   },
+   "Inverse of permeability": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 10.4,
+    "p50": 24.3,
+    "max": 87.5
+   },
+   "Thickness (m)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 0.635,
+    "p50": 1.0,
+    "max": 1.58
+   },
+   "Time since fire start (days)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": 22,
+    "p50": 79,
+    "max": 310
+   },
+   "Time since fire end (days)": {
+    "type": "numeric",
+    "missing": 0,
+    "min": -69,
+    "p50": 46,
+    "max": 282
+   },
+   "Number of prior debris-flow-producing storms": {
+    "type": "numeric",
+    "missing": 1,
+    "min": 0,
+    "p50": 1,
+    "max": 3
+   },
+   "Physiographic Province": {
+    "type": "categorical",
+    "cardinality": 3,
+    "top_values": {
+     "Basin and Range": 1947,
+     "Transition Zone": 663,
+     "Colorado Plateau": 497
+    }
+   },
+   "Dominant Veg Type": {
+    "type": "categorical",
+    "cardinality": 3,
+    "top_values": {
+     "Forest": 1801,
+     "DesertScrub": 1032,
+     "Chaparral": 274
+    }
+   },
+   "Fire": {
+    "type": "categorical",
+    "cardinality": 14,
+    "top_values": {
+     "Woodbury": 992,
+     "Telegraph": 476,
+     "Schultz": 291,
+     "Buzzard": 272
+    }
+   }
+  },
+  "dataset_facts": {
+   "events_per_fire": {
+    "Bighorn": 182,
+    "Bush": 13,
+    "Buzzard": 272,
+    "Flag": 20,
+    "Frye": 26,
+    "Gladiator": 91,
+    "Horseshoe 2": 116,
+    "Monument": 130,
+    "Pinal": 63,
+    "Schultz": 291,
+    "Slide": 206,
+    "Tadpole": 229,
+    "Telegraph": 476,
+    "Woodbury": 992
+   },
+   "events_per_fire_year": {
+    "2010": 291,
+    "2011": 246,
+    "2012": 91,
+    "2014": 206,
+    "2017": 89,
+    "2018": 272,
+    "2019": 992,
+    "2020": 424,
+    "2021": 496
+   },
+   "basins_total": 200,
+   "events_per_basin_median": 13,
+   "events_during_active_fire": 181,
+   "positives_by_veg_type": {
+    "Forest": 124,
+    "DesertScrub": 22,
+    "Chaparral": 15
+   },
+   "positives_max_time_since_fire_start": 107
+  },
+  "analytical_capabilities": "Event-level binary classification and threshold analysis per intensity window; stratification by vegetation type, physiographic province, fire cohort and soil texture; within-first-year temporal stratification (days-since-fire bins). Family data beyond the first year or basin-internal spatial distributions require companion datasets, not this table."
+ },
+ "data_path": "./datasets/postfire_debris_flow_initiation"
+}

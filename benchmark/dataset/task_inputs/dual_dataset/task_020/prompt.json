@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Australian forest-fire landscapes",
+  "datasets": [
+    {
+      "role": "climate_forcing",
+      "data_description": {
+        "dataset_name": "Climate forcing",
+        "data_type": "Climate forcing raster or time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:ECMWF/ERA5/MONTHLY",
+        "spatial_coverage": {
+          "region_name": "Australian forest-fire landscapes",
+          "coverage": "Declared analysis region within Australian forest-fire landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:ECMWF/ERA5/MONTHLY"
+    },
+    {
+      "role": "burned_area",
+      "data_description": {
+        "dataset_name": "Forest burned area",
+        "data_type": "Burned-area raster or regional time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MCD64A1",
+        "spatial_coverage": {
+          "region_name": "Australian forest-fire landscapes",
+          "coverage": "Declared analysis region within Australian forest-fire landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MCD64A1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Climate forcing",
+      "data_type": "Climate forcing raster or time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:ECMWF/ERA5/MONTHLY",
+      "spatial_coverage": {
+        "region_name": "Australian forest-fire landscapes",
+        "coverage": "Declared analysis region within Australian forest-fire landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Forest burned area",
+      "data_type": "Burned-area raster or regional time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MCD64A1",
+      "spatial_coverage": {
+        "region_name": "Australian forest-fire landscapes",
+        "coverage": "Declared analysis region within Australian forest-fire landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:ECMWF/ERA5/MONTHLY",
+    "GEE:MODIS/061/MCD64A1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_020:composite_observation",
+    "type": "composite_observation",
+    "name": "climate_burned_area composite observation",
+    "observable_group": "climate_burned_area_multidataset_observation",
+    "components": [
+      {
+        "role": "climate_forcing",
+        "data_description": {
+          "dataset_name": "Climate forcing",
+          "data_type": "Climate forcing raster or time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:ECMWF/ERA5/MONTHLY",
+          "spatial_coverage": {
+            "region_name": "Australian forest-fire landscapes",
+            "coverage": "Declared analysis region within Australian forest-fire landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:ECMWF/ERA5/MONTHLY"
+      },
+      {
+        "role": "burned_area",
+        "data_description": {
+          "dataset_name": "Forest burned area",
+          "data_type": "Burned-area raster or regional time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MCD64A1",
+          "spatial_coverage": {
+            "region_name": "Australian forest-fire landscapes",
+            "coverage": "Declared analysis region within Australian forest-fire landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MCD64A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "climate_forcing",
+        "burned_area"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_020:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:ECMWF/ERA5/MONTHLY",
+    "GEE:MODIS/061/MCD64A1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "climate_forcing",
+      "burned_area"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

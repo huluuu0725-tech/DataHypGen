@@ -1,0 +1,102 @@
+{
+  "paper_id": "10.3390/rs11202347",
+  "task_id": "single_dataset/task_003",
+  "title": "Characterizing Seasonally Rainfall-Driven Movement of a Translational Landslide using SAR Imagery and SMAP Soil Moisture",
+  "category": "geological_hazards",
+  "year": 2019,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "ALOS PALSAR ascending track 224 repeat-pass SAR scenes; 36 interferograms selected for the displacement time series; acquisition dates and scene resolution are in the omitted Table 1",
+    "ALOS-2 PALSAR-2 ascending tracks 68 and 69 and descending track 171 repeat-pass SAR scenes; 5 track-68 interferograms used for same-period L-band validation; acquisition dates and scene resolution are in the omitted Table 1",
+    "Sentinel-1A/B C-band ascending track 35 repeat-pass SAR scenes; 73 interferograms selected for the displacement time series; acquisition dates and scene resolution are in the omitted Table 1",
+    "USGS SRTM one-arc-second digital elevation model, approximately 30 m, used during InSAR processing",
+    "SMAP soil-moisture observations identified by the paper title and existing record; product level, resolution and period are not identified in the supplied SAR subsection"
+  ],
+  "study_area_verified": {
+    "name": "Lawson Creek landslide, Curry County, southwestern Oregon",
+    "study_period": "The supplied subsection does not reproduce the acquisition-date rows from Table 1. It confirms overlapping ALOS-2 T68 and Sentinel-1A/B T35 observations but does not state their start and end dates.",
+    "analysis_grid": "Track-specific line-of-sight displacement maps derived from repeat-pass interferograms; the supplied subsection does not state output pixel spacing. The time-series networks contain 36 ALOS T224, 5 ALOS-2 T68 and 73 Sentinel-1A/B T35 interferograms.",
+    "track_inventory": "ALOS ascending T224; ALOS-2 ascending T68 and T69 plus descending T171; Sentinel-1A/B ascending T35.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_resolution": {
+    "paper_used": "Repeat-pass ALOS PALSAR, ALOS-2 PALSAR-2 and Sentinel-1A/B SAR scenes processed with GAMMA into interferograms, unwrapped phase and coherence-weighted SBAS line-of-sight displacement time series",
+    "task_anchor": "NASA_CMR:SENTINEL-1A_SLC",
+    "former_anchor": "COPERNICUS/S1_GRD",
+    "why_the_former_anchor_was_wrong": [
+      "The source analyzes interferometric phase-derived displacement, whereas COPERNICUS/S1_GRD supplies ground-range-detected backscatter intensity and has no complex phase for interferogram formation or phase unwrapping.",
+      "The source's displacement mapping uses ALOS T224 as a main time series, ALOS-2 tracks as mapping and validation inputs, and Sentinel-1 T35 as another main time series; a Sentinel-1-only anchor omits the L-band branches."
+    ],
+    "why_current_anchor": "NASA Earthdata CMR exposes Sentinel-1A and Sentinel-1B Level-1 SLC through ASF. The task therefore uses the actual complex-phase product family rather than phase-free GRD backscatter.",
+    "corrections": [
+      "The former datasets field listed only Sentinel-1 SAR and SMAP. The supplied Methods subsection identifies ALOS T224, ALOS-2 T68/T69/T171, Sentinel-1A/B T35 and the USGS one-arc-second SRTM DEM, including the time-series interferogram counts and validation role.",
+      "The existing idea.data_sources text says that the SAR platform must be determined from the source. The supplied subsection now determines the platforms and tracks; that enrichment text is retained unchanged under the audit rule.",
+      "The current excerpt does not provide Table 1 acquisition dates or output pixel spacing, so those values remain explicitly unresolved rather than inferred."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "USGS/SRTMGL1_003 represents the one-arc-second SRTM DEM used as an ancillary InSAR-processing input",
+        "NASA CMR SENTINEL-1A_SLC and SENTINEL-1B_SLC represent the Sentinel-1 complex-phase scenes used by the source",
+        "NASA CMR ALOS_PALSAR_LEVEL1.1 and ALOS2_L1_PSR2 expose the source's L-band radar product families"
+      ],
+      "not_available_as_the_identified_source": [
+        "The exact granule inventory for ALOS track 224 has not yet been checked against the source's omitted Table 1",
+        "The ALOS-2 collection found in CMR is Level-1 ScanSAR; compatibility with every source track and acquisition mode remains unresolved",
+        "The exact Sentinel-1A/B track-35 acquisition rows must still be matched to Table 1",
+        "The source-derived interferograms, unwrapped phase, coherence and SBAS line-of-sight displacement time series are not published as a ready collection"
+      ],
+      "unresolved_from_excerpt": [
+        "The exact SMAP product level and catalog identity",
+        "The rainfall dataset identity",
+        "The per-track acquisition periods and scene or output-map spatial resolution reported in Table 1"
+      ]
+    },
+    "sibling_task_boundary": "single_dataset/task_003 admits operational use of Sentinel-1 Level-1 SLC complex phase. GRD/RTC backscatter is not sufficient. ALOS and ALOS-2 SLC remain companion collections rather than aliases of the Sentinel-1 C-band Anchor.",
+    "residual_gap": "The single supplied Anchor is Sentinel-1A SLC. Sentinel-1B is admitted within the same family, while the ALOS and ALOS-2 L-band branches must be retrieved as separate companion collections to reproduce the complete seed workflow.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "note": "The idea fields describe the prior enrichment record and remain unchanged. Product corrections, verified track roles and unresolved Table 1 details are recorded only in the audit fields above.",
+    "review_date": "2026-09-20"
+  },
+  "idea": {
+    "research_question": "季节性降雨和土壤水分变化如何通过降雨入渗、孔隙水压力扩散及基底抗剪强度降低，控制缓慢平移型滑坡的运动启动、速度变化和基底几何形态？",
+    "hypothesis": "滑坡运动具有明确的降雨驱动季节性：湿季降雨增加土壤含水量并沿滑坡体向基底入渗，导致基底孔隙水压力上升、有效应力下降和抗剪强度降低；滑坡基底越深或材料水力扩散率越低，地表运动相对于湿季开始和土壤水分上升的时间滞后越长，且运动启动后的速度响应幅度越小。",
+    "mechanism": "降雨输入首先提高地表及浅层土壤含水量，随后水分沿滑坡体向潜在基底剪切带迁移；入渗过程受滑坡基底深度、降雨强度、土壤初始含水量以及材料水力传导率和水力扩散率共同控制。基底孔隙水压力随水分到达而升高，使有效法向应力降低；在摩尔-库仑抗剪强度框架下，抗剪强度下降并促使滑坡沿基底发生平移运动。利用土壤水分或湿季起始与InSAR观测到的运动起始之间的时间滞后，可反演水分压力传播所对应的特征水力参数；利用地表速度场和质量守恒关系，在幂律流变假设下反推滑坡基底深度，并通过极限平衡分析检验其力学合理性。",
+    "key_variables": {
+      "target": "滑坡地表运动响应，包括InSAR反演的视线向位移、年际或季节性速度、运动启动时间、湿季起始至运动启动的时间滞后，以及由速度场反演的滑坡基底深度",
+      "predictors": [
+        "降雨总量和降雨强度",
+        "湿季起始日期",
+        "SMAP卫星反演的表层土壤体积含水量",
+        "土壤水分上升幅度和变化速率",
+        "滑坡基底深度",
+        "滑坡材料水力传导率",
+        "滑坡材料水力扩散率",
+        "初始土壤含水量",
+        "滑坡体坡度和坡向",
+        "土体黏聚力、内摩擦角、密度及其他土壤力学参数"
+      ]
+    },
+    "data_sources": [
+      "SAR卫星影像：用于构建研究区时序InSAR数据并反演滑坡地表视线向位移和速度场；具体卫星平台、观测时间范围、重访周期及空间分辨率需依据原论文数据说明确定，摘要未明确给出",
+      "SMAP土壤水分产品：用于获取研究期内表层土壤体积含水量及其季节变化；可采用SMAP L3 Radiometer Global Daily 36 km产品或Enhanced 9 km产品，时间范围应与SAR观测期一致",
+      "降雨观测或再分析数据：用于确定湿季起始、降雨事件强度和累计降雨量；可使用研究区对应时期的地面雨量站、GPM IMERG或Daymet数据，具体数据集需与研究区和原论文设置一致",
+      "数字高程模型：用于提取滑坡坡度、坡向、地形边界和质量守恒分析所需的地形约束；空间分辨率应与InSAR滑坡速度场和研究区尺度匹配",
+      "土壤和岩土力学参数数据：包括密度、黏聚力、内摩擦角、渗透性或水力传导参数，用于极限平衡分析和水力参数反演；可来自现场试验、钻探、土壤数据库或文献参数"
+    ],
+    "analytical_approach": "首先采用时序InSAR处理流程，例如Persistent Scatterer InSAR或Small Baseline Subset InSAR，估计滑坡地表位移和速度场，并利用升降轨几何或合理的运动方向假设将视线向速度转换为滑坡主运动方向速度。随后在幂律流变假设下，将InSAR速度场代入基于质量守恒的滑坡厚度反演方法，估计空间变化的基底深度及最大厚度。使用极限平衡法，例如简化Bishop法或Spencer法，根据坡度、滑体几何、密度、黏聚力和内摩擦角计算安全系数，对反演的基底几何进行独立力学约束。对SMAP土壤水分和降雨序列进行季节分解、湿季起始识别和交叉相关分析，估计土壤水分变化与InSAR运动启动之间的时间滞后。最后基于一维或二维水分扩散方程，将观测时间滞后与基底深度联系起来，反演特征水力传导率和水力扩散率，并通过参数敏感性分析、Bootstrap置信区间、时空交叉验证及不同基底几何和流变参数情景检验结果稳定性。",
+    "expected_contribution": "建立一种将时序InSAR地表运动、SMAP土壤水分、降雨信息、质量守恒方程和极限平衡分析相结合的研究框架，在缺乏连续地下监测的条件下同时约束缓慢滑坡的基底几何、季节性运动机制和特征水力参数；该框架可为降雨诱发滑坡的物理解释、区域尺度滑坡水文响应评估和运动预警参数化提供方法基础。",
+    "falsification_condition": "若在控制降雨季节性、初始土壤含水量和观测误差后，InSAR运动启动时间与SMAP土壤水分上升或湿季起始之间不存在稳定的正向时间滞后关系，或不同降雨季节的估计滞后差异超过30天且无法由基底深度解释；或者由反演基底深度和水力参数驱动的水分扩散模型不能解释至少50%的独立季节性运动启动时间，预测与观测启动时间的中位绝对误差超过14天；又或者极限平衡分析得到的安全系数在主要参数置信范围内始终大于1.10、且降雨或孔隙水压力变化无法使安全系数降至滑动临界值附近，则降雨入渗通过孔隙水压力升高触发季节性滑坡运动的机制将受到否证。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

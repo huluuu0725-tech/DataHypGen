@@ -1,0 +1,26 @@
+{
+  "paper_id": "10.1038/s41598-022-07650-1",
+  "task_id": "dual_dataset/task_034",
+  "title": "Using Sentinel-1 and GRACE satellite data to monitor the hydrological variations within the Tulare Basin, California",
+  "category": "jpl_aria_insar_csr_rl06_mascon",
+  "year": 2022,
+  "journal": "Scientific Reports",
+  "impact_level": "medium",
+  "datasets": ["JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series", "CSR GRACE/GRACE-FO RL06 Mascon Solutions"],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {"role": "jpl_aria_insar_los_displacement", "dataset": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series"},
+    {"role": "csr_rl06_mascon_terrestrial_water_storage", "dataset": "CSR GRACE/GRACE-FO RL06 Mascon Solutions"}
+  ],
+  "idea": {
+    "research_question": "How do short-term Tulare Basin surface-displacement variations in the JPL ARIA Sentinel-1 InSAR time series co-vary with CSR RL06 Mascon terrestrial-water-storage anomalies?",
+    "hypothesis": "After separating long-term aquifer compaction from the ARIA LOS displacement series, short-term deformation variations have coherent associations with basin-scale CSR RL06 Mascon storage anomalies.",
+    "mechanism": "Reference and detrend ARIA LOS displacement, aggregate it to hydrologically comparable intervals, aggregate CSR RL06 Mascon anomalies over Tulare Basin, then test temporal co-variation while preserving their distinct spatial resolutions.",
+    "analytical_approach": "Joint InSAR–gravimetry time-series analysis with compaction removal, basin aggregation, lag testing and robustness checks",
+    "data_sources": ["NASA_CMR:ARIA_S1_GUNW_1", "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"],
+    "required_component_usage": ["jpl_aria_insar_los_displacement", "csr_rl06_mascon_terrestrial_water_storage"],
+    "expected_contribution": "A reproducible benchmark that preserves the product-specific ARIA InSAR and CSR RL06 Mascon observation contract.",
+    "falsification_condition": "Reject an idea if it replaces ARIA displacement with Sentinel-1 GRD, replaces CSR RL06 Mascons with deprecated GEE GRACE grids, omits either required product, or cannot demonstrate aligned temporal use."
+  },
+  "anchor_context": {"task_anchor": "COMPOSITE:dual_dataset/task_034:composite_observation", "anchor_type": "composite_observation", "seed_selection_basis": "dual_dataset_expansion_fulltext_audit", "asset_definition_note": "Required inputs are JPL ARIA processed Sentinel-1 InSAR displacement and CSR GRACE/GRACE-FO RL06 Mascon solutions; generic Sentinel-1 GRD and deprecated GEE GRACE grids are not substitutes.", "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"}
+}

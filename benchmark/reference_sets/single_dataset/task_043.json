@@ -1,0 +1,1172 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_043",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "WorldClim BIO Variables V1",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial land areas",
+      "coverage": "Global gridded long-term temperature and precipitation summaries, including annual means, ranges, seasonality, and wettest, driest, warmest, and coldest monthly or quarterly conditions."
+    },
+    "temporal_coverage": "Static long-term climatological normals; the Earth Engine catalog represents the layer with a nominal 1960-1990 interval, so it must not be interpreted as a current-weather or interannual time series.",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "927.67 m nominal pixel size",
+    "temporal_unit": "Long-term climatological normal",
+    "analytical_capabilities": [
+      "Mapping long-term temperature and precipitation gradients at global to regional scales",
+      "Separating annual mean conditions from seasonality and climatic extremes",
+      "Comparing multivariate climate regimes among regions",
+      "Identifying combinations of limiting cold, heat, wetness, and dryness conditions",
+      "Quantifying climatic similarity, environmental gradients, and spatially unusual climate combinations while auditing predictor collinearity"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "bio01-bio11 are temperature-derived variables, with documented 0.1 degrees Celsius scales except bio03 (%) and bio04 (0.01 degrees Celsius); bio12-bio14 and bio16-bio19 are precipitation in millimetres; bio15 is a precipitation coefficient of variation.",
+      "runtime_hint": "Load the asset as ee.Image('WORLDCLIM/V1/BIO'); apply each band's documented scale before analysis; do not treat the static normal as yearly observations; reduce correlated bio variables or report sensitivity to predictor selection when fitting multivariate models."
+    },
+    "data_source": "WorldClim, University of California, Berkeley",
+    "gee_asset": {
+      "id": "WORLDCLIM/V1/BIO",
+      "type": "image"
+    }
+  },
+  "current_data_path": "GEE:WORLDCLIM/V1/BIO",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_043.json",
+    "source_sha256": "e94b5e8025b4272ce7696e2d57e6d5dab1d75318c2a4c2b6562d857c157b696d",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_043/prompt.json",
+    "current_prompt_sha256": "1830c9db67e87bf5f4223059d15ec28ea602d6e4eda2871351b6e06ee4280b94",
+    "original_anchor_asset": {
+      "id": "WORLDCLIM/V1/BIO",
+      "observable_group": "worldclim_v1_bioclimatic_normals",
+      "asset_alias_policy": "WorldClim version 1/1.4 bioclimatic variables are accepted when Methods explicitly identify WorldClim and the 1950-2000 climatology represented by V1; WorldClim V2, CHELSA, ERA5, and generic unnamed climate rasters are excluded.",
+      "observation_identity_contract": {
+        "physical_object": "WorldClim BIO Variables V1, representing worldclim v1 bioclimatic normals.",
+        "source_lineage": "Task Prompt source: WorldClim, University of California, Berkeley. Current task anchor: WORLDCLIM/V1/BIO (worldclim_v1_bioclimatic_normals). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "bio01-bio11 are temperature-derived variables, with documented 0.1 degrees Celsius scales except bio03 (%) and bio04 (0.01 degrees Celsius); bio12-bio14 and bio16-bio19 are precipitation in millimetres; bio15 is a precipitation coefficient of variation.; spatial resolution: 927.67 m nominal pixel size; temporal structure: Long-term climatological normal",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: WorldClim version 1/1.4 bioclimatic variables are accepted when Methods explicitly identify WorldClim and the 1950-2000 climatology represented by V1; WorldClim V2, CHELSA, ERA5, and generic unnamed climate rasters are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "niche_ref_01",
+      "research_question": "Can long-term environments suitable for recurring human brucellosis be reconstructed from sparse reported cases and projected beyond Inner Mongolia?",
+      "hypothesis_or_mechanism": "Human brucellosis cases occupy a constrained environmental niche produced jointly by livestock-supporting vegetation, climate, and terrain, so presence-only niche estimation can reveal persistent areas missed by short surveillance records.",
+      "variables_and_data_use": "Municipality- and county-level human cases are linked to WorldClim V1 monthly precipitation and 19 one-kilometre bioclimatic variables, MODIS EVI, land-surface temperature, mid-infrared reflectance, and altitude.",
+      "method_paradigm": "Spatiotemporal cluster analysis followed by MaxEnt presence-only modelling, multicollinearity screening, jackknife variable contribution, ten iterations, AUC validation, and extrapolation to adjacent provinces and Mongolia.",
+      "used_assets": [
+        "WorldClim V1 monthly climate and 19 bioclimatic variables",
+        "MODIS EVI, LST, and mid-infrared products",
+        "reported human brucellosis cases"
+      ],
+      "source_paper": {
+        "title": "Human brucellosis occurrences in Inner Mongolia, China: a spatio-temporal distribution and ecological niche modeling approach",
+        "doi": "10.1186/s12879-015-0763-9",
+        "year": 2015,
+        "venue": "BMC Infectious Diseases",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Peng Jia",
+        "T. Andrew Joyner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "relationship_mechanism",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "niche_ref_02",
+      "research_question": "How will climatic suitability for dengue and the exposed population shift across Nepal under mid- and late-century climate scenarios?",
+      "hypothesis_or_mechanism": "Reported dengue locations define a climatic niche whose temperature and precipitation constraints can move upslope under warming, expanding the population living inside climatically suitable areas.",
+      "variables_and_data_use": "The study uses 124 cleaned dengue presence locations with WorldClim V1.4 bio08, bio11, and bio15 for the present climate, corresponding future WorldClim projections, elevation, and gridded population.",
+      "method_paradigm": "MaxEnt presence-only modelling with correlation-based predictor selection, current-to-future projection under RCP2.6, RCP6.0, and RCP8.5, elevation-gradient analysis, and population overlay.",
+      "used_assets": [
+        "WorldClim V1.4 30-arc-second bioclimatic variables",
+        "reported dengue presence locations",
+        "SRTM elevation and gridded population"
+      ],
+      "source_paper": {
+        "title": "Present and Future of Dengue Fever in Nepal: Mapping Climatic Suitability by Ecological Niche Model",
+        "doi": "10.3390/ijerph15020187",
+        "year": 2018,
+        "venue": "International Journal of Environmental Research and Public Health",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Bipin Kumar Acharya",
+        "Chunxiang Cao",
+        "Min Xu",
+        "Laxman Khanal",
+        "Shahid Naeem",
+        "Shreejana Pandit"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "impact_assessment",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "niche_ref_03",
+      "research_question": "Will six Leishmania-vector sand-fly species retain Mediterranean ranges or expand into presently unsuitable parts of western and central Europe under climate change?",
+      "hypothesis_or_mechanism": "Temperature and precipitation delimit vector niches, and consensus projections across distinct model families should expose robust extra-Mediterranean expansion rather than an artefact of a single algorithm.",
+      "variables_and_data_use": "Literature-derived vector occurrence records are combined with eleven temperature and eight precipitation metrics from the one-kilometre WorldClim V1 climatology and future climate scenarios.",
+      "method_paradigm": "Ensemble ecological-niche modelling across GLM, GAM, artificial neural networks, MaxEnt, surface-range envelopes, and random forests, evaluated with sensitivity and specificity before consensus range projection.",
+      "used_assets": [
+        "WorldClim V1 temperature and precipitation bioclimatic metrics",
+        "2006-2016 vector occurrence records",
+        "future climate projections"
+      ],
+      "source_paper": {
+        "title": "Ecological niche modeling predicting the potential distribution of Leishmania vectors in the Mediterranean basin: impact of climate change",
+        "doi": "10.1186/s13071-018-3019-x",
+        "year": 2018,
+        "venue": "Parasites & Vectors",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Bilel Chalghaf",
+        "Jomâa Chemkhi",
+        "Benjamin K. Mayala",
+        "Myriam Harrabi",
+        "G.B. Bénié",
+        "Edwin Michael",
+        "Afif Ben Salah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "anomaly_discrepancy",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "niche_ref_04",
+      "research_question": "气候变化情景下 Bale Mountains 的 Erica 适生区和潜在分布将如何变化？",
+      "hypothesis_or_mechanism": "温度和降水等生物气候条件变化会改变 Erica 的环境适宜性，从而导致其潜在分布在不同海拔和时期发生变化。",
+      "variables_and_data_use": "研究使用 WorldClim version 1.4 的 19 个温度和降水生物气候变量，经过方差膨胀因子筛选保留 10 个变量，并与基于 Landsat TM + 8 分类提取的 Erica 出现点结合；同时使用 RCP4.5 和 RCP8.5 下的未来气候数据预测 2050s 和 2070s 的潜在分布。",
+      "method_paradigm": "物种分布模型集成",
+      "used_assets": [
+        "Landsat TM + 8",
+        "United States Geological Survey homepage",
+        "Google Earth",
+        "WorldClim version 1.4",
+        "RCP4.5",
+        "RCP8.5",
+        "Coupled Model Intercomparison Project Phase 5 (CMIP5)",
+        "United States Geological Survey (USGS)"
+      ],
+      "author_team": [
+        "Yohannes O. Kidane",
+        "Samuel Hoffmann",
+        "Anja Jaeschke",
+        "Mirela Beloiu",
+        "Carl Beierkuhnlein"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Ericaceous vegetation of the Bale Mountains of Ethiopia will prevail in the face of climate change",
+        "doi": "10.1038/s41598-022-05846-z",
+        "year": 2022,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_05",
+      "research_question": "该论文研究草莓树在葡萄牙的当前潜在适生区及其在过去和未来气候情景下的空间变化。",
+      "hypothesis_or_mechanism": "物种分布受温度和降水季节性等生物气候因子以及地形条件控制，因此气候变化会改变其潜在适生范围。",
+      "variables_and_data_use": "论文从 WorldClim database version 1.4 下载 t max、t min 和 BIO1 至 BIO19 当前气候变量，筛选 BIO1、BIO2、BIO5、BIO9、BIO15 等变量作为 MaxEnt 预测因子，并结合 GMTED2010 派生的海拔和坡度以及物种出现点建模；另外使用 WorldClim/CCSM4/CMIP5 的过去和未来情景数据进行模型投影。",
+      "method_paradigm": "生态位分布建模",
+      "used_assets": [
+        "WorldClim database version 1.4",
+        "BIO1 to BIO19",
+        "Global Multi-resolution Terrain Elevation Data 2010",
+        "2006 Portuguese National Forest Inventory",
+        "SIVIM (Sistema de Información de la Vegetación Iberica y Macaronésica) database",
+        "CCSM4",
+        "CMIP5"
+      ],
+      "author_team": [
+        "Maria Margarida Ribeiro",
+        "Natália Roque",
+        "Sílvia Ribeiro",
+        "Catarina Gavinhos",
+        "Isabel Palmira Castanheira",
+        "L.C. Quinta-Nova",
+        "Teresa Albuquerque",
+        "Saki Gerassis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Bioclimatic modeling in the Last Glacial Maximum, Mid-Holocene and facing future climatic changes in the strawberry tree (Arbutus unedo L.)",
+        "doi": "10.1371/journal.pone.0210062",
+        "year": 2019,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_06",
+      "research_question": "该研究评估气候变化下哥伦比亚 A. aegypti 的潜在地理分布如何变化。",
+      "hypothesis_or_mechanism": "温度、降水和海拔等环境条件决定蚊媒适宜栖息地，未来气候情景会导致适宜区扩张、收缩或迁移。",
+      "variables_and_data_use": "研究使用 GBIF/Global Compendium 的 A. aegypti 发生点作为物种记录，使用 Worldclim 当前 1950-2000 生物气候变量作为环境预测因子，使用 Worldclim CMIP5/CCSM4 未来 2050 和 2070 年 RCP 情景变量评估变化，并加入 SRTM 高程数据作为补充地形变量；变量经相关性筛选后输入 MaxEnt 建模。",
+      "method_paradigm": "物种分布建模",
+      "used_assets": [
+        "Global Compendium of A. aegypti occurrence",
+        "Global Biodiversity Information Facility (GBIF, www.gbif.org",
+        "bioclimatic variables of Worldclim",
+        "Worldclim",
+        "Community Climate System (CCSM4)",
+        "CMIP5",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "MaxEnt"
+      ],
+      "author_team": [
+        "Cristiam Victoriano Portilla-Cabrera",
+        "John Josephraj Selvaraj"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Geographic shifts in the bioclimatic suitability for Aedes aegypti under climate change scenarios in Colombia",
+        "doi": "10.1016/j.heliyon.2019.e03101",
+        "year": 2019,
+        "venue": "Heliyon",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_07",
+      "research_question": "该研究询问如何利用生物气候、地形和土地覆盖数据预测沙特 Jazan Province 的 Cx. tritaeniorhynchus 幼虫适宜繁殖栖息地。",
+      "hypothesis_or_mechanism": "温度、降水、地形和特定土地覆盖类型共同影响蚊虫幼虫栖息地适宜性，其中湿泥质基底和水体理化条件可能提高幼虫丰度。",
+      "variables_and_data_use": "研究使用 WorldClim database ver.1.4 的 19 个生物气候变量作为 MaxEnt 预测因子，并结合 DEM 派生的高程、坡度和坡向、SPOT5 分类土地覆盖、幼虫出现记录以及 pH/TDS 现场变量来建模和验证栖息地适宜性。",
+      "method_paradigm": "生态位适宜性建模",
+      "used_assets": [
+        "WorldClim database ver.1.4",
+        "30 arc-seconds digital elevation model (DEM)",
+        "SPOT5 imagery",
+        "MaxEnt software v.3.3",
+        "ArcGIS software v.10",
+        "ERDAS Imagine software Ver. 9.1"
+      ],
+      "author_team": [
+        "Mohamed F. Sallam",
+        "Azzam M. Al Ahmed",
+        "MAHMOUD SALEH ABDEL-DAYEM",
+        "Mohamed A. R. Abdullah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Ecological Niche Modeling and Land Cover Risk Areas for Rift Valley Fever Vector, Culex tritaeniorhynchus Giles in Jazan, Saudi Arabia",
+        "doi": "10.1371/journal.pone.0065786",
+        "year": 2013,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_08",
+      "research_question": "该研究询问在 Espírito Santo 地区哪些沙蝇物种与皮肤利什曼病病例的潜在空间分布最一致，并由此识别主要媒介和风险区域。",
+      "hypothesis_or_mechanism": "环境气候条件影响沙蝇媒介的生态位分布，而主要媒介的潜在分布应与皮肤利什曼病病例分布高度重叠。",
+      "variables_and_data_use": "研究使用 WorldClim 的二十一个生物气候变量作为 Maxent 环境预测变量，结合地理定位的 sand flies 物种采集记录和 CL cases，分别构建五种 Lutzomyia 物种及病例的潜在分布模型，并用 ENMTools 比较模型重叠。",
+      "method_paradigm": "生态位建模",
+      "used_assets": [
+        "WorldClim",
+        "Maxent",
+        "ENMTools",
+        "sand flies",
+        "CL cases"
+      ],
+      "author_team": [
+        "Viviane Coutinho Meneguzzi",
+        "Claudiney Biral dos Santos",
+        "Gustavo Rocha Leite",
+        "Blima Fux",
+        "Aloísio Falqueto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Environmental Niche Modelling of Phlebotomine Sand Flies and Cutaneous Leishmaniasis Identifies Lutzomyia intermedia as the Main Vector Species in Southeastern Brazil",
+        "doi": "10.1371/journal.pone.0164580",
+        "year": 2016,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_09",
+      "research_question": "植被物候、气候和地形环境变量能否解释并预测肯尼亚非洲柑橘木虱的分布与栖息地适宜性？",
+      "hypothesis_or_mechanism": "非洲柑橘木虱的出现由气候、地形以及植被物候和生产力共同影响，加入遥感植被指标能够改善其生态位预测。",
+      "variables_and_data_use": "使用 WorldClim Bio1-Bio19 生物气候变量表征温度和降水条件，使用 SRTM 提供高程、坡度、坡向和阴影，使用 MODIS EVI 时间序列派生植被物候指标，使用 MODIS 陆地表面温度，并将这些变量输入仅含环境变量的 BCL MaxEnt 模型或同时包含遥感变量的 BCL-RS MaxEnt 模型；此外使用 Sentinel-2A 和 CCI LandCover 计算发生点周边土地覆盖比例。",
+      "method_paradigm": "生态位建模与空间预测",
+      "used_assets": [
+        "WorldClim",
+        "SRTM",
+        "MODIS EVI",
+        "MODIS",
+        "Sentinel-2A",
+        "Climate Change Initiative (CCI) LandCover (LC)"
+      ],
+      "author_team": [
+        "Kyalo Richard",
+        "Elfatih Mohamed Abdel-Rahman",
+        "Samira A. Mohamed",
+        "Sunday Ekesi",
+        "Christian Borgemeister",
+        "Tobias Landmann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Importance of Remotely-Sensed Vegetation Variables for Predicting the Spatial Distribution of African Citrus Triozid (Trioza erytreae) in Kenya",
+        "doi": "10.3390/ijgi7110429",
+        "year": 2018,
+        "venue": "ISPRS International Journal of Geo-Information",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_10",
+      "research_question": "构建 T. recurva 的生态位模型以识别其适宜分布区域",
+      "hypothesis_or_mechanism": "生物气候变量能够表征物种的生态适宜性边界",
+      "variables_and_data_use": "使用 WorldClim 生物气候变量作为 MaxEnt 模型的环境预测因子，通过月度温度和降水衍生变量刻画生态位空间",
+      "method_paradigm": "物种分布模型",
+      "used_assets": [
+        "WorldClim bioclimatic variables"
+      ],
+      "author_team": [
+        "María Elena Torres Olave",
+        "Hugo Luis Rojas Villalobos",
+        "Luis Carlos Alatorre Cejudo",
+        "Luis Carlos Bravo",
+        "Mario Iván Uc Campos",
+        "Manuel O. González",
+        "Lara C. Wiebe",
+        "Alfredo Granados Olivas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Biogeographical factors determining Triatoma recurva distribution in Chihuahua, México, 2014",
+        "doi": "10.7705/biomedica.5076",
+        "year": 2020,
+        "venue": "Biomédica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "niche_ref_11",
+      "research_question": "在当前和未来气候变化情景下，可可树（Theobroma cacao）和可可霜荚病病原体（Moniliophthora roreri）在厄瓜多尔的潜在地理分布如何变化",
+      "hypothesis_or_mechanism": "气候变化将改变可可树及其病原体的适宜分布范围，影响未来可可种植的气候适宜性和病害风险",
+      "variables_and_data_use": "使用 WorldClim 1.4 的 15 个生物气候变量（包括年均温、极端温度、年降水量、季节降水等）作为生态位建模的环境预测因子，基于物种存在记录通过 MaxEnt 算法构建生态位模型，并投影到 GISS-E2-R 模型的 RCP 4.5 和 RCP 8.5 未来情景",
+      "method_paradigm": "物种分布模型 生态位建模",
+      "used_assets": [
+        "worldclim versión 1.4",
+        "GISS-E2-R"
+      ],
+      "author_team": [
+        "Alexis Herminio Plasencia Vázquez",
+        "Cruz Ruby Vilchez-Ponce",
+        "Yarelys Ferrer‐Sánchez",
+        "Carmen Elena Veloz-Portillo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "independent human review of open Methods/Data text",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Efecto del cambio climático sobre la distribución potencial del hongo Moniliophthora roreri y el cultivo de cacao (Theobroma cacao) en Ecuador continental",
+        "doi": "10.28940/terra.v40i0.1151",
+        "year": 2022,
+        "venue": "Terra Latinoamericana",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "Which climatic factors are associated with the vertical ranges of altitudinal vegetation belts across tropical African mountains?",
+      "hypothesis_or_mechanism": "Climatic conditions help control the vertical ranges of altitudinal belts, with relationships assessable through correlations and regression.",
+      "variables_and_data_use": "The study uses WorldClim V2.0 BIO1, BIO4, BIO5, BIO6, BIO7, BIO12, BIO15, BIO16, and BIO17 as climatic predictors, extracting belt-level means from masks. Vertical range of each vegetation belt is the response. The reported processing includes bilinear resampling to the DEM resolution and zonal statistics.",
+      "method_paradigm": "Cross-mountain spatial analysis using Pearson correlations and stepwise linear regression.",
+      "used_assets": [
+        "WorldClim:V2.0:BIO:1970-2000",
+        "WorldClim V2.0 bioclimatic variables (BIO1, BIO4, BIO5, BIO6, BIO7, BIO12, BIO15, BIO16, BIO17)",
+        "SRTM 90 m DEM Version 4",
+        "Bussmann (2006) altitudinal belt profiles",
+        "Global Mountain Biodiversity Assessment (GMBA) mountain inventory",
+        "GSOD weather-station data",
+        "GHCN-Daily weather-station data"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_29516e48c5608546c4e1",
+      "source_paper": {
+        "doi": "10.1002/ece3.72426",
+        "title": "Patterns and Geographical Mechanism of Altitudinal Belts in Tropical African Mountains",
+        "year": 2025,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Jiayu Li",
+          "Baiping Zhang",
+          "Yonghui Yao",
+          "Ya Jiang",
+          "Junjie Liu"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:V2.0:BIO:1970-2000",
+        "name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit only the explicitly selected WorldClim V2.0 BIO product. Preserve its nine-variable subset, release-specific climatology and 30-arc-second source grid; it was resampled to the DEM and is not cell-equivalent to the V1 anchor. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "The dataset (30 arc sec, approximately 1 km resolution) was resampled to match the resolution of the DEM data using the bilinear interpolation method.",
+      "differences_vs_anchor": {
+        "release_and_period": "WorldClim V2.0 expansion product versus the WorldClim V1 anchor (1950–2000); keep release and climatology distinct.",
+        "variables_and_grid": "Nine BIO variables are selected from the 30-arc-second (~1 km) product and resampled to match the DEM; resampling does not create finer climate information."
+      },
+      "comparability_handling": "Store as a separate approved WorldClim V2.0 relation. Preserve the nine reported variables, units, product period and source grid; label the DEM resampling and never treat it as equivalent to the V1 cells.",
+      "doi": "10.1002/ece3.72426",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:V2.0:BIO:1970-2000",
+      "actual_product_name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "892681f56f09a4c3a73ff1adfc9fe89dc68d2504442c55eb479c324ad7c37e88",
+      "product_use_quote": "we ultimately selected WorldClim V2.0 ( https://www.worldclim.org/ ) for subsequent analysis, as it shows precipitation patterns more consistent with existing regional descriptions. The dataset (30 ar",
+      "operational_use_quote": "Nine variables we selected to represent the basic climatic conditions of the study area are: BIO1 (Annual Mean Temperature, °C), BIO4 (Temperature Seasonality, °C), BIO5 (Max Temperature of Warmest Month, °C), BIO6 (Min Temperature of Coldest Month, ",
+      "application_scope_quote": "to extract climatic factors within each altitudinal belt. We initially used CHELSA V1.2 due to its theoretical advantages in simulating mountain climates (Karger et al. 2017 , 2018 ; Bobrowski et al. 2021 ) and its demonstrated consistency ",
+      "supporting_quote": "The dataset (30 arc sec, approximately 1 km resolution) was resampled to match the resolution of the DEM data using the bilinear interpolation method. Nine variables we selected to",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit only the explicitly selected WorldClim V2.0 BIO product. Preserve its nine-variable subset, release-specific climatology and 30-arc-second source grid; it was resampled to the DEM and is not cell-equivalent to the V1 anchor.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Jiayu Li",
+        "Baiping Zhang",
+        "Yonghui Yao",
+        "Ya Jiang",
+        "Junjie Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How are body-size patterns in Crotalus durissus associated with climate and geographic structure across sampled Brazilian localities?",
+      "hypothesis_or_mechanism": "Body size varies with a climatic gradient, while spatial structure may also explain variation among localities.",
+      "variables_and_data_use": "Morphometric measurements (SVL, TL, HL, HW) are summarized by PC1; 19 WorldClim v2.1 BIO variables are summarized by climate PCA, with Dim.1 used alongside spatial polynomial predictors in sex-specific linear models.",
+      "method_paradigm": "Morphometric and spatial-climatic statistical analysis using PCA, linear models, and spatial autocorrelation assessment.",
+      "used_assets": [
+        "WorldClim:BIO:v2.1:1970-2000",
+        "WorldClim v2.1 historical BIO variables (1970–2000), 30-arc-second grid",
+        "132 adult Crotalus durissus specimens from six Brazilian zoological collections",
+        "Elevation, mean annual temperature, and mean annual precipitation layers from Guimarães (2025)"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_213e65d13634835a0b0a",
+      "source_paper": {
+        "doi": "10.1002/ece3.73298",
+        "title": "Spatial Structure Explains Morphological Variation Better Than Climatic Gradients in the South American Rattlesnake ( Crotalus durissus )",
+        "year": 2026,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Mileny Otani",
+          "Henrique Caldeira Costa",
+          "Cláudio Henrique Zawadzki",
+          "Diego José Santana"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:BIO:v2.1:1970-2000",
+        "name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit the explicitly used WorldClim v2.1 historical BIO variables (1970–2000, 30 arc-seconds). Preserve the distinct release and climatology period; do not equate its values with the V1 anchor. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "period 1970–2000. Climatic values were extracted at each specimen locality after converting coordinates to spatial simple features (WGS84; EPSG:4326).",
+      "differences_vs_anchor": {
+        "release_and_period": "WorldClim v2.1 BIO, 1970–2000, versus the V1 anchor’s 1950–2000 period and earlier release lineage.",
+        "variables_and_grid": "Nineteen BIO variables on a 30-arc-second (~1 km) grid are reduced by PCA; preserve the study’s actual variable use."
+      },
+      "comparability_handling": "Keep the v2.1 climatology as a separate expansion product and preserve its 1970–2000 period, 30-arc-second grid and PCA-derived use. Do not claim equivalence to V1 values.",
+      "doi": "10.1002/ece3.73298",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:BIO:v2.1:1970-2000",
+      "actual_product_name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "d4664898752c0d6996e6878658da15e53a3642f686f00cb4e4a69cb23984c4f0",
+      "product_use_quote": "Climatic data were extracted from the 19 bioclimatic variables (Table S4 ) available in the WorldClim database version 2.1 (Fick and Hijmans 2017 ) at a spatial resolution of 30 arc‐seconds (~1 km 2 )",
+      "operational_use_quote": "Climatic values were extracted at each specimen locality after converting coordinates to spatial simple features (WGS84; EPSG:4326). To reduce dimensionality, we performed a second PCA on the bioclimatic variables. The first component (Dim.1) explain",
+      "application_scope_quote": "The strongest contributors to Dim.1 (bio11, bio09, and bio06) primarily reflected a thermal gradient (Figure S3 ). To evaluate geographic structure, we implemented an explicit trend‐surface approach by including latitude and longitude, alon",
+      "supporting_quote": "at a spatial resolution of 30 arc‐seconds (~1 km 2 ). These variables represent long‐term climatic normals for the period 1970–2000. Climatic values were extracted at each specimen",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit the explicitly used WorldClim v2.1 historical BIO variables (1970–2000, 30 arc-seconds). Preserve the distinct release and climatology period; do not equate its values with the V1 anchor.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Mileny Otani",
+        "Henrique Caldeira Costa",
+        "Cláudio Henrique Zawadzki",
+        "Diego José Santana"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How may climate change affect the current and future niche distributions of eight rupestrian plant species in Brazil’s Iron Quadrangle, and where are conservation priorities under future scenarios?",
+      "hypothesis_or_mechanism": "Climate-driven changes in macroclimatic suitability may shift species distributions and alter their overlap with protected areas; the direction and extent of shifts may differ among species with contrasting ecological and distributional characteristics.",
+      "variables_and_data_use": "Filtered species occurrence coordinates are paired with WorldClim 2.1 BIO1–BIO19 at 30 arc-seconds. Correlation-matrix PCA produces climate predictors for ecological niche models. CMIP6 projections for three named models, two SSP scenarios, and two future periods are used to project suitability and assess distribution and conservation-area overlap.",
+      "method_paradigm": "Ecological niche and species distribution modeling, using multiple algorithms and ensemble projections, followed by spatial comparison with protected areas.",
+      "used_assets": [
+        "WorldClim:BIO:v2.1:1970-2000",
+        "WorldClim 2.1 BIO1–BIO19 (1970–2000), 30 arc-seconds",
+        "Species occurrence coordinates from online herbaria and field records",
+        "CMIP6 models: EC-EARTH3-veg, INM-CM5-0, and MRI-ESM2-0",
+        "SSP126 and SSP585 scenarios",
+        "Iron Quadrangle shapefile",
+        "Protected areas: strict protection units and RPPNs"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_44dd518f32d613e7cb13",
+      "source_paper": {
+        "doi": "10.1002/ece3.73355",
+        "title": "Species Distribution Modeling Reveals Future Climate Refugia and Important Areas for Rocky Plants in Brazil's Iron Quadrangle",
+        "year": 2026,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Ana Flávia Francisconi",
+          "João Victor da Silva Rabelo Araujo",
+          "Ana Cristina Silva Amoroso Anastacio",
+          "Ana Paula da Silva Marques",
+          "Maria Imaculada Zucchi"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:BIO:v2.1:1970-2000",
+        "name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit only the explicitly documented WorldClim 2.1 BIO1–BIO19 historical baseline (1970–2000, 30 arc-seconds). Future CMIP6 projections are outside this product relation and are not admitted. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "To project the potential future distribution, we used global climate models from the Coupled Model Intercomparison Project Phase 6 (CMIP6), the most r",
+      "differences_vs_anchor": {
+        "release_and_period": "WorldClim v2.1 BIO historical period 1970–2000 versus anchor V1 1950–2000.",
+        "variables_and_grid": "BIO1–BIO19 at 30 arc-seconds are used to derive PCA predictors; future CMIP6 projections are distinct, unapproved products."
+      },
+      "comparability_handling": "Record only the historical v2.1 BIO1–BIO19 relation in this admission. Preserve 1970–2000 and 30-arc-second scale; keep future CMIP6 layers outside the admitted product IDs and do not equate this release to V1.",
+      "doi": "10.1002/ece3.73355",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:BIO:v2.1:1970-2000",
+      "actual_product_name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "42fc8dd06ad31d2fa6a996281f1d9c2afcde326487043803c2219c7ec2770161",
+      "product_use_quote": "we used 19 bioclimatic variables (bio1 to bio19) from WorldClim 2.1 (1970–2000) at a resolution of 30 arc‐seconds. According to WorldClim, bioclimatic variables represent annual trends (e.g., average ",
+      "operational_use_quote": "we used 19 bioclimatic variables (bio1 to bio19) from WorldClim 2.1 (1970–2000) at a resolution of 30 arc‐seconds. According to WorldClim, bioclimatic variables represent annual trends (e.g., average annual temperature, annual precipitation), seasona",
+      "application_scope_quote": "The first four principal components (PC1–PC4), cumulatively explaining 96.8% of the variance (Tables S4 and S5 ), were used in all models. Because the same environmental predictor set and calibration extent were applied, the PCA solution wa",
+      "supporting_quote": "at a resolution of 30 arc‐seconds. According to WorldClim, bioclimatic variables represent annual trends (e.g., average annual temperature, annual precipitation), seasonality (e.g.",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit only the explicitly documented WorldClim 2.1 BIO1–BIO19 historical baseline (1970–2000, 30 arc-seconds). Future CMIP6 projections are outside this product relation and are not admitted.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Ana Flávia Francisconi",
+        "João Victor da Silva Rabelo Araujo",
+        "Ana Cristina Silva Amoroso Anastacio",
+        "Ana Paula da Silva Marques",
+        "Maria Imaculada Zucchi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How are current and projected future climatic conditions associated with the ecological niche, habitat suitability, and potential distribution of Grey Crowned Cranes in Kenya, and how much suitable habitat overlaps protected areas?",
+      "hypothesis_or_mechanism": "Climate is treated as a dominant determinant of the species' distribution; climate change may shift suitable habitat and alter its representation in protected areas.",
+      "variables_and_data_use": "Uses 19 current bioclimatic predictors, reduces them to nine after VIF screening, and models occurrence-based habitat suitability. Uses future climate data for 2021-2040 under HadGEM3 SSP2-4.5 and SSP5-8.5 scenarios, then compares predicted distributions and protected-area overlap.",
+      "method_paradigm": "Ensemble species-distribution modeling with GAM, GLM, and Random Forest models, pseudo-absences, suitability reclassification, and spatial overlay with protected areas.",
+      "used_assets": [
+        "WorldClim:BIO:v2.1:1970-2000",
+        "WorldClim version 2.1 bioclimatic variables (30 arc-seconds; current predictors)",
+        "WorldClim version 2.1 climate data for future projections (exact future product unresolved)",
+        "GBIF Grey Crowned Crane occurrence records",
+        "HadGEM3 GCM",
+        "World Resources Institute protected areas in Kenya shapefile"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_03f9f64ae7c44ab28752",
+      "source_paper": {
+        "doi": "10.1002/ece3.73446",
+        "title": "Modeling the Niche Suitability of Grey Crowned Crane ( Balearica regulorum ) to Inform Conservation Strategies in Kenya",
+        "year": 2026,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Carolyne M. Wachu",
+          "Benson Muchoki Mwangi",
+          "James Jumbe",
+          "Wanyoike Wamiti",
+          "Denis Kiptoo"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:BIO:v2.1:1970-2000",
+        "name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit only the separately identified current WorldClim v2.1 BIO product at 30 arc-seconds; future scenario layers are not represented in actual_product_ids. The current product is kept distinct from the V1 anchor. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "The selected projection period spanned from 2021 to 2040. Climatic data required for these projections were obtained from the WorldClim database (vers",
+      "differences_vs_anchor": {
+        "release_and_period": "Current WorldClim v2.1 BIO product is distinct from the V1 1950–2000 anchor; the paper separately describes future projections.",
+        "variables_and_grid": "Nineteen current BIO variables at 30 arc-seconds are downloaded; nine named predictors are retained. Future scenario layers are excluded from this product relation."
+      },
+      "comparability_handling": "Admit only the current historical BIO relation represented by the approved v2.1 historical ID. Keep future HadGEM3/SSP layers out of actual_product_ids; preserve the 30-arc-second grid and nine selected current predictors.",
+      "doi": "10.1002/ece3.73446",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:BIO:v2.1:1970-2000",
+      "actual_product_name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "3562b34af0463b42323692f71e7b3312854b883438c45e9bd20c966dcd3cb8e6",
+      "product_use_quote": "WorldClim database (version 2.1; Fick and Hijmans 2017 ; https://www.worldclim.org/data/worldclim21.html ). To ensure that the analysis focused only on environmental conditions within the study area, ",
+      "operational_use_quote": "Nineteen bioclimatic variables (Table 1 ) representing current climatic conditions, with a spatial resolution of 30 arc‐seconds (approximately 1 km 2 ), were downloaded from the WorldClim database (version 2.1; Fick and Hijmans 2017 ; https",
+      "application_scope_quote": "Following this procedure, nine variables that best aligned with the ecological preferences of the Grey Crowned Crane were retained for model development: isothermality, temperature seasonality, annual temperature range, mean temperature of ",
+      "supporting_quote": "with a spatial resolution of 30 arc‐seconds (approximately 1 km 2 ), were downloaded from the WorldClim database (version 2.1; Fick and Hijmans 2017 ; https://www.worldclim.org/dat",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit only the separately identified current WorldClim v2.1 BIO product at 30 arc-seconds; future scenario layers are not represented in actual_product_ids. The current product is kept distinct from the V1 anchor.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Carolyne M. Wachu",
+        "Benson Muchoki Mwangi",
+        "James Jumbe",
+        "Wanyoike Wamiti",
+        "Denis Kiptoo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How might suitable habitat for seven Meconopsis species shift under future climate scenarios?",
+      "hypothesis_or_mechanism": "Climate-change scenarios may alter the distribution of suitable habitat and shift its geographic center, indicating potential migration routes.",
+      "variables_and_data_use": "The study uses species occurrences and bioclimatic variables, selects five environmental predictors, and models suitability under SSP126, SSP245, and SSP585 for the 2050s and 2070s, with current distribution as a baseline.",
+      "method_paradigm": "Species distribution modeling with MaxEnt, optimized using ENMeval, followed by suitability-area and centroid-shift analysis in ArcGIS.",
+      "used_assets": [
+        "WorldClim:BIO:v2.1:1970-2000",
+        "WorldClim v2.1 BIO1–BIO19, baseline 1970–2000",
+        "Future-period climate layers under BCC-CSM2-MR and SSP126, SSP245, SSP585 (exact product identity not established)",
+        "Meconopsis occurrence records from field investigations, GBIF, Chinese Virtual Herbarium (CVH), and National Specimen Information Infrastructure (NSII)",
+        "Aspect, slope, and elevation from Geospatial Data Cloud"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_1834e1dbad3e4464e6c2",
+      "source_paper": {
+        "doi": "10.1002/ece3.73824",
+        "title": "The Impact of Climate Change on the Spatial Distribution of Seven Meconopsis Species in China: A MaxEnt Model‐Based Predictive Analysis",
+        "year": 2026,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Yuanzhao Yang",
+          "Jiao Ma",
+          "X Chen",
+          "L H Zhang",
+          "Pei Tu",
+          "Yuanzhi Pan"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:BIO:v2.1:1970-2000",
+        "name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit only the explicitly documented WorldClim v2.1 historical BIO baseline (1970–2000, 2.5 arc-min grid). Future-period layers are excluded from actual_product_ids; retain the historical product as a distinct relation. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "for the baseline period (1970–2000) and future periods (2050s and 2070s) under the BCC‐CSM2‐MR, that is a climate model suited for China that was deve",
+      "differences_vs_anchor": {
+        "release_and_period": "Historical WorldClim v2.1 BIO baseline 1970–2000 versus anchor V1 1950–2000; future periods are separate products.",
+        "variables_and_grid": "BIO1–BIO19 baseline layers at 2.5 arc-min are screened to five predictors; preserve the coarser grid and selected variables."
+      },
+      "comparability_handling": "Admit the 1970–2000 baseline only. Preserve the reported 2.5-arc-minute grid and the screened predictor use; exclude future BCC-CSM2-MR scenario layers from the admitted product relation.",
+      "doi": "10.1002/ece3.73824",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:BIO:v2.1:1970-2000",
+      "actual_product_name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "2b32736ec4c6182db31245b5aea4a1c3839b710e705e84e7fbf9294e32d048c6",
+      "product_use_quote": "Nineteen bioclimatic variables (Bio1‐Bio19) data were obtained from the WorldClim database (Version 2.1; https://www.worldclim.org/ ) (Fick and Hijmans 2017 ) for the baseline period (1970–2000) and f",
+      "operational_use_quote": "for the baseline period (1970–2000) and future periods (2050s and 2070s) under the BCC‐CSM2‐MR, that is a climate model suited for China that was developed by the China Meteorological Administration (Gao et al. 2025 ), model with three SSP, which rep",
+      "application_scope_quote": "five reliable environmental predictors were identified for final model construction. 2.3. ## Model Optimization We optimized species distribution and environmental data using the R package ENMeval ( https://cran.r‐project.org/package = ENMe",
+      "supporting_quote": "2.5 arc‐min spatial resolution. Raster layers were clipped to China's geographical boundaries in ArcGIS 10.8 and converted to ASCII format files, which only include letters, number",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit only the explicitly documented WorldClim v2.1 historical BIO baseline (1970–2000, 2.5 arc-min grid). Future-period layers are excluded from actual_product_ids; retain the historical product as a distinct relation.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Yuanzhao Yang",
+        "Jiao Ma",
+        "X Chen",
+        "L H Zhang",
+        "Pei Tu",
+        "Yuanzhi Pan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do the native and invaded climatic niches of Toxomerus floralis differ, and where might its potential distribution expand under future climate scenarios?",
+      "hypothesis_or_mechanism": "The study examines whether the species has conserved or shifted its climatic niche between native and invaded ranges, and whether future climate conditions may alter its potential range.",
+      "variables_and_data_use": "Thinned T. floralis occurrence records and pseudo-absences are modeled with selected WorldClim 2.1 BIO variables (BIO2, BIO3, BIO8, BIO15, BIO18). PCA and collinearity screening characterize climatic space; ensemble species-distribution models are projected using selected GCMs and SSPs for 2021–2100.",
+      "method_paradigm": "Ecological niche and species-distribution modeling, combining PCA-based niche analysis, pseudo-absence modeling, ensemble prediction, and future climate projections.",
+      "used_assets": [
+        "WorldClim:BIO:v2.1:1970-2000",
+        "WorldClim 2.1 bioclimatic variables (5 arc minutes; 1970–2000)",
+        "WorldClim 2.1 GCM projections",
+        "Toxomerus floralis occurrence records from field sampling, collections, GBIF, and iNaturalist",
+        "GBIF occurrence records for Cyperus rotundus and Mitracarpus hirtus (visual comparison)"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_b8e4ab1ac735e0baf006",
+      "source_paper": {
+        "doi": "10.1002/ece3.73838",
+        "title": "Invasion Patterns and Niche Dynamics of the Pollinivorous Florida Calligrapher, Toxomerus floralis (Diptera: Syrphidae) in the Afrotropical Region",
+        "year": 2026,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Burgert S. Muller",
+          "John M. Midgley",
+          "Georg Goergen",
+          "Ali Abduallah Al-Jahdhami",
+          "Michelson Azo’o Ela",
+          "Terence A. Bellingan",
+          "Simon Cavaillès",
+          "Robert S. Copeland",
+          "Marc De Meyer",
+          "Martin Hauser",
+          "Allen Holmes",
+          "Ximo Mengual",
+          "Gabriel Nève",
+          "Menno Reemer",
+          "Jeff Skevington",
+          "Gunilla Ståhls",
+          "Eugène Sinzinkayo",
+          "John Smit",
+          "Axel Ssymank",
+          "Genevieve L. Theron",
+          "Kurt Jordaens"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:BIO:v2.1:1970-2000",
+        "name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Admit only the explicitly documented WorldClim 2.1 current BIO normals (1970–2000, reported 5-minute grid). Record the selected BIO variables and grid separately from the V1 anchor; future GCM products are not admitted. The versions, periods, grids, and predictor subsets remain distinguished from the anchor.",
+      "comparability_quote": "climatic conditions from 1970 to 2000. However, using highly correlated variables can have unforeseen effects on the outcomes and performance of the r",
+      "differences_vs_anchor": {
+        "release_and_period": "WorldClim v2.1 current BIO normals 1970–2000 versus anchor V1 1950–2000.",
+        "variables_and_grid": "Nineteen BIO layers are initially used at the reported 5-minute grid; five variables are retained for PCA/modeling. Future GCM layers are separate."
+      },
+      "comparability_handling": "Record the historical 1970–2000 v2.1 BIO relation at the reported 5-minute grid and preserve the five selected variables. Exclude future GCM products from actual_product_ids and do not claim cell-equivalence with V1.",
+      "doi": "10.1002/ece3.73838",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:BIO:v2.1:1970-2000",
+      "actual_product_name": "WorldClim version 2.1 historical bioclimatic variables BIO1-BIO19, 1970-2000",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "1cd78e8ab4234162e7c93ea116eaa8f00d74a5501c84a1d8c60c4bbf9a673d6a",
+      "product_use_quote": "19 Worldclim 2.1 bioclimatic variables (Data S2 ) at a spatial resolution of 5 min (Fick and Hijmans 2017 ), representing ‘current’ climatic conditions from 1970 to 2000. However, using highly correla",
+      "operational_use_quote": "The climate data used initially consisted of 19 Worldclim 2.1 bioclimatic variables (Data S2 ) at a spatial resolution of 5 min (Fick and Hijmans 2017 ), representing ‘current’ climatic conditions from 1970 to 2000. However, using highly correlated v",
+      "application_scope_quote": "Ultimately five variables were retained: Bio18 (Precipitation of Warmest Quarter), Bio15 (Precipitation Seasonality [Coefficient of Variation]), Bio8 (Mean Temperature of Wettest Quarter), Bio3 (Isothermality) and Bio2 (Mean Diurnal Range).",
+      "supporting_quote": "at a spatial resolution of 5 min (Fick and Hijmans 2017 ), representing ‘current’ climatic conditions from 1970 to 2000. However, using highly correlated variables can have unfores",
+      "human_reviewer": "Codex (manual source-text review)",
+      "human_reviewed_at_utc": "2026-10-07T13:24:02Z",
+      "human_reason": "Admit only the explicitly documented WorldClim 2.1 current BIO normals (1970–2000, reported 5-minute grid). Record the selected BIO variables and grid separately from the V1 anchor; future GCM products are not admitted.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_20261007_task_043_pilot20_v1",
+      "source_pool_sha256": "809a172490fb054697104654cab8dde82be3ef90a347782ce6217eabaf237736",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Burgert S. Muller",
+        "John M. Midgley",
+        "Georg Goergen",
+        "Ali Abduallah Al-Jahdhami",
+        "Michelson Azo’o Ela",
+        "Terence A. Bellingan",
+        "Simon Cavaillès",
+        "Robert S. Copeland",
+        "Marc De Meyer",
+        "Martin Hauser",
+        "Allen Holmes",
+        "Ximo Mengual",
+        "Gabriel Nève",
+        "Menno Reemer",
+        "Jeff Skevington",
+        "Gunilla Ståhls",
+        "Eugène Sinzinkayo",
+        "John Smit",
+        "Axel Ssymank",
+        "Genevieve L. Theron",
+        "Kurt Jordaens"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How does climatic suitability for the European golden jackal vary under current and projected future climate conditions, and where might future range expansion or extrapolation occur?",
+      "hypothesis_or_mechanism": "Changes in temperature and precipitation conditions will alter habitat suitability and may facilitate range expansion, while future areas outside the training climate space will involve extrapolation and greater uncertainty.",
+      "variables_and_data_use": "Six WorldClim v2.0 BIO predictors were used: isothermality (BIO03), temperature seasonality (BIO04), maximum temperature of the warmest month (BIO05), minimum temperature of the coldest month (BIO06), annual precipitation (BIO12), and precipitation seasonality (BIO15). Golden jackal occurrence, polygon-range, pseudo-presence, and pseudo-absence data were used for model training and evaluation. Future climate projections used CNRM-ESM2-1 under SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5.",
+      "method_paradigm": "Presence-absence ecological niche modeling with ensemble forecasting across six biomod2 algorithms, followed by projections under future climate scenarios and MESS-based extrapolation assessment.",
+      "used_assets": [
+        "WorldClim v2.0 BIO variables for 1970-2000 at 2.5 arc-minute resolution",
+        "GBIF golden jackal occurrence records",
+        "VertNet golden jackal occurrence records",
+        "IUCN golden jackal distribution polygons",
+        "Published golden jackal distribution records and polygons",
+        "CNRM-ESM2-1 future climate projections under SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5",
+        "R biomod2 ensemble ecological niche modeling framework",
+        "WorldClim:V2.0:BIO:1970-2000"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_8d2a7709c50b6018cb7f",
+      "source_paper": {
+        "doi": "10.1002/ece3.9141",
+        "title": "From the Balkan towards Western Europe: Range expansion of the golden jackal ( Canis aureus )—A climatic niche modeling approach",
+        "year": 2022,
+        "venue": "Ecology and Evolution",
+        "authors": [
+          "Sarah Cunze",
+          "Sven Klimpel"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:V2.0:BIO:1970-2000",
+        "name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "世界气候2.0 BIO产品与锚点WorldClim V1 BIO同属标准生物气候变量，但不是同一版本或同一气候常态。论文明确报告1970–2000、六个BIO变量和2.5 arc-min网格；任务合同记录V1的1950–2000基准期及名义约927.67 m网格。版本、时期、网格和插值谱系差异保持为similar_dataset，不声称像元等价。",
+      "comparability_quote": "Data on climatic conditions were downloaded at a spatial resolution of 2.5 arc minutes and cropped to the extent",
+      "differences_vs_anchor": {
+        "product_identity": "WorldClim v2.0 BIO，distinct from anchor WorldClim V1 BIO.",
+        "climatology_period": "1970-2000 versus anchor V1 1950-2000.",
+        "variables": "BIO03, BIO04, BIO05, BIO06, BIO12, BIO15 were operationally selected from the v2.0 BIO layers.",
+        "spatial_grid": "2.5 arc-min grid reported by the paper versus anchor nominal 927.67 m.",
+        "lineage_and_encoding": "Separate WorldClim release/interpolation and release-specific raster encoding; no V1 equivalence is claimed.",
+        "handling": "The paper crops v2.0 layers to its study extent and uses them in its own model; it does not cross-calibrate or resample to claim equivalence with V1."
+      },
+      "comparability_handling": "论文将WorldClim v2.0的BIO层作为独立预测变量用于本研究的生态位模型，没有将其重命名为V1或声称跨版本像元等价；本入池记录明确保留v2.0、1970–2000和2.5 arc-min差异。比例/编码按冻结产品契约中的该版本元数据解释，不与V1原值直接混并。",
+      "doi": "10.1002/ece3.9141",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:V2.0:BIO:1970-2000",
+      "actual_product_name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "da92a64ab8846ecbed8ce5a8bccbfa82dfb341a3743d3f1f1348cc83d3b08598",
+      "product_use_quote": "We used data on climatic conditions provided by worldclim (version 2.0, www.worldclim.org ; Fick & Hijmans, 2017 ).",
+      "operational_use_quote": "Specifically, we chose isothermality (bio03), temperature seasonality (bio04), maximum temperature of the warmest month (bio05), minimum temperature of the coldest month (bio06), annual precipitation (bio12), and precipitation seasonality (bio15).",
+      "application_scope_quote": "We projected the habitat suitability for C. aureus under current and future climatic conditions based on an ecological niche modeling approach.",
+      "supporting_quote": "Data on climatic conditions were downloaded at a spatial resolution of 2.5 arc minutes and cropped to the extent of 35° North to 60° North and 5° West to 50° East.",
+      "human_reviewer": "Codex (AI-assisted original-text review, user-directed)",
+      "human_reviewed_at_utc": "2026-10-07T16:41:35Z",
+      "human_reason": "逐篇核对Methods/Data：明确使用WorldClim version 2.0，1970–2000气候常态；实际提取BIO03、BIO04、BIO05、BIO06、BIO12、BIO15，分辨率2.5 arc-min，并用于金豺生态位模型。与V1锚点的版本、基准期和网格差异被保留为similar_dataset关系；论文未声称数值等价或冒充V1。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_validationrepair_20261007_task_043_pilot20_r001",
+      "source_pool_sha256": "bae8cec6c8173a5fe4a10ad0d12b20dffb50e71de73cc4d6cebb137546db6d26",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Sarah Cunze",
+        "Sven Klimpel"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "What is the potential present-day distribution of Amblyomma americanum in New Zealand, and how might its climatic suitability change by 2050 under alternative greenhouse-gas emission scenarios?",
+      "hypothesis_or_mechanism": "The potential distribution of Amblyomma americanum is constrained by climatic conditions represented by bioclimatic temperature and precipitation variables, and climate change will alter the spatial suitability for establishment in New Zealand.",
+      "variables_and_data_use": "GPS-filtered and spatially rarefied Amblyomma americanum occurrence records from the WRBU database were modelled against WorldClim v2.0 BIO1-BIO19 layers at 10-minute resolution. BIO8, BIO9, BIO18 and BIO19 were excluded because of spatial artefacts; the remaining variables were evaluated using jackknife selection. Selected predictors were used in MaxEnt models for present-day suitability and were transferred to 2050 RCP4.5 and RCP8.5 projections from four GCMs.",
+      "method_paradigm": "Correlative ecological niche and species-distribution modelling using MaxEnt, with feature-class and regularization tuning, partial ROC and omission-rate evaluation, AICc-based model selection, bootstrap replication, and MOP extrapolation assessment.",
+      "used_assets": [
+        "WorldClim version 2.0 BIO1-BIO19 historical bioclimatic variables for 1970-2000 at 10-minute resolution",
+        "Amblyomma americanum occurrence records from the Walter Reed Biosystematics Unit and associated museum collections",
+        "2050 climate projections from four general circulation models under RCP4.5 and RCP8.5 downloaded from the CCAFS Climate Data Portal",
+        "MaxEnt v3.3.3",
+        "WorldClim:V2.0:BIO:1970-2000"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_45f132882cc6716608bc",
+      "source_paper": {
+        "doi": "10.1007/s10493-019-00460-7",
+        "title": "Predicting the potential distribution of Amblyomma americanum (Acari: Ixodidae) infestation in New Zealand, using maximum entropy-based ecological niche modelling",
+        "year": 2020,
+        "venue": "Experimental and Applied Acarology",
+        "authors": [
+          "Ram K. Raghavan",
+          "Allen C. G. Heath",
+          "KE Lawrence",
+          "Roman R. Ganta",
+          "A. Townsend Peterson",
+          "William E. Pomroy"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:V2.0:BIO:1970-2000",
+        "name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "论文明确使用初始WorldClim v2.0 BIO1–BIO19，1970–2000；最终模型使用BIO1、BIO12、BIO15、BIO17。论文选10-min网格是为了匹配occurrence位置不确定性，并删除被报告存在空间伪影的BIO8、BIO9、BIO18、BIO19。与V1锚点的版本、时期、网格与插值谱系保持为独立similar_dataset差异，不声称数值或像元等价。",
+      "comparability_quote": "climate data at 10-min",
+      "differences_vs_anchor": {
+        "product_identity": "WorldClim v2.0 BIO, not anchor WorldClim V1 BIO.",
+        "climatology_period": "1970-2000 versus anchor V1 1950-2000.",
+        "variables": "The final model uses BIO1, BIO12, BIO15, BIO17; BIO8, BIO9, BIO18, BIO19 were excluded.",
+        "spatial_grid": "10-min (~17 x 17 km) chosen to match occurrence uncertainty; coarser than the anchor's nominal 927.67 m grid.",
+        "lineage_and_encoding": "Separate WorldClim release and interpolation lineage; version-specific encoding is not treated as V1-equivalent.",
+        "handling": "The study keeps v2.0 data native to its model and does not claim cross-version cell equivalence."
+      },
+      "comparability_handling": "论文在WorldClim v2.0的10-min网格上建模，说明该网格用于匹配物种记录的不确定性，并排除四个被认为有空间伪影的BIO层。手工入池记录将其作为v2.0 similar_dataset保留，不与V1 1950–2000层混同或声称等价；release-specific单位/编码按该产品合同解释。",
+      "doi": "10.1007/s10493-019-00460-7",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:V2.0:BIO:1970-2000",
+      "actual_product_name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "a4c6df46366d05bc5d480e7a6e8119f4b66ea7f829d083f9074c007597f12685",
+      "product_use_quote": "The 19 bioclimatic variables (BIO1–19) available from the WorldClim (version 2.0) data archive",
+      "operational_use_quote": "Annual Mean Temperature  (BIO1), Annual Precipitation  (BIO12), Precipitation Seasonality  (BIO15)",
+      "application_scope_quote": "To assess the potential distribution of A. americanum in New Zealand several candidate ecological niche models were first calibrated across the tick’s current distribution in North America",
+      "supporting_quote": "Bioclimatic variables are summarized raster data (data layers) derived from average monthly temperature and precipitation values for 1970–2000 and are intended to approximate climate dimensions that are meaningful to biological species (Fick and Hijmans 2017).",
+      "human_reviewer": "Codex (AI-assisted original-text review, user-directed)",
+      "human_reviewed_at_utc": "2026-10-07T16:41:35Z",
+      "human_reason": "逐篇核对Methods/Data：明确使用WorldClim version 2.0 BIO1–BIO19，1970–2000；使用10-min网格以匹配物种记录不确定性，并最终使用BIO1、BIO12、BIO15、BIO17建模蜱虫分布。与V1的版本、基准期、空间网格差异作为独立similar_dataset关系记录；未声称与V1像元等价。",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_validationrepair_20261007_task_043_pilot20_r001",
+      "source_pool_sha256": "bae8cec6c8173a5fe4a10ad0d12b20dffb50e71de73cc4d6cebb137546db6d26",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Ram K. Raghavan",
+        "Allen C. G. Heath",
+        "KE Lawrence",
+        "Roman R. Ganta",
+        "A. Townsend Peterson",
+        "William E. Pomroy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How does the realized climatic niche of Ligustrum lucidum differ between its native range in southern China and its invaded ranges across multiple regions?",
+      "hypothesis_or_mechanism": "The invaded populations may retain a climate niche similar to the native range or expand into distinct climatic conditions; niche overlap and expansion metrics assess these alternatives.",
+      "variables_and_data_use": "The study combines L. lucidum occurrence records from GBIF and the Southern African Plant Invaders Atlas with WorldClim 2.0 BIO1–BIO19 (1970–2000, 10 arc-minutes) and altitude. It uses regional PCA, kernel-density ordination, Schoener’s D niche overlap, niche-similarity tests, and estimates climatic expansion and unfilled conditions.",
+      "method_paradigm": "Comparative ecological-niche analysis using filtered occurrence points, pairwise PCA, kernel-density estimation, niche-overlap indices, and randomized similarity tests.",
+      "used_assets": [
+        "WorldClim:V2.0:BIO:1970-2000",
+        "Global Biodiversity Information Facility occurrence data",
+        "Southern African Plant Invaders Atlas occurrence data",
+        "Altitude data",
+        "Köppen–Geiger climate classification map (1976–2000)"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_49c6e9ce9ef4be21695d",
+      "source_paper": {
+        "doi": "10.1038/s41598-019-40531-8",
+        "title": "Ligustrum lucidum W. T. Aiton (broad-leaf privet) demonstrates climatic niche shifts during global-scale invasion",
+        "year": 2019,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Jaqueline Beatriz Brixner Dreyer",
+          "Pedro Higuchi",
+          "Ana Carolina da Silva"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "WorldClim:V2.0:BIO:1970-2000",
+        "name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper reports WorldClim 2.0 BIO1–BIO19 for 1970–2000 on a 10 arc-minute (~20 km) grid and uses the variables in climatic-niche analysis. The anchor is WorldClim V1 BIO, 1950–2000, nominal 927.67 m. The article does not state raster encoding/scale factors or its interpolation workflow. The approved v2.0 record documents distinct release lineage; I do not infer cell-equivalence or unreported study-specific coverage/quality. Admission is as a separately identified similar dataset.",
+      "comparability_quote": "Climatic data (1970–2000) were obtained from the WorldClim 2.0 database 51 at a resolution of 10 min (~20 km). A Köppen-Geiger climate classification map (1976–2000) 35 was plotted with an R code 52 . Nineteen climatic variables referring to minimum, average, and maximum temperatures and precipitation (bio 1: Annual Mean Temperature; bio 2: Mean Diurnal Range (mean of monthly (max temp − min temp); bio 3: Isothermality (bio 2/bio 7) (×100); bio 4: Temperature Seasonality (standard deviation ×100); bio 5: Maximum Temperature of the Warmest Month; bio 6: Minimum Temperature of the Coldest Month; bio 7: Annual Temperature Range (bio 5–bio 6); bio 8: Mean Temperature of the Wettest Quarter; bio 9: Mean Temperature of the Driest Quarter; bio 10: Mean Temperature of the Warmest Quarter; bio 11: Mean Temperature of the Coldest Quarter; bio 12: Annual Precipitation; bio 13: Precipitation of the Wettest Month; bio 14: Precipitation of the Driest Month; bio 15: Precipitation Seasonality (Coefficient of Variation); bio 16: Precipitation of the Wettest Quarter; bio 17: Precipitation of the Driest Quarter; bio 18: Precipitation of the Warmest Quarter; bio 19: Precipitation of the Coldest Quarter; and alt: Altitude). These variables were used in the data analysis because they are ecologically relevant to species distribution.",
+      "differences_vs_anchor": {
+        "identity": "Initial WorldClim 2.0 BIO release versus the task anchor WorldClim V1 BIO.",
+        "variables_and_units": "Methods lists BIO1–BIO19 and their temperature/precipitation meanings, but does not state raster encoding or scale factors. Do not assume release-specific values/units are identical.",
+        "climatology": "The paper reports 1970–2000; the anchor is 1950–2000.",
+        "spatial_resolution": "The paper reports 10 arc-minutes (~20 km); the anchor has nominal 927.67 m pixel size.",
+        "lineage": "Article does not specify interpolation. The approved product record documents a different WorldClim release and compilation lineage; no paper-specific workflow is inferred.",
+        "coverage_quality": "No study-specific coverage/quality comparison is reported. Maintain separate product identity and stated scale; do not claim equivalence."
+      },
+      "comparability_handling": "Keep as WorldClim:V2.0:BIO:1970-2000 under the similar_dataset relation. Preserve period, BIO1–BIO19, and 10 arc-minute grid; do not relabel as V1 or merge values as cell-equivalent. Record raster encoding/interpolation and study-specific coverage/quality as unreported.",
+      "doi": "10.1038/s41598-019-40531-8",
+      "task_id": "single_dataset/task_043",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "WORLDCLIM/V1/BIO",
+      "actual_dataset_id": "WorldClim:V2.0:BIO:1970-2000",
+      "actual_product_name": "WorldClim 2.0 standard 19 bioclimatic variables (BIO1-BIO19), initial WorldClim 2 release",
+      "expansion_contract_id": "single_dataset/task_043_expansion_v1",
+      "expansion_contract_sha256": "7de0233d96b4072f7369cb4a9e0da560863cba8d06b05ff7626605bf52ee9195",
+      "task_card_sha256": "ba3a1c15b2b9448b22b53c6b1539a0b52683db4e4ac475e7c55ba76f91d74b43",
+      "source_text_sha256": "5cb766428b7638845c7da9dae1d881121d79a85a31ccebaf39b50337868bc8b7",
+      "product_use_quote": "Climatic data (1970–2000) were obtained from the WorldClim 2.0 database 51 at a resolution of 10 min (~20 km). A Köppen-Geiger climate classification map (1976–2000) 35 was plotted with an R code 52 . Nineteen climatic variables referring to minimum, average, and maximum temperatures and precipitation (bio 1: Annual Mean Temperature; bio 2: Mean Diurnal Range (mean of monthly (max temp − min temp); bio 3: Isothermality (bio 2/bio 7) (×100); bio 4: Temperature Seasonality (standard deviation ×100); bio 5: Maximum Temperature of the Warmest Month; bio 6: Minimum Temperature of the Coldest Month; bio 7: Annual Temperature Range (bio 5–bio 6); bio 8: Mean Temperature of the Wettest Quarter; bio 9: Mean Temperature of the Driest Quarter; bio 10: Mean Temperature of the Warmest Quarter; bio 11: Mean Temperature of the Coldest Quarter; bio 12: Annual Precipitation; bio 13: Precipitation of the Wettest Month; bio 14: Precipitation of the Driest Month; bio 15: Precipitation Seasonality (Coefficient of Variation); bio 16: Precipitation of the Wettest Quarter; bio 17: Precipitation of the Driest Quarter; bio 18: Precipitation of the Warmest Quarter; bio 19: Precipitation of the Coldest Quarter; and alt: Altitude). These variables were used in the data analysis because they are ecologically relevant to species distribution.",
+      "operational_use_quote": "These variables were used in the data analysis because they are ecologically relevant to species distribution.",
+      "application_scope_quote": "Considering the native and invaded range climates, principal component analyses (PCAs) were performed pairwise for each study region to investigate variations in realized climatic niche",
+      "supporting_quote": "These variables were used in the data analysis because they are ecologically relevant to species distribution.",
+      "human_reviewer": "Codex source-text review",
+      "human_reviewed_at_utc": "2026-10-07T17:22:28Z",
+      "human_reason": "The original Methods/Data show the exact approved WorldClim 2.0 release, 1970–2000 period, 10 arc-minute grid, BIO1–BIO19 variables, and their operational use in climatic-niche analysis. The approved task contract leaves application, method, and geography unrestricted. Release and scale differences from the V1 anchor are retained explicitly.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "recovery_continue_20261008_task_043_finalslot_r002",
+      "source_pool_sha256": "d483dbd28c2a2c1cd3e453e992b96a99921bcfb3769a6517a88ea5982d4a16ea",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Jaqueline Beatriz Brixner Dreyer",
+        "Pedro Higuchi",
+        "Ana Carolina da Silva"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 20,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

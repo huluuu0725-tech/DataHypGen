@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrestrial surfaces",
+  "data_description": {
+    "dataset_name": "Harmonized Sentinel-2 MSI Level-1C Top-of-Atmosphere Reflectance",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial surfaces",
+      "coverage": "Global coverage over land areas observed by Sentinel-2, supporting environmental monitoring across diverse terrestrial regions."
+    },
+    "temporal_coverage": "June 2015–present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "10 m (B2/B3/B4/B8) / 20 m (B5/B6/B7/B8A/B11/B12)",
+    "temporal_unit": "Per-scene acquisition with irregular revisit intervals",
+    "analytical_capabilities": [
+      "Comparing top-of-atmosphere reflectance across visible, near-infrared, and shortwave-infrared bands",
+      "Constructing within-scene and cross-date spectral ratios and normalized differences",
+      "Detecting spatially coherent shortwave-infrared anomalies against nearby or earlier reference surfaces",
+      "Characterizing the persistence, geometry, and acquisition-to-acquisition variability of spectral anomalies",
+      "Auditing cloud, cirrus, viewing-geometry, and surface-reflectance confounding in temporal comparisons"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Top-of-atmosphere reflectance, dimensionless after applying the 0.0001 scale factor",
+      "runtime_hint": "Use the harmonized Level-1C collection. B11 and B12 are 20 m shortwave-infrared bands; resample other bands only when needed, mask clouds and cirrus, and match reference scenes by season, viewing geometry, and surface state before comparing weak spectral differences."
+    },
+    "data_source": "European Space Agency Copernicus Sentinel-2 mission",
+    "gee_asset": {
+      "id": "COPERNICUS/S2_HARMONIZED",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S2_HARMONIZED"
+}

@@ -1,0 +1,90 @@
+{
+  "paper_id": "10.3390/rs14092060",
+  "task_id": "single_dataset/task_019",
+  "title": "Determining the Influence of Long Term Urban Growth on Surface Urban Heat Islands Using Local Climate Zones",
+  "category": "land_use_land_cover",
+  "year": 2022,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Landsat 8 OLI/TIRS Collection 2 Tier-1 Raw scenes for Bulawayo LCZ classification and DN-derived LST"
+  ],
+  "study_area_verified": {
+    "name": "Bulawayo metropolitan area, Zimbabwe",
+    "setting": "Semi-arid subtropical steppe (BSh) at approximately 1358 m elevation, with a wet season concentrated from December to February and mean annual precipitation near 600 mm.",
+    "time": "LCZ maps for 1990, 2005, and 2020; long-term transitions assessed for 1990-2005 and 2005-2020; field LCZ observations collected 18-27 October 2020.",
+    "analysis_grid": "Landsat multispectral classification at scene resolution followed by a 5×5-pixel resampling window to satisfy LCZ spatial-scale requirements.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_substitution": {
+    "paper_used": "Historical Landsat raw-scene workflow; current benchmark narrowed to Landsat 8 OLI/TIRS raw scenes",
+    "task_anchor": "LANDSAT/LC08/C02/T1",
+    "former_anchor": "LANDSAT/LC08/C02/T1_L2",
+    "why_former_anchor_was_wrong": "Landsat 8 cannot cover the 1990 and 2005 analysis years, and the source computes temperature from raw thermal DN rather than using Collection 2 Level-2 surface reflectance or surface temperature.",
+    "why_this_substitute": "LANDSAT/LC08/C02/T1 is the single ready raw-scene asset retained for this single-dataset task. It supports raw multispectral LCZ predictors and DN-based thermal LST retrieval without the former invalid three-collection GEE configuration.",
+    "rejected_alternatives": [
+      {
+        "asset": "LANDSAT/LC08/C02/T1_L2",
+        "reason": "Wrong temporal coverage and processing level; it begins in 2013 and supplies processed Level-2 observations."
+      },
+      {
+        "asset": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2; LANDSAT/LC08/C02/T1_L2",
+        "reason": "The source's DN-to-radiance thermal workflow requires raw radiometry, not Level-2 surface temperature."
+      },
+      {
+        "asset": "TOA Landsat collections",
+        "reason": "The supplied Methods do not report a TOA conversion for LCZ predictors, and thermal DN is explicitly processed from raw values."
+      }
+    ],
+    "residual_gap": "The source uses a multi-year Landsat 5/7/8 workflow, but the current benchmark admits only the single Landsat 8 raw asset. Historical 1990 and 2005 replication is outside this narrowed anchor.",
+    "corrections": [
+      "The former datasets summary and anchor have been narrowed to the single LANDSAT/LC08/C02/T1 Raw asset for executable single-dataset benchmarking.",
+      "The idea.* enrichment proposes Collection 2 Level-2 reflectance/temperature, ERA5-Land, DEM, spectral indices and causal models that are not established by the supplied Methods; these fields remain unchanged for provenance but must not control the anchor.",
+      "The statement that thermal bands were not used applies to LCZ classification; Section 2.7.4 explicitly uses Landsat 5/7/8 thermal data to derive LST and SUHI."
+    ],
+    "companion_dataset_availability": {
+      "Landsat Collection 2 Tier-1 Raw": "ready GEE catalog collection for Landsat 8 only: LANDSAT/LC08/C02/T1",
+      "LCZ field coordinates and digitized training polygons": "study-specific observations, not GEE catalog assets",
+      "Google Earth historical imagery": "visual training and validation source, not a GEE catalog dataset",
+      "WUDAPT, SAGA GIS, ArcGIS, and intensity-analysis outputs": "software workflows and derived products rather than source catalog assets",
+      "preceding-ten-day precipitation": "source product is not named in the supplied Methods and is left unresolved"
+    },
+    "sibling_task_boundary": "single_dataset/task_019 is restricted to LANDSAT/LC08/C02/T1 Raw scenes for Bulawayo LCZ classification and DN-derived LST. Landsat 5/7 raw scenes, Level-2 products, TOA products, composites and index-only products do not cross-admit into this task.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "1990—2020年布拉瓦约都市区不同类型的城市扩张及其对自然地表、森林和湿地的侵占，如何通过改变地表覆盖与能量平衡过程影响地表城市热岛强度，并且这种影响是否随扩张方向、LCZ类型和时间阶段而变化？",
+    "hypothesis": "相对于未发生城市化或保持自然覆盖的区域，转变为建成型Local Climate Zone（LCZ）的区域将产生更高的地表城市热岛强度；其中，由森林、低矮植被和湿地转变为紧凑型或轻型低层建筑LCZ的区域升温幅度最大。由于建成区扩张速度、扩张方向和被替代地类不同，1990—2005年与2005—2020年的热效应强度及空间分布将存在差异。",
+    "mechanism": "城市扩张导致森林、低矮植被和湿地等自然地表被不透水建成表面替代；不透水面增加会降低地表反照率和蒸散发，减少潜热通量，同时提高显热通量、地表热容量和储热能力，并通过改变地表粗糙度与近地层湍流交换影响热量再分配。上述地表能量平衡变化首先提高白天地表温度，随后通过建筑密度、建筑高度、植被覆盖度和水体邻近程度的差异形成不同LCZ之间的热环境差异，最终表现为城市地表温度相对于周边农村参考区的升高，即Surface Urban Heat Island（SUHI）增强。森林和湿地被移除后，植被蒸散冷却与水分调节能力下降，将进一步放大建成区扩张的热效应。",
+    "key_variables": {
+      "target": "地表城市热岛强度（SUHI intensity，定义为建成型LCZ或城市核心区的地表温度与匹配的非城市自然参考区地表温度之差，单位为摄氏度），以及像元或LCZ单元尺度的地表温度变化（ΔLST，摄氏度）",
+      "predictors": [
+        "LCZ类别及其多期转移类型，例如森林→轻型低层建筑、低矮植被→紧凑型低层建筑、水体或湿地→建成型LCZ",
+        "建成型LCZ面积比例及其变化率",
+        "1990—2005年和2005—2020年两个时期的LCZ扩张强度",
+        "建成区扩张方向及距城市中心的距离",
+        "建筑密度、建筑高度和不透水地表比例",
+        "植被覆盖度或NDVI变化",
+        "森林、低矮植被和水体或湿地的损失面积",
+        "水体距离、植被比例和地表湿度",
+        "地形高程、坡度和地表背景条件等空间控制变量",
+        "观测日期的季节、降水、气温和前期湿润程度等遥感观测条件控制变量"
+      ]
+    },
+    "data_sources": [
+      "USGS/NASA Landsat 8 OLI/TIRS Collection 2 Tier-1 Raw scenes (LANDSAT/LC08/C02/T1), used as the single admitted source for Bulawayo LCZ classification and DN-derived LST analysis",
+      "Access Portal Tool（APT）或同类LCZ变化分析工具：用于构建1990—2005年和2005—2020年的LCZ转移矩阵与面积变化统计",
+      "Landsat Collection 2 Level-2地表反射率与地表温度产品：建议使用1990年前后Landsat 5 TM、2005年前后Landsat 5 TM或Landsat 7 ETM+、2020年前后Landsat 8 OLI/TIRS，空间分辨率以30 m反射率和约30—100 m热红外产品为基础，并在共同网格上汇总",
+      "Landsat多光谱波段派生的NDVI、植被比例、不透水面指数和水体指数：用于刻画植被、水体与不透水地表变化",
+      "SRTM或ASTER全球数字高程模型：约30 m空间分辨率，用于控制高程、坡度和地形位置效应",
+      "ERA5-Land或当地气象站数据：匹配遥感影像日期的气温、降水、土壤湿度和风速，用于控制不同观测时段的气象差异",
+      "城市行政边界、道路、土地价值或规划分区数据：用于识别城市扩张方向、交通可达性和潜在土地开发约束；若缺乏历史土地价值数据，可使用道路距离、中心距离和分区变量替代"
+    ],
+    "analytical_approach": "首先，对经过云和云影掩膜、辐射校正及大气校正的Landsat影像计算地表温度，并利用NDVI、NDWI、NDBI和不透水面指数进行地表覆盖表征。其次，采用WUDAPT既有LCZ分类；若需重新制图，则利用基于训练样本的Random Forest分类器，使用建筑密度、建筑高度代理变量、植被比例、裸地比例、不透水面比例和水体比例等特征，并通过交叉验证评估分类精度。随后将多期LCZ栅格重分类为统一类别，构建LCZ转移矩阵，使用Pontius等提出的Intensity Analysis计算时期层、类别层和转移层强度，识别不同地类被城市LCZ吸收的相对强度。对每个时期计算SUHI intensity和ΔLST，并以未转化且具有相似高程、植被和距城市中心条件的自然区域作为匹配参考区。核心效应可使用匹配样本的Difference-in-Differences模型估计：以是否发生建成型LCZ转化为处理变量，以时期为时间变量，以LCZ转移类型与时期交互项估计城市化对LST的增量影响；同时使用多尺度空间回归或空间误差模型控制空间自相关，并采用随机森林变量重要性和部分依赖曲线检验非线性关系。稳健性分析包括改变农村参考区缓冲距离、使用不同季节影像、分别分析晴空日和相近气象条件影像，以及对Landsat热红外分辨率进行一致化处理。",
+    "expected_contribution": "建立一个将长期LCZ转移、城市扩张方向和遥感地表温度变化相结合的分析框架，区分不同城市扩张路径对SUHI的潜在影响；明确森林、低矮植被和湿地转化为不同建成型LCZ时的热环境作用机制；提供适用于非洲快速扩张城市的多期LCZ与热岛评估方法，并为布拉瓦约的城市增长边界、森林和湿地保护、植被保留以及低热负荷城市规划提供空间化证据。",
+    "falsification_condition": "若在匹配自然参考区并控制观测季节、气象条件、地形和初始植被状态后，建成型LCZ转化区相对于未转化区的SUHI增量不高于0.5摄氏度，且其95%置信区间包含0，或森林、低矮植被和湿地转化区的升温幅度不高于未转化自然地类转化区至少0.5摄氏度，则不支持“自然地表向建成型LCZ转化会增强SUHI”的假设；若建成型LCZ扩张区的LST变化方向与自然地类保持区相同或更低，且不同LCZ转移类型之间的效应差异小于0.5摄氏度，也应否定关于地表能量平衡改变导致差异化城市增温的机制假设。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Hengduan Mountains, China",
+  "data_description": {
+    "dataset_name": "GPM: Global Precipitation Measurement (GPM) Release 06 [deprecated]",
+    "spatial_coverage": {
+      "region_name": "Hengduan Mountains, China",
+      "coverage": "Global precipitation estimates covering the Hengduan Mountains region in southwest China."
+    },
+    "temporal_coverage": "2000-06-01 00:00 to 2024-06-02 18:30 UTC",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "11132 m (approximately 0.1 degree)",
+    "temporal_unit": "30-minute cadence",
+    "analytical_capabilities": [
+      "Map spatial patterns of precipitation intensity across the region",
+      "Aggregate rainfall over custom hourly, daily, monthly, or seasonal periods",
+      "Detect heavy rainfall events and precipitation extremes",
+      "Analyze temporal variability, trends, and anomalies in rainfall records",
+      "Compare rainfall distributions across elevations, watersheds, or subregions"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Calibrated precipitation rate (mm/hr)",
+      "runtime_hint": "Use precipitationCal (estimated 0-174 mm/hr) as the primary calibrated rate. Other catalog bands include precipitationUncal and HQprecipitation (0-120 mm/hr), IRprecipitation (0-79.5 mm/hr), IRkalmanFilterWeight (0-100%), randomError (estimated 0.24-250 mm/hr), probabilityLiquidPrecipitation (0-100%), HQobservationTime, and HQprecipSource. HQprecipSource is a 4-bit passive-microwave sensor identifier, not a general quality flag. Convert a 30-minute rate to depth by multiplying by 0.5 hour; obtain a 3-hour depth by summing six half-hour depths rather than averaging rates and labeling the result as an accumulation. Filter the image metadata property status to permanent for finalized research products because the collection can contain provisional images that are later replaced."
+    },
+    "data_source": "NASA Global Precipitation Measurement mission, distributed by NASA GES DISC",
+    "gee_asset": {
+      "id": "NASA/GPM_L3/IMERG_V06",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/GPM_L3/IMERG_V06"
+}

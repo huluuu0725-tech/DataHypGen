@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1007/s11269-025-04097-7",
+  "task_id": "single_dataset/task_048",
+  "title": "Estimation of Monthly Water Table Depth Anomalies Based on the Integration of GRACE and ERA5-Land with Large-Scale Simulations Using Random Forest and LSTM Networks",
+  "category": "hydroclimate_reanalysis",
+  "year": 2025,
+  "journal": "Water Resources Management",
+  "impact_level": "emerging",
+  "datasets": [
+    "ERA5-Land hourly meteorological variables aggregated to monthly temperature, precipitation and evaporation",
+    "GRACE/GRACE-FO monthly total water storage anomalies",
+    "TSMP-G2A water-table-depth simulations",
+    "in-situ groundwater observations"
+  ],
+  "study_area_verified": {
+    "name": "Seine River Basin, France",
+    "period": "2002–2022",
+    "temporal_grain": "monthly water-table-depth anomalies with ERA5-Land hourly inputs aggregated to monthly features",
+    "review_date": "2026-09-12"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+    "operationally_used": true,
+    "role": "The seed paper uses ERA5-Land hourly temperature, precipitation and evaporation and explicitly aggregates them to monthly maximum/minimum temperature, monthly precipitation and monthly evaporation; this makes it the earliest paper defining the monthly-processing lineage.",
+    "source_anchor": "ECMWF/ERA5_LAND/HOURLY aggregated to monthly variables in the paper; represented by the monthly anchor for this new task.",
+    "review_date": "2026-09-12"
+  },
+  "idea": {
+    "research_question": "在塞纳河流域，能否将ERA5-Land月度气象变量与GRACE总水储量和TSMP模拟结合，利用随机森林与LSTM估计月度地下水位深度异常？",
+    "hypothesis": "ERA5-Land月度温度、降水和蒸发与GRACE总水储量共同提供的水文气候约束，能够帮助机器学习模型重建具有空间细节的月度地下水位变化，并改善对观测井时间变化的刻画。",
+    "mechanism": "月度降水和蒸发改变地表水分输入与损失，温度调节蒸散和季节过程；这些气象强迫与GRACE观测到的总水储量变化共同反映地下水补给和消耗，机器学习模型据此将粗分辨率储量信息映射到更细的水位异常。",
+    "key_variables": {
+      "target": "月度地下水位深度异常（wtda）",
+      "predictors": [
+        "ERA5-Land月度最高/最低气温、总降水和蒸发",
+        "GRACE/GRACE-FO月度总水储量异常",
+        "TSMP-G2A水位深度模拟",
+        "地下水井观测"
+      ]
+    },
+    "analytical_approach": "比较随机森林与LSTM模型，按像元重建月度地下水位深度异常，并以TSMP模拟和地下水井观测验证时序相关性与KGE。"
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from the verified Methods/Data extraction for the earliest paper in the new ERA5-Land monthly task.",
+  "pdf_url": "https://link.springer.com/content/pdf/10.1007/s11269-025-04097-7.pdf"
+}

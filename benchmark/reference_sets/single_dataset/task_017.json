@@ -1,0 +1,310 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_017",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Global Forest Cover Change (GFCC) Tree Cover Multi-Year Global 30m",
+    "spatial_coverage": {
+      "region_name": "Global tropical forest regions",
+      "coverage": "Global Landsat WRS-2 path/row holdings with tree-canopy-cover estimates for available tiles; filter by epoch and mosaic the tiles intersecting the analysis region."
+    },
+    "temporal_coverage": "2000-01-01 to 2015-01-01, with nominal epochs centered on 2000, 2005, 2010, and 2015",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Five-year nominal epoch cadence",
+    "analytical_capabilities": [
+      "Map fractional tree-canopy cover at 30 m for the available epochs",
+      "Create threshold-based tree-cover or forest masks from canopy-cover percentage",
+      "Measure patch area, perimeter, connectivity, fragmentation, and edge structure from derived masks",
+      "Compare canopy-cover distributions among the 2000, 2005, 2010, and 2015 epochs",
+      "Propagate the supplied canopy-cover uncertainty layer into spatial summaries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Percentage of each 30 m pixel covered by woody vegetation taller than 5 m; `uncertainty` reports RMSE for tree-canopy cover.",
+      "runtime_hint": "Filter the ImageCollection by the numeric `year` property and mosaic the required WRS-2 path/row tiles. Use `tree_canopy_cover` directly as percent cover in the documented 0-100 range; no catalog scaling factor is specified. `uncertainty` is the canopy-cover RMSE. `source_index` identifies the contributing source image through each image's `sources` metadata and is available only for 2000, 2005, and 2010. The collection does not provide annual loss, gain, or loss-year bands."
+    },
+    "data_source": "NASA MEaSUREs and the University of Maryland, derived from enhanced Global Land Survey Landsat 5 TM and Landsat 7 ETM+ imagery",
+    "gee_asset": {
+      "id": "NASA/MEASURES/GFCC/TC/v3",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/MEASURES/GFCC/TC/v3",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_017.json",
+    "source_sha256": "938d466c8dee480271f56d1d481781c7dea965baf7e2dc2c625bd2076310e9da",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_017/prompt.json",
+    "current_prompt_sha256": "7b29fae4a39765fed679ce28e6f39ede12336eb958acf6ba8b0d29316a628017",
+    "original_anchor_asset": {
+      "id": "NASA/MEASURES/GFCC/TC/v3",
+      "observable_group": "gfcc_landsat_30m_fractional_tree_canopy_cover",
+      "asset_alias_policy": "NASA/MEASURES/GFCC/TC/v3 is the ready anchor. Operational use of the deprecated predecessor GLCF/GLS_TCC is admitted because the catalog declares it the predecessor of the same Sexton/GFCC 30 m continuous tree-cover lineage. Hansen Global Forest Change, GlobCover, MODIS VCF, discrete land-cover maps, and other canopy-cover products are excluded unless GFCC/GLS_TCC is also operationally used in Methods.",
+      "substituted_for": {
+        "paper_asset": "GLCF/GLS_TCC (Sexton et al. 2000 global 30 m tree-canopy cover)",
+        "former_anchor": "UMD/hansen/global_forest_change_2022_v1_10",
+        "why_the_former_anchor_was_wrong": "The supplied Methods use the GLCF/Sexton map for primary forest-patch delineation. Hansen Global Forest Change is only one of two alternative forest maps used for sensitivity analysis.",
+        "why_this_asset": "NASA/MEASURES/GFCC/TC/v3 is ready, is catalog-linked as the successor to deprecated GLCF/GLS_TCC, cites Sexton et al., provides 30 m fractional tree-canopy cover, and contains the required 2000 epoch.",
+        "rejected_alternatives": [
+          {
+            "asset": "GLCF/GLS_TCC",
+            "reason": "Exact catalog lineage for the historical input, but deprecated; the benchmark uses ready assets."
+          },
+          {
+            "asset": "UMD/hansen/global_forest_change_2022_v1_10",
+            "reason": "A sensitivity-comparison map in the source, not the primary forest-patch input; its annual loss/gain record is a different observable structure."
+          },
+          {
+            "asset": "ESA/GLOBCOVER_L4_200901_200912_V2_3",
+            "reason": "A 300 m discrete land-cover sensitivity comparison that cannot recover 30 m fractional canopy cover or fine patch edges."
+          }
+        ],
+        "residual_gap": "GFCC v3 is a later release with 2000, 2005, 2010 and 2015 epochs. The source used the historical 2000 GLCF layer, and exact cell-for-cell equivalence has not been verified; restrict use to the 2000 epoch.",
+        "review_date": "2026-08-29"
+      },
+      "verification": {
+        "status": "verified_against_supplied_methods_and_catalog",
+        "evidence": "The Methods name Sexton et al. GLCF 2000 tree cover at 30 m, apply a 30% cover threshold, and identify Hansen and GlobCover as comparison maps.",
+        "catalog_match": "The ready GFCC v3 catalog record identifies GLCF/GLS_TCC as its predecessor, cites Sexton et al., reports 30 m `tree_canopy_cover` in percent, and provides nominal 2000, 2005, 2010 and 2015 epochs.",
+        "review_date": "2026-08-29"
+      },
+      "observation_identity_contract": {
+        "physical_object": "Global Forest Cover Change (GFCC) Tree Cover Multi-Year Global 30m, representing gfcc landsat 30m fractional tree canopy cover.",
+        "source_lineage": "Task Prompt source: NASA MEaSUREs and the University of Maryland, derived from enhanced Global Land Survey Landsat 5 TM and Landsat 7 ETM+ imagery. Current task anchor: NASA/MEASURES/GFCC/TC/v3 (gfcc_landsat_30m_fractional_tree_canopy_cover). Catalog-substitution context recorded in the task definition: NASA/MEASURES/GFCC/TC/v3 is ready, is catalog-linked as the successor to deprecated GLCF/GLS_TCC, cites Sexton et al., provides 30 m fractional tree-canopy cover, and contains the required 2000 epoch.",
+        "core_measurement_semantics": "Percentage of each 30 m pixel covered by woody vegetation taller than 5 m; `uncertainty` reports RMSE for tree-canopy cover.; spatial resolution: 30 m; temporal structure: Five-year nominal epoch cadence",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: NASA/MEASURES/GFCC/TC/v3 is the ready anchor. Operational use of the deprecated predecessor GLCF/GLS_TCC is admitted because the catalog declares it the predecessor of the same Sexton/GFCC 30 m continuous tree-cover lineage. Hansen Global Forest Change, GlobCover, MODIS VCF, discrete land-cover maps, and other canopy-cover products are excluded unless GFCC/GLS_TCC is also operationally used in Methods."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "基于LegacyPollen 2.0和REVEALS模型重建的北半球过去14 kyr树木覆盖，是否能够更准确地再现现代森林冠层覆盖的空间格局？",
+      "hypothesis_or_mechanism": "通过相对花粉生产率、花粉扩散和沉积过程校正，REVEALS重建的树木覆盖应比原始花粉百分比更接近现代GFCC森林冠层覆盖。",
+      "variables_and_data_use": "研究使用LegacyPollen 2.0中的花粉计数、分类信息、盆地类型和盆地面积，并结合RPP和花粉下落速度运行REVEALS以重建树木覆盖；使用Landsat Global Forest Cover Change (GFCC) dataset中2000、2005、2010和2015年的平均森林冠层覆盖作为现代验证变量；使用ESA Climate Change Initiative (CCI) land-cover (LC) dataset中的2015年城市和裸地类别计算开放度校正。",
+      "method_paradigm": "古生态重建与遥感验证",
+      "used_assets": [
+        "LegacyPollen 2.0",
+        "Neotoma Paleoecology Database",
+        "REVEALSinR",
+        "Landsat Global Forest Cover Change (GFCC) dataset",
+        "ESA Climate Change Initiative (CCI) land-cover (LC) dataset"
+      ],
+      "author_team": [
+        "Laura Schild",
+        "Peter Ewald",
+        "Chenzhi Li",
+        "Raphaël Hébert",
+        "Thomas Laepple",
+        "Ulrike Herzschuh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "LegacyVegetation: Northern Hemisphere reconstruction of past plant cover and total tree cover from pollen archives of the last 14 kyr",
+        "doi": "10.5194/essd-17-2007-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "如何利用ICESat-2高程观测校正ASTER GDEM，以生成精度更高的全球数字高程模型？",
+      "hypothesis_or_mechanism": "利用高精度ICESat-2高程参考点训练高程校正模型，并结合地形、土地覆盖和GFCC植被覆盖属性，可以显著降低ASTER GDEM的高程误差。",
+      "variables_and_data_use": "以ASTER GDEM Version 3高程和质量数据为待校正变量，以ATL08和其他ICESat-2高程观测提取训练种子点，以GFCC30TC植被覆盖和FROM-GLC10土地覆盖构建评价属性，并使用HAGECPD和LDEM data验证校正结果。",
+      "method_paradigm": "产品生成与精度验证",
+      "used_assets": [
+        "ATL08 product",
+        "ASTER GDEM Version 3",
+        "FROM-GLC10",
+        "GFCC30TC",
+        "HAGECPD",
+        "LDEM data",
+        "ICESat-2 altimeter data"
+      ],
+      "author_team": [
+        "Binbin Li",
+        "Huan Xie",
+        "Shijie Liu",
+        "Zhen Ye",
+        "Zhonghua Hong",
+        "Qihao Weng",
+        "Yuan Tao Sun",
+        "Qi Xu",
+        "Xiaohua Tong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Global digital elevation model (GDEM) product generation by correcting ASTER GDEM elevation with ICESat-2 altimeter data",
+        "doi": "10.5194/essd-17-205-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "Kabupaten Gorontalo在2000年至2020年期间的植被覆盖发生了怎样的空间变化？",
+      "hypothesis_or_mechanism": "基于MODIS NDVI的年度质量镶嵌和阈值分割能够识别植被与非植被，并揭示2000年至2020年的再植被、退化和不变区域。",
+      "variables_and_data_use": "以Terra MODIS MOD13Q1中的NDVI为主要观测变量，筛选2000年和2020年影像并通过quality mosaic生成年度影像，再利用Otsu阈值划分植被和非植被，比较两期分类结果提取变化；使用Global Forest Cover Change (GFCC) Tree Cover Multi-Year Global 30评价2000年结果，使用Google Earth Pro影像评价2020年结果，并以Kabupaten Gorontalo shapefile限定空间范围。",
+      "method_paradigm": "云端遥感变化检测与精度评价",
+      "used_assets": [
+        "Terra Moderate Resolution Imaging Spectroradiometer (MODIS) versi 6 untuk lapisan indeks vegetasi (MOD13Q1)",
+        "MODIS jenis NDVI",
+        "Global Forest Cover Change (GFCC) Tree Cover Multi-Year Global 30",
+        "Google Earth Pro",
+        "batas wilayah Kabupaten Gorontalo dalam format shapefile"
+      ],
+      "author_team": [
+        "Rakhmat Jaya Lahay",
+        "Syahrizal Koem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Ekstraksi Perubahan Tutupan Vegetasi Di Kabupaten Gorontalo Menggunakan Google Earth Engine",
+        "doi": "10.34312/jgeosrev.v4i1.12086",
+        "year": 2021,
+        "venue": "Jambura Geoscience Review",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "如何综合森林覆盖、地形、水系、道路、土地覆盖变化和自然旅游资源等因素，为Taman Wisata Alam Gunung Pancar划分生态敏感性管理分区？",
+      "hypothesis_or_mechanism": "森林覆盖较高、坡度较大、靠近河流或受到土地覆盖变化影响的区域具有更高生态敏感性，应优先划为保护或核心管理区。",
+      "variables_and_data_use": "使用NASA/MEASURES/GFCC/TC/v3的Global Forest Cover覆盖比例以阈值划分森林保护区和恢复区；使用LANDSAT/LC08/C01/T1_SR、Landsat 7和Landsat 8 OLI进行监督分类、土地覆盖变化分析及NDVI计算；使用DEM (Digital Elevation Model) SRTM进行坡度分析，结合道路网络、河流、Sentinel影像、实地调查和自然旅游资源数据开展多准则空间评分。",
+      "method_paradigm": "多准则空间决策支持",
+      "used_assets": [
+        "LANDSAT/LC08/C01/T1_SR",
+        "Landsat 7",
+        "Landsat 8 OLI",
+        "DEM (Digital Elevation Model) SRTM",
+        "https://earthexplorer.usgs.gov/scene/metadata/full/5e83a205d69371bb/GT30E100N40/",
+        "NASA/MEASURES/GFCC/TC/v3",
+        "https://gee-community-catalog.org/projects/grip",
+        "COPERNICUS/S2. (ESA, 2023)"
+      ],
+      "author_team": [
+        "M Irfani",
+        "Syartinilia Syartinilia",
+        "Rinekso Soekmadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Zonasi Taman Wisata Alam Berbasis Sensivitas Ekologi: Studi Kasus Taman Wisata Alam Gunung Pancar",
+        "doi": "10.59465/jpht.v21i1.340",
+        "year": 2024,
+        "venue": "Jurnal Penelitian Hutan Tanaman",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "How do drought conditions affect African elephant home-range size, movement distance, and habitat selection in northern Botswana?",
+      "hypothesis_or_mechanism": "Drought conditions alter elephant movement and habitat preferences, with habitat selection and movement responses varying as a function of drought severity and environmental resources such as tree cover, water, precipitation, vegetation productivity, temperature, and human disturbance.",
+      "variables_and_data_use": "Elephant GPS locations from 2004 to 2022 were used to estimate monthly 95% minimum convex polygon home ranges, daily movement distances, and visited-versus-available locations for resource-selection analysis. Predictors included SPEI01, SPEI03, SPEI12, human disturbance, NDVI, precipitation, temperature, distance to water and cultivated areas, elevation, slope, human population density, and MOD44B.061 percent tree cover per raster cell. Drought interactions with environmental predictors were evaluated in mixed models.",
+      "method_paradigm": "Observational movement ecology using environmental raster extraction, monthly home-range and movement metrics, resource-selection functions, and generalized or linear mixed-effects models with drought interactions.",
+      "used_assets": [
+        "NASA_LPDAAC:MOD44B:006.1"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_b2a60b71f9c825494a49",
+      "source_paper": {
+        "doi": "10.1111/1365-2656.70289",
+        "title": "Elephant space use and habitat selection change across drought timescales",
+        "year": 2026,
+        "venue": "Journal of Animal Ecology",
+        "authors": [
+          "Irene Bouwman",
+          "Tom Claassen",
+          "Michael J. Chase",
+          "Kelly Landen",
+          "Mark A.J. Huijbregts",
+          "Marlee A. Tucker"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "NASA_LPDAAC:MOD44B:006.1",
+        "name": "MOD44B MODIS/Terra Vegetation Continuous Fields Yearly L3 Global 250 m SIN Grid, Collection 6.1"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "MOD44B.061 supplies annual percent tree cover on a native 250 m global grid; the anchor GFCC is a 30 m fractional tree-cover product on five-year epochs. The paper samples the MOD44B percent-cover field as a habitat covariate, not as a 30 m change map.",
+      "comparability_quote": "dataset (Didan,  2021 ). We extracted rasters with the percentage of tree cover per raster cell from the MOD44B.061 Terra MODIS Vegetation Continuous Fields dataset (DiMiceli et al.,  2022 ). We extracted an elevation raster using the NASA ",
+      "differences_vs_anchor": {
+        "lineage": "MODIS/Terra VCF versus Landsat-based GFCC.",
+        "variable": "Percent tree cover is used as a habitat covariate; it is not a substitute for every GFCC canopy definition.",
+        "spatial_temporal_support": "Native 250 m annual observations versus 30 m GFCC five-year epochs.",
+        "operation": "Per-cell percent tree cover is extracted for resource-selection analysis; the paper does not estimate a canopy-change time series."
+      },
+      "comparability_handling": "Retain the 250 m annual MOD44B percentage as a covariate and preserve the study's static sampling role. Do not resample it conceptually to GFCC resolution or claim pixel equivalence.",
+      "doi": "10.1111/1365-2656.70289",
+      "task_id": "single_dataset/task_017",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "NASA/MEASURES/GFCC/TC/v3",
+      "actual_dataset_id": "NASA_LPDAAC:MOD44B:006.1",
+      "actual_product_name": "MOD44B MODIS/Terra Vegetation Continuous Fields Yearly L3 Global 250 m SIN Grid, Collection 6.1",
+      "expansion_contract_id": "single_dataset/task_017_expansion_v1",
+      "expansion_contract_sha256": "053845697db687b60b1e0f721f6706f4d140adae75825d6fd21961129b30f1a8",
+      "task_card_sha256": "3b0b9a39c2d610c0e558f8831d6afa084bd60f433df997f1b0b3ec7e080b021d",
+      "source_text_sha256": "c43b725789531d5886ded124ac746bffb67d76a5ea12f7c1ec389054b2e6b70d",
+      "product_use_quote": "dataset (Didan,  2021 ). We extracted rasters with the percentage of tree cover per raster cell from the MOD44B.061 Terra MODIS Vegetation Continuous Fields dataset (DiMiceli et al.,  2022 ). We extracted an elevation raster using the NASA ",
+      "operational_use_quote": "dataset (Didan,  2021 ). We extracted rasters with the percentage of tree cover per raster cell from the MOD44B.061 Terra MODIS Vegetation Continuous Fields dataset (DiMiceli et al.,  2022 ). We extracted an elevation raster using the NASA ",
+      "application_scope_quote": "dataset (Didan,  2021 ). We extracted rasters with the percentage of tree cover per raster cell from the MOD44B.061 Terra MODIS Vegetation Continuous Fields dataset (DiMiceli et al.,  2022 ). We extracted an elevation raster using the NASA ",
+      "supporting_quote": "dataset (Didan,  2021 ). We extracted rasters with the percentage of tree cover per raster cell from the MOD44B.061 Terra MODIS Vegetation Continuous Fields dataset (DiMiceli et al.,  2022 ). We extracted an elevation raster using the NASA ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:25:06Z",
+      "human_reason": "The Methods explicitly identify MOD44B.061 and extract percent tree cover per raster cell for habitat-selection analysis. The product is used as a static covariate; the fixed scope does not require temporal change analysis. Count the approved MOD44B branch only.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_017_r001",
+      "source_pool_sha256": "87f3f344be569628af49943012c0861a5a6c45aeb808acfe9815746bb4028c31",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Irene Bouwman",
+        "Tom Claassen",
+        "Michael J. Chase",
+        "Kelly Landen",
+        "Mark A.J. Huijbregts",
+        "Marlee A. Tucker"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 5,
+    "source_paper_count": 5,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

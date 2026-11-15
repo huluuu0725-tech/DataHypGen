@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "China terrestrial surfaces",
+  "data_description": {
+    "dataset_name": "MOD15A2H.061 Terra Leaf Area Index/FPAR 8-Day Global 500m",
+    "spatial_coverage": {
+      "region_name": "China",
+      "coverage": "Terrestrial areas within the national boundary of China, including croplands, forests, grasslands, wetlands, shrublands, and other vegetated surfaces."
+    },
+    "temporal_coverage": "2000-02-18 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 m",
+    "temporal_unit": "8-day composite",
+    "analytical_capabilities": [
+      "Quantifying canopy leaf area and absorbed photosynthetically active radiation",
+      "Tracking seasonal canopy development and deriving growing-season metrics from sub-monthly composites",
+      "Detecting long-term and interannual trends in canopy density",
+      "Comparing canopy structure across land-cover types, elevation belts and management regimes",
+      "Propagating retrieval uncertainty through analyses using the per-pixel standard deviation bands"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Leaf Area Index as one-sided leaf area per unit ground area (m2/m2); FPAR as the fraction of incident photosynthetically active radiation absorbed by the canopy",
+      "runtime_hint": "Apply the scale factors: multiply `Lai_500m` and `LaiStdDev_500m` by 0.1, and `Fpar_500m` and `FparStdDev_500m` by 0.01. Stored values run 0 to 100, so scaled LAI reaches 10 m2/m2 and scaled FPAR reaches 1.0; values above 100 are fill and must be masked before any reduction. Screen retrievals with `FparLai_QC` and `FparExtra_QC` before analysis: the main algorithm retrieval is the highest-quality class, while backup-algorithm and saturated retrievals are common over dense canopies and over snow, cloud and aerosol contamination. `LaiStdDev_500m` and `FparStdDev_500m` give the per-pixel retrieval spread and flag cells where the estimate is weakly constrained. This is a Terra-only collection on an 8-day step; the Aqua counterpart MYD15A2H shares the grid and cadence from 2002-07-04 and can be combined to densify the series. Composites are built from best-available observations within each 8-day window, so persistent cloud or snow still leaves gaps that must be handled explicitly before fitting seasonal curves."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD15A2H",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD15A2H"
+}

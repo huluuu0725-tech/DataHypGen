@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Balochistan Province, southwestern Pakistan",
+  "data_description": {
+    "dataset_name": "MOD13A1.061 Terra Vegetation Indices 16-Day Global 500m",
+    "spatial_coverage": {
+      "region_name": "Balochistan Province, Pakistan",
+      "coverage": "Global terrestrial coverage on a 500 m sinusoidal grid, including the arid and semi-arid land surfaces of Balochistan Province in southwestern Pakistan."
+    },
+    "temporal_coverage": "2000-02-18 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 m",
+    "temporal_unit": "16-day composite",
+    "analytical_capabilities": [
+      "Mapping and comparing vegetation condition across landscapes",
+      "Analyzing long-term vegetation-index trends and spatial changes",
+      "Characterizing seasonal vegetation dynamics and phenological patterns",
+      "Identifying spatial heterogeneity and areas with persistent or intermittent vegetation signals",
+      "Filtering observations by quality and relating vegetation dynamics to gridded climate variables"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI and EVI as dimensionless indices, stored with a scale factor of 0.0001",
+      "runtime_hint": "Multiply `NDVI` or `EVI` by 0.0001 to obtain physical index values. Screen pixels with `SummaryQA` for routine filtering, or `DetailedQA` when specific quality bits matter. `sur_refl_b01` through `sur_refl_b07` carry the contributing surface reflectances at the same scale; `ViewZenith`, `SolarZenith` and `RelativeAzimuth` are in degrees with a 0.01 scale. `DayOfYear` records the actual composite date within each 16-day window, which matters when aligning against daily or monthly covariates."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD13A1",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD13A1"
+}

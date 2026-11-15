@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Tropical South America",
+  "data_description": {
+    "dataset_name": "NOAA CDR AVHRR NDVI: Normalized Difference Vegetation Index, Version 4",
+    "spatial_coverage": {
+      "region_name": "Tropical South America",
+      "coverage": "Global land coverage on a 0.05 degree grid, including the Amazon basin, the Guiana Shield, the Cerrado and the Andean margin of tropical South America."
+    },
+    "temporal_coverage": "1981-06-24 to 2019-05-16",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.05 degrees (about 5.6 km)",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Multi-decadal vegetation greenness analysis spanning the early 1980s onward",
+      "Daily-to-monthly aggregation for seasonal and interannual dynamics",
+      "Interannual coupling analysis against climate oscillation indices",
+      "Regional averaging and comparison across sub-regions of a continent",
+      "Lag and cross-correlation analysis between vegetation state and other monthly gridded variables"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI as a dimensionless index, stored with a scale factor of 0.0001",
+      "runtime_hint": "Multiply `NDVI` by 0.0001 to obtain physical values. Screen observations with the `QA` bit flags before aggregating, since daily AVHRR retrievals are sensitive to cloud and off-nadir viewing. `TIMEOFDAY` gives hours since the start of day at a 0.01 scale, which reveals drift in acquisition time across the multi-decadal record. Daily sampling means monthly means need explicit handling of missing days rather than a plain average."
+    },
+    "data_source": "NOAA National Centers for Environmental Information, derived from AVHRR sensors",
+    "gee_asset": {
+      "id": "NOAA/CDR/AVHRR/NDVI/V4",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NOAA/CDR/AVHRR/NDVI/V4"
+}

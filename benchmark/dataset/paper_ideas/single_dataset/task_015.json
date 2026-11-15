@@ -1,0 +1,72 @@
+{
+  "paper_id": "10.5194/hess-28-2617-2024",
+  "task_id": "single_dataset/task_015",
+  "title": "Soil moisture modeling with ERA5-Land retrievals, topographic indices, and in situ measurements",
+  "category": "land_use_land_cover",
+  "year": 2024,
+  "journal": "Hydrology and Earth System Sciences",
+  "impact_level": "emerging",
+  "datasets": [
+    "ERA5-Land hourly soil moisture, layers 1 (0–7 cm) and 2 (7–28 cm), downloaded from CDS as daily 14:00 UTC values for the full observation span",
+    "Bezirksregierung Köln 1 m × 1 m DEM (vertical accuracy ±0.2 m), used to derive DTW025, DTW1, DTW4, TWI, SPI, flow accumulation and slope",
+    "North Rhine-Westphalia Soil05 (1:5000) and Soil50 (1:50000) soil maps",
+    "HH2 impedance-measurement (IMT) field SWC observations: 2 m sampling along 12 40 m transects, September 2019–October 2020, 2,184 observations",
+    "SMT100 soil-sensor network (SSN): 18 locations across two sites, 10 cm depth, 15-minute sampling, 16,351 observations after missing-value exclusion",
+    "Random-forest models trained with ranger using repeated 10-fold location-grouped cross-validation, Boruta feature selection and iterative variable removal"
+  ],
+  "study_area_verified": {
+    "name": "Two forest stands near Arnsberg, North Rhine-Westphalia, Germany",
+    "setting": "Forest stands at approximately 250 m elevation on Devonian and Carboniferous claystone/sandstone-derived soils; SWC measurements and forwarder trials were conducted at the sites.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "ECMWF/ERA5_LAND/HOURLY",
+    "operationally_used": true,
+    "role": "ERA5-Land hourly volumetric soil-water layers 1 and 2 were downloaded through CDS as daily 14:00 UTC values and joined to field SWC observations as dynamic predictors.",
+    "evidence": "The supplied Methods explicitly state hourly ERA5-Land estimates, layers 1 (0-7 cm) and 2 (7-28 cm), and daily grids at 14:00 UTC for the full observation span.",
+    "catalog_match": "Authenticated GEE metadata for ECMWF/ERA5_LAND/HOURLY reports hourly cadence, approximately 11 km nominal resolution, EPSG:4326 0.1° grids, and the two volumetric_soil_water layer bands.",
+    "companion_dataset_availability": {
+      "ECMWF/ERA5_LAND/HOURLY": "ready catalog ImageCollection; paper-faithful extraction requires daily 14:00 UTC selection",
+      "Bezirksregierung Köln 1 m DEM": "external regional DEM source used for terrain indices; not the ERA5-Land anchor",
+      "Soil05 and Soil50": "North Rhine-Westphalia soil-map sources described in the paper; not Earth Engine anchor assets",
+      "IMT and SSN observations": "field datasets described in the paper; not Earth Engine catalog assets"
+    },
+    "sibling_task_boundary": "single_dataset/task_015 is the Arnsberg forest SWC and forwarder-rut modeling workflow. It is distinct from task_012's Fayetteville TWI hillslope study despite both involving soil moisture, DEM-derived terrain indices and in-situ sensors.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在德国北莱茵-威斯特法伦州Arnsberg附近森林中，将ERA5-Land动态土壤湿度与高分辨率地形指标、土壤图和日期变量结合，能否在空间和时间尺度上预测10 cm深度的现场土壤体积含水量，并进一步解释和预测集材机作业造成的车辙深度？",
+    "hypothesis": "动态ERA5-Land土壤湿度与静态地形和土壤属性的联合模型，其土壤含水量预测性能将优于仅使用静态地形和土壤图的模型；在其他条件相近时，预测的土壤含水量越高，土壤承载能力越低，集材机作业产生的车辙深度越大。基于连续传感器数据训练的模型预期具有更强的时间变化刻画能力，而基于人工测量数据训练的模型预期具有更好的空间样本覆盖适用性。",
+    "mechanism": "降水、蒸散和季节冻融等天气过程首先改变ERA5-Land表征的区域土壤水分状态；地形汇流和排水条件通过深度到水线指数、地形湿润指数及河流功率指数调节水分在坡面上的空间再分配；土壤类型和土壤图属性进一步影响入渗、蓄水和排水能力；月份和季节变量则表征未被ERA5-Land完全解释的周期性水分变化。上述过程共同决定局地10 cm土层的现场土壤体积含水量。含水量升高后，水膜削弱土粒间摩擦和土体抗剪强度，降低土壤承载能力，使集材机轮载引起的压实和剪切变形增强，最终表现为更大的车辙深度。",
+    "key_variables": {
+      "target": "现场测量的10 cm深度土壤体积含水量SWC（%），分别以HH2 Moisture Meter阻抗测量技术（IMT）数据和连续土壤传感器网络（SSN）数据作为两个独立建模目标；车辙验证阶段的目标变量为集材机作业后的车辙深度。",
+      "predictors": [
+        "ERA5-Land土壤湿度估计值（SWC_ERA），包括两个土壤深度层的动态土壤湿度变量；原文节选未给出具体ERA5-Land产品版本、空间分辨率和深度层名称",
+        "深度到水线指数（depth-to-water, DTW），由DEM模拟汇流线、上游汇水面积阈值和基于相邻栅格坡度的距离代价函数计算；具体汇水面积阈值原文节选未给出",
+        "地形湿润指数（topographic wetness index, TWI）",
+        "河流功率指数（stream power index, SPI）",
+        "其他由1 m DEM派生并在测量位置提取的地形指标；原文节选未完整列出",
+        "土壤图变量，包括研究区Cambisol和Stagnosol等土壤类型及相关土壤属性；具体土壤图数据集和字段原文节选未给出",
+        "月份（month），由测量日期编码为数值变量",
+        "季节（season），春季=1（3月至5月）、夏季=2（6月至8月）、秋季=3（9月至11月）、冬季=4（12月至次年2月）",
+        "空间位置变量，由Trimble R2 RTK GNSS后处理坐标关联至DEM、地形指标和土壤图"
+      ]
+    },
+    "data_sources": [
+      "现场人工SWC数据：使用HH2 Moisture Meter（Delta-T Devices Ltd）通过阻抗测量技术获取的土壤体积含水量（%）；测量时间范围、样点数量、采样频率和具体空间覆盖范围在原文节选中未给出",
+      "连续土壤传感器网络（SSN）数据：两个传感器网络，每个网络包含9个测量位置，位置间距约为50 m × 50 m；每个位置在矿质土10 cm深度布置两个传感器，时间分辨率为15 min；纳入数据截至2022年12月31日，经剔除缺失值后共16,351条观测",
+      "ERA5-Land土壤湿度检索数据：用于提供动态土壤湿度估计，并使用两个土壤深度层；原文节选未给出具体时间范围、空间分辨率、产品版本和深度层名称",
+      "Bezirksregierung Köln（2020）数字高程模型：空间分辨率1 m × 1 m，垂直精度±0.2 m；用于计算DTW、TWI、SPI等地形指标",
+      "土壤图数据：用于引入土壤类型和土壤属性变量；原文节选未给出具体数据集名称、比例尺、空间分辨率和时间版本",
+      "GNSS空间定位数据：Trimble R2 RTK rover后处理信号，用于获取各人工测量点、连续传感器位置及集材机试验位置的空间坐标",
+      "集材机车辙试验数据：4次forwarder作业试验中采集的车辙深度，用于对最终土壤湿度模型进行独立应用和车辙响应验证；具体试验日期、作业参数和车辙测量协议在原文节选中未给出"
+    ],
+    "analytical_approach": "分别使用人工IMT数据集和连续SSN数据集训练随机森林（Random Forest）土壤湿度模型。候选特征包括ERA5-Land两个深度层的土壤湿度、DTW、TWI、SPI及其他DEM地形指标、土壤图变量、月份和四分类季节变量。通过重复交叉验证评估候选模型，并采用逐步特征删减或逐步特征选择确定最优变量组合；随后分别形成IMT最终模型和SSN最终模型，用于预测集材机4次试验各位置和日期的SWC，并将预测SWC与实测车辙深度进行比较。空间建模流程为：使用1 m DEM计算地形指标，将各指标提取至GNSS定位的测量点，再与日期变量和ERA5-Land动态值匹配。模型性能应至少使用Kendall秩相关系数和R²评价，并在交叉验证中报告均值、离散程度及独立试验验证结果。原文节选未给出随机森林树数量、节点最小样本数、特征子采样数、重复交叉验证折数、逐步删减停止规则及ERA5-Land重采样方法，因此这些参数应在正式研究设计中预先固定并报告；建议采用固定随机种子的重复5折交叉验证、随机森林1000棵树，并在训练折内完成特征选择以避免信息泄漏。",
+    "expected_contribution": "建立一个同时利用动态气象再分析土壤湿度、1 m地形信息、土壤图和季节变量的森林土壤水分时空预测框架；定量比较人工测量与连续传感器网络作为训练目标时的模型性能及适用范围；检验动态土壤湿度是否能够补足静态地形模型对季节变化和当前湿润状态刻画不足的问题；进一步将预测土壤含水量与集材机车辙深度连接起来，为森林作业前湿区识别、低承载力区域制图和机械作业路径规划提供可迁移的方法基础。",
+    "falsification_condition": "若在严格空间和时间分组的重复5折交叉验证中，加入ERA5-Land动态土壤湿度后的最优模型相对于仅使用地形、土壤图和日期变量的基线模型，Kendall秩相关系数提升小于0.05且R²提升小于0.05，则不支持“动态ERA5-Land信息改善土壤湿度预测”的假设；若预测SWC与车辙深度的方向性关系为负，或在4次独立forwarder试验中车辙深度预测的Kendall秩相关系数低于0.30，则不支持“较高土壤含水量导致更深车辙”的机制假设；若IMT和SSN模型在独立试验中的性能差异不超过Kendall秩相关系数0.05，且未表现出预期的时间或空间适用性差异，则不支持两类观测数据具有不同建模优势的假设。上述0.05、0.30等阈值应在正式分析前预注册，不能依据结果事后调整。"
+  },
+  "enriched": true,
+  "enrichment_source": "pdf_fulltext",
+  "pdf_url": "https://hess.copernicus.org/articles/28/2617/2024/hess-28-2617-2024.pdf"
+}

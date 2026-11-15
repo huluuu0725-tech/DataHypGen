@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1016/j.envsci.2018.10.001",
+  "task_id": "dual_dataset/task_022",
+  "title": "Built-up area and population density: Two Essential Societal Variables to address climate hazard impact",
+  "category": "built_up_population",
+  "year": 2018,
+  "journal": "Environmental Science & Policy",
+  "impact_level": "medium",
+  "datasets": [
+    "Built-up area",
+    "Population density"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "built_up_area",
+      "dataset": "Built-up area"
+    },
+    {
+      "role": "population_density",
+      "dataset": "Population density"
+    }
+  ],
+  "idea": {
+    "research_question": "What spatial associations can be identified between built-up area and population density?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+      "GEE:CIESIN/GPWv411/GPW_Population_Density"
+    ],
+    "required_component_usage": [
+      "built_up_area",
+      "population_density"
+    ],
+    "expected_contribution": "A reproducible benchmark for association discovery across two core data components.",
+    "falsification_condition": "Reject if either required component is absent or not jointly represented."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_022:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_associations_20260930\\seed_audit.json"
+  }
+}

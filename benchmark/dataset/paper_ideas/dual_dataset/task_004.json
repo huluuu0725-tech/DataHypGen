@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.1002/qj.5014",
+  "task_id": "dual_dataset/task_004",
+  "title": "Convection‐permitting dynamical downscaling of ERA5 for Europe and the Mediterranean basin",
+  "category": "precipitation_reanalysis_downscaling",
+  "year": 2025,
+  "journal": "Quarterly Journal of the Royal Meteorological Society",
+  "impact_level": "medium",
+  "datasets": [
+    "CHIRPS Daily Final Precipitation v2.0",
+    "ERA5-Land Daily Aggregated Reanalysis"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "precipitation_observation_input",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    },
+    {
+      "role": "reanalysis_forcing_input",
+      "dataset": "ERA5-Land Daily Aggregated Reanalysis"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "station gauges",
+    "DEM and terrain",
+    "radar precipitation",
+    "climate indices"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_004:precipitation_reanalysis_downscaling",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from independently selected full-text evidence; empirical results are excluded from idea fields."
+  },
+  "idea": {
+    "research_question": "Can reanalysis-driven downscaling improve the spatial and temporal representation of precipitation extremes and hydroclimatic variability?",
+    "hypothesis": "ERA5 provides dynamically consistent large-scale forcing while precipitation observations constrain local bias; their combination should improve extreme-event representation over a reanalysis-only baseline.",
+    "mechanism": "ERA5 fields are dynamically downscaled and evaluated against gridded precipitation observations using common temporal windows, extremes and spatial cross-validation.",
+    "key_variables": {
+      "target": "Joint observable and task-specific response",
+      "predictors": [
+        "precipitation_observation_input",
+        "reanalysis_forcing_input",
+        "station gauges",
+        "DEM and terrain",
+        "radar precipitation",
+        "climate indices"
+      ]
+    },
+    "data_sources": [
+      "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "GEE:ECMWF/ERA5_LAND/DAILY_AGGR"
+    ],
+    "analytical_approach": "Dynamical or statistical downscaling, bias evaluation and precipitation-extreme analysis",
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves all required data roles and adds auxiliary data only for a distinct mechanism, validation or refinement purpose.",
+    "falsification_condition": "The idea fails if it drops a required role, cannot align the required inputs, or does not improve explanatory, predictive or validation performance over the appropriate single-source baseline.",
+    "required_component_usage": [
+      "precipitation_observation_input",
+      "reanalysis_forcing_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently selected full-text multidataset evidence and the composite prompt contract on 2026-09-29."
+}

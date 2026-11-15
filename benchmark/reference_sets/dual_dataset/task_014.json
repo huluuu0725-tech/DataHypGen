@@ -1,0 +1,4080 @@
+{
+  "schema_version": "portable-reference-exclusion-v1",
+  "task_id": "dual_dataset/task_014",
+  "evaluation_year": 2026,
+  "seed_exclusion": {
+    "doi": "10.1038/s41598-019-56967-x",
+    "year": 2020
+  },
+  "reference_count": 25,
+  "references": [
+    {
+      "doi": "10.1002/rse2.299"
+    },
+    {
+      "doi": "10.1007/s12145-025-01829-6"
+    },
+    {
+      "doi": "10.1016/j.foreco.2025.122945"
+    },
+    {
+      "doi": "10.1016/j.jag.2018.06.011"
+    },
+    {
+      "doi": "10.1016/j.rse.2019.111345"
+    },
+    {
+      "doi": "10.1016/j.scitotenv.2022.154729"
+    },
+    {
+      "doi": "10.1016/j.scitotenv.2022.156852"
+    },
+    {
+      "doi": "10.1038/s41559-021-01654-2"
+    },
+    {
+      "doi": "10.1038/s41598-022-05332-6"
+    },
+    {
+      "doi": "10.1038/s41598-025-26816-1"
+    },
+    {
+      "doi": "10.1088/1748-9326/ab7765"
+    },
+    {
+      "doi": "10.1109/jstars.2021.3093625"
+    },
+    {
+      "doi": "10.1109/jstars.2022.3175452"
+    },
+    {
+      "doi": "10.1109/jstars.2024.3427382"
+    },
+    {
+      "doi": "10.1109/lgrs.2018.2888641"
+    },
+    {
+      "doi": "10.1109/lgrs.2023.3324945"
+    },
+    {
+      "doi": "10.3390/rs12010049"
+    },
+    {
+      "doi": "10.3390/rs12020334"
+    },
+    {
+      "doi": "10.3390/rs14133132"
+    },
+    {
+      "doi": "10.3390/rs14143323"
+    },
+    {
+      "doi": "10.3390/rs16163050"
+    },
+    {
+      "doi": "10.3390/rs17122031"
+    },
+    {
+      "doi": "10.3390/rs9080764"
+    },
+    {
+      "doi": "10.5194/acp-19-1393-2019"
+    },
+    {
+      "doi": "10.5194/bg-20-3803-2023"
+    }
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_014:composite_observation",
+    "type": "composite_observation",
+    "name": "sar_fire composite observation",
+    "observable_group": "sar_fire_multidataset_observation",
+    "components": [
+      {
+        "role": "sar_observation",
+        "data_description": {
+          "dataset_name": "Sentinel-1 SAR time-series imagery",
+          "data_type": "C-band SAR image time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:COPERNICUS/S1_GRD",
+          "spatial_coverage": {
+            "region_name": "Cloud-prone wildfire landscapes",
+            "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+          },
+          "analytical_capabilities": [
+            "Cloud- and smoke-robust backscatter change detection",
+            "Temporal feature construction"
+          ]
+        },
+        "data_path": "GEE:COPERNICUS/S1_GRD"
+      },
+      {
+        "role": "burned_area_reference",
+        "data_description": {
+          "dataset_name": "MODIS Burned Area Monthly Global 500 m",
+          "data_type": "Burned-area raster reference observations",
+          "data_format": "Google Earth Engine ImageCollection asset",
+          "data_path": "GEE:MODIS/061/MCD64A1",
+          "spatial_coverage": {
+            "region_name": "Cloud-prone wildfire landscapes",
+            "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+          },
+          "analytical_capabilities": [
+            "Fire-event labeling",
+            "Independent validation of SAR-derived progression"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MCD64A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "sar_observation",
+        "burned_area_reference"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "required_roles": [
+    "sar_observation",
+    "burned_area_reference"
+  ],
+  "migration_alignment": {
+    "source_task_id": "dual_dataset/task_014",
+    "target_task_id": "dual_dataset/task_014",
+    "seed_doi": "10.1038/s41598-019-56967-x",
+    "reference_count": 25,
+    "original_slots": [
+      {
+        "role": "sar_observation",
+        "data_path": "GEE:COPERNICUS/S1_GRD"
+      },
+      {
+        "role": "burned_area_reference",
+        "data_path": "External: burned-area/fire-perimeter reference"
+      }
+    ],
+    "current_slots": [
+      {
+        "role": "sar_observation",
+        "data_path": "GEE:COPERNICUS/S1_GRD"
+      },
+      {
+        "role": "burned_area_reference",
+        "data_path": "GEE:MODIS/061/MCD64A1"
+      }
+    ],
+    "semantic_changes": [
+      "Resolved burned_area_reference from generic burned-area/fire-perimeter placeholder to concrete MODIS/061/MCD64A1 burned-area asset."
+    ],
+    "semantic_status": "source_resolved_to_concrete_asset",
+    "source_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\reference_sets\\task_014.json",
+    "source_sha256": "0b0b1e0a465a48cc3f66349636fac431e1e0c376e2f07d430c393123ea7830c7",
+    "provenance_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\provenance\\task_014.provenance_20261004.json"
+  },
+  "directions": [
+    {
+      "direction_id": "task_014_ref_01",
+      "source_paper_doi": "10.1002/rse2.299",
+      "source_paper": {
+        "doi": "10.1002/rse2.299",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 C-band synthetic aperture radar (SAR) backscatter"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 C-band synthetic aperture radar (SAR) backscatter",
+          "actual_product_in_paper": "Sentinel-1 C-band synthetic aperture radar (SAR) backscatter",
+          "evidence_quotes": [
+            "Sentinel-1 VV and VH backscatter coefficients"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "using as predictors (i) Sentinel-1 VV and VH backscatter coefficients and (ii) surface reflectance of Sentinel-2 bands.",
+        "The objective of this study was to evaluate the resilience to fire off several plant communities with reference to the temporal evolution of their vertical structural diversity estimated from the data fusion of C-band synthetic aperture radar (SAR) backscatter (Sentinel-1) and multispectral remote sensing reflectance (Sentinel-2) in a burned landscape of the western Mediterranean Basin."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究西地中海盆地火烧景观中，不同植物群落的垂直结构多样性如何在火灾后恢复，以及 Sentinel-1 与 Sentinel-2 数据融合能否用于估算垂直结构多样性并监测火灾生态韧性。",
+      "hypothesis_or_mechanism": "植物群落垂直结构的复杂性与火灾生态韧性相关；火灾后垂直结构多样性的恢复程度可反映群落恢复。Sentinel-1 SAR 对冠层散射体的数量与分布敏感，Sentinel-2 光学反射率提供冠层上部信息，二者融合可互补表征植被垂直结构。",
+      "variables_and_data_use": "研究以分层植被盖度计算的 Shannon 指数作为垂直结构多样性（VSD）指标，并在火烧地和未火烧对照样地进行野外测量。使用 Sentinel-1 的 VV、VH 后向散射系数及 Sentinel-2 波段地表反射率作为随机森林（RF）的预测变量，建模估算 VSD并生成火前及火后预测图。",
+      "method_paradigm": "采用野外样地测量与 Sentinel-1/Sentinel-2 数据融合，并以随机森林回归估算 VSD。通过将模型从火后一年迁移至火后两年评估可迁移性，并比较火前情景与火后恢复轨迹。",
+      "study_area": "西地中海盆地的火烧景观；文中节选未提供更具体地点。",
+      "study_period": "野外 VSD 测量为火后第1年和第2年；预测覆盖火前情景及火后第1至第4年。节选未提供具体日历年份。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 C-band synthetic aperture radar (SAR) backscatter",
+          "role_in_study": "提供 VV 和 VH 后向散射系数，作为随机森林估算 VSD 的预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-1 VV and VH backscatter coefficients",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 multispectral remote sensing reflectance",
+          "role_in_study": "提供波段地表反射率，作为随机森林估算 VSD 的预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "surface reflectance of Sentinel-2 bands",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "field vegetation cover data",
+          "role_in_study": "用于计算 Shannon 指数以测量样地垂直结构多样性，作为建模对象和野外观测数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "using Shannon’s index as a measure of vertical heterogeneity in vegetation structure from the vegetation cover in several strata",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Random forest (RF) VSD predictions",
+          "role_in_study": "输出 VSD 模型估算结果，用于生成火前及火后预测图并评估恢复。",
+          "usage": "used_as_data",
+          "evidence_quote": "We generated VSD prediction maps across the study site for the prefire scenario and 1 to 4 years postfire.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_rse2.299.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_rse2.299.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "d309a37e67bdda120454a2d95fb3d04642c58d8861504530713d68a0d31defa8",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:08",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1002_rse2.299.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_02",
+      "source_paper_doi": "10.1007/s12145-025-01829-6",
+      "source_paper": {
+        "doi": "10.1007/s12145-025-01829-6",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 L1 Ground Range Detected (GRD)",
+        "European Forest Fire Information System (EFFIS) official burnt area maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 L1 Ground Range Detected (GRD)",
+          "actual_product_in_paper": "Sentinel-1 L1 Ground Range Detected (GRD)",
+          "evidence_quotes": [
+            "it uses Sentinel-1 L1 Ground Range Detected (GRD) data"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "European Forest Fire Information System (EFFIS) official burnt area maps",
+          "actual_product_in_paper": "European Forest Fire Information System (EFFIS) official burnt area maps",
+          "evidence_quotes": [
+            "We compared the burnt areas detected by the procedure with the official burnt area maps of the European Forest Fire Information System (EFFIS)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "It uses Sentinel-1 and Sentinel-2 images, and is supported byCorine Land Cover (CLC) data",
+        "We compared the burnt areas detected by the procedure with the official burnt area maps of the European Forest Fire Information System (EFFIS)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在评估一种结合 SAR 与多光谱数据的云端流程，能否有效检测欧洲植被自然地表上的野火烧毁区域，并比较两类数据联合使用与单独使用的效果。",
+      "hypothesis_or_mechanism": "火灾会改变地表的 SAR 后向散射系数及光谱特征；按土地覆盖类别设置阈值并联合利用 SAR 与多光谱变化，可提高烧毁区域检测效果。",
+      "variables_and_data_use": "流程使用 Sentinel-1 L1 GRD 的 VH、VV 极化后向散射系数变化，以及 Sentinel-2 L2A 的红光与近红外波段计算 NDVI 变化来检测火烧迹地。Corine Land Cover (CLC) 用于提供土地覆盖类别并限定处理类别；European Forest Fire Information System (EFFIS) 的烧毁区域图用于评估检测结果。",
+      "method_paradigm": "采用基于阈值的烧毁区域检测流程，针对不同土地覆盖类别优化阈值，并比较 SAR 与多光谱数据联合或单独使用的结果。",
+      "study_area": "欧洲的植被自然地表；实验评估涉及欧洲近四年发生的三场大型野火。",
+      "study_period": "近四年内发生的三场大型野火；文本未给出具体起止年份。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 L1 Ground Range Detected (GRD)",
+          "role_in_study": "提供 SAR 影像；利用 VH、VV 极化后向散射系数变化检测火灾影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "it uses Sentinel-1 L1 Ground Range Detected (GRD) data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 Level-2A (L2A)",
+          "role_in_study": "提供地表反射率影像；使用红光和近红外波段计算 NDVI 变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Further, the procedure uses Sentinel-2 Level-2A (L2A) data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CLC",
+          "role_in_study": "提供土地覆盖分类，作为处理流程输入并用于选取森林、农业作物和低植被类别。",
+          "usage": "used_as_data",
+          "evidence_quote": "Finally, it uses data from CLC, a standardized inventory of land cover information in Europe",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EFFIS",
+          "role_in_study": "提供官方烧毁区域图及损害等级空间分布，作为检测结果的评估基准。",
+          "usage": "used_as_data",
+          "evidence_quote": "We compared the burnt areas detected by the procedure with the official burnt area maps of the European Forest Fire Information System (EFFIS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS",
+          "role_in_study": "作为引言中相关研究提及的卫星数据来源示例，未作为本文流程的输入数据。",
+          "usage": "mention_only",
+          "evidence_quote": "Multisource data integration from satellites like MODIS, VIIRS and Sentinel-2, can offer a more comprehensive dataset for burnt area detection",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS",
+          "role_in_study": "作为引言中相关研究提及的卫星数据来源示例，未作为本文流程的输入数据。",
+          "usage": "mention_only",
+          "evidence_quote": "Multisource data integration from satellites like MODIS, VIIRS and Sentinel-2, can offer a more comprehensive dataset for burnt area detection",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s12145-025-01829-6.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s12145-025-01829-6.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "50dbf233ffe0c177b9691dad2e90559611205a8e1edf7d9434efab03d57af3a0",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:10",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1007_s12145-025-01829-6.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_03",
+      "source_paper_doi": "10.1016/j.foreco.2025.122945",
+      "source_paper": {
+        "doi": "10.1016/j.foreco.2025.122945",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR imagery"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR imagery",
+          "actual_product_in_paper": "Sentinel-1 SAR imagery",
+          "evidence_quotes": [
+            "including Landsat 8 OLI and Sentinel-1 SAR imagery"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "including Landsat 8 OLI and Sentinel-1 SAR imagery",
+        "incorporates pre-fire FCOVER and SAR data (proxy for vegetation structural complexity) as biophysical drivers to predict fire-induced changes in ET behavior."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究西班牙西北部2022年四场野火后，火灾严重度、火前植被状况和地形如何影响火后一年蒸散发（ET）的下降，并比较不同生态系统类型的响应。",
+      "hypothesis_or_mechanism": "火灾严重度越高，植被损失越大，因而ET下降越显著；火前植被覆盖及结构、地形和生态系统类型也会影响火后ET变化。",
+      "variables_and_data_use": "研究使用Landsat影像和Operational Simplified Surface Energy Balance（SSEBop）模型估算ET，并分析火后一年ET变化；以Landsat 8 OLI影像经PROSAIL-D辐射传输模型反演获得火前FCOVER，以Sentinel-1 SAR表征植被结构复杂度。研究还考察火灾严重度、地形和生态系统类型，并使用随机森林回归识别ET下降的主要影响因素。",
+      "method_paradigm": "采用基于Landsat的SSEBop模型估算ET，结合遥感变量和环境因子分析火后变化。使用随机森林回归评估各因素对火后一年ET下降的影响。",
+      "study_area": "西班牙西北部的Courel、Valdeorras、Figueruela de Arriba和Valdueza四处野火区。",
+      "study_period": "野火发生于2022年；分析火后一年ET变化。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Landsat 8 OLI images",
+          "role_in_study": "用于PROSAIL-D辐射传输模型反演火前FCOVER。",
+          "usage": "used_as_data",
+          "evidence_quote": "FCOVER from PROSAIL-D RTM inversion of Landsat 8 OLI images",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 SAR imagery",
+          "role_in_study": "作为植被结构复杂度的代理变量，用于分析火后ET变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "including Landsat 8 OLI and Sentinel-1 SAR imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat imagery",
+          "role_in_study": "作为SSEBop模型估算ET的卫星影像输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The SSEBop model estimates ET from satellite imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Operational Simplified Surface Energy Balance (SSEBop) model",
+          "role_in_study": "根据卫星影像估算ET。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study utilized the Operational Simplified Surface Energy Balance (SSEBop) model to estimate ET from Landsat imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Spanish Forest Map at 1:25,000 scale",
+          "role_in_study": "提取野火发生前的植被类型信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "The information on pre-fire vegetation types for each wildfire was extracted from the Spanish Forest Map at 1:25,000 scale",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.foreco.2025.122945.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.foreco.2025.122945.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "32a1ae9b6b3cc23ddb00b0c9b01236865965d722ea545fd5e2773f203a4bb400",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:09",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1016_j.foreco.2025.122945.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_04",
+      "source_paper_doi": "10.1016/j.jag.2018.06.011",
+      "source_paper": {
+        "doi": "10.1016/j.jag.2018.06.011",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A Interferometric Wide-swath (IW) scene, VV and VH",
+        "EFFIS vector shapefile; Copernicus EMS EMS-grading map (EMSR132)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A Interferometric Wide-swath (IW) scene, VV and VH",
+          "actual_product_in_paper": "Sentinel-1A Interferometric Wide-swath (IW) scene, VV and VH",
+          "evidence_quotes": [
+            "One post-fire Sentinel-1 image obtained in this study was an IW scene and had an acquisition date 12 August 2015."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "EFFIS vector shapefile; Copernicus EMS EMS-grading map (EMSR132)",
+          "actual_product_in_paper": "EFFIS vector shapefile; Copernicus EMS EMS-grading map (EMSR132)",
+          "evidence_quotes": [
+            "A vector shapefile was provided by EFFIS, so that fire perimeters could be derived from satellite data and visual interpretation."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "One post-fire Sentinel-1 image obtained in this study was an IW scene and had an acquisition date 12 August 2015.",
+        "A vector shapefile was provided by EFFIS, so that fire perimeters could be derived from satellite data and visual interpretation.",
+        "An object-based SVM classification using as input both optical and radar data was the most effective approach of delineating burn severity, achieving an overall accuracy of 92.97%."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究探讨在西班牙中西部 Sierra de Gata 2015 年野火中，Sentinel-1 与 Sentinel-2 能否支持快速、低成本的烧毁面积和燃烧严重度制图，并评估火灾对土壤侵蚀的影响。",
+      "hypothesis_or_mechanism": "研究的核心机制是火灾造成的地表与植被变化会反映在 Sentinel-2 光学光谱指标及 Sentinel-1 雷达后向散射中，因此可用于识别烧毁区域和燃烧严重度。将火灾严重度信息与 RUSLE 土壤侵蚀模型结合，可量化火灾对土壤侵蚀的影响。",
+      "variables_and_data_use": "研究使用 Sentinel-2 多光谱影像计算 NBR、NDVI、GNDVI、MIRBI、MSRre 和 CIre，并比较多种烧毁面积提取算法；使用 Sentinel-1 的 VV、VH 后向散射数据与 Sentinel-2 数据联合进行燃烧严重度分类。研究还将 SRTM 高程、土壤图和气象数据用于 RUSLE 土壤侵蚀评估，并用 EFFIS 与 Copernicus EMS 资料开展参考和精度评估。",
+      "method_paradigm": "采用多种遥感影像处理与分类方法比较烧毁面积提取效果，并以面向对象的 SVM 分类结合光学和雷达数据制图燃烧严重度。另将遥感派生的火灾信息输入 RUSLE，评估火灾对土壤侵蚀的影响。",
+      "study_area": "Sierra de Gata，Cáceres，西班牙中西部",
+      "study_period": "2015 年 8 月 5—10 日野火；Sentinel-2 影像日期为 2015 年 8 月 4 日和 12 日，Sentinel-1 影像日期为 2015 年 8 月 12 日。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1A, Interferometric Wide-swath (IW) scene, VV and VH",
+          "role_in_study": "提供火后 C 波段 SAR 后向散射数据；VV、VH 转为 dB 并与 Sentinel-2 数据联合用于燃烧严重度分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "One post-fire Sentinel-1 image obtained in this study was an IW scene and had an acquisition date 12 August 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2",
+          "role_in_study": "提供火前、火后多光谱影像，用于计算光谱指数、烧毁面积提取及燃烧严重度制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "The two images obtained to carry out the bulk of this study were captured on 4 August 2015 and 12 August 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SRTM 1 ARC-second image",
+          "role_in_study": "用于坡度和高程分析，并支持土壤侵蚀评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The first dataset, obtained to perform slope and elevation analysis, was an SRTM 1 ARC-second image.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Soil maps",
+          "role_in_study": "作为 RUSLE 土壤侵蚀评估的辅助数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soil maps were obtained from the European Union, alongside meteorological data for the days surrounding the fire.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Meteorological data",
+          "role_in_study": "用于火灾前后土壤侵蚀相关评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soil maps were obtained from the European Union, alongside meteorological data for the days surrounding the fire.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EFFIS vector shapefile",
+          "role_in_study": "用于派生火灾周界，支持卫星提取结果的参考与精度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "A vector shapefile was provided by EFFIS, so that fire perimeters could be derived from satellite data and visual interpretation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Copernicus Emergency Management Service EMS-grading map (EMSR132)",
+          "role_in_study": "提供火灾四级燃烧严重度参考，用于评估燃烧严重度制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "Numerous products were obtained from the Copernicus EMS, including an EMS-grading map (EMSR132) for the Sierra de Gata wildfire event.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Pleiades-1A data",
+          "role_in_study": "作为 EMS 燃烧严重度数据集的影像来源之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "This dataset was derived from Pleiades-1A data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Field plots",
+          "role_in_study": "作为 EMS 燃烧严重度数据集的地面资料来源之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "and field plots, with the dataset considered to have an overall accuracy of over 85%",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.jag.2018.06.011.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.jag.2018.06.011.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "6868554508ffd9cd4fab54a5c61a02f6ae78efd8e895abeed390dd7516f81eab",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:13",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1016_j.jag.2018.06.011.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_05",
+      "source_paper_doi": "10.1016/j.rse.2019.111345",
+      "source_paper": {
+        "doi": "10.1016/j.rse.2019.111345",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 A/B Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images",
+        "MODIS based MCD64A1 Version 6"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 A/B Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images",
+          "actual_product_in_paper": "Sentinel-1 A/B Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images",
+          "evidence_quotes": [
+            "The algorithm relies on temporal series of Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images acquired by the Sentinel-1 A/B satellites"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS based MCD64A1 Version 6",
+          "actual_product_in_paper": "MODIS based MCD64A1 Version 6",
+          "evidence_quotes": [
+            "Comparing results with the MODIS based MCD64A1 Version 6"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The algorithm relies on temporal series of Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images acquired by the Sentinel-1 A/B satellites",
+        "Comparing results with the MODIS based MCD64A1 Version 6"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究如何利用 Sentinel-1 SAR 后向散射系数，并结合热异常信息，在全球多个火灾频发区域检测和制图火烧迹地；算法在亚马逊盆地和伊比利亚半岛的开发区构建，并在全球18个验证区评估。",
+      "hypothesis_or_mechanism": "火灾会改变植被与地表的散射特征，因此火前火后的 Sentinel-1 后向散射异常变化可用于识别火烧迹地。但变化方向和幅度受极化、植被、土壤湿度及环境条件影响，故需结合热异常和土地覆盖类别解释局地变化。",
+      "variables_and_data_use": "使用 Sentinel-1A/B 的 C 波段 VV、VH 极化 GRD 时序影像，提取后向散射系数并检测火前火后的异常变化；以 MODIS 和 VIIRS 热点辅助确定火灾事件，并用 ESA CCI 土地覆盖图处理类别相关的散射差异。热点缺失处使用随机森林分类；Landsat-8 与 Sentinel-2 光学影像用于生成验证火烧迹地边界，MODIS MCD64A1 Version 6 用于结果比较。",
+      "method_paradigm": "采用基于时序变化检测的 SAR 火烧迹地制图范式：利用 Reed-Xiaoli detector（RXD）检测后向散射异常变化，并由热异常引导。结合随机森林分类处理无热点区域，并进行后处理与光学参考边界验证。",
+      "study_area": "算法开发区包括亚马逊盆地的三个站点和伊比利亚半岛的一个站点；验证区为全球18个火灾频发区域，覆盖从北方森林到热带、亚热带森林、稀树草原和草地等生物群系。",
+      "study_period": "土地覆盖数据使用2015年图层；Landsat-8验证时段按各瓦片的火季长度及影像可用性调整，Sentinel-2用于缩小验证期与检测期之间的时间间隔。正文所给片段未提供统一的 Sentinel-1 检测时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 A/B Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images",
+          "role_in_study": "核心输入时序影像；用于计算 VV、VH 后向散射系数并检测火前火后的异常变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The algorithm relies on temporal series of Ground Range Detected (GRD) dual-polarized (vertical-vertical VV, and vertical-horizontal VH polarizations) SAR images acquired by the Sentinel-1 A/B satellites",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS (Visible Infrared Imaging Radiometer Suite) sensor",
+          "role_in_study": "提供热异常热点，辅助识别火灾事件并引导火烧迹地检测。",
+          "usage": "used_as_data",
+          "evidence_quote": "The VIIRS and MODIS database was last accessed in January 2018.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS sensor",
+          "role_in_study": "提供热异常热点，辅助识别火灾事件并引导火烧迹地检测；MODIS MCD64A1 Version 6 另用于结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Comparing results with the MODIS based MCD64A1 Version 6",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CCI land cover maps",
+          "role_in_study": "提供土地覆盖类别信息，用于考虑后向散射行为的类别差异。",
+          "usage": "used_as_data",
+          "evidence_quote": "The most recent map (i.e., 2015) was used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-8 optical images",
+          "role_in_study": "提供经大气校正的地表反射率影像，用于导出验证火烧迹地边界。",
+          "usage": "used_as_data",
+          "evidence_quote": "To derive the validation fire perimeters (see subsection 3.4 for more details), Landsat-8 optical images were retrieved from the United States Geological Survey repository (USGS) as atmospherically corrected surface reflectance products",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 Level-1C images",
+          "role_in_study": "补充光学验证影像，以减少验证数据中的时间空档及验证期与 Sentinel-1 检测期之间的时间差。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 Level-1C images retrieved from the Copernicus Open Access Hub were considered to reduce temporal gaps in the validation dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Enhanced Level 3 Passive Soil Moisture Product based on L-Band Radiometer",
+          "role_in_study": "用于分析土壤湿度对火烧迹地检测精度的影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "Specifically, the Enhanced Level 3 Passive Soil Moisture Product based on L-Band Radiometer (9 km pixel spacing and 3 days revisit period) was used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Shuttle Radar Topography Mission (SRTM) one arc-second DEM",
+          "role_in_study": "用于 Sentinel-1 影像正射校正。",
+          "usage": "used_as_data",
+          "evidence_quote": "The calibrated images were orthorectified to ground geometry using elevation information from the Shuttle Radar Topography Mission (SRTM) one arc-second DEM",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS based MCD64A1 Version 6",
+          "role_in_study": "作为对照产品，与论文算法的火烧迹地检测结果进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Comparing results with the MODIS based MCD64A1 Version 6",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.rse.2019.111345.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.rse.2019.111345.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "2da6d0e934f84e6a856359f85bc427fb8954ae56d091e74e3cf54f971fc97779",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:11",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1016_j.rse.2019.111345.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_06",
+      "source_paper_doi": "10.1016/j.scitotenv.2022.154729",
+      "source_paper": {
+        "doi": "10.1016/j.scitotenv.2022.154729",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products",
+        "fire perimeters from the EMS"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products",
+          "actual_product_in_paper": "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products",
+          "evidence_quotes": [
+            "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products at dual polarization (VV + VH) were acquired for all study sites, selecting the closest date prior to the wildfires (Table A1)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "fire perimeters from the EMS",
+          "actual_product_in_paper": "fire perimeters from the EMS",
+          "evidence_quotes": [
+            "Burned areas were delimited according to the fire perimeters from the EMS (https://emergency.copernicus.eu/)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products at dual polarization (VV + VH) were acquired for all study sites, selecting the closest date prior to the wildfires (Table A1).",
+        "Burned areas were delimited according to the fire perimeters from the EMS (https://emergency.copernicus.eu/)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在探讨南欧 23 场野火中环境变量与火烧严重度的关系，并建立可用于广域预测且能泛化至独立火场的预测模型。",
+      "hypothesis_or_mechanism": "气候、地形及燃料负荷、类型、湿度和连续性均会影响火烧严重度；其中燃料特征可能是主要驱动因素。研究预期多光谱影像得到的燃料代理变量具有较强的预测能力，并通过训练、插值和独立火场外推检验模型泛化能力。",
+      "variables_and_data_use": "研究以 Sentinel-2 影像计算 dNBR 表征火烧严重度，并用火灾发生前的 Sentinel-1 GRD VV、VH 后向散射数据构建雷达变量。WorldClim v2.1、SRTM 1 s 和 Copernicus Global Land Cover 用于气候、地形和土地覆盖相关变量；研究将环境预测变量分组，并采用单变量回归和随机森林模型预测火烧严重度。",
+      "method_paradigm": "研究采用多源遥感与地理空间数据变量构建、单变量回归和随机森林预测相结合的范式。通过训练集、训练火场内插值集和独立火场外推集评估模型表现与泛化能力。",
+      "study_area": "南欧，涵盖葡萄牙、西班牙、法国、意大利和希腊的 23 场野火。",
+      "study_period": "野火发生于 2017—2020 年；WorldClim 气候变量所述均值时段为 1970—2000 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products",
+          "role_in_study": "提供火灾前 VV、VH 极化后向散射数据，用于构建雷达环境预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-1 Interferometric Wide (IW) swath mode Ground Range Detected (GRD) high resolution Synthetic Aperture Radar (SAR) products at dual polarization (VV + VH) were acquired for all study sites, selecting the closest date prior to the wildfires (Table A1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 level 1C images",
+          "role_in_study": "提供火前、火后多光谱影像，用于计算 dNBR 表征火烧严重度，并构建多光谱燃料代理变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Pre- and post-burn Sentinel-2 level 1C images were selected for each study wildfire (Table A1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Worldclim version 2.1 database at 30 s",
+          "role_in_study": "提供全球气候数据，用于构建气候预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "global climatic data from the Worldclim version 2.1 database at 30 s (Fick and Hijmans, 2017)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SRTM 1 s (30 m) Global digital elevation model",
+          "role_in_study": "提供高程数据，用于地形变量构建，并用于 Sentinel-1 地形处理及 Sentinel-2 校正。",
+          "usage": "used_as_data",
+          "evidence_quote": "the SRTM 1 s (30 m) Global digital elevation model (SRTM, 2000)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Copernicus Global Land Cover product from the year 2015 at 100 m spatial resolution",
+          "role_in_study": "提供全球土地覆盖数据，用于构建燃料及土地覆盖相关预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "the Copernicus Global Land Cover product from the year 2015 at 100 m spatial resolution (Buchhorn et al., 2020)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "fire perimeters from the EMS",
+          "role_in_study": "用于划定野火烧毁范围；若 EMS 未提供火灾边界，则由 Sentinel-2 影像目视勾绘。",
+          "usage": "used_as_data",
+          "evidence_quote": "Burned areas were delimited according to the fire perimeters from the EMS (https://emergency.copernicus.eu/).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Corine Land Cover project (CLC, 2012, 2018)",
+          "role_in_study": "用于获取各火场受影响植被群落信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "The information of the vegetation communities affected in each wildfire was obtained from the Corine Land Cover project (CLC, 2012, 2018).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.scitotenv.2022.154729.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.scitotenv.2022.154729.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "3759d98c3d20ff01ad23926ed03502eb42c0ebf44f150b28b1ef2046d1f4dcc5",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:11",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1016_j.scitotenv.2022.154729.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_07",
+      "source_paper_doi": "10.1016/j.scitotenv.2022.156852",
+      "source_paper": {
+        "doi": "10.1016/j.scitotenv.2022.156852",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR time-series imagery"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR time-series imagery",
+          "actual_product_in_paper": "Sentinel-1A SAR scenes, Ground Range Detected (GRD) Level-1 product",
+          "evidence_quotes": [
+            "The SAR images corresponded to a Ground Range Detected (GRD) Level-1 product (ESA, 2022b)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Remote sensing SAR data used to predict soil properties one month and one year after wildfire included Sentinel-1 C-band and ALOS-2 L-band backscatter at dual polarization",
+        "The SAR images corresponded to a Ground Range Detected (GRD) Level-1 product (ESA, 2022b)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究区为西班牙西北部 Sierra de Cabrera 山区，研究评估 Sentinel-1 C 波段与 ALOS-2 L 波段 SAR 后向散射数据能否监测野火后土壤有机碳、总氮和有效磷，并检验模型从火后一个月向一年后的时间迁移能力。研究还考察这些土壤性质的短期变化是否因火前植物群落类型而异。",
+      "hypothesis_or_mechanism": "SAR 后向散射及其波段变换可用于估算火后土壤性质；由于波段差异，ALOS-2 L 波段可能比 Sentinel-1 C 波段更适合此任务。基于 ALOS-2 建立的关系预期可迁移至火后一年，而土壤性质变化可能随火前植物群落而异。",
+      "variables_and_data_use": "因变量为野火后一个月和一年实地测得的土壤有机碳、总氮和有效磷；预测变量为 Sentinel-1A GRD Level-1 的 VV、VH 后向散射及其筛选后的变换，以及 ALOS-2 PALSAR-2 FBD 马赛克的 HH、HV 后向散射及其筛选后的变换。研究以频率学派模型平均法分别拟合两种传感器的模型，并用火后一年数据评估时间迁移；还收集影像获取前七天的站点累计降水以考量土壤水分影响。",
+      "method_paradigm": "采用 SAR 后向散射遥感与实地土壤测量相结合的数字土壤制图范式，以广义线性模型和频率学派模型平均法估算土壤性质，并比较传感器表现及模型跨时段迁移能力。",
+      "study_area": "西班牙西北部伊比利亚半岛 Sierra de Cabrera 山区野火范围内的灌丛与森林景观。",
+      "study_period": "野火发生于 2017 年 8 月；土壤采样及 SAR 影像覆盖火后约一个月（2017 年 9–10 月）和约一年（2018 年 7 月）。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1A SAR scenes, Ground Range Detected (GRD) Level-1 product",
+          "role_in_study": "提供火后约一个月和一年两个时点的 C 波段 VV、VH 后向散射及其变换，作为土壤性质模型预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "The SAR images corresponded to a Ground Range Detected (GRD) Level-1 product (ESA, 2022b).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ALOS-2 PALSAR-2 Fine Beam Dual-polarization (FBD) annual global mosaics",
+          "role_in_study": "提供火后约一个月和一年两个时点的 L 波段 HH、HV 后向散射及其变换，作为土壤性质模型预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Starting from 2015, JAXA has delivered 25 m ALOS-2 PALSAR-2 annual global mosaics of Fine Beam Dual-polarization (FBD) SAR data strips (stripmap mode) acquired in ascending orbits with HH and HV polarizations",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Soil samples collected in the field",
+          "role_in_study": "实地采样并测定土壤有机碳、总氮和有效磷，作为模型响应变量及验证数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Soil organic C (%) was determined using an EuroVector EA3000 elemental analyzer (EuroVector SpA, Italy) following the combustion approach (Dumas, 1831).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "meteorological stations closest to the study area",
+          "role_in_study": "提供 SAR 影像获取前七天累计降水，用于考量降水及土壤水分对 SAR 后向散射的影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "the cumulative precipitation for a seven-day period prior to SAR image acquisition was collected from the meteorological stations closest to the study area (two stations within 40 km radius) (AEMET, 2022).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.scitotenv.2022.156852.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1016_j.scitotenv.2022.156852.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "be5284d31fe08bb635f43259d88df7b34578d06e320534df764bc00a72673a04",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:22",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1016_j.scitotenv.2022.156852.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_08",
+      "source_paper_doi": "10.1038/s41559-021-01654-2",
+      "source_paper": {
+        "doi": "10.1038/s41559-021-01654-2",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "microwave and optical remote sensing",
+        "MODIS Burned Area Monthly Global 500 m"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "microwave and optical remote sensing",
+          "actual_product_in_paper": "microwave and optical remote sensing",
+          "evidence_quotes": [
+            "We used LFMC data from an artificial intelligence model trained and validated in ecosystems of the western US using microwave and optical remote sensing"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS Burned Area Monthly Global 500 m",
+          "actual_product_in_paper": "Moderate Resolution Imaging Spectroradiometer burned area product MCD64A1",
+          "evidence_quotes": [
+            "We used burned area data for 2001–2020 from the Moderate Resolution Imaging Spectroradiometer burned area product MCD64A1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We used LFMC data from an artificial intelligence model trained and validated in ecosystems of the western US using microwave and optical remote sensing",
+        "We used burned area data for 2001–2020 from the Moderate Resolution Imaging Spectroradiometer burned area product MCD64A1"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究美国西部植被对水分限制的敏感性是否能解释不同地区在大气干旱增强时燃烧面积响应的差异，以及这种敏感性如何关联野火风险和人类暴露。",
+      "hypothesis_or_mechanism": "植物水分敏感性（PWS）反映土壤和植物水力性状对气候水分亏缺影响活体燃料含水量的缓冲能力。相同的VPD增加下，植被水分对水分限制越敏感的地区，燃烧面积增幅越大。",
+      "variables_and_data_use": "研究以人工智能模型生成的活体燃料含水量（LFMC）数据和GRIDMET的100小时死燃料含水量（DFMC）计算PWS；用MODIS MCD64A1燃烧面积数据与PRISM的VPD数据估计各PWS分区的燃烧面积对VPD的响应。还使用NLCD 2016划定植被区域，并以植物和土壤水力性状、VPD长期趋势及WUI和人口密度数据分析PWS驱动因素、气候趋势与人类暴露。",
+      "method_paradigm": "先用受非负斜率约束的线性回归，将不同滞后期的LFMC异常与DFMC异常联系起来计算PWS，再按PWS划分区域并以线性回归估计燃烧面积对VPD的敏感性。另用随机森林回归评估植物与土壤性状对PWS空间差异的解释作用。",
+      "study_area": "美国西部",
+      "study_period": "PWS计算使用2016—2020年6月至11月数据；燃烧面积与VPD关系分析使用2001—2020年数据；VPD趋势分析覆盖1980—2020年；WUI扩张分析覆盖1990—2010年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "artificial intelligence model trained and validated in ecosystems of the western US using microwave and optical remote sensing",
+          "role_in_study": "提供LFMC数据，用于计算植物水分敏感性（PWS）；模型由野外实测燃料含水量训练和验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used LFMC data from an artificial intelligence model trained and validated in ecosystems of the western US using microwave and optical remote sensing",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Fuel Moisture Database",
+          "role_in_study": "提供用于训练LFMC数据集的野外实测活叶、针叶和细枝含水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "The LFMC dataset was trained on field-measured moisture content of live leaves, needles and thin branches from the National Fuel Moisture Database",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "100 h DFMC",
+          "role_in_study": "表示气候驱动的水分平衡；与LFMC异常配对用于计算PWS。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here we used the 100 h DFMC, which is a meteorological estimate of wetness of twigs and branches 1–3 inches in diameter.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GRIDMET",
+          "role_in_study": "提供DFMC数据，用于计算PWS。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used DFMC data from GRIDMET",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer burned area product MCD64A1",
+          "role_in_study": "提供2001—2020年燃烧面积数据，用于计算燃烧面积对VPD的响应。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used burned area data for 2001–2020 from the Moderate Resolution Imaging Spectroradiometer burned area product MCD64A1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Parameter-elevation Regressions on Independent Slopes Model",
+          "role_in_study": "提供VPD数据，与燃烧面积数据配合估计燃烧面积对VPD的响应。",
+          "usage": "used_as_data",
+          "evidence_quote": "and VPD data from the Parameter-elevation Regressions on Independent Slopes Model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Land Cover Database version 2016",
+          "role_in_study": "用于识别树木、灌丛和草地等植被区域，以划分PWS区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "Vegetated areas included regions with trees, shrubs and grasslands obtained from the National Land Cover Database version 2016",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "canopy height from 2005",
+          "role_in_study": "作为植物性状之一，纳入随机森林回归以评估PWS空间差异的驱动因素。",
+          "usage": "used_as_data",
+          "evidence_quote": "For plant traits, we used canopy height from 2005 from ref. 72",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "xylem capacitance",
+          "role_in_study": "植物水力性状变量，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "including xylem capacitance",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "a stomatal conductance slope parameter that is inversely proportional to marginal water use efficiency (g1)",
+          "role_in_study": "植物水力性状变量，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "a stomatal conductance slope parameter that is inversely proportional to marginal water use efficiency ( g 1 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "maximum xylem conductance",
+          "role_in_study": "植物水力性状变量，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "maximum xylem conductance",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "the ψ50",
+          "role_in_study": "植物水力性状变量，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "the ψ 50",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "a hydraulic functional type derived from K-means clustering of these plant hydraulic traits",
+          "role_in_study": "植物水力功能类型，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "a hydraulic functional type derived from K -means clustering of these plant hydraulic traits determined from ref. 41",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "isohydricity (a stomatal regulation trait)",
+          "role_in_study": "植物气孔调节性状，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also included isohydricity (a stomatal regulation trait) from ref. 45",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "maximum rooting depth",
+          "role_in_study": "植物性状，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "and maximum rooting depth from ref. 73",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "average saturated hydraulic conductivity (Ks)",
+          "role_in_study": "土壤水力性状，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "For soil traits, we used average saturated hydraulic conductivity ( K s )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "the shape parameter describing the exponent of soil water retention curves (n)",
+          "role_in_study": "土壤水力性状，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "the shape parameter describing the exponent of soil water retention curves ( n )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "soil porosity",
+          "role_in_study": "土壤水力性状，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "soil porosity from ref. 74",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "fraction of soil, silt and clay",
+          "role_in_study": "土壤组成变量，作为随机森林回归的解释变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "and fraction of soil, silt and clay from ref. 75",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "maps of population density and WUI from Martinuzzi et al.",
+          "role_in_study": "用于追踪不同野火危险程度地区1990—2010年的WUI扩张。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used maps of population density and WUI from Martinuzzi et al. 77 to track WUI expansion from 1990 to 2010 in regions with different wildfire hazard.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41559-021-01654-2.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41559-021-01654-2.methods.txt"
+        ],
+        "chars": 15089,
+        "text_mode": "head+methods",
+        "source_sha256": "893b0617d898d417149d9f4d5b7a3d7fa4ad61fceaa94d054a3f668f3266ba92",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:29",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1038_s41559-021-01654-2.json",
+        "quote_gate": {
+          "total": 24,
+          "verified": 21
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_09",
+      "source_paper_doi": "10.1038/s41598-022-05332-6",
+      "source_paper": {
+        "doi": "10.1038/s41598-022-05332-6",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR time-series imagery",
+        "MODIS MCD64A1 v6 BA product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR time-series imagery",
+          "actual_product_in_paper": "Ground Range Detected (GRD) Sentinel-1 (S1) C-band SAR imagery",
+          "evidence_quotes": [
+            "Ground Range Detected (GRD) Sentinel-1 (S1) C-band SAR imagery was acquired at a 10 × 10 m pixel size"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS MCD64A1 v6 BA product",
+          "actual_product_in_paper": "MODIS MCD64A1 v6 BA product",
+          "evidence_quotes": [
+            "In all further analysis, the MODIS MCD64A1 v6 BA product 81 was then used to assess burned area extent, produce a burned area mask and disregard any burned vegetation reference areas."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Ground Range Detected (GRD) Sentinel-1 (S1) C-band SAR imagery was acquired at a 10 × 10 m pixel size",
+        "In all further analysis, the MODIS MCD64A1 v6 BA product 81 was then used to assess burned area extent, produce a burned area mask and disregard any burned vegetation reference areas."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在确定能否利用免费卫星影像，在巴西戈亚斯州约110万公顷的研究区绘制塞拉多原生植被的植被生理类型图，并区分其他土地覆盖类型。研究还比较不同影像组合及质量控制对分类精度的影响。",
+      "hypothesis_or_mechanism": "塞拉多植被类型具有异质性，且季节性水分亏缺会造成植被物候差异，因此季节性卫星影像及其特征可能有助于区分不同植被类型。烧毁区域可能污染植被参考数据并影响分类精度，因而通过烧毁区域掩膜排除相关参考区域可能改善分类。",
+      "variables_and_data_use": "研究使用 Sentinel-1 GRD C 波段 SAR 的 VH、VV 极化及其比值，Sentinel-2 Level-2A 和 Landsat-8 地表反射率及其植被指数，并组合季节影像、年内方差、纹理和 COP-GLO-30 DEM 派生的坡度作为分类特征。MODIS MCD64A1 v6 用于生成烧毁区域掩膜并排除可能烧毁的植被参考区域；ERA5 降水用于划分干湿季。研究以地面植被参考数据训练和验证两阶段随机森林分类器，比较七种特征空间。",
+      "method_paradigm": "采用 Google Earth Engine 上的两阶段随机森林分类范式：先分类至土地覆盖/植被群系层级，再将原生植被细分至生理类型层级。通过改变输入影像特征空间、重复训练验证，并使用烧毁区域掩膜进行质量控制来比较分类结果。",
+      "study_area": "巴西戈亚斯州塞拉多地区，约1.1 Mha，包含 Chapada dos Veadeiros National Park 及其周边区域。",
+      "study_period": "卫星影像输入期为2018年10月至2019年9月；地面植被参考数据采集于2017—2020年。ERA5降水季节划分依据2009—2019年平均值。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Ground Range Detected (GRD) Sentinel-1 (S1) C-band SAR imagery",
+          "role_in_study": "提供VH、VV极化后向散射及VH/VV比值，作为不同分类特征空间的输入影像特征。",
+          "usage": "used_as_data",
+          "evidence_quote": "Ground Range Detected (GRD) Sentinel-1 (S1) C-band SAR imagery was acquired at a 10 × 10 m pixel size",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 (S2) Level-2A surface reflectance imagery",
+          "role_in_study": "提供地表反射率波段及植被指数，并用于季节性影像组合和纹理特征构建。",
+          "usage": "used_as_data",
+          "evidence_quote": "S2 Level-2A surface reflectance imagery was filtered to include only scenes with a cloud cover of < 70%.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-8 (L8) surface reflectance imagery",
+          "role_in_study": "作为替代的多光谱输入影像，用于构建并评估分类特征空间。",
+          "usage": "used_as_data",
+          "evidence_quote": "Similarly, L8 surface reflectance imagery was also acquired, filtered, and a cloud and shadow bit mask applied",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS MCD64A1 v6 BA product",
+          "role_in_study": "评估烧毁面积范围、生成烧毁区域掩膜，并排除可能烧毁的植被参考区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "In all further analysis, the MODIS MCD64A1 v6 BA product 81 was then used to assess burned area extent, produce a burned area mask and disregard any burned vegetation reference areas.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "COP-GLO-30 DEM",
+          "role_in_study": "提供高程数据，并据此计算坡度作为所有分类特征空间的输入特征。",
+          "usage": "used_as_data",
+          "evidence_quote": "Elevation data was taken from the COP-GLO-30 DEM 94 , and terrain slope was then calculated.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA5 gridded climate reanalysis dataset",
+          "role_in_study": "提供降水数据，用于依据月降水量划分干季和湿季。",
+          "usage": "used_as_data",
+          "evidence_quote": "Wet and dry season months were defined using the ERA5 gridded climate reanalysis dataset within GEE",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "vegetation type reference data",
+          "role_in_study": "地面GPS植被参考数据用于训练和验证植被分类器。",
+          "usage": "used_as_data",
+          "evidence_quote": "1686 unique ground reference sites (GPS coordinates) were identified across the eight native vegetation physiognomies",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Google Earth",
+          "role_in_study": "检查时序影像及高分辨率影像，以辅助选择非原生植被类型参考坐标和划定参考区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "further GPS coordinates selected following the inspection of timeseries imagery in Google Earth (a combination of satellite imagery and arial photos)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MapBiomas Collection 5 land cover map for 2018",
+          "role_in_study": "辅助识别非原生植被类型参考点。",
+          "usage": "used_as_data",
+          "evidence_quote": "further GPS coordinates selected following the inspection of timeseries imagery in Google Earth (a combination of satellite imagery and arial photos) and the MapBiomas Collection 5 land cover map for 2018",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Cerrado specific reference BA product",
+          "role_in_study": "作为评估两种全球烧毁面积产品的参考数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Commission errors (CE, the fraction of unburned pixels mistakenly classified as burned) and omission errors (OE, the fraction of burned pixels not detected by the product) relative to a Cerrado specific reference BA product were assessed",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-022-05332-6.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-022-05332-6.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "c638019f0561a35ae8be4da62068f58c1ca59a53c82d236b1391dee26ce70e9e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:28",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1038_s41598-022-05332-6.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_10",
+      "source_paper_doi": "10.1038/s41598-025-26816-1",
+      "source_paper": {
+        "doi": "10.1038/s41598-025-26816-1",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission",
+          "actual_product_in_paper": "C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission",
+          "evidence_quotes": [
+            "This work employs C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission to give us a strong detection system that works in any weather and is better than optical and thermal sensors"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This research uses the Interferometric Wide Swath (IW) mode.",
+        "Component 1 employs FPANet for large-scale, continuous surveillance using SAR imagery.",
+        "Upon detection by the SAR system, UAVs equipped with RGB and thermal sensors are deployed for a targeted analysis."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究旨在构建并评估面向野火监测的混合系统，研究对象包括美国多个预设燃烧事件中的火线与火灾影响区域，以及用于大范围监测的野火热点和烧痕。该系统探索如何结合 Sentinel-1 SAR 的全天候广域监测与 UAV 光学、热红外影像的精细分割，并生成可读的火情解读。",
+      "hypothesis_or_mechanism": "SAR 可在烟雾、云层或黑暗条件下提供观测，其对植被冠层损失、地表粗糙度和水分变化的后向散射响应有助于识别火灾相关变化；UAV RGB 与热红外数据的互补融合则可提高火线分割精度。",
+      "variables_and_data_use": "研究使用 Sentinel-1 C 波段 SAR 影像进行大范围全天候野火热点监测，并利用 VV、VH 后向散射变化识别烧痕及地表结构变化。FLAME 3 UAV RGB、热红外影像及火灾掩膜用于训练或验证精细火线分割；Landsat 8/9 用于植被指数、地表温度和火后烧毁严重度分析，VIIRS VNP14IMG 用于近实时活动火点监测。",
+      "method_paradigm": "采用多模态深度学习与分阶段监测范式：FPANet 对 SAR 影像进行大范围分割，DualSegFormer 融合 UAV RGB 与热红外影像进行精细火线分割，再由视觉语言模型将分割结果转为自然语言解读。",
+      "study_area": "FLAME 3 覆盖美国六个预设燃烧事件，包括佛罗里达州、亚利桑那州和俄勒冈州；卫星监测范围为大范围区域，具体区域未说明。",
+      "study_period": "未明确给出研究观测时段；FLAME 3 数据集于 2024 年 12 月出现，包含六个预设燃烧事件。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Fire Luminosity Airborne-based Machine learning Evaluation (FLAME 3) dataset",
+          "role_in_study": "提供 UAV RGB、辐射热红外影像及火灾掩膜，用于火灾行为分析和 UAV 分割任务的参考数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "It provides painstakingly co-registered visual and radiometric thermal imagery, taken by controlled UAV flights during prescribed burn experiments.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 and Landsat 9 imagery",
+          "role_in_study": "提供多光谱与热红外卫星观测，用于植被状况、地表温度、火前燃料条件及火后烧毁严重度分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Specifically, this work utilize imagery acquired by Landsat 8 and the more recent Landsat 9, operational since September 2021",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS 375-meter active fire product (VNP14IMG)",
+          "role_in_study": "用于近实时活动火点监测、火灾预警及大范围火灾制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study primarily employs the VIIRS 375-meter active fire product (VNP14IMG), which significantly improves upon earlier systems like MODIS in both resolution and sensitivity.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission",
+          "role_in_study": "用于全天候大范围火灾监测，并依据雷达后向散射变化识别烧痕及火灾引起的地表变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "This work employs C-band Synthetic Aperture Radar (SAR) data from the European Space Agency’s Sentinel-1 mission to give us a strong detection system that works in any weather and is better than optical and thermal sensors",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Vision-Language Model (VLM)",
+          "role_in_study": "接收前述组件生成的分割掩膜及其时间变化，生成自然语言火情摘要。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this Component, the segmentation masks generated by the first two components are fed into a Vision-Language Model (VLM) .",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-025-26816-1.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-025-26816-1.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "05c96bc642004216b2bb9bc00a56ba2fc37502a425a576b2d8aa08cabf24d5db",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:27",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1038_s41598-025-26816-1.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_11",
+      "source_paper_doi": "10.1088/1748-9326/ab7765",
+      "source_paper": {
+        "doi": "10.1088/1748-9326/ab7765",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A (S-1A) interferometric wide swath (IW) dual-polarisation (VV + VH) single-look complex data",
+        "MODIS Burned Area Monthly Global 500 m"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A (S-1A) interferometric wide swath (IW) dual-polarisation (VV + VH) single-look complex data",
+          "actual_product_in_paper": "Sentinel-1A (S-1A) interferometric wide swath (IW) dual-polarisation (VV + VH) single-look complex data",
+          "evidence_quotes": [
+            "Sentinel-1A (S-1A) interferometric wide swath (IW) dual-polarisation (VV + VH) single-look complex data over the region are available since May 2015."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS Burned Area Monthly Global 500 m",
+          "actual_product_in_paper": "Moderate Resolution Imaging Spectrometer (MODIS) monthly Burned Area product (MCD64A1, collection 6)",
+          "evidence_quotes": [
+            "This dataset was used to produce maps of burnt area temporally coincident with the periods between S-1A IW acquisitions over the study area."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Seven variables obtained from the S-1A IW data were used as predictors to detect burnt areas",
+        "This dataset was used to produce maps of burnt area temporally coincident with the periods between S-1A IW acquisitions over the study area."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨在印度尼西亚中加里曼丹的2015年火季，Sentinel-1A观测频率是否会提高热带森林烧毁区域的可探测性，并比较多时段检测与仅用火季前后影像对的烧毁面积结果。",
+      "hypothesis_or_mechanism": "热带云、霾和烟雾会限制光学卫星观测，而C波段SAR可在不受云影响的情况下观测地表。火灾移除森林冠层中的小散射体后，VH后向散射预计会显著下降；更频繁的Sentinel-1观测可捕捉不同时间段发生的烧毁，从而提升火疤检出。",
+      "variables_and_data_use": "研究使用Sentinel-1A C波段IW双极化（VV、VH）影像，构建火前与火后VV和VH后向散射强度、前后差值及局地入射角等预测变量，并用随机森林区分烧毁与未烧毁区域。Landsat 8 OLI用于选择训练样本；MODIS MCD64A1 Collection 6月度烧毁面积产品用于与研究结果进行比较。SRTM DEM用于地形校正，另将既有Sentinel-1A烧毁面积图用于比较。",
+      "method_paradigm": "采用随机森林监督分类，基于连续Sentinel-1A影像时段检测烧毁区域，并通过设定分类阈值权衡遗漏误差与虚警误差。将三个连续时段的检测结果与单一火季前后影像对的结果进行比较，并与既有烧毁面积产品对照。",
+      "study_area": "印度尼西亚中加里曼丹，约250 km×230 km的Sentinel-1A覆盖区域。",
+      "study_period": "2015年火季；主要分类时段为2015年8月13日至10月24日，包含三个连续时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1A (S-1A) interferometric wide swath (IW) dual-polarisation (VV + VH) single-look complex data",
+          "role_in_study": "核心SAR时序数据；处理为双极化后向散射变量并输入随机森林分类烧毁区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "Seven variables obtained from the S-1A IW data were used as predictors to detect burnt areas",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 Operational Land Imager (OLI) data",
+          "role_in_study": "用于识别烧毁和未烧毁训练区域及选择训练样本。",
+          "usage": "used_as_data",
+          "evidence_quote": "This dataset was used to assist with the selection of training areas known to be affected by fire or unburnt.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Shuttle Radar Topography Mission (SRTM) digital elevation model (DEM)",
+          "role_in_study": "辅助Sentinel-1影像的地形校正。",
+          "usage": "used_as_data",
+          "evidence_quote": "assisted by a 3 arcsec (∼90 m) digital elevation model (DEM) obtained from the Shuttle Radar Topography Mission (SRTM)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectrometer (MODIS) monthly Burned Area product (MCD64A1, collection 6)",
+          "role_in_study": "作为独立烧毁面积参考，与研究检测结果进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "This dataset was used to produce maps of burnt area temporally coincident with the periods between S-1A IW acquisitions over the study area.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "burnt area map produced by Lohberger et al (2018)",
+          "role_in_study": "使用既有Sentinel-1A影像生成的烧毁面积图，与本研究结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "The burnt area map produced by Lohberger et al (2018) used Sentinel-1A IW imagery acquired over Indonesia in 2015",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_ab7765.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_ab7765.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "f5e13080e9005e0893da6f8a794cc8b15249fbc60279e4728203125b9fa613da",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:26",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1088_1748-9326_ab7765.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_12",
+      "source_paper_doi": "10.1109/jstars.2021.3093625",
+      "source_paper": {
+        "doi": "10.1109/jstars.2021.3093625",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "C-SAR instrument onboard Sentinel-1",
+        "California Fire Perimeter Database (CALFIRE)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "C-SAR instrument onboard Sentinel-1",
+          "actual_product_in_paper": "C-SAR instrument onboard Sentinel-1",
+          "evidence_quotes": [
+            "the C-SAR instrument onboard Sentinel-1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "California Fire Perimeter Database (CALFIRE)",
+          "actual_product_in_paper": "California Fire Perimeter Database (CALFIRE)",
+          "evidence_quotes": [
+            "To provide a ground reference, this work makes use of the California Fire Perimeter Database (CALFIRE"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "the C-SAR instrument onboard Sentinel-1, the multispectral instrument onboard Sentinel-2, the sea and land surface temperature instrument onboard Sentinel-3, and the MODIS instrument onboard Terra and Aqua.",
+        "To provide a ground reference, this work makes use of the California Fire Perimeter Database (CALFIRE"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨如何利用多传感器卫星影像与深度学习，在不同云况下检测和分割加利福尼亚州的野火受影响区域，并比较单传感器模型与多传感器融合的效果。",
+      "hypothesis_or_mechanism": "U-Net可从卫星影像中自动学习复杂的火灾空间模式，减少对手工建立复杂参数关系的依赖。不同传感器的信息互补，尤其Sentinel-1 SAR观测可在多云条件下辅助光学观测。",
+      "variables_and_data_use": "研究使用Sentinel-1 C-SAR、Sentinel-2 MSI、Sentinel-3 SLSTR以及Terra和Aqua上的MODIS影像作为模型输入，训练各自的单传感器U-Net，并进一步组合模型预测。CALFIRE火灾周界用于生成二值火灾参考掩膜；模型预测与参考掩膜比较以评估检测表现。",
+      "method_paradigm": "采用基于U-Net的深度语义分割，对各传感器分别训练单输入模型，并通过加权平均融合成对模型的概率栅格。通过调整阈值生成火灾分割结果，并使用精确率、召回率、F1等指标评估。",
+      "study_area": "美国加利福尼亚州",
+      "study_period": "2017年1月1日至2019年12月31日",
+      "datasets_used": [
+        {
+          "name_in_paper": "C-SAR instrument onboard Sentinel-1",
+          "role_in_study": "SAR影像模型输入，用于训练单传感器火灾检测模型，并参与多传感器融合。",
+          "usage": "used_as_data",
+          "evidence_quote": "the C-SAR instrument onboard Sentinel-1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "multispectral instrument onboard Sentinel-2",
+          "role_in_study": "多光谱影像模型输入，用于训练单传感器火灾检测模型，并参与多传感器融合。",
+          "usage": "used_as_data",
+          "evidence_quote": "the multispectral instrument onboard Sentinel-2",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SLSTR Level-1B observation product",
+          "role_in_study": "Sentinel-3 SLSTR经校准和地理定位的辐亮度影像模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "geolocated, calibrated radiances, acquired in a nadir swath and recorded in Level-1B observation product, were used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Level-1B MODIS 1-km products from Terra (MOD021KM) and Aqua (MYD021KM)",
+          "role_in_study": "Terra和Aqua MODIS校准、地理定位的辐亮度及反射率影像模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "This work makes use of the Level-1B MODIS 1-km products from both Terra (MOD021KM) and Aqua (MYD021KM) satellites.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "California Fire Perimeter Database (CALFIRE)",
+          "role_in_study": "地面参考数据，用火灾周界生成二值参考掩膜。",
+          "usage": "used_as_data",
+          "evidence_quote": "To provide a ground reference, this work makes use of the California Fire Perimeter Database (CALFIRE",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_jstars.2021.3093625.txt"
+        ],
+        "chars": 19082,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "f9ee8bc86720b45d734b451a675cad772b846046624dcc6499cc04ae220b4859",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:30",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1109_jstars.2021.3093625.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_13",
+      "source_paper_doi": "10.1109/jstars.2022.3175452",
+      "source_paper": {
+        "doi": "10.1109/jstars.2022.3175452",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Sentinel-1 multitemporal single look complex (interferometric wide swath mode)",
+          "evidence_quotes": [
+            "This study used the multitemporal single look complex with interferometric wide swath mode for the WFBM."
+          ],
+          "fresh_quote_verified": false,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "sar_observation",
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This study fused the multitemporal Sentinel-1 SAR dataset and the post-fire Sentinel-2 optical dataset for mapping the burned areas.",
+        "The proposed framework uses hybrid quadratic morphological (QM) operations and convolution layers for deep feature extraction."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究在希腊埃维亚岛和土耳其安塔利亚省，如何融合多时相 Sentinel-1 相干影像与火后 Sentinel-2 影像，准确提取野火烧毁区域。",
+      "hypothesis_or_mechanism": "多时相 SAR 相干信息与火后光学影像具有互补性，融合二者有助于烧毁区域制图。二次形态学膨胀、侵蚀操作与卷积层结合，可提取非线性深层特征，从而改善复杂背景下的烧毁区域识别。",
+      "variables_and_data_use": "研究使用 Sentinel-1 干涉宽幅模式的多时相单视复数（SLC）数据，经预处理生成相干图；使用火后 Sentinel-2 Level-2A 数据及其 10 米和 20 米空间分辨率波段作为光学输入。两类数据输入双流 Siamese 深度网络 QMDNN-Net，结合二次形态学操作与卷积层提取特征并制图；所给文本未说明使用 MODIS 烧毁面积产品作为参考数据。",
+      "method_paradigm": "多源遥感数据融合与深度学习语义分割范式。提出基于双流 Siamese 网络的 QMDNN-Net，将二次形态学操作与组膨胀卷积结合，用于烧毁区域制图。",
+      "study_area": "希腊埃维亚岛；土耳其南部安塔利亚省。",
+      "study_period": "野火发生于 2021 年：埃维亚岛火灾始于 2021 年 8 月 3 日；安塔利亚省火灾始于 2021 年 7 月。影像获取的具体日期范围未在所给文本中说明。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 multitemporal single look complex (interferometric wide swath mode)",
+          "role_in_study": "SAR 输入数据，经预处理生成多时相相干图，用于烧毁区域制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study used the multitemporal single look complex with interferometric wide swath mode for the WFBM.",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "Sentinel-2 Level-2A product",
+          "role_in_study": "火后光学输入数据；使用 10 米和 20 米空间分辨率波段进行烧毁区域制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "Furthermore, the Level-2A product was used for the next analysis that was preprocessed (i.e., atmospheric correction).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 multitemporal coherence map",
+          "role_in_study": "由 Sentinel-1 数据预处理生成，作为多时相相干信息输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Sentinel-1 datasets needed to be preprocessed to generate the multitemporal coherence map.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_jstars.2022.3175452.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_jstars.2022.3175452.methods.txt"
+        ],
+        "chars": 26102,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "1ca5c27d9d9da77507040dab4dcd008b8ab2f9e7849987e2c7968f0e5f24b8a7",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:36",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1109_jstars.2022.3175452.json",
+        "quote_gate": {
+          "total": 6,
+          "verified": 4
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_14",
+      "source_paper_doi": "10.1109/jstars.2024.3427382",
+      "source_paper": {
+        "doi": "10.1109/jstars.2024.3427382",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 (S1) C-band SAR",
+        "Sentinel-2 (S2) multispectral data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 (S1) C-band SAR",
+          "actual_product_in_paper": "Sentinel-1 (S1) C-band SAR",
+          "evidence_quotes": [
+            "The aim of the present study is to investigate and retrospectively monitor the progression of burned areas during the August 2021 wild fire events in Greece using all available S1 SAR acquisitions."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2 (S2) multispectral data",
+          "actual_product_in_paper": "Sentinel-2 (S2) multispectral data",
+          "evidence_quotes": [
+            "The accuracy assessment of the results is based on dNBR derived from S2 multispectral data as a benchmark dataset"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The aim of the present study is to investigate and retrospectively monitor the progression of burned areas during the August 2021 wild fire events in Greece using all available S1 SAR acquisitions.",
+        "The accuracy assessment of the results is based on dNBR derived from S2 multispectral data as a benchmark dataset"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨如何利用 Sentinel-1 SAR 影像，回溯监测希腊 2021 年野火期间各研究区的烧毁面积进展，并开发可在 Google Earth Engine 中使用的自动化无监督方法。",
+      "hypothesis_or_mechanism": "火灾造成的植被结构变化会改变 C 波段 SAR 后向散射，且连续 Sentinel-1 观测可用于追踪烧毁面积随时间的演变。由于降雨、极化方式、植被与环境条件会影响后向散射，研究通过分组处理不同成像几何并组合多时相特征来识别火灾变化。",
+      "variables_and_data_use": "研究使用 Sentinel-1A/B C 波段 SAR 的 VV、VH 后向散射影像，构造火前火后比值、RFDI 和基于一年时序的 k-map 特征，用于无监督聚类识别并追踪烧毁区域。Sentinel-2 多光谱影像用于计算 dNBR，作为烧毁严重度基准并评估 SAR 分类精度；CLC 数据用于分析分类正确区域及错误区域的土地覆盖组成。",
+      "method_paradigm": "采用基于 Sentinel-1 多时相及双时相特征的无监督聚类分类，并对影像进行预处理和后处理以监测烧毁面积进展。以 Sentinel-2 dNBR 作为基准进行精度评估，并分析错误与地形、土地覆盖的关系。",
+      "study_area": "希腊的 Olympia、Evia、Megara 和 Tatoi 火灾研究区。",
+      "study_period": "2021 年 8 月野火事件；Sentinel-1 长时序特征还使用火灾开始前一年的影像。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 (S1) C-band SAR",
+          "role_in_study": "主要观测数据；用于构造多时相 SAR 特征、无监督分类并追踪烧毁面积进展。",
+          "usage": "used_as_data",
+          "evidence_quote": "The aim of the present study is to investigate and retrospectively monitor the progression of burned areas during the August 2021 wild fire events in Greece using all available S1 SAR acquisitions.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 (S2) multispectral data",
+          "role_in_study": "用于计算 dNBR，作为烧毁严重度基准并评估 SAR 分类结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The accuracy assessment of the results is based on dNBR derived from S2 multispectral data as a benchmark dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CLC 2018 database",
+          "role_in_study": "用于分析正确分类区域及遗漏错误、委任错误区域的土地覆盖类型。",
+          "usage": "used_as_data",
+          "evidence_quote": "According to the CLC 2018 database, the primary land cover type of the burned area detected was represented by agricultural areas",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_jstars.2024.3427382.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "d190f9df009a20a4dba12efe63fe51cc56f2d673002a89979e215bcf62ea710c",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:37",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1109_jstars.2024.3427382.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_15",
+      "source_paper_doi": "10.1109/lgrs.2018.2888641",
+      "source_paper": {
+        "doi": "10.1109/lgrs.2018.2888641",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A and B GRDH data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A and B GRDH data",
+          "actual_product_in_paper": "Sentinel-1A and B GRDH data",
+          "evidence_quotes": [
+            "THE TYPE OF PRODUCTS USED IS GRDH."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "field survey",
+          "evidence_quotes": [
+            "The results from the classification were validated on the basis of field survey conducted in the investigated area"
+          ],
+          "fresh_quote_verified": false,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "For the purpose of our study, Sentinel-1A and B data, acquired before and after the fire (see Table I), were investigated.",
+        "The results from the classification were validated on the basis of field survey conducted in the investigated area"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        false
+      ],
+      "research_question": "研究旨在评估 Sentinel-1 SAR 在意大利南部 Metaponto 对火烧区制图及火烧严重度表征中的潜力。",
+      "hypothesis_or_mechanism": "火灾会改变植被及地表的 SAR 后向散射特征；利用火前火后的后向散射变化，并结合 Getis–Ord 空间统计和 ISODATA 分类，可区分火烧区及其严重度，而不依赖固定阈值。",
+      "variables_and_data_use": "研究使用 Sentinel-1A 和 Sentinel-1B 的 C 波段 SAR GRDH 数据，分析 VV、VH 极化的火前火后单景及时间平均影像，计算 Radar Burn Difference（RBD）和 Radar Burn Ratio（RBR）。研究将 VH 极化 RBR 与 Getis–Ord 空间统计及 ISODATA 无监督分类结合，用于火烧区和火烧严重度制图；现场调查用于验证结果。",
+      "method_paradigm": "采用多时相 SAR 变化检测范式：计算火前火后的 RBD、RBR，经 Getis–Ord 局部空间统计增强后，使用 ISODATA 无监督分类自动制图，并以现场调查验证。",
+      "study_area": "意大利南部 Metaponto，伊奥尼亚海岸的松树占优势的休闲露营地。",
+      "study_period": "火灾发生于 2017 年 7 月 13 日；使用火前、火后的 Sentinel-1 影像，现场验证在火灾后立即及约一年后进行。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1A and B GRDH data",
+          "role_in_study": "火前火后多时相 SAR 输入数据，用于计算各极化的 RBD、RBR 并制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "THE TYPE OF PRODUCTS USED IS GRDH.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1",
+          "role_in_study": "研究使用的 C 波段 SAR 传感器数据，用于火烧区和火烧严重度分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "we focused on fire occurred on July 13, 2017, in Metaponto (South of Italy). Both VH and VV polarizations were considered.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "field survey",
+          "role_in_study": "现场调查数据，用于验证火烧区制图和火烧严重度分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "The results from the classification were validated on the basis of field survey conducted in the investigated area",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "GPS",
+          "role_in_study": "用于现场验证位置记录。",
+          "usage": "used_as_data",
+          "evidence_quote": "the validation, made in situ with GPS",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_lgrs.2018.2888641.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_lgrs.2018.2888641.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "a71197003395a5882de089d02a7d9e0863cbd2454dc1475df5346006b8f72f81",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:40",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1109_lgrs.2018.2888641.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 5
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_16",
+      "source_paper_doi": "10.1109/lgrs.2023.3324945",
+      "source_paper": {
+        "doi": "10.1109/lgrs.2023.3324945",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1-A and Sentinel-1-B GRDH",
+        "Copernicus EMS Rapid Mapping"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1-A and Sentinel-1-B GRDH",
+          "actual_product_in_paper": "Sentinel-1-A and Sentinel-1-B GRDH",
+          "evidence_quotes": [
+            "THE TYPE OF PRODUCT USED IS GRDH."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Copernicus EMS Rapid Mapping",
+          "actual_product_in_paper": "Copernicus EMS Rapid Mapping",
+          "evidence_quotes": [
+            "the Burned area (pixel at 2 m) from the EMS Rapid Mapping."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Both S1 and S2 fire metrics were stacked together to be reclassified at pixel and feature levels.",
+        "the joint processing of the together stacked S1 and S2 fire severity metrics"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究在意大利撒丁岛（Tortolì、Ogliastra附近）的异质、破碎生态系统中，联合使用Sentinel-1与Sentinel-2数据能否改进火烧迹地制图和火灾严重度评估。",
+      "hypothesis_or_mechanism": "火灾造成植被覆盖损失及散射变化，变化程度与烧毁程度相关；但C波段SAR后向散射会受森林结构影响而产生歧义。联合Sentinel-1和Sentinel-2火灾指标并进行多层级分类，可利用两类传感器的互补性改善评估。",
+      "variables_and_data_use": "研究使用Sentinel-1的GRDH数据计算SAR火灾指标，包括RBD、RBR及RFDI相关指标；使用Sentinel-2数据计算dNBR。将两类指标在像元级和特征级融合，并用ISODATA进行无监督分类；另以Copernicus EMS Rapid Mapping产品、独立数据集及现场调查进行比较或验证。",
+      "method_paradigm": "采用ISODATA无监督聚类与Sentinel-1、Sentinel-2指标的数据融合范式，在像元级和特征级开展多层级分类。通过与参考制图和现场调查比较评估结果。",
+      "study_area": "意大利撒丁岛，Tortolì附近的Ogliastra地区。",
+      "study_period": "研究火灾发生于2019年7月13日；卫星影像覆盖火灾前后，具体影像日期未在所给文本中列出。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1-A and Sentinel-1-B GRDH",
+          "role_in_study": "提供火灾前后C波段SAR影像，用于计算火灾严重度指标并参与融合分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "THE TYPE OF PRODUCT USED IS GRDH.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 (S2)",
+          "role_in_study": "提供光学数据并用于计算dNBR火灾指标，参与融合分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "S2 dNBR",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "Copernicus EMS Rapid Mapping",
+          "role_in_study": "作为参考损害评估产品，与分类结果进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "were compared with the damage assessment provided by the Copernicus EMS Rapid Mapping",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "field surveys",
+          "role_in_study": "用于评估火灾指标有效性及支持现场验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "field surveys conducted for a fire that occurred on 13 July 2019 in Sardinia",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "independent datasets",
+          "role_in_study": "用于比较评估分类结果；所给文本未说明其具体产品名称。",
+          "usage": "used_as_data",
+          "evidence_quote": "Results were successful (accuracy higher than 94%) compared with independent datasets and in situ investigations.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_lgrs.2023.3324945.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1109_lgrs.2023.3324945.methods.txt"
+        ],
+        "chars": 8152,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "b89a1e2a9211f4c1f50c483b89362397b4b642f95f9e2e6523769cefa65ba758",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:41",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.1109_lgrs.2023.3324945.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_17",
+      "source_paper_doi": "10.3390/rs12010049",
+      "source_paper": {
+        "doi": "10.3390/rs12010049",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1B Level-1 Single-Look Complex (SLC) products"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1B Level-1 Single-Look Complex (SLC) products",
+          "actual_product_in_paper": "Sentinel-1B Level-1 Single-Look Complex (SLC) products",
+          "evidence_quotes": [
+            "We tested the potential of C-band SAR for burn severity mapping by utilizing Sentinel-1B Level-1 Single-Look Complex (SLC) products."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Moderate-resolution Imaging Spectroradiometer (MODIS)",
+          "evidence_quotes": [
+            "Course spatial resolution imagery such as Advanced Very High Resolution Radiometer (AVHHR) and Moderate-resolution Imaging Spectroradiometer (MODIS) underpin many operational mapping efforts in north Australian savannas"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We tested the potential of C-band SAR for burn severity mapping by utilizing Sentinel-1B Level-1 Single-Look Complex (SLC) products.",
+        "We downloaded the Sentinel-2 data for the date range of June to August 2017 to provide images before and after the experimental fires that occurred on 15 and 16 June 2017.",
+        "We quantified fire-induced 3D changes in vegetation structure with terrestrial laser scanning (TLS)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究考察澳大利亚北部达尔文以南的热带稀树草原中，Sentinel-1 C 波段 SAR 是否能够用于识别实验火灾造成的植被结构变化并辅助火烧严重度制图。",
+      "hypothesis_or_mechanism": "火灾改变植被结构，进而影响 Sentinel-1 的 C 波段后向散射强度；VH 极化后向散射的变化可能反映火烧严重度，并与光学影像导出的 NBR 变化相关。",
+      "variables_and_data_use": "研究使用 Sentinel-1B Level-1 SLC 数据处理得到 VV、VH 后向散射差值及相干性特征，用于评估火灾前后变化与火烧严重度的关系。Sentinel-2 Level-1C 影像经 Sen2Cor 处理为 Level-2A，计算 NBR、SAVI 及其火前火后差值，与 SAR 特征比较；地面 TLS 结构变化用于验证。",
+      "method_paradigm": "采用 Sentinel-1 与 Sentinel-2 火前火后影像差值分析，并计算 SAR 相干性特征；将卫星遥感变化指标与 TLS 派生的植被结构变化进行相关性比较和验证。",
+      "study_area": "澳大利亚北部达尔文以南约 50 km 的 Territory Wildlife Park 开放稀树草原火灾实验区。",
+      "study_period": "实验火灾发生于 2017 年 6 月 15–16 日；卫星影像分析覆盖 2017 年 4 月 26 日至 8 月 24 日，Sentinel-2 影像日期为 2017 年 6 月至 8 月。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1B Level-1 Single-Look Complex (SLC) products",
+          "role_in_study": "用于生成 VV、VH 后向散射差值和相干性特征，评估火灾前后变化及火烧严重度。",
+          "usage": "used_as_data",
+          "evidence_quote": "We tested the potential of C-band SAR for burn severity mapping by utilizing Sentinel-1B Level-1 Single-Look Complex (SLC) products.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 level-1C product",
+          "role_in_study": "提供火灾前后多光谱影像，后续处理为地表反射率数据并计算 NBR、SAVI。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 data were downloaded as a level-1C product, which provides an ortho-rectified image with top-of-atmosphere reflectance [27].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 level-2A bottom-of-atmosphere reflectance product",
+          "role_in_study": "作为计算光学植被指数及其火前火后差值的影像数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Level-1C products were subsequently processed to a level-2A bottom-of-atmosphere reflectance product using the standalone version of the Sen2Cor processor (version 2.5.5) [28].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "RIEGL-VZ2000",
+          "role_in_study": "地面 TLS 仪器，用于测量火灾前后植被三维结构变化，以验证卫星遥感变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The light detection and ranging (LiDAR) system used was a RIEGL-VZ2000 (RIEGL Laser Measurement Systems GmbH) operated at 550 kHz with a 0.02 mrad angular spacing.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "airborne LiDAR data set from 2013",
+          "role_in_study": "作为参考数据配准火灾前后的 TLS 点云。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used an airborne LiDAR data set from 2013 as a reference against which to register all subsequent point clouds, using the Iterative Closest Point (ICP) algorithm in CloudCompare.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate-resolution Imaging Spectroradiometer (MODIS)",
+          "role_in_study": "引言中作为北澳大利亚常见火灾制图数据的背景提及，未作为本研究输入数据。",
+          "usage": "mention_only",
+          "evidence_quote": "Course spatial resolution imagery such as Advanced Very High Resolution Radiometer (AVHHR) and Moderate-resolution Imaging Spectroradiometer (MODIS) underpin many operational mapping efforts in north Australian savannas",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs12010049.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs12010049.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "4e38a196809d914cc76ea41ff48deedd9da1c2a36790e6fdad52467d17ff5ae0",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:45",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs12010049.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_18",
+      "source_paper_doi": "10.3390/rs12020334",
+      "source_paper": {
+        "doi": "10.3390/rs12020334",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 interferometric coherence; Sentinel-1 backscatter coefficient",
+        "fire perimeters derived from Landsat 8 imagery; fire perimeters derived from Sentinel-2 imagery"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 interferometric coherence; Sentinel-1 backscatter coefficient",
+          "actual_product_in_paper": "Sentinel-1 interferometric coherence; Sentinel-1 backscatter coefficient",
+          "evidence_quotes": [
+            "a BA detection and mapping algorithm was developed based on time-series of Sentinel-1 interferometric coherence (RtsC)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "fire perimeters derived from Landsat 8 imagery; fire perimeters derived from Sentinel-2 imagery",
+          "actual_product_in_paper": "fire perimeters derived from Landsat 8 imagery; fire perimeters derived from Sentinel-2 imagery",
+          "evidence_quotes": [
+            "The reference datasets were formed by (1) fire perimeters derived from Landsat 8 imagery (four tiles) and (2) fire perimeters derived from Sentinel-2 imagery (six tiles)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "a BA detection and mapping algorithm was developed based on time-series of Sentinel-1 interferometric coherence (RtsC).",
+        "An algorithm based on temporal time-series of Sentinel-1 backscatter coefficient (RtsB) was also developed to identify anomalous changes in the radar signal and associate them with biomass burning",
+        "The reference datasets were formed by (1) fire perimeters derived from Landsat 8 imagery (four tiles) and (2) fire perimeters derived from Sentinel-2 imagery (six tiles)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究比较热带及亚热带非洲10个测试区的Sentinel-1与Sentinel-2火烧迹地检测和制图算法，评估不同算法所得火烧面积与参考火烧边界的一致性。",
+      "hypothesis_or_mechanism": "研究检验光学与SAR火烧迹地算法的表现差异。火灾会引起Sentinel-2光谱反射率变化，以及Sentinel-1后向散射系数或干涉相干性变化，可据此检测火烧迹地；云多地区SAR可作为光学数据的补充。",
+      "variables_and_data_use": "研究使用Sentinel-2 MSI L2A反射率时间序列计算MIRBI、NBR2等指标，并以阈值检测火烧迹地；Sentinel-1时间序列分别用于干涉相干性和后向散射系数算法。算法结果与由Landsat 8或Sentinel-2影像独立生成的参考火烧边界比较，并使用MODIS活动火点辅助光学算法的检测。",
+      "method_paradigm": "采用光学光谱指数固定阈值与局部成员函数检测、Sentinel-1干涉相干性随机森林分类，以及后向散射异常检测结合随机森林分类。通过参考火烧边界交叉制表，比较漏分、错分和Dice系数。",
+      "study_area": "热带及亚热带非洲的10个MGRS测试区（每区100 × 100 km），沿东西向横断面分布。",
+      "study_period": "2015—2016年火季；各测试区的分析火灾时段为2015年9月至2016年12月。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2 Multi Spectral Instrument (MSI) L2A product",
+          "role_in_study": "提供光学反射率时间序列，用于计算光谱指数并检测火烧迹地；也用于部分参考火烧边界生成及Sentinel-1算法训练样本选择。",
+          "usage": "used_as_data",
+          "evidence_quote": "The optical-based detection algorithm (Ots) uses time-series of atmospherically corrected Sentinel-2 Multi Spectral Instrument (MSI) reflectance measurements from the L2A product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 interferometric coherence",
+          "role_in_study": "提供SAR干涉相干性时间序列，作为火烧迹地检测与制图算法输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "a BA detection and mapping algorithm was developed based on time-series of Sentinel-1 interferometric coherence (RtsC).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 backscatter coefficient",
+          "role_in_study": "提供SAR后向散射系数时间序列，用于异常变化检测及火烧迹地分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "An algorithm based on temporal time-series of Sentinel-1 backscatter coefficient (RtsB) was also developed to identify anomalous changes in the radar signal and associate them with biomass burning",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 imagery",
+          "role_in_study": "用于生成四个测试区的参考火烧边界，以评估检测结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The reference datasets were formed by (1) fire perimeters derived from Landsat 8 imagery (four tiles)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 imagery",
+          "role_in_study": "用于生成六个测试区的参考火烧边界，并为Sentinel-1算法提供训练样本选择所需的火前、火后观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "The reference datasets were formed by (1) fire perimeters derived from Landsat 8 imagery (four tiles) and (2) fire perimeters derived from Sentinel-2 imagery (six tiles).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS active fire hotspots",
+          "role_in_study": "用于交叉核验光学算法的初始火烧区域，并辅助后向散射异常区域的火烧标记。",
+          "usage": "used_as_data",
+          "evidence_quote": "which is cross-checked against the existence of MODIS active fire hotspots.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "FireCCI5.1 global product",
+          "role_in_study": "用于图示测试区的2016年总火烧面积，不是三种检测算法的输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "the total burned (2016), according to the FireCCI5.1 global product.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CCI Land Cover product, 2015",
+          "role_in_study": "用于描述测试区主要土地覆盖类型。",
+          "usage": "used_as_data",
+          "evidence_quote": "The main land cover type (from CCI Land Cover product, 2015) and the total burned area.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA's MCD64A1",
+          "role_in_study": "在引言中作为已有全球火烧面积产品提及，未作为本研究的参考火烧边界或算法输入。",
+          "usage": "mention_only",
+          "evidence_quote": "NASA's MCD64A1 was the most accurate global BA product of the existing global BA products",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs12020334.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs12020334.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "091222b8323e435bc244844a41cceee3818424d3bdf1370d227de5fe6b7e4202",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:47",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs12020334.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_19",
+      "source_paper_doi": "10.3390/rs14133132",
+      "source_paper": {
+        "doi": "10.3390/rs14133132",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR time-series imagery"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR time-series imagery",
+          "actual_product_in_paper": "Sentinel-1 SAR-Ground Range Detected (GRD) scenes",
+          "evidence_quotes": [
+            "This imagery collection includes the SAR-Ground Range Detected (GRD) scenes that have been pre-processed"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This study utilises the Copernicus Sentinel-1 C-band (5.4 GHz) dual-polarization data, i.e., vertical–vertical (VV) and vertical–horizontal (VH), in Interferometric Wide swath (IW) mode [66].",
+        "This study uses the Level-2A (L2A) orthorectified, atmospherically corrected scaled surface reflectance time series available from"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨如何利用 Sentinel-1 SAR 数据构建 R-VSPI，以量化澳大利亚南部“Black Summer”野火造成的燃料负荷变化并监测火后植被恢复，并将其与 Sentinel-2 光学 VSPI 对比。",
+      "hypothesis_or_mechanism": "研究假设健康植被的 VV 与 VH 后向散射存在近似线性关系，野火造成的植被结构变化会使观测点偏离该关系，火后恢复则使其逐渐回归。其机制假设是 VV 主要反映表面散射，VH 则主要反映植被体散射及结构。",
+      "variables_and_data_use": "研究使用 Sentinel-1 C 波段双极化 VV、VH 后向散射系数计算 R-VSPI，以刻画野火后的燃料结构变化与恢复；使用 Sentinel-2 Level-2A 缩放地表反射率计算光学 VSPI并作对比。两类时序数据分别经空间处理后用于野火区与对照区分析，Sentinel-1 数据聚合至 110 m 分辨率。",
+      "method_paradigm": "研究提出基于双极化 SAR 后向散射的指数方法：拟合健康植被 VV 与 VH 的线性关系，并计算观测点到植被线的正交距离作为 R-VSPI。研究还将其与基于 Sentinel-2 SWIR 波段的 VSPI 对比，用于野火影响及火后恢复监测。",
+      "study_area": "澳大利亚南部及东南部、 西南部的五处野火研究区：Corryong（维多利亚州）、Badja Forest（新南威尔士州）、Orroral Valley（澳大利亚首都领地）、Yanchep 和 Wilbinga（西澳大利亚州）。",
+      "study_period": "Sentinel-1 时序覆盖 2017 年 1 月 1 日至 2021 年 1 月 31 日；研究的野火发生于 2019 年 9 月至 2020 年 3 月的“Black Summer”火季。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Copernicus Sentinel-1 C-band (5.4 GHz) dual-polarization data, i.e., vertical–vertical (VV) and vertical–horizontal (VH), in Interferometric Wide swath (IW) mode; SAR-Ground Range Detected (GRD) scenes",
+          "role_in_study": "提供 VV、VH 后向散射时序，用于计算 R-VSPI、量化燃料结构变化并监测火后恢复。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study utilises the Copernicus Sentinel-1 C-band (5.4 GHz) dual-polarization data, i.e., vertical–vertical (VV) and vertical–horizontal (VH), in Interferometric Wide swath (IW) mode [66].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Copernicus Sentinel-2 (S2) Level-2A (L2A) orthorectified, atmospherically corrected scaled surface reflectance time series",
+          "role_in_study": "提供光学地表反射率，用于计算光学 VSPI，并与 SAR 指数进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "This study uses the Level-2A (L2A) orthorectified, atmospherically corrected scaled surface reflectance time series available from",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs14133132.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs14133132.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "57c24cb9965df3093de4e48bb36f648a8d39b1c50cfc9ba83117923459f79f2a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:49",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs14133132.json",
+        "quote_gate": {
+          "total": 5,
+          "verified": 5
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_20",
+      "source_paper_doi": "10.3390/rs14143323",
+      "source_paper": {
+        "doi": "10.3390/rs14143323",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A/B SAR images"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A/B SAR images",
+          "actual_product_in_paper": "Sentinel-1A/B SAR images",
+          "evidence_quotes": [
+            "the twin Sentinel-1A/B sensors of the European (EU) Copernicus constellation"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This work is mainly concerned with investigating the capability of different coherent/incoherent change detection indices (CDIs) and their mutual interactions for the rapid mapping of “changed” areas.",
+        "Specifically, we used CDIs that synthetically describe ground surface changes associated with a disaster event (i.e., the pre-, cross-, and post-disaster phases), based on the generation of sigma nought and InSAR coherence maps.",
+        "Experiments were conducted to monitor wildfire’s effects in the 2021 summer season in Italy, considering two case studies in Sardinia and Sicily."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究旨在评估相干与非相干 SAR 变化检测方法及其结合随机森林的能力，用于识别和监测地表变化；研究对象包括意大利西西里和撒丁岛 2021 年夏季野火影响区域，以及美国休斯敦 2017 年洪水影响区域。",
+      "hypothesis_or_mechanism": "灾害事件会改变地表的雷达后向散射信号及 SAR 图像间的干涉相干性；结合描述这些变化的相干与非相干指标，可提供互补信息，帮助随机森林区分变化与未变化区域。",
+      "variables_and_data_use": "研究使用 Sentinel-1A/B SAR 观测生成 sigma nought 图和 InSAR 相干图，并据此构造灾前、灾中及灾后的相干与非相干变化检测指标。研究将这些指标作为随机森林的输入，生成二元变化检测图，用于野火烧毁区域及洪水淹没区域的快速制图。",
+      "method_paradigm": "相干与非相干 SAR 变化检测指标融合的监督式随机森林二元分类。",
+      "study_area": "意大利南部西西里岛和撒丁岛；美国德克萨斯州休斯敦沿海城市。",
+      "study_period": "意大利野火案例为 2021 年夏季；休斯敦洪水案例为 2017 年 8 月。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1A/B SAR images",
+          "role_in_study": "SAR 观测数据，用于生成 sigma nought 图、InSAR 相干图及变化检测指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "the twin Sentinel-1A/B sensors of the European (EU) Copernicus constellation",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "binary CD maps",
+          "role_in_study": "随机森林生成的变化检测输出，用于表示变化与未变化区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "we trained a random forest (RF) to produce CD maps",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs14143323.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "2314ca9ea133aea69319f5fef5b23158cc1a09a113e142be37508a02b7776c55",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:50",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs14143323.json",
+        "quote_gate": {
+          "total": 6,
+          "verified": 6
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_21",
+      "source_paper_doi": "10.3390/rs16163050",
+      "source_paper": {
+        "doi": "10.3390/rs16163050",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "NASA/JPL UAVSAR instrument",
+        "GIS-based burn extent perimeters; Landsat 8-based difference normalized burn ratio (dNBR)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "NASA/JPL UAVSAR instrument",
+          "actual_product_in_paper": "NASA/JPL UAVSAR instrument",
+          "evidence_quotes": [
+            "Polarimetric L-band radar backscatter measurements from the NASA/JPL UAVSAR instrument [50,72] are used to examine the performance of the proposed change detection method."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "GIS-based burn extent perimeters; Landsat 8-based difference normalized burn ratio (dNBR)",
+          "actual_product_in_paper": "GIS-based burn extent perimeters; Landsat 8-based difference normalized burn ratio (dNBR)",
+          "evidence_quotes": [
+            "Ground truth information is obtained from GIS-based burn extent perimeters for the dates of radar observation [61]."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Polarimetric L-band radar backscatter measurements from the NASA/JPL UAVSAR instrument [50,72] are used to examine the performance of the proposed change detection method.",
+        "Ground truth information is obtained from GIS-based burn extent perimeters for the dates of radar observation [61].",
+        "This information is further fine-tuned using the Landsat 8-based difference normalized burn ratio (dNBR) available at 30 m spatial resolution [62–67]."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究在加利福尼亚州的 Bobcat、Hennessey 和 Caldor 野火中，改进雷达植被指数能否通过时序变化阈值检测火烧区域并监测火灾进展，以及检测表现如何随空间分辨率变化。",
+      "hypothesis_or_mechanism": "野火燃烧会造成植被减少，因此火灾期间 RVI 的负向变化可用于识别新近燃烧区域。对 RVI 变化进行阈值检测，并用火烧范围参考信息确定阈值，可以监测火灾活动。",
+      "variables_and_data_use": "研究使用 NASA/JPL UAVSAR 的 L 波段极化后向散射测量计算改进 RVI，并比较火灾期间不同观测日期的 RVI 变化。GIS 火烧范围边界与 Landsat 8 dNBR 用于构建烧毁/未烧毁参考信息；研究结合 ROC 曲线和 F1 分数选取 RVI 变化检测阈值，并评估检测表现。",
+      "method_paradigm": "基于多时相 SAR 派生 RVI 的变化检测与阈值分类。使用 ROC 曲线和 F1 分数确定阈值，并以概率检测、虚警概率和 Matthews 相关系数评估结果。",
+      "study_area": "美国加利福尼亚州南部的 Bobcat 火灾、北部的 Hennessey 火灾，以及 Sierra Nevada 地区的 Caldor 火灾。",
+      "study_period": "2020 年 Bobcat 和 Hennessey 火灾；2021 年 Caldor 火灾。",
+      "datasets_used": [
+        {
+          "name_in_paper": "NASA/JPL UAVSAR instrument",
+          "role_in_study": "提供 L 波段极化雷达后向散射测量，用于计算多时相 RVI 并检测火灾期间的植被变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Polarimetric L-band radar backscatter measurements from the NASA/JPL UAVSAR instrument [50,72] are used to examine the performance of the proposed change detection method.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GIS-based burn extent perimeters",
+          "role_in_study": "提供雷达观测日期对应的火烧范围参考边界，用于标记烧毁像元并构建参考信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "Ground truth information is obtained from GIS-based burn extent perimeters for the dates of radar observation [61].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8-based difference normalized burn ratio (dNBR)",
+          "role_in_study": "用于细化火烧范围边界内的参考标签，识别很少或未发生燃烧的区域并标记为未烧毁。",
+          "usage": "used_as_data",
+          "evidence_quote": "This information is further fine-tuned using the Landsat 8-based difference normalized burn ratio (dNBR) available at 30 m spatial resolution [62–67].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 optical imagery",
+          "role_in_study": "在引言中作为 Caldor 火灾期间光学影像受烟雾影响的示例提及，未作为本研究分析输入。",
+          "usage": "mention_only",
+          "evidence_quote": "Sentinel-2 optical imagery available at 10 m spatial resolution [23,24] taken over the 2021 Caldor fire in California, USA, is contrasted with a normalized difference vegetation index (NDVI) image at 5 km spatial resolution",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS satellite multispectral optical data",
+          "role_in_study": "在引言中作为烟雾影响示例所用 NDVI 影像的数据来源提及，未作为本研究分析输入。",
+          "usage": "mention_only",
+          "evidence_quote": "a normalized difference vegetation index (NDVI) image at 5 km spatial resolution derived from VIIRS satellite multispectral optical data on the same date [25].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1",
+          "role_in_study": "作为既有 RVI 分析中截断版本的传感器来源提及，未用于本研究数据分析。",
+          "usage": "mention_only",
+          "evidence_quote": "Other recent RVI analyses include the development of a truncated version using Sentinel-1 [45].",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs16163050.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs16163050.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "38065ee852cbe475640278ca554c64a2a7d285d367107d06a389745d33581328",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:56",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs16163050.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_22",
+      "source_paper_doi": "10.3390/rs17122031",
+      "source_paper": {
+        "doi": "10.3390/rs17122031",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR data",
+        "Queensland Parks and Wildlife Service (QPWS) fire history database"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR data",
+          "actual_product_in_paper": "Sentinel-1 SAR data",
+          "evidence_quotes": [
+            "Sentinel-1SARdataforbothpre-Þreandpost-ÞreperiodswereaccessedandprocessedusingGoogleEarthEngine(GEE)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Queensland Parks and Wildlife Service (QPWS) fire history database",
+          "actual_product_in_paper": "Queensland Parks and Wildlife Service (QPWS) fire history database",
+          "evidence_quotes": [
+            "TheSAR-derivedburnedareamapswereoverlaidwiththeQPWSÞrehistorypolygons"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Sentinel-1SARdataforbothpre-Þreandpost-ÞreperiodswereaccessedandprocessedusingGoogleEarthEngine(GEE)",
+        "TheSAR-derivedburnedareamapswereoverlaidwiththeQPWSÞrehistorypolygons"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨如何利用双时相 Sentinel-1 SAR 数据监测澳大利亚昆士兰州 Mooloolah River National Park 的火后石楠植被恢复，并绘制烧毁区域。",
+      "hypothesis_or_mechanism": "火灾及其后的植被恢复会改变 SAR 后向散射特征；VV 极化对植被结构和地表粗糙度变化敏感，因此比较火前与多个火后时段的后向散射比值，可识别烧毁区域及恢复变化。",
+      "variables_and_data_use": "研究使用 Google Earth Engine 中的 Sentinel-1 C 波段 SAR VV 极化数据，生成火前及多个火后时段的中值合成影像，并计算双时相后向散射比值以监测恢复和制图。Sentinel-2 Level-2A 地表反射率影像用于计算 dNBR 和火灾严重度；Queensland Parks and Wildlife Service（QPWS）火灾历史数据用于验证烧毁区域分类。JRC Global Surface Water 数据用于生成水体掩膜，以便从分类结果中剔除水体。",
+      "method_paradigm": "研究采用双时相 SAR 比值分析与无监督 k-means 聚类（k=2）识别烧毁和未烧毁区域，并通过水体掩膜及小斑块剔除进行后处理。使用 Sentinel-2 dNBR 和 QPWS 火灾历史多边形进行火灾严重度评估与烧毁区域结果验证。",
+      "study_area": "澳大利亚昆士兰州 Mooloolah River National Park，重点研究石楠植被。",
+      "study_period": "火前期为2021年3月至9月；火后分析期为2022年1月至6月、2022年7月至12月及2023年1月至6月。研究聚焦2021年6月和12月的火灾事件。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 SAR data",
+          "role_in_study": "主要观测数据；使用 VV 极化影像构建火前和火后时段中值合成，并计算双时相比值以监测植被恢复和绘制烧毁区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-1SARdataforbothpre-Þreandpost-ÞreperiodswereaccessedandprocessedusingGoogleEarthEngine(GEE)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 Level-2A surface reflectance product",
+          "role_in_study": "用于计算 dNBR 和评估火灾严重度；影像进行大气校正并使用 QA60 云掩膜。",
+          "usage": "used_as_data",
+          "evidence_quote": "AllimageswereatmosphericallycorrectedusingtheSentinel-2Level-2Asurfacereßectanceproduct",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Queensland Parks and Wildlife Service (QPWS) fire history database",
+          "role_in_study": "提供已知火灾事件和火灾边界参考，用于验证烧毁区域分类及 dNBR 火灾严重度分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheSAR-derivedburnedareamapswereoverlaidwiththeQPWSÞrehistorypolygons",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Joint Research Centre Global Surface Water dataset",
+          "role_in_study": "用于生成水体掩膜，从分类结果中去除水体。",
+          "usage": "used_as_data",
+          "evidence_quote": "AwatermaskderivedfromtheJointResearchCentreGlobalSurfaceWaterdatasetwasappliedtoremovewaterbodiesfromtheclassiÞcation.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs17122031.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs17122031.methods.txt"
+        ],
+        "chars": 17268,
+        "text_mode": "head+methods",
+        "source_sha256": "b7457c10a449eab925299224c7ada3805b57ff85fc7d9ac72f3a91dc1362f4c2",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:49:57",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs17122031.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_23",
+      "source_paper_doi": "10.3390/rs9080764",
+      "source_paper": {
+        "doi": "10.3390/rs9080764",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A data",
+        "Sentinel-2A data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A data",
+          "actual_product_in_paper": "Sentinel-1A data",
+          "evidence_quotes": [
+            "the dual-pol H-α decomposition was applied to Sentinel-1A data"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2A data",
+          "actual_product_in_paper": "Sentinel-2A data",
+          "evidence_quotes": [
+            "The NDαI results were compared to a burn scar extracted from Sentinel-2A data."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The quad-pol H-A-α decomposition was applied to RADARSAT-2 data and the dual-pol H-α decomposition was applied to Sentinel-1A data.",
+        "The NDαI results were compared to a burn scar extracted from Sentinel-2A data."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究探讨能否利用多时相、多极化 C 波段 SAR 数据及归一化差异 α 角指数（NDαI），提取南非西开普省 Simonsberg Mountain 附近 2016 年野火的烧毁区域。",
+      "hypothesis_or_mechanism": "火灾移除植被后，体散射贡献会降低，导致火前与火后 α 角发生变化；比较两期 α 角可突出烧毁区域。使用火前、火后影像进行归一化差异计算，旨在减少此前裸地被误判为烧毁区域的可能。",
+      "variables_and_data_use": "研究使用 RADARSAT-2 四极化 C 波段数据进行 H-A-α 分解，并使用 Sentinel-1A 双极化 C 波段数据进行 H-α 分解，获取火前和火后的 α 角并计算 NDαI。通过阈值分割提取烧痕，并将 SAR 结果与从 Sentinel-2A 数据提取的烧痕进行比较。",
+      "method_paradigm": "多时相 SAR 极化分解与归一化差异指数方法：分别对四极化和双极化数据进行 H-A-α 或 H-α 分解，计算火前与火后的 NDαI，再采用阈值分割提取烧毁区域。",
+      "study_area": "南非西开普省 Simonsberg Mountain 附近，位于 Stellenbosch 与 Paarl 两镇之间。",
+      "study_period": "2016 年 1 月野火前后；火灾于 2016 年 1 月 19 日开始。",
+      "datasets_used": [
+        {
+          "name_in_paper": "RADARSAT-2 data",
+          "role_in_study": "四极化 C 波段 SAR 输入数据，用于 H-A-α 分解、计算火前火后 α 角并提取烧毁区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "The quad-pol H-A-α decomposition was applied to RADARSAT-2 data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1A data",
+          "role_in_study": "双极化 C 波段 SAR 输入数据，用于 H-α 分解、计算火前火后 α 角并提取烧毁区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "the dual-pol H-α decomposition was applied to Sentinel-1A data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2A data",
+          "role_in_study": "用于提取烧痕，作为比较 SAR 烧毁区域制图结果的参考。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NDαI results were compared to a burn scar extracted from Sentinel-2A data.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs9080764.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_rs9080764.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "70692462b0b51f12168045d6998b122919b58f72e138c38869d57692dc8e9d2f",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:00",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.3390_rs9080764.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_24",
+      "source_paper_doi": "10.5194/acp-19-1393-2019",
+      "source_paper": {
+        "doi": "10.5194/acp-19-1393-2019",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A",
+        "Sentinel-2A images; Landsat 8 Operational Land Imager (OLI); Sentinel-1A"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A",
+          "actual_product_in_paper": "Sentinel-1A",
+          "evidence_quotes": [
+            "To delineate fire perimeters and define burn severity precisely, we used Landsat 8 Operational Land Imager (OLI) (resolution: 30 m× 30 m) together with Sentinel-1A (resolution: 30 m× 30 m) and Sentinel-2A images (resolution: 30 m× 30 m) (see Table 1) by applying the differenced normalized burn ratio (dNBR) (Key and Benson, 2006):"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2A images; Landsat 8 Operational Land Imager (OLI); Sentinel-1A",
+          "actual_product_in_paper": "Sentinel-2A images; Landsat 8 Operational Land Imager (OLI); Sentinel-1A",
+          "evidence_quotes": [
+            "For the mapping of the burned area, Sentinel-2A images were used."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "To delineate fire perimeters and define burn severity precisely, we used Landsat 8 Operational Land Imager (OLI) (resolution: 30 m× 30 m) together with Sentinel-1A (resolution: 30 m× 30 m) and Sentinel-2A images (resolution: 30 m× 30 m) (see Table 1) by applying the differenced normalized burn ratio (dNBR) (Key and Benson, 2006):",
+        "For the mapping of the burned area, Sentinel-2A images were used.",
+        "The emissions of BC, OC and BrC obtained from Eq. (1) were fed to the Lagrangian particle dispersion model FLEXPART version 10.3 (Pisso et al., 2019) to simulate transport and deposition."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究考察2017年夏季格陵兰岛西部异常泥炭地野火的燃烧面积与BC、OC和BrC排放，并评估其输送、沉降及对格陵兰冰盖反照率和辐射强迫的影响。",
+      "hypothesis_or_mechanism": "野火产生的BC和BrC随烟羽输送并沉降到冰雪表面，可降低反照率并产生正的地表辐射强迫。泥炭地在多年冻土融化后变得易燃，而烟羽受西风影响可能有较大比例沉降于格陵兰冰盖。",
+      "variables_and_data_use": "研究使用Sentinel-2A、Landsat 8 OLI和Sentinel-1A影像，结合dNBR划定火烧边界并评估燃烧严重度；FIRMS热点及MODIS MCD14DL活跃火点作为火灾定位或辅助信息。根据火烧面积、燃料负荷、燃烧完全度和排放因子估算BC、OC、BrC排放，并以FLEXPART模拟输送和沉降；SNICAR与libRadtran的uvspec用于估算反照率变化和瞬时辐射强迫。",
+      "method_paradigm": "采用多传感器遥感火烧面积制图与dNBR燃烧严重度评估，结合燃料消耗和排放因子进行排放估算。随后以FLEXPART拉格朗日粒子扩散模拟烟羽输送沉降，并用SNICAR及uvspec计算反照率和辐射强迫。",
+      "study_area": "格陵兰岛西部野火区及格陵兰冰盖",
+      "study_period": "野火发生于2017年7月31日至8月21日；辐射强迫示例计算时点为2017年8月31日正午。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2A images",
+          "role_in_study": "用于火烧面积制图、dNBR燃烧严重度评估及火烧边界判定。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the mapping of the burned area, Sentinel-2A images were used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 Operational Land Imager (OLI)",
+          "role_in_study": "与Sentinel影像联合用于划定火烧边界及燃烧严重度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "To delineate fire perimeters and define burn severity precisely, we used Landsat 8 Operational Land Imager (OLI) (resolution: 30 m× 30 m) together with Sentinel-1A (resolution: 30 m× 30 m) and Sentinel-2A images (resolution: 30 m× 30 m) (see Table 1) by applying the differenced normalized burn ratio (dNBR) (Key and Benson, 2006):",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1A",
+          "role_in_study": "与Landsat 8 OLI和Sentinel-2A联合用于火烧边界及严重度制图；表中标为SAR。",
+          "usage": "used_as_data",
+          "evidence_quote": "To delineate fire perimeters and define burn severity precisely, we used Landsat 8 Operational Land Imager (OLI) (resolution: 30 m× 30 m) together with Sentinel-1A (resolution: 30 m× 30 m) and Sentinel-2A images (resolution: 30 m× 30 m) (see Table 1) by applying the differenced normalized burn ratio (dNBR) (Key and Benson, 2006):",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "FIRMS (Fire Information for Resource Management System)",
+          "role_in_study": "提供火点坐标，用于定位火灾。",
+          "usage": "used_as_data",
+          "evidence_quote": "Coordinates of fire locations (hot spots) were downloaded from FIRMS (Fire Information for Resource Management System; NASA, 2017a).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS satellite product MCD14DL",
+          "role_in_study": "作为独立辅助信息展示活跃火点。",
+          "usage": "used_as_data",
+          "evidence_quote": "As an independent source of information, active fires from MODIS satellite product MCD14DL (Giglio et al., 2003) are plotted in Supplement Fig. S2.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PRMv2",
+          "role_in_study": "模拟火灾烟雾注入高度及质量脱离廓线，供大气输送模拟使用。",
+          "usage": "used_as_data",
+          "evidence_quote": "Injection heights into the atmosphere of the emitted smoke were simulated with version 2 of the plume rise model (PRM; Paugam et al., 2015) which is implemented in the Global Fire Assimilation System (GFAS) emission inventory (Rémy et al., 2017).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "FLEXPART version 10.3",
+          "role_in_study": "模拟BC、OC和BrC的输送与沉降。",
+          "usage": "used_as_data",
+          "evidence_quote": "The emissions of BC, OC and BrC obtained from Eq. (1) were fed to the Lagrangian particle dispersion model FLEXPART version 10.3 (Pisso et al., 2019) to simulate transport and deposition.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "hourly 0.5°×0.5° operational analyses from the European Centre for Medium-Range Weather Forecasts (ECMWF)",
+          "role_in_study": "作为FLEXPART气象驱动数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "The model was driven by hourly 0.5◦×0.5◦ operational analyses from the European Centre for Medium-Range Weather Forecasts (ECMWF).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ECLIPSE (Evaluating the Climate and Air Quality Impacts Of Short-Lived Pollutants) version 5 emission data set",
+          "role_in_study": "用于估算其他来源的人为排放对格陵兰BC和OC浓度的贡献。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the anthropogenic emissions, we used the ECLIPSE (Evaluating the Climate and Air Quality Impacts Of Short-Lived Pollutants) version 5 (Klimont et al., 2017) emission data set.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "operational CAMS GFAS emissions",
+          "role_in_study": "提供格陵兰以外生物质燃烧排放，用于源贡献分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the biomass burning emissions outside Greenland, we used operational CAMS GFAS emissions (Kaiser et al., 2012).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SNICAR model",
+          "role_in_study": "计算雪面反照率及BC、BrC沉降导致的反照率变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The albedo of the snow was calculated with the SNICAR model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "uvspec model from the libRadtran radiative transfer software package",
+          "role_in_study": "计算火灾排放物造成的瞬时辐射强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "The IRF of the emitted substances of interest was calculated using the uvspec model from the libRadtran radiative transfer software package",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_acp-19-1393-2019.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_acp-19-1393-2019.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "52f2a2c35cfb2e649b76763c39f2508e7265b4e218af3815bece028ff9cbca76",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:04",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.5194_acp-19-1393-2019.json",
+        "quote_gate": {
+          "total": 17,
+          "verified": 17
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_014_ref_25",
+      "source_paper_doi": "10.5194/bg-20-3803-2023",
+      "source_paper": {
+        "doi": "10.5194/bg-20-3803-2023",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 (S1) Ground Range Detected (GRD) scenes"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "sar_observation",
+          "anchor_product": "Sentinel-1 SAR time-series imagery",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 (S1) Ground Range Detected (GRD) scenes",
+          "actual_product_in_paper": "Sentinel-1 (S1) Ground Range Detected (GRD) scenes",
+          "evidence_quotes": [
+            "Here, we used the Ground Range Detected (GRD) scenes with dual-band cross-polarization (vertical–vertical plus vertical–horizontal bands at 10 m resolution) preprocessed in Google Earth Engine."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "burned_area_reference",
+          "anchor_product": "MODIS Burned Area Monthly Global 500 m",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "MODIS sensors",
+          "evidence_quotes": [
+            "High-resolution 20 m burned area detection using the Sentinel-2 MSI (Mul-tiSpectral Instrument) sensor already demonstrated an 80 % increase in the area burned in Africa compared to the 500 m MODIS sensors, but such data remain to be combined with high-resolution biomass data to assess AGB-L (Ramo et al., 2021)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "burned_area_reference"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The method to map tree height at 10 m resolution in 2020 combines optical (Sentinel-2), SAR (Sentinel-1), and spaceborne lidar data (Global Ecosystem Dynamics Investigation (GEDI)) with deep learn-ing methods (U-Net model).",
+        "We processed atmospherically corrected and orthorectified images from the L2A product of ESA’s Sentinel-2 mission between 2020 and 2022.",
+        "Here, we used the Ground Range Detected (GRD) scenes with dual-band cross-polarization (vertical–vertical plus vertical–horizontal bands at 10 m resolution) preprocessed in Google Earth Engine."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究法国2020—2022年森林火灾造成的地上生物量损失，尤其是2022年火季在地中海、Atlantic maritime pine及温带森林中的影响有何不同，以及高分辨率数据相较粗分辨率数据能否更准确识别火烧面积和受影响生物量。",
+      "hypothesis_or_mechanism": "仅以火烧面积衡量火灾影响不足以反映生态损失；生物量损失还取决于火烧区域内的树木生物量。高分辨率火烧边界和树高数据能更准确识别小型火斑并刻画火灾周界，从而改善生物量损失估算。",
+      "variables_and_data_use": "研究用ESA Sentinel-2 L2A影像计算NDVI、NBR和NBR2，并通过BAMTs和随机森林半自动提取火灾边界；NASA FIRMS热点或法国BDIFF火灾登记用于定位处理区域及确定火灾日期。树高制图将Sentinel-1 GRD、Sentinel-2 L2A与GEDI RH95数据输入U-Net模型；再结合火烧斑块、树高及森林清查样地数据估算地上生物量损失。",
+      "method_paradigm": "采用高分辨率遥感火烧边界半自动制图与人工校核，并以随机森林分类识别火烧区域。树高估算使用融合光学、SAR和星载激光雷达数据的U-Net深度学习回归，再据此估算火灾地上生物量损失。",
+      "study_area": "法国，按法国国家森林清查划分为地中海森林与灌丛区、Atlantic maritime pine forest区和温带森林区。",
+      "study_period": "火灾分析期为2020—2022年；树高图基于2020年数据，Sentinel-1与Sentinel-2用于树高模型的时段为2020年5月1日至10月1日。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2 L2A product",
+          "role_in_study": "用于计算光谱指数并通过BAMTs提取火灾边界；同时作为树高U-Net模型的光学输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "We processed atmospherically corrected and orthorectified images from the L2A product of ESA’s Sentinel-2 mission between 2020 and 2022.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 (S1) Ground Range Detected (GRD) scenes",
+          "role_in_study": "使用双极化SAR影像构建中值合成影像，作为U-Net树高预测模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Here, we used the Ground Range Detected (GRD) scenes with dual-band cross-polarization (vertical–vertical plus vertical–horizontal bands at 10 m resolution) preprocessed in Google Earth Engine.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Ecosystem Dynamics Investigation (GEDI) L2A product",
+          "role_in_study": "使用GEDI RH95树高指标作为训练树高模型的参考高度。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this case, we used RH95 height metrics as the reference height in order to train our model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA’s Fire Information for Resource Management System (FIRMS)",
+          "role_in_study": "提供火点以定位火灾并确定火灾日期，服务于BAMTs火灾边界处理。",
+          "usage": "used_as_data",
+          "evidence_quote": "Each fire was first spatially and temporally located using NASA’s Fire Information for Resource Management System (FIRMS) or national registration from the French Base de Données des Incendies de Forêt en France BDIFF official fire registration (BDIFF, 2023) to target a BAMTs processing zone.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "French Base de Données des Incendies de Forêt en France BDIFF",
+          "role_in_study": "作为火灾登记信息来源，用于定位火灾及确定火灾日期；也用于筛选与法国森林火灾数据库相匹配的火灾多边形。",
+          "usage": "used_as_data",
+          "evidence_quote": "Each fire was first spatially and temporally located using NASA’s Fire Information for Resource Management System (FIRMS) or national registration from the French Base de Données des Incendies de Forêt en France BDIFF official fire registration (BDIFF, 2023) to target a BAMTs processing zone.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Corine Land Cover 2018",
+          "role_in_study": "用于展示法国森林与植被覆盖，并辅助呈现研究所用主要森林区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forest and vegetation cover in France from Corine Land Cover 2018 (SDES et al., 2019), with delimited major forest regions used in the study (Mediterranean forest, maritime pine forest, and temperate forest).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "French national forest inventory (NFI)",
+          "role_in_study": "用于将法国划分为三大森林区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, we employed the study of Barbero et al. (2019) and the classification of the French national forest inventory (NFI) to categorize France into three major regions (Fig. 1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS sensors",
+          "role_in_study": "作为粗分辨率火烧面积遥感数据的背景比较对象；文中未表明使用特定MODIS burned-area产品作为本研究输入。",
+          "usage": "mention_only",
+          "evidence_quote": "High-resolution 20 m burned area detection using the Sentinel-2 MSI (Mul-tiSpectral Instrument) sensor already demonstrated an 80 % increase in the area burned in Africa compared to the 500 m MODIS sensors, but such data remain to be combined with high-resolution biomass data to assess AGB-L (Ramo et al., 2021).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GFED model",
+          "role_in_study": "作为全球火灾排放与生物量估算方法的背景介绍，未作为本研究输入。",
+          "usage": "mention_only",
+          "evidence_quote": "Integrative models of fire emissions combining burned area datasets, land cover, sea-sonal ecosystem functioning, and a simulation of the biomass carbon pools affected by fires have been applied globally at 0.25◦ resolution in the GFED model (Randerson et al., 2017).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_bg-20-3803-2023.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_bg-20-3803-2023.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "968c5d0cc8394caff3f93c0069b05fded81eb6f4e5db0e6adee3a7a1eb1feb02",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:50:10",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_014/10.5194_bg-20-3803-2023.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 14
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010",
+  "quality": {
+    "paper_count": 25,
+    "semantic_directions_extracted": true,
+    "direction_count": 25,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 3,
+    "expanded_set_reference_count": 22,
+    "complete_member_combination_count": 15,
+    "disputed_complete_pending_recheck_count": 0,
+    "partial_set_support_count": 10,
+    "component_support_count": 9,
+    "zero_member_support_count": 1,
+    "member_conflict_count": 0,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  }
+}

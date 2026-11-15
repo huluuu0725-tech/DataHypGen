@@ -1,0 +1,1019 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_023",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MCD19A2.061: Terra & Aqua MAIAC Land Aerosol Optical Depth Daily 1km",
+    "spatial_coverage": {
+      "region_name": "Central Europe (Germany and neighboring countries)",
+      "coverage": "Global 1 km gridded land coverage; valid retrievals are limited by observation geometry, clouds, surface conditions and MAIAC quality masks."
+    },
+    "temporal_coverage": "2000-02-24T00:00:00Z to 2026-06-26T23:45:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1000 m (1 km)",
+    "temporal_unit": "Daily cadence (granule timestamps)",
+    "analytical_capabilities": [
+      "Map the spatial distribution and regional gradients of land aerosol optical depth",
+      "Analyze daily, seasonal and interannual variability in aerosol loading",
+      "Compare the 0.47 micrometre and 0.55 micrometre AOD retrievals",
+      "Use uncertainty and quality fields to screen and characterize retrieval reliability",
+      "Aggregate daily granules to regular grids or time windows for regional analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Land aerosol optical depth at 0.47 micrometres (Optical_Depth_047) and 0.55 micrometres (Optical_Depth_055), dimensionless.",
+      "runtime_hint": "Use the catalog band names Optical_Depth_047 and Optical_Depth_055 with scale 0.001; AOD_Uncertainty uses scale 0.0001. AOD_QA is a 16-bit bitmask: bits 0-2 cloud mask, bits 3-4 land/water/snow/ice mask, bits 5-7 adjacency mask, bits 8-11 AOD QA, bit 12 glint mask, bits 13-14 aerosol model, and bit 15 reserved. Catalog ranges are -100 to 8000 for both AOD bands and 0 to 30000 for AOD_Uncertainty; no separate fill value is specified in the catalog metadata. Apply the documented scales and QA masks before analysis."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, hosted by Google Earth Engine",
+    "gee_asset": {
+      "id": "MODIS/061/MCD19A2_GRANULES",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MCD19A2_GRANULES",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_023.json",
+    "source_sha256": "97bfe0a0de8bc919e8a842fbd31ab770e191e910416a0f5cf51d422a7dcde5fc",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_023/prompt.json",
+    "current_prompt_sha256": "99359f952e0723e73bf139e4549e58a50b04bd3e4ee113a82b59acc04af9510e",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MCD19A2_GRANULES",
+      "observable_group": "maiac_aerosol_optical_depth",
+      "asset_alias_policy": "MAIAC Collection 6/6.1 MCD19A2 AOD distributed by LP DAAC or hosted in Earth Engine is the same product family; MOD04/MYD04 Dark Target, VIIRS, SLSTR, and TROPOMI aerosol products are excluded from direction admission.",
+      "observation_identity_contract": {
+        "physical_object": "MCD19A2.061: Terra & Aqua MAIAC Land Aerosol Optical Depth Daily 1km, representing maiac aerosol optical depth.",
+        "source_lineage": "Task Prompt source: NASA LP DAAC at the USGS EROS Center, hosted by Google Earth Engine. Current task anchor: MODIS/061/MCD19A2_GRANULES (maiac_aerosol_optical_depth). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "Land aerosol optical depth at 0.47 micrometres (Optical_Depth_047) and 0.55 micrometres (Optical_Depth_055), dimensionless.; spatial resolution: 1000 m (1 km); temporal structure: Daily cadence (granule timestamps)",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: MAIAC Collection 6/6.1 MCD19A2 AOD distributed by LP DAAC or hosted in Earth Engine is the same product family; MOD04/MYD04 Dark Target, VIIRS, SLSTR, and TROPOMI aerosol products are excluded from direction admission."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "aod_ref_01",
+      "research_question": "How does chemical-transport-model resolution affect satellite-derived global surface PM2.5 when the satellite constraint is MAIAC AOD?",
+      "hypothesis_or_mechanism": "A simulated surface-PM2.5-to-column-AOD ratio supplies the missing vertical and compositional relationship, while finer model resolution better represents population-scale gradients.",
+      "variables_and_data_use": "MAIAC AOD is combined with simulated aerosol profiles, aerosol composition, humidity, and surface-to-column ratios before calibration to ground monitors.",
+      "method_paradigm": "Geophysical satellite-model fusion with resolution sensitivity analysis and monitor-based calibration.",
+      "used_assets": [
+        "MODIS MAIAC MCD19A2 AOD",
+        "chemical transport model aerosol fields",
+        "ground PM2.5 monitors"
+      ],
+      "source_paper": {
+        "title": "Impact of Model Spatial Resolution on Global Geophysical Satellite-Derived Fine Particulate Matter",
+        "doi": "10.1021/acsestair.4c00084",
+        "year": 2024,
+        "venue": "ACS ES&T Air",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Qian Zhang",
+        "Randall V. Martin",
+        "Aaron van Donkelaar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "state_reconstruction",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "aod_ref_02",
+      "research_question": "Can daily one-kilometre ambient PM2.5 be reconstructed across India where monitoring density and retrieval coverage vary strongly?",
+      "hypothesis_or_mechanism": "MAIAC AOD supplies aerosol-column information, while meteorology, land use, temporal structure, and ground monitors learn the nonlinear column-to-surface mapping and missingness pattern.",
+      "variables_and_data_use": "MCD19A2 V6.1 AOD is fused with meteorology, land-use predictors, population-related covariates, and regulatory monitors for 2008-2020.",
+      "method_paradigm": "Nationwide ensemble learning with spatial and temporal cross-validation and gap-filling.",
+      "used_assets": [
+        "MODIS MAIAC MCD19A2 V6.1 AOD",
+        "meteorology and land use",
+        "ground PM2.5 monitors"
+      ],
+      "source_paper": {
+        "title": "Nationwide estimation of daily ambient PM2.5 from 2008 to 2020 at 1 km2 in India using an ensemble approach",
+        "doi": "10.1093/pnasnexus/pgae088",
+        "year": 2024,
+        "venue": "PNAS Nexus",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Siddhartha Mandal",
+        "Ajit Rajiva",
+        "Itai Kloog",
+        "Jyothi S. Menon"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "relationship_mechanism",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "aod_ref_03",
+      "research_question": "Can recurrent temporal models improve daily high-resolution PM2.5 estimates across the contiguous United States from MAIAC AOD?",
+      "hypothesis_or_mechanism": "Temporal memory and attention can learn lagged meteorological and aerosol relationships, but the target remains identified by calibration of column AOD against surface monitors.",
+      "variables_and_data_use": "MCD19A2.061 AOD is paired with meteorology, land and temporal predictors and EPA surface observations.",
+      "method_paradigm": "Bi-LSTM with attention, held-out validation, and comparison against conventional machine-learning estimators.",
+      "used_assets": [
+        "MODIS MAIAC MCD19A2.061 AOD",
+        "meteorological and land predictors",
+        "EPA PM2.5 monitors"
+      ],
+      "source_paper": {
+        "title": "High-Resolution Estimation of Daily PM2.5 Levels in the Contiguous US Using Bi-LSTM with Attention",
+        "doi": "10.3390/rs17010126",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Wang",
+        "Crooks",
+        "Regan",
+        "Karimzadeh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "method_innovation",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "aod_ref_04",
+      "research_question": "垂直气溶胶分层条件如何影响MAIAC AOD与地面PM 2.5浓度之间的关系及PM 2.5估算能力？",
+      "hypothesis_or_mechanism": "气溶胶的垂直分布、类型和相对湿度会调节柱积分AOD与近地面PM 2.5之间的关系，使不同分层状态下的AOD代表性和预测能力产生差异。",
+      "variables_and_data_use": "使用MCD19A2 MAIAC AOD作为核心卫星变量，提取监测站最近像元和3×3像元平均，并测试一日时间滞后；使用地面PM 2.5作为目标变量，结合AERONET AOD、PollyXT激光雷达垂直气溶胶和相对湿度剖面、气象信息及A–J分层类别，开展相关性、趋势和机器学习预测分析。",
+      "method_paradigm": "分层关系机制与机器学习",
+      "used_assets": [
+        "MCD19A2: MODIS/Terra + Aqua Land Aerosol Optical Depth Daily L2G Global 1 km SIN Grid",
+        "MAIAC aerosol optical depth",
+        "Israel’s national environmental monitoring network",
+        "Tel Aviv University AERONET site",
+        "Weizmann Institute AERONET site",
+        "PollyXT multiwavelength Raman lidar system",
+        "lidar target classification product",
+        "radiosonde measurements from the Beit Dagan meteorological station"
+      ],
+      "author_team": [
+        "Irina Rogozovsky",
+        "Albert Ansmann",
+        "Alexandra Chudnovsky"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Vertical Aerosol Structure Matters: Improving the AOD–PM 2.5 Link for Air Quality and Exposure",
+        "doi": "10.1021/acs.est.6c00095",
+        "year": 2026,
+        "venue": "Environmental Science & Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_05",
+      "research_question": "研究探讨北部泰国 2018 至 2022 年气象、地形和土地利用因素与 PM2.5 及 AOD 的关系，以及 AOD 与地面 PM2.5 浓度之间的相关性。",
+      "hypothesis_or_mechanism": "气象条件、地形和土地利用会影响气溶胶光学厚度及 PM2.5 分布，而 MODIS MCD19A2 AOD 与地面 PM2.5 应呈显著相关。",
+      "variables_and_data_use": "使用 MCD19A2 (AOD) 作为气溶胶光学厚度变量，使用地面监测站 PM2.5 数据作为污染浓度变量，并结合 DEM、土地利用、坡度、温度、风速、大气压力、降雨、风向、相对湿度和 Suomi NPP VIIRS DNB 夜间灯光数据进行回归、相关性和空间分析。",
+      "method_paradigm": "空间统计与相关性分析",
+      "used_assets": [
+        "MCD19A2 (AOD)",
+        "PM2.5 Data",
+        "Digital Elevation Model (DEM)",
+        "Land Use Data",
+        "Slope Data",
+        "Temperature Data",
+        "Wind Speed Data",
+        "Atmospheric Pressure",
+        "Rainfall Data",
+        "Wind Direction",
+        "Relative Humidity",
+        "Nighttime Light",
+        "Suomi NPP VIIRS DNB"
+      ],
+      "author_team": [
+        "Morakot Worachairungreung",
+        "Nayot Kulpanich",
+        "Pornperm SAE-NGOW",
+        "Piyathida SRASAENG",
+        "Patita SANGTHONGKHAM",
+        "Pattarapong Ngansakul",
+        "Kunyaphat Thanakunwutthirot"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "ASSESSING AIR QUALITY THROUGH THE CORRELATION BETWEEN PARTICULATE MATTER 2.5 (PM2.5) AND AEROSOL OPTICAL DEPTH (AOD) USING MODIS SATELLITE DATA",
+        "doi": "10.21163/gt_2025.201.14",
+        "year": 2025,
+        "venue": "Geographia Technica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_06",
+      "research_question": "MCD19A2 MAIAC 气溶胶光学厚度及相关气象变量能否有效预测 Montana 地面 PM2.5 浓度并生成全州 PM2.5 分布图？",
+      "hypothesis_or_mechanism": "卫星观测的气溶胶光学厚度与地面 PM2.5 存在可建模关系，加入边界层高度和近地面气象变量能够改善 PM2.5 预测性能。",
+      "variables_and_data_use": "使用 MCD19A2 Optical_Depth_047 的 470 nm AOD 作为核心卫星预测变量，并进行质量控制云掩膜、时间窗口均值合成、空间配准和负值过滤；使用 Montana Department of Environmental Quality 地面站 PM2.5 作为目标变量，使用 NOAA NWS RTMA 的压力、风速、风向和露点温度，以及 M2T1NXFLX 的 planetary-boundary-layer height 作为辅助预测变量。",
+      "method_paradigm": "卫星反演融合与机器学习预测",
+      "used_assets": [
+        "MCD19A2 AOD",
+        "MCD19A2 Optical_Depth_047",
+        "Montana Department of Environmental Quality",
+        "NOAA NWS RTMA",
+        "M2T1NXFLX",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Aspen Morgan",
+        "Jeremy Crowley",
+        "Raja M. Nagisetty"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Montana Statewide Google Earth Engine-Based Wildfire Hazardous Particulate (PM2.5) Concentration Estimation",
+        "doi": "10.3390/air2020009",
+        "year": 2024,
+        "venue": "Air",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_07",
+      "research_question": "加拿大野火长距离输送的烟霾如何影响美国大陆地面 PM 2.5 污染水平？",
+      "hypothesis_or_mechanism": "加拿大火灾排放产生的烟霾可通过长距离输送增加美国地面 PM 2.5 浓度，而 MAIAC AOD、气象条件和化学输送模拟能够刻画这种影响。",
+      "variables_and_data_use": "使用 MCD19A2 Version 6 product 的 550 nm MAIAC AOD 作为主要遥感预测变量，对 1 km AOD 进行网格平均并通过 Kriging 或 CTM 结果填补缺测；使用 EPA FRM/FEM 地面 PM 2.5 作为目标和验证数据；将 BLH、T2M、U10M、RH 和 SP 作为气象协变量，并使用 WRF-Chem、FINNv2.4、GDAS FNL 和 WACCM 估计火灾烟霾输送及关闭加拿大火灾排放后的反事实污染水平。",
+      "method_paradigm": "遥感融合与化学输送归因",
+      "used_assets": [
+        "MCD19A2 Version 6 product",
+        "MAIAC satellite AOD",
+        "daily surface PM 2.5 concentration product that uses Federal Reference Methods (FRMs) and Federal Equivalent Methods (FEMs) (code 88101) from the US Environmental Protection Agency (EPA)",
+        "ECMWF reanalysis",
+        "Weather Research and Forecasting model coupled with Chemistry (WRF-Chem v4.2.2)",
+        "Fire Inventory from NCAR version 2.4 (FINNv2.4)",
+        "National Centers for Environmental Prediction (NCEP) Global Data Assimilation System (GDAS) Final (FNL) analysis",
+        "Whole Atmosphere Community Climate Model (WACCM)"
+      ],
+      "author_team": [
+        "Zhixin Xue",
+        "U. S. Nair",
+        "Sundar A. Christopher"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "An investigation of the impact of Canadian wildfires on US air quality using model, satellite, and ground measurements",
+        "doi": "10.5194/acp-25-5497-2025",
+        "year": 2025,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_08",
+      "research_question": "研究由 MCD19A2 MAIAC AOD 推导的 PM2.5 浓度是否与太阳能农场的太阳能发电量存在关系。",
+      "hypothesis_or_mechanism": "较高的气溶胶光学厚度和 PM2.5 浓度会增加颗粒物造成的遮蔽或沉积，从而减少太阳辐射利用并降低太阳能发电量。",
+      "variables_and_data_use": "使用 MCD19A2.061/MCD19A2_GRANULES 的 Optical_Depth_047 提取监测站和太阳能农场位置的 AOD，经缩放、裁剪和月度聚合后转换为 PM2.5；使用 Pollution Control Department 的地面 PM2.5 数据进行验证，并与 EGAT 的太阳能发电数据进行相关和回归分析。",
+      "method_paradigm": "遥感反演与相关分析",
+      "used_assets": [
+        "MCD19A2.061",
+        "MCD19A2 V6.1",
+        "MCD19A2_GRANULES",
+        "Optical_Depth_047",
+        "MODIS",
+        "Google Earth Engine",
+        "Dust Data",
+        "Electricity Generation Data"
+      ],
+      "author_team": [
+        "S. Lalaeng",
+        "T. Thanasang",
+        "P. Puttinet",
+        "N. Srireuan",
+        "S. Chavanavesskul"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "The Relationship between PM2.5 and Solar Cell Electricity Generation Using Aerosol Optical Depth (AOD)",
+        "doi": "10.52939/ijg.v21i1.3797",
+        "year": 2024,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_09",
+      "research_question": "研究如何结合 MODIS MAIAC AOD、Landsat 土地覆盖信息和 Sentinel-5P/TROPOMI 气体观测评估 Sharkia Governorate 的土地覆盖变化及空气污染状况。",
+      "hypothesis_or_mechanism": "土地覆盖变化及城市扩张会加剧空气污染，而 AOD 与地面 PM2.5 之间的关系可用于估算区域 PM2.5 浓度。",
+      "variables_and_data_use": "使用 MCD19A2-V6 的 550 nm AOD 生成日尺度 PM2.5 并计算季节统计量；使用 Landsat-7 和 Landsat-8 多光谱反射率进行土地覆盖分类和 2002至2022 年变化检测；使用 Sentinel-5P/TROPOMI Level-2 OFFL 数据获取 CO、NO2 和 SO2 柱浓度并制作季节性污染分布图。",
+      "method_paradigm": "多源遥感综合评估",
+      "used_assets": [
+        "MCD19A2-V6",
+        "Landsat-7",
+        "Landsat-8",
+        "Sentinel-5P/TROPOMI product type level 2 and offline (OFFL)"
+      ],
+      "author_team": [
+        "Alaa Nagy",
+        "Ahmed El-Zeiny",
+        "Mohamed Sowilem",
+        "Walaa Moselhi",
+        "Manal Elsayed Elshaier"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Monitoring air quality of Sharkia Governorate using remote sensing",
+        "doi": "10.1007/s11600-023-01283-2",
+        "year": 2024,
+        "venue": "Acta Geophysica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_10",
+      "research_question": "基于卫星 AOD 观测的随机森林方法估算德国 PM2.5 浓度相比化学传输模型再分析数据在时空变异性刻画上的附加价值",
+      "hypothesis_or_mechanism": "卫星 AOD 观测包含的高分辨率空间信息能够更准确地捕捉 PM2.5 浓度的局地梯度和短期污染事件，优于依赖排放清单和模式参数化的化学传输模型",
+      "variables_and_data_use": "使用 MODIS MAIAC MCD19A2 的 550 nm AOD 波段作为主要预测因子，结合 MODIS 地表温度、土地覆盖和 ECMWF 气象场（边界层高度、湿度、风速、降水等）通过随机森林回归模型训练，以 EEA 地面站点 PM2.5 观测为目标变量，生成 2018-2022 年德国 0.01° 分辨率日均 PM2.5 数据集，并与 CAMS 欧洲再分析数据进行系统对比",
+      "method_paradigm": "机器学习回归 对比评估",
+      "used_assets": [
+        "MCD19A2",
+        "MYD11A1",
+        "MOD11A1",
+        "MCD12Q1",
+        "ECMWF HRES",
+        "EEA PM2.5",
+        "CAMS European Reanalysis"
+      ],
+      "author_team": [
+        "Jana Handschuh",
+        "Thilo Erbertseder",
+        "F. W. Baier"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "On the added value of satellite AOD for the investigation of ground-level PM2.5 variability",
+        "doi": "10.1016/j.atmosenv.2024.120601",
+        "year": 2024,
+        "venue": "Atmospheric Environment",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_11",
+      "research_question": "不同深度学习模型能否结合 MCD19A2 气溶胶光学厚度、其他遥感变量、气象变量和地理辅助数据，连续估计伊朗全域的 PM 2.5 浓度分布？",
+      "hypothesis_or_mechanism": "气溶胶光学厚度、气象条件、地形、污染源空间分布及其他环境变量共同影响 PM 2.5 浓度，融合这些变量能够改善区域 PM 2.5 的连续制图效果。",
+      "variables_and_data_use": "使用 MODIS MCD19A2 的 AOD 和 NDVI，Sentinel-5P/TROPOMI 的 AOD 及 O3、NO2、SO2、CH4、CO、CO2 等变量，SRTM DEM，FLDAS 气象变量，EPA 地面 PM 2.5 观测以及道路、电厂和人口密度等辅助变量。数据按月整理，统一重采样到 0.05×0.05 度网格，划分为 10×10 像元子图，并输入 MLP、CNN、LSTM 和 ConvLSTM 模型预测 PM 2.5。",
+      "method_paradigm": "深度学习空间时间建模",
+      "used_assets": [
+        "MCD19A2",
+        "Sentinel-5P",
+        "TROPOMI",
+        "SRTM",
+        "FLDAS-Global",
+        "FLDAS-Central Asia",
+        "EPA PM 2.5 concentration data",
+        "Aaron van Donkelaar et al.",
+        "OpenStreetMap",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Zohreh Sohrabi",
+        "Jamshid Maleki"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Fusing satellite imagery and ground-based observations for PM2.5 air pollution modeling in Iran using a deep learning approach",
+        "doi": "10.1038/s41598-025-05332-2",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_12",
+      "research_question": "如何利用集成学习模型结合 AOD、气象数据和空气污染观测数据提高京津冀地区 PM2.5 浓度的预测精度",
+      "hypothesis_or_mechanism": "气溶胶光学厚度与地面 PM2.5 浓度存在相关性，结合气象变量和多种机器学习算法的堆叠集成学习模型可以提高 PM2.5 时空预测能力",
+      "variables_and_data_use": "使用 MCD19A2 数据集的 550 nm 波段 AOD（Optical_Depth_550）作为预测变量，结合 ERA5 气象数据（气压、相对湿度、温度、风速）和地面空气质量监测数据，通过 LSTM、随机森林等基学习器和元学习器构建堆叠集成模型预测 PM2.5 浓度，并使用反距离权重插值方法生成空间分布图",
+      "method_paradigm": "机器学习预测 空间插值",
+      "used_assets": [
+        "MCD19A2",
+        "ERA5",
+        "China Environmental Monitoring General Station",
+        "National Tibetan Plateau Science Data Centre"
+      ],
+      "author_team": [
+        "Xintong Gao",
+        "Xiaohong Wang",
+        "Fuping Li",
+        "Wenhao Jiang",
+        "Zhe Meng",
+        "Jiaxing Sun",
+        "Ao Zhang",
+        "Linlin Jiao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "PM2.5 concentration 7-day prediction in the Beijing–Tianjin–Hebei region using a novel stacking framework",
+        "doi": "10.1038/s41598-025-07719-7",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_13",
+      "research_question": "如何利用卫星 AOD、地面监测、低成本传感器、烟霾模型和气象数据快速估计野火烟霾事件期间的 PM2.5 暴露？",
+      "hypothesis_or_mechanism": "MAIAC AOD 与地面 PM2.5 的关系受到气溶胶类型、湿度、气溶胶垂直分布和边界层高度影响，将其与地面观测、烟霾模型及气象变量融合可以改善空间连续的 PM2.5 估计。",
+      "variables_and_data_use": "使用 MCD19A2 的 1 km daily AOD 作为卫星预测变量；使用 AirNow、IWFAQRP、CARB 和 PurpleAir 的 PM2.5 观测作为目标、训练和验证数据；使用 BlueSky 的近地面 PM2.5 模拟结果以及 NARR 的温度、风、湿度、边界层高度和降雨作为补充预测变量。对 AOD 缺测值进行多阶段焦点平均和场景中位数填补，并通过随机森林进行数据融合。",
+      "method_paradigm": "遥感数据融合与机器学习",
+      "used_assets": [
+        "AirNow",
+        "Interagency Wildland Fire Air Quality Response Program (IWFAQRP)",
+        "California Air Resources Board (CARB)",
+        "PurpleAir",
+        "OpenAQ",
+        "MAIAC",
+        "MCD19A2",
+        "BlueSky",
+        "CANSAC",
+        "North American Regional Reanalysis (NARR)"
+      ],
+      "author_team": [
+        "Sean M. Raffuse",
+        "Susan M. O’Neill",
+        "Rebecca J. Schmidt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "A model for rapid PM 2.5 exposure estimates in wildfire conditions using routinely available data: rapidfire v0.1.3",
+        "doi": "10.5194/gmd-17-381-2024",
+        "year": 2024,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_14",
+      "research_question": "如何利用卫星遥感 AOD 数据结合气象变量估算泰国 Saraburi 省的 PM2.5 浓度空间分布并识别污染热点区域",
+      "hypothesis_or_mechanism": "气溶胶光学厚度与地面 PM2.5 浓度存在线性关系,结合气象因子(气温、湿度、风速)可提高估算精度,聚类分析可识别农业活动导致的高值热点区",
+      "variables_and_data_use": "使用 MCD19A2 产品的 AOD 数据作为主要自变量,结合 ERA5 的气温、相对湿度、风速三个气象变量,通过多元线性回归估算 PM2.5,再进行 Moran's I 和 Getis-Ord Gi* 空间统计分析",
+      "method_paradigm": "多元线性回归 空间聚类分析",
+      "used_assets": [
+        "MCD19A2",
+        "ERA5",
+        "Ground-based PM2.5 monitoring stations"
+      ],
+      "author_team": [
+        "P. Rirugchart",
+        "C. Losiri",
+        "Asamaporn Sitthi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "The Application of Google Earth Engine on PM2.5 Estimation and its Distribution Pattern in Saraburi Province, Thailand",
+        "doi": "10.52939/ijg.v21i1.3787",
+        "year": 2024,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_15",
+      "research_question": "如何结合MCD19A2 MAIAC AOD、气象、地形和植被数据，利用深度学习估算中国大陆PM2.5浓度？",
+      "hypothesis_or_mechanism": "MAIAC AOD与气象条件、地形和植被共同反映地表PM2.5的空间分布，并可通过深度神经网络建立非线性估算关系。",
+      "variables_and_data_use": "使用MCD19A2的550nm AOD作为主要遥感预测变量，使用ERA5的风速、相对湿度、温度、边界层高度和地表压力，使用MOD13A3计算的NDVI和SRTMv4.1高程作为辅助预测变量，并以地面PM2.5监测数据作为训练和验证目标。",
+      "method_paradigm": "深度学习回归估算",
+      "used_assets": [
+        "MCD19A2",
+        "MODIS MAIAC AOD Data",
+        "ERA 5 Reanalysis Meteorological Data",
+        "SRTMv4.1",
+        "MOD13A3",
+        "National Urban Air Quality Real-time release platform of China Environmental Monitoring Station"
+      ],
+      "author_team": [
+        "Xueke Zheng",
+        "Ziqian Zhang",
+        "Yichi Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Retrieval of PM2.5 Using MODIS Aerosol Products Based on Depth Learning",
+        "doi": "10.62051/ijcsit.v2n2.08",
+        "year": 2024,
+        "venue": "International Journal of Computer Science and Information Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_16",
+      "research_question": "在印度尼西亚加里曼丹西部 Mempawah 地区,如何基于 MAIAC AOD 和气象参数使用机器学习模型预测 PM2.5 浓度",
+      "hypothesis_or_mechanism": "卫星 AOD 结合边界层高度、温度、湿度等气象参数能够通过非线性机器学习模型准确预测地面 PM2.5 浓度",
+      "variables_and_data_use": "使用 MAIAC MCD19A2 的 550nm AOD(1km 分辨率)作为主要预测变量,结合 ERA5 边界层高度和地面气象站参数(温度、湿度、降水、风速),通过 Random Forest 和 XGBoost 算法建立 PM2.5 日浓度预测模型",
+      "method_paradigm": "机器学习回归建模",
+      "used_assets": [
+        "MAIAC MCD19A2",
+        "AERONET AOD level 2.0",
+        "ERA5 PBLH",
+        "PM2.5 surface concentration"
+      ],
+      "author_team": [
+        "Ridho Rahmatullah",
+        "Maman Sudarisman",
+        "Dodo Gunawan",
+        "Giarno Giarno"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Prediksi Konsentrasi PM2.5 Menggunakan Data MAIAC AOD Berbasis Machine Learning di Kabupaten Mempawah",
+        "doi": "10.69693/ijim.v4i3.2600",
+        "year": 2026,
+        "venue": "Indonesian Journal of Innovation Multidisipliner Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_17",
+      "research_question": "研究烟霾导致的气溶胶光学厚度变化如何影响太阳辐照度、区域长期辐照度趋势以及光伏阵列输出。",
+      "hypothesis_or_mechanism": "烟霾增加会提高 MAIAC AOD 并增强大气消光，从而降低清空 DNI 和 GHI，进而减少光伏发电量；其影响取决于烟霾光学厚度、云状况和光伏组件温度。",
+      "variables_and_data_use": "使用 MCD19A2 MAIAC 的 550 nm AOD 和云掩膜表征气溶胶与云状况，使用 HMS 烟羽范围识别烟霾影响日，使用 NSRDB PSM 的清空和全天 DNI、GHI 及气象变量评估辐照度变化和光伏输出，并使用 CERES SYN1deg-1Hour 的云光学厚度比较云与烟霾的影响；MAIAC 检索结果被重采样到 NSRDB 4 km 网格并聚合为日均 AOD。",
+      "method_paradigm": "影响评估与过程归因",
+      "used_assets": [
+        "National Solar Radiation Database (NSRDB) Physical Solar Model (PSM) version 3.2.2",
+        "MERRA-2",
+        "HMS",
+        "MAIAC daily atmosphere product (MCD19A2)",
+        "CERES Synoptic 1-degree hourly (SYN1deg-1Hour) Edition 4.1",
+        "NASA Worldview true-color imagery",
+        "MODIS",
+        "Terra",
+        "Aqua"
+      ],
+      "author_team": [
+        "Kimberley A. Corwin",
+        "Jesse Burkhardt",
+        "Chelsea A. Corr",
+        "Paul W. Stackhouse",
+        "Amit Harenkumar Munshi",
+        "Emily V. Fischer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Solar energy resource availability under extreme and historical wildfire smoke conditions",
+        "doi": "10.1038/s41467-024-54163-8",
+        "year": 2025,
+        "venue": "Nature Communications",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_18",
+      "research_question": "社会因素与环境变量如何共同解释南非各市 NO 2 柱浓度的空间差异？",
+      "hypothesis_or_mechanism": "人口、家庭能源使用和住房条件等社会因素，以及 AOD、EVI 和 LST 等环境因素，会以不同空间尺度影响 NO 2 柱浓度。",
+      "variables_and_data_use": "以 Sentinel-5P/TROPOMI 的 NO 2 柱浓度为因变量，以 MCD19A2 的 MAIAC AOD、MOD13A2 的 EVI、MOD11A1 的 LST 以及人口密度、家庭能源使用、性别、年龄和住房类型等社会变量为解释变量；各变量按年度平均或市级空间单元汇总后进行标准化。",
+      "method_paradigm": "多尺度地理加权回归",
+      "used_assets": [
+        "Sentinel-5P",
+        "TROPOMI",
+        "MOD13A2",
+        "MOD11A1",
+        "MCD19A2",
+        "Google Earth Engine",
+        "OpenAfrica",
+        "STATISTICS SA",
+        "South Africa’s municipality map"
+      ],
+      "author_team": [
+        "Sphamandla N. Hlatshwayo",
+        "Solomon Gebremariam Tesfamichael",
+        "Mahlatse Kganyago"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Predicting tropospheric nitrogen dioxide column density in South African municipalities using socio-environmental variables and Multiscale Geographically Weighted Regression",
+        "doi": "10.1371/journal.pone.0308484",
+        "year": 2024,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_19",
+      "research_question": "研究气候和环境因素，尤其是 MAIAC AOD 与 NDVI，如何影响安徽省 HFRS 的月度发病。",
+      "hypothesis_or_mechanism": "气溶胶光学厚度、植被状况及相关气候因素可能通过环境暴露和季节性滞后效应影响 HFRS 发病风险。",
+      "variables_and_data_use": "使用 MCD19A2 的 550 nm MAIAC AOD、MOD13Q1 的 NDVI，以及 ERA5 的总降水、相对湿度、向下地表太阳辐射和 2 m 气温；将这些数据汇总为安徽省月度变量，并与 CCDC 的月度 HFRS 病例数据进行相关、滞后和 Poisson 回归分析。",
+      "method_paradigm": "时序关联与回归分析",
+      "used_assets": [
+        "MCD19A2",
+        "MOD13Q1",
+        "ERA5",
+        "Chinese Center for Disease Control and Prevention’s Public Health Science Data Center (CCDC)"
+      ],
+      "author_team": [
+        "Ying Liu",
+        "Chengyuan Liu",
+        "Liping Wang",
+        "Xian Chen",
+        "Huijie Qiao",
+        "Yan Zhang",
+        "Binggang Cai",
+        "Rongrong Xue",
+        "Chuanxiang Yi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Investigating the impact of climatic and environmental factors on HFRS prevalence in Anhui Province, China, using satellite and reanalysis data",
+        "doi": "10.3389/fpubh.2024.1447501",
+        "year": 2024,
+        "venue": "Frontiers in Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_20",
+      "research_question": "研究 MCD19A2 MAIAC 气溶胶光学厚度与地面 PM2.5 在不同季节和监测站点上的时空相关关系及其可用于地面 PM2.5 估计的可行性。",
+      "hypothesis_or_mechanism": "边界层高度升高和相对湿度降低会增强垂直混合并改善 AOD 与地面 PM2.5 的相关性，而较高湿度会通过影响气溶胶光学性质改变二者关系。",
+      "variables_and_data_use": "使用 MCD19A2 Version 6.1 的 1 km 日尺度 MAIAC AOD，经过 QA 筛选、重投影和监测站像元采样后，与 TVMA 监测网络的 PM2.5 日均浓度进行空间和时间相关分析；同时使用监测网络相对湿度和 MERRA-2 的 M2TMNXFLX 边界层高度解释相关性差异。",
+      "method_paradigm": "时空相关分析与机制解释",
+      "used_assets": [
+        "MCD19A2 Version 6.1",
+        "TVMA air-monitoring network",
+        "PM2.5",
+        "Relative Humidity (RH)",
+        "MERRA-2",
+        "M2TMNXFLX"
+      ],
+      "author_team": [
+        "Angélica Neria-Hernández",
+        "Xanat Antonio Némiga",
+        "Francisco Zepeda Mondragón",
+        "Violeta Múgica-Álvarez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Dynamics of the spatiotemporal correlation between Aerosol Optical Depth satellite data and PM2.5 surface monitoring: An exploratory approach",
+        "doi": "10.35208/ert.1740066",
+        "year": 2026,
+        "venue": "Environmental Research and Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_21",
+      "research_question": "该论文研究 Himawari-8 AHI 的 ORAC 检索在高 AOT 生物质燃烧烟羽中的表现，并与 AERONET 及多个卫星 AOT 产品进行比较。",
+      "hypothesis_or_mechanism": "高光学厚度烟羽会使常规气溶胶检索受限，而使用适配的 ORAC LUT 和云检索思路可能扩展 AHI 对极端烟羽 AOT 的可检索范围。",
+      "variables_and_data_use": "论文使用 AERONET AOT 作为地基比较基准，使用 Himawari-8 AHI HSD radiances 通过 ORAC 检索 AOT 和 effective radius，并将 JAXA ARP、MODIS Deep Blue、MODIS MAIAC MCD19A2、Sentinel-3 SYN 和 VIIRS Deep Blue 的 AOT 产品进行时间空间 collocation、重采样或邻域平均后比较。",
+      "method_paradigm": "多产品检索验证",
+      "used_assets": [
+        "AERONET version-3 level-1.5 direct sun AOT data",
+        "Himawari Standard Data (HSD) files",
+        "JAXA level-2 (L2) Aerosol Retrieval Product (ARP)",
+        "MOD04_L2",
+        "MYD_L2",
+        "MCD19A2",
+        "Sentinel-3 SYN product",
+        "AERDB_L2_VIIRS_SNPP Collection 1.1"
+      ],
+      "author_team": [
+        "Daniel Jamie Victor Robbins",
+        "Caroline Poulsen",
+        "Steven T. Siems",
+        "Simon Proud",
+        "Andrew T. Prata",
+        "R. G. Grainger",
+        "Adam C. Povey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Geostationary aerosol retrievals of extreme biomass burning plumes during the 2019–2020 Australian bushfires",
+        "doi": "10.5194/amt-17-3279-2024",
+        "year": 2024,
+        "venue": "Atmospheric measurement techniques",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_22",
+      "research_question": "利用机器学习集成方法在英国1公里网格上重建2003-2021年NO2、PM10和PM2.5的日浓度时空分布",
+      "hypothesis_or_mechanism": "卫星遥感AOD和NO2柱浓度结合气象再分析、化学输运模型、土地利用等多源数据，通过Super Learner集成学习框架可以高精度重建地表空气污染物浓度的时空变化",
+      "variables_and_data_use": "使用MCD19A2提供的0.47和0.55微米AOD作为预测变量，通过随机森林对缺失值进行重建（基于CAMS再分析AOD），然后将重建后的AOD与其他预测变量输入Super Learner模型（包括RF、XGB、LGBM、Lasso、Ridge基学习器和NNLS元学习器）预测地表NO2、PM10和PM2.5浓度",
+      "method_paradigm": "机器学习集成建模",
+      "used_assets": [
+        "MCD19A2",
+        "L3-OMNO2d",
+        "EAC4-CAMS",
+        "ERA5",
+        "ERA5-Land",
+        "EMEP4UK",
+        "DEFRA EDMs",
+        "MOD13A3v6.1"
+      ],
+      "author_team": [
+        "Arturo de la Cruz Libardi",
+        "Pierre Masselot",
+        "Rochelle Schneider",
+        "Emily Nightingale",
+        "Ai Milojevic",
+        "Jacopo Vanoli",
+        "Malcolm Mistry",
+        "Antonio Gasparrini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "High resolution mapping of nitrogen dioxide and particulate matter in Great Britain (2003–2021) with multi-stage data reconstruction and ensemble machine learning methods",
+        "doi": "10.1016/j.apr.2024.102284",
+        "year": 2024,
+        "venue": "Atmospheric Pollution Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_23",
+      "research_question": "研究评估 2023 年 Gharbia Governorate 的土地覆盖状况及其与 PM 2.5、CO、NO 2 和 SO 2 空间与季节变化的关系。",
+      "hypothesis_or_mechanism": "土地覆盖格局和大气污染物浓度存在空间与季节差异，MCD19A2 AOD 可用于估算区域 PM 2.5，而 Sentinel-5P/TROPOMI 可用于表征气态污染物。",
+      "variables_and_data_use": "使用 Landsat 8 OLI 和 Landsat 5 TM 影像进行土地利用/土地覆盖分类；从 MCD19A2 Version 6 提取 2023 年冬季和春季 AOD，并通过经验方程估算 PM 2.5；使用 Sentinel-5P/TROPOMI Level 2 OFFL 数据获取 CO、NO 2 和 SO 2，重采样后计算季节平均、最小值和最大值，并与监管限值比较。",
+      "method_paradigm": "遥感制图与污染评估",
+      "used_assets": [
+        "Landsat 8 Operational Land Imager data (OLI)",
+        "Landsat 5 Thematic Mapper data (TM)",
+        "MCD19A2 aerosol product",
+        "MCD19A2 Version 6",
+        "Sentinel-5P/TROPOMI Level 2 OFFL satellite imagery"
+      ],
+      "author_team": [
+        "Ahmed El-Zeiny",
+        "Alaa Nagy",
+        "Hoda Nour-Eldin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Decades of land use change and its impact on air quality in Egypt’s Middle Nile Delta observed from space",
+        "doi": "10.1038/s41598-025-17019-9",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_24",
+      "research_question": "如何通过多模态注意力时空网络融合异构遥感数据实现高精度空气质量预测",
+      "hypothesis_or_mechanism": "集成卫星气溶胶观测、痕量气体浓度、地表反射率和气象再分析数据，通过注意力机制动态融合多源信息，可以提高空气质量预测的准确性和不确定性量化能力",
+      "variables_and_data_use": "使用 MODIS 气溶胶光学厚度（1 km）、Sentinel-5P TROPOMI 痕量气体、Landsat-8 地表反射率和 ERA5 气象再分析作为多模态深度学习输入，通过并行 CNN 提取特征、双向 LSTM 建模时间依赖、多头注意力融合异构数据源，预测 PM₂.₅、PM₁₀、NO₂ 和 O₃ 浓度",
+      "method_paradigm": "深度学习 多模态融合",
+      "used_assets": [
+        "MODIS aerosol products",
+        "Sentinel-5P TROPOMI",
+        "Landsat-8 surface reflectance",
+        "ERA5 meteorological reanalysis"
+      ],
+      "author_team": [
+        "K. Selvi",
+        "V. Anitha",
+        "V. Manimaran",
+        "Thomas Samraj Lawrence"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Air quality prediction using multi-source remote sensing data integration with hybrid deep learning framework",
+        "doi": "10.1038/s41598-025-32466-0",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_25",
+      "research_question": "COVID-19 封锁期间印度豪拉地区空气质量变化特征及其驱动因素",
+      "hypothesis_or_mechanism": "封锁措施通过减少人为活动降低污染物排放，从而改善空气质量，可通过卫星 AOD 与地面 PM2.5 的回归关系定量评估",
+      "variables_and_data_use": "使用 MAIAC MCD19A2 AOD 数据、Sentinel-2 NDVI、气象变量（降水、温度、湿度、气压）和地形数据作为预测因子，通过地理加权回归模型估算 PM2.5 空间分布，并与地面监测站数据验证",
+      "method_paradigm": "地理加权回归 空间统计建模",
+      "used_assets": [
+        "MCD19A2",
+        "Sentinel-5P TROPOMI",
+        "Sentinel-2",
+        "Cartosat-1 CartoDEM"
+      ],
+      "author_team": [
+        "NAMRATA SAHU",
+        "Aditi Sarkar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Time Series Analysis of Air Quality of an Industrial District of India Using Remote Sensing and GIS: Impact of Covid-19 Lockdown",
+        "doi": "10.21203/rs.3.rs-3783329/v1",
+        "year": 2024,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_26",
+      "research_question": "在湿热热带城市环境中，结合MAIAC AOD、气象变量和校准后的低成本传感器观测，能否有效估计地面PM2.5浓度？",
+      "hypothesis_or_mechanism": "MAIAC AOD与气象条件共同反映气溶胶负荷及其垂直和时空变化，随机森林对其中的非线性关系和交互作用的刻画能力应优于线性混合效应模型。",
+      "variables_and_data_use": "使用MODIS/061/MCD19A2_GRANULES中的MAIAC AOD作为主要卫星预测变量，提取Terra和Aqua每日最大AOD并进行质量筛选和最近网格匹配；使用BMKG的温度、相对湿度、风速和降雨作为辅助预测变量；使用Nafas Foundation Indonesia、Airly、AirGradient及South Tangerang City Government's Environmental Agency (DLH)提供的PM2.5观测作为校准、训练和验证数据。",
+      "method_paradigm": "统计建模与机器学习估计",
+      "used_assets": [
+        "MODIS/061/MCD19A2_GRANULES",
+        "MCD19A2 data",
+        "MAIAC AOD MODIS",
+        "Nafas Foundation Indonesia",
+        "Airly",
+        "AirGradient",
+        "South Tangerang City Government's Environmental Agency (DLH)",
+        "Meteorological, Climatological, and Geophysical Agency (BMKG)"
+      ],
+      "author_team": [
+        "Ana O. Setiowati",
+        "Lalu Muhamad Jaelani",
+        "Andersen L. Panjaitan",
+        "Megivareza Putri Hanansyah",
+        "Mohammad Rifqi Alfarizi",
+        "Sophak Pok"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatiotemporal Estimation of PM₂.₅ in a Tropical Urban Environment: Statistic and Machine Learning Modeling",
+        "doi": "10.28991/cej-2026-012-07-06",
+        "year": 2026,
+        "venue": "Civil Engineering Journal",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "aod_ref_27",
+      "research_question": "该论文研究 Kebbi State 在 1994-2024 年 Harmattan 季节 PM2.5 污染、空气质量等级及长期健康风险的时空变化。",
+      "hypothesis_or_mechanism": "Harmattan 季节的跨境沙尘输送和本地人为排放会提高 AOD，并通过 AOD-PM2.5 转换表现为更高地表 PM2.5 暴露和健康风险。",
+      "variables_and_data_use": "论文用 MERRA-2 reanalysis PM2.5 data 覆盖 1994-1999 年，用 MODIS MAIAC-MCD19A2 Aerosol Optical Depth (AOD) product 覆盖 2000-2024 年并经过 QA 筛选、1 km 网格化和季节/事件聚合；再结合 MERRA-2 与 GEOS-Chem 的垂直廓线和 PM2.5/AOD 比值把 AOD 转换为地表 PM2.5，并用 Sentinel-5P/TROPOMI aerosol layer product 的 ultraviolet aerosol index 和 trace gas co-variates 辅助解释和验证污染事件。",
+      "method_paradigm": "遥感暴露重建",
+      "used_assets": [
+        "MERRA-2 reanalysis PM2.5 data",
+        "MODIS MAIAC-MCD19A2 Aerosol Optical Depth (AOD) product",
+        "Sentinel-5P/TROPOMI aerosol layer product",
+        "GEOS-Chem chemical transport model"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessment of Harmattan-Driven PM2.5 Pollution Episodes and Associated Public Health Risks in Kebbi State, Nigeria",
+        "doi": "10.55639/607.geo66718.47",
+        "year": 2026,
+        "venue": "Arid-zone Journal of Basic & Applied Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 27,
+    "source_paper_count": 27,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

@@ -1,0 +1,891 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_005",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "SPL4SMGP.008 SMAP L4 Global 3-hourly 9-km Surface and Root Zone Soil Moisture",
+    "spatial_coverage": {
+      "region_name": "San Francisco Bay Area hillslopes, California",
+      "coverage": "Shallow-landslide-prone hillslopes of the East Bay Hills and surrounding San Francisco Bay Area catchments, California, within the global SMAP L4 land footprint between about 85°S and 85°N."
+    },
+    "temporal_coverage": "2015-03-31 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "9 km EASE-Grid, reprojected to about 11 km in Earth Engine",
+    "temporal_unit": "3-hourly",
+    "analytical_capabilities": [
+      "Track surface and root-zone soil moisture at sub-daily resolution",
+      "Compare surface, root-zone, and total-profile moisture states across depths",
+      "Resolve wetting and drying sequences within individual storm events",
+      "Relate soil-moisture state to terrain, land cover, or hazard-susceptibility layers",
+      "Aggregate sub-daily fields to daily, seasonal, or catchment-mean summaries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Volumetric soil moisture as a volume fraction (m3/m3); wetness bands dimensionless; temperature bands in kelvin",
+      "runtime_hint": "Use `sm_surface` for the 0-5 cm layer, `sm_rootzone` for 0-100 cm, and `sm_profile` for the full column to model bedrock depth, all as volume fractions; `sm_surface_wetness` and `sm_rootzone_wetness` are the same layers expressed as dimensionless wetness. Images arrive every 3 hours, so aggregate before comparing against daily or event-scale variables. Divide by soil porosity if degree of saturation is needed."
+    },
+    "data_source": "NASA National Snow and Ice Data Center; the product assimilates SMAP L-band brightness temperature into the GEOS-5 Catchment land-surface model",
+    "gee_asset": {
+      "id": "NASA/SMAP/SPL4SMGP/008",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "paper_ideas/single_dataset/task_005.json research_question names 旧金山湾区浅层滑坡易发坡地; seed full text (10.1029/2019WR025577) narrows this to the East Bay Hills, Alameda County, with 10 monitored catchments",
+    "asset_provenance": "Anchor repointed from NASA_USDA/HSL/SMAP10KM_soil_moisture on 2026-08-28: the seed operates on SMAP L4_SM, which the former anchor's alias policy explicitly excluded."
+  },
+  "current_data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_005.json",
+    "source_sha256": "16619516d823697339773a6fcb0b228040d0346f7da685de6da40ff638065feb",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_005/prompt.json",
+    "current_prompt_sha256": "aa5f3cead130c0223812959bdb792d2c10d26c5ade6084b7ef68e59018ebb4b8",
+    "original_anchor_asset": {
+      "id": "NASA/SMAP/SPL4SMGP/008",
+      "observable_group": "smap_l4_surface_and_root_zone_soil_moisture",
+      "asset_alias_policy": "The NASA SMAP L4_SM global surface and root-zone soil-moisture product (SPL4SMGP, any version) is admitted; the NASA-USDA SMAP-enhanced Palmer product, SMAP L2/L3 radiometer retrievals, SMOS, ASCAT and ESA CCI are excluded.",
+      "anchor_repointed": {
+        "from": "NASA_USDA/HSL/SMAP10KM_soil_moisture",
+        "to": "NASA/SMAP/SPL4SMGP/008",
+        "reason": "The seed operates on SMAP L4_SM, not on the NASA-USDA Palmer product. The former anchor's own alias policy excluded ordinary SMAP L4 products, so the seed could not satisfy this task's admission rule.",
+        "seed_evidence": "Seed data section names 'SMAP L4_SM (Reichle, De Lannoy, et al., 2018)', the GEOS-5 Catchment land-surface model, 3-hourly estimates at roughly 9 km, surface 0-5 cm and root-zone 0-100 cm layers, and states the 100 cm root-zone value was used for analysis.",
+        "verified_against": "Earth Engine catalog entry NASA/SMAP/SPL4SMGP/008 (status ready, 3-hour cadence, 9 km EASE-Grid, sm_surface / sm_rootzone / sm_profile in volume fraction)",
+        "review_date": "2026-08-28"
+      },
+      "observation_identity_contract": {
+        "physical_object": "SPL4SMGP.008 SMAP L4 Global 3-hourly 9-km Surface and Root Zone Soil Moisture, representing smap l4 surface and root zone soil moisture.",
+        "source_lineage": "Task Prompt source: NASA National Snow and Ice Data Center; the product assimilates SMAP L-band brightness temperature into the GEOS-5 Catchment land-surface model. Current task anchor: NASA/SMAP/SPL4SMGP/008 (smap_l4_surface_and_root_zone_soil_moisture). Catalog-substitution context recorded in the task definition: The seed operates on SMAP L4_SM, not on the NASA-USDA Palmer product. The former anchor's own alias policy excluded ordinary SMAP L4 products, so the seed could not satisfy this task's admission rule.",
+        "core_measurement_semantics": "Volumetric soil moisture as a volume fraction (m3/m3); wetness bands dimensionless; temperature bands in kelvin; spatial resolution: 9 km EASE-Grid, reprojected to about 11 km in Earth Engine; temporal structure: 3-hourly",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: The NASA SMAP L4_SM global surface and root-zone soil-moisture product (SPL4SMGP, any version) is admitted; the NASA-USDA SMAP-enhanced Palmer product, SMAP L2/L3 radiometer retrievals, SMOS, ASCAT and ESA CCI are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "该论文研究多个根区土壤湿度产品相对于原位观测的表现差异及误差来源。",
+      "hypothesis_or_mechanism": "不同产品的根区土壤湿度偏差可能来自气温低估、降水量和降水频率高估，以及原位观测未充分捕捉灌溉影响。",
+      "variables_and_data_use": "论文使用原位 root-zone soil moisture measurements 作为验证基准，并比较 ERA5、MERRA-2、CFSv2、GLDAS Noah、GLDAS CLSM GRACE-DA、CLDAS、SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data, Version 5 和 SMOS CATDS L4 Land research products 等 RZSM 或陆面产品。",
+      "method_paradigm": "多产品验证评估",
+      "used_assets": [
+        "In situ root-zone soil moisture measurements",
+        "ERA5 reanalysis datasets Hourly 0.25 x 0.25 degree| ECMWF",
+        "GES DISC Dataset: MERRA-2 tavg1_2d_lnd_Nx (M2T1NXLND 5.12.4) (nasa.gov)",
+        "CISL RDA: NCEP Climate Forecast System Version 2 (CFSv2) 6-hourly Products (ucar.edu)",
+        "GES DISC Dataset: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.1 (nasa.gov)",
+        "GES DISC Dataset: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (nasa.gov)",
+        "China Meteorological Administration Land Data Assimilation System (CLDAS v2.0) Product Dataset (cma.cn)",
+        "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data, Version 5 | National Snow and Ice Data Center (nsidc.org)",
+        "L4 Land research products-Centre Aval de Traitement des Données SMOS (CATDS)"
+      ],
+      "author_team": [
+        "Yonghua Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Reply on RC1",
+        "doi": "10.5194/egusphere-2023-1597-ac1",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "不同根区土壤水分产品在中国淮河流域的表现有何差异，以及它们与原位观测之间的偏差如何？",
+      "hypothesis_or_mechanism": "气温低估、降水量和降水频率高估以及原位观测未反映灌溉，会导致多数产品高估根区土壤水分。",
+      "variables_and_data_use": "研究使用 SMAP L4、GLDAS Noah、GLDAS Catchment、CLDAS、SMOS CATDS 以及其他根区土壤水分产品进行比较，并结合原位根区土壤水分测量进行验证，同时使用 ERA5、MERRA-2、CFSv2 等气象和陆面数据分析产品偏差来源。",
+      "method_paradigm": "多产品比较与验证",
+      "used_assets": [
+        "In situ root-zone soil moisture measurements",
+        "ERA5 reanalysis datasets Hourly 0.25 x 0.25 degree| ECMWF",
+        "GES DISC Dataset: MERRA-2 tavg1_2d_lnd_Nx (M2T1NXLND 5.12.4) (nasa.gov)",
+        "CISL RDA: NCEP Climate Forecast System Version 2 (CFSv2) 6-hourly Products (ucar.edu)",
+        "GES DISC Dataset: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.1 (nasa.gov)",
+        "GES DISC Dataset: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (nasa.gov)",
+        "China Meteorological Administration Land Data Assimilation System (CLDAS v2.0) Product Dataset (cma.cn)",
+        "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data, Version 5 | National Snow and Ice Data Center (nsidc.org)",
+        "L4 Land research products-Centre Aval de Traitement des Données SMOS (CATDS)"
+      ],
+      "author_team": [
+        "Yonghua Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Reply on RC3",
+        "doi": "10.5194/egusphere-2023-1597-ac4",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "不同根区土壤水分产品在中国淮河流域的表现如何，以及它们与原位观测之间存在怎样的差异？",
+      "hypothesis_or_mechanism": "气温低估、降水量和降水频率高估以及原位观测未反映灌溉，会导致多数产品高估根区土壤水分，而 GLDAS Catchment 产品表现最好。",
+      "variables_and_data_use": "研究使用 SMAP L4、GLDAS Noah、GLDAS Catchment、CLDAS、SMOS L4 等根区土壤水分产品进行比较，并结合原位根区土壤水分观测进行验证，同时使用 ERA5、MERRA-2 和 CFSv2 等再分析或气象驱动数据分析气温和降水对产品偏差的影响。",
+      "method_paradigm": "多产品对比与地面验证",
+      "used_assets": [
+        "In situ root-zone soil moisture measurements",
+        "ERA5 reanalysis datasets Hourly 0.25 x 0.25 degree| ECMWF",
+        "GES DISC Dataset: MERRA-2 tavg1_2d_lnd_Nx (M2T1NXLND 5.12.4) (nasa.gov)",
+        "CISL RDA: NCEP Climate Forecast System Version 2 (CFSv2) 6-hourly Products (ucar.edu)",
+        "GES DISC Dataset: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.1 (nasa.gov)",
+        "GES DISC Dataset: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (nasa.gov)",
+        "China Meteorological Administration Land Data Assimilation System (CLDAS v2.0) Product Dataset (cma.cn)",
+        "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data, Version 5 | National Snow and Ice Data Center (nsidc.org)",
+        "L4 Land research products-Centre Aval de Traitement des Données SMOS (CATDS)"
+      ],
+      "author_team": [
+        "Liu, En",
+        "Yonghua Zhu",
+        "Jean‐Christophe Calvet",
+        "Haishen LÃ ⁄",
+        "Bertrand Bonan",
+        "Jingyao Zheng",
+        "Qiqi Gou",
+        "Xiaoyi Wang",
+        "Zhenzhou Ding",
+        "Haiting Xu",
+        "Ying Pan",
+        "Tingxing Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comment on egusphere-2023-1597",
+        "doi": "10.5194/egusphere-2023-1597-rc1",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "不同根区土壤水分产品在中国淮河流域的表现如何，哪一种产品与地面观测最一致？",
+      "hypothesis_or_mechanism": "陆面模型气象强迫中的气温低估和降水量及频率高估会导致根区土壤水分偏高，而地面观测未充分反映灌溉也会造成产品与观测之间的差异。",
+      "variables_and_data_use": "研究比较SMAP L4、GLDAS Noah、GLDAS Catchment、CLDAS、SMOS CATDS以及其他再分析或陆面产品中的根区土壤水分变量，并使用原位根区土壤水分进行验证；ERA5、MERRA-2和CFSv2等数据用于提供气象或陆面背景信息及解释产品偏差。",
+      "method_paradigm": "多产品对比验证",
+      "used_assets": [
+        "In situ root-zone soil moisture measurements",
+        "ERA5 reanalysis datasets Hourly 0.25 x 0.25 degree| ECMWF",
+        "GES DISC Dataset: MERRA-2 tavg1_2d_lnd_Nx (M2T1NXLND 5.12.4) (nasa.gov)",
+        "CISL RDA: NCEP Climate Forecast System Version 2 (CFSv2) 6-hourly Products (ucar.edu)",
+        "GES DISC Dataset: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.1 (nasa.gov)",
+        "GES DISC Dataset: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (nasa.gov)",
+        "China Meteorological Administration Land Data Assimilation System (CLDAS v2.0) Product Dataset (cma.cn)",
+        "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data, Version 5 | National Snow and Ice Data Center (nsidc.org)",
+        "L4 Land research products-Centre Aval de Traitement des Données SMOS (CATDS)"
+      ],
+      "author_team": [
+        "En Liu",
+        "Yonghua Zhu",
+        "Jean‐Christophe Calvet",
+        "Haishen Lü",
+        "Bertrand Bonan",
+        "Jingyao Zheng",
+        "Qiqi Gou",
+        "Xiaoyi Wang",
+        "Zhenzhou Ding",
+        "Haiting Xu",
+        "Ying Pan",
+        "Tingxing Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of root-zone soil moisture over the Huai river basin",
+        "doi": "10.5194/egusphere-2023-1597",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究 SMAP L4 数据同化系统中的哪些控制因素决定其表层和根区土壤水分估计技能及其空间差异。",
+      "hypothesis_or_mechanism": "SMAP L4 的土壤水分同化技能受 CLSM 土壤水分过程误差、辐射传输模型误差以及 SMAP 亮温观测创新误差共同控制。",
+      "variables_and_data_use": "使用 SMAP L4 的表层和根区土壤水分估计及相关 L4 输出变量，构造日平均和异常时间序列，并结合 CASMOS 地面土壤水分、降水、LAI、潜热通量、土壤质地以及亮温创新等数据评估和解释 L4 与 OL 的表现。",
+      "method_paradigm": "过程归因与误差评估",
+      "used_assets": [
+        "SMAP L4 soil moisture product (version 4; Reichle et al., 2019)",
+        "SMAP L1C Radiometer",
+        "Version 4 SPL1CTB",
+        "L4 Land Model Constants output collection",
+        "L4 Analysis Update Data output collection",
+        "L4 Geophysical Data output collection",
+        "CASMOS",
+        "China Gauge-based Daily Precipitation Analysis (CGDPA)",
+        "FLUXCOM",
+        "SPOT/VEGETATION and PROBA-V LAI products (version 2)",
+        "Harmonized World Soil Database (HWSD; v1.2)",
+        "Soil Moisture Ocean Salinity (SMOS)"
+      ],
+      "author_team": [
+        "Jianxiu Qiu",
+        "Jianzhi Dong",
+        "Wade T. Crow",
+        "Xiaohu Zhang",
+        "Rolf Helmut Reichle",
+        "Gabriëlle J. M. De Lannoy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The benefit of brightness temperature assimilation for the SMAP Level-4 surface and root-zone soil moisture analysis",
+        "doi": "10.5194/hess-25-1569-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "SMAP L4 表层和根区土壤水分与 GRACE/GRACE-FO 总水储量变化在全球尺度上具有怎样的短期变化关系和时间滞后？",
+      "hypothesis_or_mechanism": "总水储量变化与表层及根区土壤水分受共同水文过程驱动，但由于垂向水分传输和地下水储存差异，二者的相关性和时间滞后会随区域和土壤层次变化。",
+      "variables_and_data_use": "使用 SMAP L4 SSM 和 RZSM 作为表层及根区土壤水分变量，使用 ITSG-Grace2018 处理得到的 GRACE/GRACE-FO 总水储量异常作为比较变量，并结合 SMOS、ESA CCI 和 SMAP L3 产品进行多产品对比；数据被统一到 1° 网格，聚合到日尺度，去除线性趋势并进行 30 天高通滤波，再计算相关性和交叉相关时间滞后。",
+      "method_paradigm": "多源遥感关系分析",
+      "used_assets": [
+        "ITSG-Grace2018 model",
+        "SMAP L3 data (v8.0; O'Neill et al. , 2021 )",
+        "SMAP L4 products (SSM and RZSM v6.0; Reichle et al. , 2021 )",
+        "daily L3 (v3.0) SSM product of the Centre Aval de Traitement des Données SMOS (CATDS)",
+        "CATDS L4 RZSM product",
+        "ESA CCI SM data set",
+        "Global Land Data Assimilation System Noah (GLDAS Noah)"
+      ],
+      "author_team": [
+        "Daniel Blank",
+        "Annette Eicker",
+        "Laura Jensen",
+        "Andreas Güntner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A global analysis of water storage variations from remotely sensed soil moisture and daily satellite gravimetry",
+        "doi": "10.5194/hess-27-2413-2023",
+        "year": 2023,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "能否利用地表土壤湿度观测和陆地水能耦合原理可靠估算活跃根区土壤湿度的时间动态",
+      "hypothesis_or_mechanism": "陆地水能通量耦合动态中固有包含了土壤对地表土壤湿度的低通滤波效应，因此可通过蒸发分数与地表土壤湿度的关系估算根区土壤湿度",
+      "variables_and_data_use": "使用 SMAP SPL4 的 0-100 cm 层体积土壤湿度（θ100）作为验证基准，使用 SMAP SPL3E 地表土壤湿度和 MODIS 蒸散发数据通过低通滤波和水能耦合模型估算根区饱和度（SRZ），并在 USCRN 和 SCAN 原位站点验证",
+      "method_paradigm": "数据驱动建模",
+      "used_assets": [
+        "SMAP Level-4 Soil Moisture (SPL4) version 7",
+        "SMAP Level-3 Soil Moisture Enhanced (SPL3E) version 5",
+        "MODIS MOD16A2GF Version 6.1"
+      ],
+      "author_team": [
+        "Vinit Sehgal",
+        "Binayak Prasad Mohanty",
+        "Rolf Helmut Reichle"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Rootzone Soil Moisture Dynamics Using Terrestrial Water‐Energy Coupling",
+        "doi": "10.1029/2024gl110342",
+        "year": 2024,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何利用地面观测、卫星土壤水分和陆面模型估计，通过三重配准与最小平方权重优化构建更准确的俄克拉何马州多源表层土壤水分产品？",
+      "hypothesis_or_mechanism": "不同来源土壤水分产品包含互补误差结构，结合地面观测进行三重配准和权重优化可以降低多源融合产品的不确定性。",
+      "variables_and_data_use": "使用SMAP L3_SM_P_E卫星表层土壤水分、NLDAS_NOAH0125_H陆面模型土壤水分估计以及Oklahoma Mesonet ground sensor network地面土壤水分观测，将它们融合为9公里日尺度的MSSM产品，并用SMAP L4等产品和地面信息进行评估。",
+      "method_paradigm": "三重配准与多源融合",
+      "used_assets": [
+        "SMAP L3_SM_P_E",
+        "NLDAS_NOAH0125_H",
+        "Oklahoma Mesonet ground sensor network",
+        "SMAP L4",
+        "MSSM"
+      ],
+      "author_team": [
+        "Zhen Hong",
+        "H. A. Moreno",
+        "L. V. Alvarez",
+        "Zhi Zhang Wen-Tao Li",
+        "Yang E. Hong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Triple Collocation of Ground-, Satellite- and Land Surface Model-Based Surface Soil Moisture Products in Oklahoma Part II: New Multi-Sensor Soil Moisture (MSSM) Product",
+        "doi": "10.3390/rs15133450",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "如何融合 SMAP L4（3 小时，9 km）和 Crop-CASMA（日尺度，1 km）土壤湿度数据，生成高时空分辨率（3 小时，1 km）的美国本土土壤湿度数据集",
+      "hypothesis_or_mechanism": "通过时间序列数据挖掘方法提取空间无缝特征，并利用虚拟图像对时空融合模型，可以整合 SMAP L4 的高时间分辨率和 Crop-CASMA 的高空间分辨率优势",
+      "variables_and_data_use": "使用 SMAP L4 SSM 产品（版本 7）的 3 小时 9 km 土壤湿度数据和 Crop-CASMA 的日尺度 1 km 土壤湿度数据；通过 HCTSA 方法提取时间序列特征（最大值、最小值、均值、中位数），使用 VIPSTF 模型进行时空融合，生成 2015-2023 年 3 小时 1 km 的 STF_SSM 数据集",
+      "method_paradigm": "时空数据融合、时间序列特征提取",
+      "used_assets": [
+        "SMAP L4 SSM product version 7",
+        "Crop-CASMA SSM (SMAP THySM)",
+        "International Soil Moisture Network",
+        "Oklahoma Mesonet",
+        "NLCD",
+        "NASA SRTM DEM"
+      ],
+      "author_team": [
+        "Haoxuan Yang",
+        "Jia Yang",
+        "Tyson E. Ochsner",
+        "Erik S. Krueger",
+        "Mengyuan Xu",
+        "Chris B. Zou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A 3 h, 1 km surface soil moisture dataset for the contiguous United States from 2015 to 2023",
+        "doi": "10.5194/essd-17-3391-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "比较和评估基于卫星观测、开环模型和数据同化的 18 种近地表土壤湿度产品在全球范围内的性能表现",
+      "hypothesis_or_mechanism": "数据同化产品通过结合卫星观测和模型模拟，能够在不同气候和地表条件下提供更准确的土壤湿度估算",
+      "variables_and_data_use": "使用 SMAPL4 等 18 种产品的 3 小时土壤湿度时间序列，通过皮尔逊相关系数与原位测量比较，评估产品在不同时间尺度、气候区、植被覆盖度和地形坡度下的性能",
+      "method_paradigm": "产品比较与验证",
+      "used_assets": [
+        "SMAPL4",
+        "SMAPL3E",
+        "AMSR2",
+        "ASCAT",
+        "SMOS",
+        "ERA5",
+        "ERA5-Land",
+        "GLEAM",
+        "VIC-PGF",
+        "IMERG",
+        "MSWEP",
+        "ISMN"
+      ],
+      "author_team": [
+        "Hylke E. Beck",
+        "Ming Pan",
+        "Diego G. Miralles",
+        "Rolf Helmut Reichle",
+        "Wouter Arnoud Dorigo",
+        "Sebastian Hahn",
+        "Justin Sheffield",
+        "L. Karthikeyan",
+        "Gianpaolo Balsamo",
+        "Robert Parinussa",
+        "Albert I. J. M. van Dijk",
+        "Jinyang Du",
+        "John S. Kimball",
+        "Noemi Vergopolan",
+        "Eric F. Wood"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of 18 satellite- and model-based soil moisture products using in situ measurements from 826 sensors",
+        "doi": "10.5194/hess-25-17-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "台风 Mangkhut 触发菲律宾吕宋岛北部大规模滑坡的地形控制和水文触发条件是什么",
+      "hypothesis_or_mechanism": "降雨强度、前期降雨和土壤水分状态共同控制台风诱发滑坡的空间分布，高土壤水分饱和度降低边坡稳定性",
+      "variables_and_data_use": "使用 SMAP L4 地表和根区土壤水分（0-100 cm）2018 年 5-9 月数据，分析台风前土壤水分状态；结合 GPM IMERG 降雨数据，对比触发滑坡的降雨事件与未触发滑坡的高强度降雨事件的土壤水分前期条件",
+      "method_paradigm": "多源数据综合分析 触发阈值对比",
+      "used_assets": [
+        "SMAP L4 surface and root zone soil moisture",
+        "GPM IMERG",
+        "IfSAR DEM",
+        "Sentinel-2",
+        "PlanetScope",
+        "SPOT-6/7"
+      ],
+      "author_team": [
+        "Clàudia Abancó",
+        "Georgina L. Bennett",
+        "Adrian J. Matthews",
+        "Mark Matera",
+        "Fibor J. Tan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "The role of geomorphology, rainfall and soil moisture in the occurrence of landslides triggered by 2018 Typhoon Mangkhut in the Philippines",
+        "doi": "10.5194/nhess-21-1531-2021",
+        "year": 2021,
+        "venue": "Natural hazards and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用 SMAP L4 土壤水分和多源环境辅助变量，将 9 km 土壤水分信息降尺度到 1 km，以提高研究区土壤水分空间制图能力？",
+      "hypothesis_or_mechanism": "植被、地表温度、降水、地形和土壤质地等高分辨率环境变量能够学习并补充 SMAP L4 土壤水分的空间异质性，从而提升土壤水分降尺度精度。",
+      "variables_and_data_use": "以 SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data product 作为主要土壤水分输入，结合 AMSR2/GCOM-W1 LPRM L3 土壤水分、MOD13Q1 NDVI、MOD11A1 地表温度、地面站降水、高程、坡度、坡向以及 SoilGrids250m 土壤质地变量，统一重采样到 1 km 后训练机器学习和堆叠集成模型，并使用 TDR 现场土壤水分进行验证。",
+      "method_paradigm": "机器学习空间降尺度",
+      "used_assets": [
+        "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data product",
+        "AMSR2/GCOM-W1 LPRM L3 1 day 10 km × 10 km Ascending V001 and descending V001",
+        "MOD13Q1",
+        "MOD11A1",
+        "Time Domain Reflectometry (TDR)",
+        "12.5 m resolution Digital Elevation Model",
+        "SoilGrids250m"
+      ],
+      "author_team": [
+        "Mohammad Sadegh Tahmouresi",
+        "Mohammad Hossein Niksokhan",
+        "Amir Houshang Ehsani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing spatial resolution of satellite soil moisture data through stacking ensemble learning techniques",
+        "doi": "10.1038/s41598-024-77050-0",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "代表性地面站点能否在不同空间尺度和土壤深度上有效估计区域平均土壤水分，并用于验证SMAP土壤水分产品？",
+      "hypothesis_or_mechanism": "具有较高时间稳定性的代表性站点经过偏差校正后能够近似区域平均土壤水分，但深层土壤水分的空间异质性会降低单站点代表性和产品验证可靠性。",
+      "variables_and_data_use": "使用SMN-SDR和人工地面采样数据计算不同尺度和深度的平均值、标准差、变异系数、平均相对差和相对差标准差，并将代表性站点估计的土壤水分作为参考，验证SPL2SMAP_S、SPL3SMP_E、SPL3SMP和SPL4SMGP的表层及根区土壤水分。",
+      "method_paradigm": "时间稳定性分析与产品验证",
+      "used_assets": [
+        "SMN-SDR",
+        "International Soil Moisture Network (ISMN)",
+        "manual ground sampling data",
+        "Delta-T ML3 soil moisture meter",
+        "SPL2SMAP_S",
+        "SPL3SMP_E",
+        "SPL3SMP",
+        "SPL4SMGP"
+      ],
+      "author_team": [
+        "Longfei Hao",
+        "Jingjing Chen",
+        "Zushuai Wei",
+        "Linguang Miao",
+        "Tianjie Zhao",
+        "Jian Xi Peng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of Satellite Soil Moisture Products by Sparsification of Ground Observations",
+        "doi": "10.1109/jstars.2024.3362833",
+        "year": 2024,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究评估Tanzania CORS网络中的GNSS-IR反射信号能否用于估计表层土壤水分，并识别适合该任务的站点。",
+      "hypothesis_or_mechanism": "GNSS直接信号与地表反射信号形成的SNR干涉相位对土壤水分变化敏感，而归一化振幅可用于判断和校正植被影响。",
+      "variables_and_data_use": "论文使用GPS L2C观测和导航文件提取SNR、卫星高度角、反射器高度、干涉相位和振幅，并据此估计体积土壤水分；使用SPL4SMGP.007的3小时SMAP L4土壤水分数据聚合为日值，用于验证GNSS-IR结果。",
+      "method_paradigm": "GNSS-IR反演与产品验证",
+      "used_assets": [
+        "SPL4SMGP.007",
+        "GPS observations",
+        "Navigation files",
+        "EarthScope Consortium Inc.",
+        "GNSSREFL"
+      ],
+      "author_team": [
+        "Lameck Michael Mkoy",
+        "Elifuraha Saria",
+        "Beatrice Christopher Tarimo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Soil Moisture Content estimation using GNSS-IR method in Tanzania",
+        "doi": "10.1590/s1982-21702024000100021",
+        "year": 2024,
+        "venue": "Boletim de Ciências Geodésicas",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同的 Arctic-Subarctic 适应性 GPP 和 ER 模型公式能否改善苔原、针叶林和湿地生态系统的碳通量模拟？",
+      "hypothesis_or_mechanism": "通过以非线性或钟形函数表示土壤水分、温度、VPD、光合有效辐射和生长度日对 GPP 与 ER 的限制作用，可以提高碳通量模型在北极—亚北极生态系统中的表现。",
+      "variables_and_data_use": "使用 SMAP SPL4SMGP 中的根区土壤水分 RZSM、表层土壤水分 SSM 和不同深度土壤温度；RZSM 和 SSM 以体积含水量参与 GPP 与 ER 胁迫函数，土壤温度用于生长季筛选和温度响应。使用 MERRA-2 M2T1NXSLV Version 5.12.4 提供 VPD、MNT 和 AT，并由 AT 推导 GDD。GPP EC、ER EC 和 NEE EC 分别作为模型校准或评估的参考目标。",
+      "method_paradigm": "过程模型比较与校准",
+      "used_assets": [
+        "SMAP SPL4SMGP product",
+        "MERRA-2, M2T1NXSLV Version 5.12.4 product",
+        "GPP EC",
+        "ER EC",
+        "NEE EC"
+      ],
+      "author_team": [
+        "Rémi Madelon",
+        "K.  Arthur Endsley",
+        "John S. Kimball",
+        "Gabriëlle J. M. De Lannoy",
+        "Oliver Sonnentag",
+        "Haley Alcock",
+        "Alex Mavrovic",
+        "Scott N. Williamson",
+        "Vincent Maire",
+        "Arnaud Mialon",
+        "Alexandre Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Exploring alternative SMAP Level-4 carbon model formulations for the North American Arctic–Subarctic growing season",
+        "doi": "10.5194/bg-23-6359-2026",
+        "year": 2026,
+        "venue": "Biogeosciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究长期降雨和 antecedent 土壤水文条件如何影响菲律宾热带地区暴雨诱发的中大型滑坡及区域滑坡易发性。",
+      "hypothesis_or_mechanism": "较高的 antecedent 根区土壤含水量和持续入渗会降低土体吸力、提高地下水位，从而在相似触发性降雨下增加滑坡发生概率。",
+      "variables_and_data_use": "使用 GPM IMERG 降雨数据驱动 19 年水量平衡模型，使用 SMAP-L4 根区土壤水分作为卫星观测参照，并将降雨、入渗、侧向流、根区体积含水量、土壤孔隙度、地形、土地覆盖和岩土参数输入或耦合到 FSLAM 滑坡易发性模型中。",
+      "method_paradigm": "物理模型耦合分析",
+      "used_assets": [
+        "Integrated Multi‐satellite Retrievals for Global Precipitation Measurement (GPM IMERG)",
+        "Soil Moisture Active Passive (SMAP) Level-4 (L4) product",
+        "SMAP-L4",
+        "nationwide Digital elevation model (DEM)",
+        "Department of Agriculture-Bureau of Soils and Water Management (DA-BSWM) soil map",
+        "National Mapping and Resource Information Authority of the Philippines (DENR-NAMRIA) land use and land cover map",
+        "Harmonized World Soil Database version 1.21 (HWSD1.21)",
+        "FSLAM"
+      ],
+      "author_team": [
+        "Clàudia Abancó",
+        "Flavio Alexander Asurza Véliz",
+        "Vicente Medina",
+        "Marcel Hürlimann",
+        "Georgina L. Bennett"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Modelling antecedent soil hydrological conditions to improve the prediction of landslide susceptibility in typhoon-prone regions",
+        "doi": "10.1007/s10346-024-02242-8",
+        "year": 2024,
+        "venue": "Landslides",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "研究2020年萨赫勒洪水期间的表层土壤水分异常有多极端，以及这些异常如何与裂谷热和奇昆古尼亚热暴发相关。",
+      "hypothesis_or_mechanism": "持续且异常偏高的表层土壤水分可能反映积水和蚊媒栖息地形成，从而提高部分疾病暴发风险，而干旱和转湿过程也可能影响奇昆古尼亚热传播。",
+      "variables_and_data_use": "使用SMAP L4 Version 6表层土壤水分，按日和月聚合并计算相对于2015—2021年长期平均的异常；使用MERRA-2表层土壤水分构建更长时间的历史背景；使用ARC2降水计算降水异常并与土壤水分比较；使用Pro-MED-Mail和OIE-WAHIS的疾病暴发记录评估土壤水分与疫情空间、时间关系。",
+      "method_paradigm": "异常重建与影响评估",
+      "used_assets": [
+        "SMAP Level 4 (L4) data product",
+        "Version 6 of the SMAP L4 product",
+        "MERRA-2",
+        "ARC2",
+        "Program for Monitoring Emerging Diseases (Pro-MED-Mail)",
+        "OIE–World Animal Health Information System (OIE-WAHIS)",
+        "Gridded Population of the World, Version 4 (GPWv4), Revision 11"
+      ],
+      "author_team": [
+        "N. Thomas",
+        "Assaf Anyamba",
+        "Heidi Tubbs",
+        "Bhaskar Bishnoi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Evaluation of Extreme Soil Moisture Conditions During the 2020 Sahel Floods and Implications for Disease Outbreaks",
+        "doi": "10.1029/2022gl099872",
+        "year": 2022,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "更新气象强迫并校准 VIC 模型后，能否更准确地重建和评价科罗拉多河流域的积雪、土壤水分、径流和陆地总水储量变化？",
+      "hypothesis_or_mechanism": "改进的 PRISM 高程相关气象强迫与针对积雪和土壤过程的参数校准能够改善 VIC 对积雪融化、土壤水分储存和河流流量的模拟，并提高其与 SMAP 土壤水分及 GRACE 总水储量异常的一致性。",
+      "variables_and_data_use": "使用 PRISM 的降水和气温、NLDAS-2 风速及 MOD-LSP 陆面属性驱动 VIC；使用 SNOTEL SWE 和 USBR 自然化流量校准雪过程与土壤参数；使用 NASA SMAP Level-4 Surface and Root-Zone Soil Moisture product (L4_SM version 7) 的表层和根区体积土壤水分，并将其转换为 z-score 异常后独立评价 VIC；使用 GRACE、GRACE Follow-On 及 JPL RL06 Mascon solution 的总水储量异常进行进一步评价。",
+      "method_paradigm": "水文模型校准与多源观测评价",
+      "used_assets": [
+        "VIC model version 5.1",
+        "PRISM dataset",
+        "MetSim",
+        "Phase 2 of the North American Land Data Assimilation System (NLDAS-2)",
+        "MOD-LSP product",
+        "Snow Telemetry (SNOTEL)",
+        "USBR",
+        "NASA SMAP Level-4 Surface and Root-Zone Soil Moisture product (L4_SM version 7)",
+        "GRACE mission",
+        "GRACE Follow-On",
+        "JPL RL06 Mascon solution"
+      ],
+      "author_team": [
+        "Zhaocheng Wang",
+        "Swastik Ghimire",
+        "Kristen M. Whitney",
+        "Giuseppe Mascaro",
+        "Mu Xiao",
+        "Haowen Yue",
+        "Enrique R. Vivoni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Revisiting the application of variable infiltration capacity (VIC) model in the Colorado River Basin using SMAP and GRACE",
+        "doi": "10.1038/s41598-026-47430-9",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "不同全球和区域根区土壤水分产品在中国淮河流域的表现如何，以及其误差来源是什么？",
+      "hypothesis_or_mechanism": "陆面模型结构、气象强迫、土壤属性、植被参数化和空间尺度不匹配会导致不同根区土壤水分产品产生系统性偏差。",
+      "variables_and_data_use": "研究使用SMAP Level 4 V5、ERA5、MERRA-2、NCEP CFSv2、GLDAS_NOAH、GLDAS_CLSM、CLDAS和SMOS Level 4的表层或0–100厘米根区土壤水分变量，并将其与站点多深度体积土壤水分观测比较；同时使用降水、气温和土壤属性数据分析误差来源。",
+      "method_paradigm": "产品验证与误差归因",
+      "used_assets": [
+        "ERA5",
+        "MERRA-2 V2.0",
+        "NCEP CFSv2 V2.0",
+        "GLDAS_NOAH V2.1",
+        "GLDAS_CLSM V2.2",
+        "CLDAS V2.0",
+        "SMAP Level 4 V5",
+        "SMOS Level 4 V301",
+        "HRB in situ measurements",
+        "China daily gridded ground precipitation and air temperature dataset V2.0",
+        "Harmonized World Soil Database (HWSD) V1.2"
+      ],
+      "author_team": [
+        "En Liu",
+        "Yonghua Zhu",
+        "Jean‐Christophe Calvet",
+        "Haishen Lü",
+        "Bertrand Bonan",
+        "Jingyao Zheng",
+        "Qiqi Gou",
+        "Xiaoyi Wang",
+        "Zhenzhou Ding",
+        "Haiting Xu",
+        "Ying Pan",
+        "Tingxing Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of root zone soil moisture products over the Huai River basin",
+        "doi": "10.5194/hess-28-2375-2024",
+        "year": 2024,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "不同土壤湿度数据集（SMAP L3 和 L4）对陆地-大气耦合强度评估的影响如何？",
+      "hypothesis_or_mechanism": "土壤湿度估计的准确性和时空完整性影响 CTP-HI 框架中陆地-大气耦合强度的分类和持续性概率计算",
+      "variables_and_data_use": "使用 SMAPL4 的地表和根区土壤湿度（通过线性插值获取日出时刻值）和 SMAPL3 的地表土壤湿度（晨间过境），结合合并的 CTP 和 HI 大气稳定性和湿度指标，应用 CTP-HI 框架进行陆地-大气耦合分类，并通过一阶三态马尔可夫链模型计算耦合强度",
+      "method_paradigm": "框架比较 马尔可夫链分析 三重配置数据融合",
+      "used_assets": [
+        "SMAP Level 4 (SMAPL4)",
+        "SMAP Level 3 Enhanced (SMAPL3)",
+        "MERRA-2",
+        "ERA5",
+        "CFSR",
+        "AIRSv7",
+        "IGRA2"
+      ],
+      "author_team": [
+        "Payal R. Makhasana",
+        "Joseph A. Santanello",
+        "Patricia M. Lawston",
+        "Joshua K. Roundy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Deducing land–atmosphere coupling regimes from SMAP soil moisture",
+        "doi": "10.5194/hess-28-5087-2024",
+        "year": 2024,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "如何利用迁移学习和 LSTM 深度学习方法，结合 SMAP L4 土壤水分和多源协变量，提高塔斯马尼亚地区土壤水分的空间预测精度",
+      "hypothesis_or_mechanism": "从澳大利亚大陆数据集训练的深度学习模型通过迁移学习可以有效适应塔斯马尼亚的土壤水分预测，SMAP L4 时间序列特征结合气象和土壤属性能够捕获土壤水分的时空变化模式",
+      "variables_and_data_use": "使用 SMAP L4 的地表（0-5 cm）和根区（0-100 cm）土壤水分波段作为后向 4-7 天时间序列输入到双向 LSTM 网络，结合当日及前 3 天降雨、日最高最低气温、土地覆盖、高程和多层土壤属性（可利用水分、有机碳、黏土含量）作为协变量，预测地表（0-30 cm）和次表层（30-60 cm）土壤水分",
+      "method_paradigm": "深度学习迁移学习土壤水分预测",
+      "used_assets": [
+        "SMAP-L4",
+        "OzFlux",
+        "OzNet",
+        "Tasmania EnviroPro soil moisture probes",
+        "Google Earth Engine weather data",
+        "CLUM land cover",
+        "IGBP land cover",
+        "Digital soil map of Tasmania"
+      ],
+      "author_team": [
+        "Marliana Tri Widyastuti",
+        "José Padarian",
+        "Budiman Minasny",
+        "Mathew Webb",
+        "Muh Taufik",
+        "Darren B. Kidd"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Mapping near-real-time soil moisture dynamics over Tasmania with transfer learning",
+        "doi": "10.5194/soil-11-287-2025",
+        "year": 2025,
+        "venue": "SOIL",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 21,
+    "source_paper_count": 21,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

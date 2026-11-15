@@ -1,0 +1,96 @@
+{
+  "paper_id": "10.3390/rs10030460",
+  "task_id": "single_dataset/task_007",
+  "title": "Using Landsat Spectral Indices in Time-Series to Assess Wildfire Disturbance and Recovery",
+  "category": "geological_hazards",
+  "year": 2018,
+  "journal": "Remote Sensing",
+  "impact_level": "high",
+  "datasets": [
+    "USGS Landsat 5 TM and Landsat 7 ETM+ surface-reflectance scenes processed with LEDAPS, 30 m, WRS paths 91/92 and rows 85/86, acquired from 1992-2016 during 1 January-31 March with scene cloud cover below 70%",
+    "Annual best-available-pixel summer composites centered on 15 February with a +/-45-day seasonal window, producing a 25-year stack with more than 98% coverage",
+    "Victorian land-management agency fire-history maps for the 2003, 2006-2007 and 2009 fire extents",
+    "Victoria Forest Monitoring Program plot network: 786 stratified 2 km by 2 km plots across public land, with 10 manually interpreted 30 m reference pixels per plot",
+    "High-resolution Google Earth imagery and state fire records used for manual disturbance-history interpretation and independent quality assurance",
+    "Australian National Vegetation Information System and VFMP forest-structure classes based on tree height and canopy cover"
+  ],
+  "study_area_verified": {
+    "name": "Eastern Victoria public forests, Australia",
+    "extent": "More than three million hectares of public forest, principally within the Victorian Alps, Northern Highlands and Southern Highlands bioregions; the analyzed footprint follows the mapped extents of the 2003, 2006-2007 and 2009 fires.",
+    "study_period": "Annual austral-summer Landsat observations from 1992 through 2016; source scenes are restricted to 1 January-31 March and annual composites are centered on 15 February with a +/-45-day window.",
+    "analysis_grid": "30 m Landsat pixels in WRS paths 91/92 and rows 85/86; 25 annual best-available-pixel composites with more than 98% coverage.",
+    "reference_sampling": "786 VFMP plots with 10 manually interpreted pixels each (7860 total); 1391 pixels fall within the considered fire boundaries and 1056 were judged affected. An additional 5000 pixels were sampled at least 100 m apart for forest-type analysis, yielding 5759 classified pixels after exclusions.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_repoint": {
+    "paper_used": "USGS Landsat 5 TM and Landsat 7 ETM+ orthorectified surface-reflectance products processed with LEDAPS; the supplied Methods do not state a collection number",
+    "task_anchor": "LANDSAT/LT05/C02/T1_L2",
+    "former_anchor": "LANDSAT/LC08/C02/T1_L2",
+    "why_the_former_anchor_was_wrong": [
+      "The source explicitly uses TM and ETM+ and does not identify Landsat 8 OLI as an input.",
+      "The time series begins in 1992, whereas LC08 starts in 2013 and cannot provide the first 21 years of observations."
+    ],
+    "why_this_anchor": "LANDSAT/LT05/C02/T1_L2 is the single ready catalog asset retained for this single-dataset task. It matches the Landsat 5 TM, 30 m surface-reflectance, LEDAPS-processing branch used in the source-study family while avoiding the former paired LT05/LE07 multi-asset configuration.",
+    "processing_version_uncertainty": "The supplied Methods establish Landsat 5 TM / Landsat 7 ETM+ surface reflectance and LEDAPS but not Collection 2. The current benchmark anchor is narrowed to the single executable LANDSAT/LT05/C02/T1_L2 asset; LE07 is no longer part of the admitted anchor.",
+    "corrections": [
+      "The former datasets field added Landsat 8 OLI even though the supplied Methods use only Landsat 5 TM and Landsat 7 ETM+.",
+      "The former datasets field omitted the 1992-2016 seasonal filter, WRS paths/rows, LEDAPS surface-reflectance level, annual best-available-pixel composites, fire-history maps, VFMP reference network, Google Earth interpretation imagery and vegetation/forest-structure classifications.",
+      "idea.data_sources has been narrowed to the single admitted LANDSAT/LT05/C02/T1_L2 asset; Landsat 7 ETM+ and Landsat 8 OLI are not current task assets."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "LANDSAT/LT05/C02/T1_L2 for Landsat 5 TM Collection 2 Level-2 Tier-1 surface reflectance"
+      ],
+      "not_available_as_the_identified_source": [
+        "LANDSAT/LE07/C02/T1_L2 is a related Landsat 7 ETM+ product but is excluded from the current single-asset task anchor",
+        "Victorian land-management agency fire-history polygons",
+        "Victoria Forest Monitoring Program plots and interpreted reference pixels",
+        "The study-specific manual disturbance-history and quality-assurance labels",
+        "Google Earth high-resolution interpretation imagery as a reusable scientific catalog asset",
+        "The exact National Vegetation Information System and VFMP forest-structure classification records used in the analysis"
+      ]
+    },
+    "sibling_task_boundary": "The single_dataset/task_007 anchor is restricted to LANDSAT/LT05/C02/T1_L2 only. Landsat 7 ETM+, Landsat 8/9 OLI, Level-1 raw scenes, TOA products, annual precomputed composites and index-only products do not cross-admit into single_dataset/task_007.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "note": "The idea fields retain the earlier enrichment record. Verified product, region, time, sampling and companion-data corrections are recorded only in the audit fields above.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在东南澳大利亚硬叶林中，基于Landsat像元时间序列的不同光谱指数和纹理指数，能否区分野火造成的即时扰动，并准确刻画森林冠层绿度、含水量与结构恢复的时间过程？",
+    "hypothesis": "不同光谱指数对火灾扰动和恢复阶段的敏感性具有系统差异：NDVI等表征叶绿素浓度和冠层绿度的指数预计对火灾后的即时扰动敏感，但会在约3–5年内接近火前水平；NBR、NBR2等对植被含水量和冠层结构更敏感的指数，以及基于空间方差的纹理指数，预计能够识别持续更久的结构和水分恢复过程，其恢复至火前状态的时间约为8–10年。若火灾后首次观测时间越接近扰动发生时间，各指数对火灾影响的判别能力预计越强。",
+    "mechanism": "野火首先通过烧毁叶片、降低叶绿素含量并移除部分冠层，导致近红外反射率下降、红光反射率相对升高，从而引起NDVI等绿度指数快速下降；同时，燃烧改变植被含水量、裸露土壤和炭化物比例，并破坏冠层垂直结构与空间连续性，导致短波红外反射特征、NBR/NBR2值及像元邻域空间方差发生变化。火后早期先锋植物和新生叶片能够较快恢复叶绿素和绿度，使NDVI接近火前水平，但冠层高度、结构复杂度、生物量积累和水分保持能力恢复较慢，因此NBR、NBR2及纹理指数预计表现出更长的恢复时间。",
+    "key_variables": {
+      "target": "火灾扰动与恢复状态，包括各Landsat像元相对于火灾前基线的指数变化幅度、扰动强度、恢复轨迹以及恢复时间；具体可用NDVI、NBR、NBR2和纹理指数达到火前均值或火前变异范围的时间表示。",
+      "predictors": [
+        "NDVI（Normalized Difference Vegetation Index）",
+        "NBR（Normalized Burn Ratio）",
+        "NBR2（Normalized Burn Ratio 2）",
+        "其他用于表征植被绿度、湿度和裸地/燃烧程度的Landsat光谱指数",
+        "基于Landsat波段或光谱指数空间方差计算的纹理指数",
+        "火灾前后时间窗口及距火灾发生的时间",
+        "火灾后首次有效Landsat观测与火灾日期之间的时间间隔",
+        "火灾前指数基线及其时间序列变异性"
+      ]
+    },
+    "data_sources": [
+      "USGS/NASA Landsat 5 TM Collection 2 Level-2 Tier-1 surface reflectance product (LANDSAT/LT05/C02/T1_L2), 30 m spatial resolution, used as the single admitted anchor for Eastern Victoria forest spectral-index time-series analysis",
+      "澳大利亚野火发生日期、火灾范围和火烧边界数据，用于确定受火像元、火灾前后时间窗口和扰动基准",
+      "东南澳大利亚硬叶林分布或森林覆盖数据，用于筛选研究区域并排除非目标植被类型",
+      "由Landsat地表反射率波段计算的NDVI、NBR、NBR2及其他光谱指数和30 m像元级纹理变量"
+    ],
+    "analytical_approach": "首先对Landsat影像进行云、云影和雪掩膜，并采用中值合成或季节一致的观测筛选，构建火灾前至少数年的基线和火灾后多年恢复序列。随后逐像元计算NDVI、NBR、NBR2及其他光谱指数，并从指数栅格或邻域窗口计算空间方差等纹理指标。以火灾前时间序列均值和标准差建立像元基线，计算火灾后的相对变化、最大扰动幅度和恢复轨迹。使用变化点检测或LandTrendr类分段时间序列算法识别扰动发生时间、扰动幅度和恢复拐点；使用恢复阈值法确定指数恢复时间，例如首次连续3个观测期回到火前均值±1个标准差范围的时间。比较火灾前后像元分布时，采用Glass's delta，以未受火区域或火灾前像元的标准差作为标准化尺度，评估不同指数识别火灾扰动的效应量；同时使用分位数、置信区间和不同火灾后观测窗口开展敏感性分析，以比较各指数在即时扰动识别和长期恢复监测中的适用性。",
+    "expected_contribution": "建立一个不依赖高密度野外调查数据、而是利用火灾前后像元分布和Glass's delta评估Landsat指数效用的框架；明确区分光谱指数对即时烧毁、冠层绿度恢复、植被水分恢复和结构恢复的敏感性；为东南澳大利亚硬叶林的火灾生态恢复监测提供指数选择、观测时间窗口和恢复指标设计依据，并检验NBR2及纹理指数在传统NDVI/NBR之外提供长期结构信息的潜力。",
+    "falsification_condition": "若在控制火灾规模、森林类型和观测季节后，NDVI的火灾后恢复时间不稳定地短于约3–5年，或NBR、NBR2及纹理指数的恢复时间不明显长于NDVI且不接近约8–10年；若火灾后首次观测距火灾发生时间的长短对即时扰动效应量没有可重复影响；或若NDVI、NBR、NBR2和纹理指数在火灾前后像元分布的Glass's delta均低于0.2，且无法通过扰动幅度、恢复时间或纹理变化区分受火像元与未受火像元，则上述关于指数功能分化和观测时效性的假设将不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

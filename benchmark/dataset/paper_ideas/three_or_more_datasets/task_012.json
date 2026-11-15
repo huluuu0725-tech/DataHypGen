@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.3390/land15040611",
+  "task_id": "three_or_more_datasets/task_012",
+  "title": "Socio-Ecological Assessment of Elderly Primary Healthcare Accessibility in China Using the Vegetation Nighttime Condition Index and the Enhanced 2SFCA",
+  "category": "elderly_healthcare_accessibility",
+  "year": 2026,
+  "journal": "Land",
+  "impact_level": "medium",
+  "datasets": [
+    "VIIRS Black Marble nighttime radiance",
+    "MODIS Terra Vegetation Indices",
+    "China 100 m age-specific population grid"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "human_activity_intensity_input",
+      "dataset": "VIIRS Black Marble nighttime radiance"
+    },
+    {
+      "role": "ecological_constraint_input",
+      "dataset": "MODIS Terra Vegetation Indices"
+    },
+    {
+      "role": "elderly_demand_context_input",
+      "dataset": "China 100 m age-specific population grid"
+    }
+  ],
+  "idea": {
+    "research_question": "How does an ecologically constrained human-activity signal relate to spatial accessibility of primary healthcare for older adults?",
+    "hypothesis": "The fused VIIRS-NDVI signal reveals socio-ecological context, while age-specific population demand exposes healthcare-accessibility mismatches.",
+    "mechanism": "Vegetation Nighttime Condition Index, enhanced 2SFCA, network travel impedance and coupling-coordination analysis",
+    "expected_contribution": "Transfers remote-sensing indicators into age-specific healthcare equity analysis.",
+    "required_component_usage": [
+      "human_activity_intensity_input",
+      "ecological_constraint_input",
+      "elderly_demand_context_input"
+    ],
+    "data_sources": [
+      "NASA/VIIRS/002/VNP46A2",
+      "MODIS/061/MOD13A1",
+      "GEE:WorldPop/GP/100m/pop_age_sex"
+    ],
+    "falsification_condition": "Reject if any required role is omitted, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_012:composite_observation",
+    "anchor_type": "composite_observation",
+    "extraction_basis": "Full-text seed evidence; empirical results are excluded from the task prompt."
+  }
+}

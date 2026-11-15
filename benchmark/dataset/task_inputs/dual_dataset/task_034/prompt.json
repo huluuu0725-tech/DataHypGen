@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Tulare Basin hydrological-variation space",
+  "datasets": [
+    {
+      "role": "jpl_aria_insar_los_displacement",
+      "data_description": {
+        "dataset_name": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+        "data_type": "Interferometric SAR line-of-sight surface-displacement time-series observations",
+        "data_format": "JPL ARIA processed InSAR raster time series with spatial metadata",
+        "data_path": "NASA_CMR:ARIA_S1_GUNW_1",
+        "spatial_coverage": {"region_name": "Tulare Basin, California", "coverage": "Tulare Basin scenes covered by the selected JPL ARIA Sentinel-1 InSAR product."},
+        "temporal_unit": "InSAR acquisition interval; preserve acquisition dates and reference geometry.",
+        "analytical_capabilities": ["Remove long-term compaction from LOS displacement time series", "Aggregate or align displacement observations to monthly hydrological support", "Analyse short-term surface deformation associated with hydrological variation"],
+        "unit_of_measurement": {"primary_measurement": "Line-of-sight surface displacement, typically metres or millimetres according to ARIA product metadata.", "runtime_hint": "Use processed JPL ARIA InSAR displacement products. Do not substitute Sentinel-1 GRD backscatter; GRD does not supply interferometric phase-derived LOS displacement."},
+        "source_metadata": {"provider": "NASA Jet Propulsion Laboratory ARIA", "product_family": "Sentinel-1 InSAR displacement time series"}
+      },
+      "data_path": "NASA_CMR:ARIA_S1_GUNW_1"
+    },
+    {
+      "role": "csr_rl06_mascon_terrestrial_water_storage",
+      "data_description": {
+        "dataset_name": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+        "data_type": "Monthly gravimetric terrestrial-water-storage anomaly estimates",
+        "data_format": "CSR RL06 Mascon gridded monthly solution",
+        "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04",
+        "spatial_coverage": {"region_name": "Tulare Basin, California", "coverage": "Basin-scale aggregation of the global CSR RL06 Mascon solution."},
+        "temporal_unit": "Monthly",
+        "analytical_capabilities": ["Aggregate monthly equivalent-water-height or terrestrial-water-storage anomalies over Tulare Basin", "Align basin-scale mass-storage anomalies with InSAR displacement observations", "Analyse co-variation between short-term deformation and water-storage change"],
+        "unit_of_measurement": {"primary_measurement": "Monthly terrestrial-water-storage anomaly or equivalent water height, according to CSR RL06 Mascon metadata.", "runtime_hint": "Use CSR RL06 Mascon solutions and their documented corrections and scaling guidance. Do not substitute the deprecated GEE NASA/GRACE/MASS_GRIDS/LAND product."},
+        "source_metadata": {"provider": "Center for Space Research, University of Texas at Austin", "product_family": "GRACE/GRACE-FO RL06 Mascon Solutions"}
+      },
+      "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"
+    }
+  ],
+  "data_descriptions": [
+    {"dataset_name": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series", "data_type": "Interferometric SAR line-of-sight surface-displacement time-series observations", "data_format": "JPL ARIA processed InSAR raster time series with spatial metadata", "data_path": "NASA_CMR:ARIA_S1_GUNW_1"},
+    {"dataset_name": "CSR GRACE/GRACE-FO RL06 Mascon Solutions", "data_type": "Monthly gravimetric terrestrial-water-storage anomaly estimates", "data_format": "CSR RL06 Mascon gridded monthly solution", "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"}
+  ],
+  "data_paths": ["NASA_CMR:ARIA_S1_GUNW_1", "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_034:composite_observation",
+    "type": "composite_observation",
+    "name": "jpl_aria_insar_csr_rl06_mascon composite observation",
+    "observable_group": "jpl_aria_insar_csr_rl06_mascon_hydrological_observation",
+    "components": [
+      {"role": "jpl_aria_insar_los_displacement", "data_description": {"dataset_name": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series", "data_type": "Interferometric SAR line-of-sight surface-displacement time-series observations", "data_format": "JPL ARIA processed InSAR raster time series with spatial metadata", "data_path": "NASA_CMR:ARIA_S1_GUNW_1", "source_metadata": {"provider": "NASA Jet Propulsion Laboratory ARIA", "product_family": "Sentinel-1 InSAR displacement time series"}}, "data_path": "NASA_CMR:ARIA_S1_GUNW_1"},
+      {"role": "csr_rl06_mascon_terrestrial_water_storage", "data_description": {"dataset_name": "CSR GRACE/GRACE-FO RL06 Mascon Solutions", "data_type": "Monthly gravimetric terrestrial-water-storage anomaly estimates", "data_format": "CSR RL06 Mascon gridded monthly solution", "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04", "source_metadata": {"provider": "Center for Space Research, University of Texas at Austin", "product_family": "GRACE/GRACE-FO RL06 Mascon Solutions"}}, "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"}
+    ],
+    "combination_contract": {"physical_object": "Tulare Basin hydrological variation observed jointly through ARIA InSAR deformation and CSR RL06 Mascon storage anomalies", "required_roles": ["jpl_aria_insar_los_displacement", "csr_rl06_mascon_terrestrial_water_storage"], "component_count": 2, "alignment": "Aggregate CSR monthly storage anomalies over Tulare Basin and align them with ARIA displacement dates or compatible monthly aggregates; preserve the different spatial supports.", "supplement_policy": "Additional data may provide context or validation but cannot replace either required product."}
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_034:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": ["NASA_CMR:ARIA_S1_GUNW_1", "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"],
+  "hard_constraints": {"required_roles": ["jpl_aria_insar_los_displacement", "csr_rl06_mascon_terrestrial_water_storage"], "must_use_all_required_roles": true, "do_not_reduce_to_single_dataset": true, "max_required_datasets": 3}
+}

@@ -1,0 +1,35 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "San Francisco Bay Area hillslopes, California",
+  "data_description": {
+    "dataset_name": "SPL4SMGP.008 SMAP L4 Global 3-hourly 9-km Surface and Root Zone Soil Moisture",
+    "spatial_coverage": {
+      "region_name": "San Francisco Bay Area hillslopes, California",
+      "coverage": "Shallow-landslide-prone hillslopes of the East Bay Hills and surrounding San Francisco Bay Area catchments, California, within the global SMAP L4 land footprint between about 85°S and 85°N."
+    },
+    "temporal_coverage": "2015-03-31 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "9 km EASE-Grid, reprojected to about 11 km in Earth Engine",
+    "temporal_unit": "3-hourly",
+    "analytical_capabilities": [
+      "Track surface and root-zone soil moisture at sub-daily resolution",
+      "Compare surface, root-zone, and total-profile moisture states across depths",
+      "Resolve wetting and drying sequences within individual storm events",
+      "Relate soil-moisture state to terrain, land cover, or hazard-susceptibility layers",
+      "Aggregate sub-daily fields to daily, seasonal, or catchment-mean summaries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Volumetric soil moisture as a volume fraction (m3/m3); wetness bands dimensionless; temperature bands in kelvin",
+      "runtime_hint": "Use `sm_surface` for the 0-5 cm layer, `sm_rootzone` for 0-100 cm, and `sm_profile` for the full column to model bedrock depth, all as volume fractions; `sm_surface_wetness` and `sm_rootzone_wetness` are the same layers expressed as dimensionless wetness. Images arrive every 3 hours, so aggregate before comparing against daily or event-scale variables. Divide by soil porosity if degree of saturation is needed."
+    },
+    "data_source": "NASA National Snow and Ice Data Center; the product assimilates SMAP L-band brightness temperature into the GEOS-5 Catchment land-surface model",
+    "gee_asset": {
+      "id": "NASA/SMAP/SPL4SMGP/008",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "paper_ideas/single_dataset/task_005.json research_question names 旧金山湾区浅层滑坡易发坡地; seed full text (10.1029/2019WR025577) narrows this to the East Bay Hills, Alameda County, with 10 monitored catchments",
+    "asset_provenance": "Anchor repointed from NASA_USDA/HSL/SMAP10KM_soil_moisture on 2026-08-28: the seed operates on SMAP L4_SM, which the former anchor's alias policy explicitly excluded."
+  },
+  "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+}

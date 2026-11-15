@@ -1,0 +1,68 @@
+{
+  "paper_id": "10.1073/pnas.1607171113",
+  "task_id": "single_dataset/task_034",
+  "title": "Impact of anthropogenic climate change on wildfire across western US forests",
+  "category": "geological_hazards",
+  "year": 2016,
+  "journal": "Proceedings of the National Academy of Sciences",
+  "impact_level": "high",
+  "datasets": [
+    "NLDAS-2 daily/hourly surface meteorological forcing (primary climate input)",
+    "PRISM/PARIM monthly climate anomalies",
+    "CRU monthly climate data",
+    "ERA-INTERIM and NCEP-NCAR reanalysis sensitivity inputs",
+    "CMIP5 historical, historicalNat and RCP8.5 simulations for anthropogenic climate signal",
+    "LANDFIRE vegetation and forest mask",
+    "MTBS fire perimeters (1984–2014) and MODIS burned area v5.1 (2015)",
+    "National Lightning Detection Network (NLDN)"
+  ],
+  "study_area_verified": "Western United States west of 103°W, focusing on LANDFIRE forest or woodland top-successional stages; the study evaluates 1979–2015 fuel aridity and 1984–2015 forest burned area.",
+  "anchor_use_verified": "The Methods calculate daily fire-danger and monthly fuel-aridity indicators from NLDAS2/PRISM meteorological forcing. The single benchmark input is the NLDAS-2 forcing collection; derived FWI/ERC/KBDI/FFDI/PDSI and fire-perimeter products are not separate anchor datasets.",
+  "companion_dataset_availability": {
+    "gee_exact_anchor": "NASA/NLDAS/FORA0125_H002",
+    "gee_companion_assets": [],
+    "not_exactly_mapped_in_local_catalog": [
+      "PRISM/PARIM and CRU monthly anomaly series as combined in the study",
+      "CMIP5 model ensemble and historicalNat/RCP8.5 anthropogenic-signal processing",
+      "LANDFIRE environmental site potential forest mask",
+      "MTBS perimeter aggregation and NLDN lightning data",
+      "Paper-derived fuel-aridity indices and detrended regression outputs"
+    ],
+    "catalog_version_gap": "NLDAS-2 is available as an hourly 1/8° forcing collection; the paper combines it with PRISM spatial attributes and derives indices at 1/24°. The GEE asset therefore supports the meteorological input family but does not reproduce the paper's fused grids or derived products exactly."
+  },
+  "sibling_task_boundary": "Only NLDAS-2 meteorological forcing is exposed as the benchmark input. ERA5, ERA5-Land, gridMET, PRISM-only, CMIP5-only and precomputed fire-index products are distinct products and must not be merged into a joint anchor.",
+  "fields_left_unchanged": [
+    "idea"
+  ],
+  "idea": {
+    "research_question": "1979—2015年人为气候变化是否通过提高西部美国森林区暖季燃料干燥度，进而增加1984—2015年的森林火灾面积，并且这种气候驱动效应是否在燃料可利用性较高时持续存在？",
+    "hypothesis": "人为温室气体强迫将提高暖季气温和大气蒸散需求、降低有效水分，从而增加气候水分亏缺（CWD）和蒸汽压亏缺（VPD），最终扩大森林火灾年燃烧面积；相对于仅受自然强迫的反事实气候，人为强迫应解释1979—2015年燃料干燥度趋势的50%以上，并使1984—2015年累计森林燃烧面积至少增加50%；在燃料负荷较高的区域，燃料干燥度对火灾面积的正向效应应更强。",
+    "mechanism": "人为温室气体排放增加辐射强迫并导致区域增温，同时改变降水时序和水分平衡；气温升高与降水不足共同提高潜在蒸散、VPD和CWD，导致活体及枯死燃料含水量下降；燃料含水量下降后，点火成功率、火焰传播速率和单次火灾规模上升，进而增加年度森林燃烧面积。该路径可表示为：人为气候强迫→气温升高和有效降水减少→VPD/CWD升高→燃料含水量降低→火灾发生概率和火灾规模增加→森林年燃烧面积增加。燃料负荷、森林连续性、雷击和人为点火作为调节或混杂因素纳入模型，并检验燃料可利用性与燃料干燥度之间的交互作用。",
+    "key_variables": {
+      "target": "西部美国森林区年度累计燃烧面积（MTBS火灾边界与森林掩膜叠加得到，单位为ha yr−1；模型中使用log1p转换后的燃烧面积，并以森林面积作为offset）",
+      "predictors": [
+        "暖季气候水分亏缺CWD（May—September或June—August累计值）",
+        "暖季平均及最大蒸汽压亏缺VPD（kPa）",
+        "暖季平均气温和最高气温（°C）",
+        "暖季降水量及连续无降水日数",
+        "CMIP5历史全强迫与自然强迫情景之间的气候差异",
+        "森林燃料负荷和燃料连续性",
+        "雷击点火频率及人为点火强度（作为火灾发生过程的控制变量）",
+        "海拔、森林类型、土地覆盖和区域固定效应"
+      ]
+    },
+    "data_sources": [
+      "Monitoring Trends in Burn Severity（MTBS）火灾周界数据，1984—2015年，主要纳入西部美国面积不小于1000英亩（约405 ha）的大型火灾；原始空间分辨率约30 m",
+      "LANDFIRE Existing Vegetation Type、Existing Vegetation Cover及Scott and Burgan燃料模型数据，约30 m分辨率，用于识别森林区域、估计燃料负荷和燃料连续性",
+      "Climatic Research Unit CRU TS3.23月尺度气温和降水数据，1979—2015年，0.5°网格；用于计算历史燃料干燥度指标",
+      "Coupled Model Intercomparison Project Phase 5（CMIP5）历史全强迫和historicalNat自然强迫模拟，1979—2015年，月尺度；将各模式结果偏差校正并重网格至0.5°，用于构建人为气候变化反事实",
+      "可选的gridMET日尺度气象数据，1979—2015年，约4 km分辨率，用于对CWD、VPD和暖季干燥度计算进行高分辨率敏感性检验",
+      "National Lightning Detection Network（NLDN）雷击数据，1984—2015年，日尺度和公里级空间分辨率，用于控制雷击点火变化"
+    ],
+    "analytical_approach": "首先使用Thornthwaite潜在蒸散估算与月尺度土壤水分桶模型计算CWD，设置约100 mm的土壤可利用水容量，并以暖季累计水分亏缺作为主要燃料干燥度指标；以VPD作为独立敏感性指标。其次，对CRU观测和CMIP5历史全强迫、自然强迫模拟进行分位数映射偏差校正，使用普通最小二乘线性趋势、Theil–Sen稳健趋势估计和5年移动区块自助法计算1979—2015年干燥度趋势及其不确定性；人为贡献定义为全强迫趋势减去自然强迫趋势，并通过CMIP5多模式集合及1000次模式重抽样获得置信区间。随后将MTBS燃烧面积按森林网格或生态区年度汇总，采用带log链接的Gamma/Tweedie广义线性模型，或在零值较多时采用两部分hurdle模型：第一部分用逻辑回归估计火灾发生概率，第二部分用Gamma回归估计正值火灾面积；模型包含CWD的非线性项、空间随机截距、年份效应、AR(1)时间相关结构、燃料负荷、雷击和土地管理控制变量，并加入CWD×燃料负荷交互项。通过5年连续区块交叉验证评估预测能力。最后将拟合模型分别输入历史全强迫和自然强迫的CWD序列，计算两种情景下的累计森林燃烧面积、相对风险和人为气候变化归因面积。",
+    "expected_contribution": "建立从人为气候强迫、燃料干燥度到森林火灾面积的可检验因果链条；将气候变化归因分析与MTBS观测火灾记录相结合，区分自然气候变率和人为强迫对长期火灾变化的作用；量化燃料可利用性对气候—火灾关系的调节作用，为西部美国森林火灾风险评估、燃料管理和未来气候适应策略提供可迁移的分析框架。",
+    "falsification_condition": "若满足以下任一条件，则不支持该研究假设：1）在1979—2015年期间，人为强迫对CWD或VPD观测趋势的归因比例不超过50%，且其95%置信区间上限也不超过50%；2）在控制森林类型、燃料负荷、雷击、土地管理和时间自相关后，CWD对log1p年度森林燃烧面积的交叉验证弹性不大于0，或CWD增加1个标准差对应的预测燃烧面积增幅不超过5%；3）将历史全强迫气候替换为自然强迫反事实后，1984—2015年累计预测森林燃烧面积的比值不超过1.20；4）在燃料负荷高于全样本第60百分位的区域，CWD与燃料负荷的交互项不为正，或CWD增加1个标准差不能使火灾面积至少增加10%。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

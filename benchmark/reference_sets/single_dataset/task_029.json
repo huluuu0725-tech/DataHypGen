@@ -1,0 +1,1071 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_029",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Sentinel-5P OFFL NO2: Offline Nitrogen Dioxide",
+    "spatial_coverage": {
+      "region_name": "Europe",
+      "coverage": "European land areas and adjacent regions covered by the global Sentinel-5P orbital swath, with valid observations available according to retrieval conditions."
+    },
+    "temporal_coverage": "2018-06-28T10:24:07Z to 2026-06-27T21:37:21Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1113.2 m nominal GEE L3 raster grid (source TROPOMI L2 nadir footprint is approximately 3.5 x 7 km)",
+    "temporal_unit": "ImageCollection acquisitions with a nominal 2-day revisit interval; individual orbit observations are not a regular daily record at every pixel",
+    "analytical_capabilities": [
+      "Mapping the spatial distribution and regional gradients of tropospheric and total NO2 column densities",
+      "Assessing temporal trends, seasonal variability, and long-term changes",
+      "Detecting spatial hotspots, clusters, and geographic anomalies",
+      "Comparing NO2 column conditions across regions, time periods, and land-cover contexts",
+      "Computing spatial and temporal aggregates, zonal statistics, and relationships with auxiliary geographic datasets",
+      "Using the catalog quality-screened L3 raster observations for regional column mapping"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NO2 column number density in moles per square meter (mol/m²)",
+      "runtime_hint": "Use tropospheric_NO2_column_number_density for lower-atmosphere-focused analyses and NO2_column_number_density for the total column; both are in mol/m² with catalog scale 1. The L3 asset is produced from L2 by harpconvert spatial binning and retains one grid per orbit. Source pixels were filtered at ingestion using tropospheric-band validity >75% (and >50% for other NO2 fields). Apply region/date filters and aggregate valid observations before comparison. Do not discard all negative columns: only treat values below about -0.001 mol/m² as outliers, consistent with the catalog guidance. cloud_fraction is a fraction (0–1) and may be used for an additional cloud screen."
+    },
+    "data_source": "European Space Agency Copernicus Sentinel-5P TROPOMI mission",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/OFFL/L3_NO2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:COPERNICUS/S5P/OFFL/L3_NO2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_029.json",
+    "source_sha256": "e57d657e3ca10aad745596388f1f7bbcaf4c929f723dda549babcae7a1c1e0d6",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_029/prompt.json",
+    "current_prompt_sha256": "e11cdc60d514332f1aeca13b204a866fa6d4f20f749f2aeb73c6ece53bf9b4cf",
+    "original_anchor_asset": {
+      "id": "COPERNICUS/S5P/OFFL/L3_NO2",
+      "observable_group": "tropomi_offline_tropospheric_no2_column",
+      "observation_identity_contract": {
+        "physical_object": "atmospheric tropospheric nitrogen-dioxide abundance",
+        "source_lineage": "Sentinel-5P TROPOMI NO2 retrieval lineage",
+        "core_measurement_semantics": "TROPOMI tropospheric NO2 vertical-column observation",
+        "non_material_variations": "offline/NRT release, L2/L3 gridding, archive, reprojection, filtering or temporal aggregation retaining tropospheric NO2",
+        "material_mismatches": "another trace gas, another sensor without TROPOMI NO2 input, or total-column semantics when tropospheric NO2 is not available"
+      },
+      "asset_alias_policy": "TROPOMI offline NO2 Level-2/Level-3 observations are admitted; near-real-time products and other trace gases are excluded."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "How do Sentinel-5P NO2 columns compare with ground monitoring across Catalonia?",
+      "hypothesis_or_mechanism": "Column and near-surface measurements sample different vertical and spatial supports, so agreement depends on averaging, meteorology, and site type.",
+      "variables_and_data_use": "TROPOMI offline NO2 columns are collocated with ground measurements and stratified by space and time.",
+      "method_paradigm": "Satellite-to-ground measurement comparison and error characterization.",
+      "used_assets": [
+        "TROPOMI offline NO2",
+        "ground NO2 monitors"
+      ],
+      "author_team": [
+        "Danielly García",
+        "M. E. Parés"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing nitrogen dioxide monitoring techniques: a comparative analysis of Sentinel-5 Precursor satellite and ground measurements in Catalonia",
+        "doi": "10.5194/amt-18-5569-2025",
+        "year": 2025,
+        "venue": "Atmospheric measurement techniques",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Why did COVID-19 restrictions affect air quality differently across Latin American cities?",
+      "hypothesis_or_mechanism": "Mobility and sectoral activity changes reduce emissions unevenly, while meteorology modulates the satellite-observed column response.",
+      "variables_and_data_use": "TROPOMI offline NO2 is compared across restriction periods with meteorology and city-specific activity conditions.",
+      "method_paradigm": "Multi-city intervention-period comparison with meteorological interpretation.",
+      "used_assets": [
+        "TROPOMI offline NO2",
+        "meteorology",
+        "restriction and city context"
+      ],
+      "author_team": [
+        "Oliva Atiaga",
+        "Fernando Páez",
+        "Wilson Jácome",
+        "Rafael Castro",
+        "Edison Fernando Campos Collaguazo",
+        "L. M. Nunes"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "COVID-19 pandemic impacted differently air quality in Latin American cities",
+        "doi": "10.1007/s11869-025-01738-z",
+        "year": 2025,
+        "venue": "Air Quality Atmosphere & Health",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "Can global TROPOMI observations separate seasonal urban, industrial, and background NO2?",
+      "hypothesis_or_mechanism": "Spatial source signatures and seasonal persistence distinguish concentrated anthropogenic enhancements from regional background columns.",
+      "variables_and_data_use": "TROPOMI offline NO2 is aggregated around urban and industrial source masks and modeled seasonally.",
+      "method_paradigm": "Global spatial source-component estimation from repeated satellite observations.",
+      "used_assets": [
+        "TROPOMI offline NO2",
+        "urban and industrial source locations"
+      ],
+      "author_team": [
+        "Vitali Fioletov",
+        "C. A. McLinden",
+        "Debora Griffin",
+        "Xiaoyi Zhao",
+        "Henk Eskes"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Global seasonal urban, industrial, and background NO 2 estimated from TROPOMI satellite observations",
+        "doi": "10.5194/acp-25-575-2025",
+        "year": 2025,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "How much uncertainty is introduced when TROPOMI NO2 retrievals are converted into superobservations for assimilation and model evaluation?",
+      "hypothesis_or_mechanism": "Spatial averaging changes representativeness and propagates retrieval-error covariance, affecting the weight given to satellite constraints.",
+      "variables_and_data_use": "TROPOMI offline NO2 pixels and uncertainties are aggregated and tested against atmospheric-model fields.",
+      "method_paradigm": "Observation-operator and uncertainty-propagation experiments for data assimilation.",
+      "used_assets": [
+        "TROPOMI offline NO2",
+        "atmospheric chemistry model"
+      ],
+      "author_team": [
+        "Pieter Rijsdijk",
+        "Henk Eskes",
+        "Arlene Dingemans",
+        "K. F. Boersma",
+        "Takashi Sekiya",
+        "Kazuyuki Miyazaki",
+        "Sander Houweling"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Quantifying uncertainties in satellite NO 2 superobservations for data assimilation and model evaluation",
+        "doi": "10.5194/gmd-18-483-2025",
+        "year": 2025,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究旨在估算2019—2023年乌克兰每日人为NOx排放，并识别战争期间排放变化及其与自然源变化的差异。",
+      "hypothesis_or_mechanism": "将GEOS-Chem模拟与TROPOMI对流层NO2柱浓度观测结合进行反演，可以利用卫星观测约束人为和自然源NOx排放变化并降低两类源之间的交叉影响。",
+      "variables_and_data_use": "研究实际使用了TROPOMI NO2垂直柱浓度观测，包括v2.4.0 RPRO、v2.4.0 OFFL、v2.5.0 OFFL和v2.6.0 OFFL数据；数据经过质量筛选、网格化和7天移动平均，并与GEOS-Chem模拟的对流层NO2柱浓度比较，用于约束NOx排放反演和评估反演结果。",
+      "method_paradigm": "卫星约束排放反演",
+      "used_assets": [
+        "v2.4.0 official reprocessed (RPRO) dataset",
+        "v2.4.0 official offline (OFFL) dataset",
+        "v2.5.0 OFFL dataset",
+        "v2.6.0 OFFL dataset",
+        "TROPOMI NO 2 VCD observations",
+        "GEOS-Chem model",
+        "EDGAR v8.1",
+        "GFED4.1s"
+      ],
+      "author_team": [
+        "Yu Mao",
+        "Weimin Ju",
+        "Hengmao Wang",
+        "Liangyun Liu",
+        "Haikun Wang",
+        "Shuzhuang Feng",
+        "Mengwei Jia",
+        "Fei Jiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Inversion-based assessment of anthropogenic NO\n                    <sub>\n                      <i>x</i>\n                    </sub>\n                    emission changes in Ukraine during the 2022–2023 war using TROPOMI satellite data",
+        "doi": "10.5194/acp-25-14187-2025",
+        "year": 2025,
+        "venue": "Atmospheric Chemistry and Physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "如何利用滤波后的TROPOMI NO 2柱浓度数据识别全球海运排放信号，并与CAMS及CAMS-GLOB-SHIP数据进行比较？",
+      "hypothesis_or_mechanism": "高通滤波和傅里叶滤波能够削弱背景场及TROPOMI轨道条纹结构，从而突出船舶排放造成的NO 2增强信号。",
+      "variables_and_data_use": "研究实际处理了TROPOMI NO 2 tSCD和tVCD数据，使用滚动均值高通滤波、傅里叶频域滤波及不同阈值和旗标设置识别航运NO 2信号；同时使用CAMS NO 2 tVCD数据进行模型对比，并用CAMS-GLOB-SHIP航运活动数据辅助归因。",
+      "method_paradigm": "遥感信号滤波与排放归因",
+      "used_assets": [
+        "TROPOMI NO 2",
+        "CAMS-GLOB-SHIP",
+        "CAMS NO 2"
+      ],
+      "author_team": [
+        "Miriam Latsch",
+        "Andreas Richter",
+        "John P. Burrows",
+        "Hartmut Bösch"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Improved detection of global NO\n                    <sub>2</sub>\n                    signals from shipping in Sentinel-5P TROPOMI data",
+        "doi": "10.5194/amt-18-4373-2025",
+        "year": 2025,
+        "venue": "Atmospheric Measurement Techniques",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "如何利用 TROPOMI 对流层二氧化氮观测构建全球网格化 NOx 排放估计？",
+      "hypothesis_or_mechanism": "结合柱浓度、风场及化学损失的质量平衡反演，可以从卫星观测推算地表 NOx 排放。",
+      "variables_and_data_use": "使用 TROPOMI 对流层 NO2 柱浓度计算背景校正后的通量；结合 ERA5 风场、CAMS 大气成分与温度及 GMTED2010 高程推算排放，并与 EDGARv6.1 比较。",
+      "method_paradigm": "通量散度反演",
+      "used_assets": [
+        "TROPOMI retrievals",
+        "ERA5",
+        "CAMS",
+        "GMTED2010",
+        "EDGARv6.1"
+      ],
+      "author_team": [
+        "Anthony Rey-Pommier",
+        "Alexandre Héraud",
+        "Frédéric Chevallier",
+        "Philippe Ciais",
+        "Theodoros Christoudias",
+        "Jonilda Kushta",
+        "Jean Sciare"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Global gridded NO<sub><i>x</i></sub> emissions using TROPOMI observations",
+        "doi": "10.5194/essd-17-3329-2025",
+        "year": 2025,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "能否利用TROPOMI对流层NO2柱观测和MEIC中的CO2/NOx排放关系，间接估算城市及能源密集区化石燃料燃烧产生的每日CO2排放？",
+      "hypothesis_or_mechanism": "化石燃料燃烧共同排放CO2和短寿命NOx，因此由TROPOMI NO2柱浓度反演的每日NOx排放可结合自下而上的CO2/NOx排放比转换为高时空分辨率CO2排放估计。",
+      "variables_and_data_use": "使用TROPOMI observations of NO2 tropospheric column concentrations，通过MCMFE方法反演2019年每日NOx排放；使用Multiresolution Emission Inventory for China (MEIC)计算CO2/NOx排放关系，并据此生成每日化石燃料CO2排放估计，同时将估计结果与MEIC的空间分布进行比较。",
+      "method_paradigm": "代理反演与排放估算",
+      "used_assets": [
+        "TROPOMI observations of NO2 tropospheric column concentrations",
+        "Multiresolution Emission Inventory for China (MEIC)"
+      ],
+      "author_team": [
+        "LU Lingxiao",
+        "QIN Kai",
+        "Blake COHEN Jason",
+        "LI Xiaolu",
+        "ZHOU Chunyan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; final uncertainty caused by quote-guard downgrade",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "TROPOMI NO2间接估算化石能源CO2日排放量",
+        "doi": "10.11834/jrs.20244018",
+        "year": 2025,
+        "venue": "National Remote Sensing Bulletin",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "2019—2025年Lombardy地区对流层NO2垂直柱浓度呈现何种空间、季节和年际变化，COVID-19限制期间又发生了怎样的变化？",
+      "hypothesis_or_mechanism": "交通、工业和其他人为活动的强度控制区域NO2污染，而COVID-19出行与经济活动限制通过减少相关排放暂时降低了对流层NO2柱浓度。",
+      "variables_and_data_use": "以Sentinel-5P OFFL NO2的tropospheric_NO2_column_number_density为核心变量，实施质量过滤、单位换算以及日均和月均聚合，并计算均值、最小值、最大值和标准差；使用Sentinel-2 MSI提供土地覆盖与城市环境背景，使用FAO/GAUL/2015/level2界定行政区域，并以EEA Air Quality e-Reporting database地面NO2记录检验月尺度时间一致性。",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "Sentinel-5P OFFL NO2: Offline Nitrogen Dioxide",
+        "tropospheric_NO2_column_number_density",
+        "Sentinel-2 MSI",
+        "FAO/GAUL/2015/level2",
+        "EEA Air Quality e-Reporting database",
+        "ESA WorldCover 2021"
+      ],
+      "author_team": [
+        "Sofia Bandurčinová",
+        "Katarína Onačillová"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; final uncertainty caused by quote-guard downgrade",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatiotemporal analysis and visualization of tropospheric NO2 using Sentinel-5P satellite data and Google Earth Engine: A case study of Lombardy, Italy",
+        "doi": "10.33542/gc2026-1-04",
+        "year": 2026,
+        "venue": "Geographia Cassoviensis",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "Sentinel-5P/TROPOMI观测到的CO、对流层NO 2和SO 2在2020—2023年间呈现怎样的空间分布、季节变化、长期趋势和相对热点格局？",
+      "hypothesis_or_mechanism": "干季的生物质燃烧、燃烧活动和较弱污染物清除可能导致较高柱密度，而湿季降水清除可能降低污染物水平，城市、交通、工业和采矿活动则可能形成局地较高NO 2值。",
+      "variables_and_data_use": "研究使用COPERNICUS/S5P/OFFL/L3_CO的CO_column_number_density、COPERNICUS/S5P/OFFL/L3_NO2的tropospheric_NO2_column_number_density和COPERNICUS/S5P/OFFL/L3_SO2的SO2_column_number_density；在Google Earth Engine中进行质量筛选、日期过滤、裁剪、月均和年均合成及分区统计，并以假定的2,000米有效层高换算为柱衍生估计浓度，随后实施空间分级、热点筛查、Mann-Kendall趋势检验和Sen斜率估计。",
+      "method_paradigm": "遥感时空趋势分析",
+      "used_assets": [
+        "COPERNICUS/S5P/OFFL/L3_CO",
+        "COPERNICUS/S5P/OFFL/L3_NO2",
+        "COPERNICUS/S5P/OFFL/L3_SO2"
+      ],
+      "author_team": [
+        "Walquer Huacani Calsin",
+        "Hernán Yari",
+        "Edgar Vilca",
+        "German Espinoza",
+        "Franklin Lozano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; final uncertainty caused by quote-guard downgrade",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Analysis of atmospheric air pollutants (CO, NO2, and SO2), through Sentinel-5P images in google earth engine, apurimac region, period 2020–2023",
+        "doi": "10.3389/frsen.2026.1894138",
+        "year": 2026,
+        "venue": "Frontiers in Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "2019—2024年Sulaymaniyah Province的NO2、SO2、CO和O3如何发生年度与季节变化，且这些变化与地表温度和降水有何关系？",
+      "hypothesis_or_mechanism": "工业和城市排放推动污染物柱浓度的时空变化，而温度与降水通过化学反应条件和湿清除过程影响NO2及其他污染物水平。",
+      "variables_and_data_use": "使用Sentinel-5P OFFL: NO2、Sentinel-5P OFFL: SO2、Sentinel-5P OFFL: CO和Sentinel-5P OFFL: O3生成2019—2024年年度图与季节平均值；使用MOD11A2 version 6.1获取地表温度，使用CHIRPS获取平均降雨量，并通过Pearson相关检验分析气候参数与污染物的关系。",
+      "method_paradigm": "时空变化与相关分析",
+      "used_assets": [
+        "Sentinel-5P OFFL: NO2",
+        "Sentinel-5P OFFL: SO2",
+        "Sentinel-5P OFFL: CO",
+        "Sentinel-5P OFFL: O3",
+        "MOD11A2 version 6.1",
+        "CHIRPS"
+      ],
+      "author_team": [
+        "فرمێسك رشيد عبدالله",
+        "سرياز صالح حسين",
+        "ئەژين إبراهيم سەمين",
+        "پروين محمد مينا عمر"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; final uncertainty caused by quote-guard downgrade",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "رصد التغيرات في تلوث الهواء باستخدام بيانات القمر الصناعي Sentinel-5P في محافظة السليمانية، إقليم كردستان العراق (2019-2024)",
+        "doi": "10.66026/cq7ke077",
+        "year": 2026,
+        "venue": "Journal Of Babylon Center for Humanities Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "能否结合 Sentinel-5P TROPOMI 对流层 NO2 柱、再分析气象数据和地形数据，可靠估算监测站的小时级近地面 NO2 浓度？",
+      "hypothesis_or_mechanism": "对流层 NO2 柱包含近地面污染负荷信号，而气象、植被、反照率、边界层和地形共同调节柱浓度与地面浓度之间的非线性关系。",
+      "variables_and_data_use": "以 Ulusal Hava Kalitesi İzleme Ağı 的小时级地面 NO2 为因变量，以 Sentinel-5P TROPOMI NO2 对流层垂直柱为核心卫星预测变量，并加入 ERA5-Land 的温度、露点、风、气压、降水、蒸发、反照率和叶面积指数，ERA5-Single Level 的边界层高度与总云量，以及 NASA SRTM 高程；数据按 TROPOMI 可用时刻和站点最近网格匹配后用于模型训练与验证。",
+      "method_paradigm": "机器学习状态重建",
+      "used_assets": [
+        "Sentinel-5P TROPOMI NO2",
+        "Sentinel-5P OFFL NO2: Offline Nitrogen Dioxide",
+        "COPERNICUS_S5P_OFFL_L3_NO2",
+        "Ulusal Hava Kalitesi İzleme Ağı",
+        "ERA5-Land",
+        "ERA5-Single Level",
+        "NASA SRTM"
+      ],
+      "author_team": [
+        "Efem Bilgiç",
+        "Tolga Elbir"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; both results subsequently failed the verbatim quote guard",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Sentinel-5P Uydu Verileri ve Makine Öğrenmesi Yöntemiyle İzmir Atmosferinde Saatlik NO2  Konsantrasyonlarının Tahmini",
+        "doi": "10.7212/karaelmasfen.1591188",
+        "year": 2025,
+        "venue": "Karaelmas Science and Engineering Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何利用不同的空间过采样方法（面积加权与基于物理的高斯响应函数）改进TROPOMI卫星NO2对流层柱浓度数据在美国街区尺度上的降尺度与代表性？",
+      "hypothesis_or_mechanism": "考虑卫星仪器视场中心敏感度高、边缘敏感度低的二维高斯空间响应函数，能够比简单的几何面积重叠法更准确地捕捉卫星信号在行政边界内的真实分布，从而提升街区尺度NO2浓度的估计精度。",
+      "variables_and_data_use": "使用TROPOMI L2级NO2对流层柱浓度数据作为核心遥感变量，结合美国人口普查局的街区边界与人口社会经济数据，通过AWO-BG和PGO-BG两种空间过采样算法将卫星像素映射至街区单元。",
+      "method_paradigm": "空间过采样与统计降尺度",
+      "used_assets": [
+        "TROPOMI Level-2 NO2 tropospheric column (version 2.4) from TEMIS",
+        "NHGIS demographic data",
+        "US Census Bureau ACS & Shapefiles"
+      ],
+      "author_team": [
+        "Xiaomeng Jin",
+        "Zaina Merchant",
+        "Kang Sun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Physics‐Based Spatial Oversampling of TROPOMI NO<sub>2</sub> Observations to US Neighborhoods Reveals the Disparities of Air Pollution",
+        "doi": "10.1029/2025gh001423",
+        "year": 2025,
+        "venue": "GeoHealth",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究问题是如何利用 Sentinel-5P TROPOMI 数据刻画 Nghi Son 和 Dung Quat 炼油区域及其周边的对流层 NO2 浓度时空分布。",
+      "hypothesis_or_mechanism": "炼油区域相关排放可能导致周边对流层 NO2 柱浓度升高，并形成具有季度和年度差异的空间分布模式。",
+      "variables_and_data_use": "使用 Sentinel-5P TROPOMI Level-2 NO2 数据，剔除 QA 值低于 0.75 的像元，将数据重采样到规则网格并聚合为 Level-3 季度和年度复合结果，以分析对流层 NO2 浓度分布；结果以 mol/m2 表示。",
+      "method_paradigm": "遥感空间制图与时序聚合",
+      "used_assets": [
+        "Sentinel-5P TROPOMI data",
+        "Level-2 (L2) NO2 datasets from Sentinel-5P",
+        "Google Earth Engine (GEE)",
+        "harpconvert",
+        "Final Level-3 tropospheric NO2 datasets"
+      ],
+      "author_team": [
+        "Le Hung Trinh",
+        "Duc Anh Nguyen",
+        "Thi Thu Nga Nguyen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Mapping the concentration of nitrogen dioxide (NO2) in the air over the Nghi Son and Dung Quat refineries using Sentinel-5P Tropomi satellite data",
+        "doi": "10.12775/eq.2026.001",
+        "year": 2025,
+        "venue": "Ecological Questions",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何动态估算垂直柱高度（VCH）以更准确地利用Sentinel-5P TROPOMI卫星数据反演城市地表污染物浓度？",
+      "hypothesis_or_mechanism": "污染物在大气中的垂直分布受局地排放强度、大气化学过程及气象条件共同影响，导致VCH具有显著时空变异性，静态假设会引入较大误差。",
+      "variables_and_data_use": "使用Sentinel-5P TROPOMI获取的SO2、CO和NO2垂直柱密度（VCD）作为核心自变量；结合KLHK站点实测地表浓度计算经验VCH；引入MODIS Aqua地表温度作为辅助气象变量构建探索性回归模型。",
+      "method_paradigm": "经验模型构建与统计相关性分析",
+      "used_assets": [
+        "Sentinel-5P TROPOMI imagery",
+        "MODIS Aqua surface temperature",
+        "in-situ air quality sensors at both monitoring stations"
+      ],
+      "author_team": [
+        "Mohammad Rifqi Alfarizi",
+        "Lalu Muhamad Jaelani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of Dynamic Vertical Column Height Approach for Converting Sentinel-5P Data into Surface Pollutant Concentrations in Surabaya City",
+        "doi": "10.12962/inderaja.v20i2.9761",
+        "year": 2026,
+        "venue": "Jurnal Penginderaan Jauh dan Pengolahan Data Citra Digital",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "巴格达市2019至2024年间二氧化氮与二氧化硫污染的时空演变规律及其主要驱动因素是什么？",
+      "hypothesis_or_mechanism": "冬季稳定气象条件与化石燃料消耗增加导致污染物累积，而夏季扩散条件改善及城市扩张伴随植被减少加剧了局部污染热点的形成与演变。",
+      "variables_and_data_use": "使用 Sentinel-5P/TROPOMI 提供的 NO2 和 SO2 月度平均浓度数据，结合质量过滤与空间裁剪进行时空趋势分析与气候态制图。",
+      "method_paradigm": "遥感时序分析与空间统计制图",
+      "used_assets": [
+        "Sentinel-5P/TROPOMI NO2",
+        "Sentinel-5P/TROPOMI SO2",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Khalid Qaraghuli"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatiotemporal analysis of NO2 and SO2 pollutants using Sentinel-5p satellite data and Google Earth Engine environment: A case study of Baghdad",
+        "doi": "10.22271/27078388.2026.v7.i1a.67",
+        "year": 2026,
+        "venue": "Journal of Civil Engineering and Applications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "沙特阿拉伯地区主要大气污染物（CO、NO2、SO2、PM2.5）在2019至2023年间的时空分布特征与季节变化规律是什么？",
+      "hypothesis_or_mechanism": "气象扩散条件与人类活动排放（工业、交通、沙尘）共同驱动了污染物的季节性波动与长期趋势，高排放区浓度上升主要受城市化与工业化进程影响。",
+      "variables_and_data_use": "使用Sentinel-5P卫星L2级产品的CO、NO2、SO2浓度变量，通过GEE按日期与区域过滤、应用云掩膜并计算月度均值，生成时空序列用于线性回归趋势分析与空间制图。",
+      "method_paradigm": "卫星遥感时序与空间分析",
+      "used_assets": [
+        "Copernicus Sentinel-5P satellite",
+        "Google Earth Engine (GEE)",
+        "ArcGIS Pro"
+      ],
+      "author_team": [
+        "Hossamaldeen Mohamed",
+        "Abubakr Hassan",
+        "Abdelrahim Elhag"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A five-year Study Using Sentinel-5P Data Observing Seasonal Dynamics and Long-term Trends of Atmospheric Pollutants",
+        "doi": "10.26833/ijeg.1587122",
+        "year": 2025,
+        "venue": "International Journal of Engineering and Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "2018 至 2024 年间加德满都谷地对流层二氧化氮浓度的时空演变规律及其对重大社会事件（如疫情）的响应特征是什么？",
+      "hypothesis_or_mechanism": "城市形态扩张、交通与工业排放源分布以及盆地地形导致的气象 trapping 效应共同驱动了区域内 NO2 浓度的显著空间异质性与季节性波动。",
+      "variables_and_data_use": "使用 TROPOMI 卫星反演的对流层 NO2 垂直柱浓度数据，经质量控制与月度合成处理后，结合 Mann-Kendall 趋势检验与空间变异性分析评估污染动态与异常变化。",
+      "method_paradigm": "遥感时间序列分析与统计趋势检验",
+      "used_assets": [
+        "TROPOMI satellite data",
+        "TROPOMI NO2 monthly composites"
+      ],
+      "author_team": [
+        "Charan Bhattarai"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatiotemporal analysis of tropospheric NO&lt;sub&gt;2&lt;/sub&gt; in Kathmandu Valley using TROPOMI satellite data",
+        "doi": "10.3126/jesv12i1.96872",
+        "year": 2026,
+        "venue": "Journal of Environment Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "土耳其伊兹密尔省凯姆帕萨和托巴尔地区NO2与CO污染物的时空分布特征及其受工业活动、交通流量和气象条件的影响机制是什么？",
+      "hypothesis_or_mechanism": "冬季因工业生产和民用供暖需求增加导致污染物浓度显著上升，而夏季因气温升高、交通密度降低及气象扩散条件改善导致浓度下降。",
+      "variables_and_data_use": "使用Sentinel-5P TROPOMI卫星遥感产品获取区域NO2和CO柱浓度，结合UHKIA地面监测站的点状实测数据，通过最小最大归一化方法进行多尺度时空对比与趋势分析。",
+      "method_paradigm": "遥感反演与地面验证结合",
+      "used_assets": [
+        "Sentinel-5P TROPOMI",
+        "UHKIA ground monitoring data"
+      ],
+      "author_team": [
+        "Münevver Gizem Gümüş"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Spatio-Temporal Analysis of NO2 and CO Production with Sentinel 5P Tropomy Time Series Images: The Case of Torbalı and Kemalpaşa Districts of Izmir Province in Türkiye",
+        "doi": "10.32628/cseit2511117",
+        "year": 2025,
+        "venue": "International Journal of Scientific Research in Computer Science, Engineering and Information Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "TROPOMI Explorer 的 Sentinel-5P NO₂ 卫星观测能否揭示 Lucknow City 不同区域和季节的空气污染分布，并与地面监测结果及 WHO 标准保持一致？",
+      "hypothesis_or_mechanism": "冬季排放增强、农业残余物燃烧和大气静稳会导致 Lucknow City 的 NO₂ 浓度升高，而降雨和更强的大气扩散会降低污染物浓度。",
+      "variables_and_data_use": "使用 TROPOMI Explorer 的 Sentinel-5P NO₂ 数据分析卫星观测的二氧化氮浓度和时空变化；使用 TROPOMI 的 SO₂ 数据及地面 PM₁₀ 数据作为其他污染物比较变量；使用 CAAQM、CPCB 和 UPPCB 地面站观测验证和整合卫星结果，并用 WHO 标准评估超标情况，另通过 Questionnaire 分析空气污染与居民呼吸健康结果的关系。",
+      "method_paradigm": "卫星-地面观测验证与空间分析",
+      "used_assets": [
+        "TROPOMI Explorer",
+        "Sentinel-5P",
+        "CAAQM",
+        "Central Pollution Control Board (CPCB)",
+        "Uttar Pradesh Pollution Control Board (UPPCB)",
+        "WHO standard",
+        "Questionnaire"
+      ],
+      "author_team": [
+        "Abhay Yadav",
+        "Divya Srivastava",
+        "Vivek Mathur"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Expository Assessment of Air Quality Scenario with Sentinel-5 Precursor TROPOMI Explorer Sensor",
+        "doi": "10.46488/nept.2025.v24i02.b4232",
+        "year": 2025,
+        "venue": "Nature Environment and Pollution Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "TROPOMI 和 OMI 对流层 NO2 卫星观测能否约束并改进欧洲 NOx 排放的时空反演估计？",
+      "hypothesis_or_mechanism": "将卫星对流层 NO2 垂直柱浓度与 CHIMERE 化学传输模型耦合，可通过减少模拟值与观测值之间的差异修正先验 NOx 排放，并揭示 2005 年至 2019 年排放变化。",
+      "variables_and_data_use": "使用 TROPOMI RPRO-v02.04 和 OMI-QA4ECV-v1.1 的 NO2 对流层垂直柱浓度、质量标识和 averaging kernels 作为反演观测；使用 TNO-GHGco-v3 和 MEGAN 提供人为及生物源 NOx 排放先验，使用 ECMWF 气象场、LMDZ-INCA 边界条件和 CHIMERE 模拟 NO2 浓度，最终估计后验 NOx 排放。",
+      "method_paradigm": "卫星约束变分反演",
+      "used_assets": [
+        "CIF-CHIMERE",
+        "CHIMERE",
+        "TNO-GHGco-v3",
+        "MEGAN",
+        "EMEP inventory",
+        "ECMWF operational meteorological forecast",
+        "LMDZ-INCA",
+        "OMI-QA4ECV-v1.1",
+        "TROPOMI RPRO-v02.04"
+      ],
+      "author_team": [
+        "Audrey Fortems-Cheiney",
+        "Grégoire Broquet",
+        "Elise Potier",
+        "Antoine Berchet",
+        "Isabelle Pison",
+        "Adrien Martinez",
+        "Robin Plauchu",
+        "Rimal Abeed",
+        "Aurélien Sicsik-Paré",
+        "Gaelle Dufour",
+        "Adriana Coman",
+        "Dilek Savas",
+        "Guillaume Siour",
+        "Henk Eskes",
+        "Hugo A. C. Denier van der Gon",
+        "Stijn N. C. Dellaert"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Assessing the ability to quantify the decrease in NO\n                    <sub>\n                      <i>x</i>\n                    </sub>\n                    anthropogenic emissions in 2019 compared to 2005 using OMI and TROPOMI satellite observations",
+        "doi": "10.5194/acp-25-6047-2025",
+        "year": 2025,
+        "venue": "Atmospheric Chemistry and Physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "卫星反演的对流层NO2垂直柱浓度（TROPOMI与TEMPO）在多大程度上能够准确捕捉美国本土近地面NO2浓度的时空分布特征？",
+      "hypothesis_or_mechanism": "地表与柱浓度的匹配度受边界层高度、光化学反应及污染物扩散稀释过程影响，呈现显著的季节性差异和道路邻近效应。",
+      "variables_and_data_use": "使用TROPOMI和TEMPO的对流层NO2垂直柱浓度数据，结合EPA AQS地面监测站的逐小时NO2浓度数据，通过变异系数(CV)和Jensen-Shannon散度(JSD)进行概率分布对比与空间分组分析。",
+      "method_paradigm": "卫星-地面比对与分布统计检验",
+      "used_assets": [
+        "TROPOMI NO2 data (via WHIPS)",
+        "TEMPO Level-3 NO2 data",
+        "EPA AQS",
+        "US Census TIGER/Line Shapefiles"
+      ],
+      "author_team": [
+        "Summer Acker",
+        "Tracey Holloway",
+        "Monica Harkey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Satellite detection of NO\n                    <sub>2</sub>\n                    distributions using TROPOMI and TEMPO and comparison with ground-based concentration measurements",
+        "doi": "10.5194/acp-25-8271-2025",
+        "year": 2025,
+        "venue": "Atmospheric Chemistry and Physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "TROPOMI NO2 反演中 430 nm 附近的系统性光谱残差如何影响斜柱与对流层柱浓度估算，以及采用光谱截断策略能否提升反演精度？",
+      "hypothesis_or_mechanism": "剔除受太阳活动周期与仪器色散效应影响的 428–433 nm 波段可消除拟合残差中的低频结构，从而降低反演不确定性并提高对流层 NO2 柱浓度的可靠性。",
+      "variables_and_data_use": "使用 TROPOMI OFFL NO2 数据的斜柱浓度（SCD）、几何柱浓度（GCD）、对流层垂直柱浓度（Nv_trop）及拟合残差；通过计算 RMS_430 比率识别问题像元，应用 NO2-gap 策略重新反演，并评估其对最终柱浓度的影响。",
+      "method_paradigm": "光谱反演优化与误差评估",
+      "used_assets": [
+        "TROPOMI NO2 OFFL/RPRO Collection 03",
+        "TROPOMI NO2 processor v2.9.1",
+        "HARP",
+        "TM5-MP"
+      ],
+      "author_team": [
+        "Jos van Geffen",
+        "Henk Eskes",
+        "Maarten Sneep",
+        "Mark ter Linden",
+        "J. Pepijn Veefkind"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Improved NO\n                    <sub>2</sub>\n                    spectral fits for TROPOMI and OMI by removing wavelengths around 430 nm",
+        "doi": "10.5194/amt-19-4233-2026",
+        "year": 2026,
+        "venue": "Atmospheric Measurement Techniques",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "城市土地利用变化与建成区扩张如何影响菲律宾卡维特省的大气二氧化氮浓度？",
+      "hypothesis_or_mechanism": "建成区面积增加及特定地表覆盖类型会通过交通拥堵和排放源活动导致局部对流层 NO2 浓度升高。",
+      "variables_and_data_use": "使用 Sentinel-2A L2A 影像进行监督分类提取地表覆盖与建成区比例作为自变量；使用 Sentinel-5P 季度 NO2 数据作为因变量，通过多元线性回归与方差分析量化二者关系。",
+      "method_paradigm": "遥感统计建模与回归分析",
+      "used_assets": [
+        "Sentinel-2A",
+        "Sentinel-5P"
+      ],
+      "author_team": [
+        "Jeram Evered N. Colendres",
+        "Jane Camille N. de Vera",
+        "Mikaela P. Santos",
+        "Jommer M. Medina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Mapping the Unseen: The Impact of Urban Sprawl on NO2, CO, and O3 Pollutants in Cavite Using Sentinel-2 and Sentinel-5P from 2020 to 2023",
+        "doi": "10.5194/isprs-archives-xlviii-5-w4-2025-63-2026",
+        "year": 2026,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "论文研究东南亚对流层NO2浓度的长期变化、季节性特征及森林火灾和城市工业排放对NO2空间分布与排放热点的影响。",
+      "hypothesis_or_mechanism": "森林火灾产生的NO2主要在燃烧季节增加区域性污染，而城市交通和工业活动造成持续性NO2排放，并可通过风场输送形成可识别的排放热点。",
+      "variables_and_data_use": "使用TROPOMI Level-2 NO2对流层垂直柱浓度进行质量筛选、重采样和通量散度计算；使用OMI L3 NO2月平均数据进行长期趋势和季节性分解；使用MODIS Burned Area product和MCD64 monthly Burn Date product表征烧毁面积与火灾时间；使用ERA5 1000 hPa风场计算NO2水平通量和通量散度。",
+      "method_paradigm": "时序分解与通量散度制图",
+      "used_assets": [
+        "OMI L3 products",
+        "TROPOMI Level-2 (TROPOMI L2) NO2",
+        "MODIS Burned Area product",
+        "MCD64 monthly Burn Date product",
+        "ERA5 reanalysis v5"
+      ],
+      "author_team": [
+        "P. Piromthong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Spatiotemporal Characteristics of Atmospheric NO2 Concentration in Southeast Asia using Satellite Observations",
+        "doi": "10.52939/ijg.v22i7.5080",
+        "year": 2026,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "如何构建一个可复现、可扩展的 Sentinel-5P TROPOMI 大气污染观测数据流水线，以支持全球空气质量监测和污染分析？",
+      "hypothesis_or_mechanism": "通过自动化数据发现与下载、质量筛选、辅助数据整合和统计分析，可以降低卫星大气观测处理门槛并提高多污染物监测的可重复性和分析效率。",
+      "variables_and_data_use": "核心变量为 OFFL_L2__NO2___ 中的 nitrogen_dioxide_tropospheric_column，并结合质量标志进行筛选，随后计算空间均值、中位数、百分位数、时间聚合和趋势指标；ERA5 atmospheric reanalysis 提供行星边界层高度和气象背景，Copernicus Global Land Cover (100m)、SRTM Digital Elevation Model (30m) 和 WorldPop density grids (100m) 分别提供土地覆盖、地形和人口暴露辅助信息。",
+      "method_paradigm": "自动化数据流水线与时空统计分析",
+      "used_assets": [
+        "OFFL_L2__NO2___",
+        "OFFL_L2__SO2___",
+        "OFFL_L2__CO____",
+        "OFFL_L2__O3____",
+        "ERA5 atmospheric reanalysis",
+        "Copernicus Global Land Cover (100m)",
+        "SRTM Digital Elevation Model (30m)",
+        "WorldPop density grids (100m)"
+      ],
+      "author_team": [
+        "Sayali Shripad Mahulkar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Sentinel-5P Data Pipeline: Acquisition, Processing, and Analysis for Global Atmospheric Monitoring",
+        "doi": "10.53022/oarjst.2026.16.1.0007",
+        "year": 2026,
+        "venue": "Open Access Research Journal of Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "Sentinel-5P TROPOMI 对流层 NO2 观测能否有效刻画 Peninsular Malaysia 主要港口及其周边的 NO2 污染，并与地面监测结果保持一致？",
+      "hypothesis_or_mechanism": "港口船舶燃料燃烧和高强度船舶活动会增加周边对流层 NO2 浓度，而地形和人口水平可能进一步影响其空间分布。",
+      "variables_and_data_use": "使用 offline Level 2 NO (S5P L2 NO ) tropospheric column data 生成 TROPOMI NO2 raster，裁剪研究区域、去除负值并计算月均值；使用 ground NO2 data 和 Continuous Air Quality Monitoring Stations (CAQMS) 进行卫星—地面观测比较；使用 Shuttle Radar Topography Mission (SRTM) 1 Arc-Second Global data 和 population data 作为地形及人口变量，并提取到州级质心进行相关分析。",
+      "method_paradigm": "遥感制图与地面验证",
+      "used_assets": [
+        "Sentinel-5P",
+        "TROPOMI",
+        "offline Level 2 NO (S5P L2 NO ) tropospheric column data",
+        "TROPOMI NO2 raster",
+        "ground NO2 data",
+        "Continuous Air Quality Monitoring Stations (CAQMS)",
+        "Shuttle Radar Topography Mission (SRTM) 1 Arc-Second Global data",
+        "DIVA-GIS",
+        "population data",
+        "Department of Statistics Malaysia (DOSM)"
+      ],
+      "author_team": [
+        "Izzuddin Razab",
+        "Mohd Azhafiz Abdullah",
+        "Lai Chuah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported explicit manual Anchor verification",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analyzing Nitrogen Dioxide at Peninsular Malaysia Ports and Its Exclusive Economic Zone (EEZ) in 2023 Using Sentinel-5P Satellite",
+        "doi": "10.58915/aset.v5i1.3211",
+        "year": 2026,
+        "venue": "Advanced and Sustainable Technologies  (ASET)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "评估2025年7月Çeşme森林火灾对植被覆盖状态和大气痕量气体浓度的环境影响。",
+      "hypothesis_or_mechanism": "火灾燃烧过程会破坏植被结构导致光谱指数骤降，同时释放大量污染物引起局部NO2和CO柱浓度显著升高。",
+      "variables_and_data_use": "利用Sentinel-2多光谱波段计算NDVI、NBR、NDMI和GCVI指数以量化植被损失与过火面积；提取Sentinel-5P TROPOMI的NO2和CO柱浓度波段对比火灾前后的大气成分变化；结合ERA5温度与CHIRPS降水数据作为气象协变量。",
+      "method_paradigm": "多源遥感指数融合与大气痕量气体时空对比",
+      "used_assets": [
+        "Sentinel-2",
+        "Sentinel-5P TROPOMI",
+        "ERA5",
+        "CHIRPS"
+      ],
+      "author_team": [
+        "Furkan Yilgan",
+        "Duygu Biyikli",
+        "Marsia Sanità",
+        "Nasim Sadra",
+        "Guluzar Yigit",
+        "Eva Savina Malinverni",
+        "Sedat Dogan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Quantifying post-fire vegetation loss and trace gas emissions from the July 2025 Çeşme wildfire using Sentinel-2 and Sentinel-5P",
+        "doi": "10.1007/s41324-026-00690-z",
+        "year": 2026,
+        "venue": "Spatial Information Research",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "TROPOMI 和 OMI 卫星二氧化氮产品与地面监测站二氧化氮观测之间的一致性和相关性有多大差异？",
+      "hypothesis_or_mechanism": "TROPOMI 更高的空间分辨率能够更精确地捕捉二氧化氮的局地排放和空间梯度，因此相比 OMI 与地面观测具有更高相关性。",
+      "variables_and_data_use": "使用 TROPOMI L2、OMI L2、OMI L3 和 OMI L4 的二氧化氮产品，其中 TROPOMI L2 和 OMI L2 为卫星柱浓度观测，OMI L3 为网格化柱浓度，OMI L4 为模型推断的地表 NO2；这些数据经质量筛选、空间重采样和月平均后，与 83 个地面站的小时二氧化氮浓度进行标准化、相关性和空间比较。",
+      "method_paradigm": "卫星-地面观测一致性验证",
+      "used_assets": [
+        "OMI L2",
+        "OMI L3",
+        "OMI L4",
+        "TROPOMI L2",
+        "Surface-level NO 2 concentrations obtained from 83 monitoring stations across Thailand"
+      ],
+      "author_team": [
+        "Pawan Piromthong",
+        "Chalermchon Satirapod",
+        "Win Trivitayanurak",
+        "Kanok Weerawong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of OMI and TROPOMI Satellite Observations with Ground-Based NO2 Measurements in Thailand",
+        "doi": "10.4186/ej.2026.30.6.17",
+        "year": 2026,
+        "venue": "Engineering Journal",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "研究如何利用 TROPOMI 对流层二氧化氮柱观测和贝叶斯反演方法，更可靠地估计城市 NOx 排放及其寿命，并刻画巴黎 2018—2023 年的排放变化。",
+      "hypothesis_or_mechanism": "将排放和寿命的先验不确定性、前向模型误差及观测不确定性共同纳入贝叶斯反演，可以减少最小二乘方法的过拟合并提高 NOx 排放估计的稳定性。",
+      "variables_and_data_use": "使用 European TROPOMI NO2 product 和 TROPOMI NO2 V2.4.0 retrievals 的对流层二氧化氮柱浓度，将数据旋转至有效风向、重采样到 0.05°网格并聚合为线密度；使用 CAMS 提供 NOx/NO2 比值、OH 浓度和边界层先验，使用 ERA5 提供风速，使用 TNO-MACC-III emission inventory 提供排放先验，并用 MicroHH 合成 NO2 观测验证前向模型和反演方法。",
+      "method_paradigm": "贝叶斯反演与 OSSE",
+      "used_assets": [
+        "European TROPOMI NO2 product",
+        "TROPOMI NO2 V2.4.0 retrievals",
+        "CAMS",
+        "ERA5",
+        "TNO-MACC-III emission inventory",
+        "MicroHH"
+      ],
+      "author_team": [
+        "Alba Mols",
+        "Klaas Folkert Boersma",
+        "Hugo Denier van der Gon",
+        "Maarten Krol"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "An improved Bayesian inversion to estimate daily NO\n                    <sub>\n                      <i>x</i>\n                    </sub>\n                    emissions of Paris from TROPOMI NO\n                    <sub>2</sub>\n                    observations between 2018–2023",
+        "doi": "10.5194/acp-26-1497-2026",
+        "year": 2026,
+        "venue": "Atmospheric Chemistry and Physics",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 30,
+    "source_paper_count": 30,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

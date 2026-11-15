@@ -1,0 +1,1490 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_024",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MODIS Snow Cover Daily (MOD10A1 C061)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:MODIS/061/MOD10A1",
+    "spatial_resolution": "500 m",
+    "temporal_resolution": "daily",
+    "gee_asset": {
+      "id": "MODIS/061/MOD10A1",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD10A1",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_024.json",
+    "source_sha256": "2f5f429cd1669291eb2d616e922a7227e548846f016e9c79db1bc9c517c4c259",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_024/prompt.json",
+    "current_prompt_sha256": "965a73b7fbbc0421c6d34e5aaa53778fda21e7391f12b6c1110b7b3fd5c88669",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD10A1",
+      "observable_group": "modis_terra_snow_cover_daily",
+      "kind": "snow_cover",
+      "title": "MODIS Snow Cover Daily (MOD10A1, C061)",
+      "observation_identity_contract": {
+        "physical_object": "snow cover (NDSI-based fractional/daily snow extent) and snow albedo",
+        "source_lineage": "MODIS Terra MOD10A1 Snow Cover Daily Global 500m production lineage, collection 061",
+        "core_measurement_semantics": "MOD10A1 daily NDSI snow cover and snow albedo at 500 m",
+        "non_material_variations": "archive, tile/grid, resampling, cloud-gap handling, or temporal aggregation retaining MOD10A1 snow observations",
+        "material_mismatches": "IMS, ERA5/ MERRA-2 snow depth, SSM/I, MOD10A2 8-day composites used alone, or another snow product without MOD10A1 operational input"
+      },
+      "asset_alias_policy": "Only the MODIS Terra MOD10A1 daily snow-cover family (collection 6/6.1) is admitted; MOD10A2 and other snow products may be companions but are not aliases."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "论文研究如何利用被动微波遥感时间序列提取博斯腾湖湖冰物候及其长期变化，并评估提取结果的准确性。",
+      "hypothesis_or_mechanism": "被动微波亮温时间序列中的趋势和季节性变化能够反映湖冰冻结与融化过程，而MOD10A1等光学雪覆盖观测可用于验证这些湖冰物候信息。",
+      "variables_and_data_use": "使用CETB中的SMMR、SSM/I和SSMIS被动微波亮温数据提取湖冰信息，使用MOD09GQ和MYD09GQ进行视觉验证，使用Terra MOD10A1和Aqua MYD10A1雪覆盖数据交叉验证冻结和融化物候参数，并对湖冰变化开展趋势分析。",
+      "method_paradigm": "变化检测与观测验证",
+      "used_assets": [
+        "CETB",
+        "SMMR",
+        "SSM/I",
+        "SSMIS",
+        "MOD09GQ",
+        "MYD09GQ",
+        "MOD10A1",
+        "MYD10A1"
+      ],
+      "author_team": [
+        "Yimuran Kuluwan",
+        "Yusufujiang Rusuli",
+        "Mireguli Ainiwaer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Monitoring of Lake Ice Phenology Changes in Bosten Lake Based on Bayesian Change Detection Algorithm and Passive Microwave Remote Sensing (PMRS) Data",
+        "doi": "10.3390/s23249852",
+        "year": 2023,
+        "venue": "Sensors",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "研究MODIS和VIIRS日尺度云隙填补雪盖产品的不确定性及其作为中等分辨率雪盖地球科学数据记录的适用性。",
+      "hypothesis_or_mechanism": "云隙填补能够利用当前和历史无云雪盖观测减少云覆盖，但观测距当前日期越久，雪盖判识的不确定性越高。",
+      "variables_and_data_use": "使用MOD10A1和MOD10A1F的NDSI雪盖、雪盖范围、云覆盖比例和云持续时间信息，比较Terra MODIS、Aqua MODIS和S-NPP VIIRS的标准及云隙填补产品，并以NOAA snow depth data、Harmonized Landsat Sentinel-2 (HLS) data set和Sentinel-2A影像进行评价或验证。",
+      "method_paradigm": "产品评价与验证",
+      "used_assets": [
+        "MOD10A1",
+        "MOD10A1 C6.1",
+        "MOD10A1F C6.1",
+        "MYD10A1",
+        "MYD10A1F",
+        "VNP10A1",
+        "VNP10A1F",
+        "NOAA snow depth data",
+        "Harmonized Landsat Sentinel-2 (HLS) data set",
+        "Sentinel-2A Multispectral Instrument (S-2A) 30 m resolution images",
+        "M*D10A2",
+        "AMSR2 SWE",
+        "IMS"
+      ],
+      "author_team": [
+        "Dorothy K. Hall",
+        "George A. Riggs",
+        "Nicolo E. DiGirolamo",
+        "Miguel O. Román"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of MODIS and VIIRS cloud-gap-filled snow-cover products for production of an Earth science data record",
+        "doi": "10.5194/hess-23-5227-2019",
+        "year": 2019,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "不同传感器和算法生成的雪盖及分数雪盖产品在不同冠层覆盖、观测视角和季节性雪类型条件下的制图性能如何？",
+      "hypothesis_or_mechanism": "基于光谱混合的算法能够比单纯的NDSI波段比方法更准确地估计分数雪盖，且冠层修正和观测视角会影响雪盖制图误差。",
+      "variables_and_data_use": "论文使用MOD10A1F的每日NDSI雪盖并由NDSI估算fSCA，同时比较VNP10A1F、STC-MODSCAG、MODIS SPIReS、OLISCAG、USGS Collection 1 Landsat 8 Level-3 fSCA product和Landsat SPIReS。ASO snow depth被转换为二值雪盖和fSCA作为验证目标；NLCD 2016 tree canopy cover dataset、MOD09GA或VNP09GA的视角信息以及Sturm and Liston (2021)分类被用于误差分组和解释。",
+      "method_paradigm": "遥感产品验证与误差比较",
+      "used_assets": [
+        "MOD10A1F",
+        "VNP10A1F",
+        "STC-MODSCAG",
+        "MOD09GA",
+        "MODIS SPIReS",
+        "OLISCAG",
+        "USGS Collection 1 Landsat 8 Level-3 fSCA product",
+        "Landsat SPIReS",
+        "ASO snow depth",
+        "NLCD 2016 tree canopy cover dataset",
+        "Sturm and Liston (2021) classification scheme"
+      ],
+      "author_team": [
+        "Timbo Stillinger",
+        "Karl E. Rittger",
+        "Mark S. Raleigh",
+        "Alex Michell",
+        "Robert E. L. Davis",
+        "Edward H. Bair"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Landsat, MODIS, and VIIRS snow cover mapping algorithm performance as validated by airborne lidar datasets",
+        "doi": "10.5194/tc-17-567-2023",
+        "year": 2023,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "研究意大利西部阿尔卑斯地区2000年至2023年的雪覆盖变化趋势，以及海拔梯度是否影响雪盖变化。",
+      "hypothesis_or_mechanism": "不同海拔区域具有不同的初始雪盖条件和气候响应，因此海拔可能驱动雪覆盖面积及雪盖持续性的空间差异和长期变化。",
+      "variables_and_data_use": "使用MOD10A1.061 Terra的日尺度NDSI雪盖百分比及质量控制层，经过质量筛选、时间插值和地形面积校正后计算日雪覆盖面积、雪盖持续性、年度积分雪覆盖面积和平均日雪覆盖面积，并以Copernicus DEM GLO-30进行坡度与面积校正，以雪测站数据进行验证，最后按年度和海拔分组分析趋势。",
+      "method_paradigm": "遥感时序变化检测",
+      "used_assets": [
+        "MOD10A1.061 Terra",
+        "MODIS MOD10A1 Collection 6.1 product",
+        "Copernicus DEM GLO-30",
+        "snowmeter stations of Arpa Piemonte and Arpa Valle d'Aosta",
+        "Google Earth Engine (GEE)"
+      ],
+      "author_team": [
+        "Francesco Parizia",
+        "Samuele De Petris",
+        "Luigi Perotti",
+        "Marco J. Giardino",
+        "Enrico Corrado Borgogno-Mondino"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "A remote sensing approach for measuring climatic change effects on snow cover dynamics",
+        "doi": "10.5194/tc-20-1715-2026",
+        "year": 2026,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究问题是帕米尔山区不同知识体系如何共同测量和评估当地气候变化。",
+      "hypothesis_or_mechanism": "不同的地方知识与人类观测方式能够互补，从而更全面地识别和解释当地气候变化。",
+      "variables_and_data_use": "提供的文本仅明确显示使用了气候数据和地方知识，未说明具体产品、变量及其在分析中的使用方式。",
+      "method_paradigm": "多源知识整合",
+      "used_assets": [],
+      "author_team": [
+        "Isabell Haag",
+        "Karim-Aly Kassam",
+        "Thomas Senftl",
+        "Harald Zandler",
+        "Cyrus Samimi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Measurements meet human observations: integrating distinctive ways of knowing in the Pamir Mountains of Tajikistan to assess local climate change",
+        "doi": "10.1007/s10584-021-02988-3",
+        "year": 2021,
+        "venue": "Climatic Change",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "如何利用MODIS地表反射率和多源遥感信息,结合机器学习方法,提高复杂植被覆盖区域的分数积雪覆盖(FSC)反演精度?",
+      "hypothesis_or_mechanism": "通过整合植被-积雪相关变量、观测几何变量和辅助变量,并采用冠层校正方法减轻观测角度和森林覆盖的联合影响,可以显著提高FSC估算精度",
+      "variables_and_data_use": "使用MOD09GA的7个波段地表反射率、观测和太阳几何角度,MCD12Q1土地覆盖类型,MOD44B树木覆盖百分比,MOD11A1地表温度,MCD43A3反照率数据,以及计算的NDSI、NDVI、NDFSI等指数,通过极端随机树(ERT)方法建立FSC反演模型;MOD10A1 NDSI用于对比验证;Landsat-8 OLI用于生成参考FSC图训练和验证模型",
+      "method_paradigm": "机器学习 遥感反演 算法验证",
+      "used_assets": [
+        "MOD10A1",
+        "MOD09GA",
+        "MCD12Q1",
+        "MOD44B",
+        "MOD11A1",
+        "MCD43A3",
+        "Landsat-8 OLI"
+      ],
+      "author_team": [
+        "Xiongxin Xiao",
+        "Tao He",
+        "Shunlin Liang",
+        "Xinyan Liu",
+        "Yichuan Ma",
+        "Shuang Liang",
+        "Xiaona Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Estimating fractional snow cover in vegetated environments using MODIS surface reflectance data",
+        "doi": "10.1016/j.jag.2022.103030",
+        "year": 2022,
+        "venue": "International Journal of Applied Earth Observation and Geoinformation",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "如何利用地面气温重建青藏高原132个大型湖泊1978-2017年的长时序湖冰物候数据集？",
+      "hypothesis_or_mechanism": "通过MOD10A1雪盖产品确定湖冰物候的温度阈值，结合air2water模型模拟的湖面温度，可以从有限的气象站数据重建长时序湖冰冻结与消融的时空规律。",
+      "variables_and_data_use": "使用MOD10A1的日尺度NDSI雪盖检测计算湖面开放水域比例，定义湖冰冻结和消融的温度阈值；使用MOD11A2的8天合成地表温度校准air2water模型；使用气象站日气温驱动模型模拟1978-2017年湖面温度，结合温度阈值提取冻结起止日期、消融起止日期、冰封持续时间等6项湖冰物候指标。",
+      "method_paradigm": "物理模型驱动 遥感辅助校准",
+      "used_assets": [
+        "MOD10A1",
+        "MOD11A2",
+        "中国地面气象站日值数据集（V3.0）"
+      ],
+      "author_team": [
+        "Yanhong Wu",
+        "Linan Guo",
+        "Bing Zhang",
+        "Hongxing Zheng",
+        "Lanxin Fan",
+        "Haojing Chi",
+        "Junsheng Li",
+        "Shenglei Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Ice phenology dataset reconstructed from remote sensing and modelling for lakes over the Tibetan Plateau",
+        "doi": "10.1038/s41597-022-01863-9",
+        "year": 2022,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "在阿富汗高山地区，不同格网气候数据集能否准确代表区域气候条件并与植被异常表现出稳健相关",
+      "hypothesis_or_mechanism": "植被状态依赖于气候条件，准确代表区域气候的数据集应与植被异常表现出显著且稳健的相关性",
+      "variables_and_data_use": "使用MOD10A1 V6每日NDSI数据，填补缺失后衍生分数积雪覆盖(FSC)和积雪持续时间(SCD)，聚合为月值并计算不同季节期的异常；与MOD13Q1 NDVI植被异常进行像素级和区域平均的相关分析",
+      "method_paradigm": "相关分析 变量选择",
+      "used_assets": [
+        "MOD10A1 V6",
+        "MOD13Q1",
+        "CHIRPS 2.0",
+        "CRU TS4.03",
+        "ERA5-Land",
+        "GPCC Monitoring Product Version 6",
+        "IMERG GPM",
+        "MERRA-2"
+      ],
+      "author_team": [
+        "Harald Zandler",
+        "Thomas Senftl",
+        "Kim André Vanselow"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Reanalysis datasets outperform other gridded climate products in vegetation change analysis in peripheral conservation areas of Central Asia",
+        "doi": "10.1038/s41598-020-79480-y",
+        "year": 2020,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "如何利用遥感和深度学习方法提高复杂山区分数雪覆盖的反演精度，尤其改善雪缘纹理不清和低雪覆盖检测不足的问题？",
+      "hypothesis_or_mechanism": "空间通道特征提取、注意力机制和通道细化能够增强不同分数雪覆盖等级之间的特征差异，从而提升分数雪覆盖反演效果。",
+      "variables_and_data_use": "研究以分数雪覆盖为目标变量，使用遥感特征和地理数据构建高维特征图，并将MOD10A1 FSC产品用于模型比较或验证；文本还提及FY4A和Landsat8相关数据或产品，但所给材料不足以确认其具体操作性数据流程。",
+      "method_paradigm": "深度学习反演与产品验证",
+      "used_assets": [
+        "MOD10A1 FSC product"
+      ],
+      "author_team": [
+        "Xu Liu",
+        "Xi Kan",
+        "Yonghong Zhang",
+        "Linglong Zhu",
+        "Qi Liu",
+        "Zhou Zhou",
+        "Guangyi Ma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "FSC-USNet: Fractional Snow Cover Retrieval on the Tibetan Plateau by Integrating Improved Attention Mechanisms",
+        "doi": "10.1109/jstars.2024.3360087",
+        "year": 2024,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "在数据稀缺的帕米尔山区，如何通过结合仪器气候数据和当地社区观测来识别局地气候趋势？",
+      "hypothesis_or_mechanism": "仪器气候数据与社区知识系统的综合分析能够减少局地气候趋势的不确定性，因为两种知识系统关注不同尺度和变量并各有优缺点。",
+      "variables_and_data_use": "使用 MOD10A1 逐日积雪覆盖产品分析2000-2018年积雪期时间和持续时间的变化趋势；使用 CRU 4.01 和 TRMM 3B43 分析区域气温和降水趋势；使用 ERA5 通过统计降尺度生成高分辨率温度序列；结合半结构化访谈获取的社区观测进行跨知识系统综合分析。",
+      "method_paradigm": "跨学科知识整合 时间序列趋势分析",
+      "used_assets": [
+        "MOD10A1",
+        "CRU 4.01",
+        "TRMM 3B43",
+        "ERA5"
+      ],
+      "author_team": [
+        "Isabell Haag"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Climate trend detection in a data-scarce environment : a transdisciplinary study in the Pamir Mountains of Tajikistan",
+        "doi": "10.15495/epub_ubt_00005711",
+        "year": 2021,
+        "venue": "EPub Bayreuth (University of Bayreuth)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "气候变化情景下Zayandeh-rud河流域积雪覆盖和融雪径流的未来变化",
+      "hypothesis_or_mechanism": "气候变化导致气温和降雪模式改变，进而影响积雪覆盖面积和融雪径流过程",
+      "variables_and_data_use": "使用MOD10A1逐日积雪覆盖数据（2000-2007年1450幅影像）计算流域积雪覆盖比例，结合CMIP5气候模式（NorESM1-M、IPSL-CM5A-LR、CSIRO-MK3.6.0）在RCP2.6、4.5和8.5情景下的气温和降水预测，通过多元回归建立积雪覆盖与气温降水的关系，并输入融雪径流模型（SRM）模拟未来径流",
+      "method_paradigm": "融雪径流模拟与气候情景分析",
+      "used_assets": [
+        "MOD10A1",
+        "NorESM1-M",
+        "IPSL-CM5A-LR",
+        "CSIRO-MK3.6.0"
+      ],
+      "author_team": [
+        "Safieh Javadinejad",
+        "Rebwar Nasir Dara",
+        "Forough Jafary"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Climate Change Scenarios and Effects on Snow-Melt Runoff",
+        "doi": "10.28991/cej-2020-03091577",
+        "year": 2020,
+        "venue": "Civil Engineering Journal",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "将MODIS逐日积雪覆盖和卫星冻结/融化观测同化到Noah-MP中，能否改善高山亚洲区域的积雪、土壤温度和地表温度模拟？",
+      "hypothesis_or_mechanism": "将遥感积雪覆盖状态直接同化到陆面模型可以纠正模拟积雪质量和积雪深度，并通过积雪过程和能量水分平衡改善相关陆面状态。 ",
+      "variables_and_data_use": "使用MOD10A1的NDSI积雪覆盖百分比生成逐日二元积雪覆盖图，并重网格后用于积雪同化；使用MEaSUREs AMSR-E/AMSR-2冻结-融化状态进行冻结/融化同化；使用MERRA-2驱动Noah-MP，并用地面温度、土壤温度、积雪深度、GlobSnow SWE以及MOD11A1和MYD11A1地表温度进行验证。",
+      "method_paradigm": "陆面数据同化与多源验证",
+      "used_assets": [
+        "MODIS Snow Cover Daily L3 Global 500-m Grid (MOD10A1, version 6)",
+        "Modern-Era Retrospective analysis for Research and Applications, Version 2 (MERRA-2)",
+        "Making Earth System Data Records for Use in Research Environments (MEaSUREs) Northern Hemisphere Polar Equal-Area Scalable Earth Grid 2.0 Daily 6 km Land Freeze/Thaw Status from the AMSR-E and the AMSR-2 (version 1)",
+        "Dataset of Daily Climate Data From Chinese Surface Stations for Global Exchange (V3.0)",
+        "Coordinated Enhanced Observing Period (CEOP) Asia Monsoon project",
+        "Global Summary of the Day (GSOD)",
+        "Contribution to High Asia Runoff from Ice and Snow (CHARIS)",
+        "European Space Agency Global Snow Monitoring for Climate Research (GlobSnow) SWE",
+        "MODIS/Terra Land Surface Temperature Daily L3 Global 1-km Grid (MOD11A1, version 6)",
+        "MODIS/Aqua Land Surface Temperature Daily L3 Global 1-km Grid (MYD11A1, version 6)",
+        "Noah-MP"
+      ],
+      "author_team": [
+        "Yuan Xue",
+        "Paul R. Houser",
+        "Viviana Maggioni",
+        "Yiwen Mei",
+        "Sujay V. Kumar",
+        "Yeosang Yoon"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Assimilation of Satellite-Based Snow Cover and Freeze/Thaw Observations Over High Mountain Asia",
+        "doi": "10.3389/feart.2019.00115",
+        "year": 2019,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究 2000-2019 年期间阿尔卑斯山区（意大利西北部奥斯塔山谷）积雪覆盖持续时间、气温异常和降水趋势对牧场和阔叶林植被物候指标（SOS、EOS、LOS、MAXVI）及蒸散发的影响",
+      "hypothesis_or_mechanism": "气候变化导致积雪提前融化、气温上升和降水变化，进而引起植被生长季延长（SOS 提前、EOS 延迟）和蒸散发增加",
+      "variables_and_data_use": "使用 MOD10A1 v.6 推导年度积雪覆盖持续时间和首次零积雪日期，使用 MOD13Q1 v.6 NDVI 时间序列提取物候指标（SOS、EOS、LOS、MAXVI），使用 MOD16A2 v.6 计算年度累积蒸散发，结合地面气象站气温和降水数据及 CHIRPS 降水数据，分析 2000-2019 年三者的时间趋势及相互关系",
+      "method_paradigm": "时间序列趋势分析 遥感物候提取",
+      "used_assets": [
+        "MOD10A1 v.6",
+        "MOD13Q1 v.6",
+        "MOD16A2 v.6",
+        "MCD12Q2 v.6",
+        "CHIRPS",
+        "SRTM DTM",
+        "CORINE land cover 2018"
+      ],
+      "author_team": [
+        "Tommaso Orusa",
+        "Enrico Corrado Borgogno-Mondino"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Exploring Short-Term Climate Change Effects on Rangelands and Broad-Leaved Forests by Free Satellite Data in Aosta Valley (Northwest Italy)",
+        "doi": "10.3390/cli9030047",
+        "year": 2021,
+        "venue": "Climate",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究不同光谱解混方法在多次观测数据上的重建质量和雪冰等地物分数丰度估计有何差异。",
+      "hypothesis_or_mechanism": "针对具体观测条件自适应构建端元能够减弱云覆盖等不利条件对光谱解混重建质量的影响。",
+      "variables_and_data_use": "使用光谱观测及其端元，通过FCLSU、CLSU和EIA+CLSU估计冰川雪、旧粗粒雪和冰等类别的分数丰度，并以SAM、ERGAS和Q-index评价重建结果；提供文本未说明这些观测的具体产品、传感器或变量定义。",
+      "method_paradigm": "光谱解混方法比较",
+      "used_assets": [],
+      "author_team": [
+        "Hongyu Zhao",
+        "Xiaohua Hao",
+        "Jian Wang",
+        "Hongyi Li",
+        "Guanghui Huang",
+        "Donghang Shao",
+        "Bo Su",
+        "Huajin Lei",
+        "Xiaojing Hu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "The Spatial–Spectral–Environmental Extraction Endmember Algorithm and Application in the MODIS Fractional Snow Cover Retrieval",
+        "doi": "10.3390/rs12223693",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何利用MODIS雪盖NDSI观测生成中国区域长时间序列、时空连续且经云填补的雪盖NDSI数据集？",
+      "hypothesis_or_mechanism": "结合Terra和Aqua同日观测以及时空邻域信息，可以减少云污染并通过误差校正恢复连续雪盖变化，同时保持与原始MODIS NDSI观测的一致性。",
+      "variables_and_data_use": "使用MOD10A1和MYD10A1的日尺度NDSI雪盖数据作为核心输入，使用SRTM DEM提供地形信息，使用气象站雪深和Landsat OLI NDSI数据进行分类与数值验证，最终生成STAR NDSI集合。",
+      "method_paradigm": "时空数据融合与误差校正",
+      "used_assets": [
+        "MOD10A1",
+        "MYD10A1",
+        "Shuttle Radar Topographic Mission (SRTM) 90 m digital elevation model (DEM) dataset",
+        "snow depth data respectively derived from 49 and 92 meteorological stations in XJ and TP",
+        "Landsat OLI images",
+        "STAR NDSI collection"
+      ],
+      "author_team": [
+        "Yecheng Yuan",
+        "Baolin Li",
+        "Xizhang Gao",
+        "Wei Liu",
+        "Ying Li",
+        "Rui Si Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of Cloud-Gap-Filled Snow Cover of MODIS Daily Cloud-Free Snow Cover Products on the Qinghai–Tibetan Plateau",
+        "doi": "10.3390/rs14225642",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "论文研究冰川表面藻类和不同表面类型如何影响冰面反照率及表面融化过程。",
+      "hypothesis_or_mechanism": "藻类增多会使冰面变暗、降低反照率，从而增强吸收的短波辐射并促进表面融化。",
+      "variables_and_data_use": "论文使用UAS多光谱影像、Sentinel-2反射率和MOD10A1雪反照率估计并比较不同尺度的表面反照率，利用随机森林分类冰雪、清洁冰、不同藻类覆盖和冰尘等表面类型，并结合地面藻类采样、地形DEM、AWS气象和现场反照率驱动能量平衡模型估计融化率。",
+      "method_paradigm": "多源遥感与能量平衡建模",
+      "used_assets": [
+        "MicaSense RedEdge",
+        "SteadiDrone Mavrik-M",
+        "S-2 L1C data",
+        "MODIS/Terra Snow Cover Daily L3 Global 500 m Grid V006 “MOD10A1”",
+        "IMAU S6 AWS",
+        "PROMICE UPE_U AWS",
+        "FieldSpec Pro 3",
+        "RichDEM"
+      ],
+      "author_team": [
+        "Andrew Jachnik Tedstone",
+        "Joseph M. Cook",
+        "Christopher James Williamson",
+        "Stefan Hofer",
+        "Jenine McCutcheon",
+        "Tristram D. L. Irvine-Fynn",
+        "Thomas Gribbin",
+        "Martyn Tranter"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Algal growth and weathering crust state drive variability in western Greenland Ice Sheet ice albedo",
+        "doi": "10.5194/tc-14-521-2020",
+        "year": 2020,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "AVHRR GAC长期雪覆盖范围数据在不同地形、土地覆盖和雪深条件下的精度及其与MOD10A1观测的一致性如何？",
+      "hypothesis_or_mechanism": "AVHRR GAC雪覆盖精度会受到传感器特性、雪深、云处理、地形和土地覆盖差异的影响，而MOD10A1可作为独立的MODIS雪覆盖参考进行比较验证。",
+      "variables_and_data_use": "使用AVHRR GAC原始和填补雪覆盖范围作为主要评价对象，使用MOD10A1 V006的NDSI_Snow_Cover和NDSI进行雪覆盖比较及站点验证，使用in situ snow depth measurements进行时间序列验证，使用Landsat TM/ETM data生成高分辨率分数雪覆盖参考，并使用SRTM和MCD12Q1分析地形与土地覆盖影响。",
+      "method_paradigm": "多尺度产品验证",
+      "used_assets": [
+        "AVHRR GAC snow-cover extent time series version 1",
+        "MOD10A1 V006",
+        "Terra MODIS Level 3, Collection 6, 500 m daily snow-cover products (MOD10A1)",
+        "in situ snow depth measurements",
+        "Landsat TM/ETM data",
+        "SRTM (Shuttle Radar Topography Mission) dataset",
+        "MODIS Terra/Aqua Combined Annual Level 3 Global 500 m Collection 6 land-cover dataset (MCD12Q1)"
+      ],
+      "author_team": [
+        "Xiaodan Wu",
+        "Kathrin Naegeli",
+        "Valentina Premier",
+        "Carlo Marín",
+        "Dujuan Ma",
+        "Jingping Wang",
+        "Stefan Wunderle"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of snow extent time series derived from Advanced Very High Resolution Radiometer global area coverage data (1982–2018) in the Hindu Kush Himalayas",
+        "doi": "10.5194/tc-15-4261-2021",
+        "year": 2021,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "该论文研究如何利用 MODIS 雪盖观测对 FLDAS 雪变量进行下尺度处理，以重建全球山地区域 1982–2020 年雪盖面积和雪盖持续时间变化。",
+      "hypothesis_or_mechanism": "MODIS 高分辨率雪盖观测可作为经验参考，校正 FLDAS 在山地地形、纬度、森林覆盖和气象条件下的系统偏差，从而改善长期雪盖变化估计。",
+      "variables_and_data_use": "论文使用 MOD10A1.006 的 NDSI 转换为 snow cover fraction，并聚合为 SCA，同时派生 SCD；使用 FLDAS 的 snow cover fraction 和 snow depth 作为模型输入与历史重建基础；使用 MERRA-2 的温度和降水、CHIRPS 降水强迫以及 GMBA 山地区域边界支持 ANN 下尺度和趋势分析。",
+      "method_paradigm": "经验下尺度重建",
+      "used_assets": [
+        "NASA-Moderate Resolution Imaging Spectroradiometer (MODIS) Daily L3 Global 500 m Grid, Version 6 (MOD10A1.006)",
+        "MOD10A1.006",
+        "MOD10A1",
+        "Famine Early Warning Systems Network (FEWS NET) Land Data Assimilation System (FLDAS)",
+        "Modern-Era Retrospective analysis for Research and Applications version 2 (MERRA-2)",
+        "Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) 6-hourly rainfall data",
+        "Global Mountain Biodiversity Assessment (GMBA)"
+      ],
+      "author_team": [
+        "Claudia Notarnicola"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Overall negative trends for snow cover extent and duration in global mountain regions over 1982–2020",
+        "doi": "10.1038/s41598-022-16743-w",
+        "year": 2022,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "该论文研究冰藻光生理、色素吸收和生物量变化如何影响格陵兰冰盖表面变暗与融化。",
+      "hypothesis_or_mechanism": "冰藻的次生酚类色素吸收太阳辐射并降低表面反照率，从而增加冰面能量吸收和融化。",
+      "variables_and_data_use": "论文使用野外采样、色素测量和光生理实验估算冰藻吸收截面与能量收支，使用 MARv3.8.1/ERA-Interim 强迫建立冰藻生长模型，使用 BioSNICAR-GO 模拟表面冰 BBA，并用 MODIS MOD10A1 的 500 m 晴空表面冰 BBA 观测进行比较。",
+      "method_paradigm": "野外观测与辐射建模",
+      "used_assets": [
+        "MODIS MOD10A1",
+        "MARv3.8.1",
+        "ERA-Interim",
+        "SPCTRAL2",
+        "PVSystems solar irradiance program",
+        "BioSNICAR-GO"
+      ],
+      "author_team": [
+        "Christopher James Williamson",
+        "Joseph M. Cook",
+        "Andrew Jachnik Tedstone",
+        "Marian Louise Yallop",
+        "Jenine McCutcheon",
+        "Ewa Poniecka",
+        "Douglas A. Campbell",
+        "Tristram D. L. Irvine-Fynn",
+        "James B. McQuaid",
+        "Martyn Tranter",
+        "Rupert G. Perkins",
+        "Alexandre Magno Anesio"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Algal photophysiology drives darkening and melt of the Greenland Ice Sheet",
+        "doi": "10.1073/pnas.1918412117",
+        "year": 2020,
+        "venue": "Proceedings of the National Academy of Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "全球不同环境条件下，土壤温度相对于近地面空气温度的偏差如何变化，以及哪些环境因子能够解释这种变化？",
+      "hypothesis_or_mechanism": "雪覆盖、植被、土壤、地形和宏观气候共同调节土壤与空气之间的温度耦合，使寒冷和积雪地区出现更强的土壤空气温度偏差。",
+      "variables_and_data_use": "以SoilTemp原位土壤温度为响应变量，并结合ERA5-Land、TerraClimate和CHELSA计算土壤与空气温度偏差；使用MOD10A1和MYD10A1计算月尺度雪覆盖发生概率，同时加入MYD13Q1植被指数、MCD43A4地表反射率、SoilGrids土壤属性、WorldClim和CHELSA气候变量、EarthEnv地形与土地覆盖、CGIAR干旱指数和潜在蒸散、GlobBiomass地上生物量及EU JRC人口密度作为预测变量。",
+      "method_paradigm": "全球机器学习空间建模",
+      "used_assets": [
+        "SoilTemp",
+        "ERA5",
+        "ERA5-Land",
+        "TerraClimate",
+        "CHELSA",
+        "MOD10A1",
+        "MYD10A1",
+        "MYD13Q1",
+        "MCD43A4",
+        "SoilGrids",
+        "WorldClim",
+        "EarthEnv",
+        "CGIAR",
+        "EU JRC",
+        "GlobBiomass",
+        "RESOLVE"
+      ],
+      "author_team": [
+        "Jonas J. Lembrechts",
+        "Johan van den Hoogen",
+        "Juha Aalto",
+        "Michael B. Ashcroft",
+        "Pieter De Frenne",
+        "Julia Kemppinen",
+        "Martin Kopecký",
+        "Miska Luoto",
+        "Ilya M. D. Maclean",
+        "Thomas Ward Crowther",
+        "Joseph John Bailey",
+        "Stef Haesen",
+        "David H. Klinges",
+        "Pekka Niittynen",
+        "Brett R. Scheffers",
+        "Koenraad Van Meerbeek",
+        "Peter Aartsma",
+        "Otar Abdaladze",
+        "Mehdi Abedi",
+        "Rien Aerts",
+        "Negar Ahmadian",
+        "Antje Ahrends",
+        "Juha M. Alatalo",
+        "Jake M. Alexander",
+        "Camille Nina Allonsius",
+        "Jan Altman",
+        "Christof Ammann",
+        "Christian Andrès",
+        "Christopher Andrews",
+        "Jonas Ardö",
+        "Nicola Arriga",
+        "Alberto Arzac",
+        "Valeria Aschero",
+        "Rafael L. Assis",
+        "Jakob J. Assmann",
+        "Maaike Y. Bader",
+        "Khadijeh Bahalkeh",
+        "Peter Barančok",
+        "Isabel C. Barrio",
+        "Agustina Barros",
+        "Matti Barthel",
+        "Edmund W. Basham",
+        "Marijn Bauters",
+        "Manuele Bazzichetto",
+        "Luca Belelli Marchesini",
+        "Michael C. Bell",
+        "Juan C. Benavides",
+        "José Luis Benito Alonso",
+        "Bernd J. Berauer",
+        "Jarle W. Bjerke",
+        "Robert G. Björk",
+        "Mats P. Björkman",
+        "Katrín Björnsdóttir",
+        "Benjamin Wong Blonder",
+        "Pascal Boeckx",
+        "Julia Boike",
+        "Stef Bokhorst",
+        "Bárbara Brum",
+        "J Bruna",
+        "Nina C. Buchmann",
+        "Pauline Buysse",
+        "José Luís Camargo",
+        "Otávio Camargo Campoe",
+        "Onur Candan",
+        "Rafaella Canessa",
+        "Nicoletta Cannone",
+        "Michele Carbognani",
+        "Jofre Carnicer",
+        "Angélica Casanova‐Katny",
+        "Simone Cesarz",
+        "Bogdan Heronim Chojnicki",
+        "Philippe Choler",
+        "Steven L. Chown",
+        "Edgar Cifuentes",
+        "Marek Čiliak",
+        "Tamara Contador",
+        "Peter Convey",
+        "Elisabeth J. Cooper",
+        "Edoardo Cremonese",
+        "Salvatore R. Curasi",
+        "Robin J. Curtis",
+        "Maurizio Cutini",
+        "Carl Johan Dahlberg",
+        "Gergana N. Daskalova",
+        "Miguel Ángel de Pablo Hernández",
+        "Stefano Della Chiesa",
+        "Jürgen Dengler",
+        "Bart Deronde",
+        "Patrice Descombes",
+        "Valter Di Cecco",
+        "Michele Di Musciano",
+        "Jan Dick",
+        "Romina D. Dimarco",
+        "Jiří Doležal",
+        "Ellen Dorrepaal",
+        "Jiří Dušek",
+        "Nico Eisenhauer",
+        "Lars Eklundh",
+        "Todd E. Erickson",
+        "Brigitta Erschbamer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Global maps of soil temperature",
+        "doi": "10.1111/gcb.16060",
+        "year": 2021,
+        "venue": "Global Change Biology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "该论文研究多年 snow cover 在不同海拔区域的变化趋势及其与地面观测的一致性。",
+      "hypothesis_or_mechanism": "气候变化会改变 snow cover 的持续时间和空间分布，并且这种变化可能随海拔差异而不同。",
+      "variables_and_data_use": "论文使用 MOD10A1 的 500 m snow cover 数据进行雪覆盖趋势量化，并用 in situ data 进行评价；文本还建议使用 MOD10A1F / MYD10A1F 进行 gap-filled 处理，并与 Landsat/Sentinel snow cover data 比较。",
+      "method_paradigm": "遥感趋势分析",
+      "used_assets": [
+        "MOD10A1",
+        "in situ data",
+        "MOD10A1F / MYD10A1F",
+        "Landsat/Sentinel snow cover data"
+      ],
+      "author_team": [
+        "Parizia, Francesco",
+        "De Petris, Samuele",
+        "Perotti, Luigi",
+        "Giardino, Marco",
+        "Borgogno-Mondino, Enrico Corrado"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Comment on egusphere-2025-3028",
+        "doi": "10.5194/egusphere-2025-3028-rc2",
+        "year": 2025,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "不同结构的水文模型能否合理表示积雪、土壤水分和总储水等内部状态，并在多个流域和时期重现观测到的水文过程？",
+      "hypothesis_or_mechanism": "模型内部状态及其对水文通量的影响具有结构依赖性，而MODIS雪覆盖、SCATSAR-SWI1km土壤水分和GRACE总储水观测能够揭示这些过程表示的差异。",
+      "variables_and_data_use": "研究使用MOD10A1和MYD10A1的500米日尺度NDSI雪覆盖面积分数，按日合并并进行流域汇总，用于识别有雪日、构建观测与模型雪状态的混淆矩阵，并比较年最大积雪储量和有雪日数；同时使用GLEAM v3.3a评价蒸发，SCATSAR-SWI1km评价根区土壤水分，GRACE评价总储水异常，E-OBS和降水站点数据驱动模型，流量观测用于校准和评价。",
+      "method_paradigm": "多模型比较与遥感验证",
+      "used_assets": [
+        "MYD10A1, version 6",
+        "MOD10A1, version 6",
+        "GLEAM v3.3a",
+        "SCATSAR-SWI1km",
+        "GRACE",
+        "E-OBS",
+        "Service Public de Wallonie precipitation gauge data",
+        "Service Public de Wallonie observed hourly streamflow data"
+      ],
+      "author_team": [
+        "Laurène J. E. Bouaziz",
+        "Fabrizio Fenicia",
+        "Guillaume Thirel",
+        "Tanja de Boer‐Euser",
+        "Joost Buitink",
+        "Claudia Brauer",
+        "Jan De Niel",
+        "Benjamin Dewals",
+        "Gilles Drogue",
+        "Benjamin Grelier",
+        "Lieke Anna Melsen",
+        "Sotirios Moustakas",
+        "Jiri Nossent",
+        "Fernando Pereira",
+        "Eric Sprokkereef",
+        "Jasper Stam",
+        "Albrecht Weerts",
+        "Patrick Willems",
+        "Hubert H. G. Savenije",
+        "Markus Hrachowitz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Behind the scenes of streamflow model performance",
+        "doi": "10.5194/hess-25-1069-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "气候变化将如何影响奥地利阿尔卑斯山区不同水文特征流域的径流、洪水和枯水过程？",
+      "hypothesis_or_mechanism": "温度和降水变化通过积雪融化、冰川面积变化及流域储水过程改变，进而重塑未来径流的季节性、洪峰和枯水特征。",
+      "variables_and_data_use": "使用MODIS satellite product MOD10A1的每日雪覆盖数据作为水文模型校准中的雪覆盖观测目标；使用Hydrographic Service of Austria的径流、ZAMG和Hydrographic Service of Austria的温度与降水、CORINE Land Cover土地覆盖、HAND地图、Austrian Glacier Inventory冰川范围、GloGEMflow未来冰川模拟、10×10 m digital elevation model of Austria地形，以及EURO-CORDEX历史和未来温度降水模拟，构建、校准并驱动半分布式水文模型。",
+      "method_paradigm": "过程水文模拟与情景评估",
+      "used_assets": [
+        "MODIS satellite product MOD10A1",
+        "Hydrographic Service of Austria",
+        "Austrian Central Institute for Meteorology and Geodynamics (ZAMG)",
+        "CORINE Land Cover",
+        "10×10 m height above nearest drainage (HAND) map",
+        "Austrian Glacier Inventory",
+        "GloGEMflow",
+        "10×10 m digital elevation model of Austria",
+        "EURO-CORDEX"
+      ],
+      "author_team": [
+        "Sarah Hanus",
+        "Markus Hrachowitz",
+        "Harry Zekollari",
+        "Gerrit Schoups",
+        "Miren Vizcaíno",
+        "Roland Kaitna"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Future changes in annual, seasonal and monthly runoff signatures in contrasting Alpine catchments in Austria",
+        "doi": "10.5194/hess-25-3429-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "利用机器学习和 MODIS 积雪覆盖产品预测摩洛哥 High Atlas 山区融雪期的日径流量",
+      "hypothesis_or_mechanism": "积雪覆盖面积与气象变量（降水、气温、湿度）及模拟融雪量共同驱动山区径流过程，机器学习模型可捕获这些非线性关系实现径流预测",
+      "variables_and_data_use": "使用 MOD10A1 和 MYD10A1 融合的日积雪覆盖面积（SCA%）作为预测变量，结合降水、气温、湿度、雪水当量和模拟融雪量，通过随机森林、支持向量机等机器学习方法预测日径流",
+      "method_paradigm": "机器学习回归 数据驱动建模",
+      "used_assets": [
+        "MOD10A1",
+        "MYD10A1"
+      ],
+      "author_team": [
+        "Bouchra Bargam",
+        "Abdelghani Boudhar",
+        "Christophe Kinnard",
+        "Hafsa Bouamri",
+        "Karima Nifa",
+        "Abdelghani Chehbouni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Evaluation of the support vector regression (SVR) and the random forest (RF) models accuracy for streamflow prediction under a data-scarce basin in Morocco",
+        "doi": "10.1007/s42452-024-05994-z",
+        "year": 2024,
+        "venue": "Discover Applied Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "不同Noah-MP物理方案、雪盖分数参数化和模型空间分辨率如何影响青藏高原的雪盖模拟及相关地表能量过程？",
+      "hypothesis_or_mechanism": "优化雪盖参数化和关键物理方案能够降低模拟雪盖分数偏差，并通过改变雪面反照率和能量分配改善地表温度、热通量及积雪深度模拟。",
+      "variables_and_data_use": "使用MOD10A1和MYD10A1日尺度500米雪盖分数以及FY3B日尺度雪盖产品作为雪盖观测和模型验证数据；使用CMFD作为大气强迫，MCD12Q1和MODIS LAI作为植被参数，GLASS02B05作为地表反照率验证数据，并结合站点积雪深度和地表温度观测评估Noah-MP模拟结果。",
+      "method_paradigm": "陆面模型敏感性分析与观测验证",
+      "used_assets": [
+        "China Meteorological Forcing Dataset (CMFD)",
+        "MODIS 0.1° multiyear mean (20012012) monthly leaf area index (LAI) data",
+        "MODIS/Terra+Aqua Land Cover Type Yearly L3 Global 500m data (MCD12Q1)",
+        "China Dataset of Soil Hydraulic Parameters Using Pedotransfer Functions for Land Surface Modeling",
+        "FY3B MULSS daily snow cover product",
+        "MOD10A1",
+        "MYD10A1",
+        "GLASS02B05",
+        "CMA",
+        "National Meteorological Information Center",
+        "Noah-MP",
+        "HRLDAS"
+      ],
+      "author_team": [
+        "Yingsha Jiang",
+        "Fei Chen",
+        "Yanhong Gao",
+        "Cenlin He",
+        "Michael J. Barlage",
+        "Wubin Huang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Assessment of Uncertainty Sources in Snow Cover Simulation in the Tibetan Plateau",
+        "doi": "10.1029/2020jd032674",
+        "year": 2020,
+        "venue": "Journal of Geophysical Research Atmospheres",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "气象强迫数据的不确定性如何影响全球冰冻圈流域的水文模拟",
+      "hypothesis_or_mechanism": "降水和气温的不确定性通过影响降雨/降雪分配、雪物理过程和融雪径流传播到水文模型输出,在冰冻圈流域产生显著的模拟不确定性",
+      "variables_and_data_use": "使用MOD10A1的NDSI数据转换为分数积雪覆盖,与AVHRR Snow_cci数据共同用于SUMMA水文模型的校准,以改进289个冰冻圈流域的积雪过程模拟;使用EM-Earth的25成员降水和气温集合驱动模型进行不确定性分析",
+      "method_paradigm": "集合模拟不确定性传播分析",
+      "used_assets": [
+        "MOD10A1 Version 61",
+        "AVHRR Snow_cci SCFG version 2.0",
+        "EM-Earth",
+        "ERA5"
+      ],
+      "author_team": [
+        "Guoqiang Tang",
+        "Martyn Clark",
+        "Wouter Johannes Maria Knoben",
+        "Hongli Liu",
+        "Shervan Gharari",
+        "Louise L. S. Arnal",
+        "Hylke E. Beck",
+        "Andrew W. Wood",
+        "Andrew J. Newman",
+        "Simon Michael Papalexiou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "The Impact of Meteorological Forcing Uncertainty on Hydrological Modeling: A Global Analysis of Cryosphere Basins",
+        "doi": "10.1029/2022wr033767",
+        "year": 2023,
+        "venue": "Water Resources Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "该论文研究森林火灾如何改变美国西部季节性积雪区的雪消融时间、雪表面杂质、反照率和辐射强迫。",
+      "hypothesis_or_mechanism": "森林火灾通过减少林冠遮蔽并向雪面沉降黑碳、尘埃和有机碎屑，降低雪反照率、增加短波吸收，从而加速雪融化。",
+      "variables_and_data_use": "论文使用 MOD10A1 daily 500 m snow-cover data 推导雪消失日期 SDD，并用 MOD10A1 雪覆盖时序定义季节性积雪区；使用 MTBS 和 GeoMAC 火烧边界确定过火区域，LANDFIRE EVC 定义森林掩膜，Landsat-derived delta normalized burn ratio 标识高严重度火烧点，并结合实地雪样、光谱反照率、黑碳/尘埃测量和 SNICAR 模型估计火灾后的雪面辐射强迫。",
+      "method_paradigm": "遥感-实测-模型归因",
+      "used_assets": [
+        "MTBS fire perimeter data product",
+        "Geospatial Multi-Agency Coordination Group fire perimeter data",
+        "LANDFIRE Existing Vegetation Cover (EVC) product",
+        "MOD10A1 8-day snow-covered area product",
+        "MOD10A1 daily 500 m snow-cover data",
+        "Landsat-derived delta normalized burn ratio",
+        "SNICAR model"
+      ],
+      "author_team": [
+        "Kelly E. Gleason",
+        "Joseph R. McConnell",
+        "Monica M. Arienzo",
+        "Nathan J. Chellman",
+        "W. M. Calvin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Four-fold increase in solar forcing on snow in western U.S. burned forests since 1999",
+        "doi": "10.1038/s41467-019-09935-y",
+        "year": 2019,
+        "venue": "Nature Communications",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "该论文研究北美范围内郊狼食性如何随季节、体型、雪盖、生产力、人类改造和大型食肉动物共存而变化。",
+      "hypothesis_or_mechanism": "机制假设是雪盖、生产力和人类活动会改变猎物可获得性，而大型食肉动物可能通过竞争、捕杀或提供腐肉影响郊狼对小型哺乳动物、兔形目、植被和有蹄类的取食。",
+      "variables_and_data_use": "论文使用 Terra Snow Cover Daily Global 500 m data 计算每个研究地点 50 km 缓冲区内 2000-2015 年各季节平均 snow cover；使用 NOAA Climate Data Record of Normalised Difference Vegetation 估计长期 NDVI/生产力；使用 1 km Global Human Modification dataset 计算人类改造强度；并结合文献汇编的郊狼粪便食性数据和大型食肉动物分布图进行模型分析。",
+      "method_paradigm": "生态元分析",
+      "used_assets": [
+        "Terra Snow Cover Daily Global 500 m data from the Earth Engine Data Catalogue",
+        "NOAA Climate Data Record of Normalised Difference Vegetation",
+        "1 km Global Human Modification dataset",
+        "Level I North American ecoregions",
+        "range maps of large carnivores"
+      ],
+      "author_team": [
+        "Alex J. Jensen",
+        "Courtney J. Marneweck",
+        "John Carlisle Kilgo",
+        "David Scott Jachowski"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Coyote diet in North America: geographic and ecological patterns during range expansion",
+        "doi": "10.1111/mam.12299",
+        "year": 2022,
+        "venue": "Mammal Review",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "该论文研究格陵兰冰盖夏季雪线迁移、裸冰暴露和表面反照率变化如何影响净短波辐射吸收。",
+      "hypothesis_or_mechanism": "当雪线向高海拔迁移时，低反照率裸冰暴露范围扩大，会增强吸收的短波辐射并放大融化。",
+      "variables_and_data_use": "论文使用 MOD10A1 daily snow cover Collection 6 和 MOD10A1 albedo layer 构建日尺度冰雪分类、云掩膜、裸冰存在指数和冰盖反照率；结合 MOD09GA bands 1-4 地表反射率进行随机森林分类；用 Landsat L1T 影像和 PROMICE/GAP AWS albedo 验证；用 MAR3.9 downward shortwave radiation、SMB 以及 MAR3.9/RACMO2.3p2 模型输出对比裸冰范围、雪线和净短波辐射。",
+      "method_paradigm": "遥感分类与过程归因",
+      "used_assets": [
+        "MOD10A1 daily snow cover Collection 6",
+        "MOD10A1 C6 product",
+        "MOD09GA daily land surface reflectance Collection 6",
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 7 Enhanced Thematic Mapper-plus (ETM+)",
+        "Landsat 8 Operational Land Imager (OLI) orthorectified, top-of-atmosphere reflectance images (L1T)",
+        "Greenland Ice Mapping Project (GIMP) ice mask",
+        "GIMP digital elevation model",
+        "PROMICE/GAP automated weather station (AWS) measurements",
+        "MAR3.9",
+        "RACMO2.3p2",
+        "MCD43A3"
+      ],
+      "author_team": [
+        "Jonathan Charles Ryan",
+        "LAURENCE C. SMITH",
+        "Dirk van As",
+        "Sarah Cooley",
+        "Matthew G. Cooper",
+        "L. H. Pitcher",
+        "Alun Hubbard"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Greenland Ice Sheet surface melt amplified by snowline migration and bare ice exposure",
+        "doi": "10.1126/sciadv.aav3738",
+        "year": 2019,
+        "venue": "Science Advances",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何利用涡度相关观测数据和遥感驱动变量建立随机森林模型，估算北纬45度以北湿地的甲烷排放通量",
+      "hypothesis_or_mechanism": "湿地甲烷排放受温度、植被生长、积雪覆盖和水位深度等因素控制，可通过MODIS遥感产品和气象再分析数据的组合进行空间升尺度",
+      "variables_and_data_use": "使用MOD10A1积雪覆盖数据计算融雪后天数（DSSM）作为季节性预测变量，结合MOD11A2地表温度、MOD13A3 EVI、MOD09A1表面反射率（SRWI水分指数）以及WFDEI气温和降水数据，训练随机森林模型预测站点甲烷通量，再利用MOD10CM和MOD11C3等聚合产品进行全球升尺度",
+      "method_paradigm": "机器学习空间升尺度 涡度通量站点观测 遥感驱动变量",
+      "used_assets": [
+        "MOD10A1",
+        "MOD11A2",
+        "MOD13A3",
+        "MOD09A1",
+        "MOD10CM",
+        "MOD11C3",
+        "WFDEI",
+        "PEATMAP",
+        "DYPTOP",
+        "GLWD"
+      ],
+      "author_team": [
+        "Olli Peltola",
+        "Timo Vesala",
+        "Yao Gao",
+        "Olle Räty",
+        "Pavel Alekseychik",
+        "Mika Aurela",
+        "Bogdan Heronim Chojnicki",
+        "Ankur Rashmikant Desai",
+        "Albertus Johannes Dolman",
+        "Eugenie Susanne Euskirchen",
+        "Thomas Friborg",
+        "Mathias Goeckede",
+        "Manuel Helbig",
+        "Elyn R Humphreys",
+        "Robert B. Jackson",
+        "Georg Jocher",
+        "Fortunat Joos",
+        "Janina Klatt",
+        "Sara Knox",
+        "Natalia Kowalska",
+        "Lars Kutzbach",
+        "Sebastian Lienert",
+        "Annalea Lohila",
+        "Ivan Mammarella",
+        "Daniel F. Nadeau",
+        "Mats B. Nilsson",
+        "Walter C. Oechel",
+        "Matthias Peichl",
+        "Thomas G. Pypker",
+        "William L. Quinton",
+        "Janne Rinne",
+        "Torsten Sachs",
+        "Mateusz Samson",
+        "Hans Peter Schmid",
+        "Oliver Sonnentag",
+        "Christian Wille",
+        "Donatella Zona",
+        "Tuula Aalto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Monthly gridded data product of northern wetland methane emissions based on upscaling eddy covariance observations",
+        "doi": "10.5194/essd-11-1263-2019",
+        "year": 2019,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "如何减少 MODIS Terra 和 Aqua 逐日雪盖产品中由云覆盖引起的低估和由传感器限制（大太阳天顶角）引起的过高估计，生成高山亚洲地区 2002-2019 年的逐日无云雪盖产品",
+      "hypothesis_or_mechanism": "利用改进的 8 天复合 MOYDGL06* 产品作为训练数据和参考边界，可以有效去除逐日 MODIS 产品中的云并减少过高估计，结合 Terra 和 Aqua 双星观测可进一步降低不确定性",
+      "variables_and_data_use": "使用 MOD10A1 和 MYD10A1 的 NDSI 雪盖值（0-100）和云标识（250），通过 MOYDGL06* 8 天复合产品替换云像元、填补缺失数据、去除超出 8 天最大雪范围的过高估计雪，最终合并 Terra 和 Aqua 雪盖并与 RGI 6.0 冰川清单融合",
+      "method_paradigm": "数据融合与云去除算法",
+      "used_assets": [
+        "MOD10A1",
+        "MYD10A1",
+        "MOYDGL06*",
+        "RGI 6.0"
+      ],
+      "author_team": [
+        "Sher Muhammad",
+        "Amrit Thapa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Daily Terra–Aqua MODIS cloud-free snow and Randolph Glacier Inventory 6.0 combined product (M*D10A1GL06) for high-mountain Asia between 2002 and 2019",
+        "doi": "10.5194/essd-13-767-2021",
+        "year": 2021,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "如何利用MODIS分数雪盖观测改进复杂山地环境中雪pack状态的时空重建和数据同化？",
+      "hypothesis_or_mechanism": "雪盖消融过程中的动态fSCA信息能够约束雪pack模拟轨迹，从而改进SWE和雪深的重建，并反馈气象强迫及下尺度模拟误差。",
+      "variables_and_data_use": "使用Terra MOD10A1和Aqua MYD10A1的每日fSCA观测作为粒子批次平滑器的数据同化观测；使用ERA5的气象变量驱动GEOtop，使用SRTM 3推导地形预测因子，并以GCOS、IMIS和航空雪深数据进行验证。",
+      "method_paradigm": "集合数据同化与雪pack重建",
+      "used_assets": [
+        "MOD10A1 product",
+        "MYD10A1 product",
+        "ERA5 reanalysis",
+        "SRTM 3",
+        "GCOS dataset",
+        "Intercantonal Measurement and Information System (IMIS) station network",
+        "ADS80",
+        "ADS100",
+        "Global Land Ice Measurements from Space (GLIMS) repository"
+      ],
+      "author_team": [
+        "Joel Fiddes",
+        "Kristoffer Aalstad",
+        "Sebastian Westermann"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Hyper-resolution ensemble-based snow reanalysis in mountain regions using clustering",
+        "doi": "10.5194/hess-23-4717-2019",
+        "year": 2019,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "评估ASCAT土壤湿度和MODIS积雪覆盖数据在概念性水文模型多目标校准中的价值",
+      "hypothesis_or_mechanism": "将卫星土壤湿度和积雪覆盖数据纳入水文模型校准可以改善内部状态变量（土壤湿度和积雪）的模拟，从而提高径流预测的内部一致性",
+      "variables_and_data_use": "使用MOD10A1和MYD10A1的NDSI积雪覆盖数据构建积雪目标函数（基于积雪高估和低估误差），将其与ASCAT土壤湿度和径流观测组合，对HBV型水文模型进行多目标自动校准，比较不同校准方案对积雪、土壤湿度和径流模拟效率的影响",
+      "method_paradigm": "多目标模型校准与验证",
+      "used_assets": [
+        "MOD10A1 version 6",
+        "MYD10A1 version 6",
+        "ASCAT SWI experimental",
+        "SPARTACUS",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Rui Tong",
+        "Juraj Párajka",
+        "Andreas Salentinig",
+        "Isabella Pfeil",
+        "Jürgen Komma",
+        "Borbála Széles",
+        "Martin Kubáň",
+        "Peter Valent",
+        "Mariëtte Vreugdenhil",
+        "Wolfgang Wagner",
+        "Günter Blöschl"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "The value of ASCAT soil moisture and MODIS snow cover data for calibrating a conceptual hydrologic model",
+        "doi": "10.5194/hess-25-1389-2021",
+        "year": 2021,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "该论文研究 1982–2015 年格陵兰冰盖表面反照率如何变化，以及这些变化与表面质量平衡和冰排放之间的关系。",
+      "hypothesis_or_mechanism": "雪/冰表面反照率降低会增强融化和径流，因此反照率变化可作为夏季表面质量平衡变化的观测代理，并可能与冰排放变化相关。",
+      "variables_and_data_use": "论文主要使用 CLARA-A2 SAL 的 5 日和月平均表面反照率计算趋势、融化速率、裸冰/湿雪暴露范围和 SMB proxy；使用 MOD10A1 Collection 6 日均表面反照率作为与 CLARA-A2 SAL 的比较并计算相同方法的 proxy SMB；使用 MAR SMB、GRACE 质量变化、King et al. ice discharge、MERRA-2 降水和气温、GBI、PROMICE ice mask 及 DEM 作为验证、校正和解释变量。",
+      "method_paradigm": "观测驱动变化检测",
+      "used_assets": [
+        "CLARA-A2 SAL",
+        "MOD10A1 time series",
+        "Collection 6",
+        "MAR",
+        "MERRA-2",
+        "Greenland Blocking Index (GBI)",
+        "GRACE",
+        "PROMICE ice mask",
+        "digital elevation model by Helm et al. (2014)",
+        "ice discharge estimates from King et al. (2018)"
+      ],
+      "author_team": [
+        "Aku Riihelä",
+        "Michalea D. King",
+        "Kati Anttila"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "The surface albedo of the Greenland Ice Sheet between 1982 and 2015 from the CLARA-A2 dataset and its relationship to the ice sheet's surface mass balance",
+        "doi": "10.5194/tc-13-2597-2019",
+        "year": 2019,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "该论文研究 2019 年格陵兰冰盖异常融化季如何受大气环流、表面能量平衡和低反照率条件共同驱动。",
+      "hypothesis_or_mechanism": "持续反气旋和阻塞环流叠加低降雪导致的低反照率，增强融化-反照率反馈和短波吸收，从而造成异常强的融化和负表面质量平衡。",
+      "variables_and_data_use": "论文使用被动微波 19.35 GHz 水平极化亮温检测融化和融化天数，使用 MOD09GA version 6 与 MOD10A1 version 6 获取和筛选 MODIS 宽波段反照率，使用 MAR version 3.10 模拟表面能量平衡和质量平衡，并用 NCEP/NCARv1 reanalysis 的 500 hPa 位势高度及 GBI 分析大气阻塞异常。",
+      "method_paradigm": "过程归因分析",
+      "used_assets": [
+        "Near-Real-Time DMSP SSM/I-SSMIS Pathfinder Daily EASE-Grid Brightness Temperatures",
+        "MOD09GA version 6",
+        "MOD10A1 version 6",
+        "MAR version 3.10",
+        "NCEP/NCARv1 reanalysis",
+        "Greenland Blocking Index (GBI)"
+      ],
+      "author_team": [
+        "Marco Tedesco",
+        "Xavier Fettweis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Unprecedented atmospheric conditions (1948–2019) drive the 2019 exceptional melting season over the Greenland ice sheet",
+        "doi": "10.5194/tc-14-1209-2020",
+        "year": 2020,
+        "venue": "The cryosphere",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 35,
+    "source_paper_count": 35,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

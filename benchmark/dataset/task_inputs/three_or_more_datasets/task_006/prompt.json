@@ -1,0 +1,295 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Semi-arid river-basin landscapes",
+  "datasets": [
+    {
+      "role": "land_cover_context_input",
+      "data_description": {
+        "dataset_name": "Copernicus Global Land Cover 100 m",
+        "data_type": "Categorical raster image",
+        "data_format": "Google Earth Engine Image",
+        "spatial_resolution": "100 m global land-cover grid",
+        "temporal_unit": "Product epoch land-cover classification",
+        "temporal_coverage": "2015-2019 product epochs",
+        "data_source": "Copernicus Global Land Service",
+        "gee_asset": {
+          "id": "COPERNICUS/Landcover/100m/Proba-V/Global",
+          "type": "image"
+        },
+        "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+        "analytical_capabilities": [
+          "Land-cover stratification",
+          "Class-area and transition summaries",
+          "Environmental-context covariates"
+        ],
+        "spatial_coverage": {
+          "region_name": "Semi-arid river-basin landscapes",
+          "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+    },
+    {
+      "role": "historical_optical_surface_input",
+      "data_description": {
+        "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+        "data_type": "Multispectral raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "30 m multispectral surface-reflectance grid",
+        "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+        "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+        "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "analytical_capabilities": [
+          "Long-term multispectral monitoring",
+          "Surface reflectance and vegetation-index derivation",
+          "Land-cover or crop feature extraction"
+        ],
+        "spatial_coverage": {
+          "region_name": "Semi-arid river-basin landscapes",
+          "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+        }
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+    },
+    {
+      "role": "independent_vegetation_index_input",
+      "data_description": {
+        "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+        "data_type": "Vegetation-index raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "250 m vegetation-index grid",
+        "temporal_unit": "16-day composite",
+        "temporal_coverage": "2000-present for MODIS Terra vegetation-index records",
+        "data_source": "NASA MODIS Terra MOD13Q1",
+        "gee_asset": {
+          "id": "MODIS/061/MOD13Q1",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:MODIS/061/MOD13Q1",
+        "analytical_capabilities": [
+          "NDVI/EVI time series",
+          "Long-term vegetation phenology",
+          "Cross-resolution vegetation monitoring"
+        ],
+        "spatial_coverage": {
+          "region_name": "Semi-arid river-basin landscapes",
+          "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+        }
+      },
+      "data_path": "GEE:MODIS/061/MOD13Q1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Copernicus Global Land Cover 100 m",
+      "data_type": "Categorical raster image",
+      "data_format": "Google Earth Engine Image",
+      "spatial_resolution": "100 m global land-cover grid",
+      "temporal_unit": "Product epoch land-cover classification",
+      "temporal_coverage": "2015-2019 product epochs",
+      "data_source": "Copernicus Global Land Service",
+      "gee_asset": {
+        "id": "COPERNICUS/Landcover/100m/Proba-V/Global",
+        "type": "image"
+      },
+      "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+      "analytical_capabilities": [
+        "Land-cover stratification",
+        "Class-area and transition summaries",
+        "Environmental-context covariates"
+      ],
+      "spatial_coverage": {
+        "region_name": "Semi-arid river-basin landscapes",
+        "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+      }
+    },
+    {
+      "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+      "data_type": "Multispectral raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "30 m multispectral surface-reflectance grid",
+      "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+      "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+      "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "analytical_capabilities": [
+        "Long-term multispectral monitoring",
+        "Surface reflectance and vegetation-index derivation",
+        "Land-cover or crop feature extraction"
+      ],
+      "spatial_coverage": {
+        "region_name": "Semi-arid river-basin landscapes",
+        "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+      }
+    },
+    {
+      "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+      "data_type": "Vegetation-index raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "250 m vegetation-index grid",
+      "temporal_unit": "16-day composite",
+      "temporal_coverage": "2000-present for MODIS Terra vegetation-index records",
+      "data_source": "NASA MODIS Terra MOD13Q1",
+      "gee_asset": {
+        "id": "MODIS/061/MOD13Q1",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:MODIS/061/MOD13Q1",
+      "analytical_capabilities": [
+        "NDVI/EVI time series",
+        "Long-term vegetation phenology",
+        "Cross-resolution vegetation monitoring"
+      ],
+      "spatial_coverage": {
+        "region_name": "Semi-arid river-basin landscapes",
+        "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:MODIS/061/MOD13Q1"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "landcover_vegetation_climate_dynamics composite observation",
+    "observable_group": "landcover_vegetation_climate_dynamics_multidataset_observation",
+    "data_description": {
+      "dataset_name": "landcover_vegetation_climate_dynamics composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Semi-arid river-basin landscapes",
+        "coverage": "Declared study region within Semi-arid river-basin landscapes."
+      },
+      "analytical_capabilities": [
+        "Role-aware spatial and temporal alignment",
+        "Joint feature construction",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "land_cover_context_input",
+        "data_description": {
+          "dataset_name": "Copernicus Global Land Cover 100 m",
+          "data_type": "Categorical raster image",
+          "data_format": "Google Earth Engine Image",
+          "spatial_resolution": "100 m global land-cover grid",
+          "temporal_unit": "Product epoch land-cover classification",
+          "temporal_coverage": "2015-2019 product epochs",
+          "data_source": "Copernicus Global Land Service",
+          "gee_asset": {
+            "id": "COPERNICUS/Landcover/100m/Proba-V/Global",
+            "type": "image"
+          },
+          "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+          "analytical_capabilities": [
+            "Land-cover stratification",
+            "Class-area and transition summaries",
+            "Environmental-context covariates"
+          ],
+          "spatial_coverage": {
+            "region_name": "Semi-arid river-basin landscapes",
+            "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+      },
+      {
+        "role": "historical_optical_surface_input",
+        "data_description": {
+          "dataset_name": "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+          "data_type": "Multispectral raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "30 m multispectral surface-reflectance grid",
+          "temporal_unit": "Scene-level observations with nominal 16-day revisit",
+          "temporal_coverage": "2013-present for Landsat 8/9 Collection 2 records",
+          "data_source": "USGS/NASA Landsat 8/9 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "analytical_capabilities": [
+            "Long-term multispectral monitoring",
+            "Surface reflectance and vegetation-index derivation",
+            "Land-cover or crop feature extraction"
+          ],
+          "spatial_coverage": {
+            "region_name": "Semi-arid river-basin landscapes",
+            "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "independent_vegetation_index_input",
+        "data_description": {
+          "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+          "data_type": "Vegetation-index raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "250 m vegetation-index grid",
+          "temporal_unit": "16-day composite",
+          "temporal_coverage": "2000-present for MODIS Terra vegetation-index records",
+          "data_source": "NASA MODIS Terra MOD13Q1",
+          "gee_asset": {
+            "id": "MODIS/061/MOD13Q1",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:MODIS/061/MOD13Q1",
+          "analytical_capabilities": [
+            "NDVI/EVI time series",
+            "Long-term vegetation phenology",
+            "Cross-resolution vegetation monitoring"
+          ],
+          "spatial_coverage": {
+            "region_name": "Semi-arid river-basin landscapes",
+            "coverage": "Catalog coverage intersected with Semi-arid river-basin landscapes."
+          }
+        },
+        "data_path": "GEE:MODIS/061/MOD13Q1"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "The declared components jointly define the task observation and must be interpreted with their stated roles.",
+      "alignment": "All required components must be spatially collocated and aligned to a declared temporal support before analysis.",
+      "required_roles": [
+        "land_cover_context_input",
+        "historical_optical_surface_input",
+        "independent_vegetation_index_input"
+      ],
+      "component_count": 3,
+      "supplement_policy": "Ideas may add verified auxiliary datasets with distinct scientific roles; auxiliary data cannot replace required roles."
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:MODIS/061/MOD13Q1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "land_cover_context_input",
+      "historical_optical_surface_input",
+      "independent_vegetation_index_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

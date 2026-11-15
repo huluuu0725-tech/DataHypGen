@@ -1,0 +1,164 @@
+{
+    "type": "Collection",
+    "id": "WHRC/biomass/tropical",
+    "stac_version": "1.1.0",
+    "description": "A national-level map of above-ground live woody biomass density for\ntropical countries at 500m. This dataset was assembled from a combination\nof co-located field measurements, LiDAR observations, and imagery recorded\nfrom the Moderate Resolution Imaging Spectroradiometer (MODIS).\n",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/catalog.json",
+            "type": "application/json",
+            "title": "Google Earth Engine Catalog"
+        },
+        {
+            "rel": "related",
+            "href": "https://code.earthengine.google.com/?scriptPath=Examples:Datasets/WHRC/WHRC_biomass_tropical",
+            "type": "text/html",
+            "title": "Run the example for WHRC/biomass/tropical in the Earth Engine Code Editor",
+            "code": "JavaScript"
+        },
+        {
+            "rel": "preview",
+            "href": "https://developers.google.com/earth-engine/datasets/images/WHRC/WHRC_biomass_tropical_sample.png",
+            "type": "image/png"
+        },
+        {
+            "rel": "license",
+            "href": "https://developers.google.com/earth-engine/datasets/catalog/WHRC_biomass_tropical#terms-of-use",
+            "type": "text/html"
+        },
+        {
+            "rel": "self",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/WHRC/WHRC_biomass_tropical.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/WHRC/catalog.json",
+            "type": "application/json",
+            "title": "WHRC"
+        }
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    ],
+    "gee:categories": [
+        "forest-biomass"
+    ],
+    "gee:terms_of_use": "- The national level dataset is freely available for use for\n  scientific, conservation, and educational purposes.\n- Users acknowledge that they themselves are responsible for determining\n  whether the dataset is of sufficient quality and appropriateness for\n  their objectives.\n- Users agree that they will make reasonable efforts to provide appropriate\n  feedbacks and notification of any significant errors that they identify\n  in the dataset.\n",
+    "gee:type": "image",
+    "sci:citation": "A. Baccini, S J. Goetz, W.S. Walker, N. T. Laporte, M. Sun, D.\nSulla-Menashe, J. Hackler, P.S.A. Beck, R. Dubayah, M.A. Friedl, S. Samanta\nand R. A. Houghton. Estimated carbon dioxide emissions from tropical\ndeforestation improved by carbon-density maps. 2012 Nature Climate Change,\n[doi:10.1038/NCLIMATE1354](https://doi.org/10.1038/NCLIMATE1354)\n",
+    "gee:status": "ready",
+    "title": "WHRC Pantropical National Level Carbon Stock Dataset",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2012-01-29T00:00:00Z",
+                    "2012-01-29T00:00:00Z"
+                ]
+            ]
+        }
+    },
+    "license": "other",
+    "keywords": [
+        "aboveground",
+        "biomass",
+        "carbon",
+        "forest-biomass",
+        "geophysical",
+        "pantropical",
+        "tropical",
+        "umd",
+        "whrc"
+    ],
+    "providers": [
+        {
+            "name": "WHRC",
+            "roles": [
+                "licensor",
+                "producer"
+            ],
+            "url": "https://www.woodwellclimate.org/"
+        },
+        {
+            "name": "Google Earth Engine",
+            "roles": [
+                "host"
+            ],
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/WHRC_biomass_tropical"
+        }
+    ],
+    "summaries": {
+        "eo:bands": [
+            {
+                "description": "Megagrams of aboveground live woody biomass per Hectare",
+                "gee:units": "Mg/ha",
+                "name": "Mg",
+                "gsd": [
+                    500
+                ]
+            }
+        ],
+        "gee:visualizations": [
+            {
+                "display_name": "Aboveground Live Woody Biomass",
+                "image_visualization": {
+                    "band_vis": {
+                        "bands": [
+                            "Mg"
+                        ],
+                        "max": [
+                            350
+                        ],
+                        "min": [
+                            0
+                        ],
+                        "palette": [
+                            "ffffff",
+                            "ce7e45",
+                            "df923d",
+                            "f1b555",
+                            "fcd163",
+                            "99b718",
+                            "74a901",
+                            "66a000",
+                            "529400",
+                            "3e8601",
+                            "207401",
+                            "056201",
+                            "004c00",
+                            "023b01",
+                            "012e01",
+                            "011d01",
+                            "011301"
+                        ]
+                    }
+                },
+                "lookat": {
+                    "lat": 0.3,
+                    "lon": -69.4,
+                    "zoom": 3
+                }
+            }
+        ],
+        "gsd": [
+            500
+        ],
+        "Mg": {
+            "minimum": 0,
+            "maximum": 503
+        }
+    }
+}

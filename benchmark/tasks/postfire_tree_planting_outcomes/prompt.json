@@ -1,0 +1,132 @@
+{
+ "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+ "task_description": "The dataset is the companion analysis-ready table of a reference paper (see data_description.paper_overview). Use it as the research starting point: propose research ideas that could achieve better performance than the reference paper's reported configuration, evaluated on this same table under a fair comparison protocol.",
+ "region_name": "Post-fire tree planting units and matched unplanted controls, US Interior West (Rodman et al. 2024 companion table)",
+ "data_description": {
+  "dataset_name": "Post-fire reforestation canopy-cover change table, US Interior West (companion data of Rodman et al. 2024, Forest Ecology and Management, DOI 10.1016/j.foreco.2024.122358)",
+  "spatial_coverage": {
+   "region_name": "US Interior West (USFS Regions 1 Northern, 2 Rocky Mountain, 3 Southwestern, 4 Intermountain)",
+   "coverage": "4,703 post-fire planting units and their matched unplanted control areas inside 187 MTBS fire events (1985-2010 fire years)."
+  },
+  "temporal_coverage": "Plantings completed 1987-2012 (784 distinct planting dates); fire ignitions 1985-2010; remotely sensed canopy cover series 1986-2022 underlie the response variables.",
+  "data_type": "Tabular unit-level table (planting unit / matched control rows)",
+  "data_format": "Local CSV (cover_wCovs.csv)",
+  "spatial_resolution": "30-m Landsat/RAP pixels aggregated to unit means; unit areas 0.07-4,163 ha",
+  "coordinate_system": "No coordinate columns in the table; unit locations are in the companion shapefiles (facts_postfireClean.shp, controlAreas.shp, WGS84/UTM as shipped). Rows are identified by SUID.",
+  "temporal_unit": "One row per unit; response variables summarize multi-year canopy-cover trajectories (RS_growthRate = cover slope over the first 10 years after planting).",
+  "records": "9406 rows x 31 columns",
+  "data_type_numeric": "Mixed: categorical Treatment/IDs/dates, integer region/years/ordinal dates, float responses and covariates. The modeling response is RS_growthRate (regression, no binary label).",
+  "total_samples": 9406,
+  "table_content": {
+   "label": "Regression response: RS_growthRate (slope of canopy cover vs years-since-planting over the first 10 years after planting, % cover per year; range -3.13 to 7.98). The paper's core contrast is Planted vs Unplanted rows under a matched-pair design.",
+   "column_keys": [
+    "SUID", "Treatment", "USFS_Region", "Planting_Date", "Year_Planted", "unitArea_ha",
+    "Fire_ID", "Fire_Date", "Fire_Year", "RS_growthRate", "RS_growthRate_allYrs", "nYrs_RS",
+    "percentCC", "fireSeverity_rbr", "plantingYrsAfterFire", "plantingJulianDate",
+    "averageAnnualTmax_c", "postplantingTmax_c", "postplantingTmax_Zscore",
+    "averageAnnualTmin_c", "postplantingTmin_c", "postplantingTmin_Zscore",
+    "averageAnnualSM_vwc", "postplantingSM_vwc", "postplantingSM_Zscore",
+    "averageAnnualAET_mm", "postplantingAET_mm", "postplantingAET_Zscore",
+    "averageAnnualCWD_mm", "postplantingCWD_mm", "postplantingCWD_Zscore"
+   ],
+   "column_groups": {
+    "unit_identity_and_design": ["SUID", "Treatment", "USFS_Region", "unitArea_ha"],
+    "planting_timing": ["Planting_Date", "Year_Planted", "plantingYrsAfterFire", "plantingJulianDate"],
+    "fire_context": ["Fire_ID", "Fire_Date", "Fire_Year", "fireSeverity_rbr", "percentCC"],
+    "response_variables": ["RS_growthRate", "RS_growthRate_allYrs", "nYrs_RS"],
+    "normal_climate_soil_1991_2020": ["averageAnnualTmax_c", "averageAnnualTmin_c", "averageAnnualSM_vwc", "averageAnnualAET_mm", "averageAnnualCWD_mm"],
+    "postplanting_weather_anomalies": ["postplantingTmax_c", "postplantingTmax_Zscore", "postplantingTmin_c", "postplantingTmin_Zscore", "postplantingSM_vwc", "postplantingSM_Zscore", "postplantingAET_mm", "postplantingAET_Zscore", "postplantingCWD_mm", "postplantingCWD_Zscore"]
+   },
+   "sample_row_note": "Each SUID appears exactly twice: one Planted row and one matched Unplanted control row, selected within the same fire to have similar environmental conditions (official matching procedure: Step1e script). Treatment is the paired contrast key; SUID is the pair id."
+  },
+  "unit_of_measurement": "RS_growthRate / RS_growthRate_allYrs: canopy-cover slope in % cover per year. percentCC: % tree canopy cover in the year after fire. fireSeverity_rbr: relativized burn ratio (Parks et al. 2018 mean composite; higher = more severe; no range declared; 97 rows negative, minimum -258). unitArea_ha: hectares. Planting/Fire dates: MM/DD/YYYY; plantingJulianDate: ordinal day within year (45-323). Soil temperature columns (Tmax/Tmin): degrees Celsius of simulated SOIL SURFACE temperature at unit centroid (ech2o model), not air temperature. SM_vwc: volumetric water content ratio (0-1). AET/CWD: mm of water (AET/CWD columns are annual totals for averageAnnual*, mean daily values for postplanting*). *_Zscore: anomalies relative to the 1991-2020 water-year distribution of the same unit-level summary.",
+  "data_source": "Author-published companion archive, Zenodo record 13962941 (CC-BY-4.0): analysis-ready tables, R and Google Earth Engine code, spatial shapefiles, and fitted RF model objects. Underlying products: RAP v3.0 canopy cover (Allred et al. 2021), MTBS fire perimeters, Parks et al. 2018 mean-composite severity, FACTS planting records, ech2o soil-hydroclimate simulations (Maneta and Silverman 2013), TOPOFIRE AET/CWD (Holden et al. 2019).",
+  "reference": "Paper DOI 10.1016/j.foreco.2024.122358; data DOI 10.5281/zenodo.13962941",
+  "important_note": "Structural facts a reader needs before use: (1) This is a MATCHED-PAIR design: 4,703 SUIDs each carry exactly one Planted and one Unplanted row; any row-level random cross-validation leaks the pair - folds must be grouped by SUID (or spatially blocked as the paper did). (2) All 15 hydroclimate columns are structurally NA for every Unplanted row (ech2o/TOPOFIRE simulations were run only for planting units) - post-planting weather analyses are confined to the 4,703 Planted rows. (3) averageAnnualTmin_c contains 283 Inf values (README itself warns these data 'should not be used for analyses'); averageAnnualTmax_c / averageAnnualTmax_Zscore are additionally NA for 283 Planted rows. (4) fireSeverity_rbr has 97 negative values (min -258) with no declared valid range. (5) RS_growthRate uses the first 10 years after planting and requires at least 3 years after fire; nYrs_RS (10-35) is the record length behind RS_growthRate_allYrs only. (6) The paper's survival analysis lives in a companion table (survival_wCovs_corrected.csv, 1,589 rows x 34 cols, 1,071 units, 161 fires, 69,245 seedlings, 54,206 survived; unit-by-species rows) available in the source archive Rodman_Reforestation_Archive/Data/AnalysisReady/ - not included in this task directory. (7) ech2oConvergenceErrors.csv (SUID x errorFlag) lists units the authors excluded from final models for non-converged hydroclimate simulations; it is in the same assets folder, not in this task directory. (8) USFS Region 1 dominates the panel (6,956 of 9,406 rows); Regions 2 and 3 contribute only 462 and 532 rows - region-stratified claims are unevenly powered.",
+  "column_profiles": {
+   "RS_growthRate": {"type": "numeric", "missing": 0, "min": -3.13, "p50": 0.48, "max": 7.98},
+   "RS_growthRate_allYrs": {"type": "numeric", "missing": 0, "min": -1.42, "p50": 1.0, "max": 7.34},
+   "nYrs_RS": {"type": "numeric", "missing": 0, "min": 10, "p50": 17, "max": 35},
+   "percentCC": {"type": "numeric", "missing": 0, "min": 0.2, "p50": 18.4, "max": 76.3},
+   "fireSeverity_rbr": {"type": "numeric", "missing": 0, "min": -258.37, "p50": 294.89, "max": 632.79},
+   "plantingYrsAfterFire": {"type": "numeric", "missing": 0, "min": 0, "p50": 3, "max": 23},
+   "plantingJulianDate": {"type": "numeric", "missing": 0, "min": 45, "p50": 151, "max": 323},
+   "Year_Planted": {"type": "numeric", "missing": 0, "min": 1987, "p50": 2005, "max": 2012},
+   "Fire_Year": {"type": "numeric", "missing": 0, "min": 1985, "p50": 2001, "max": 2010},
+   "unitArea_ha": {"type": "numeric", "missing": 0, "min": 0.07, "p50": 9.44, "max": 4163.4},
+   "averageAnnualTmax_c": {"type": "numeric", "missing": 4986, "min": 1.94, "p50": 10.96, "max": 21.66},
+   "postplantingTmax_c": {"type": "numeric", "missing": 4703, "min": 19.67, "p50": 41.3, "max": 54.96},
+   "postplantingTmax_Zscore": {"type": "numeric", "missing": 4986, "min": -3.49, "p50": -1.39, "max": 1.2},
+   "averageAnnualTmin_c": {"type": "numeric", "missing": 4703, "min": 3.04, "p50": 8.16, "max": "Inf (283 rows)"},
+   "postplantingTmin_c": {"type": "numeric", "missing": 4703, "min": -10.59, "p50": 0.13, "max": 6.34},
+   "postplantingTmin_Zscore": {"type": "numeric", "missing": 4986, "min": -1.02, "p50": 1.44, "max": 3.2},
+   "averageAnnualSM_vwc": {"type": "numeric", "missing": 4703, "min": 0.108, "p50": 0.211, "max": 0.45},
+   "postplantingSM_vwc": {"type": "numeric", "missing": 4703, "min": 0.047, "p50": 0.111, "max": 0.45},
+   "postplantingSM_Zscore": {"type": "numeric", "missing": 4703, "min": -3.98, "p50": 0.959, "max": 5.86},
+   "averageAnnualAET_mm": {"type": "numeric", "missing": 4703, "min": 331.55, "p50": 455.02, "max": 659.06},
+   "postplantingAET_mm": {"type": "numeric", "missing": 4703, "min": 0.609, "p50": 1.257, "max": 2.226},
+   "postplantingAET_Zscore": {"type": "numeric", "missing": 4703, "min": -2.86, "p50": -0.04, "max": 2.51},
+   "averageAnnualCWD_mm": {"type": "numeric", "missing": 4703, "min": 199.87, "p50": 412.05, "max": 1146.19},
+   "postplantingCWD_mm": {"type": "numeric", "missing": 4703, "min": 0.197, "p50": 1.188, "max": 3.458},
+   "postplantingCWD_Zscore": {"type": "numeric", "missing": 4703, "min": -3.02, "p50": 0.078, "max": 2.28},
+   "Treatment": {"type": "categorical", "cardinality": 2, "top_values": {"Planted": 4703, "Unplanted": 4703}},
+   "USFS_Region": {"type": "categorical", "cardinality": 4, "top_values": {"1": 6956, "4": 1456, "3": 532, "2": 462}},
+   "SUID": {"type": "categorical", "cardinality": 4703, "top_values_note": "identifier; each value has exactly 2 rows (Planted + matched Unplanted)"},
+   "Fire_ID": {"type": "categorical", "cardinality": 187, "top_values_note": "MTBS federal fire IDs"},
+   "Planting_Date": {"type": "categorical", "cardinality": 784, "top_values_note": "date string MM/DD/YYYY, 1987-06-01 to 2012-10-21"}
+  },
+  "dataset_facts": {
+   "pair_structure": "4,703 matched pairs; 2 rows per SUID; Treatment perfectly balanced 4,703/4,703.",
+   "fires_covered": "187 fires (Fire_ID) in this table; fire years 1985-2010; plantings 1987-2012.",
+   "response_summary": "RS_growthRate median 0.48 %/yr (planted and control rows both present); RS_growthRate_allYrs median 1.0 %/yr.",
+   "companion_tables_in_assets": {
+    "survival_wCovs_corrected.csv": "1,589 rows x 34 cols; 1,071 SUIDs; 161 fires; 11 species (PIPO 593, PSME 311, LAOC 202 rows...); Num_Orig_Seedlings total 69,245, Num_Surviv_Seedlings total 54,206 (pooled rate 78.3%; the paper reports the mean of unit-level survival records as 79.5%, SD 23.2% - both are true under different aggregation); response propSurvival.",
+    "ech2oConvergenceErrors.csv": "SUID x errorFlag exclusion list used by the authors' final models.",
+    "FACTS_Spatial shapefiles": "facts_postfireClean.shp (planting units), controlAreas.shp (matched controls)."
+   },
+   "region_share": "Region 1: 6,956 rows; Region 4: 1,456; Region 3: 532; Region 2: 462."
+  },
+  "analytical_capabilities": "Supportable from this table: paired Planted-vs-Unplanted contrast of canopy-cover growth rates (SUID-grouped inference), regression of RS_growthRate on climate/severity/timing covariates, planting-seasonality effects (plantingJulianDate x climate strata), severity-growth and severity-survival relationships, region and fire-cohort stratification, prediction tasks with SUID-grouped or spatially blocked folds. NOT supportable from this table: seedling-level survival modeling (companion survival table required), post-planting weather analyses for Unplanted rows (structurally NA), sub-unit spatial heterogeneity (only unit means are provided), and absolute geolocation without joining the companion shapefiles.",
+  "paper_overview": {
+   "citation": "Rodman, K. C., Fornwalt, P. J., Holden, Z. A., Crouse, J. E., Davis, K. T., Marshall, L. A. E., Stoddard, M. T., Andrus, R. A., Chambers, M. E., Chapman, T. B., Hart, S. J., Schloegel, C. A., and Stevens-Rumann, C. S.: Green is the New Black: Outcomes of post-fire tree planting across the US Interior West, Forest Ecology and Management, 2024, DOI 10.1016/j.foreco.2024.122358.",
+   "evidence_base_note": "Full published text retrieved on 2026-11-02 from the ScienceDirect article page (saved as validation/paper_fulltext_20261102_sciencedirect.txt), supplemented by the authors' Zenodo README (per-column definitions) and released R/GEE scripts. NOTE: the OpenAlex abstract previously used as a substitute contained discrepancies against the published text (69,745 seedlings/302 fires/79.8% survival there vs 69,245 seedlings/297 fires/79.5% survival in the published abstract and data); the published-text figures are authoritative here.",
+   "research_question": "Do recent (1987-2022) post-fire tree plantings on USFS lands in the US Interior West accelerate forest recovery relative to environmentally similar unplanted sites in the same fires (Q1), and which environmental and operational factors shape two planting outcomes: remotely sensed canopy-cover change rates (Q2) and early seedling survival (Q3)?",
+   "data_used": "USDA Forest Service FACTS planting records for burned areas across 10 Interior West states (supplemented by seven Colorado National Forests per Methods 2.5); matched unplanted control areas within the same fires (matching rule in methods below); RAP v3.0 annual 30-m tree canopy cover 1986-2022; Landsat relativized burn ratio severity (Parks et al. 2021 mean composite); ech2o soil-surface temperature and soil-water simulations (Maneta and Silverman 2013); TOPOFIRE AET/CWD (Holden et al. 2019); in-situ survival surveys of 69,245 seedlings across 297 unique fire events (published abstract), filtered to surveys completed before Oct 1 2022 with >=25 marked individuals.",
+   "methods": "Q1 (planting effect): for each planting unit, matched unplanted control pixels within the same fire had to fall within the unit mean +/- 1 SD of Fire Severity, Average CWD, Post-Fire Canopy Cover and Pre-Fire Canopy Cover (max annual RAP 1986-fire year), with no FACTS planting record, on USFS lands, and no reburn after planting (mean control size 59.8 ha); planted-vs-control cover-change rates compared with a one-sided paired Wilcoxon signed-rank test. Q2/Q3: two Random Forest regressions (ranger, 1000 trees, maxstat split rule; mtry and min.node.size tuned by spatial CV; R 4.2.3 with ranger/spatialRF/caret/CAST/iml) over 14 candidate predictors (Table 2); variable selection by forward feature selection under spatially stratified cross-validation (30 k-means spatial folds of unit centroids; repeated with 10/20/30 folds for robustness; final predictors VIF < 2); effects summarized with permutation importance (scaled to 100) and ALE plots. Responses: RS_growthRate (canopy-cover slope, first 10 years after planting) and propSurvival (unit-level survival fraction).",
+   "main_results": [
+    "Q1: planted areas gained forest cover 25.7% more rapidly than matched unplanted sites (mean difference 0.29% cover per year; one-sided paired Wilcoxon p < 0.001); only 63.7% of units out-gained their matched controls.",
+    "Q2: within-unit mean cover-change rate 1.42%/yr (SD 1.26); rates 3.5x higher in wetter northern portions (1.55%/yr Idaho/Montana) than drier southern areas (0.35%/yr Arizona/New Mexico).",
+    "Q2 model: six predictors selected (relative importance order: average CWD, ordinal planting date, year planted, post-fire canopy cover, minimum post-planting soil surface temperature, fire severity); out-of-bag R2 = 0.29, spatial CV R2 = 0.14, OOB RMSE = 0.99%/yr, spatial CV RMSE = 1.09%/yr.",
+    "Q3: mean early survival 79.5% (SD 23.2%) one growing season after planting; <1% of records had full mortality, 14.1% full survival; 83.1% average in Idaho/Montana vs 68.4% in Arizona/New Mexico.",
+    "Q3 model: six predictors (average CWD, ordinal planting date, post-planting CWD, year planted, average AET, monitoring period length); Species was NOT selected, so records were aggregated across species; OOB R2 = 0.42, spatial CV R2 = 0.20, OOB RMSE = 17.7%, spatial CV RMSE = 20.8%.",
+    "Forest cover gain was fastest in units burning at low-to-moderate severity with >20% post-fire cover in the surrounding area - and nearly half of all plantings were completed in such areas, where natural regeneration would likely promote recovery even without intervention.",
+    "Fire severity was positively associated with seedling survival but negatively associated with cover-change rates (attributed to natural regeneration dynamics)."
+   ],
+   "stated_scope_and_limitations": [
+    "Scope: USFS lands, plantings 1987-2022, cover outcomes from 30-m RAP canopy cover, survival from one-growing-season surveys (3-20 months monitoring period).",
+    "The 25.7% contrast depends on the +/-1-SD matching rule within the same fires; the authors note unit-level variability (36.3% of units did not out-gain controls).",
+    "Nearly half of plantings occurred in low-severity, >20%-surrounding-cover areas where natural regeneration is likely regardless of planting - the authors flag this as a targeting issue.",
+    "Uncertain locations of planted trees and survey plots within large units likely weakened covariate-response relationships (Discussion).",
+    "Hydroclimate simulations exist only for planting units, so post-planting weather effects are estimated on planted units only (README); ech2o non-converged units were excluded from final models (ech2oConvergenceErrors.csv).",
+    "Survival records were aggregated across species because Species was not selected by the model - species-specific effects are not resolved in the final survival model."
+   ],
+   "not_disclosed_in_paper_sources_available_here": [
+    "Per-unit geographic coordinates are not shipped with the archive (only shapefiles), so the exact 30-fold k-means spatial fold assignment cannot be re-derived without re-running the published clustering procedure on those shapefiles.",
+    "Per-sample dates are only partially recoverable (planting and fire dates are in the tables; survey dates are in the survival companion table)."
+   ]
+  },
+  "improvement_directive": {
+   "objective": "Treat the Rodman et al. 2024 paper summarized above as the baseline starting point. Propose research ideas that could achieve better performance than the paper's reported configuration, using this companion table (and, when the idea requires it, the companion survival table documented in dataset_facts) as the data source.",
+   "better_performance_means": "For this task, better performance is concretely one or more of: higher spatial-CV R2 / lower spatial-CV RMSE than the paper's frozen anchors (cover model: spatial R2 = 0.14, spatial RMSE = 1.09%/yr, OOB R2 = 0.29; survival model: spatial R2 = 0.20, spatial RMSE = 20.8%, OOB R2 = 0.42); a more credible Planted-vs-Unplanted contrast (tighter paired inference on the 25.7% / 0.29%-per-year claim, e.g. better matching or uncertainty quantification); better out-of-region or out-of-fire-cohort generalization; more robust variable importance under the region-imbalance documented above; better calibration of per-unit predictions. No particular improvement direction is presumed effective in advance.",
+   "requirements_per_idea": [
+    "Name the specific limitation or deficiency of the original paper's approach that the idea addresses (e.g., fold design, matching credibility, weather-anomaly coverage, region imbalance, response definition).",
+    "State the concrete change (feature construction, model class, response/fold definition, contrast estimator, or research angle) and why it could plausibly work.",
+    "Explain how the idea would be compared fairly against the paper's original configuration: freeze the baseline (same response, same ranger RF family, same 30-fold spatial scheme), change one thing at a time, and report paired per-fold differences.",
+    "Formulate testable claims: state what must be computed, on which rows, with which expected direction, and give falsification conditions (what observed result would refute the claim).",
+    "Check data affordability: every claim must be computable from this table or the documented companion tables in ASSET-REFOREST-ZENODO, or be explicitly marked as requiring external data."
+   ],
+   "constraints": "Respect the matched-pair structure (SUID) in any resampling; respect the structural NA pattern of the hydroclimate columns; treat the 283 Inf rows in averageAnnualTmin_c as excluded unless the idea explicitly justifies handling them; rbr negatives are kept as-is unless an idea states a defensible rule."
+  }
+ },
+ "data_path": "./datasets/postfire_tree_planting_outcomes"
+}

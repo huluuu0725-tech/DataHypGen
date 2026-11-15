@@ -1,0 +1,73 @@
+{
+  "paper_id": "10.1007/s40333-024-0059-2",
+  "task_id": "three_or_more_datasets/task_006",
+  "title": "Response of vegetation variation to climate change and human activities in the Shiyang River Basin of China during 2001–2022",
+  "category": "landcover_vegetation_climate_dynamics",
+  "year": 2024,
+  "journal": "Journal of Arid Land",
+  "impact_level": "medium",
+  "datasets": [
+    "Copernicus Global Land Cover 100 m",
+    "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+    "MODIS Terra Vegetation Indices 16-Day Global 250 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "land_cover_context_input",
+      "dataset": "Copernicus Global Land Cover 100 m"
+    },
+    {
+      "role": "historical_optical_surface_input",
+      "dataset": "USGS Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "independent_vegetation_index_input",
+      "dataset": "MODIS Terra Vegetation Indices 16-Day Global 250 m"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "precipitation",
+    "temperature or reanalysis",
+    "irrigation or population proxies",
+    "terrain"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_006:landcover_vegetation_climate_dynamics",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from independently selected full-text evidence; empirical results are excluded from idea fields."
+  },
+  "idea": {
+    "research_question": "How do land-cover transitions and multi-resolution vegetation-index trajectories reveal vegetation response to climate and human activity?",
+    "hypothesis": "Land-cover context separates structural change from vegetation variability, while Landsat and MODIS jointly resolve long-term spatial patterns and dense temporal dynamics.",
+    "mechanism": "Land-cover classes, Landsat optical features and MODIS vegetation indices are aligned by year and region; trend, sensitivity and driver analyses test climate and anthropogenic explanations.",
+    "key_variables": {
+      "target": "Joint observable and task-specific response",
+      "predictors": [
+        "land_cover_context_input",
+        "historical_optical_surface_input",
+        "independent_vegetation_index_input",
+        "precipitation",
+        "temperature or reanalysis",
+        "irrigation or population proxies",
+        "terrain"
+      ]
+    },
+    "data_sources": [
+      "GEE:COPERNICUS/Landcover/100m/Proba-V/Global",
+      "GEE:LANDSAT/LC08/C02/T1_L2",
+      "GEE:MODIS/061/MOD13Q1"
+    ],
+    "analytical_approach": "Land-cover transition analysis, multi-resolution vegetation-index modelling and climate/land-use attribution",
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves all required data roles and adds auxiliary data only for a distinct mechanism, validation or refinement purpose.",
+    "falsification_condition": "The idea fails if it drops a required role, cannot align the required inputs, or does not improve explanatory, predictive or validation performance over the appropriate single-source baseline.",
+    "required_component_usage": [
+      "land_cover_context_input",
+      "historical_optical_surface_input",
+      "independent_vegetation_index_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently selected full-text multidataset evidence and the composite prompt contract on 2026-09-29."
+}

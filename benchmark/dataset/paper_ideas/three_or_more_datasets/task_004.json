@@ -1,0 +1,58 @@
+{
+  "paper_id": "10.3390/land11081187",
+  "task_id": "three_or_more_datasets/task_004",
+  "title": "Distribution and Structure Analysis of Mountain Permafrost Landscape in Orulgan Ridge (Northeast Siberia) Using Google Earth Engine",
+  "category": "geomorphology_analysis",
+  "year": 2022,
+  "journal": "Land",
+  "impact_level": "medium",
+  "datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "multispectral_landscape_mapping",
+      "dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+    },
+    {
+      "role": "historical_optical_time_series",
+      "dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "landform_and_elevation",
+      "dataset": "ASTER Global Digital Elevation Model V003"
+    }
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_004:permafrost_landscape",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from the seed abstract and declared dataset roles; empirical results are excluded from the idea fields."
+  },
+  "idea": {
+    "research_question": "How can harmonized Sentinel-2 and Landsat time series combined with ASTER terrain variables distinguish mountain permafrost landscape units?",
+    "hypothesis": "Phenological spectral trajectories from Sentinel-2 and Landsat, when combined with terrain and elevation, provide sufficient information to separate tundra, forest and intrazonal valley landscape units.",
+    "mechanism": "Monthly optical composites yield NDVI, GNDVI and NDMI phenology features; the Landsat series extends temporal context; ASTER GDEM-derived relief and landform variables encode the topographic organization of permafrost landscapes. A supervised classifier maps these joint ecological and geomorphological units.",
+    "key_variables": {
+      "target": "Mountain permafrost landscape class and landscape-structure statistics",
+      "predictors": [
+        "Sentinel-2 monthly NDVI/GNDVI/NDMI",
+        "Landsat 8 optical time series",
+        "ASTER GDEM elevation, relief and landform variables"
+      ]
+    },
+    "data_sources": [
+      "COPERNICUS/S2_SR_HARMONIZED",
+      "LANDSAT/LC08/C02/T1_L2",
+      "NASA_CMR:ASTGTM_003"
+    ],
+    "analytical_approach": "Phenological compositing and feature engineering, multisensor harmonization, SVM or random-forest classification, followed by landscape-diversity and hypsometric-profile analysis.",
+    "expected_contribution": "A reproducible multisensor method for mapping and comparing the spatial organization of mountain permafrost landscapes.",
+    "falsification_condition": "Adding temporal optical features or terrain variables does not improve class separability over a single-date or single-sensor baseline, or predicted classes fail independent map/field comparison."
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from the verified seed abstract and multidataset prompt specification on 2026-09-29."
+}

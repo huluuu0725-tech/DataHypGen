@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Climate-sensitive vegetation regions",
+  "datasets": [
+    {
+      "role": "precipitation_driver",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Daily gridded precipitation raster",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "spatial_coverage": {
+          "region_name": "Climate-sensitive vegetation regions",
+          "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    },
+    {
+      "role": "vegetation_index_input",
+      "data_description": {
+        "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+        "data_type": "NDVI/EVI vegetation-index raster time series",
+        "data_format": "Google Earth Engine ImageCollection asset",
+        "data_path": "GEE:MODIS/061/MOD13Q1",
+        "spatial_coverage": {
+          "region_name": "Climate-sensitive vegetation regions",
+          "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MOD13Q1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Daily gridded precipitation raster",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "spatial_coverage": {
+        "region_name": "Climate-sensitive vegetation regions",
+        "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+      "data_type": "NDVI/EVI vegetation-index raster time series",
+      "data_format": "Google Earth Engine ImageCollection asset",
+      "data_path": "GEE:MODIS/061/MOD13Q1",
+      "spatial_coverage": {
+        "region_name": "Climate-sensitive vegetation regions",
+        "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:MODIS/061/MOD13Q1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_011:composite_observation",
+    "type": "composite_observation",
+    "name": "precipitation_vegetation_index composite observation",
+    "observable_group": "precipitation_vegetation_index_multidataset_observation",
+    "components": [
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Daily gridded precipitation raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "spatial_coverage": {
+            "region_name": "Climate-sensitive vegetation regions",
+            "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      },
+      {
+        "role": "vegetation_index_input",
+        "data_description": {
+          "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 250 m",
+          "data_type": "NDVI/EVI vegetation-index raster time series",
+          "data_format": "Google Earth Engine ImageCollection asset",
+          "data_path": "GEE:MODIS/061/MOD13Q1",
+          "spatial_coverage": {
+            "region_name": "Climate-sensitive vegetation regions",
+            "coverage": "Declared analysis region within Climate-sensitive vegetation regions."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD13Q1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "precipitation_driver",
+        "vegetation_index_input"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_011:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:MODIS/061/MOD13Q1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "precipitation_driver",
+      "vegetation_index_input"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

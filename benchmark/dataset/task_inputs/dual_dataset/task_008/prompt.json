@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Mountainous precipitation regimes",
+  "datasets": [
+    {
+      "role": "terrain_context",
+      "data_description": {
+        "dataset_name": "SRTM 30 m Digital Elevation Model",
+        "data_type": "Static elevation raster",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:USGS/SRTMGL1_003",
+        "spatial_coverage": {
+          "region_name": "Mountainous precipitation regimes",
+          "coverage": "Declared analysis region within Mountainous precipitation regimes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003"
+    },
+    {
+      "role": "precipitation_driver",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Daily gridded precipitation raster",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "spatial_coverage": {
+          "region_name": "Mountainous precipitation regimes",
+          "coverage": "Declared analysis region within Mountainous precipitation regimes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "SRTM 30 m Digital Elevation Model",
+      "data_type": "Static elevation raster",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:USGS/SRTMGL1_003",
+      "spatial_coverage": {
+        "region_name": "Mountainous precipitation regimes",
+        "coverage": "Declared analysis region within Mountainous precipitation regimes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Daily gridded precipitation raster",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "spatial_coverage": {
+        "region_name": "Mountainous precipitation regimes",
+        "coverage": "Declared analysis region within Mountainous precipitation regimes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:USGS/SRTMGL1_003",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_008:composite_observation",
+    "type": "composite_observation",
+    "name": "dem_precipitation composite observation",
+    "observable_group": "dem_precipitation_multidataset_observation",
+    "components": [
+      {
+        "role": "terrain_context",
+        "data_description": {
+          "dataset_name": "SRTM 30 m Digital Elevation Model",
+          "data_type": "Static elevation raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:USGS/SRTMGL1_003",
+          "spatial_coverage": {
+            "region_name": "Mountainous precipitation regimes",
+            "coverage": "Declared analysis region within Mountainous precipitation regimes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Daily gridded precipitation raster",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "spatial_coverage": {
+            "region_name": "Mountainous precipitation regimes",
+            "coverage": "Declared analysis region within Mountainous precipitation regimes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "terrain_context",
+        "precipitation_driver"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_008:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:USGS/SRTMGL1_003",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "terrain_context",
+      "precipitation_driver"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

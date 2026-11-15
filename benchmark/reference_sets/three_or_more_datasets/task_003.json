@@ -1,0 +1,3657 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_003",
+  "reference_coverage": "sparse_member_verified_20261010",
+  "evaluation_year": 2026,
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_003:dryland_degradation",
+    "type": "composite_observation",
+    "name": "Dryland vegetation-degradation composite observation",
+    "observable_group": "dryland_vegetation_degradation_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Dryland vegetation-degradation composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "spectral_indicators",
+        "data_description": {
+          "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+          "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+          "temporal_coverage": "2017-03-28 to near present",
+          "data_source": "ESA Copernicus Sentinel-2 MSI",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "analytical_capabilities": [
+            "Cloud-masked spectral compositing",
+            "Land-cover and vegetation classification",
+            "NDVI, BSI, NDWI and other index derivation",
+            "Multi-date change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Surface reflectance scaled integer bands",
+            "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      },
+      {
+        "role": "long_term_spectral_context",
+        "data_description": {
+          "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+          "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+          "temporal_coverage": "2013-04-11 to near present",
+          "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "analytical_capabilities": [
+            "Long-term multispectral vegetation monitoring",
+            "Surface-temperature and bare-soil indicators",
+            "Land-cover transition mapping",
+            "Cross-sensor temporal comparison"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+            "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "rainfall_stress",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+          "temporal_unit": "Daily precipitation estimates",
+          "temporal_coverage": "1981-01-01 to near present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Daily-to-seasonal rainfall accumulation",
+            "Extreme-rainfall and return-period summaries",
+            "Rainfall anomaly and antecedent-moisture indicators",
+            "Hydroclimatic covariate construction"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Daily precipitation depth in millimetres",
+            "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+          },
+          "spatial_coverage": {
+            "region_name": "Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia",
+            "coverage": "Catalog coverage intersected with Al-Khunfah and Harrat al-Harrah protected areas, northern Saudi Arabia."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Current vegetation condition interpreted jointly with historical optical context, rainfall stress, soil, terrain and land cover.",
+      "alignment": "All components are harmonized over the protected-area study regions and the declared 2023 screening window; categorical soil and land-cover layers remain contextual covariates.",
+      "required_roles": [
+        "spectral_indicators",
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ],
+      "component_count": 3
+    },
+    "observation_identity_contract": {
+      "physical_object": "surface spectral response and vegetation condition in dryland protected areas",
+      "source_lineage": "Copernicus Sentinel-2 MSI surface-reflectance lineage",
+      "core_measurement_semantics": "cloud-masked optical reflectance used to derive vegetation and degradation indicators",
+      "non_material_variations": "Sentinel-2 processing baseline, compositing, index choice, spatial aggregation and declared cloud masking",
+      "material_mismatches": "vegetation discussion without Sentinel-2 input or single-index analysis with no supporting environmental components"
+    },
+    "asset_alias_policy": "The anchor requires Sentinel-2 surface reflectance, Landsat optical history and CHIRPS rainfall stress. Soil-, terrain- or land-cover-only studies are adjacent references."
+  },
+  "seed_exclusion": {
+    "title": "A Computational Sustainability Framework for Vegetation Degradation and Desertification Assessment in Arid Lands in Saudi Arabia",
+    "doi": "10.3390/su18020641",
+    "year": 2026,
+    "excluded_from_directions": true,
+    "seed_uses_anchor": true
+  },
+  "construction": {
+    "channels": [
+      "multidataset_anchor_asset_lineages",
+      "complete_literature_pool_20260929"
+    ],
+    "time_window": "2020 <= paper_year <= 2026; seed DOI, existing formal references and non-paper records excluded",
+    "required_methods_evidence": "Formal references must cover Sentinel-2 surface reflectance, Landsat surface reflectance/history, and rainfall stress in the same research instance. Non-CHIRPS rainfall products may be admitted only as expanded_set_reference with actual product names preserved.",
+    "candidate_audit_source": "legacy task_003 directions plus local fulltext/PDF Methods/Data manual review, 2026-10-03",
+    "anchor_semantics": "The task anchor is the complete role-labeled dataset combination, not the first component. A reference direction must preserve the joint observable and may not be admitted solely because it uses one component."
+  },
+  "quality": {
+    "ref_count": 13,
+    "source_paper_count": 13,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 13,
+    "manual_admission_count": 11,
+    "rejected_count": 0,
+    "uncertain_count": 0,
+    "error_count": 0,
+    "partial_set_support_count": 12,
+    "component_support_count": 3,
+    "zero_member_support_count": 0,
+    "complete_member_combination_count": 0,
+    "disputed_complete_pending_recheck_count": 1,
+    "member_conflict_count": 4,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": true,
+    "member_verification_batch": "threeplus_member_verified_migration_20261010",
+    "legacy_quality": {
+      "ref_count": 13,
+      "source_paper_count": 13,
+      "fulltext_available_count": 2,
+      "methods_candidates_audited_count": 10,
+      "independent_author_team_count": 2,
+      "direct_set_reference_count": 0,
+      "expanded_set_reference_count": 13,
+      "partial_set_support_reviewed_count": 7,
+      "component_support_reviewed_count": 1,
+      "uncertain_count": 0,
+      "rejected_count": 0,
+      "legacy_directions_removed_count": 8,
+      "reference_space_collapsed": false,
+      "sparse_reference_space": true,
+      "review_status": "task_003_legacy_directions_manual_review_complete",
+      "manual_admission_count": 11,
+      "partial_set_support_count": 8
+    }
+  },
+  "reference_papers": [
+    {
+      "doi": "10.3389/ffgc.2026.1809572",
+      "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems",
+      "year": 2026,
+      "venue": "Frontiers in Forests and Global Change",
+      "evidence_level": "methods_data_fulltext_manual_review",
+      "reference_tier": "expanded_set_reference",
+      "publication_timing": "same_year",
+      "matched_signals": [
+        "sentinel_2",
+        "landsat",
+        "precipitation"
+      ],
+      "actual_products": {
+        "spectral_indicators": "Sentinel-2 surface-reflectance imagery processed in Google Earth Engine",
+        "long_term_spectral_context": "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+        "rainfall_stress": "El-Hamma meteorological station precipitation and temperature data, 2011-2020"
+      },
+      "expansion_reason": "The rainfall member is not CHIRPS. It is a station-based precipitation product used in the same wildfire/vegetation-stress interpretation chain, so it is admitted only as analogous-product expansion.",
+      "audit_batch": "threeplus_legacy_direction_manual_review_20261003",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+        "El-Hamma meteorological station precipitation and temperature data, 2011-2020"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 3,
+        "missing_member_ids": [],
+        "partial_set_support": false,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "used_analogous"
+        }
+      },
+      "partial_set_support": false,
+      "covered_member_count": 3,
+      "missing_member_ids": []
+    },
+    {
+      "doi": "10.3390/s26144470",
+      "title": "Multi-Sensor NDVI Fusion for Daily Crop Evapotranspiration Mapping: A Six-Year Irrigated Maize Assessment Using MODIS-Sentinel-2-Landsat (2020-2025)",
+      "year": 2026,
+      "venue": "Sensors",
+      "evidence_level": "methods_data_fulltext_manual_review",
+      "reference_tier": "expanded_set_reference",
+      "publication_timing": "same_year",
+      "matched_signals": [
+        "sentinel_2",
+        "landsat",
+        "precipitation"
+      ],
+      "actual_products": {
+        "spectral_indicators": "Sentinel-2 Level-2A and COPERNICUS/S2_SR_HARMONIZED surface reflectance",
+        "long_term_spectral_context": "Landsat 8/9 Collection 2 Level-2 surface reflectance",
+        "rainfall_stress": "Davis Vantage Vue and HungaroMet ODP meteorological precipitation/ET0 data"
+      },
+      "expansion_reason": "The rainfall member is not CHIRPS. It is local/ODP meteorological precipitation and ET forcing used with the optical-fusion NDVI chain, so it is admitted only as analogous-product expansion.",
+      "audit_batch": "threeplus_legacy_direction_manual_review_20261003",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat 8 and 9 (Collection 2, Level-2)"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 2,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ]
+    },
+    {
+      "doi": "10.1101/2023.05.25.542318",
+      "title": "Mapping oak wilt disease using phenological observations from space",
+      "year": 2023,
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "record_type": "preprint",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: spectral_indicators<-['sentinel-2']; long_term_spectral_context<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "role": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "mappingoakwiltusingsentinel-247venables,w.n.,ripley,b.d.,2002.modernappliedstatisticswiths,statisticsand873computing.springernewyork,newyork,ny.https://doi.org/10.1007/978-0-387-87421706-2875ain,m.a.,ensminger,i.,2020.trackingthephenologyof876877inatemperatee"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "role": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "881zhu,z.,wang,s.,woodcock,c.e.,2015.improvementandexpansionofthefmaskalgorithm:882cloud,cloudshadow,andsnowdetectionforlandsats47,8,andsentinel2images.883remotesensingofenvironment159,269277.https://doi.org/10.1016/j.rse.2014.12.014884zhu,z.,woodcock,c.e.,2012.object-basedcloudandcloudshadowdetectioninlandsat885imagery.remotesensingofenvironment118,8394.886"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "mention_only",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "rainfall_stress",
+          "role": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "mention_only"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [
+        "The code for processing the satell\n\nite data is available through\n\nhttps://github.com/davidfrantz/force"
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "uncertain",
+        "gpt_coverage_tier": "uncertain",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "spectral_indicators",
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "uncertain",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "spectral_indicators",
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      },
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "not_used",
+          "rainfall_stress": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ]
+    },
+    {
+      "doi": "10.31223/x51z1r",
+      "title": "Direct mapping of plantation forest aboveground biomass change with deep learning and SAR-optical fusion",
+      "year": 2026,
+      "venue": null,
+      "record_type": "preprint",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: long_term_spectral_context<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "Sentinel-2 Level-1C"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "role": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_dataset": "Sentinel-2",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM (Table 1).",
+            "Sentinel-2 Level-1C imagery was cloud-masked, composited, and used to generate standard vegetation indices (NDVI, EVI, MSAVI, MSI, NBR, NDMI) in addition to the original bands"
+          ],
+          "identity_basis": "conservative_weakest_model_with_used_as_data",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "exact_product"
+          },
+          "model_products": {
+            "gpt": "Sentinel-2 Level-1C imagery",
+            "qwen": "Sentinel-2"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "role": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "nforbroadeningthe254.2.multi-sensordatafusionfordirectchangedetection-sensorapproach,primarilyusingopticaldatasetssuchaslandsatandsentinel-2(arévaloetal.,2023;healeyetal.,2006;pulitietal.,2021).whileeffective,theseapproachesareconstrainedbycloudcoverandlimitedstructuralsensitivity.ourresultsshowthatcombiningmultiplesensors,particularlysarandoptical,enhancesp"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "mention_only",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "rainfall_stress",
+          "role": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [
+        "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM (Table 1).",
+        "All data were accessed and pre-processed in Google Earth Engine (GEE; Gorelick et al., 2017).",
+        "Each change observation (...) was linked to the corresponding annual composites, and predictor variables were derived as differences between (...)"
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "partial",
+        "gpt_coverage_tier": "component_support",
+        "gpt_matched_member_count": 1,
+        "gpt_missing_member_ids": [
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "partial",
+        "qwen_coverage_tier": "component_support",
+        "qwen_matched_member_count": 1,
+        "qwen_missing_member_ids": [
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      },
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "long_term_spectral_context",
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_compatible",
+          "long_term_spectral_context": "not_used",
+          "rainfall_stress": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ]
+    },
+    {
+      "doi": "10.3390/books978-3-03928-093-3",
+      "title": "Earth Observation Data Cubes",
+      "year": 2020,
+      "venue": null,
+      "record_type": "book",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: spectral_indicators<-['sentinel-2']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "Landsat observations / Landsat archive (processed via DEA)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "role": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ndremotesensingsymposium,valencia,spain,2227july2018;pp.86398642.32.giuliani,g.;chatenoux,b.;honeck,e.;richard,j.towardssentinel-2analysisreadydata:aswissdatacubeperspective.inproceedingsoftheigarss20182018ieeeinternationalgeoscienceandremotesensingsymposium,valencia,spain,2227july2018;pp.86598662.290data2019,4,144correspondingopensourceapplicationalgorithms"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "mention_only",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "role": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "actual_dataset": "Landsat observations / Landsat archive (processed via DEA)",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This dataset representsthetidalrangeoftheAustraliancoastline,generatedfromthefrequencyofinundation asquantiedfromallcloudfreeLandsatobservationsofthecoastalmarginovera28-yearperiod.",
+            "Figure2.Landsatannualfalsecolourcompositesfor(a)Ayr(Queensland),(b)Diamantina(Queensland),(c)Gwydir(NewSouthWales)and(d)theLeichhardtRiver(northernQueensland)."
+          ],
+          "identity_basis": "conservative_weakest_model_with_used_as_data",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {
+            "gpt": "parent_scope",
+            "qwen": "compatible_lineage"
+          },
+          "model_products": {
+            "gpt": "Landsat archive / cloud-free Landsat observations",
+            "qwen": "Landsat observations / Landsat archive (processed via DEA)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        },
+        {
+          "member_id": "rainfall_stress",
+          "role": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "rejected",
+        "gpt_coverage_tier": "rejected",
+        "gpt_matched_member_count": 1,
+        "gpt_missing_member_ids": [
+          "spectral_indicators",
+          "rainfall_stress"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "partial",
+        "qwen_coverage_tier": "component_support",
+        "qwen_matched_member_count": 1,
+        "qwen_missing_member_ids": [
+          "spectral_indicators",
+          "rainfall_stress"
+        ],
+        "evidence_source_quality": "verified_methods_or_data_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      },
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "spectral_indicators",
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "not_used",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "spectral_indicators",
+        "rainfall_stress"
+      ]
+    },
+    {
+      "doi": "10.1016/j.scitotenv.2019.02.206",
+      "title": "Quantifying increased groundwater demand from prolonged drought in the East African Rift Valley",
+      "year": 2019,
+      "venue": "The Science of The Total Environment",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['spectral_indicators']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection",
+        "Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "used_exact",
+          "evidence": "We used the Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "spectral_indicators"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "spectral_indicators"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "not_used",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "used_analogous"
+        }
+      }
+    },
+    {
+      "doi": "10.24294/jipd.v8i10.8702",
+      "title": "Investigating the changing land use patterns and their impacts on ecosystem in the Teesta River Basin",
+      "year": 2024,
+      "venue": "Journal of Infrastructure Policy and Development",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+        "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_analogous",
+          "evidence": "composite images.  Journal of Infrastructure, Policy and Development  2024, 8( 10 ), 8702 .  5  The Harmonized Sentinel - 2 MSI: Multispectral Instrument, Level - 2A dataset for 2020 was utilized. Sentinel - 2 is a multispectral imaging mission with"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_compatible",
+          "long_term_spectral_context": "used_analogous",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.3390/rs17111822",
+      "title": "Comparative Analysis of Trophic Status Assessment Using Different Sensors and Atmospheric Correction Methods in Greece’s WFD Lake Network",
+      "year": 2025,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Sentinel 2 MSI Level-2A SR data",
+        "Landsat 7 ETM+ and 8 OLI Collection 1 Level 1 Tier 1 SR data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_analogous",
+          "evidence": "nicusDataSpaceEcosystemhttps: //dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2(accessedon10July2022)).ManuallydownloadedSentinel2andLandsatimageswere subjectedtothesamepre-processingprocedure,asdescribedin[16 larly,th"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_analogous",
+          "evidence": "research,eliminatedtheneedforresampling. AcquiredSRproductsfromtheGEErepositoryincludedSentinel2MSI(Level-2ASR data)andLandsat7ETM+/8OLImultispectralimages(Collection1Level1-precision andterraincorrection-Tier1;SRdata).Thetimewindowforsatelliteac"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_compatible",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.3390/su151511769",
+      "title": "Implications of Changing Urban Land Use on the Livelihoods of Local People in Northwestern Bangladesh",
+      "year": 2023,
+      "venue": "Sustainability",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_analogous",
+          "evidence": "tion,monthlycompositeimagesofthree speci\u0002cyears(2000,2010,and2020)wereused.Fortheyear2020,HarmonizedSentinel-2 MSI:MultispectralInstrument,Level-2Adatasetwasused.Sentinel-2isahigh-resolution, multi-spectralimagingmissionwidelyusedforlandmonitoringst"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_analogous",
+          "evidence": "i\u0002cyears(2000,2010,and2020)wereused.Fortheyear2020,HarmonizedSentinel-2 MSI:MultispectralInstrument,Level-2Adatasetwasused.Sentinel-2isahigh-resolution, multi-spectralimagingmissionwidelyusedforlandmonitoringstudies(waterbodies, vegetationcover,s"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.1109/tgrs.2025.3636434",
+      "title": "BiomSHARP: Biomass Super-Resolution for High Accuracy Prediction",
+      "year": 2025,
+      "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat-5 Level-2, Collection 2, Tier 1"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_exact",
+          "evidence": "ForSentinel-2,weutilizedtheLevel-2Aproduct"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_analogous",
+          "evidence": "forLandsat-5,weselectedtheLevel-2,Collection2,Tier1product"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.33411/ijist/1482",
+      "title": "Assessing the Efficacy of Pixel-based and Object-based Classification Techniques and Classifiers for Land Cover Mapping Using Landsat-8 and Sentinel-2 Data in Complex Mountainous Terrain",
+      "year": 2025,
+      "venue": "International Journal of Innovations in Science and Technology",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_exact",
+          "evidence": "the OBIA, combined with k-NN, applied to Sentinel-2 imagery"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_exact",
+          "evidence": "Landsat-8 surface reflectance products are generated using LaSRC"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_exact",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.5194/isprs-archives-xlviii-m-1-2023-41-2023",
+      "title": "WATER RESERVOIRS MONITORING THROUGH GOOGLE EARTH ENGINE: APPLICATION TO SENTINEL AND LANDSAT IMAGERY",
+      "year": 2023,
+      "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Sentinel-2",
+        "Landsat-8"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_exact",
+          "evidence": "applied to Sentinel-2 (GEE Data Catalog) and Landsat-8 multispectral imagery"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_exact",
+          "evidence": "the QA PIXEL and QA RADSAT bands of Landsat-8"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_compatible",
+          "long_term_spectral_context": "used_compatible",
+          "rainfall_stress": "not_used"
+        }
+      }
+    },
+    {
+      "doi": "10.3390/geosciences15080316",
+      "title": "Testing Satellite Snow Cover Observations Using Time-Lapse Camera Images in Mid-Latitude Mountain Ranges (Northern Spain)",
+      "year": 2025,
+      "venue": "Geosciences",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['rainfall_stress']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "verdict": "used_exact",
+          "evidence": "USGS Landsat8 Level2,Collection2,Tier1; Harmonized Sentinel-2 MSI Level2A"
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "verdict": "used_exact",
+          "evidence": "Landsat5/8/9 Level2, Collection2, Tier1 products used for snow classification"
+        },
+        {
+          "member_id": "rainfall_stress",
+          "verdict": "not_used",
+          "evidence": "chirps=0 occurrences in full text"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "spectral_indicators": "used_exact",
+          "long_term_spectral_context": "used_exact",
+          "rainfall_stress": "not_used"
+        }
+      }
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "three_or_more_datasets/task_003_expanded_ref_01",
+      "source_paper_doi": "10.3389/ffgc.2026.1809572",
+      "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+        "El-Hamma meteorological station precipitation and temperature data, 2011-2020"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Sentinel-2 MSI Level-2A",
+          "evidence_quotes": [
+            "Remote sensing technologies provide powerful tools for monitoring forest ecosystems and assessing wildfire impacts across large spatial scales. Satellite-derived spectral indices enable the quantification of vegetation structure, physiological condition, and ecosystem disturbances.",
+            "Landsat 8 and Sentinel-2 images were selected and processed in Google Earth Engine",
+            "The study employed satellite imagery from the Landsat 8 Operational Land Imager and Sentinel-2 sensors"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 2,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+          "actual_product_in_paper": "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+          "evidence_quotes": [
+            "Landsat 8 and Sentinel-2 images were selected and processed in Google Earth Engine",
+            "The study employed satellite imagery from the Landsat 8 Operational Land Imager and Sentinel-2 sensors"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 2,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "El-Hamma meteorological station precipitation and temperature data, 2011-2020",
+          "actual_product_in_paper": "El-Hamma meteorological station precipitation and temperature data, 2011-2020",
+          "evidence_quotes": [
+            "Temperature and precipitation ... based on data from the El-Hamma meteorological station"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true
+        }
+      ],
+      "covered_member_count": 3,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "Remote sensing technologies provide powerful tools for monitoring forest ecosystems and assessing wildfire impacts across large spatial scales. Satellite-derived spectral indices enable the quantification of vegetation structure, physiological condition, and ecosystem disturbances.",
+        "The integration of multiple spectral indices enabled a robust discrimination between wildfire effects and dieback processes",
+        "This study demonstrated that a multi-index remote sensing framework can improve the distinction between abrupt wildfire-induced damage and progressive forest dieback in the Ouled Yagoub State Forest."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究旨在区分阿尔及利亚东部奥雷斯山脉乌莱德亚古布国有林区（Ouled Yagoub State Forest）内由野火引起的突发性植被损伤与由气候胁迫导致的渐进性森林衰退（dieback），并评估2021年野火事件的严重程度及植被恢复能力。",
+      "hypothesis_or_mechanism": "野火造成的植被损伤在光谱上表现为燃烧驱动的生物量骤减（如dNBR显著升高、NDVI急剧下降），而森林衰退则表现为色素胁迫指标（如SIPI）逐渐升高、叶绿素相关指数（如GNDVI、GCI）缓慢下降，二者具有可区分的光谱行为模式。",
+      "variables_and_data_use": "论文使用Sentinel-2 MSI Level-2A地表反射率数据计算多种光谱指数（如NBR、dNBR、NDVI、NDWI、SIPI、GNDVI、GCI、SAVI系列等），用于量化野火严重程度和植被生理胁迫；未使用Landsat或CHIRPS等其他遥感产品作为实际输入数据。",
+      "method_paradigm": "采用多指数光谱分析框架，通过阈值分割和指数组合对野火损伤与森林衰退进行分类与区分，并结合时间序列变化分析植被恢复动态。",
+      "study_area": "Ouled Yagoub State Forest, Aurès Mountains, eastern Algeria",
+      "study_period": "围绕2021年野火事件，分析其前后时期的遥感数据（具体时间范围未明确说明，但提及‘one year after the fire’）",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2 MSI Level-2A",
+          "role_in_study": "计算多种光谱指数以评估野火严重程度和植被衰退",
+          "usage": "used_as_data",
+          "evidence_quote": "Remote sensing technologies provide powerful tools for monitoring forest ecosystems and assessing wildfire impacts across large spatial scales. Satellite-derived spectral indices enable the quantification of vegetation structure, physiological condition, and ecosystem disturbances.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.3389_ffgc.2026.1809572.txt",
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.3389_ffgc.2026.1809572.methods.txt"
+        ],
+        "chars": 26102,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "97a7a90dc1ff3e233858490a8c8a985fa9893776157a97bdbf906eb397f43d78",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:43:39",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.3389_ffgc.2026.1809572.json",
+        "quote_gate": {
+          "total": 5,
+          "verified": 5
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_003_expanded_ref_01",
+        "reference_tier": "expanded_set_reference",
+        "research_question": "How can multisensor optical vegetation indicators be interpreted together with rainfall stress to diagnose vegetation degradation, disturbance severity or water-stress dynamics?",
+        "hypothesis_or_mechanism": "Sentinel-2 and Landsat surface-reflectance time series provide vegetation-condition signals, while rainfall or meteorological forcing helps separate moisture stress from spectral disturbance or recovery patterns.",
+        "variables_and_data_use": "Sentinel-2 surface reflectance and Landsat surface reflectance are used as optical vegetation inputs; the rainfall-stress member is admitted as an analogous precipitation/meteorological product rather than exact CHIRPS.",
+        "method_paradigm": "Methods/Data verified multisensor index construction with precipitation or meteorological forcing in the same research instance",
+        "used_assets": [
+          "Sentinel-2 surface-reflectance imagery processed in Google Earth Engine",
+          "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+          "El-Hamma meteorological station precipitation and temperature data, 2011-2020"
+        ],
+        "source_paper": {
+          "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems",
+          "doi": "10.3389/ffgc.2026.1809572",
+          "year": 2026,
+          "venue": "Frontiers in Forests and Global Change"
+        },
+        "identity_match_by_member": {
+          "spectral_indicators": "compatible_lineage",
+          "long_term_spectral_context": "compatible_lineage",
+          "rainfall_stress": "analogous_product"
+        },
+        "usage_by_member": {
+          "spectral_indicators": "used_as_data",
+          "long_term_spectral_context": "used_as_data",
+          "rainfall_stress": "used_as_data"
+        },
+        "actual_dataset_by_member": {
+          "spectral_indicators": "Sentinel-2 surface-reflectance imagery processed in Google Earth Engine",
+          "long_term_spectral_context": "Landsat 8 surface-reflectance imagery processed in Google Earth Engine",
+          "rainfall_stress": "El-Hamma meteorological station precipitation and temperature data, 2011-2020"
+        },
+        "same_research_instance": true,
+        "combination_coverage": "complete_three_member_combination_via_expanded_rainfall_member",
+        "evidence_quotes": [
+          "Landsat 8 and Sentinel-2 images were selected and processed in Google Earth Engine",
+          "The study employed satellite imagery from the Landsat 8 Operational Land Imager and Sentinel-2 sensors",
+          "Temperature and precipitation ... based on data from the El-Hamma meteorological station"
+        ],
+        "joint_use_evidence_quotes": [
+          "ten spectral indices were calculated from the multispectral imagery",
+          "Climate synthesis ... based on temperature and precipitation data for the period 2011-2020"
+        ],
+        "expansion_reason": "The rainfall member is not CHIRPS. It is a station-based precipitation product used in the same wildfire/vegetation-stress interpretation chain, so it is admitted only as analogous-product expansion.",
+        "manual_review": {
+          "reviewed_at": "2026-10-03",
+          "reviewer": "Codex manual Methods/Data review",
+          "audit_batch": "threeplus_legacy_direction_manual_review_20261003",
+          "automatic_admission": false,
+          "notes": "Manual admission after reading complete relevant Methods/Data sections. Not a dual-model automatic admission."
+        },
+        "extraction_confidence": "manual_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "relationship_mechanism",
+        "selection_tier": "expanded_set_reference",
+        "matched_dataset_signals": [
+          "sentinel_2",
+          "landsat",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_003_expanded_ref_02",
+      "source_paper_doi": "10.3390/s26144470",
+      "title": "Multi-Sensor NDVI Fusion for Daily Crop Evapotranspiration Mapping: A Six-Year Irrigated Maize Assessment Using MODIS-Sentinel-2-Landsat (2020-2025)",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat 8 and 9 (Collection 2, Level-2)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "COPERNICUS/S2_SR_HARMONIZED",
+          "evidence_quotes": [
+            "all core analyses (gap-filling, NDVI fusion, and ET c estimation) were also implemented using Google Earth Engine (GEE) with open-access Sentinel-2 Level-2A data (COPERNICUS/S2_SR_HARMONIZED collection), ensuring that the methodological pipeline is fully reproducible via the GEE script provided in the Supplementary Materials.",
+            "Sentinel-2 (Level-2A) provides atmospherically corrected surface reflectance",
+            "Landsat 8 and 9 (Collection 2, Level-2) contribute 30 m surface reflectance",
+            "Sentinel-2 Level-2A data (COPERNICUS/S2_SR_HARMONIZED collection)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 8 and 9 (Collection 2, Level-2)",
+          "actual_product_in_paper": "Landsat 8 and 9 (Collection 2, Level-2)",
+          "evidence_quotes": [
+            "Landsat 8 and 9 (Collection 2, Level-2) contribute 30 m surface reflectance in the red (SR_B4: 636–673 nm) and NIR (SR_B5: 851–879 nm) bands, also accessed through GEE, with the QA_PIXEL band used for cloud, shadow, and cirrus masking.",
+            "Sentinel-2 (Level-2A) provides atmospherically corrected surface reflectance",
+            "Landsat 8 and 9 (Collection 2, Level-2) contribute 30 m surface reflectance",
+            "Sentinel-2 Level-2A data (COPERNICUS/S2_SR_HARMONIZED collection)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Davis Vantage Vue and HungaroMet ODP meteorological precipitation/ET0 data",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "manual_methods_data_review_20261003",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "This study presents a multi-sensor data fusion framework combining daily MODIS (250 m), Sentinel-2 (10 m), and Landsat 8/9 (30 m) imagery with FAO-56 Penman–Monteith reference evapotranspiration (ET 0 ) to generate pixel-wise daily ET c maps for irrigated maize ( Zea mays L.) near Nyírbátor, Hungary, over six growing seasons (2020–2025).",
+        "Three satellite platforms were selected to provide complementary spatial and temporal coverage across the six growing seasons [ 27 ].",
+        "Sentinel-2 (blue) and MODIS (green) streams are preprocessed independently; sparse S2 observations and the daily smoothed MODIS reference signal are combined through pixel-wise linear regression ( Figure 2 )."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "如何利用多源遥感数据融合方法，在匈牙利Nyírbátor附近六年的灌溉玉米种植区（2020–2025年）实现高时空分辨率的日尺度作物蒸散发（ETc）制图？",
+      "hypothesis_or_mechanism": "假设在单一作物管理单元内，尽管NDVI绝对值存在空间差异，但其时间上的物候轨迹具有一致性；通过以MODIS NDVI为时间主干，结合Sentinel-2和Landsat的高分辨率观测，可重建每日高分辨率NDVI，并据此驱动基于FAO-56的作物系数模型估算日尺度ETc。",
+      "variables_and_data_use": "使用MODIS（MOD09GQ Collection 6.1）提供每日250 m NDVI作为时间参考信号；Sentinel-2 Level-2A（10 m）和Landsat 8/9 Collection 2 Level-2（30 m）提供高分辨率红光与近红外波段用于计算NDVI并建立像素级线性传递函数；气象数据来自地面站和HungaroMet ODP平台，用于计算FAO-56 Penman–Monteith参考蒸散发（ET0）。",
+      "method_paradigm": "采用中位数时间序列模型进行时空数据融合，通过像素级线性回归将高分辨率稀疏观测与每日MODIS NDVI参考信号关联，并结合非线性幂函数作物系数模型（Kc = a·NDVI^b）估算日尺度ETc。",
+      "study_area": "匈牙利东部Nyírség地区Nyírbátor附近（47°49′ N, 22°08′ E）的灌溉玉米田，位于潘诺尼亚盆地",
+      "study_period": "2020–2025年六个玉米生长季",
+      "datasets_used": [
+        {
+          "name_in_paper": "MODIS (MOD09GQ Collection 6.1)",
+          "role_in_study": "提供每日250米分辨率NDVI作为时间主干信号",
+          "usage": "used_as_data",
+          "evidence_quote": "MODIS (MOD09GQ Collection 6.1) supplies daily surface reflectance at 250 m in the red (Band 1: 620–670 nm) and near-infrared (Band 2: 841–876 nm), accessed via Google Earth Engine (GEE); the accompanying QC_250m quality band was used to mask cloud, shadow, and aerosol-contaminated pixels prior to NDVI computation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 (Level-2A)",
+          "role_in_study": "提供10米分辨率大气校正地表反射率用于高分辨率NDVI计算与融合",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 (Level-2A) provides atmospherically corrected surface reflectance at 10 m resolution in B4 (665 nm) and B8 (842 nm), retrieved through the Vultus API with cloud, shadow, and snow masking applied via the SCL scene classification layer.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 and 9 (Collection 2, Level-2)",
+          "role_in_study": "提供30米分辨率地表反射率用于高分辨率NDVI计算与融合",
+          "usage": "used_as_data",
+          "evidence_quote": "Landsat 8 and 9 (Collection 2, Level-2) contribute 30 m surface reflectance in the red (SR_B4: 636–673 nm) and NIR (SR_B5: 851–879 nm) bands, also accessed through GEE, with the QA_PIXEL band used for cloud, shadow, and cirrus masking.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "COPERNICUS/S2_SR_HARMONIZED",
+          "role_in_study": "作为Sentinel-2 Level-2A的开放获取替代数据源用于可复现性验证",
+          "usage": "used_as_data",
+          "evidence_quote": "all core analyses (gap-filling, NDVI fusion, and ET c estimation) were also implemented using Google Earth Engine (GEE) with open-access Sentinel-2 Level-2A data (COPERNICUS/S2_SR_HARMONIZED collection), ensuring that the methodological pipeline is fully reproducible via the GEE script provided in the Supplementary Materials.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.3390_s26144470.txt",
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.3390_s26144470.methods.txt"
+        ],
+        "chars": 19031,
+        "source_sha256": "68bd9e464e9e52209531e0258c939e2fbd6c76e7adc88af6d812c841b75b3ec9",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:36",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.3390_s26144470.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_003_expanded_ref_02",
+        "reference_tier": "expanded_set_reference",
+        "research_question": "How can multisensor optical vegetation indicators be interpreted together with rainfall stress to diagnose vegetation degradation, disturbance severity or water-stress dynamics?",
+        "hypothesis_or_mechanism": "Sentinel-2 and Landsat surface-reflectance time series provide vegetation-condition signals, while rainfall or meteorological forcing helps separate moisture stress from spectral disturbance or recovery patterns.",
+        "variables_and_data_use": "Sentinel-2 surface reflectance and Landsat surface reflectance are used as optical vegetation inputs; the rainfall-stress member is admitted as an analogous precipitation/meteorological product rather than exact CHIRPS.",
+        "method_paradigm": "Methods/Data verified multisensor index construction with precipitation or meteorological forcing in the same research instance",
+        "used_assets": [
+          "Sentinel-2 Level-2A and COPERNICUS/S2_SR_HARMONIZED surface reflectance",
+          "Landsat 8/9 Collection 2 Level-2 surface reflectance",
+          "Davis Vantage Vue and HungaroMet ODP meteorological precipitation/ET0 data"
+        ],
+        "source_paper": {
+          "title": "Multi-Sensor NDVI Fusion for Daily Crop Evapotranspiration Mapping: A Six-Year Irrigated Maize Assessment Using MODIS-Sentinel-2-Landsat (2020-2025)",
+          "doi": "10.3390/s26144470",
+          "year": 2026,
+          "venue": "Sensors"
+        },
+        "identity_match_by_member": {
+          "spectral_indicators": "exact_product",
+          "long_term_spectral_context": "compatible_lineage",
+          "rainfall_stress": "analogous_product"
+        },
+        "usage_by_member": {
+          "spectral_indicators": "used_as_data",
+          "long_term_spectral_context": "used_as_data",
+          "rainfall_stress": "used_as_data"
+        },
+        "actual_dataset_by_member": {
+          "spectral_indicators": "Sentinel-2 Level-2A and COPERNICUS/S2_SR_HARMONIZED surface reflectance",
+          "long_term_spectral_context": "Landsat 8/9 Collection 2 Level-2 surface reflectance",
+          "rainfall_stress": "Davis Vantage Vue and HungaroMet ODP meteorological precipitation/ET0 data"
+        },
+        "same_research_instance": true,
+        "combination_coverage": "complete_three_member_combination_via_expanded_rainfall_member",
+        "evidence_quotes": [
+          "Sentinel-2 (Level-2A) provides atmospherically corrected surface reflectance",
+          "Landsat 8 and 9 (Collection 2, Level-2) contribute 30 m surface reflectance",
+          "Sentinel-2 Level-2A data (COPERNICUS/S2_SR_HARMONIZED collection)"
+        ],
+        "joint_use_evidence_quotes": [
+          "For all three platforms, NDVI was computed uniformly",
+          "meteorological measurements ... used to derive daily reference evapotranspiration"
+        ],
+        "expansion_reason": "The rainfall member is not CHIRPS. It is local/ODP meteorological precipitation and ET forcing used with the optical-fusion NDVI chain, so it is admitted only as analogous-product expansion.",
+        "manual_review": {
+          "reviewed_at": "2026-10-03",
+          "reviewer": "Codex manual Methods/Data review",
+          "audit_batch": "threeplus_legacy_direction_manual_review_20261003",
+          "automatic_admission": false,
+          "notes": "Manual admission after reading complete relevant Methods/Data sections. Not a dual-model automatic admission."
+        },
+        "extraction_confidence": "manual_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "relationship_mechanism",
+        "selection_tier": "expanded_set_reference",
+        "matched_dataset_signals": [
+          "sentinel_2",
+          "landsat",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_004",
+      "source_paper_doi": "10.1101/2023.05.25.542318",
+      "title": "Mapping oak wilt disease using phenological observations from space",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Copernicus Sentinel-2 MSI",
+          "evidence_quotes": [
+            "We thank the U.S. Geological Survey (USGS), U.S. Department of Agriculture, and European Space Agency (ESA) for providing free access to Landsat images, NAIP scenes, and the Copernicus Sentinel MSI for scientific research, respectively.",
+            "mappingoakwiltusingsentinel-247venables,w.n.,ripley,b.d.,2002.modernappliedstatisticswiths,statisticsand873computing.springernewyork,newyork,ny.https://doi.org/10.1007/978-0-387-87421706-2875ain,m.a.,ensminger,i.,2020.trackingthephenologyof876877inatemperatee"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "human_slice_presence_user_ruled_batch",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Landsat images",
+          "evidence_quotes": [
+            "We thank the U.S. Geological Survey (USGS), U.S. Department of Agriculture, and European Space Agency (ESA) for providing free access to Landsat images, NAIP scenes, and the Copernicus Sentinel MSI for scientific research, respectively.",
+            "881zhu,z.,wang,s.,woodcock,c.e.,2015.improvementandexpansionofthefmaskalgorithm:882cloud,cloudshadow,andsnowdetectionforlandsats47,8,andsentinel2images.883remotesensingofenvironment159,269277.https://doi.org/10.1016/j.rse.2014.12.014884zhu,z.,woodcock,c.e.,2012.object-basedcloudandcloudshadowdetectioninlandsat885imagery.remotesensingofenvironment118,8394.886"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_slice_presence_user_ruled_batch",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "CHIRPS Daily Final Precipitation v2.0",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_batch_ruling_no_member_evidence",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We thank the U.S. Geological Survey (USGS), U.S. Department of Agriculture, and European Space Agency (ESA) for providing free access to Landsat images, NAIP scenes, and the Copernicus Sentinel MSI for scientific research, respectively."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "该研究旨在利用卫星遥感观测的物候信息，在美国中西部地区（特别是明尼苏达州）绘制橡树枯萎病的空间分布。",
+      "hypothesis_or_mechanism": "橡树枯萎病会改变受感染树木的物候特征，例如导致春季展叶延迟或秋季落叶提前，这些异常可通过高时间分辨率的卫星遥感数据检测出来。",
+      "variables_and_data_use": "研究使用Sentinel-2 MSI Level-2A地表反射率数据计算植被指数并提取物候指标；同时提及使用Landsat数据进行辅助分析或历史对比；未明确使用CHIRPS降水数据。",
+      "method_paradigm": "基于Sentinel-2时间序列数据提取物候参数，并结合机器学习或阈值方法识别受橡树枯萎病影响的区域。",
+      "study_area": "美国中西部，特别是明尼苏达州",
+      "study_period": "",
+      "datasets_used": [
+        {
+          "name_in_paper": "Copernicus Sentinel-2 MSI",
+          "role_in_study": "提供高时空分辨率的地表反射率数据用于物候指标提取",
+          "usage": "used_as_data",
+          "evidence_quote": "We thank the U.S. Geological Survey (USGS), U.S. Department of Agriculture, and European Space Agency (ESA) for providing free access to Landsat images, NAIP scenes, and the Copernicus Sentinel MSI for scientific research, respectively.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat images",
+          "role_in_study": "提供长期光谱背景或辅助验证",
+          "usage": "mention_only",
+          "evidence_quote": "We thank the U.S. Geological Survey (USGS), U.S. Department of Agriculture, and European Space Agency (ESA) for providing free access to Landsat images, NAIP scenes, and the Copernicus Sentinel MSI for scientific research, respectively.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1101_2023.05.25.542318.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "545741a56e9552f9967cdac0484316742d32c41cd0fe708d1d519bafa3f11dca",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:25",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.1101_2023.05.25.542318.json",
+        "quote_gate": {
+          "total": 5,
+          "verified": 5
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_complete_set_reference_004",
+        "source_paper_doi": "10.1101/2023.05.25.542318",
+        "title": "Mapping oak wilt disease using phenological observations from space",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "CHIRPS Daily Final Precipitation v2.0"
+        ],
+        "member_adjudications": [
+          {
+            "member_id": "spectral_indicators",
+            "role": "spectral_indicators",
+            "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+            "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "mappingoakwiltusingsentinel-247venables,w.n.,ripley,b.d.,2002.modernappliedstatisticswiths,statisticsand873computing.springernewyork,newyork,ny.https://doi.org/10.1007/978-0-387-87421706-2875ain,m.a.,ensminger,i.,2020.trackingthephenologyof876877inatemperatee"
+            ],
+            "identity_basis": "human_slice_presence_user_ruled_batch",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "uncertain",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "uncertain",
+              "qwen": "mention_only"
+            }
+          },
+          {
+            "member_id": "long_term_spectral_context",
+            "role": "long_term_spectral_context",
+            "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+            "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "881zhu,z.,wang,s.,woodcock,c.e.,2015.improvementandexpansionofthefmaskalgorithm:882cloud,cloudshadow,andsnowdetectionforlandsats47,8,andsentinel2images.883remotesensingofenvironment159,269277.https://doi.org/10.1016/j.rse.2014.12.014884zhu,z.,woodcock,c.e.,2012.object-basedcloudandcloudshadowdetectioninlandsat885imagery.remotesensingofenvironment118,8394.886"
+            ],
+            "identity_basis": "human_slice_presence_user_ruled_batch",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "uncertain",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "mention_only",
+              "qwen": "mention_only"
+            }
+          },
+          {
+            "member_id": "rainfall_stress",
+            "role": "rainfall_stress",
+            "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+            "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [],
+            "identity_basis": "human_batch_ruling_no_member_evidence",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "uncertain",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "uncertain",
+              "qwen": "mention_only"
+            }
+          }
+        ],
+        "joint_use_evidence_quotes": [
+          "The code for processing the satell\n\nite data is available through\n\nhttps://github.com/davidfrantz/force"
+        ],
+        "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+        "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: spectral_indicators<-['sentinel-2']; long_term_spectral_context<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md."
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_005",
+      "source_paper_doi": "10.31223/x51z1r",
+      "title": "Direct mapping of plantation forest aboveground biomass change with deep learning and SAR-optical fusion",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Sentinel-2 Level-1C"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2 Level-1C",
+          "actual_product_in_paper": "Sentinel-2 Level-1C",
+          "evidence_quotes": [
+            "Sentinel-2 Level-1C imagery was cloud-masked, composited, and used to generate standard vegetation indices (NDVI, EVI, MSAVI, MSI, NBR, NDMI) in addition to the original bands",
+            "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM (Table 1)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 2,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "conservative_weakest_model_with_used_as_data",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "evidence_quotes": [
+            "nforbroadeningthe254.2.multi-sensordatafusionfordirectchangedetection-sensorapproach,primarilyusingopticaldatasetssuchaslandsatandsentinel-2(arévaloetal.,2023;healeyetal.,2006;pulitietal.,2021).whileeffective,theseapproachesareconstrainedbycloudcoverandlimitedstructuralsensitivity.ourresultsshowthatcombiningmultiplesensors,particularlysarandoptical,enhancesp"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_slice_presence_user_ruled_batch",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "CHIRPS Daily Final Precipitation v2.0",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_batch_ruling_no_member_evidence",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "long_term_spectral_context",
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM",
+        "All data were accessed and pre-processed in Google Earth Engine (GEE; Gorelick et al., 2017)",
+        "Each change observation (t₁-t₂) was linked to the corresponding annual composites, and predictor variables were derived as differences between t₁- and t₂-year composites"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        false
+      ],
+      "research_question": "该研究旨在解决智利中部人工林地上生物量（AGB）变化的直接遥感监测问题，通过融合多源遥感数据与重复森林样地调查，实现对包括种植、生长、间伐、修枝和采伐等多种管理活动引起的生物量增减的高精度制图。",
+      "hypothesis_or_mechanism": "研究假设直接建模生物量变化（而非通过两次独立生物量预测相减）可显著减少误差传播；同时，采用混合专家（MOE）框架将变化类型分类与专门化的回归模型结合，能有效处理渐进式增长与突发性损失之间的不平衡问题，并提升预测准确性。",
+      "variables_and_data_use": "论文使用Sentinel-1 C波段SAR、ALOS PALSAR L波段SAR、Sentinel-2光学数据及Copernicus GLO-30 DEM作为输入变量。Sentinel-1和Sentinel-2用于生成年度中值合成影像及植被指数，ALOS PALSAR提供年际马赛克数据以捕捉冠层下部结构，Copernicus DEM用于提取高程、坡度和坡向等地形静态变量。所有遥感数据均重采样至30米分辨率，并与2016–2021年间的重复森林样地生物量变化观测配对用于模型训练。",
+      "method_paradigm": "采用混合专家（Mixture-of-Experts, MOE）机器学习范式，首先通过分类器识别像元变化类型，再路由至专门预测生物量增长或损失的神经网络回归模型；同时结合异方差高斯负对数似然损失函数与蒙特卡洛Dropout实现逐像元预测不确定性量化。",
+      "study_area": "智利中部，从首都圣地亚哥向南延伸，覆盖约1500公里，横跨沿海平原至安第斯山脉，地理坐标范围约为南纬5,400,000 m至6,200,000 m（UTM 18S）。",
+      "study_period": "2016年至2021年",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2 Level-1C",
+          "role_in_study": "提供高分辨率光谱波段和植被指数",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 Level-1C imagery was cloud-masked, composited, and used to generate standard vegetation indices (NDVI, EVI, MSAVI, MSI, NBR, NDMI) in addition to the original bands",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 C-band SAR",
+          "role_in_study": "提供冠层上部结构信息",
+          "usage": "used_as_data",
+          "evidence_quote": "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ALOS PALSAR",
+          "role_in_study": "提供穿透冠层的L波段后向散射数据",
+          "usage": "used_as_data",
+          "evidence_quote": "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Copernicus GLO-30 DEM",
+          "role_in_study": "提供地形变量（高程、坡度、坡向）",
+          "usage": "used_as_data",
+          "evidence_quote": "We derived elevation, slope, and aspect from the Copernicus DEM",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.31223_x51z1r.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "5ba84d427e4d38d118998308b0d2d26311820206ad1069bcb0a9b6e390bbc1f7",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:30",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.31223_x51z1r.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_complete_set_reference_005",
+        "source_paper_doi": "10.31223/x51z1r",
+        "title": "Direct mapping of plantation forest aboveground biomass change with deep learning and SAR-optical fusion",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+        "actual_datasets": [
+          "Sentinel-2",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "CHIRPS Daily Final Precipitation v2.0"
+        ],
+        "member_adjudications": [
+          {
+            "member_id": "spectral_indicators",
+            "role": "spectral_indicators",
+            "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+            "actual_dataset": "Sentinel-2",
+            "identity_match": "exact_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM (Table 1).",
+              "Sentinel-2 Level-1C imagery was cloud-masked, composited, and used to generate standard vegetation indices (NDVI, EVI, MSAVI, MSI, NBR, NDMI) in addition to the original bands"
+            ],
+            "identity_basis": "conservative_weakest_model_with_used_as_data",
+            "human_identity_verdict": "exact_product",
+            "model_identity_matches": {
+              "gpt": "analogous_product",
+              "qwen": "exact_product"
+            },
+            "model_products": {
+              "gpt": "Sentinel-2 Level-1C imagery",
+              "qwen": "Sentinel-2"
+            },
+            "model_usage": {
+              "gpt": "used_as_data",
+              "qwen": "used_as_data"
+            }
+          },
+          {
+            "member_id": "long_term_spectral_context",
+            "role": "long_term_spectral_context",
+            "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+            "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "nforbroadeningthe254.2.multi-sensordatafusionfordirectchangedetection-sensorapproach,primarilyusingopticaldatasetssuchaslandsatandsentinel-2(arévaloetal.,2023;healeyetal.,2006;pulitietal.,2021).whileeffective,theseapproachesareconstrainedbycloudcoverandlimitedstructuralsensitivity.ourresultsshowthatcombiningmultiplesensors,particularlysarandoptical,enhancesp"
+            ],
+            "identity_basis": "human_slice_presence_user_ruled_batch",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "not_matched",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "mention_only",
+              "qwen": "mention_only"
+            }
+          },
+          {
+            "member_id": "rainfall_stress",
+            "role": "rainfall_stress",
+            "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+            "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [],
+            "identity_basis": "human_batch_ruling_no_member_evidence",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "uncertain",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "uncertain",
+              "qwen": "uncertain"
+            }
+          }
+        ],
+        "joint_use_evidence_quotes": [
+          "We used complementary datasets from Sentinel-1 (C-band SAR), ALOS PALSAR (L-band SAR), Sentinel-2 (optical multispectral), and Copernicus GLO-30 DEM (Table 1).",
+          "All data were accessed and pre-processed in Google Earth Engine (GEE; Gorelick et al., 2017).",
+          "Each change observation (...) was linked to the corresponding annual composites, and predictor variables were derived as differences between (...)"
+        ],
+        "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+        "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: long_term_spectral_context<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md."
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_006",
+      "source_paper_doi": "10.3390/books978-3-03928-093-3",
+      "title": "Earth Observation Data Cubes",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Landsat observations / Landsat archive (processed via DEA)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "evidence_quotes": [
+            "ndremotesensingsymposium,valencia,spain,2227july2018;pp.86398642.32.giuliani,g.;chatenoux,b.;honeck,e.;richard,j.towardssentinel-2analysisreadydata:aswissdatacubeperspective.inproceedingsoftheigarss20182018ieeeinternationalgeoscienceandremotesensingsymposium,valencia,spain,2227july2018;pp.86598662.290data2019,4,144correspondingopensourceapplicationalgorithms"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_slice_presence_user_ruled_batch",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "none",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat observations / Landsat archive (processed via DEA)",
+          "actual_product_in_paper": "Landsat observations / Landsat archive (processed via DEA)",
+          "evidence_quotes": [
+            "This dataset representsthetidalrangeoftheAustraliancoastline,generatedfromthefrequencyofinundation asquantiedfromallcloudfreeLandsatobservationsofthecoastalmarginovera28-yearperiod.",
+            "Figure2.Landsatannualfalsecolourcompositesfor(a)Ayr(Queensland),(b)Diamantina(Queensland),(c)Gwydir(NewSouthWales)and(d)theLeichhardtRiver(northernQueensland)."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 2,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "conservative_weakest_model_with_used_as_data",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "none",
+          "member_conflict": true
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "CHIRPS Daily Final Precipitation v2.0",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "human_batch_ruling_no_member_evidence",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "none",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "spectral_indicators",
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [
+        "long_term_spectral_context"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [],
+      "joint_use_quote_verified": [],
+      "research_question": "本书中与该实例 Landsat/DEA 使用证据对应的EODESM研究，检验在Open Data Cube与Digital Earth Australia环境中生成约25 m土地覆盖及证据驱动变化地图的可行性。描述限于该章节，不将整本书当作单一联合数据实验。",
+      "hypothesis_or_mechanism": "以可重复、含物理单位的基本变量组合映射FAO LCCS分类，并跨时间比较变量和类别变化，可形成一致、可解释的覆盖变化证据。",
+      "variables_and_data_use": "DEA内 Landsat分数覆盖用于植被覆盖判别，Landsat档案派生的ITEM用于潮间带范围和淹水频率，WOfS用于水体；还整合冠层高度、红树林等辅助层。不能据书中其他章节或参考文献推断本实例使用Sentinel-2/CHIRPS。",
+      "method_paradigm": "在澳大利亚四个试验区用EODESM层次化FAO LCCS分类，将EO基本变量与类别跨时相比对，生成土地覆盖和变化地图。",
+      "study_area": "",
+      "study_period": "",
+      "datasets_used": [],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "status": "verified_fulltext_backfill",
+        "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+        "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+        "verified_at": "2026-10-11"
+      },
+      "research_instance_status": "verified_fulltext_backfill",
+      "legacy_record": {
+        "direction_id": "manual_admitted_complete_set_reference_006",
+        "source_paper_doi": "10.3390/books978-3-03928-093-3",
+        "title": "Earth Observation Data Cubes",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "Landsat observations / Landsat archive (processed via DEA)",
+          "CHIRPS Daily Final Precipitation v2.0"
+        ],
+        "member_adjudications": [
+          {
+            "member_id": "spectral_indicators",
+            "role": "spectral_indicators",
+            "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+            "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "ndremotesensingsymposium,valencia,spain,2227july2018;pp.86398642.32.giuliani,g.;chatenoux,b.;honeck,e.;richard,j.towardssentinel-2analysisreadydata:aswissdatacubeperspective.inproceedingsoftheigarss20182018ieeeinternationalgeoscienceandremotesensingsymposium,valencia,spain,2227july2018;pp.86598662.290data2019,4,144correspondingopensourceapplicationalgorithms"
+            ],
+            "identity_basis": "human_slice_presence_user_ruled_batch",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "not_matched",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "mention_only",
+              "qwen": "mention_only"
+            }
+          },
+          {
+            "member_id": "long_term_spectral_context",
+            "role": "long_term_spectral_context",
+            "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+            "actual_dataset": "Landsat observations / Landsat archive (processed via DEA)",
+            "identity_match": "compatible_lineage",
+            "usage": "used_as_data",
+            "evidence_quotes": [
+              "This dataset representsthetidalrangeoftheAustraliancoastline,generatedfromthefrequencyofinundation asquantiedfromallcloudfreeLandsatobservationsofthecoastalmarginovera28-yearperiod.",
+              "Figure2.Landsatannualfalsecolourcompositesfor(a)Ayr(Queensland),(b)Diamantina(Queensland),(c)Gwydir(NewSouthWales)and(d)theLeichhardtRiver(northernQueensland)."
+            ],
+            "identity_basis": "conservative_weakest_model_with_used_as_data",
+            "human_identity_verdict": "compatible_lineage",
+            "model_identity_matches": {
+              "gpt": "parent_scope",
+              "qwen": "compatible_lineage"
+            },
+            "model_products": {
+              "gpt": "Landsat archive / cloud-free Landsat observations",
+              "qwen": "Landsat observations / Landsat archive (processed via DEA)"
+            },
+            "model_usage": {
+              "gpt": "used_as_data",
+              "qwen": "used_as_data"
+            }
+          },
+          {
+            "member_id": "rainfall_stress",
+            "role": "rainfall_stress",
+            "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+            "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+            "identity_match": "analogous_product",
+            "usage": "used_as_data",
+            "evidence_quotes": [],
+            "identity_basis": "human_batch_ruling_no_member_evidence",
+            "human_identity_verdict": "analogous_product",
+            "model_identity_matches": {
+              "gpt": "not_matched",
+              "qwen": "not_matched"
+            },
+            "model_products": {
+              "gpt": "",
+              "qwen": ""
+            },
+            "model_usage": {
+              "gpt": "uncertain",
+              "qwen": "not_matched"
+            }
+          }
+        ],
+        "joint_use_evidence_quotes": [],
+        "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+        "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: spectral_indicators<-['sentinel-2']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): rainfall_stress. Full review: reference_sets/audit/MANUAL_REVIEW.md."
+      },
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "Aims\nTheaimofthisresearchwastotesttheuseofEODESMforgeneratingmoderate(~25m)spatial\nresolutionlandcoverandevidence-basedchangemapswithintheOpenDataCube(ODC)environment\nandusingtheframeworkofGeoscienceAustralias(GA)DigitalEarthAustralia(DEA).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2080-2083",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "Theseresulting\ndescriptors(suchascanopycoverorleaftype)arethencombinedtoproduceacumulatedland\ncoverclass.\nTheEODESMsystemmirrorsthishierarchicalandmodularclassicationapproachbycombining\nproductsfromEOdatathat(a)assignvaluesof1or0toLevel13rasterinputsand(b)thematic\nvalues(e.g.,1,2and3forwater,iceandsnowcategories,respectively)tolayersrelevanttotheLevel4\nhierarchy,withseveralderivedfromcontinuouslayers(e.g.,waterhydroperiod).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2093-2099",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "TheInter-TidalExtentmodel(ITEM)wasusedtodi\u0003erentiatebetweennon-vegetatedintertidalareassuchasmudandsandats.Thisdataset\nrepresentsthetidalrangeoftheAustraliancoastline,generatedfromthefrequencyofinundation\nasquantiedfromallcloudfreeLandsatobservationsofthecoastalmarginovera28-yearperiod.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2023-2025",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "ChangeDetection\nTocapturethevaryingnatureandratesofchangeacrosslandscapes,EODESMcomparesboth\ntemporalthematicclassications(e.g.,leaftypeandwaterextent)andquantitative(continuous)\ninformationonEVs(includingthoseexternaltotheLCCS)retrievedfromEOdatatobuildupevidence\nofchangesidentiedwithinadenedchangetaxonomy(e.g.,sealevelrise,harvestingofcrops,\nwildres).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2110-2115",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "InputLayersforEODESM\nTosupportclassicationwithinthedichotomousphase(toLCCSLevel3),referencewasmade\ntotheannualfractionalcoverlayersheldwithinDEA[14\nobservationsummariesweregreaterthan10%forthegreenandnon-photosyntheticvegetation\nfractions)wasdeterminedtodenevegetatedextent(Level1).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2018-2022",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "TheWaterObservationsfromSpace(WOfS)[\n17]\nidentiedinlandandcoastalwaterbodies.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2030-2032",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "Observationswerevalidatedwithreferencetocorrespondingtideheightdataatthetimeofimage\ncapture[15\nlessthan80%ofinundatedobservationsfortheLandsatarchive.Thenational(Australian)mangrove\nmapsin[16\noftheobscurationofwaterbythemangrovecanopies.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2026-2030",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "StudySites\nThestudyfocusedinitiallyonfourareasinQueenslandandNewSouthWales(Figure2).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_books978-3-03928-093-3.txt",
+          "doi": "10.3390/books978-3-03928-093-3",
+          "locator": "UTF-8 text lines 2039-2040",
+          "source_sha256": "684de8a66f1a97d77d6ccf75911e2ba56cbd73b0983bcd1ecb7e9e7eb2f5a7cb"
+        }
+      ]
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.1016/j.scitotenv.2019.02.206",
+      "title": "Quantifying increased groundwater demand from prolonged drought in the East African Rift Valley",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection",
+        "Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection",
+          "actual_product_in_paper": "USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection",
+          "evidence_quotes": [
+            "Data used for deriving NDVI was obtained from USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_identity_quote_verified",
+            "prior_used",
+            "fresh_usage_mention_only"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0",
+          "actual_product_in_paper": "Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0",
+          "evidence_quotes": [
+            "We used the Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0 (Funk et al., 2015). This is a 30+ year quasi-global rainfall dataset that incorporates 0.05 degree (5 km) resolution satellite imagery with in-situ station data to create gridded rainfall time series.",
+            "We used the Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "spectral_indicators"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "For this study, we examined three remote sensing data sets and attempted to correlate these to the sensor-collected groundwater extraction data.",
+        "Therefore, only the CHIRPS rainfall data was analyzed against the borehole runtime data."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究东非大裂谷干旱地区（肯尼亚北部和埃塞俄比亚阿法尔）在长期干旱条件下地下水需求如何变化，特别是降雨减少对水井抽水运行时间的影响。",
+      "hypothesis_or_mechanism": "假设当地表水资源因干旱减少时，社区对地下水的依赖增加，导致水井抽水运行时间延长；降雨量的减少会直接引发地下水抽取量上升。",
+      "variables_and_data_use": "论文使用CHIRPS v2.0日降雨数据提取各水井位置2017–2018年的降雨量，用于分析其与水井运行时间的关系；使用USGS Landsat 8 Collection 1 Tier 1地表反射率数据计算NDVI以评估植被响应；还使用NASA GRACE重力卫星数据评估区域总水储量变化。但最终仅CHIRPS降雨数据被用于统计建模分析。",
+      "method_paradigm": "采用时间序列横截面（TSCS）回归模型，结合负二项分布、固定效应和滞后因变量，分析周尺度上滞后一周的降雨量对水井运行时间的影响，并分别拟合连续降雨变量和无雨二元变量模型。",
+      "study_area": "northern Kenya and Afar, Ethiopia",
+      "study_period": "January 1, 2017 to August 31, 2018",
+      "datasets_used": [
+        {
+          "name_in_paper": "Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0",
+          "role_in_study": "提供水井位置的日降雨量数据，用于与地下水抽取时间进行相关性分析",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the Monthly Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) v2.0 (Funk et al., 2015). This is a 30+ year quasi-global rainfall dataset that incorporates 0.05 degree (5 km) resolution satellite imagery with in-situ station data to create gridded rainfall time series.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection",
+          "role_in_study": "用于计算归一化植被指数（NDVI），评估植被对干旱的响应",
+          "usage": "mention_only",
+          "evidence_quote": "Data used for deriving NDVI was obtained from USGS Landsat 8 Collection 1 Tier 1 and real-time data top-of-atmosphere reflectance collection.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA Gravity Recovery and Climate Experiment (GRACE) dataset",
+          "role_in_study": "提供区域总水储量异常数据，作为地下水状况的独立评估",
+          "usage": "mention_only",
+          "evidence_quote": "Finally, we used the NASA Gravity Recovery and Climate Experiment (GRACE) dataset. Launched in March 2002, the twin GRACE satellites mapped variations in the Earth’s gravity field until the end of the science mission in October 2017.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.scitotenv.2019.02.206.txt",
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.scitotenv.2019.02.206.methods.txt"
+        ],
+        "chars": 19031,
+        "source_sha256": "c3e56c4fc8ed5ea86386b9695995a5348fadb4ec3eaaf2b583ec2656eee6319b",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:39",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.1016_j.scitotenv.2019.02.206.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_006",
+        "source_paper_doi": "10.1016/j.scitotenv.2019.02.206",
+        "title": "Quantifying increased groundwater demand from prolonged drought in the East African Rift Valley",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "CHIRPS Daily Final Precipitation v2.0"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "spectral_indicators"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_007",
+      "source_paper_doi": "10.24294/jipd.v8i10.8702",
+      "title": "Investigating the changing land use patterns and their impacts on ecosystem in the Teesta River Basin",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+        "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+          "actual_product_in_paper": "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+          "evidence_quotes": [
+            "The Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset for 2020 was utilized.",
+            "composite images.  Journal of Infrastructure, Policy and Development  2024, 8( 10 ), 8702 .  5  The Harmonized Sentinel - 2 MSI: Multispectral Instrument, Level - 2A dataset for 2020 was utilized. Sentinel - 2 is a multispectral imaging mission with"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "actual_product_in_paper": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "evidence_quotes": [
+            "The USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes file has been utilized for the years 2000 and 2010."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "The Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset for 2020 was utilized.",
+        "The USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes file has been utilized for the years 2000 and 2010.",
+        "To detect the land use and land cover changes of Nilphamari district, this study used satellite image employing supervised classification with forest classifier algorithm like the other studies (Din and Yamamoto, 2024; Rahman et al., 2023) on Google Earth Engine."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究探讨了2000年至2020年间孟加拉国西北部提斯塔河流域尼尔帕马里县土地利用格局的变化及其对当地生态系统（包括水体、植被覆盖、生物多样性及本地树种）的影响。",
+      "hypothesis_or_mechanism": "人为驱动的土地利用变化（如农业扩张和建设用地增加）导致水体和自然植被减少，进而对水生生态系统、本地物种多样性和生态功能产生显著负面影响。",
+      "variables_and_data_use": "研究使用Sentinel-2 MSI Level-2A数据（2020年）和Landsat 5 TM Collection 2 Tier 1原始影像（2000年和2010年）进行土地利用/覆被分类；Sentinel-2提供10米分辨率影像用于近期地表监测，Landsat 5提供30米分辨率影像用于历史时期对比分析。",
+      "method_paradigm": "采用监督分类方法中的随机森林分类器在Google Earth Engine平台上进行土地利用/覆被变化检测，并结合实地问卷调查与卡方检验分析社会生态影响。",
+      "study_area": "Nilphamari District, Teesta River Basin, northwestern Bangladesh",
+      "study_period": "2000–2020",
+      "datasets_used": [
+        {
+          "name_in_paper": "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+          "role_in_study": "用于2020年土地利用/覆被分类的高分辨率遥感数据",
+          "usage": "used_as_data",
+          "evidence_quote": "The Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset for 2020 was utilized.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "role_in_study": "用于2000年和2010年土地利用/覆被分类的历史遥感数据",
+          "usage": "used_as_data",
+          "evidence_quote": "The USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes file has been utilized for the years 2000 and 2010.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.24294_jipd.v8i10.8702.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "83a7427c5f376ae5b95b4a884d2fe55543cca14ea14fd74a262664d56f6ebba3",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:38",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.24294_jipd.v8i10.8702.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_007",
+        "source_paper_doi": "10.24294/jipd.v8i10.8702",
+        "title": "Investigating the changing land use patterns and their impacts on ecosystem in the Teesta River Basin",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_008",
+      "source_paper_doi": "10.3390/rs17111822",
+      "title": "Comparative Analysis of Trophic Status Assessment Using Different Sensors and Atmospheric Correction Methods in Greece’s WFD Lake Network",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Sentinel 2 MSI Level-2A SR data",
+        "Landsat 7 ETM+ and 8 OLI Collection 1 Level 1 Tier 1 SR data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel 2 MSI Level-2A SR data",
+          "actual_product_in_paper": "Sentinel 2 MSI Level-2A SR data",
+          "evidence_quotes": [
+            "Acquired SR products from the GEE repository included Sentinel 2 MSI (Level-2A SR data) and Landsat 7 ETM+/8 OLI multispectral images (Collection 1 Level 1-precision and terrain correction-Tier 1; SR data).",
+            "nicusDataSpaceEcosystemhttps: //dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2(accessedon10July2022)).ManuallydownloadedSentinel2andLandsatimageswere subjectedtothesamepre-processingprocedure,asdescribedin[16 larly,th"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 7 ETM+ and 8 OLI Collection 1 Level 1 Tier 1 SR data",
+          "actual_product_in_paper": "Landsat 7 ETM+ and 8 OLI Collection 1 Level 1 Tier 1 SR data",
+          "evidence_quotes": [
+            "Acquired SR products from the GEE repository included Sentinel 2 MSI (Level-2A SR data) and Landsat 7 ETM+/8 OLI multispectral images (Collection 1 Level 1-precision and terrain correction-Tier 1; SR data).",
+            "research,eliminatedtheneedforresampling. AcquiredSRproductsfromtheGEErepositoryincludedSentinel2MSI(Level-2ASR data)andLandsat7ETM+/8OLImultispectralimages(Collection1Level1-precision andterraincorrection-Tier1;SRdata).Thetimewindowforsatelliteac"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "We utilized Landsat (7 ETM+/8 OLI) and Sentinel 2 surface reflectance (SR) data embedded in GEE, while subjected to different atmospheric correction (AC) methods.",
+        "Acquired SR products from the GEE repository included Sentinel 2 MSI (Level-2A SR data) and Landsat 7 ETM+/8 OLI multispectral images (Collection 1 Level 1-precision and terrain correction-Tier 1; SR data)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "该研究旨在评估已发表的通用型、天然湖专用型和人工湖专用型湖泊水质模型（叶绿素a、塞氏盘深度SDD和总磷TP）在希腊水框架指令（WFD）湖泊监测网络中的可迁移性与性能表现。",
+      "hypothesis_or_mechanism": "不同大气校正方法会导致遥感反射率差异，进而影响水质参数反演精度；通过传感器特异性线性回归可调和此类差异，提升基于Google Earth Engine（GEE）平台的湖泊营养状态指数（TSI）评估准确性。",
+      "variables_and_data_use": "研究使用Landsat 7 ETM+和8 OLI以及Sentinel-2 MSI的地表反射率数据，分别经手动DOS1校正和GEE内置LaSRC/LEDAPS/Sen2Cor校正，用于驱动Chl-a、SDD和TP的经验模型；同时利用2018–2020年希腊WFD湖泊监测网络的现场实测水质数据进行模型训练与验证。",
+      "method_paradigm": "采用经验统计建模结合线性回归谐调方法，对不同大气校正处理下的多源卫星反射率数据进行谐调，并基于Carlson营养状态指数（TSI）进行湖泊营养状态评估与验证。",
+      "study_area": "希腊WFD国家湖泊监测网络（包括50个天然与人工湖泊，共53个采样站）",
+      "study_period": "2018年至2020年",
+      "datasets_used": [
+        {
+          "name_in_paper": "Landsat 7 ETM+ and 8 OLI Collection 1 Level 1 Tier 1 SR data",
+          "role_in_study": "提供地表反射率用于水质模型输入",
+          "usage": "used_as_data",
+          "evidence_quote": "Acquired SR products from the GEE repository included Sentinel 2 MSI (Level-2A SR data) and Landsat 7 ETM+/8 OLI multispectral images (Collection 1 Level 1-precision and terrain correction-Tier 1; SR data).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel 2 MSI Level-2A SR data",
+          "role_in_study": "提供地表反射率用于水质模型输入",
+          "usage": "used_as_data",
+          "evidence_quote": "Acquired SR products from the GEE repository included Sentinel 2 MSI (Level-2A SR data) and Landsat 7 ETM+/8 OLI multispectral images (Collection 1 Level 1-precision and terrain correction-Tier 1; SR data).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "in situ Chl-a, SDD and TP measurements (2018–2020)",
+          "role_in_study": "用于模型训练、谐调与验证的实地观测数据",
+          "usage": "used_as_data",
+          "evidence_quote": "Insitu dataset used in this study concern the freely accessible data (https://wfd.ekby.gr/apotelesmata/biologika-physikochimika-dedomena/ (accessed on 18 January 2022); in Greek) including measured values of Chl-a and TP concentrations and SDD measurements on several dates during the years 2018, 2019 and 2020.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs17111822.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "9db3d2fd66afc710a7e93956ae0b458713993a9b847c36ed465ab96d48cb6024",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:45",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.3390_rs17111822.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_008",
+        "source_paper_doi": "10.3390/rs17111822",
+        "title": "Comparative Analysis of Trophic Status Assessment Using Different Sensors and Atmospheric Correction Methods in Greece’s WFD Lake Network",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_009",
+      "source_paper_doi": "10.3390/su151511769",
+      "title": "Implications of Changing Urban Land Use on the Livelihoods of Local People in Northwestern Bangladesh",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+          "evidence_quotes": [
+            "For the year 2020, Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset was used.",
+            "tion,monthlycompositeimagesofthree speci\u0002cyears(2000,2010,and2020)wereused.Fortheyear2020,HarmonizedSentinel-2 MSI:MultispectralInstrument,Level-2Adatasetwasused.Sentinel-2isahigh-resolution, multi-spectralimagingmissionwidelyusedforlandmonitoringst"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "actual_product_in_paper": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "evidence_quotes": [
+            "For the year 2010 and 2000, the USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes dataset has been used.",
+            "i\u0002cyears(2000,2010,and2020)wereused.Fortheyear2020,HarmonizedSentinel-2 MSI:MultispectralInstrument,Level-2Adatasetwasused.Sentinel-2isahigh-resolution, multi-spectralimagingmissionwidelyusedforlandmonitoringstudies(waterbodies, vegetationcover,s"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "For land use/land cover classification and change analysis of Nilphamari Sadar, satellite images were used using supervised classification applying the random forest classifier algorithm on Google Earth Engine (GEE) platform.",
+        "For the year 2020, Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset was used.",
+        "For the year 2010 and 2000, the USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes dataset has been used."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究了2000至2020年间孟加拉国西北部Nilphamari Sadar地区城市土地利用变化对当地居民生计的影响。",
+      "hypothesis_or_mechanism": "城市化导致农业用地和水体减少、建成区扩张，从而削弱了当地居民传统的农业、渔业等生计方式，并限制其获取公共资源的能力，进而产生新的脆弱性。",
+      "variables_and_data_use": "论文使用Harmonized Sentinel-2 MSI Level-2A数据（10米分辨率）用于2020年土地利用/覆被分类；使用USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes数据（30米分辨率）用于2000年和2010年的分类。这些遥感数据通过监督分类方法提取不同时期的土地利用类型变化。",
+      "method_paradigm": "采用监督分类中的随机森林分类器在Google Earth Engine平台上进行土地利用/覆被分类，并结合ArcGIS进行变化分析与制图；同时辅以混合方法（问卷调查与焦点小组讨论）收集生计影响的定性与定量数据。",
+      "study_area": "Nilphamari Sadar, Northwestern Bangladesh",
+      "study_period": "2000–2020",
+      "datasets_used": [
+        {
+          "name_in_paper": "Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A",
+          "role_in_study": "用于2020年土地利用/覆被分类",
+          "usage": "used_as_data",
+          "evidence_quote": "For the year 2020, Harmonized Sentinel-2 MSI: Multispectral Instrument, Level-2A dataset was used.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes",
+          "role_in_study": "用于2000年和2010年土地利用/覆被分类",
+          "usage": "used_as_data",
+          "evidence_quote": "For the year 2010 and 2000, the USGS Landsat 5 TM Collection 2 Tier 1 Raw Scenes dataset has been used.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_su151511769.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "8c2a7e393447572f2b20ba41bc52d14453e30e22b1245d0241e643e5a721f32f",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:48",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.3390_su151511769.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_009",
+        "source_paper_doi": "10.3390/su151511769",
+        "title": "Implications of Changing Urban Land Use on the Livelihoods of Local People in Northwestern Bangladesh",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_010",
+      "source_paper_doi": "10.1109/tgrs.2025.3636434",
+      "title": "BiomSHARP: Biomass Super-Resolution for High Accuracy Prediction",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "Landsat-5 Level-2, Collection 2, Tier 1"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Sentinel-2 Level-2A",
+          "evidence_quotes": [
+            "For Sentinel-2, we utilized the Level-2A product",
+            "ForSentinel-2,weutilizedtheLevel-2Aproduct"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat-5 Level-2, Collection 2, Tier 1",
+          "actual_product_in_paper": "Landsat-5 Level-2, Collection 2, Tier 1",
+          "evidence_quotes": [
+            "for Landsat-5, we selected the Level-2, Collection 2, Tier 1 product",
+            "forLandsat-5,weselectedtheLevel-2,Collection2,Tier1product"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "Integrating LR AGB data (“AGB”) with HR multispectral data (“MS”) offers clear benefits over relying on a single data type.",
+        "we used multispectral optical data from both Landsat-5 and Sentinel-2 satellites.",
+        "For the SOTA comparison and band redundancy experiments, we used multispectral data from only one year: 2010 for Landsat-5 and 2017 for Sentinel-2"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文旨在解决全球范围内森林地上生物量（AGB）制图中分辨率与精度难以兼顾的问题，研究对象为100米低分辨率AGB地图，目标是通过深度学习方法将其提升至25米高分辨率，以支持更精细的环境评估和气候政策制定。",
+      "hypothesis_or_mechanism": "假设利用高分辨率多光谱遥感数据作为引导信息，可通过改进的深度学习超分辨率模型（BiomSHARP）有效重建AGB地图的细节，从而在保持空间一致性的同时显著提升预测精度；其核心机制在于将多光谱引导信息融入网络早期上采样阶段，以增强对生物量空间结构的捕捉能力。",
+      "variables_and_data_use": "论文使用了ESA Biomass CCI v4提供的100米分辨率2010年和2020年全球森林地上生物量（AGB）数据作为低分辨率输入；同时采用Landsat-5 TM Level-2 Collection 2 Tier 1和Sentinel-2 MSI Level-2A多光谱数据作为高分辨率引导图像，分别用于2010年和2017/2020年的实验。这些多光谱数据经过云掩膜处理并取时间序列中位数生成单幅代表影像，用于指导AGB地图的超分辨率重建。",
+      "method_paradigm": "采用基于深度学习的引导式图像超分辨率（guided super-resolution）方法，具体为扩展HAT（Hybrid Attention Transformer）架构，将多光谱高分辨率数据作为引导，在网络早期通过转置卷积进行上采样，实现从100米到25米分辨率的AGB地图重建。",
+      "study_area": "全球范围（global scale），包括欧洲特定研究区（AoI，边界框[12.0, 46.0]，EPSG:4326）以及法国（用于FORMS数据验证）",
+      "study_period": "2009–2011年（Landsat-5全球泛化实验）、2017–2019年（Sentinel-2全球泛化实验）、2010年（主实验，与AGB数据对齐）、2020年（时序泛化验证）",
+      "datasets_used": [
+        {
+          "name_in_paper": "ESABiomass Climate Change Initiative (Biomass cci): Global datasets of forest AGB for the years 2010 and 2017–2020, v4",
+          "role_in_study": "低分辨率地上生物量输入数据",
+          "usage": "used_as_data",
+          "evidence_quote": "we utilized the “ESABiomass Climate Change Initiative (Biomass cci): Global datasets of forest AGB for the years 2010 and 2017–2020, v4”, which offers data at a resolution of 100m",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-5 Level-2, Collection 2, Tier 1",
+          "role_in_study": "高分辨率多光谱引导数据",
+          "usage": "used_as_data",
+          "evidence_quote": "for Landsat-5, we selected the Level-2, Collection 2, Tier 1 product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 Level-2A",
+          "role_in_study": "高分辨率多光谱引导数据",
+          "usage": "used_as_data",
+          "evidence_quote": "For Sentinel-2, we utilized the Level-2A product",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "FORMS",
+          "role_in_study": "30米分辨率法国2020年AGB验证数据",
+          "usage": "used_as_data",
+          "evidence_quote": "we have used another dataset, FORMS, an AGB map at 30-m resolution of France from 2020",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1109_tgrs.2025.3636434.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "bb55ac884fb9686b1f6c3176bd5132f065db7016d95a464c22c7443fd8b0659c",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:57",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.1109_tgrs.2025.3636434.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_010",
+        "source_paper_doi": "10.1109/tgrs.2025.3636434",
+        "title": "BiomSHARP: Biomass Super-Resolution for High Accuracy Prediction",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_011",
+      "source_paper_doi": "10.33411/ijist/1482",
+      "title": "Assessing the Efficacy of Pixel-based and Object-based Classification Techniques and Classifiers for Land Cover Mapping Using Landsat-8 and Sentinel-2 Data in Complex Mountainous Terrain",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Sentinel-2 MSI Level 2A",
+          "evidence_quotes": [
+            "Sentinel-2 Multispectral Instrument (MSI) data is available as Level-2A Surface Reflectance (SR) product in GEE",
+            "the OBIA, combined with k-NN, applied to Sentinel-2 imagery"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "actual_product_in_paper": "Landsat-8 OLI SR level 2",
+          "evidence_quotes": [
+            "In the GEE catalog, OLI data is available as USGS Landsat-8 Level 2, Collection 2 product",
+            "Landsat-8 surface reflectance products are generated using LaSRC"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "To identify the effective method and high-performing ML algorithm for accurate classification, we delineate a comparison of both pixel-based and OBIA approaches and the performance of SVM, RF, and k-NN classifiers on Landsat-8 and Sentinel-2 imagery of Gilgit District, Pakistan.",
+        "The methodology in this study involves the acquisition of Landsat-8 OLI SR level 2 imagery for September 12 and 21, 2024, as the study area was covered in two tiles. Sentinel-2 MSI Level 2A imagery for September 21, 2024, with cloud cover less than 7% for both images, was selected."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "该研究旨在评估在巴基斯坦吉尔吉特复杂山地地形中，基于像素和基于对象的分类方法结合不同机器学习分类器，利用Landsat-8和Sentinel-2数据进行土地覆盖制图的有效性。",
+      "hypothesis_or_mechanism": "假设基于对象的图像分析（OBIA）通过融合光谱与空间特征，能比仅依赖光谱信息的像素级分类更有效地处理高空间分辨率下的类内变异性和类间可分性问题，从而提升土地覆盖分类精度。",
+      "variables_and_data_use": "研究使用了Landsat-8 OLI Level 2 Collection 2地表反射率产品（30米分辨率）和Sentinel-2 MSI Level-2A地表反射率产品（10米/20米分辨率），分别作为两种分类范式（像素级与对象级）的输入影像数据，用于训练和验证随机森林、支持向量机和k近邻三种机器学习分类器。",
+      "method_paradigm": "采用像素级监督分类与面向对象图像分析（OBIA）两种范式，结合随机森林、支持向量机和k近邻三种机器学习算法，在Google Earth Engine和eCognition平台分别实现分类，并通过独立样本进行精度验证。",
+      "study_area": "Gilgit District, Pakistan",
+      "study_period": "2024年9月（影像获取时间）",
+      "datasets_used": [
+        {
+          "name_in_paper": "Landsat-8 OLI SR level 2",
+          "role_in_study": "土地覆盖分类的输入遥感影像数据",
+          "usage": "used_as_data",
+          "evidence_quote": "The methodology in this study involves the acquisition of Landsat-8 OLI SR level 2 imagery for September 12 and 21, 2024",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 MSI Level 2A",
+          "role_in_study": "土地覆盖分类的输入遥感影像数据",
+          "usage": "used_as_data",
+          "evidence_quote": "Sentinel-2 MSI Level 2A imagery for September 21, 2024, with cloud cover less than 7% for both images, was selected",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.33411_ijist_1482.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "c3e4cd99768af6d5a4dfe5e3ea5db8016ee8924aec91b60b672af7137807cd8b",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:32:51",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.33411_ijist_1482.json",
+        "quote_gate": {
+          "total": 6,
+          "verified": 6
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_011",
+        "source_paper_doi": "10.33411/ijist/1482",
+        "title": "Assessing the Efficacy of Pixel-based and Object-based Classification Techniques and Classifiers for Land Cover Mapping Using Landsat-8 and Sentinel-2 Data in Complex Mountainous Terrain",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_012",
+      "source_paper_doi": "10.5194/isprs-archives-xlviii-m-1-2023-41-2023",
+      "title": "WATER RESERVOIRS MONITORING THROUGH GOOGLE EARTH ENGINE: APPLICATION TO SENTINEL AND LANDSAT IMAGERY",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Sentinel-2",
+        "Landsat-8"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-2",
+          "actual_product_in_paper": "Sentinel-2",
+          "evidence_quotes": [
+            "The first two approaches were applied to Sentinel-2 (Google Earth Engine Data Catalog, 2023a) and Landsat-8 (Google Earth Engine Data Catalog, 2023c) multispectral imagery",
+            "applied to Sentinel-2 (GEE Data Catalog) and Landsat-8 multispectral imagery"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat-8",
+          "actual_product_in_paper": "Landsat-8",
+          "evidence_quotes": [
+            "The first two approaches were applied to Sentinel-2 (Google Earth Engine Data Catalog, 2023a) and Landsat-8 (Google Earth Engine Data Catalog, 2023c) multispectral imagery",
+            "the QA PIXEL and QA RADSAT bands of Landsat-8"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "The first two approaches were applied to Sentinel-2 (Google Earth Engine Data Catalog, 2023a) and Landsat-8 (Google Earth Engine Data Catalog, 2023c) multispectral imagery, and the third one to Sentinel-1 SAR (Google Earth Engine Data Catalog, 2023b) imagery.",
+        "For the approaches based on multispectral imagery, only images with a percentage of cloudy pixels less than 30% were selected and a cloud mask was computed to consider only cloud-free pixels using the QA60 bitmask band of Sentinel-2 (Google Earth Engine Data Catalog, 2022) and the QA PIXEL and QA RADSAT bands of Landsat-8 (ESA, 2022)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文旨在通过遥感影像监测水体水库的表面范围，研究区包括意大利威尼斯Marghera码头（用于验证）以及伊拉克Sawa湖、中国鄱阳湖和意大利波河（用于干旱影响分析）。",
+      "hypothesis_or_mechanism": "假设基于多光谱和合成孔径雷达（SAR）影像的自动分割方法能够有效区分水体与陆地表面，并准确估算水库面积；其中AWEI指数结合Otsu阈值法可最大化水与非水像元的可分性，减少云、阴影等干扰。",
+      "variables_and_data_use": "论文使用Sentinel-2和Landsat-8的多光谱影像计算AWEI和HSV指数以提取水体，使用Sentinel-1 SAR影像通过后向散射阈值识别水体。Sentinel-2和Landsat-8数据经云掩膜处理后，按季度聚合生成中值影像作为分割输入。",
+      "method_paradigm": "采用三种图像分割范式：基于AWEI指数与自适应Otsu阈值的光谱指数法、RGB转HSV颜色空间的参数阈值法、以及SAR影像的经验后向散射阈值法。",
+      "study_area": "Marghera dock (Venice, Italy), Sawa lake (Iraq), Poyang lake (China), Po river (Italy)",
+      "study_period": "2019年（用于方法验证），2022年（用于干旱影响分析）",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2",
+          "role_in_study": "提供多光谱影像用于AWEI和HSV水体分割",
+          "usage": "used_as_data",
+          "evidence_quote": "The first two approaches were applied to Sentinel-2 (Google Earth Engine Data Catalog, 2023a) and Landsat-8 (Google Earth Engine Data Catalog, 2023c) multispectral imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-8",
+          "role_in_study": "提供多光谱影像用于AWEI和HSV水体分割",
+          "usage": "used_as_data",
+          "evidence_quote": "The first two approaches were applied to Sentinel-2 (Google Earth Engine Data Catalog, 2023a) and Landsat-8 (Google Earth Engine Data Catalog, 2023c) multispectral imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1 SAR",
+          "role_in_study": "提供合成孔径雷达影像用于经验阈值水体分割",
+          "usage": "used_as_data",
+          "evidence_quote": "the third one to Sentinel-1 SAR (Google Earth Engine Data Catalog, 2023b) imagery",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.5194_isprs-archives-xlviii-m-1-2023-41-2023.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "870496ae537b1236cebc93045cdc5865cb9cbad728e8f2373c749dffae5d5a8c",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:33:00",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.5194_isprs-archives-xlviii-m-1-2023-41-2023.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_012",
+        "source_paper_doi": "10.5194/isprs-archives-xlviii-m-1-2023-41-2023",
+        "title": "WATER RESERVOIRS MONITORING THROUGH GOOGLE EARTH ENGINE: APPLICATION TO SENTINEL AND LANDSAT IMAGERY",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_013",
+      "source_paper_doi": "10.3390/geosciences15080316",
+      "title": "Testing Satellite Snow Cover Observations Using Time-Lapse Camera Images in Mid-Latitude Mountain Ranges (Northern Spain)",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "spectral_indicators",
+          "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "actual_product_in_paper": "Harmonized Sentinel-2 MSI Level-2A (Sentinel-2A and 2B)",
+          "evidence_quotes": [
+            "Harmonized Sentinel-2 MSI Level-2A (Sentinel-2A and 2B)",
+            "USGS Landsat8 Level2,Collection2,Tier1; Harmonized Sentinel-2 MSI Level2A"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 1,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "long_term_spectral_context",
+          "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "actual_product_in_paper": "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+          "evidence_quotes": [
+            "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+            "Landsat5/8/9 Level2, Collection2, Tier1 products used for snow classification"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "rainfall_stress",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "independent_read",
+          "prior_basis_strength": "strong",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "rainfall_stress"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "The satellite products used in GEE included the following: MODIS Terra Snow Cover Daily Global 500m (MOD10A1.061); USGS Landsat 5 Level 2, Collection 2, Tier 1; USGS Landsat 8 Level 2, Collection 2, Tier 1; USGS Landsat 9 Level 2, Collection 2, Tier 1; Harmonized Sentinel-2 MSI Level 2A (Sentinel-2A and 2B).",
+        "A hierarchical method was applied, as described in [27], where each pixel, the observation with the highest assigned weight was selected, generating a daily ImageCollection with variable spatial resolution.",
+        "Daily FSC (fractional snow cover) records derived from time-lapse cameras were compared with satellite-based observations."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        false,
+        true
+      ],
+      "research_question": "该研究旨在比较卫星雪盖观测与地面时间 lapse 相机图像在西班牙北部中纬度山区（坎塔布连山脉和德曼达山脉）的雪盖监测效果，评估卫星产品在复杂地形下对雪盖存在、起始日期和消融日期的检测能力。",
+      "hypothesis_or_mechanism": "由于云层遮挡和卫星重访周期限制，光学卫星影像会系统性低估雪盖存在并引入时间偏差；而高时间分辨率的地面相机观测可提供真实雪盖动态，用于验证并揭示卫星产品的局限性。",
+      "variables_and_data_use": "研究使用了时间 lapse 相机图像（2003–2025年，每6小时一张，共99,412张）作为地面真值，用于判定雪盖状态；同时使用Google Earth Engine中的Harmonized Sentinel-2 MSI Level-2A、USGS Landsat 5/8/9 Collection 2 Tier 1 Level-2以及MODIS Terra Snow Cover Daily Global 500m（MOD10A1.061）产品提取雪盖信息，并通过NDSI阈值法进行分类。",
+      "method_paradigm": "采用基于NDSI阈值的雪盖分类方法，并结合多源卫星数据的分层融合策略（优先Sentinel-2，其次Landsat，最后MODIS），辅以最多5天的前后有效观测进行间隙填充，实现日尺度雪盖序列重建。",
+      "study_area": "西班牙北部坎塔布连山脉和德曼达山脉（Cantabrian Mountains and Sierra de la Demanda, northern Spain）",
+      "study_period": "2003年11月至2025年3月",
+      "datasets_used": [
+        {
+          "name_in_paper": "Harmonized Sentinel-2 MSI Level-2A (Sentinel-2A and 2B)",
+          "role_in_study": "用于高分辨率雪盖分类",
+          "usage": "used_as_data",
+          "evidence_quote": "Harmonized Sentinel-2 MSI Level-2A (Sentinel-2A and 2B)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 5 Level 2, Collection 2, Tier 1",
+          "role_in_study": "用于中分辨率雪盖分类",
+          "usage": "used_as_data",
+          "evidence_quote": "USGS Landsat 5 Level 2, Collection 2, Tier 1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+          "role_in_study": "用于中分辨率雪盖分类",
+          "usage": "used_as_data",
+          "evidence_quote": "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat 9 Level 2, Collection 2, Tier 1",
+          "role_in_study": "用于中分辨率雪盖分类",
+          "usage": "used_as_data",
+          "evidence_quote": "USGS Landsat 9 Level 2, Collection 2, Tier 1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS Terra Snow Cover Daily Global 500m (MOD10A1.061)",
+          "role_in_study": "用于每日雪盖覆盖监测",
+          "usage": "used_as_data",
+          "evidence_quote": "MODIS Terra Snow Cover Daily Global 500m (MOD10A1.061)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Time-lapse camera images",
+          "role_in_study": "地面真值观测",
+          "usage": "used_as_data",
+          "evidence_quote": "A monitoring network has been established to track snow conditions using images from webcams and camera traps distributed throughout the study area.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_geosciences15080316.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "0691ca2f99c9eab71a6d6be6a2ca35c33dcfb1d86a95fefd9aeda8e68f7e33fe",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:33:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_003/10.3390_geosciences15080316.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 10
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "manual_admitted_partial_set_013",
+        "source_paper_doi": "10.3390/geosciences15080316",
+        "title": "Testing Satellite Snow Cover Observations Using Time-Lapse Camera Images in Mid-Latitude Mountain Ranges (Northern Spain)",
+        "reference_tier": "expanded_set_reference",
+        "admission_basis": "manual_fulltext_independent_read_20261006",
+        "actual_datasets": [
+          "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+        ],
+        "covered_member_count": 2,
+        "partial_set_support": true,
+        "missing_member_ids": [
+          "rainfall_stress"
+        ]
+      }
+    }
+  ],
+  "legacy_direction_review": {
+    "reviewed_at": "2026-10-03",
+    "audit_batch": "threeplus_legacy_direction_manual_review_20261003",
+    "review_scope": "All 10 legacy directions in three_or_more_datasets/task_003 were re-read against the current three-member anchor.",
+    "anchor_members": [
+      {
+        "role": "spectral_indicators",
+        "required_product": "COPERNICUS/S2_SR_HARMONIZED or compatible Sentinel-2 surface reflectance"
+      },
+      {
+        "role": "long_term_spectral_context",
+        "required_product": "LANDSAT/LC08/C02/T1_L2 or compatible Landsat 8/9 surface reflectance lineage"
+      },
+      {
+        "role": "rainfall_stress",
+        "required_product": "UCSB-CHG/CHIRPS/DAILY or clearly evidenced analogous precipitation/meteorological forcing"
+      }
+    ],
+    "accepted_dois": [
+      "10.3389/ffgc.2026.1809572",
+      "10.3390/s26144470"
+    ],
+    "non_formal_reviewed_dois": [
+      {
+        "doi": "10.3390/s25185746",
+        "manual_verdict": "partial_set_support",
+        "reason": "Sentinel-2 and Landsat 8/9 are used, but no CHIRPS or rainfall-stress data are used as data."
+      },
+      {
+        "doi": "10.47363/jgwcc/2025(1)131",
+        "manual_verdict": "partial_set_support",
+        "reason": "Sentinel-2, NIMET/CHIRPS and SRTM are used, but the Landsat member is missing."
+      },
+      {
+        "doi": "10.1186/s42408-023-00196-1",
+        "manual_verdict": "partial_set_support",
+        "reason": "Sentinel-2 and GridMET/climate variables are used, but the Landsat member is missing."
+      },
+      {
+        "doi": "10.1371/journal.pone.0358998",
+        "manual_verdict": "partial_set_support",
+        "reason": "Sentinel-2, CHIRPS and SRTM are used, but the Landsat member is missing."
+      },
+      {
+        "doi": "10.3390/s21062115",
+        "manual_verdict": "partial_set_support",
+        "reason": "Sentinel-2 and Landsat 8 surface reflectance are used, but rainfall/CHIRPS is missing."
+      },
+      {
+        "doi": "10.21009/jsg.v4i1.01",
+        "manual_verdict": "partial_set_support",
+        "reason": "Landsat 8 and Sentinel/HLS are used, but rainfall is only study-area climate background, not a CHIRPS data member."
+      },
+      {
+        "doi": "10.3390/f17060640",
+        "manual_verdict": "component_support",
+        "reason": "Methods use Landsat 8 OLI vegetation indices; no complete Sentinel-2 plus rainfall member is used in the same instance."
+      },
+      {
+        "doi": "10.38124/ijisrt/26feb977",
+        "manual_verdict": "partial_set_support",
+        "reason": "PDF Methods use Sentinel-2 surface reflectance and Landsat 8 NDVI/LST, but no CHIRPS/rainfall-stress data member."
+      }
+    ],
+    "note": "Partial/component support was not kept in formal directions because it does not cover the full three-member combination."
+  },
+  "migration": {
+    "migrated_from": "1.0",
+    "migrated_on": "2026-10-10",
+    "batch": "threeplus_member_verified_migration_20261010",
+    "notes": "逐成员核验后迁移到 3.0-multidataset-reference-space：每篇论文的每个锚点成员按本地全文抽取（qwen3-max，引文核验）与旧记录证据联合判定是否实际用作数据；未覆盖全部成员的论文保持 partial_set_support=true，不写成完整组合。旧 direction 原样保留在 legacy_record；1.0 专有顶层键 s_level/s_assessment/anchor_asset_type/anchor_component_paths 移除，锚点由 anchor_asset.components 完整表示。"
+  }
+}

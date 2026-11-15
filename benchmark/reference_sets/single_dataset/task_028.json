@@ -1,0 +1,839 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_028",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "ESA WorldCover 10m Land Cover v200",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:ESA/WorldCover/v200",
+    "spatial_resolution": "10 m",
+    "temporal_resolution": "2021 static map",
+    "gee_asset": {
+      "id": "ESA/WorldCover/v200",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:ESA/WorldCover/v200",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_028.json",
+    "source_sha256": "571efe882d2d0c6f783e54bffdfb486586eb044b8bcdd576eb4068ef08132a92",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_028/prompt.json",
+    "current_prompt_sha256": "15d468bfe0e9cacbc63c5fdfd68ede6d752f5afdb055e7972af775cd73bd8308",
+    "original_anchor_asset": {
+      "id": "ESA/WorldCover/v200",
+      "observable_group": "esa_worldcover_ten_metre_land_cover",
+      "kind": "land_cover_land_use",
+      "title": "ESA WorldCover 10m v200",
+      "observation_identity_contract": {
+        "physical_object": "categorical land-cover type at Sentinel-2-consistent 10 m resolution",
+        "source_lineage": "ESA WorldCover 10 m land-cover map production lineage, version 200 (2021 reference year)",
+        "core_measurement_semantics": "ESA WorldCover v200 11-class land cover at 10 m",
+        "non_material_variations": "archive, tile/grid, resampling, class aggregation, or validation-driven post-processing retaining WorldCover v200 classification output",
+        "material_mismatches": "MCD12Q1, ESA CCI Land Cover, FROM-GLC, Dynamic World, ESRI Land Cover or another land-cover product without WorldCover operational input"
+      },
+      "asset_alias_policy": "Only ESA WorldCover v200 (10 m, 2021) is admitted; v100 and other land-cover maps may be companions but are not aliases."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "不同验证方法如何影响WorldCover、Dynamic World和ESRI LULC等10米全球土地覆盖产品的精度评估及其空间细节比较？",
+      "hypothesis_or_mechanism": "参考标签不确定性、地理定位误差和土地覆盖类别定义差异会影响土地覆盖产品的精度估计，而使用邻域标签或同质性筛选可以改变这种影响。",
+      "variables_and_data_use": "研究使用WorldCover V200、Dynamic World和ESRI LULC的10米土地覆盖类别作为待验证地图变量，使用CGLS-LC验证数据中的10米参考类别作为验证变量，并通过类别协调、邻域替代标签、同质性过滤和加权混淆矩阵计算整体及类别精度。",
+      "method_paradigm": "土地覆盖产品验证比较",
+      "used_assets": [
+        "WorldCover",
+        "ESA/WorldCover/v200",
+        "Dynamic World",
+        "GOOGLE/DYNAMICWORLD/V1",
+        "ESRI LULC",
+        "The multi-purpose Global Land Cover Validation dataset",
+        "Copernicus Global Land Service - Land Cover (CGLS-LC) project"
+      ],
+      "author_team": [
+        "Panpan Xu",
+        "Nandin‐Erdene Tsendbazar",
+        "Martin Herold",
+        "Sytze de Bruin",
+        "Myke Koopmans",
+        "Tanya Birch",
+        "Sarah Carter",
+        "Steffen Fritz",
+        "Myroslava Lesiv",
+        "Elise Mazur",
+        "Amy Pickens",
+        "Peter V. Potapov",
+        "Fred Stolle",
+        "Alexandra Tyukavina",
+        "Ruben Van De Kerchove",
+        "Daniele Zanaga"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparative validation of recent 10 m-resolution global land cover maps",
+        "doi": "10.1016/j.rse.2024.114316",
+        "year": 2024,
+        "venue": "Remote Sensing of Environment",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "研究能否通过符号回归从Sentinel-2表面反射率中发现可泛化的植被和水体光谱指数。",
+      "hypothesis_or_mechanism": "不同土地覆盖类别在可见光、近红外、红边和短波红外反射率上的系统差异能够被紧凑的光谱表达式捕捉，从而提高类别可分性。",
+      "variables_and_data_use": "使用Copernicus Sentinel-2 Level-2A surface reflectance products的B2、B3、B4、B5–B7、B8、B8A和B11–B12作为预测变量；使用ESA WorldCover 2021的土地覆盖类别作为训练和验证标签，并将波段重采样到10米网格后进行符号回归、指数比较和全球验证。",
+      "method_paradigm": "符号回归与全球验证",
+      "used_assets": [
+        "Copernicus Sentinel-2 Level-2A surface reflectance products",
+        "ESA WorldCover 2021"
+      ],
+      "author_team": [
+        "Charalambos Chrysostomou",
+        "Stelios P. Neophytides",
+        "Michalis Mavrovouniotis",
+        "Diofantos  G. Hadjimitsis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Optimized spectral indices for global vegetation and water mapping using Sentinel-2",
+        "doi": "10.1038/s41598-025-34720-x",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "如何构建一个综合描述地中海岛屿生物地理、生态和环境特征的空间数据库？",
+      "hypothesis_or_mechanism": "岛屿的地形、气候、土地覆盖、道路和历史地理特征能够共同刻画其生态环境与潜在保护价值。",
+      "variables_and_data_use": "研究整合岛屿边界、面积和距离，高程、地形粗糙度和地形位置指数，温度和降水，土地覆盖类型及农田和建成区比例，古海岸线以及道路长度和密度等变量，并在岛屿多边形内进行空间汇总。",
+      "method_paradigm": "空间数据库构建",
+      "used_assets": [
+        "Global Shoreline Vector",
+        "Google satellite imagery",
+        "BIOCLIM+ dataset",
+        "SRTM DEM",
+        "Paleocoastlines GIS dataset",
+        "OpenStreetMap",
+        "ClimDatDownloadR"
+      ],
+      "author_team": [
+        "Francesco Santi",
+        "Riccardo Testolin",
+        "Piero Zannini",
+        "Michele Di Musciano",
+        "Virginia Micci",
+        "Lorenzo Ricci",
+        "Riccardo Guarino",
+        "Gianluigi Bacchetta",
+        "José María Fernández‐Palacios",
+        "Mauro Fois",
+        "Konstantinos Kougioumoutzis",
+        "Kadir Boğaç Kunt",
+        "Federico Lucchi",
+        "Frédéric Mèdail",
+        "Toni Nikolić",
+        "Rüdiger Otto",
+        "Salvatore Pasta",
+        "Maria Panitsa",
+        "Κωνσταντίνος Πρόιος",
+        "Spyros Sfenthourakis",
+        "Stylianos Michail Simaiakis",
+        "C. A. Tranne",
+        "Kostas A. Triantis",
+        "Alessandro Chiarucci"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "MEDIS —A comprehensive spatial database on Mediterranean islands for biogeographical and evolutionary research",
+        "doi": "10.1111/geb.13855",
+        "year": 2024,
+        "venue": "Global Ecology and Biogeography",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "由ESA WorldCover 2021聚合得到的全球土地覆盖变量是否比EarthEnv Global 1 km土地覆盖变量更能提升不同物种的分布模型表现？",
+      "hypothesis_or_mechanism": "更高空间分辨率的土地覆盖分类能够更好地保留细尺度栖息地异质性，从而提高物种分布模型对关键栖息地变量的表征能力和预测性能。",
+      "variables_and_data_use": "研究使用ESA WorldCover 2021的11类土地覆盖分类，将10米像元聚合为约1公里网格内各类别的百分比覆盖变量，并与EarthEnv Global 1 km土地覆盖变量分别结合CHELSA气候变量，用于四个物种的Maxent物种分布模型；GBIF提供物种出现记录，OpenStreetMap用于陆地掩膜。",
+      "method_paradigm": "比较性物种分布建模",
+      "used_assets": [
+        "ESA WorldCover 2021",
+        "EarthEnv Global 1 km",
+        "GlobCover",
+        "MODIS2005",
+        "CHELSA",
+        "GBIF",
+        "OpenStreetMap"
+      ],
+      "author_team": [
+        "Elia Lo Parrino",
+        "Andrea Simoncini",
+        "Gentile Francesco Ficetola",
+        "Mattia Falaschi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Global 1-km land cover for ecological modelling from very high resolution imagery",
+        "doi": "10.32942/x2qm0b",
+        "year": 2025,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "如何利用GIS和遥感数据自动化评估乌克兰火灾影响区域及其与土地覆盖类型的关系",
+      "hypothesis_or_mechanism": "火灾分布密度与土地覆盖类型存在相关性，可通过空间叠加分析揭示火灾与地表类型的时空关联",
+      "variables_and_data_use": "使用FIRMS火灾定位数据作为火灾事件输入，ESA WorldCover 2021土地覆盖分类作为地表类型参照，通过空间聚合和叠加分析计算不同土地覆盖类型上的火灾密度和时空变化",
+      "method_paradigm": "空间叠加分析 GIS制图",
+      "used_assets": [
+        "ESA WorldCover 2021",
+        "NASA FIRMS",
+        "Suomi NPP",
+        "NOAA-20",
+        "MODIS"
+      ],
+      "author_team": [
+        "Ольга Володимирівна Томченко",
+        "Dmytro Liashenko",
+        "M. Yakovenko",
+        "I. Stakhiv"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Geoinformation wildfire mapping of Ukraine: analyzing FIRMS data for effective fire management",
+        "doi": "10.3846/gac.2025.21322",
+        "year": 2025,
+        "venue": "Geodesy and Cartography",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "如何利用2018至2021年的Sentinel-2时间序列和环境变量在波兰范围内制备16种森林树种和属的空间分布图？",
+      "hypothesis_or_mechanism": "多季节、多年份的Sentinel-2光谱-时间指标结合地形、气候和土壤变量能够提升大范围森林树种分类精度。",
+      "variables_and_data_use": "以COPERNICUS/S2_SR_HARMONIZED生成春季、夏季和秋季光谱-时间反射率指标及NDVI，并结合ESA/WorldCover/v200的tree cover类别、GOOGLE/DYNAMICWORLD/V1、NASA/NASADEM_HGT/001、WORLDCLIM/V1/BIO、OpenLandMap/SOL/SOL_GRTGROUP_USDA-SOILTAX_C/v01和IDAHO_EPSCOR/TERRACLIMATE构建森林掩膜和分类预测变量；使用Polish Forest Data Bank (FDB)提供训练、验证和测试样本。",
+      "method_paradigm": "监督分类与精度评估",
+      "used_assets": [
+        "ESA WorldCover 2021 product (ESA/WorldCover/v200)",
+        "GOOGLE/DYNAMICWORLD/V1",
+        "COPERNICUS/S2_SR_HARMONIZED",
+        "COPERNICUS/S2_CLOUD_PROBABILITY",
+        "NASA/NASADEM_HGT/001",
+        "WORLDCLIM/V1/BIO",
+        "OpenLandMap/SOL/SOL_GRTGROUP_USDA-SOILTAX_C/v01",
+        "IDAHO_EPSCOR/TERRACLIMATE",
+        "Polish Forest Data Bank (FDB)",
+        "very-high-resolution orthoimagery"
+      ],
+      "author_team": [
+        "Ewa Grabska‐Szwagrzyk",
+        "Dirk Tiede",
+        "Martin Sudmanns",
+        "Jacek Kozak"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Map of forest tree species for Poland based on Sentinel-2 data",
+        "doi": "10.5194/essd-16-2877-2024",
+        "year": 2024,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "构建基于多源数据和丰富样本标注的蒙古高原长期土地覆盖数据集。",
+      "hypothesis_or_mechanism": "提供的文本未包含可核实的研究假设或土地覆盖变化作用机制。",
+      "variables_and_data_use": "标题表明研究涉及多源数据和土地覆盖信息，但提供的文本未列出实际产品、变量及其具体使用方式。",
+      "method_paradigm": "数据集构建",
+      "used_assets": [],
+      "author_team": [
+        "Juanle Wang",
+        "Kai Li",
+        "Mengmeng Hong",
+        "Yating Shao",
+        "Zhichen Sun",
+        "Meng Liu",
+        "Fengjiao Li",
+        "Yuhui Su",
+        "Qi-lin Jia",
+        "Yaping Liu",
+        "Jiazhuo Liu",
+        "Jiawei Jiang",
+        "Altansukh Ochir",
+        "Davaadorj Davaasuren",
+        "Mengqiong Xu",
+        "Yamin Sun",
+        "Yifei Sun",
+        "Shaopu Huang",
+        "Weihao Zou",
+        "Tengfei Han",
+        "Feiran Sun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Long-term Land Cover Dataset of the Mongolian Plateau Based on Multi-source Data and Rich Sample Annotations",
+        "doi": "10.5194/essd-2024-237",
+        "year": 2024,
+        "venue": "Earth System Science Data Discussions",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何利用Sentinel-2、MODIS和VIIRS卫星观测结合高分辨率土地覆盖数据改进植被光合作用与呼吸作用模型（VPRM）的空间分辨率和参数估计",
+      "hypothesis_or_mechanism": "Sentinel-2的20米高空间分辨率结合ESA WorldCover 10米土地覆盖分类能够更准确地表征异质景观中的碳通量空间变异性，特别是在城市和农业区域",
+      "variables_and_data_use": "使用Sentinel-2、MODIS、VIIRS的近红外、红光和短波红外波段计算增强植被指数（EVI）和地表水分指数（LSWI）；使用ESA WorldCover和Copernicus土地覆盖数据将像元分类为8个植被类别（常绿林、落叶林、混交林、灌木、作物、草地、湿地、非植被）并计算各类别面积比例；结合气象数据（温度、光合有效辐射）驱动VPRM模型计算逐像元碳通量",
+      "method_paradigm": "生态系统过程模型参数化",
+      "used_assets": [
+        "ESA WorldCover",
+        "Sentinel-2 Collection 1 Level-2A",
+        "MODIS MOD09GA",
+        "MODIS MYD09GA",
+        "VIIRS VNP09GA",
+        "Copernicus Dynamic Land Cover Collection 3"
+      ],
+      "author_team": [
+        "Theo Glauch",
+        "Julia Marshall",
+        "Christoph Gerbig",
+        "Santiago Botía",
+        "Michał Gałkowski",
+        "Sanam Noreen Vardag",
+        "André Butz"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "pyVPRM : a next-generation vegetation photosynthesis and respiration model for the post-MODIS era",
+        "doi": "10.5194/gmd-18-4713-2025",
+        "year": 2025,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "法国大陆湿地损失和退化的空间分布与面积规模如何？",
+      "hypothesis_or_mechanism": "通过对ESA Worldcover土地覆盖类别进行湿地范围内的后分类，可识别被开发或土地覆盖变化导致的湿地损失与退化。",
+      "variables_and_data_use": "使用ESA Worldcover V2 2021的10米土地覆盖类别作为核心输入，将Built-up、Cropland及其他类别结合湿地范围和潮间带最高水位信息重分类为非湿地、现存湿地、退化湿地和损失湿地，并使用LUCAS field samples进行精度验证。",
+      "method_paradigm": "后分类制图与精度评估",
+      "used_assets": [
+        "ESA Worldcover V2 2021 product",
+        "LUCAS field samples",
+        "French Navy Hydrographic and Oceanographic Service"
+      ],
+      "author_team": [
+        "Léa Panhelleux",
+        "Sébastien Rapinel",
+        "Laurence Hubert‐Moy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "A 10 m dataset of wetland loss and degradation across mainland France (2021)",
+        "doi": "10.5281/zenodo.11568778",
+        "year": 2024,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何利用ESA WorldCover及辅助空间数据划定俄罗斯联邦2020年的管理土地与非管理土地？",
+      "hypothesis_or_mechanism": "将ESA WorldCover土地覆盖类别与森林管理、牧场、湿地、水坝、采矿和历史土地利用信息结合，可以构建更符合国家温室气体清单需求的管理土地空间分类。",
+      "variables_and_data_use": "以ESA WorldCover 2021的土地覆盖类别为基础，使用类别20、30、60、70、80、90和100识别草地、灌丛、裸地、雪冰、水体、湿地和苔原等对象，再结合森林管理计划、Global Pasture Watch、国家湿地地图、WPC、Global Dam Watch、废弃农田数据和采矿区数据进行排除、修正和二元分类，最终生成约100米分辨率的管理土地与非管理土地掩膜。",
+      "method_paradigm": "空间分类与规则制图",
+      "used_assets": [
+        "ESA WorldCover 2021 dataset",
+        "ESA WorldCover",
+        "regional forest management plan data (HCVF, 2025)",
+        "Global Pasture Watch",
+        "national wetland map (Schepaschenko, Shvidenko, 2026)",
+        "WPC (2026)",
+        "Global Dam Watch database (GDW, 2024)",
+        "Lesiv et al., 2018",
+        "Maus et al., 2020"
+      ],
+      "author_team": [
+        "Maria Shchepashchenko",
+        "В. Н. Коротков",
+        "Н А Владимирова",
+        "А. Shvidenko",
+        "Victor N. Karminov",
+        "Dmitry G. Schepaschenko"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Land management map of the Russian Federation (2020)",
+        "doi": "10.5281/zenodo.21872180",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "该论文研究 COTQ、WorldCover、Google Dynamic World 和 ESRI Land Cover 等土地覆盖产品在光谱可分性、对象大小、边界复杂度和 urban 类精度方面的差异。",
+      "hypothesis_or_mechanism": "如果分类产品更好地保留真实景观中的细小对象和复杂边界，其对象大小分布、边界复杂度和与高分辨率参考的 IoU 应更接近真实地表结构。",
+      "variables_and_data_use": "论文使用 Sentinel-2 RGB-NIR 反射率样本计算各土地覆盖产品类别标签诱导的 Silhouette、Calinski Harabasz 和 SAM 光谱指标；使用 WorldCover、COTQ、Google Dynamic World 和 ESRI Land Cover 的分类结果比较对象大小分布与边界复杂度；使用 50-cm Jilin classification 作为 urban 类 IoU 参考。",
+      "method_paradigm": "多产品精度验证",
+      "used_assets": [
+        "WorldCover",
+        "COTQ",
+        "Google Dynamic World",
+        "ESRI Land Cover",
+        "Sentinel-2",
+        "50-cm Jilin classification"
+      ],
+      "author_team": [
+        "Étienne Clabaut",
+        "Samuel Foucher",
+        "Yacine Bouroubi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Systematic Evaluation of the COTQ Provincial Land Cover Product: Structural Consistency, Spectral Separability, and Relative Positioning Against ESA, ESRI, and Google Products",
+        "doi": "10.48550/arxiv.2609.17731",
+        "year": 2026,
+        "venue": "arXiv (Cornell University)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "该论文研究如何构建一个由真实Sentinel-1多时相SAR影像和对应土地覆盖参考图组成的数据集，用于SAR去斑算法的训练与评估。",
+      "hypothesis_or_mechanism": "通过对同一区域的多次独立SAR观测进行时间平均，可以降低斑点噪声方差并生成更稳定的参考影像，同时土地覆盖信息有助于提高样本多样性和可解释性。",
+      "variables_and_data_use": "论文使用Sentinel-1 SAR的VV和VH极化、升轨和降轨影像作为原始雷达观测，并通过5、10、15、20和25景多时相融合生成去斑参考影像；同时使用ESA WorldCover v200派生的土地覆盖参考图与每个SAR样本配对，表示样本区域的土地覆盖类型。",
+      "method_paradigm": "数据集构建与验证",
+      "used_assets": [
+        "Sentinel-1 SAR imagery",
+        "ESA WorldCover v200",
+        "Google Earth Engine (GEE)"
+      ],
+      "author_team": [
+        "Jean Pierre Díaz-Paz",
+        "Ahmed Alejandro Cardona-Mesa",
+        "Paula Andrea Muñoz-Uribe",
+        "Rubén Darío Vásquez-Salazar",
+        "Santiago Zapata-Vargas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Labeled dataset of Sentinel-1 SAR imagery Despeckled with multitemporal fusions",
+        "doi": "10.1016/j.dib.2026.112999",
+        "year": 2026,
+        "venue": "Data in Brief",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究如何利用2022年和2024年的多时相Sentinel-1与Sentinel-2数据识别并量化印度尼西亚努山塔拉核心政府区的土地覆盖变化。",
+      "hypothesis_or_mechanism": "SAR与光学多模态特征融合能够提高土地覆盖分类表现，并揭示植被向建成区或裸地转变等建设驱动的土地覆盖变化。",
+      "variables_and_data_use": "使用Sentinel-1 GRD的VV、VH及VV/VH比值和Sentinel-2地表反射率波段及NDVI、NDBI、NDWI作为预测变量；使用ESA WorldCover v200重映射后的五类土地覆盖作为伪标签和分层抽样依据；使用Dynamic World进行独立结果检查。",
+      "method_paradigm": "多时相遥感分类与变化检测",
+      "used_assets": [
+        "Sentinel-1 SAR Ground Range Detected (GRD) imagery",
+        "Sentinel-2 Surface Reflectance Harmonized imagery",
+        "ESA WorldCover v200 (10 m, 2021)",
+        "Dynamic World"
+      ],
+      "author_team": [
+        "Fajar Sidik Suganda",
+        "Asep Adang Supriyadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "CLOUD-BASED MULTI-TEMPORAL SAR-OPTICAL FUSION USING RANDOM FOREST FOR GEOSPATIAL INTELLIGENCE MONITORING OF KIPP IKN NUSANTARA",
+        "doi": "10.21163/gt_2027.221.08",
+        "year": 2026,
+        "venue": "Geographia Technica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "如何结合Sentinel-2影像、光谱指数、SRTM高程数据和机器学习方法，在尼日利亚联邦首都区制备高分辨率土地利用和土地覆盖图？",
+      "hypothesis_or_mechanism": "融合多光谱反射率、光谱指数和地形信息能够提高随机森林对城市、植被、农业、裸地和水体等土地覆盖类别的区分能力。",
+      "variables_and_data_use": "以ESA WorldCover 2021土地覆盖类别生成分层训练和独立验证样本；以Sentinel-2 Level-2A表面反射率的B2、B3、B4、B8、B11和B12波段，以及NDVI、NDBI、MNDWI、BSI和SRTM高程作为随机森林预测变量；将WorldCover原始类别聚合为五个主题类别，并用混淆矩阵、总体精度、Kappa系数、生产者精度和用户精度进行验证。",
+      "method_paradigm": "监督分类与精度评估",
+      "used_assets": [
+        "ESA WorldCover 2021 dataset",
+        "Sentinel\n-\n2 Level\n-\n2A surface reflectance imagery (COPERNICUS/S2_SR_HARMONIZED)",
+        "Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Ochimana Ebiojo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "GIS-Based Multi-Temporal Land Use and Land Cover Classification for Urban Expansion Planning in the Federal Capital Territory (FCT), Nigeria",
+        "doi": "10.51244/ijrsi.2026.1307000400",
+        "year": 2026,
+        "venue": "International journal of research and scientific innovation",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "研究旨在利用高分辨率遥感影像识别并量化老挝Phou Pha Nang国家生物多样性保护区2015年至2025年的森林损失及其时空变化。",
+      "hypothesis_or_mechanism": "森林与非森林类别在旱季多时相光谱反射率上具有稳定差异，因此基于WorldCover标签训练的随机森林模型能够跨年度识别森林向非森林的转变。",
+      "variables_and_data_use": "使用ESA WorldCover 2021 product中的WorldCover Class 10及其他类别构造森林与非森林训练标签；使用Planet NICFI Satellite Imagery的红、绿、蓝和近红外反射率训练随机森林并生成年度森林掩膜；通过连续年份森林到非森林的转变检测森林损失，并使用Google Earth高分辨率影像进行精度验证。",
+      "method_paradigm": "监督分类变化检测",
+      "used_assets": [
+        "Planet NICFI Satellite Imagery",
+        "Google Earth",
+        "ESA WorldCover 2021 product"
+      ],
+      "author_team": [
+        "Chittana Phompila",
+        "Kethsa Nanthavongduangsy",
+        "Vongphet Sihapanya",
+        "Saengmany Boutthavong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "High-Resolution Mapping of Decadal Forest Cover Change in the Phou Pha Nang NBCA, Central Laos",
+        "doi": "10.4236/gep.2026.147013",
+        "year": 2026,
+        "venue": "Journal of Geoscience and Environment Protection",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "在不同树冠覆盖目标下，城市绿地暴露可以避免多少年龄特异性死亡和可预防生命年损失？",
+      "hypothesis_or_mechanism": "增加树冠覆盖和绿地暴露可降低健康风险，从而减少可预防死亡及其对应的生命年损失。",
+      "variables_and_data_use": "使用2022年最绿季的Sentinel-2 NDVI和2021 ESA WorldCover估计300米缓冲区内的人口加权绿地暴露，以NDVI构建反事实暴露，结合ISTAT基线死亡数、年龄特异性预期寿命和暴露反应函数计算可预防死亡及可预防生命年损失，并通过蒙特卡洛模拟传播不确定性。",
+      "method_paradigm": "空间暴露健康影响评估",
+      "used_assets": [
+        "Sentinel-2",
+        "2021 ESA WorldCover",
+        "ISTAT"
+      ],
+      "author_team": [
+        "Orazio Valerio Giannico",
+        "Antonia Mincuzzi",
+        "Lucia Bisceglia",
+        "Francesco Addabbo",
+        "Feliciana Catino",
+        "Sante Minerba",
+        "Rodolfo Sardone"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Greenness and mortality in an industrialized area in Southern Italy: a health impact assessment study",
+        "doi": "10.1093/eurpub/ckae144.206",
+        "year": 2024,
+        "venue": "European Journal of Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "冲突升级前后，乌克兰预定义农田中的植被活动和弃耕状况如何变化，以及这种变化是否与土壤类型有关？",
+      "hypothesis_or_mechanism": "冲突导致部分农田植被活动下降或弃耕，不同土壤类型可能表现出不同的脆弱性。",
+      "variables_and_data_use": "使用ESA WorldCover v200的Class 40提取10米农田掩膜；使用COPERNICUS/S2_SR_HARMONIZED的2021年和2025年4月红光与近红外地表反射率计算NDVI，并以0.2阈值区分植被和非植被农田；使用OpenLandMap – USDA Soil Great Groups (v01)分析土壤类型与植被下降或弃耕之间的关系；使用FAO GAUL (2015)定义乌克兰边界和空间掩膜。",
+      "method_paradigm": "空间变化检测与分层比较",
+      "used_assets": [
+        "FAO GAUL (2015)",
+        "ESA WorldCover (v200)",
+        "OpenLandMap – USDA Soil Great Groups (v01)",
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "author_team": [
+        "Sinan Demir",
+        "Levent Başayığıt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "A spatial analysis of human–soil interactions using remote sensing and soil data: impacts of the conflict in Ukraine on food security",
+        "doi": "10.3389/fsoil.2026.1820852",
+        "year": 2026,
+        "venue": "Frontiers in Soil Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究不同权重方法构建的滑坡易发性模型能否有效识别越南广平省的滑坡敏感区域？",
+      "hypothesis_or_mechanism": "地形、水文、地质、土地覆盖、人类活动和天气等条件因子共同影响滑坡发生概率，结合主观和客观权重能够改善滑坡易发性制图。",
+      "variables_and_data_use": "研究使用ESA WorldCover version 2.0构建土地覆盖因子，使用ALOS PALSAR数字高程模型派生高程、坡度、坡向和曲率，使用河流、排水网络、断层、土壤、地貌和道路数据构建其他空间因子，使用Sentinel-2 MSI计算NDVI，使用CHIRPS生成降水因子，并将这些变量输入频率比、AHP、Shannon熵及AHP-SE综合加权模型。",
+      "method_paradigm": "GIS多因子决策支持",
+      "used_assets": [
+        "ESA WorldCover version 2.0",
+        "Phased Array type L-band Synthetic Aperture Radar (PALSAR) instruments onboard the Advanced Land Observing Satellite (ALOS)",
+        "Sentinel-2 satellites images",
+        "MultiSpectral Instrument (MSI) onboard Sentinel-2",
+        "Climate Hazards Group InfraRed Precipitation with Station Data (CHIRPS)",
+        "FAO/UNESCO classification",
+        "national database",
+        "national geodatabase"
+      ],
+      "author_team": [
+        "Pham Viet Hoa",
+        "Nguyen Quang Tuan",
+        "Pham Viet Hong",
+        "Giang Thị Phương Thảo",
+        "Nguyễn An Bình"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "GIS-based modeling of landslide susceptibility zonation by integrating the frequency ratio and objective–subjective weighting approach: a case study in a tropical monsoon climate region",
+        "doi": "10.3389/fenvs.2023.1175567",
+        "year": 2023,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究区内的地形、土地覆盖、降水、植被和人类环境等因素如何影响洪水危险空间分布，以及不同机器学习模型能否有效预测洪水危险。",
+      "hypothesis_or_mechanism": "土地覆盖、降水、地形和不透水面等条件因子通过影响产流、下渗和洪水汇集过程，能够解释并预测洪水发生的空间差异。",
+      "variables_and_data_use": "研究使用ESA WorldCover 10 m v200生成土地覆盖预测因子，并结合Sentinel-1 GRD和Global Flood Database v1构建洪水清单；同时使用ASTER DEM派生地形因子，TerraClimate生成降水因子，Sentinel 2计算NDVI，并加入土壤纹理、地质地貌、河流和道路距离以及Global Man-made Impervious Surface等变量，用于特征选择、洪水危险建模和SHAP、Boruta敏感性分析。",
+      "method_paradigm": "机器学习洪水危险制图",
+      "used_assets": [
+        "Sentinel-1 GRD’s data",
+        "Global Flood Database v1",
+        "ESA WorldCover 10 m v200",
+        "ASTER DEM",
+        "TerraClimate",
+        "Sentinel 2",
+        "Global Man-made Impervious Surface (gMIS)"
+      ],
+      "author_team": [
+        "Chiranjit Singha",
+        "Vikas Kumar Rana",
+        "Quoc Bao Pham",
+        "Duc Cong Nguyen",
+        "Ewa Bożena Łupikasza"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integrating machine learning and geospatial data analysis for comprehensive flood hazard assessment",
+        "doi": "10.1007/s11356-024-34286-7",
+        "year": 2024,
+        "venue": "Environmental Science and Pollution Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "如何利用多源遥感、环境和地形数据在10米分辨率下绘制具有详细植被类型的青藏高原土地覆盖图？",
+      "hypothesis_or_mechanism": "结合Sentinel-1和Sentinel-2的光谱与雷达特征，以及地形、温度和降水信息，可以提高对青藏高原垂直分异和特殊植被类型的识别能力。",
+      "variables_and_data_use": "研究使用Sentinel-2光学波段及NDVI、NDSI、NDWI和OSAVI等指数，Sentinel-1的VV和VH特征，SRTM地形变量，CHIRPS降水，ERA5-Land温度，以及Landsat NDVI时间序列；ESA WorldCover2021、FROM_GLC10-2017、FROM_GLC30-2015和GLC_FCS30-2020用于类别合并后的产品比较和验证。",
+      "method_paradigm": "监督分类与产品比较",
+      "used_assets": [
+        "Copernicus Sentinel-2",
+        "Copernicus Sentinel-1",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)",
+        "ERA5-Land",
+        "Landsat",
+        "ESA WorldCover2021",
+        "FROM_GLC10-2017",
+        "FROM_GLC30-2015",
+        "GLC_FCS30-2020",
+        "Google Earth",
+        "1:1 million Chinese vegetation map",
+        "Google Maps photos",
+        "TP_LC10-2022"
+      ],
+      "author_team": [
+        "Huang Xingyi",
+        "Yuwei Yin",
+        "Luwei Feng",
+        "Xiaoye Tong",
+        "Xiaoxin Zhang",
+        "Jiangrong Li",
+        "Feng Tian"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "independent source-text review of open Methods/Data text",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A 10 m resolution land cover map of the Tibetan Plateau with detailed vegetation types",
+        "doi": "10.5194/essd-16-3307-2024",
+        "year": 2024,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "如何融合全球土地覆盖、建筑足迹、遥感辐射观测和建筑形态数据，构建适用于公里尺度城市气候模型的全球连续城市地表属性数据集？",
+      "hypothesis_or_mechanism": "将ESA WorldCover土地覆盖分类与建筑几何及卫星辐射观测融合，可以更一致地刻画城市屋顶、不透水地表和透水地表的空间异质性，并改善城市冠层模型的地表参数约束。",
+      "variables_and_data_use": "使用ESA WorldCover的built-up、tree cover、shrubland、grassland和bare or sparsely vegetated类别识别城市地表类型；结合Microsoft global building footprints dataset、East Asia building footprints和3D-GloBFP提取屋顶比例及建筑高度；使用ASTER Global Emissivity Dataset 100 m V003和Sentinel-2 land surface albedo data派生发射率和反照率；结合GUBs、J2010及其他建筑和热学数据生成1公里城市辐射、形态和热学参数。",
+      "method_paradigm": "多源遥感数据融合与参数化建模",
+      "used_assets": [
+        "ESA WorldCover",
+        "Microsoft global building footprints dataset",
+        "East Asia building footprints",
+        "ASTER Global Emissivity Dataset 100 m V003",
+        "Sentinel-2 land surface albedo data",
+        "global urban boundaries (GUBs)",
+        "3D-GloBFP",
+        "J2010",
+        "Koppen climate zones",
+        "Cloud Score + (CS + ) dataset",
+        "Li et al. (2022) global building height dataset",
+        "AC adoption rate dataset"
+      ],
+      "author_team": [
+        "Yifan Cheng",
+        "Lei Zhao",
+        "TC Chakraborty",
+        "Keith W. Oleson",
+        "Matthias Demuzere",
+        "Xiaoping Liu",
+        "Yangzi Che",
+        "Weilin Liao",
+        "Yuyu Zhou",
+        "Xinchang ‘Cathy’ Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "independent source-text review of open Methods/Data text",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "U-Surf: a global 1 km spatially continuous urban surface property dataset for kilometer-scale urban-resolving Earth system modeling",
+        "doi": "10.5194/essd-17-2147-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 21,
+    "source_paper_count": 21,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

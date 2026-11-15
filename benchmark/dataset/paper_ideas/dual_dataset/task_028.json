@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1126/sciadv.adh4615",
+  "task_id": "dual_dataset/task_028",
+  "title": "Social vulnerability of the people exposed to wildfires in U.S. West Coast states",
+  "category": "wildfire_social_vulnerability",
+  "year": 2023,
+  "journal": "Science Advances",
+  "impact_level": "medium",
+  "datasets": [
+    "Wildfire exposure",
+    "Social Vulnerability Index population data"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "wildfire_exposure",
+      "dataset": "Wildfire exposure"
+    },
+    {
+      "role": "social_vulnerability",
+      "dataset": "Social Vulnerability Index population data"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial associations are present between wildfire-exposure observations and social-vulnerability population data?",
+    "hypothesis": "The required components contain a joint signal not represented by any component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "LOCAL:datasets/MTBS_BSmosaics",
+      "API:https://onemap.cdc.gov/onemapservices/rest/services/SVI/CDC_ATSDR_Social_Vulnerability_Index_2022_USA/FeatureServer/1/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1"
+    ],
+    "required_component_usage": [
+      "wildfire_exposure",
+      "social_vulnerability"
+    ],
+    "expected_contribution": "A benchmark task that requires every component of a composite observation.",
+    "falsification_condition": "Reject an idea if a required component is absent, background-only, or not operationally used with the other required components."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_028:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "online_recall_atmosphere_nontraditional_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\online_recall_atmosphere_nontraditional_20260930\\seed_fulltext_audit.json"
+  }
+}

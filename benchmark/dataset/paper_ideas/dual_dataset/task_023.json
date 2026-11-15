@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1080/15481603.2015.1072400",
+  "task_id": "dual_dataset/task_023",
+  "title": "Analysis of urban growth and estimating population density using satellite images of nighttime lights and land-use and population data",
+  "category": "nighttime_lights_land_use_population",
+  "year": 2015,
+  "journal": "GIScience & Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Satellite nighttime lights",
+    "Land-use and population data"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "nighttime_lights",
+      "dataset": "Satellite nighttime lights"
+    },
+    {
+      "role": "land_use_population",
+      "dataset": "Land-use and population data"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between nighttime lights, land use and population density?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "GEE:CIESIN/GPWv411/GPW_Population_Density"
+    ],
+    "required_component_usage": [
+      "nighttime_lights",
+      "land_use_population"
+    ],
+    "expected_contribution": "A reproducible benchmark for association discovery across two core data components.",
+    "falsification_condition": "Reject if either required component is absent or not jointly represented."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_023:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_associations_20260930\\seed_audit.json"
+  }
+}

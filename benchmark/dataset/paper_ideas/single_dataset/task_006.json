@@ -1,0 +1,80 @@
+{
+  "paper_id": "10.3390/rs14122731",
+  "task_id": "single_dataset/task_006",
+  "title": "Analysis of Debris Flow Triggering Conditions for Different Rainfall Patterns Based on Satellite Rainfall Products in Hengduan Mountain Region",
+  "category": "geological_hazards",
+  "year": 2022,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Debris-flow catalog: more than 400 records with coordinates and UTC occurrence times, Hengduan Mountain Region, 2000-2020",
+    "China Meteorological Administration: daily rainfall at 43 stations, 2000-2020",
+    "CMORPH-CRT: 8 km, 30-minute precipitation, 2000-2020",
+    "GPM IMERG Final Run: 0.1 degree, 30-minute precipitation, June 2000-2020",
+    "MSWEP V2: 0.1 degree, 3-hourly precipitation, 2000-2020",
+    "PERSIANN-CCS: 0.04 degree, 3-hourly precipitation, June 2003-2020"
+  ],
+  "study_area_verified": {
+    "name": "Hengduan Mountain Region (HMR), China",
+    "temporal_scope": "Debris-flow records and rainfall analysis cover 2000-2020, subject to the later June 2000 start of IMERG and June 2003 start of PERSIANN-CCS.",
+    "analysis_scales": "Daily satellite-versus-gauge validation and a common 3-hour step for debris-flow rainfall-threshold calculations; each point uses the gridded value whose cell center is nearest to it.",
+    "source": "supplied seed Data sections 2.2.1-2.2.2",
+    "review_date": "2026-08-29"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NASA/GPM_L3/IMERG_V06",
+    "operationally_used": true,
+    "role": "IMERG Final Run is one of four gridded precipitation products evaluated against gauges and used at a common 3-hour step to calculate debris-flow rainfall thresholds.",
+    "evidence": "The Data section names the IMERG Final Run, describes its 0.1 degree grid and June 2000 record start, selects June 2000-2020 data over HMR, and states that the nearest grid-center value was used to reconstruct rainfall sequences.",
+    "companion_datasets": [
+      "more than 400 debris-flow records",
+      "43 CMA daily rain gauges",
+      "CMORPH-CRT",
+      "MSWEP V2",
+      "PERSIANN-CCS"
+    ],
+    "corrections": "The previous datasets field listed only GPM IMERG and omitted the debris-flow catalog, gauge observations, CMORPH-CRT, MSWEP V2 and PERSIANN-CCS.",
+    "companion_dataset_availability": {
+      "CMORPH-CRT": "not found in the local Earth Engine catalog",
+      "MSWEP V2": "not found in the local Earth Engine catalog",
+      "PERSIANN-CCS": "not found in the local Earth Engine catalog; NOAA/PERSIANN-CDR is a different product and is not treated as equivalent",
+      "CMA gauges and debris-flow catalog": "external point datasets, not Earth Engine catalog assets"
+    },
+    "fields_left_unchanged": "idea.* remains unchanged under the benchmark provenance rule; any enrichment details not established by the supplied Data section are not promoted to verified facts.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在横断山地区，CMORPH、GPM、MSWEP和PERSIANN等卫星降雨产品能否准确表征不同降雨过程及其前期有效降雨对泥石流发生的触发作用，并据此构建适用于不同预警等级和降雨模式的临界降雨阈值？",
+    "hypothesis": "卫星降雨产品对泥石流触发降雨的刻画能力存在显著差异，其中具有较高时空连续性和极端降雨探测能力的产品将表现出更高的降雨序列一致性、极端降雨识别能力和泥石流触发事件重建率；泥石流触发机制则随降雨模式变化，在前期有效降雨主导型过程中，前期累计降雨对触发概率的贡献高于日内降雨，而在日内降雨主导型过程中，短时强降雨指标的贡献更高。因此，不同降雨模式和预警等级应对应不同的临界降雨阈值。",
+    "mechanism": "持续性降雨首先通过入渗和地下水补给提高坡体含水量、孔隙水压力及土体饱和度，导致抗剪强度下降并增加松散物源的可动性；随后，日内短时强降雨通过地表径流增强、沟道冲刷和坡面侵蚀快速增加沟道输沙量及水动力条件。当累计前期有效降雨达到一定水平后，坡体和沟道物源进入高敏感状态，叠加日内降雨强度或雨量峰值可能使降雨径流产流能力和沟道输移能力超过临界条件，最终触发泥石流。卫星产品的降雨估计误差会通过前期累计有效降雨、日内峰值雨量和降雨过程持续时间等中间变量传播，进而影响泥石流触发事件识别和阈值估计。",
+    "key_variables": {
+      "target": "泥石流触发状态及其对应的临界降雨指标，包括事件是否发生、泥石流触发事件重建率、不同预警等级下的临界累计降雨量、前期有效降雨量、日内降雨量和降雨强度阈值",
+      "predictors": [
+        "前期有效降雨量（Antecedent Effective Rainfall, AER）",
+        "日内累计降雨量",
+        "1小时、3小时、6小时、12小时和24小时最大降雨量或降雨强度",
+        "连续降雨持续时间",
+        "降雨事件总量",
+        "降雨峰值及其出现时刻",
+        "降雨模式类别：前期有效降雨主导型、日内降雨主导型、日内降雨与前期有效降雨平衡型",
+        "预警等级",
+        "卫星降雨产品类型：CMORPH、GPM、MSWEP和PERSIANN",
+        "卫星降雨产品与地面雨量站观测之间的偏差、相关系数和极端降雨命中能力"
+      ]
+    },
+    "data_sources": [
+      "2000—2020年横断山地区地面雨量站逐日降雨观测数据，用于卫星降雨产品验证和降雨事件校准；具体时间分辨率为日尺度，空间分辨率取决于雨量站点分布",
+      "2000—2020年CMORPH卫星降雨产品，提取研究区逐日降雨序列，并根据产品原始时空分辨率聚合或重采样至统一分析网格",
+      "2000—2020年GPM卫星降雨产品，提取研究区逐日降雨和极端降雨信息，并统一至研究所需的空间网格",
+      "2000—2020年MSWEP多源融合降雨产品，使用逐日降雨数据开展区域降雨序列和极端降雨评估",
+      "2000—2020年PERSIANN卫星降雨产品，使用逐日降雨数据开展泥石流触发降雨识别和阈值估计",
+      "横断山地区泥石流灾害事件清单，至少包含泥石流发生日期、位置或影响范围，并与对应降雨事件进行时间和空间匹配",
+      "研究区地形和空间辅助数据，包括DEM、坡度、河网及流域边界，用于降雨空间提取、站点匹配和区域化分析"
+    ],
+    "analytical_approach": "首先对CMORPH、GPM、MSWEP和PERSIANN进行统一时间尺度、空间网格和缺测处理，并以地面雨量站为基准，采用Pearson相关系数、偏差率、均方根误差（RMSE）、平均绝对误差（MAE）、降雨事件命中率、虚警率和极端降雨偏差评价产品性能；进一步构建综合指标评分（CI），对降雨序列一致性、极端降雨模拟能力和泥石流触发降雨重建能力进行排序。随后依据泥石流事件前的降雨过程计算前期有效降雨量，可采用指数衰减模型AER_t = Σ(P_i·k^i)，其中P_i为前i日前的降雨量，k为有效降雨衰减系数，并通过敏感性分析检验不同k值对阈值结果的影响。根据日内降雨量、前期有效降雨量及其相对贡献，将事件划分为前期有效降雨主导型、日内降雨主导型和二者平衡型。对每类降雨模式和预警等级，使用经验累积分布函数（ECDF）估计降雨指标的分布，并采用累计概率法提取不同风险水平下的临界降雨阈值；同时使用ROC曲线、AUC、命中率、虚警率、漏报率和F1-score评估阈值的预警性能。可进一步采用逻辑回归或广义加性模型，以泥石流是否发生为响应变量，以AER、日内降雨量、最大短时降雨强度、持续时间及交互项为解释变量，检验不同降雨机制及降雨模式之间的差异，并通过留一事件交叉验证评估阈值的稳健性。",
+    "expected_contribution": "建立一个面向横断山大范围山区的卫星降雨产品评估与泥石流阈值提取框架；明确不同卫星降雨产品在降雨序列、极端降雨和泥石流触发事件识别方面的适用条件；将前期有效降雨与日内强降雨纳入统一的降雨模式分类体系，揭示不同降雨模式下泥石流触发的过程机制；构建按降雨模式和预警等级区分的临界降雨阈值，为地面雨量站稀疏山区的泥石流区域化监测、预警和风险管理提供可迁移的方法基础。",
+    "falsification_condition": "若在独立验证样本或留一事件交叉验证中，CMORPH和GPM相对于MSWEP、PERSIANN在降雨序列一致性和极端降雨识别方面的综合指标差异均小于0.05，且其泥石流触发事件重建率提升不超过5个百分点；或者前期有效降雨、日内降雨量和短时最大降雨强度加入模型后，泥石流触发预测的AUC提升小于0.05、95%置信区间包含0.50，且不同降雨模式的临界阈值差异小于10%；又或者基于卫星降雨阈值的独立样本命中率低于70%、漏报率高于30%或虚警率高于40%，则分别否定卫星产品存在稳定性能差异、不同降雨模式具有不同触发机制以及所构建阈值具有可靠预警能力的假设。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

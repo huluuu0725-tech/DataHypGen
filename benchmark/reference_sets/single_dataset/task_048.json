@@ -1,0 +1,1218 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_048",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "ERA5-Land Monthly Aggregated - ECMWF Land Climate Reanalysis",
+    "spatial_coverage": {
+      "region_name": "Global land surface",
+      "coverage": "Global land-surface reanalysis coverage; users may subset any basin, station network, ecological region or other land study area."
+    },
+    "temporal_coverage": "1950-01-01 to present in the ERA5-Land monthly aggregated collection, subject to the catalog holdings at evaluation time.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.1° (~11 km; nominal ERA5-Land grid)",
+    "temporal_unit": "Monthly",
+    "analytical_capabilities": [
+      "Analyse monthly precipitation, snowfall, evapotranspiration, runoff and air-temperature fields",
+      "Analyse monthly soil-moisture and land-surface variables where the collection band is available",
+      "Compute monthly anomalies, trends, drought indices, lagged relationships and water-balance terms",
+      "Validate monthly reanalysis variables against station, hydrological, groundwater, lake-level or ecological observations",
+      "Aggregate monthly fields over basins, ecological regions, stations and other user-defined geometries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Monthly ERA5-Land land-surface meteorological and hydrological fields; units depend on the selected band (for example mm for accumulated precipitation/runoff and °C or K for temperature).",
+      "runtime_hint": "Use ECMWF/ERA5_LAND/MONTHLY_AGGR and select the band matching the research question. Keep accumulated bands (for example total_precipitation_sum and runoff_sum) distinct from monthly mean bands. If starting from the hourly collection, aggregate explicitly to monthly before analysis."
+    },
+    "data_source": "European Centre for Medium-Range Weather Forecasts (ECMWF), distributed through Google Earth Engine and the Copernicus Climate Data Store",
+    "gee_asset": {
+      "id": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_048.json",
+    "source_sha256": "b3e61c1fb2c915a6e123b37cd0c387f6b0fea4058ece5ab8788148f59f974a9a",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_048/prompt.json",
+    "current_prompt_sha256": "d8b0a6e9f5c718f48ff68c568d1b383eb054da241b85126e07364ed4dc24eba0",
+    "original_anchor_asset": {
+      "id": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "observable_group": "era5_land_monthly_aggregated_meteorological_fields",
+      "observation_identity_contract": {
+        "physical_object": "monthly land-surface meteorological and soil-state fields",
+        "source_lineage": "ECMWF ERA5-Land land-reanalysis lineage",
+        "core_measurement_semantics": "monthly statistics derived from ERA5-Land meteorological or soil variables",
+        "non_material_variations": "CDS/GEE archive, release, reprojection, resampling or monthly aggregation performed from ERA5-Land hourly/daily fields",
+        "material_mismatches": "ERA5 atmospheric reanalysis, another land reanalysis or ERA5-Land use with no monthly research input"
+      },
+      "asset_alias_policy": "Admit ERA5-Land monthly aggregated fields distributed through the Copernicus Climate Data Store or the Google Earth Engine collection ECMWF/ERA5_LAND/MONTHLY_AGGR. ERA5-Land hourly or daily fields explicitly aggregated to monthly variables are also admitted when the monthly output is the operational research input. ERA5, ERA5-Land hourly-only analyses without monthly processing, MERRA-2 and other land reanalyses are excluded."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "era5_monthly_ref_01",
+      "research_question": "How accurately do ERA5-Land monthly precipitation estimates reproduce station observations across the Qilian Mountains?",
+      "hypothesis_or_mechanism": "ERA5-Land monthly precipitation captures the regional climate signal, while altitude differences between stations and reanalysis grid cells explain the remaining bias.",
+      "variables_and_data_use": "Monthly averaged ERA5-Land precipitation from 1979–2017 is compared with observations from 17 meteorological stations using regression and error statistics.",
+      "method_paradigm": "Monthly reanalysis precipitation validation against mountain meteorological stations.",
+      "used_assets": [
+        "ERA5-Land monthly precipitation",
+        "17 meteorological station records"
+      ],
+      "author_team": [
+        "Lihui Qian",
+        "Peng Zhao"
+      ],
+      "extraction_confidence": "medium",
+      "evidence_granularity": "candidate abstract and available full text; Methods verification pending",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of ERA5-Land Reanalysis Precipitation Data in the Qilian Mountains of China",
+        "doi": "10.3390/atmos16070826",
+        "year": 2025,
+        "venue": "Atmosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_02",
+      "research_question": "What are the dominant spatiotemporal modes of global land-surface air-temperature variability in ERA5-Land monthly data?",
+      "hypothesis_or_mechanism": "EOF modes and change-point analysis reveal coherent global and regional temperature structures that distinguish long-term warming from internal variability.",
+      "variables_and_data_use": "ERA5-Land monthly land-surface air temperature for 1950–2022 is analysed globally with EOF decomposition, trend estimation and Mann–Kendall change-point tests.",
+      "method_paradigm": "Global monthly reanalysis spatiotemporal-mode and trend analysis.",
+      "used_assets": [
+        "ERA5-Land monthly land-surface air temperature",
+        "NOAA CPC climate indices"
+      ],
+      "author_team": [
+        "Yuanyuan Wei",
+        "Wenkai Yin",
+        "Chaoli Tang",
+        "Yifan Jia"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatio-temporal modes of global land surface air temperature variability investigated with ERA5-Land",
+        "doi": "10.1007/s10661-025-14690-3",
+        "year": 2025,
+        "venue": "Environmental Monitoring and Assessment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_03",
+      "research_question": "How do ERA5-Land hydroclimatic variables relate to delayed terrestrial-water-storage and groundwater responses in the Kızılırmak Basin?",
+      "hypothesis_or_mechanism": "Precipitation, soil moisture, runoff, evapotranspiration and temperature affect GRACE-derived storage with variable lags, producing measurable groundwater depletion signals.",
+      "variables_and_data_use": "ERA5-Land monthly hydroclimatic variables are correlated with GRACE/GRACE-FO TWSA and GLDAS-derived groundwater-storage anomalies using lag windows from −3 to +3 months.",
+      "method_paradigm": "Monthly water-storage trend, lagged-correlation and groundwater-budget analysis.",
+      "used_assets": [
+        "ERA5-Land monthly precipitation, evapotranspiration, runoff, soil moisture and temperature",
+        "GRACE/GRACE-FO TWSA",
+        "GLDAS-Noah",
+        "local meteorological observations"
+      ],
+      "author_team": [
+        "Erdem Kazancı",
+        "Serdar Erol",
+        "Bihter Erol"
+      ],
+      "extraction_confidence": "medium",
+      "evidence_granularity": "candidate abstract and available full text; Methods verification pending",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Investigation of Water Storage Dynamics and Delayed Hydrological Responses Using GRACE, GLDAS, ERA5-Land and Meteorological Data in the Kızılırmak River Basin",
+        "doi": "10.3390/su172210100",
+        "year": 2025,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_04",
+      "research_question": "Can ERA5-Land monthly water-balance terms reconstruct historical level changes in closed lakes?",
+      "hypothesis_or_mechanism": "Combining ERA5-Land precipitation, runoff and lake evaporation with observed water levels can reproduce monthly lake-storage variability even for data-scarce closed lakes.",
+      "variables_and_data_use": "ERA5-Land water-balance components are combined with observed lake levels and compared through monthly storage-change correlations for closed lakes in Europe, Africa and the United States.",
+      "method_paradigm": "Monthly reanalysis water-mass-balance reconstruction and observation validation.",
+      "used_assets": [
+        "ERA5-Land precipitation, runoff and lake evaporation",
+        "Freshwater Lake (FLake) variables",
+        "observed lake levels"
+      ],
+      "author_team": [
+        "Miriam Saraceni",
+        "Bruno Brunone",
+        "Lorenzo Silvestri",
+        "Silvia Meniconi",
+        "Paolina Bongioannini Cerlini"
+      ],
+      "extraction_confidence": "medium",
+      "evidence_granularity": "candidate abstract and available full text; Methods verification pending",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A Water Mass Balance–Based Procedure Using ERA5 Land Reanalysis and Level Observation to Reconstruct the Past Level Changes of Closed Lakes toward Future Management",
+        "doi": "10.1175/jhm-d-24-0019.1",
+        "year": 2025,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_05",
+      "research_question": "How can monthly ERA5-Land climate fields and MODIS indicators delineate eco-climatic zones across Nigeria?",
+      "hypothesis_or_mechanism": "Joint thermal, moisture and vegetation information separates stable hydroclimatic regimes better than any single climate variable.",
+      "variables_and_data_use": "Monthly ERA5-Land temperature, precipitation, soil moisture and vapor-pressure-deficit fields are combined with MODIS NDVI/LST-derived stress indicators for four decades of Nigerian eco-climatic zoning.",
+      "method_paradigm": "Monthly multivariate climate–vegetation classification and eco-climatic zoning.",
+      "used_assets": [
+        "ERA5-Land monthly temperature, precipitation, soil moisture and VPD",
+        "MODIS NDVI and LST"
+      ],
+      "author_team": [
+        "Afeez Alabi Salami",
+        "Muchaiteyi Togo",
+        "Zehra Işık",
+        "Mehmet Ali Çelik"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Multivariate Eco‑Climatic Zoning of Nigeria Using Four Decades of MODIS and ERA5‑Land Data",
+        "doi": "10.1007/s41748-026-01306-0",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_06",
+      "research_question": "What long-term hydroclimatic changes are detectable in the upper Dniester Basin from monthly ERA5-Land reanalysis?",
+      "hypothesis_or_mechanism": "Monthly ERA5-Land precipitation, snowfall, temperature and water-balance fields reveal warming, drying and seasonal shifts consistent with observed basin hydroclimatic change.",
+      "variables_and_data_use": "ERA5-Land monthly precipitation, snowfall and 2-m temperature are extracted at station/grid locations and compared with long-term hydroclimatic observations for 1975–2025.",
+      "method_paradigm": "Monthly basin-scale hydroclimatic trend and water-balance analysis.",
+      "used_assets": [
+        "ERA5-Land monthly precipitation, snowfall and 2-m temperature",
+        "meteorological and hydrological station observations"
+      ],
+      "author_team": [
+        "Volodymyr Salyha",
+        "Liudmyla Arkhypova"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Evidence of hydroclimatic change in the upper Dniester basin, Eastern Europe (1975–2025), based on ERA5-Land reanalysis",
+        "doi": "10.12912/27197050/224924",
+        "year": 2026,
+        "venue": "Ecological Engineering &amp; Environmental Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_07",
+      "research_question": "How well can monthly ERA5-Land precipitation, evapotranspiration and runoff explain water-balance variability in the Podkamennaya Tunguska Basin?",
+      "hypothesis_or_mechanism": "Monthly ERA5-Land water-balance components can reproduce observed basin precipitation and runoff patterns over the long instrumental period, subject to product bias.",
+      "variables_and_data_use": "ERA5-Land monthly precipitation, evapotranspiration and runoff are compared with weather-station and gauging-station records for long-term basin water-balance assessment.",
+      "method_paradigm": "Monthly reanalysis–station water-balance comparison and trend analysis.",
+      "used_assets": [
+        "ERA5-Land monthly precipitation, evapotranspiration and runoff",
+        "weather-station and gauging-station observations"
+      ],
+      "author_team": [
+        "I. V. Danilova",
+        "E. V. Fedotova",
+        "T. A. Burenina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analysis of Water Balance Based on Long-term Observations and ERA5-Land Reanalysis in the Podkamennaya Tunguska River Basin",
+        "doi": "10.3103/s1068373926030040",
+        "year": 2026,
+        "venue": "Russian Meteorology and Hydrology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_08",
+      "research_question": "How have monthly hydroclimatic variables changed across Eastern Anatolia during 1981–2020?",
+      "hypothesis_or_mechanism": "Multivariate monthly ERA5-Land fields expose spatially coherent changes in temperature, precipitation and moisture conditions that are not visible in single-variable summaries.",
+      "variables_and_data_use": "Monthly ERA5-Land temperature, precipitation, evapotranspiration and soil-moisture variables are analysed across Eastern Anatolia with long-term trend and multivariate methods.",
+      "method_paradigm": "Monthly multivariate hydroclimatic trend and regionalization analysis.",
+      "used_assets": [
+        "ERA5-Land monthly temperature, precipitation, evapotranspiration and soil moisture"
+      ],
+      "author_team": [
+        "Ferhat Keserci"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Doğu Anadolu’da Hidroklimatolojik Değişkenlerin ERA5-Land ile Çok Değişkenli Uzun Dönemli Analizi (1981–2020)",
+        "doi": "10.51800/ecd.1866556",
+        "year": 2026,
+        "venue": "Ege Coğrafya Dergisi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_09",
+      "research_question": "Can monthly ERA5-Land drought indicators explain spring-discharge dynamics in complex karst settings?",
+      "hypothesis_or_mechanism": "A six-month SPEI derived from ERA5-Land captures antecedent hydroclimatic stress and explains delayed monthly spring-discharge recession.",
+      "variables_and_data_use": "Monthly ERA5-Land reanalysis variables are used to calculate SPEI at multiple accumulation windows and relate it to monthly discharge from two Italian Apennine springs.",
+      "method_paradigm": "Monthly drought-index derivation, recession analysis and spring-discharge regression.",
+      "used_assets": [
+        "ERA5-Land monthly reanalysis variables",
+        "monthly spring-discharge observations"
+      ],
+      "author_team": [
+        "Lucio Di Matteo",
+        "Costanza Cambi",
+        "Sofia Ortenzi",
+        "Alex Manucci",
+        "Sara Venturi",
+        "Davide Fronzi",
+        "Daniela Valigi"
+      ],
+      "extraction_confidence": "medium",
+      "evidence_granularity": "candidate abstract and available full text; Methods verification pending",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "ERA5-Land Data for Understanding Spring Dynamics in Complex Hydro-Meteorological Settings and for Sustainable Water Management",
+        "doi": "10.3390/su18020970",
+        "year": 2026,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_10",
+      "research_question": "How do monthly or aggregated ERA5-Land soil-moisture drought signals across soil layers affect ecosystem water-use efficiency and resilience?",
+      "hypothesis_or_mechanism": "Deeper-layer soil-moisture deficits accumulate and propagate with longer lags, producing stronger delayed effects on vegetation water-use efficiency than shallow deficits.",
+      "variables_and_data_use": "ERA5-Land soil moisture across three layers is combined with MODIS vegetation products to derive drought indices and evaluate synchronous, lagged and cumulative relationships with WUE from 2001–2022.",
+      "method_paradigm": "Multilayer soil-moisture drought, lagged-response and ecosystem-resilience analysis.",
+      "used_assets": [
+        "ERA5-Land soil moisture layers",
+        "MODIS vegetation products",
+        "ecosystem water-use-efficiency indicators"
+      ],
+      "author_team": [
+        "Ercha Hu",
+        "Rui Wang",
+        "Limin Yuan",
+        "Haidong Zhang"
+      ],
+      "extraction_confidence": "medium",
+      "evidence_granularity": "candidate abstract and available full text; Methods verification pending",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatiotemporal Patterns of Soil Moisture Drought Across Different Soil Layers and Their Relationships with Ecosystem Water Use Efficiency and Resilience in the Three-North Shelterbelt Forest Program Region",
+        "doi": "10.3390/su18157771",
+        "year": 2026,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_11",
+      "research_question": "评估泛北极地区AVHRR地表温度（LST）长时序数据的稳定性及其与再分析和地面观测数据的一致性。",
+      "hypothesis_or_mechanism": "通过多源卫星传感器获取的LST月平均序列在去除季节循环后，其年际异常变化趋势应与ERA5-Land气温及地面站观测数据保持统计上的一致性与稳定性。",
+      "variables_and_data_use": "使用EUMETSAT AVHRR FDR反射率与亮温数据结合广义分裂窗算法反演LST；使用MERRA-2的表皮温度和总柱水汽作为大气校正辅助变量；使用ERA5-Land月均2米气温进行长时序稳定性对比分析；使用EUSTACE地面气象站数据进行验证。",
+      "method_paradigm": "分裂窗反演、时序稳定性分析、异常值趋势检验",
+      "used_assets": [
+        "EUMETSAT AVHRR FDR",
+        "ESA CCI Snow",
+        "CM SAF CLARA-A3",
+        "ERA5-Land",
+        "EUSTACE",
+        "MERRA-2",
+        "Clear-Sky Database",
+        "ASTER GED",
+        "Copernicus DEM GLO-90"
+      ],
+      "author_team": [
+        "Sonia Dupuis",
+        "Frank-Michael Göttsche",
+        "Stefan Wunderle"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Temporal stability of a new 40-year daily AVHRR land surface temperature dataset for the pan-Arctic region",
+        "doi": "10.5194/tc-18-6027-2024",
+        "year": 2024,
+        "venue": "The Cryosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_12",
+      "research_question": "研究月尺度降水和温度变化如何影响泰国 Huai Tak Teak Biosphere Reserve 柚木的树轮生长。",
+      "hypothesis_or_mechanism": "生长季初期较高的降水有利于柚木生长，而较高的五月平均温度会抑制径向生长。",
+      "variables_and_data_use": "论文使用 CHIRPS Precipitation Pentad: Climate Hazards Center InfraRed Precipitation with Station Data (Version 3.0) 的月总降水，以及 ERA5-Land Monthly Aggregated - ECMWF Climate Reanalysis 的月平均温度，将其与 1981—2024 年树轮指数进行相关分析、多元回归和逐步变量选择。",
+      "method_paradigm": "树轮气候关系分析",
+      "used_assets": [
+        "CHIRPS Precipitation Pentad: Climate Hazards Center InfraRed Precipitation with Station Data (Version 3.0)",
+        "ERA5-Land Monthly Aggregated - ECMWF Climate Reanalysis"
+      ],
+      "author_team": [
+        "ธิดารัตน์ โลโท",
+        "กฤษฎาพันธุ์ ผลากิจ",
+        "ขวัญชัย ดวงสถาพร",
+        "พิชิต ลำใย"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "การศกษาความสมพนธระหวางการเตบโตของไมสกและปจจยทางภมอากาศ โดยประยกตใชขอมลดาวเทยม ในพนทสงวนชวมณฑลปาสกหวยทาก จงหวดลำปาง",
+        "doi": "10.34044/tferj.2026.10.2.6719",
+        "year": 2026,
+        "venue": "Thai Forest Ecological Research Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_13",
+      "research_question": "研究历史时期及不同未来排放情景下碳酸盐岩风化碳汇的时空变化及其驱动因素。",
+      "hypothesis_or_mechanism": "气象、水分、植被、蒸散和大气二氧化碳等环境因子的变化会通过影响碳酸盐岩风化过程改变碳汇通量。",
+      "variables_and_data_use": "使用 ERA5-Land monthly averaged data 提供 MAT、MAP、PDSI、VPD 等月尺度环境变量，并结合 CMIP6 情景数据以及 NDVI、SMC、ET、LAI、eCO2、FVC、RO 等驱动因子，计算 CCSF，分析其趋势、敏感性和驱动贡献。",
+      "method_paradigm": "时空变化与驱动归因",
+      "used_assets": [
+        "ERA5-Land monthly averaged data",
+        "CMIP6",
+        "NDVI",
+        "SMC",
+        "ET",
+        "LAI",
+        "eCO2",
+        "FVC",
+        "PDSI",
+        "VPD"
+      ],
+      "author_team": [
+        "Junhan Li",
+        "Xiaoyong Bai",
+        "Chaojun Li",
+        "Yanfang Li",
+        "Chen Ran",
+        "Sirui Zhang",
+        "Lian Xiong",
+        "Chaochao Du",
+        "Xiaodong Yuan",
+        "Jingjing Liao",
+        "Yuanhuan Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Climate Warming Amplifies the Contribution of High-Altitude Cold Regions to Global Carbonate Weathering Carbon Sink",
+        "doi": "10.5281/zenodo.19212016",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_14",
+      "research_question": "研究如何利用ERA5-Land月度陆面气象和土壤状态场结合多源地理空间数据刻画环境暴露及其空间差异。",
+      "hypothesis_or_mechanism": "气象、土壤、地形、水体和人类活动等因素共同影响环境暴露水平，并形成显著的空间异质性。",
+      "variables_and_data_use": "以ERA5-Land月度气象和土壤状态变量为核心，结合CHIRPS降水、SRTM和ETOPO1地形、SoilGrids土壤属性、DMSP-OLS和VIIRS夜间灯光、JRC地表水、GRIP4道路、Global Satellite PM2.5以及FAO GAUL行政区划进行环境和空间分析。",
+      "method_paradigm": "多源空间分析",
+      "used_assets": [
+        "CHIRPS Daily: UCSB-CHG/CHIRPS/DAILY",
+        "ERA5-Land Monthly: ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "SRTM 30 m: USGS/SRTMGL1_003",
+        "SoilGrids ISRIC: projects/soilgrids-isric/",
+        "DMSP-OLS Nighttime Lights: NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+        "VIIRS Monthly: NOAA/VIIRS/DNB/MONTHLY_V1/VCMCFG",
+        "JRC Global Surface Water 1.4: JRC/GSW1_4/GlobalSurfaceWater",
+        "GRIP4 Africa Roads: projects/sat-io/open-datasets/GRIP4/Africa",
+        "NOAA ETOPO1: NOAA/NGDC/ETOPO1",
+        "Global Satellite PM2.5 V6.GL.02: projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/ANNUAL",
+        "FAO GAUL 2015: FAO/GAUL/2015/level1 and level2"
+      ],
+      "author_team": [
+        "Ishmael Sandy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate and Environmental Covariate Extraction for DHS Clusters in Sierra Leone Version 2",
+        "doi": "10.5281/zenodo.19225933",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_15",
+      "research_question": "研究如何结合 ERA5-Land 月度陆面气象和土壤状态场与多源环境、地形及人类活动数据开展空间分析。",
+      "hypothesis_or_mechanism": "月度陆面气象和土壤状态差异与地形、降水、地表水、土壤属性及人类活动等因素共同解释研究对象的空间变化。",
+      "variables_and_data_use": "使用 ERA5-Land 月度集合中的陆面气象或土壤状态变量，并结合 CHIRPS 降水、SRTM 和 ETOPO1 高程、SoilGrids 土壤属性、DMSP-OLS 和 VIIRS 夜间灯光、JRC 地表水、道路、PM2.5 及 FAO 行政区划等数据作为目标、协变量、空间控制或分区信息；具体变量角色在所给节选中未进一步说明。",
+      "method_paradigm": "多源空间特征建模",
+      "used_assets": [
+        "CHIRPS Daily: UCSB-CHG/CHIRPS/DAILY",
+        "ERA5-Land Monthly: ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "SRTM 30 m: USGS/SRTMGL1_003",
+        "SoilGrids ISRIC: projects/soilgrids-isric/",
+        "DMSP-OLS Nighttime Lights: NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+        "VIIRS Monthly: NOAA/VIIRS/DNB/MONTHLY_V1/VCMCFG",
+        "JRC Global Surface Water 1.4: JRC/GSW1_4/GlobalSurfaceWater",
+        "GRIP4 Africa Roads: projects/sat-io/open-datasets/GRIP4/Africa",
+        "NOAA ETOPO1: NOAA/NGDC/ETOPO1",
+        "Global Satellite PM2.5 V6.GL.02: projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/ANNUAL",
+        "FAO GAUL 2015: FAO/GAUL/2015/level1 and level2"
+      ],
+      "author_team": [
+        "Ishmael Sandy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate and Environmental Covariate Extraction for DHS Clusters in Sierra Leone",
+        "doi": "10.5281/zenodo.19225934",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_16",
+      "research_question": "如何整合 ERA5-Land 月度气象和土壤状态场及多源地理空间数据，以表征和估计不同区域的环境与细颗粒物浓度差异？",
+      "hypothesis_or_mechanism": "气象和土壤状态、降水、地形、水体、道路及人类活动等因素的空间差异共同影响细颗粒物浓度及其空间分布。",
+      "variables_and_data_use": "使用 ERA5-Land 月度气象和土壤状态字段，并结合 CHIRPS 降水、SRTM 和 ETOPO1 高程、SoilGrids 土壤属性、DMSP-OLS 与 VIIRS 夜间灯光、JRC 地表水、GRIP4 道路、Global Satellite PM2.5 年度浓度以及 FAO GAUL 行政区边界；其中 PM2.5 可作为目标变量，其余数据用于预测、解释或空间汇总。",
+      "method_paradigm": "多源地理空间数据整合",
+      "used_assets": [
+        "CHIRPS Daily: UCSB-CHG/CHIRPS/DAILY",
+        "ERA5-Land Monthly: ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "SRTM 30 m: USGS/SRTMGL1_003",
+        "SoilGrids ISRIC: projects/soilgrids-isric/",
+        "DMSP-OLS Nighttime Lights: NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+        "VIIRS Monthly: NOAA/VIIRS/DNB/MONTHLY_V1/VCMCFG",
+        "JRC Global Surface Water 1.4: JRC/GSW1_4/GlobalSurfaceWater",
+        "GRIP4 Africa Roads: projects/sat-io/open-datasets/GRIP4/Africa",
+        "NOAA ETOPO1: NOAA/NGDC/ETOPO1",
+        "Global Satellite PM2.5 V6.GL.02: projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/ANNUAL",
+        "FAO GAUL 2015: FAO/GAUL/2015/level1 and level2"
+      ],
+      "author_team": [
+        "Ishmael Sandy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate and Environmental Covariate Extraction for DHS Clusters in Sierra Leone Version 2",
+        "doi": "10.5281/zenodo.19564198",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_17",
+      "research_question": "不同全球蒸散发产品在灌溉密集区的时空动态表现及其对灌溉面积的捕捉能力如何？",
+      "hypothesis_or_mechanism": "蒸散发产品能够通过模拟植被水分胁迫与土壤水分动态，有效反映灌溉区域的高蒸散发特征，并与灌溉面积分布呈现显著正相关。",
+      "variables_and_data_use": "使用 ERA5-Land、GLEAM4.3a、FLUXCOM RS、MOD16A2、SSEBop v6.1 和 PMLv2 的月度蒸散发数据作为主要自变量/研究对象，结合 GMIAv5 灌溉面积图、OpenET 集成产品及涡度协方差通量塔实测数据进行交叉验证与相关性分析。",
+      "method_paradigm": "多源遥感产品互评与地面验证",
+      "used_assets": [
+        "ERA5-Land",
+        "GLEAM4.3a",
+        "FLUXCOM RS",
+        "MOD16A2",
+        "SSEBop v6.1",
+        "PMLv2",
+        "GMIAv5",
+        "OpenET",
+        "Eddy covariance measurements"
+      ],
+      "author_team": [
+        "Pierre Laluet",
+        "Chiara Corbari",
+        "Oscar M. Baez-Villanueva",
+        "Sophia Walther",
+        "Yongqiang Zhang",
+        "Joaquín Muñoz-Sabater",
+        "Clement Albergel",
+        "Wouter Dorigo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing the suitability of global evapotranspiration products over irrigated areas",
+        "doi": "10.5194/hess-30-1779-2026",
+        "year": 2026,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_18",
+      "research_question": "不同生态与环境因子如何驱动碳酸盐岩风化碳汇通量（CCSF）的历史变化及未来情景演变？",
+      "hypothesis_or_mechanism": "气候变化与植被覆盖等环境因子的趋势变化通过水化学排放过程显著影响碳酸盐岩风化碳汇的通量大小与空间格局。",
+      "variables_and_data_use": "使用ERA5-Land月度气象数据与CMIP6情景数据作为基础输入，结合Sen斜率、Mann-Kendall检验与偏最小二乘路径模型（PLS-PM），量化各驱动因子对CCSF的贡献率、敏感度及长期趋势。",
+      "method_paradigm": "水化学排放法、趋势分析与结构方程建模",
+      "used_assets": [
+        "ERA5-Land monthly averaged data",
+        "CMIP6"
+      ],
+      "author_team": [
+        "Junhan Li",
+        "Xiaoyong Bai",
+        "Chaojun Li",
+        "Yanfang Li",
+        "Chen Ran",
+        "Sirui Zhang",
+        "Lian Xiong",
+        "Chaochao Du",
+        "Xiaodong Yuan",
+        "Jingjing Liao",
+        "Yuanhuan Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate Warming Amplifies the Contribution of High-Altitude Cold Regions to Global Carbonate Weathering Carbon Sink",
+        "doi": "10.5281/zenodo.19212015",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_19",
+      "research_question": "该论文研究气候变化将如何影响德国和西班牙两个葡萄种植区的热、水分和极端天气风险，以及农光互补系统是否可能缓解这些风险。",
+      "hypothesis_or_mechanism": "气候变暖、干旱和极端事件会改变葡萄栽培的微气候风险，而 APV 遮阴可通过降低温度、改善土壤水分和提供物理保护来部分抵消不利影响。",
+      "variables_and_data_use": "论文使用 ECMWF ERA5 -Land reanalysis 的月度 T、p、GHI 作为 1970–2024 年历史气候基线，并用现场观测进行偏差校正和年度趋势分析；同时使用 CMIP6 的 SSP 情景月/年 T、p、GHI 以及 EURO-CORDEX 的霜冻日、热浪、连续干旱日和干旱持续时间指标来评估 2100 年前的未来风险，并结合葡萄酒产量和本地葡萄产量数据作描述性比较。",
+      "method_paradigm": "情景影响评估",
+      "used_assets": [
+        "ECMWF ERA5 -Land reanalysis",
+        "ERA5 land dataset",
+        "Onsite measurement Laujar",
+        "Onsite measurement Hatzenport",
+        "CMIP6 climate projection Scenarios: SSP1−1.9, SSP2−4.5, SSP5−8.5, EC-Earth3-Veg model",
+        "EURO-CORDEX: Climate indicators for Europe from 1940 to 2100 derived from reanalysis and climate projections, regional model CCLM4-8-17, Global Climate Model MPI￾ESM-LR",
+        "Wine production and crop yield"
+      ],
+      "author_team": [
+        "Natalie Hanrieder",
+        "Stefan Wilbert",
+        "Alvaro Fernández Solas",
+        "Anna Kujawa",
+        "Rabea Weil",
+        "Lucía Garstka",
+        "Claudia Kammann",
+        "Manfred Stoll",
+        "Matthias Meier",
+        "M. del Carmen Alonso Garcia",
+        "Luis Zarzalejo",
+        "Isabel Oller Alberola",
+        "Estefanía Sánchez Vizcaíno"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Agrivoltaic System Potential to Mitigate Effects of Climate Change in Viticulture",
+        "doi": "10.1002/aesr.70185",
+        "year": 2026,
+        "venue": "Advanced Energy and Sustainability Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_20",
+      "research_question": "不同强度的食草压力如何调节气候变化（降水、温度、CO2浓度）对草地植被绿度长期趋势的影响？",
+      "hypothesis_or_mechanism": "高强度放牧会削弱植被对气候变暖与降水波动的正向响应，并通过筛选耐牧植物群落改变生态系统对全球变化的适应路径。",
+      "variables_and_data_use": "使用ERA5-Land月度平均气象场（降水、温度）作为气候驱动协变量，结合植被遥感绿度趋势与实地食草压力数据进行多水平分层回归分析。",
+      "method_paradigm": "多水平分层模型与时间序列趋势分析",
+      "used_assets": [
+        "ERA5land monthly averaged",
+        "Dryad Digital Repository"
+      ],
+      "author_team": [
+        "Marina Rincon‐Madroñero",
+        "Jose Antonio Sánchez‐Zapata",
+        "Jon Morant",
+        "Jomar M. Barbosa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Grazing and climate interact to regulate greening trends in Mediterranean grasslands",
+        "doi": "10.1111/1365-2664.70263",
+        "year": 2026,
+        "venue": "Journal of Applied Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_21",
+      "research_question": "该论文研究 Serengeti 生态系统中植被绿度、降水和温度的季节变化如何与 wildebeest 迁徙区和迁徙时序相关。",
+      "hypothesis_or_mechanism": "降水通过促进植被恢复和提高 NDVI 驱动迁徙资源格局，且植被对降水的响应存在约一个月滞后，温度主要通过水分平衡和牧草持续性产生间接影响。",
+      "variables_and_data_use": "论文使用 Sentinel-2 Surface Reflectance imagery 计算 NDVI 月平均值；使用 ERA5-Land Monthly Averages dataset 的 temperature_2m 和 total_precipitation，分别转换为摄氏度和毫米，并在生态系统与关键迁徙区内计算月尺度 zonal statistics，再用于时间序列、相关分析和多元回归。",
+      "method_paradigm": "遥感 GIS 统计建模",
+      "used_assets": [
+        "Sentinel-2 Surface Reflectance imagery",
+        "ERA5-Land Monthly Averages dataset",
+        "OpenStreetMap (OSM) Data Model"
+      ],
+      "author_team": [
+        "Daniel Morgan Kwayu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Satellite-based spatiotemporal analysis of vegetation and climate controls on wildebeest migration in the Serengeti ecosystem",
+        "doi": "10.58524/jgsa.v2i2.123",
+        "year": 2026,
+        "venue": "Journal of Geospatial Science and Analytics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_22",
+      "research_question": "2024 年全球 TER 的增加在多大程度上由气温、总水储量等气候变化以及 GPP 变化所驱动？",
+      "hypothesis_or_mechanism": "气候异常可直接影响 TER，并可通过改变 GPP 间接影响 TER，而其他 GPP 变化则反映 CO2 施肥、土地管理和养分供给等因素。",
+      "variables_and_data_use": "研究利用 GCASv2 大气反演得到 NBE，利用 GOSIF GPP 和 FluxSat v2.2 GPP 估计 GPP，利用 GFED4.1s 和 GFAS 估计火灾碳排放，并以 NBE、GPP 和火灾排放的残差计算 TER；利用 ERA5-Land 的月度气温、由 2-m 气温和露点温度推导的 VPD 以及 SR 作为气候变量，利用 CSR GRACE-FO RL06.3 Mascon Solutions 和 GLDAS 的 TWS 作为水分状态变量，进一步进行非线性回归、残差化和 2024 年异常归因。",
+      "method_paradigm": "过程归因与多源数据融合",
+      "used_assets": [
+        "GCASv2",
+        "ACOS V11.2 Level 2 Lite",
+        "JMA Ocean CO2 map",
+        "GCP-GridFEDv2024.0",
+        "Carbon Monitor",
+        "BEPS",
+        "CASA-GFED4.1s",
+        "GFED4.1s",
+        "GFAS",
+        "GOSIF GPP",
+        "FluxSat v2.2 GPP",
+        "NOAA Global Monitoring Laboratory (GML)",
+        "OCO-2 XCO2 retrievals",
+        "obspack_co2_1_GLOBALVIEWplus_v10.1_2024-11-13 (GV v10.1)",
+        "obspack_co2_1_NRT_v10.1_2025-02-07 (NRT v10.1)",
+        "ICOS",
+        "AmeriFlux",
+        "OzFlux",
+        "MODIS MCD12C1 v6.1",
+        "MODIS MCD12Q1 v6.1",
+        "MODIS MOD13C1 v6.1",
+        "TROPOspheric Monitoring Instrument (TROPOMI)",
+        "CSR GRACE-FO data product (RL06.3 Mascon Solutions)",
+        "GLDAS",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Guanyu Dong",
+        "Fei Jiang",
+        "Weimin Ju",
+        "Josep Peñuelas",
+        "Philippe Ciais",
+        "Yongguang Zhang",
+        "Jingfeng Xiao",
+        "Xuhui Wang",
+        "Wenping Yuan",
+        "Yuanyuan Huang",
+        "Chao Yue",
+        "Liangyun Liu",
+        "Xing Li",
+        "Lei Fan",
+        "Guido R. van der Werf",
+        "Mousong Wu",
+        "Jun Wang",
+        "Yanlian Zhou",
+        "Jiaqi Tian",
+        "Hengmao Wang",
+        "Wei He",
+        "Lingyu Zhang",
+        "Guoyuan Lv",
+        "Yuanyuan Zhang",
+        "Jing M. Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Dramatic increase in ecosystem respiration causes record-breaking atmospheric CO2 growth rate in 2024",
+        "doi": "10.1038/s41467-026-72189-y",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_23",
+      "research_question": "不同来源的降水、蒸散发、径流和土壤水分数据集在全球范围内能否共同满足水量平衡关系，以及它们的一致性受哪些环境因素影响？",
+      "hypothesis_or_mechanism": "数据集之间的水量平衡一致性受数据生产方式、观测密度、干旱度、温度、土壤质地和侧向水流等因素共同影响，并可能随时间因观测技术进步和气候变化而改变。",
+      "variables_and_data_use": "研究使用 20 个降水、11 个蒸散发、7 个径流和 9 个土壤水分数据集的月度值，使用 ERA5-land 的 ET、RO 和 Δ SM 作为其中一组陆面再分析输入；在每个网格和数据组合中拟合 PR−ET−RO 与 Δ SM 的线性关系，以调整后 R²评估水量平衡一致性，并进一步分析时间变化及其与土壤质地、干旱度、树冠覆盖、灌溉、不透水面、温度、观测密度和侧向水流的关系。",
+      "method_paradigm": "多数据集水量平衡一致性评估",
+      "used_assets": [
+        "CPC",
+        "CRU TS v4.06",
+        "UDel v5.01",
+        "EM-EARTH",
+        "GPCC v2022",
+        "PREC/L",
+        "X-BASE",
+        "GRUN",
+        "SoMo.ml",
+        "CHIRPS v2.0",
+        "CMAP",
+        "CMORPH v1",
+        "GPCP(M) v2.3",
+        "GPCP(D) v1.3",
+        "GPM IMERG v07",
+        "PERSIANN-CDR",
+        "MSWEP v2.8",
+        "MODIS",
+        "PT-JPL",
+        "PML-v2",
+        "GLASS",
+        "GLEAM v4.1",
+        "SMAP L4 v7",
+        "ESA CCI v08.1",
+        "20CR v3",
+        "JRA-55",
+        "ERA5",
+        "NCEP-NCAR R1",
+        "NCEP-DOE R2",
+        "MERRA-2",
+        "GLDAS-2.0",
+        "GLDAS-2.1",
+        "GLDAS-2.2",
+        "ERA5-land",
+        "GRACE",
+        "Harmonized World Soil Database version 2.0",
+        "NASA Vegetation Continuous Fields Version 1",
+        "Mehta et al. (2024)",
+        "Gong et al. (2020)",
+        "FLUXNET2015",
+        "AmeriFlux",
+        "Global Streamflow Indices and Metadata Archive (GSIM)",
+        "International Soil Moisture Network (ISMN)",
+        "National Center for Monitoring and Early Warning of Natural Disasters of Brazil (CEMADEN)"
+      ],
+      "author_team": [
+        "Hao Huang",
+        "Junguo Liu",
+        "Aifang Chen",
+        "Melissa Ruiz‐Vásquez",
+        "René Orth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "State-of-the-art hydrological datasets exhibit low water balance consistency globally",
+        "doi": "10.5194/essd-18-3109-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_24",
+      "research_question": "如何融合 MODIS 地表温度、ERA5-Land 皮肤温度和植被结构信息，重建全球高分辨率月尺度表层土壤与植被组分温度数据集？",
+      "hypothesis_or_mechanism": "ERA5-Land 提供的连续陆面热状态和日变化约束能够弥补 MODIS 观测时间稀疏与空间缺测，并提高土壤和植被组分温度分离的物理一致性与空间完整性。",
+      "variables_and_data_use": "研究使用 ERA5-Land 皮肤温度小时场聚合得到的月平均值进行参数初始化、日变化建模和物理约束；使用 MOD11C3 (Terra) 与 MYD11C3 (Aqua) 月尺度地表温度校准温度水平；使用 GLASS FVC 描述像元植被组成；使用 MCD12C1 筛选有效土地覆盖区域；并用通量塔长波辐射、JRA-3Q、GLDAS、ESA CCI SM、GOSIF 和 LANDSAT_COMPOSITES_C02_T1_L2_8DAY_NDVI 开展验证、一致性检验和物理关系分析。",
+      "method_paradigm": "多源数据融合重建与验证",
+      "used_assets": [
+        "ERA5-Land reanalysis dataset",
+        "MOD11C3 (Terra)",
+        "MYD11C3 (Aqua)",
+        "GLASS FVC product",
+        "MCD12C1",
+        "JRA-3Q",
+        "GLDAS",
+        "ESA CCI SM",
+        "GOSIF",
+        "LANDSAT_COMPOSITES_C02_T1_L2_8DAY_NDVI",
+        "upward and downward longwave radiation records"
+      ],
+      "author_team": [
+        "Xiangyang Liu",
+        "Zhao-Liang Li",
+        "Chen Ru",
+        "Si-Bo Duan",
+        "Pei Leng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "GloSVeT: a global 0.05° monthly mean surface soil and vegetation component temperature dataset (2003–2023)",
+        "doi": "10.5194/essd-18-6885-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_25",
+      "research_question": "ERA5-Land、GLDAS2.0、GLDAS2.1、MSWEPv2.2 和 BNMD 等高分辨率气象产品在巴西不同通量塔站点和时间尺度上重现现场气象观测的能力有何差异？",
+      "hypothesis_or_mechanism": "不同产品的观测融合方式、再分析生产链和空间时间处理会造成变量及时间尺度上的误差差异，其中 ERA5-Land 对多种陆面气象变量具有较好的综合表现。",
+      "variables_and_data_use": "研究使用 ERA5-Land 的降水、气温、风速、大气压、向下短波和长波辐射及比湿等变量，并将小时或日尺度数据转换为日尺度和月尺度，与 11 个通量塔的现场观测进行均方误差、相关性、偏差、变异贡献和产品排名分析；同时使用 BNMD、GLDAS2.0、GLDAS2.1 和 MSWEPv2.2 作为对比产品。",
+      "method_paradigm": "多产品观测验证与误差分解",
+      "used_assets": [
+        "ECMWF Reanalysis 5-Land (ERA5-Land)",
+        "Brazilian National Meteorological Gridded Database (BNMD)",
+        "Global Land Data Assimilation System (GLDAS) 2.0",
+        "GLDAS2.1",
+        "Multi-Source Weighted-Ensemble Precipitation v2.2 (MSWEPv2.2)",
+        "flux tower observations"
+      ],
+      "author_team": [
+        "Jamie R. C. Brown",
+        "Ross Woods",
+        "Humberto Ribeiro da Rocha",
+        "Débora Regina Roberti",
+        "Rafael Rosolem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of high-resolution meteorological data products using flux tower observations across Brazil",
+        "doi": "10.5194/hess-30-141-2026",
+        "year": 2026,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_26",
+      "research_question": "中国区域地表温度（LST）的年际与季节变化特征及其与大规模大气环流和海表温度驱动因子的关联程度如何？",
+      "hypothesis_or_mechanism": "大规模大气环流模式对地表温度的时空行为具有主导性影响，其作用强度显著高于海表温度驱动因子。",
+      "variables_and_data_use": "使用ERA5-Land再分析的月度最大/最小地表温度（LST）作为目标变量，结合中国气象数据中心提供的114个大气环流与海表温度指数作为预测变量，计算皮尔逊相关系数以量化关联关系。",
+      "method_paradigm": "统计相关性分析",
+      "used_assets": [
+        "ERA5-Land reanalysis dataset",
+        "China Meteorological Data Service Center climate drivers"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Correlations of land surface temperature with climatic and oceanic factors in China (1952–2022)",
+        "doi": "10.36334/modsim2025.g02.zhang",
+        "year": 2026,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_27",
+      "research_question": "全球土壤甲烷吸收（SMU）的时空变异规律及其对不同生物群落中温度与水分控制模式的响应机制是什么？",
+      "hypothesis_or_mechanism": "不同生态系统的SMU受环境因子的控制存在显著差异，可划分为温度主导、水分主导、温湿度共同调控及无明显主导控制四类响应类型。",
+      "variables_and_data_use": "以SMUD数据库中的原位SMU通量观测值为响应变量，结合ERA5-Land月度聚合数据提取的气温与降水作为环境预测变量，采用标准化多元线性回归分析量化各驱动因子的相对重要性。",
+      "method_paradigm": "多源数据汇编与统计回归建模",
+      "used_assets": [
+        "ERA5-Land Monthly Aggregated data",
+        "SoilGrids250m 2.0"
+      ],
+      "author_team": [
+        "J. Jiang",
+        "Zhifeng Yan",
+        "Jinshi Jian",
+        "Jesper Riis Christiansen",
+        "Xinchu Wang",
+        "Ren-Min Yang",
+        "Zhen Zhang",
+        "Philippe Ciais"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A Global Database of Soil Methane Uptake (SMUD)",
+        "doi": "10.5194/essd-18-6783-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_28",
+      "research_question": "土壤理化性质与生长季前气候条件如何共同驱动地中海地区植物根系丛枝菌根真菌（AMF）的定殖特征与孢子密度？",
+      "hypothesis_or_mechanism": "特定的土壤养分水平、pH值及前期温湿度累积会通过改变根际微环境显著调控AMF的共生强度与繁殖策略。",
+      "variables_and_data_use": "使用ERA5-Land月均温度与总降水量作为气候预测变量；使用实地测定的土壤有机碳、全氮、阳离子交换量和pH作为土壤预测变量；响应变量为AMF定殖频率、强度、丛枝体丰度及孢子密度。",
+      "method_paradigm": "野外采样结合广义线性混合模型分析",
+      "used_assets": [
+        "ERA 5 Land dataset",
+        "soil physico-chemical measurements"
+      ],
+      "author_team": [
+        "Rafael Silveira Bueno",
+        "Valentina Catania",
+        "Monica Auteri",
+        "Eleonora Grilli",
+        "Tatiana Di Iorio",
+        "Alcide di Sarra",
+        "Simona Castaldi",
+        "Paola Quatrini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Patterns and Drivers of Plant Arbuscular Mycorrhizal Traits Across a Pedo-Climatic Gradient in Mediterranean Agroecosystems Under Desertification Risk",
+        "doi": "10.1007/s00248-025-02689-9",
+        "year": 2026,
+        "venue": "Microbial Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_29",
+      "research_question": "干旱后土壤水分异常如何影响次年的近地表气温变化？",
+      "hypothesis_or_mechanism": "温室气体强迫导致的气候变暖改变了干旱后土壤水分对气温的反馈敏感性，表现为不对称的温度响应。",
+      "variables_and_data_use": "使用ERA5-Land月度近地表气温与土壤水分计算标准化Z-score识别干旱事件，采用时空分离法（space-and-time approach）提取干旱诱导的气温与土壤水分变化量（ΔT_D, ΔSM_D），并通过分箱线性回归量化气温对土壤水分异常的敏感度；结合CMIP6多模型实验进行归因分析。",
+      "method_paradigm": "时空分离归因分析",
+      "used_assets": [
+        "ERA5-land",
+        "GLDAS/CLSM",
+        "MERRA2",
+        "CMIP6 ESMs",
+        "CRU v4.08",
+        "GLEAM v4.2",
+        "GIMMS LAI3g",
+        "GLASS",
+        "GLOBMAP",
+        "GIMMS LAI4g"
+      ],
+      "author_team": [
+        "Jun Li",
+        "Minchao Wu",
+        "Weilin Liao",
+        "Xuezhi Tan",
+        "Xushu Wu",
+        "Chengguang Lai",
+        "Zhaoli Wang",
+        "Xiangju Cheng",
+        "Xiaoping Liu",
+        "H. Y. Tang",
+        "Josep Peñuelas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Asymmetric temperature responses to soil moisture drought legacies under anthropogenic forcing",
+        "doi": "10.1038/s41467-026-75496-6",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_30",
+      "research_question": "不同农业区气象、农业与地下水干旱的响应时间与传播阈值如何演变？",
+      "hypothesis_or_mechanism": "干旱类型间存在特定的传播路径与非线性阈值，且受局地气象与土壤状态的协同调控。",
+      "variables_and_data_use": "使用CRU TS降水、CCI SM表层土壤湿度、GRACE陆地水储量异常分别表征三类干旱；使用月度ERA5-Land的风速、地表温度、浅层土壤温度、雪水当量等作为驱动因子，结合XGBoost与SHAP方法进行关键影响因子归因分析。",
+      "method_paradigm": "多源数据融合与机器学习归因",
+      "used_assets": [
+        "CRU TS",
+        "CCI SM",
+        "GRACE",
+        "ECMWF Reanalysis v5-Land (ERA5-Land)"
+      ],
+      "author_team": [
+        "Yong Huang",
+        "Zhaoqiang Zhou",
+        "Renjie Hou",
+        "Qinglin Li",
+        "Yibo Ding",
+        "Tian Wang",
+        "Peng Chen",
+        "Xiaowen Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatiotemporal patterns, propagation mechanisms, and driving factors of agricultural and groundwater droughts across major agricultural regions of Northeast China",
+        "doi": "10.3389/fenvs.2026.1896671",
+        "year": 2026,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_monthly_ref_31",
+      "research_question": "如何利用物理信息深度学习框架提升 GRACE 卫星反演的地下水储量异常的时空分辨率？",
+      "hypothesis_or_mechanism": "通过 ConvLSTM 捕捉气候记忆效应，并结合多尺度软物理约束与双头不确定性量化架构，可在保持水文一致性的同时实现高分辨率地下水储量重构。",
+      "variables_and_data_use": "使用 ERA5-Land 再分析的降水、土壤湿度、气温和地表压力（聚合为月度）作为气候强迫预测变量；使用 GRACE/GRACE-FO 全球地下水产品（v1.12）的月尺度地下水储量异常作为目标变量进行空间降尺度训练。",
+      "method_paradigm": "物理信息深度学习空间降尺度",
+      "used_assets": [
+        "ERA5-Land reanalysis",
+        "Global Groundwater Product version 1.12",
+        "GRACE satellites",
+        "GRACE Follow-On satellites"
+      ],
+      "author_team": [
+        "Kunle Adefarati Ibrahim",
+        "Ologun Sodiq Babatunde",
+        "Chiagoziem C. Ukwuoma",
+        "Richard Joshua Akeredolu",
+        "Victoria Chioma Ayozie-Samuel; Maryam Saleem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Securing the Silent Reserve: Physics-Informed Deep Learning for Global Groundwater Storage Downscaling",
+        "doi": "10.64388/irev9i9-1714801",
+        "year": 2026,
+        "venue": "Iconic Research and Engineering Journals",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 31,
+    "source_paper_count": 31,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

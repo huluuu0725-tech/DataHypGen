@@ -1,0 +1,198 @@
+# Full DataGenHyp system - all phases enabled
+# Inherits from debug_config.yaml with no ablations
+
+system:
+  debug: true
+  log_level: "INFO"
+
+workflow:
+  max_iterations: 1
+  max_replan_rounds: 2
+  # 单次 LLM 调用的重试预算（agent 段未显式声明 max_retries 时生效）
+  agent_max_retries: 3
+
+planning:
+  # 每种 idea 类型生成的候选 idea 数量。
+  ideas_per_type: 3
+  # 单次任务允许的最大重规划轮数。
+  max_replan_rounds: 3
+  idea_maturation:
+    # 每个 idea 最多进行的成熟化迭代轮数。
+    max_iteration_rounds: 2
+    max_tree_depth: 10
+    # FV 综合得分达到该阈值时，认为 idea 达到目标质量。
+    fv_target_threshold: 0.625
+    # FV 中可行性分数的最低要求。
+    fv_min_feasibility: 0.75
+    # FV 中研究价值分数的最低要求。
+    fv_min_value: 0.75
+    # 质询过程出现多轮分数变化没有超过一定分数范围并且到达 FV 乘积最低值视为平台期，该idea迭代终止。
+    fv_plateau_min_product: 0.56
+    # 平台期分数变化范围。
+    fv_plateau_eps: 0.05
+    # 连续达到该轮数后，才将 FV 长时间无明显提升判定为平台期。
+    fv_plateau_rounds: 2
+    # 连续若干轮没有产生可执行的字段更新后，停止当前 idea 的成熟化。
+    routed_stall_rounds: 2
+    # 连续若干轮修订均未被接受后，停止当前 idea 的成熟化。
+    revision_stall_rounds: 1
+    branch_budget_per_round: 3
+    # 是否启用对候选文献和数据集证据的相关性二次判断。
+    enable_evidence_relevance_judge: true
+
+
+phases:
+  enable_plan_refinement_phase: true
+  enable_dataset_profiling_phase: true
+  enable_idea_maturation: true
+models:
+  default_provider: "openai"
+
+  dsr1:
+    model_name: "deepseek-ai/DeepSeek-V3.2"
+    api_key: ""
+    max_tokens: 1024
+    temperature: 0.3
+    timeout: 600
+    extra_body:
+      thinking:
+        type: "disabled"
+    response_format:
+      type: "json_object"
+
+  openai:
+    model_name: "gpt-5.6-sol"
+    api_base: "${OPENAI_API_BASE_URL}"
+    api_key: "${OPENAI_API_KEY}"
+    wire_api: "responses"
+    max_tokens: 1024
+    temperature: 0.2
+
+  qwen_model:
+    model_name: "qwen3.7-flash"
+    max_tokens: 1024
+    temperature: 0.4
+    timeout: 600
+
+agents:
+  dataset_profiler:
+    model_provider: "qwen_model"
+    max_years_to_load: 24
+    hotspot_target_classes: [3]
+    max_pixels_per_file: 4000000
+
+  survey:
+    model_provider: "qwen_model"
+    max_papers: 10
+    sources: ["arxiv", "openalex", "nature"]
+
+  domain_knowledge:
+    model_provider: "qwen_model"
+    max_analysis_papers: 10
+    output_format: "json"
+
+  refinement:
+    count: 1
+    model_provider: "qwen_model"
+    max_tokens: 8192
+
+  idea_evaluation:
+    model_provider: "default"
+    # 7 个维度各发一次独立调用，单次输出实测 2293~5076 字符（≈573~1269 tokens）。
+    # provider 级 1024 正好卡在该分布中间：Geomorpho90m_Slope 一轮里
+    # reproducibility_readiness 5 个 idea 全部截断后翻倍重试。2048 覆盖实测上界并留余量。
+    max_tokens: 2048
+
+
+  resources_check:
+    count: 1
+    model_provider: "qwen_model"
+    dataset_search_limit: 3
+    allow_plan_adjustment: true
+    allow_online_gee_fallback: true
+    strict_binding_min_score: 0.65
+    remote_probe:
+      timeout_seconds: 300
+      max_retries: 2
+      cache_ttl_seconds: 3600
+
+  idea_generation:
+    model_provider: "qwen_model"
+    application: 5
+    idea_generation_max_tokens: 4096
+    temperature: 0.3
+
+  idea_maturation:
+    model_provider: "qwen_model"
+    temperature: 0.2
+
+  step_plan:
+    model_provider: "qwen_model"
+    planning_depth: "detailed"
+    max_tokens: 4096
+    temperature: 0.3
+    hierarchical_generation: true
+    graph_repair_attempts: 1
+    detail_repair_attempts: 1
+
+memory:
+  backend: "file_system"
+  file_dir: "results"
+  retention_period: 1
+
+tools:
+  web_search:
+    enabled: false
+    provider: "google"
+    api_key: ""
+    max_results: 0
+
+  literature_search:
+    enabled: true
+    # Temporary temporal evidence boundary for the generation pipeline.
+    max_publication_year: 2026
+    api_keys:
+      openalex: ""
+      springer_nature: ""
+
+  paper_survey:
+    enabled: false
+    max_results: 0
+    sort: "relevance"
+
+  geo_data_search:
+    enabled: true
+    online_top_k: 20
+    region_hard_filter: true
+    time_hard_filter: true
+    role_hard_filter: true
+
+  gee:
+    env_file: ".env"
+    reload_env_each_call: true
+    api_key_env: "GEE_API_KEY"  # 服务账号 JSON 内容（以 { 开头）或密钥文件路径
+    project_env: "EARTHENGINE_PROJECT"
+
+  capability_index:
+    path: "./datahypgen/mas/tools/data/geo_capability_index.json"
+    enabled: true
+
+# 正式参考实例检索与 Alignment 评测参数
+semantic_retrieval:
+  embedding_model_version: "Qwen/Qwen3-Embedding-8B"
+  cross_encoder_version: "gpt-5.6-sol"
+  alignment_model_version: "gpt-5.6-sol"
+  entity_similarity_threshold: 0.5
+  role_weight_version: "uniform_roles_v1"
+  role_weights: {"*": 1.0}
+  field_weights: {"dataset_name": 1.0, "observable": 1.0, "measurement_semantics": 1.0, "source_lineage": 1.0, "spatial_scale": 1.0, "temporal_scale": 1.0}
+  allowed_relation_types: ["HAS_EQUIVALENT", "HAS_UPSTREAM", "HAS_COMPLEMENT", "HAS_ANALOGUE"]
+  relation_costs: {"HAS_EQUIVALENT": 1.0, "HAS_UPSTREAM": 2.0, "HAS_COMPLEMENT": 3.0, "HAS_ANALOGUE": 4.0}
+  maximum_fallback_depth: 2
+  maximum_evidence_size: 3
+  unmatched_penalty: 0.0
+  alignment_threshold: 5.0
+  initial_candidate_limit: 10
+  embedding_batch_size: 64
+  cross_encoder_batch_size: 5
+  alignment_batch_size: 5

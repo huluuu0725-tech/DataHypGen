@@ -1,0 +1,47 @@
+{
+  "paper_id": "10.1038/s41598-019-56967-x",
+  "task_id": "dual_dataset/task_014",
+  "title": "Near Real-Time Wildfire Progression Monitoring with Sentinel-1 SAR Time Series and Deep Learning",
+  "category": "sar_fire",
+  "year": 2020,
+  "journal": "Scientific Reports",
+  "impact_level": "medium",
+  "datasets": [
+    "Sentinel-1 SAR time-series imagery",
+    "MODIS Burned Area Monthly Global 500 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "sar_observation",
+      "dataset": "Sentinel-1 SAR time-series imagery"
+    },
+    {
+      "role": "burned_area_reference",
+      "dataset": "MODIS Burned Area Monthly Global 500 m"
+    }
+  ],
+  "idea": {
+    "research_question": "Can Sentinel-1 SAR temporal backscatter changes identify wildfire progression and burned-area dynamics under cloud and smoke conditions?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align every required role, construct role-specific features, test interactions, and compare against single-role ablations.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:COPERNICUS/S1_GRD",
+      "GEE:MODIS/061/MCD64A1"
+    ],
+    "required_component_usage": [
+      null,
+      null
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently screened multidataset seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_014:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_online_seed_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\online_recall_underrepresented_20260929\\independent_seed_audit.json",
+    "audit_verdict": "admit_candidate"
+  }
+}

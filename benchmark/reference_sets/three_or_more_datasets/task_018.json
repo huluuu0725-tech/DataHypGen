@@ -1,0 +1,2654 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_018",
+  "reference_coverage": "manual_independent_read_admitted_20261006",
+  "evaluation_year": 2026,
+  "source": "independent_online_seed_audit_20260929",
+  "seed_paper": {
+    "doi": "10.3390/rs9030286",
+    "title": "Synergistic Use of Nighttime Satellite Data, Electric Utility Infrastructure, and Ambient Population to Improve Power Outage Detections in Urban Areas",
+    "year": 2017,
+    "journal": "Remote Sensing",
+    "datasets": [
+      "NASA VIIRS Black Marble nighttime lights",
+      "Electric utility infrastructure network",
+      "Ambient population grid"
+    ],
+    "dataset_roles": [
+      {
+        "role": "nighttime_light_observation",
+        "dataset": "NASA VIIRS Black Marble nighttime lights"
+      },
+      {
+        "role": "utility_infrastructure",
+        "dataset": "Electric utility infrastructure network"
+      },
+      {
+        "role": "ambient_population",
+        "dataset": "Ambient population grid"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_018:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_018:composite_observation",
+    "type": "composite_observation",
+    "name": "nighttime_lights_power_population composite observation",
+    "observable_group": "nighttime_lights_power_population_multidataset_observation",
+    "components": [
+      {
+        "role": "nighttime_light_observation",
+        "data_description": {
+          "dataset_name": "NASA VIIRS Black Marble nighttime lights",
+          "data_type": "Daily nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Radiance-loss and recovery features",
+            "Storm-time versus baseline comparison"
+          ]
+        },
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "utility_infrastructure",
+        "data_description": {
+          "dataset_name": "Electric utility infrastructure network",
+          "data_type": "Power-line, substation or service-territory vector data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Network exposure and outage propagation context",
+            "Spatial aggregation of outage likelihood"
+          ]
+        },
+        "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json"
+      },
+      {
+        "role": "ambient_population",
+        "data_description": {
+          "dataset_name": "Ambient population grid",
+          "data_type": "Gridded population raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:WorldPop/GP/100m/pop",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Affected-population estimation",
+            "Population-weighted outage severity"
+          ]
+        },
+        "data_path": "GEE:WorldPop/GP/100m/pop"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "nighttime_light_observation",
+        "utility_infrastructure",
+        "ambient_population"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "zenodo_excluded": true,
+  "reference_count": 29,
+  "exact_admitted_count": 0,
+  "variant_admitted_count": 0,
+  "reference_papers": [
+    {
+      "doi": "10.3389/fenrg.2026.1814645",
+      "title": "Nightlights and electricity access: measuring the effectiveness of electrification policies in Nigeria using satellite images",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Frontiers in Energy Research"
+    },
+    {
+      "doi": "10.3390/rs17142347",
+      "title": "Hybrid Machine Learning Model for Hurricane Power Outage Estimation from Satellite Night Light Data",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1596/39810",
+      "title": "Nighttime Lights - Applications for the Pacific",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023
+    },
+    {
+      "doi": "10.1177/0022343314559437",
+      "title": "The Ba'athist blackout? Selective goods provision and political violence in the Syrian civil war",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2015,
+      "venue": "Journal of Peace Research"
+    },
+    {
+      "doi": "10.1088/1748-9326/ab6562",
+      "title": "Monitoring hydropower reliability in Malawi with satellite data and machine learning",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2019,
+      "venue": "Environmental Research Letters"
+    },
+    {
+      "doi": "10.1109/access.2021.3093547",
+      "title": "A Study on the Association of Socioeconomic and Physical Cofactors Contributing to Power Restoration After Hurricane Maria",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2021,
+      "venue": "IEEE Access"
+    },
+    {
+      "doi": "10.1371/journal.pone.0202231",
+      "title": "Nighttime Lights as a Proxy for Human Development at the Local Level",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2018,
+      "venue": "PLoS ONE"
+    },
+    {
+      "doi": "10.1007/s10708-022-10689-2",
+      "title": "Keeping the lights On or Off: tracking the progress of access to electricity for sustainable development in Nigeria",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "GeoJournal"
+    },
+    {
+      "doi": "10.31223/x5mb26",
+      "title": "Global population affected by electric power disruptions due to tropical cyclones (EarthArXiv preprint)",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2025
+    },
+    {
+      "doi": "10.21203/rs.3.rs-9703586_v1",
+      "title": "Smoke Signals from a Failed State: What Stopped, Who Left, and What Survived",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Research Square"
+    },
+    {
+      "doi": "10.21203/rs.3.rs-9349878_v1",
+      "title": "Hurricane power outage burden lands unequally: satellite evidence across 30 Atlantic storms",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2026,
+      "venue": "Research Square"
+    },
+    {
+      "doi": "10.20900/jsr20200008",
+      "title": "Assessing the Market for Solar Photovoltaic (PV) Microgrids in Malawi",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2020,
+      "venue": "Journal of Sustainability Research"
+    },
+    {
+      "doi": "10.21203/rs.3.rs-8725596_v1",
+      "title": "Nighttime lights as a proxy for conflict intensity and infrastructure recovery in Yemen and Ukraine",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Research Square"
+    },
+    {
+      "doi": "10.21203/rs.3.rs-846222_v2",
+      "title": "Sensing Global Changes in Local Patterns of Energy Consumption in Cities During the Early Stages of the COVID-19 Pandemic",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Research Square"
+    },
+    {
+      "doi": "10.1038/s44304-026-00270-z",
+      "title": "Satellite based inference for disaster induced power outages using daily nighttime light observations",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "npj natural hazards."
+    },
+    {
+      "doi": "10.1093/restud_rdw020",
+      "title": "Farther on down the road: transport costs, trade and urban growth in sub-Saharan Africa",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2016,
+      "venue": "The Review of Economic Studies"
+    },
+    {
+      "doi": "10.22617/tcs250511-2",
+      "title": "Mapping poverty using satellite imagery, other geospatial data, and artificial intelligence: Indonesia country report",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025
+    },
+    {
+      "doi": "10.1371/journal.pone.0214635",
+      "title": "Household electricity access in Africa (2000–2013): Closing information gaps with model-based geostatistics",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2019,
+      "venue": "PLoS ONE"
+    },
+    {
+      "doi": "10.22617/sgp210110",
+      "title": "Creating Livable Asian Cities",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2021
+    },
+    {
+      "doi": "10.1016/j.oneear.2020.03.007",
+      "title": "Satellite Observations Reveal Inequalities in the Progress and Effectiveness of Recent Electrification in Sub-Saharan Africa",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "One Earth"
+    },
+    {
+      "doi": "10.1080/10106049.2026.2657705",
+      "title": "Spatio-temporal estimation of electricity consumption in Bolivian municipalities using nighttime lights",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Geocarto International"
+    },
+    {
+      "doi": "10.1007/s11027-019-09877-2",
+      "title": "Errors and uncertainties in a gridded carbon dioxide emissions inventory",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2019,
+      "venue": "Mitigation and Adaptation Strategies for Global Change"
+    },
+    {
+      "doi": "10.11114/aef.v7i4.4919",
+      "title": "Electrification, Power Outages and Employment",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Applied Economics and Finance"
+    },
+    {
+      "doi": "10.1177/0022343315597969",
+      "title": "Triangulating horizontal inequality",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2015,
+      "venue": "Journal of Peace Research"
+    },
+    {
+      "doi": "10.1016/j.jeem.2023.102840",
+      "title": "Temperature variability and long-run economic development",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023,
+      "venue": "Journal of Environmental Economics and Management"
+    },
+    {
+      "doi": "10.1007/s00148-017-0685-5",
+      "title": "More than an urban legend: the short- and long-run effects of unplanned fertility shocks",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2018,
+      "venue": "Journal of Population Economics"
+    },
+    {
+      "doi": "10.1086/685451",
+      "title": "A Better Life for All? Democratization and Electrification in Post-Apartheid South Africa",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2016,
+      "venue": "The Journal of Politics"
+    },
+    {
+      "doi": "10.5194/gmd-13-1095-2020",
+      "title": "The NExus Solutions Tool (NEST) v1.0: an open platform for optimizing multi-scale energy–water–land system transformations",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2020,
+      "venue": "Geoscientific model development"
+    },
+    {
+      "doi": "10.1038/s43247-025-02278-1",
+      "title": "Power outage-risk integrated social vulnerability analysis highlights disparities in small residential communities",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025,
+      "venue": "Communications Earth & Environment"
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "manual_admitted_partial_set_001",
+      "source_paper_doi": "10.3389/fenrg.2026.1814645",
+      "title": "Nightlights and electricity access: measuring the effectiveness of electrification policies in Nigeria using satellite images",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The nightlights datasets at 1 km 2 cell resolution were combined with population estimates at the same 1 km 2 cell resolution to determine the EAR for each square kilometer in Nigeria."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Population data was taken from the LandScan dataset produced by the Oak Ridge National Laboratory ( Oak Ridge National Laboratory, 2024 )."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The nightlights datasets at 1 km 2 cell resolution were combined with population estimates at the same 1 km 2 cell resolution to determine the EAR for each square kilometer in Nigeria.",
+        "Population data was taken from the LandScan dataset produced by the Oak Ridge National Laboratory ( Oak Ridge National Laboratory, 2024 )."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文回答尼日利亚2000—2021年能源政策干预在空间和时间上是否改善了电力可及性，以及这些影响在地方政府区、州和配电服务区之间如何分布。",
+      "hypothesis_or_mechanism": "核心机制是能源政策若有效实施，应通过扩大电力接入而提高夜间灯光所反映的用电可及性；但政策效果可能受区域差异、城乡差异和制度执行能力制约。研究结果表明，四项政策在全国层面未产生统计显著改善，但存在局地成功。",
+      "variables_and_data_use": "研究使用卫星夜间灯光数据和人口数据生成高分辨率电力可及率（EARs）；原文未点名具体夜间灯光传感器或人口数据产品名称。EARs被汇总到尼日利亚774个地方政府区、36个州及联邦首都区、以及11个配电公司服务区，并用于比较区域、城乡和政策前后变化。",
+      "method_paradigm": "方法范式是基于卫星夜间灯光与人口数据的电力可及率空间估算，并结合多尺度空间聚合分析。政策影响评估采用面板回归分析，检验EPSRA（2005）、EG/IEDN（2012）、Mini-grid Regulation（2016）和WBWS（2019）的影响。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3389/fenrg.2026.1814645",
+        "chars": 1594,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:20"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_002",
+      "source_paper_doi": "10.3390/rs17142347",
+      "title": "Hybrid Machine Learning Model for Hurricane Power Outage Estimation from Satellite Night Light Data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "poweroutagereports.TheDMSP-OLSistheprimarysourcefornightlightdata,asall\nourutilityhurricanepoweroutagereportsdatebacktobefore2005.TheDMSPsatellite\noverpassesthestudyareaoncepernight,providingadailytemporalresolution."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Wecollectedpopulationdata(smallerredgridsinFigure1)fromtheGriddedPopulationoftheWorld(GPW)v4(https://sedac.ciesin.columbia.edu/data/collection/gpw-v4,"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "poweroutagereports.TheDMSP-OLSistheprimarysourcefornightlightdata,asall\nourutilityhurricanepoweroutagereportsdatebacktobefore2005.TheDMSPsatellite\noverpassesthestudyareaoncepernight,providingadailytemporalresolution.",
+        "Wecollectedpopulationdata(smallerredgridsinFigure1)fromtheGriddedPopulationoftheWorld(GPW)v4(https://sedac.ciesin.columbia.edu/data/collection/gpw-v4,"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答如何利用高分辨率卫星夜间灯光观测和辅助信息，重建并监测历史飓风造成的停电情况。研究还比较了不同机器学习方法在飓风停电二分类与回归估计中的表现。",
+      "hypothesis_or_mechanism": "核心机制是飓风停电会导致夜间灯光变化，而地理位置、人口、稳定夜光值和飓风期间夜光值等变量与停电具有可解释的物理关系。作者认为两步混合模型能够更好处理零膨胀数据中的不确定性，从而提升停电预测性能。",
+      "variables_and_data_use": "研究使用 Defense Meteorological Satellite Program（DMSP）1 km 分辨率卫星夜间灯光观测来重建历史飓风停电，并结合地理位置、人口、稳定夜光值和飓风夜光值等辅助变量作为模型输入。文中还提到未来可纳入 Visible Infrared Imaging Radiometer Suite（VIIRS）Day/Night Band（DNB）数据以改进停电估计。",
+      "method_paradigm": "方法范式为机器学习重建与预测，包括二分类和回归两阶段混合建模，以处理零膨胀停电数据。比较的模型包括 XGBoost、随机森林、逻辑回归和 CNN，并使用 SHAP 值进行可解释机器学习分析。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/rs17142347",
+        "chars": 1702,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:22"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_003",
+      "source_paper_doi": "10.1596/39810",
+      "title": "Nighttime Lights - Applications for the Pacific",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The annual time series was based upon two sets of NTL data: the VIIRS annual composites generated by\nthe Earth Observation Group (2013-2021), and the DMPS-OLS annual composites provided by NOAA\n(1992-2013)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Facebook's High Resolution Settlement Layer was used to map the\ndistribution of human population at a resolution of 30m."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The annual time series was based upon two sets of NTL data: the VIIRS annual composites generated by\nthe Earth Observation Group (2013-2021), and the DMPS-OLS annual composites provided by NOAA\n(1992-2013).",
+        "Facebook's High Resolution Settlement Layer was used to map the\ndistribution of human population at a resolution of 30m."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文试图回答巴布亚新几内亚采掘业场址的夜间灯光强度（NTL）是否与采掘业经济产出相关，以及灯光总量变化能否反映部门产出变化。",
+      "hypothesis_or_mechanism": "核心机制是采矿和天然气设施周边的夜间灯光活动会随生产和经济产出变化而变化，因此场址汇总的灯光总量（SoL）与国家采掘业产出增长之间应存在相关关系。回归系数被解释为产出增长相对于灯光增长的弹性指标。",
+      "variables_and_data_use": "研究使用采矿点和天然气设施数据库，在每个场址周围建立4公里缓冲区，并用VIIRS月度影像（2014-2022）计算月度SoL；年度SoL来自Earth Observation Group的VIIRS年度合成数据（2013-2021）和NOAA的DMSP-OLS年度合成数据（1992-2013），并通过NTL_Harmonizer方法将DMSP拟合到VIIRS。经济变量使用PNG National Statistics Office发布的2006-2019年国家部门GDP统计，并辅以EITI 2019报告中的设施级产量数据，如部分金矿和铜矿2014-2019年产量。",
+      "method_paradigm": "方法范式包括遥感夜间灯光场址缓冲区汇总、DMSP-OLS与VIIRS跨传感器协调、移动窗口线性插值，以及对数差分时间序列相关分析。最终用线性回归检验采掘业产出年增长率与灯光总量年增长率之间的相关性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1596_39810.methods.txt",
+        "chars": 2830,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:26"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_004",
+      "source_paper_doi": "10.1177/0022343314559437",
+      "title": "The Ba'athist blackout? Selective goods provision and political violence in the Syrian civil war",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "As a first step, we used Geographic Information Sys-\ntems software to generate the annual nightlight emissions\nfor the whole of Syria for the years 2004 to 2009"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The indicators we have used for our control variables\nmainly stem from the country's last population census,\nundertaken in 2004."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "As a first step, we used Geographic Information Sys-\ntems software to generate the annual nightlight emissions\nfor the whole of Syria for the years 2004 to 2009",
+        "The indicators we have used for our control variables\nmainly stem from the country's last population census,\nundertaken in 2004."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文考察威权政体通过选择性提供物质 goods 和公共服务建立的庇护—客户网络，是否会降低相关次国家地区发生暴力反对的可能性。具体到叙利亚，问题是：在内战中，过去获得政权偏向性资源分配的分区是否更不容易出现政治暴力。",
+      "hypothesis_or_mechanism": "核心假设是，获得政权优待、被纳入庇护—客户网络的地区居民，为维持既有特权地位和物质收益，更可能顺从政权而非支持暴力反对。机制上，选择性再分配通过给予特定人群相对和绝对收益来换取政治支持或默许，从而降低这些地区持续反国家行动的风险。",
+      "variables_and_data_use": "因变量是叙利亚内战中各分区是否/多大程度发生致命暴力，使用2011年3月至2012年11月关于死亡人数及其地理分布的众包数据；原文称这些数据来自叙利亚人通过公开在线平台提交的去中心化报告。核心解释变量是电力短缺时期公共电力分配的空间差异，使用“地球夜间卫星图像”作为夜间灯光代理来衡量2007—2009年电力供给优待；并结合2004年叙利亚人口普查数据构建274个分区的数据集，原文未给出具体夜光传感器名称。",
+      "method_paradigm": "方法范式是次国家空间定量分析，将叙利亚274个分区作为观测单位，结合众包暴力事件、夜间灯光和人口普查数据。模型上采用含14个省固定效应的横截面 logit 估计，并以叙利亚地方层面的定性证据作补充验证。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1177_0022343314559437.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:35"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_005",
+      "source_paper_doi": "10.1088/1748-9326/ab6562",
+      "title": "Monitoring hydropower reliability in Malawi with satellite data and machine learning",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "VIIRS-DNB\nproduct nighttime lights [29] (as a proxy of the local monthly urban electricity\nuse in the country, see [30, 31, 32, 33], and thus also of outages [34, 35]), and"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "Figure 1: Maps of Malawi, representing: (A) a snapshot of the nighttime lights radiance\nand the MV distribution grid (using data from year 2018. Sources: [29, 27]);"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "conditional on the pixel having a population density\ngreater than 250 inhabitants · km−2 (using gridded population data from [41])."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "VIIRS-DNB\nproduct nighttime lights [29] (as a proxy of the local monthly urban electricity\nuse in the country, see [30, 31, 32, 33], and thus also of outages [34, 35]), and",
+        "conditional on the pixel having a population density\ngreater than 250 inhabitants · km−2 (using gridded population data from [41])."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答：在水文、电力数据稀缺的马拉维，能否利用开放卫星遥感数据与机器学习监测并评估水文气候极端事件对水电可靠性及城市用电的影响。",
+      "hypothesis_or_mechanism": "核心机制是水文气候变率，特别是干旱和降水异常，会通过影响马拉维湖水位和希雷河流量，进而降低水电站发电可靠性，并反映在城市夜间灯光辐亮度所代理的最终用电变化中。",
+      "variables_and_data_use": "研究使用G-REALM中由TOPEX/POSEIDON和OSTM/Jason等卫星获得的马拉维湖水位，VIIRS-DNB夜间灯光作为城市月度用电和停电影响代理，并使用MODIS、TMPA、AMSR-E及相关气候数据构建降水、温度、土壤湿度和SPEI干旱指数等变量。上述遥感变量与希雷河日流量测站数据和2012—2018年水电站发电观测数据进行耦合与验证，用于重建缺测流量并评估水电容量因子和用电响应。",
+      "method_paradigm": "方法范式是能源—气候—水耦合框架，结合多源遥感数据、有限地面观测和机器学习回归。具体采用随机森林回归预测湖水位和未测或缺测河流流量，并进一步用回归分析评估水文气候异常对水电可靠性和夜间灯光变化的影响。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1088_1748-9326_ab6562.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:47"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_001",
+      "source_paper_doi": "10.1109/access.2021.3093547",
+      "title": "A Study on the Association of Socioeconomic and Physical Cofactors Contributing to Power Restoration After Hurricane Maria",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthisstudy,weusedthemostupdatedbidirectional\nre\u001dectancedistributionfunction(BRDF)correctedVIIRS\n\npost-HurricaneMariapowerinfrastructurerecoveryinPuerto\nRico."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "wecollectedthepowertransmissionline,distributionline,\nandsubstationshape\u001dlefromtheGISportaloftheGovern-"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Populationdensity,thepercentageofthewhitepopulation,andthoselivingunderpovertyatthebarriolevel\nwereincorporatedwithdatafromtheAmericanCommunity"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Inthisstudy,weusedthemostupdatedbidirectional\nre\u001dectancedistributionfunction(BRDF)correctedVIIRS\n\npost-HurricaneMariapowerinfrastructurerecoveryinPuerto\nRico.",
+        "wecollectedthepowertransmissionline,distributionline,\nandsubstationshape\u001dlefromtheGISportaloftheGovern-",
+        "Populationdensity,thepercentageofthewhitepopulation,andthoselivingunderpovertyatthebarriolevel\nwereincorporatedwithdatafromtheAmericanCommunity"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "飓风玛丽亚过后，社会经济因素（尤其收入和种族）是否比电力线路、道路、海拔等物理因素更能解释波多黎各各地区的电力恢复时间与进度？研究还刻画了889个县级细分区（barrios）在八个多月内停电损失和恢复的时空差异。",
+      "hypothesis_or_mechanism": "电力恢复时间同时受到基础设施受损程度、地形与道路可达性以及社会经济脆弱性的影响；距离飓风登陆点更远、道路连通性更好且滑坡影响较小的地区应恢复更快，而贫困程度较高的地区可能经历更长时间的停电。",
+      "variables_and_data_use": "使用经BRDF校正的NASA VIIRS夜间灯光（NTL）日间序列影像及其可见光/红外成像辐射仪（VIIRS）日/夜波段辐亮度，将夜间灯光辐亮度作为电力损失与恢复的代理变量，构建各barrios的恢复时间序列并计算无电天数。解释变量包括贫困程度、收入、种族等社会经济变量，以及距飓风登陆点距离、道路连通性（含高速公路连接）、电力线路、海拔和滑坡影响等物理变量。",
+      "method_paradigm": "采用夜间灯光遥感时序的电力恢复轨迹构建与空间汇总，并以无电天数为结果变量建立多变量准泊松（Quasi-Poisson）回归模型，估计社会经济和物理协变量与恢复时间的关联。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1109_access.2021.3093547.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:07"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.1371/journal.pone.0202231",
+      "title": "Nighttime Lights as a Proxy for Human Development at the Local Level",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Following most of the economic literature, we choose the Stable Lights series from\namong the NOAA's various nighttime light products for our analysis."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we compute based on the CIESIN Gridded Population of the World (GPWv4) dataset\n(Center for International Earth Science Information Network, 2016)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Following most of the economic literature, we choose the Stable Lights series from\namong the NOAA's various nighttime light products for our analysis.",
+        "we compute based on the CIESIN Gridded Population of the World (GPWv4) dataset\n(Center for International Earth Science Information Network, 2016)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "研究夜间灯光数据能否作为1992—2013年非洲局部人类发展水平的代理指标，并考察其与生活水平、教育和健康等发展维度之间的关系。",
+      "hypothesis_or_mechanism": "夜间灯光强度越高通常意味着更高的经济活动、基础设施和电力可获得性，因此应与较高的家庭财富、教育水平和医疗服务可及性以及较低的婴儿死亡率相关。由于部分财富指标包含电力使用信息，夜间灯光与发展指标之间的关系可能受到电气化的直接影响。",
+      "variables_and_data_use": "核心解释变量是NOAA基于国防气象卫星计划（DMSP）Operational Linescan System传感器的Stable Lights年度夜间灯光产品，用30×30角秒像元的数字数值（DN）在DHS聚类周围2公里（城市）或5公里（农村）的圆形区域及0.5×0.5度PRIO-GRID网格内取平均，并匹配调查年份。因变量来自71轮、29个非洲国家的地理编码DHS，包括家庭财富和不含电力的财富、初等教育入学率、受教育年限、婴儿死亡率和熟练医护人员接生比例；控制变量包括基于CIESIN GPWv4的2010年人口密度、DHS电气化率和城市化程度。",
+      "method_paradigm": "地理空间匹配与多尺度空间聚合：将DMSP/NOAA Stable Lights像元与DHS GPS聚类及PRIO-GRID进行叠加，在圆形区域和网格单元尺度构造夜间灯光及人类发展指标，并进行跨国家、跨调查年份的局部发展关系分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1371_journal.pone.0202231.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:57"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_007",
+      "source_paper_doi": "10.1007/s10708-022-10689-2",
+      "title": "Keeping the lights On or Off: tracking the progress of access to electricity for sustainable development in Nigeria",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "All SNLs data used in this work is retrieved by the Visible Infrared Imaging Radiometer Suite (VIIRS) on the Suomi National Polar-orbiting Partnership weather satellite system"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "Fig. 3 High and Medium Voltage Transmission Line Network in Nigeria"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The points on the population density map with values from people per correlate closely to the SNLs map (Fig. 6 )."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "All SNLs data used in this work is retrieved by the Visible Infrared Imaging Radiometer Suite (VIIRS) on the Suomi National Polar-orbiting Partnership weather satellite system",
+        "The points on the population density map with values from people per correlate closely to the SNLs map (Fig. 6 )."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文回答的问题是：如何利用卫星夜间灯光（SNLs）考察尼日利亚不同地理区域的电力可及性，以及电力可及性差距关闭缓慢或延迟会产生什么发展含义。",
+      "hypothesis_or_mechanism": "核心机制是，卫星夜间灯光的空间可见性可反映电力供应和可及性的空间分布；若夜光与人口、贫困和家庭消费等发展指标呈现不均衡对应关系，则说明电力可及性存在地区性不平等。",
+      "variables_and_data_use": "论文使用卫星夜间灯光数据（SNLs，原文未说明具体传感器或数据产品名称）来表征尼日利亚各地区的电力可见性，并与人口、贫困和家庭消费等人类与社会经济发展指标进行交互分析。夜光被用于识别电力集中分布的区域，如南部地区、州首府和工业中心。",
+      "method_paradigm": "方法范式是基于卫星夜间灯光的空间分布分析，并将夜光指标与社会经济指标进行关联或交互比较，以评估电力可及性的区域差异和公平性问题。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.1007/s10708-022-10689-2",
+        "chars": 1234,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:32"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_002",
+      "source_paper_doi": "10.31223/x5mb26",
+      "title": "Global population affected by electric power disruptions due to tropical cyclones (EarthArXiv preprint)",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ThesensitivityofelectricityassetstoTCwindsiscalibratedwithVIIRSnight\ntimelightssatelliteimagery(seeMethods)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "NetworkedgeswerealsotakenfromtheGrid(nderdataset.Grid(ndermainlyderivedthe\nhigh-voltagetransmissionnetworkfromOpenStreetMap[37"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Wehavebuiltconnectedelectricity\nsupplyandtransmissionsmodelsforapproximately100cyclone-pronecountries,connectedtospatiallymappedpopulation."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "ThesensitivityofelectricityassetstoTCwindsiscalibratedwithVIIRSnight\ntimelightssatelliteimagery(seeMethods).",
+        "NetworkedgeswerealsotakenfromtheGrid(nderdataset.Grid(ndermainlyderivedthe\nhigh-voltagetransmissionnetworkfromOpenStreetMap[37",
+        "Wehavebuiltconnectedelectricity\nsupplyandtransmissionsmodelsforapproximately100cyclone-pronecountries,connectedtospatiallymappedpopulation."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "全球热带气旋（TC）风害导致的电力网络中断及其影响人口规模，在当前气候与2050年RCP8.5/SSP5-8.5情景下如何变化？不同合成热带气旋模型和气候模式对区域及全球电力中断风险的估计有何差异？",
+      "hypothesis_or_mechanism": "热带气旋风速超过区域化电力资产失效阈值后，会导致输电和配电资产失效，并通过电力网络供需路由中断影响依赖该网络的人口。未来变暖可能改变热带气旋的强度、频率和生成位置，从而改变停电风险；空间规模较小、冗余较低的电网对极端气旋更脆弱。",
+      "variables_and_data_use": "以热带气旋轨迹、最大风速、最低气压、生成位置和风场为灾害变量，使用历史IBTrACS轨迹以及STORM和IRIS合成事件集（2020基准、STORM 2050 RCP8.5和IRIS 2050 SSP5-8.5）进行风险模拟，并用CNRM-CM6-1-HR、CMCC-CM2-VHR4、EC-Earth3P-HR和HadGEM3-GC31-HM等GCM驱动的STORM结果评估气候模式差异。电力网络节点和容量来自World Resources Institute全球电厂数据库，输电线路来自GridFinder/OpenStreetMap，联网人口和用电聚落由VIIRS夜间灯光卫星影像及空间人口数据确定；利用历史热带气旋停电事件与VIIRS夜间灯光变化校准区域风速失效阈值，输出受影响人口、重现期影响人口和每个联网人口的预期年受影响人口（EAPA）。",
+      "method_paradigm": "大尺度简化复杂度电力网络流模型与合成灾害事件蒙特卡洛/重现期分析相结合。具体包括：用参数化Holland风场模型将气旋轨迹下推为风场，与空间电力网络叠加；基于夜间灯光观测校准风速失效阈值，模拟网络资产失效后的供电重路由，并统计不同重现期和气候情景下的人口影响。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.31223_x5mb26.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:47"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_008",
+      "source_paper_doi": "10.21203/rs.3.rs-9703586_v1",
+      "title": "Smoke Signals from a Failed State: What Stopped, Who Left, and What Survived",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Nighttime\nradianceisextractedfromtheNASABlackMarbleVNP46A2productatdailyfrequency"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "andcross-sectionalcovariatesincludeWorldPopconstrainedpopulationestimates(12.7millionnationally),GoogleOpenBuildingsv3"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Nighttime\nradianceisextractedfromtheNASABlackMarbleVNP46A2productatdailyfrequency",
+        "andcross-sectionalcovariatesincludeWorldPopconstrainedpopulationestimates(12.7millionnationally),GoogleOpenBuildingsv3"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文回答在海地国家统计体系失灵、帮派控制和大规模流离失所背景下，如何用卫星观测估计国家崩溃的经济成本，并区分经济活动停止、人口离开与物质资本存续这三个组成部分。它还追问海地危机究竟是资产毁灭还是“未被恢复的遗弃”。",
+      "hypothesis_or_mechanism": "核心机制是不同卫星指标对应不同经济对象：NO2反映可快速中断和恢复的燃烧型经济活动，夜间灯光反映有人居住和使用的基础设施，NDBI反映物质建成资本存量。暴力会在帮派控制地区造成活动中断和人口外流，但若NDBI未下降而夜间灯光下降，则说明主要机制是流离失所和遗弃，而非物理毁灭。",
+      "variables_and_data_use": "论文使用Sentinel-5P/TROPOMI对流层NO2作为燃烧密集型经济活动流量指标，使用Suomi NPP/VIIRS夜间辐射并补充NASA Black Marble日数据衡量有人占用的基础设施和人口存在，使用Sentinel-2计算NDBI衡量建成区/物质资本存量。它还用ACLED冲突事件强度作为连续暴力处理变量，并将卫星推断的流离失所与IOM内部流离失所数据作外部对照。",
+      "method_paradigm": "方法范式是多卫星指标经济分解结合暴力剂量—反应面板估计：以ACLED周度冲突强度为连续时变处理，并与帮派控制公社状态交互，在公社和年月固定效应下估计NO2和夜间灯光响应。论文还利用2022年Varreux燃料码头封锁作为自然实验，在日尺度检验NO2和夜间灯光对同一冲击的不同幅度与动态响应。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.21203_rs.3.rs-9703586_v1.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:52"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_003",
+      "source_paper_doi": "10.21203/rs.3.rs-9349878_v1",
+      "title": "Hurricane power outage burden lands unequally: satellite evidence across 30 Atlantic storms",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Nighttime radiance data were obtained from NASAÕs Black Marble VIIRS Day/Night Band daily product \n(VNP46A2) via Google Earth Engine\n43,44\n. We used the cloud-masked DNB_BRDF_Corrected_NTL radiance band\nat 500-m resolution"
+          ],
+          "quote_verified_against": "fulltext_corpus/text/10.21203_rs.3.rs-9349878_v1.txt"
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we linked analysis tracts to public utility service-\nterritory polygons from the Homeland Infrastructure Foundation-Level Data layer and 2020 Census tract \ngeometries."
+          ],
+          "quote_verified_against": "fulltext_corpus/text/10.21203_rs.3.rs-9349878_v1.txt"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Adding population \ndensity as a control changed the Theme 3 severity estimate by 27%, indicating that development intensity \nexplains part, but not all, of the radiance-deficit association."
+          ],
+          "quote_verified_against": "fulltext_corpus/text/10.21203_rs.3.rs-9349878_v1.txt"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Nighttime radiance data were obtained from NASAÕs Black Marble VIIRS Day/Night Band daily product \n(VNP46A2) via Google Earth Engine\n43,44\n. We used the cloud-masked DNB_BRDF_Corrected_NTL radiance band\nat 500-m resolution",
+        "we linked analysis tracts to public utility service-\nterritory polygons from the Homeland Infrastructure Foundation-Level Data layer and 2020 Census tract \ngeometries.",
+        "Adding population \ndensity as a control changed the Theme 3 severity estimate by 27%, indicating that development intensity \nexplains part, but not all, of the radiance-deficit association."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文回答的问题是：在2012—2024年30个大西洋飓风中，美国不同社区谁更可能停电、停电有多严重、恢复有多快，以及这些停电负担是否按社会脆弱性不平等分布。研究还关注这些差异是否能被灾害地理、土地覆盖或公用事业服务区差异解释。",
+      "hypothesis_or_mechanism": "核心机制是，停电负担可分为发生、严重程度和恢复三个阶段，这些阶段可能对应不同的基础设施过程和政策杠杆。少数族裔/语言脆弱性与更高停电发生概率和更深夜间辐亮度损失相关，而住房类型/交通脆弱性与更慢恢复相关；严重程度差异部分依赖建成环境特征。",
+      "variables_and_data_use": "研究使用Visible Infrared Imaging Radiometer Suite（VIIRS）每日500米夜间辐亮度来度量飓风后普查区层面的辐亮度损失、停电严重程度和30天恢复率。社会脆弱性使用CDC Social Vulnerability Index（SVI）四个主题，尤其是Minority Status/Language与Housing Type/Transportation；并结合土地覆盖变量如树冠和不透水面、公共电力公用事业服务区多边形，以及飓风暴露特征如降雨、风速、右侧路径和暴露持续时间进行调整或交互分析。",
+      "method_paradigm": "方法范式是基于卫星夜间灯光的准监测框架，将停电负担分解为三阶段：是否发生停电、辐亮度损失严重程度、以及恢复速度。统计上采用普查区—飓风观测的多变量回归/固定效应模型，并进行县×飓风、公用事业×飓风固定效应、土地覆盖调整、条件与非条件严重程度模型及分层/交互稳健性分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.21203_rs.3.rs-9349878_v1.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:22"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_004",
+      "source_paper_doi": "10.20900/jsr20200008",
+      "title": "Assessing the Market for Solar Photovoltaic (PV) Microgrids in Malawi",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "combining this buffer with another 2 km buffer around areas exhibiting night time light pollution at levels above the average for cities in Malawi, assuming that night-time light emissions as observed by satellites correspond to artificial lighting, and therefore some degree of existing electrical infrastructure."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The locations where this is assumed to be the case are identified through constructing a 2 km buffer around existing (and planned) grid lines in Malawi [26] , and combining this buffer with another 2 km buffer around areas exhibiting night time light pollution"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "taking the Population Density maps from the GPW V4 dataset [56] and dividing the raster by the average household size in Malawi (4.5 people per HH) [58] to find the household density in HH/km 2 in the appropriate map format."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "combining this buffer with another 2 km buffer around areas exhibiting night time light pollution at levels above the average for cities in Malawi, assuming that night-time light emissions as observed by satellites correspond to artificial lighting, and therefore some degree of existing electrical infrastructure.",
+        "The locations where this is assumed to be the case are identified through constructing a 2 km buffer around existing (and planned) grid lines in Malawi [26] , and combining this buffer with another 2 km buffer around areas exhibiting night time light pollution",
+        "taking the Population Density maps from the GPW V4 dataset [56] and dividing the raster by the average household size in Malawi (4.5 people per HH) [58] to find the household density in HH/km 2 in the appropriate map format."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文考察移动货币支付与远程监控如何支持农村太阳能微电网的商业模式、客户付费和持续运营，并量化马拉维不同地点太阳能与柴油微电网的市场适宜性和能源成本。",
+      "hypothesis_or_mechanism": "核心机制是PAYG移动货币、智能计量和远程断连/重连可降低收款与执行成本、提高支付灵活性，从而降低能源使用进入门槛并改善微电网运营。文本还指出，交通可达性、需求/人口规模、柴油燃料距离和维护成本会影响COE，进而决定太阳能或柴油微电网的相对竞争力。",
+      "variables_and_data_use": "案例部分使用Steamaco的Bitharvester智能表/远程支付平台、M-PESA短信交易与云端账户，MeshPower的CPE与基站软件、GSM通信、MTN Mobile Money/TIGO cash账户数据，以及SoNG的开源数据记录器记录负载曲线、太阳辐照度、MPPT电压电流、电池电压/电流和温度。市场量化部分使用2015年人口密度数据、现有和规划电网2 km缓冲区、明亮夜间灯光区域、城市/城镇可达性、柴油泵距离、银行等正式金融机构距离等变量来划分适宜技术并估算太阳能和柴油微电网COE。",
+      "method_paradigm": "方法范式为多案例研究结合空间化技术经济建模：对Steamaco、MeshPower和SoNG微电网的商业模式、支付系统和技术配置进行案例描述与比较，并在马拉维进行基于GIS阈值划分和最优系统设计的COE制图。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.20900_jsr20200008.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:44"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_009",
+      "source_paper_doi": "10.21203/rs.3.rs-8725596_v1",
+      "title": "Nighttime lights as a proxy for conflict intensity and infrastructure recovery in Yemen and Ukraine",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this retrospective analysis, we use monthly Black Marble NTL data (VNP46A3) during January 2012 March 2022 in Yemen and January 2019 June 2024 in Ukraine, extracted using blackmarbleR"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We also extracted population size estimates from WorldPop and data on the built environment for each administrative unit. WorldPop provides annual unconstrained UN-adjusted population estimates at 100m through 2020"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "In this retrospective analysis, we use monthly Black Marble NTL data (VNP46A3) during January 2012 March 2022 in Yemen and January 2019 June 2024 in Ukraine, extracted using blackmarbleR",
+        "We also extracted population size estimates from WorldPop and data on the built environment for each administrative unit. WorldPop provides annual unconstrained UN-adjusted population estimates at 100m through 2020"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答夜间灯光（NTL）时间序列能否捕捉也门和乌克兰大规模空袭/军事行动的开始、强度及后续恢复，并评估NTL与报告的空中攻击之间的关系。研究还将NTL指标应用于也门2016—2019年霍乱模型，以考察其作为武装冲突与基础设施破坏代理变量的流行病学用途。",
+      "hypothesis_or_mechanism": "核心机制是空中攻击和武装冲突会破坏供电、建成环境和基础设施，从而导致行政单元的夜间灯光水平下降；随后灯光从低谷回升可反映基础设施恢复。论文还假定在控制人口、建成环境、时间和空间因素后，报告的空袭强度与NTL均值或相对基线的NTL比值存在系统关系。",
+      "variables_and_data_use": "主要因变量为Black Marble月度夜间灯光产品VNP46A3，由SNPP VIIRS DNB传感器获取，用于计算行政单元月均NTL、相对战前月度基线的NTL ratio，以及低谷后的light recovery；也门还用300 nW cm⁻² sr⁻¹掩膜去除油气火炬。冲突暴露变量来自Yemen Data Project（YDP）的沙特主导空袭和ACLED的乌克兰炮击/导弹/空袭/无人机等事件，按行政单元和月份聚合；协变量包括WorldPop人口估计、Sentinel-2 Dynamic World Land Use/Land Cover中建成区像元比例、以及也门World Food Program柴油月价格。",
+      "method_paradigm": "方法范式包括基于BFAST的加性季节与趋势分解突变检测，用于识别NTL时间序列中的负向断点并检验其是否与空袭开始时间对齐，同时用模拟NTL时间序列验证断点检测。统计建模采用广义加性模型（GAM）：以对数月均NTL或NTL ratio为高斯响应，纳入空袭、柴油价格、人口和建成环境等变量，并用样条处理非线性时间趋势和协变量；霍乱应用中使用负二项GAM并加入NTL冲突类别和灯光恢复交互项。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.21203_rs.3.rs-8725596_v1.methods.txt",
+        "chars": 11214,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:41"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_010",
+      "source_paper_doi": "10.21203/rs.3.rs-846222_v2",
+      "title": "Sensing Global Changes in Local Patterns of Energy Consumption in Cities During the Early Stages of the COVID-19 Pandemic",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "WeusedamonthlycompositeofNTLdataproducedbythePayneInstituteforPublicPolicyundertheColoradoSchoolof95\nMines(\nhttps://payneinstitute.mines.edu/eog/nighttime-lights/\n).Weutilisedtheversion1monthly96\nseriesofglobalaverageradiancecompositeimagesfromtheVisibleInfraredImagingRadiometerSuite(VIIRS)Day-Night97\nBand(DNB)sensorontheSuomiNationalPolar-orbitingPartnershipsatellite."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "populationdensitydatawereobtainedfromtheWorldPopproject(\nhttps://www.worldpop.org\n).Thesedatacomprisea140\nrasterlayercoveringtheentireworldandprovidepopulationdensityestimatesat1km"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "WeusedamonthlycompositeofNTLdataproducedbythePayneInstituteforPublicPolicyundertheColoradoSchoolof95\nMines(\nhttps://payneinstitute.mines.edu/eog/nighttime-lights/\n).Weutilisedtheversion1monthly96\nseriesofglobalaverageradiancecompositeimagesfromtheVisibleInfraredImagingRadiometerSuite(VIIRS)Day-Night97\nBand(DNB)sensorontheSuomiNationalPolar-orbitingPartnershipsatellite.",
+        "populationdensitydatawereobtainedfromtheWorldPopproject(\nhttps://www.worldpop.org\n).Thesedatacomprisea140\nrasterlayercoveringtheentireworldandprovidepopulationdensityestimatesat1km"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答：在 COVID-19 大流行早期，全球大型城市的能源消费格局如何在城市尺度和城市内部发生时空变化，以及这些变化可能由哪些因素驱动。研究特别关注是否存在能源需求从高密度城市区域转移的普遍模式。",
+      "hypothesis_or_mechanism": "核心机制是 COVID-19 及其相关限制措施改变了人类活动、出行和商业/工业运行，从而影响夜间灯光强度所表征的城市能源使用空间分布。论文认为政府应对 COVID-19 的严格程度可能是导致城市能源消费下降的重要因素。",
+      "variables_and_data_use": "因变量使用 Payne Institute for Public Policy 发布的 Suomi NPP 卫星 VIIRS Day-Night Band 月度夜间灯光平均辐亮度合成产品（VIIRS Cloud Mask，2019年12月至2020年6月，约450m），以2019年12月为基线计算各月像元辐亮度变化。解释和背景变量包括 WorldPop 人口密度、Oxford COVID-19 Government Response Tracker 的政府响应严格度指标、Our World in Data/JHU 等来源的 COVID-19 确诊和死亡数据，以及 Google COVID-19 Community Mobility Reports 的次区域流动性估计；城市范围用 OECD/Global Human Settlement Layer 的 Functional Urban Area 边界界定。",
+      "method_paradigm": "方法范式是基于遥感夜间灯光的城市能源消费变化监测与统计建模。具体包括基线差分的时序像元变化分析、城市尺度汇总指标计算、城市内部空间格局分析，以及用广义加性模型（GAM）等模型将夜间灯光变化与人口密度、流动性、疫情和政府响应严格度等变量关联起来。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.21203_rs.3.rs-846222_v2.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:39"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_011",
+      "source_paper_doi": "10.1038/s44304-026-00270-z",
+      "title": "Satellite based inference for disaster induced power outages using daily nighttime light observations",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Forthisstudy,weusedthe\nupdatednightlightproduct,VNP46A2,correctedfortheBidirectional\nReectanceDistributionFunctiontoaccountforvariationsinilluminance\nduetomoonlightandatmosphericconditions."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Weaggregatedpixel-basedpredictionsatthecountylevelusinga\npopulation-weightedaveragebasedonLandScandata"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Forthisstudy,weusedthe\nupdatednightlightproduct,VNP46A2,correctedfortheBidirectional\nReectanceDistributionFunctiontoaccountforvariationsinilluminance\nduetomoonlightandatmosphericconditions.",
+        "Weaggregatedpixel-basedpredictionsatthecountylevelusinga\npopulation-weightedaveragebasedonLandScandata"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答：能否利用每日卫星夜间灯光观测，在缺乏常规停电报告的地区推断灾害诱发的电力中断，并捕捉逐日停电动态。研究还检验这种关系是否可跨飓风、公共安全断电、地震等不同灾害和地理区域泛化。",
+      "hypothesis_or_mechanism": "核心机制是大规模停电会导致夜间灯光强度衰减，但这种衰减与实际停电比例并非简单线性对应，因为受背景辐亮度、月光、云污染、卫星覆盖和外部光源影响。作者假设经建筑覆盖归一化后的夜光衰减，尤其是 log(I/Ī)，结合月相等因素，可作为客户停电比例的预测特征。",
+      "variables_and_data_use": "夜间灯光使用 Suomi NPP 卫星 VIIRS Day/Night Band 的 VNP46A2 产品，并利用其 BRDF 校正、云标志和强制质量标志筛除受云或低质量反演影响的像元；在县域内仅汇总含建筑像元的辐亮度，并用当天卫星观测到的建筑足迹总面积归一化得到 I。停电标签使用 Brelsford 等提供的县级每日客户停电数据，覆盖 Irma、Michael、Ida、Ian 等飓风；模型还使用预灾30个最近无云日平均归一化灯光 Ī、预灾夜光水平、月光/月相 M、卫星足迹覆盖、建筑密度等变量。",
+      "method_paradigm": "方法范式是物理启发的夜光衰减特征构造加两阶段机器学习推断：先用分类模型识别停电日，再用回归模型估计停电客户比例。作者比较了逻辑回归/线性回归、人工神经网络和 XGBoost，并采用欠采样或 SMOTE 处理类别不平衡，最终围绕 log(I/Ī)、交互项和月相等特征建立可泛化的停电推断框架。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s44304-026-00270-z.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:44"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_012",
+      "source_paper_doi": "10.1093/restud_rdw020",
+      "title": "Farther on down the road: transport costs, trade and urban growth in sub-Saharan Africa",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Satellites from the United States Air Force Defense Meteorological Satellite Program (DMSP) have been recording data on lights at night using their Operational Linescan System sensor since the mid-1960s, with a global digital archive beginning in 1992."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "First, data on the location of electrical transmission lines are available from World Bank (2010) for 13 of 15 sample countries. Transmission lines pass through 185 of 262 cities (71%) in these 13 countries."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Satellites from the United States Air Force Defense Meteorological Satellite Program (DMSP) have been recording data on lights at night using their Operational Linescan System sensor since the mid-1960s, with a global digital archive beginning in 1992.",
+        "First, data on the location of electrical transmission lines are available from World Bank (2010) for 13 of 15 sample countries. Transmission lines pass through 185 of 262 cities (71%) in these 13 countries."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "ambient_population"
+      ],
+      "research_question": "世界油价变化引致的城际运输成本冲击，是否会影响撒哈拉以南非洲城市的经济活动和收入？城市与本国主要港口的距离、道路铺装状况及通往次级中心的连接是否造成不同影响？",
+      "hypothesis_or_mechanism": "运输成本越高，城市与主要港口及市场的贸易联系越弱，因此油价上涨时，距离港口更远或道路条件更差的城市经济活动相对下降。该机制体现为贸易收益随运输成本降低而增加，但文中指出无法在现有经验框架下区分具体理论机制。",
+      "variables_and_data_use": "使用美国空军国防气象卫星计划（DMSP）的Operational Linescan System（OLS）夜间灯光数据，将1992—2008年30弧秒像元的数字量（DN）汇总为289个城市的年度经济活动代理变量；使用道路数据中的路线长度和路面材料，并将其与世界油价变化交互以识别运输成本冲击。进一步按道路是否铺装、通往次级中心的连接以及城市人口考察异质性和扩展结果。",
+      "method_paradigm": "基于城市年度面板的固定效应计量分析，将世界油价与港口路线距离（及道路表面状况）交互，利用油价年度波动形成运输成本冲击；模型控制国家—年份冲击、城市初始特征和城市平均增长率，并进行道路质量、市场可达性及人口结果的异质性分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1093_restud_rdw020.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:43"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_013",
+      "source_paper_doi": "10.22617/tcs250511-2",
+      "title": "Mapping poverty using satellite imagery, other geospatial data, and artificial intelligence: Indonesia country report",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The NTL intensity data comes from the Visible Infrared Imaging Radiometer Suite (VIIRS),\nspecically the day/night band, with a resolution of approximately . m. This dataset captures the distribution"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Population counts were obtained from WorldPop at a resolution of  m. This dataset is essential for calibrating"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The NTL intensity data comes from the Visible Infrared Imaging Radiometer Suite (VIIRS),\nspecically the day/night band, with a resolution of approximately . m. This dataset captures the distribution",
+        "Population counts were obtained from WorldPop at a resolution of  m. This dataset is essential for calibrating"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文回答的是：能否利用卫星影像、夜间灯光和其他地理空间数据，结合机器学习，为印度尼西亚生成更频繁、更细粒度的贫困率估计。研究重点是这些估计能否在传统调查粒度不足的情况下支持政策定位和资源配置。",
+      "hypothesis_or_mechanism": "核心机制是，日间卫星影像中的视觉特征、夜间灯光所反映的经济活动，以及其他地理空间协变量共同包含与贫困率相关的空间信号。多源数据整合可提高贫困估计的准确性，但夜间灯光对城市贫困估计更有效，在农村或视觉指标较弱地区不确定性更高。",
+      "variables_and_data_use": "使用CNN从日间卫星影像中提取特征，并将这些特征与夜间灯光影像（NTL imagery）和其他地理空间解释变量合并，用于预测4 km × 4 km网格层面的贫困率；原文未给出日间影像或NTL的具体传感器名称。模型用基于政府和国际数据源模拟得到的村级贫困率进行校准和验证，并与印度尼西亚Relative Wealth Index进行比较，该指数利用Facebook connectivity data、satellite imagery和National Socioeconomic Survey。",
+      "method_paradigm": "方法范式是监督式机器学习贫困制图：先用卷积神经网络从日间卫星影像提取特征，再用岭回归和随机森林对贫困率进行回归预测。研究还比较了不同训练—验证划分策略，并用相关性评估预测结果与Relative Wealth Index及模拟村级贫困率的一致性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.22617_tcs250511-2.methods.txt",
+        "chars": 13207,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:05"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_014",
+      "source_paper_doi": "10.1371/journal.pone.0214635",
+      "title": "Household electricity access in Africa (2000–2013): Closing information gaps with model-based geostatistics",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The analysis presented here uses a series of images from 2000 to 2013 already calibrated (URL in Section A in S1 File ). They consist of a series of raster files representing the level of luminosity with a resolution of approximately 1 km."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "To analyze and discuss our results we used population estimates from the Gridded Population of the World (GPW) Series of the Socioeconomic Data and Applications Center."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The analysis presented here uses a series of images from 2000 to 2013 already calibrated (URL in Section A in S1 File ). They consist of a series of raster files representing the level of luminosity with a resolution of approximately 1 km.",
+        "To analyze and discuss our results we used population estimates from the Gridded Population of the World (GPW) Series of the Socioeconomic Data and Applications Center."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答2000—2013年期间非洲大陆和马达加斯加次国家尺度的家庭通电概率如何估计，以及夜间灯光和土地利用/覆盖信息能否用于刻画其空间差异。",
+      "hypothesis_or_mechanism": "核心机制是家庭电力可及性与夜间灯光强度、土地利用/覆盖类型以及城市化相关变量存在统计关联；不透水面比例和到不透水面的接近程度被用来表征建成环境和城市中心距离，从而帮助解释通电概率。",
+      "variables_and_data_use": "因变量来自DHS、MIS和AIS住户调查的聚类层级家庭通电数量和GPS位置；自变量包括NOAA校准夜间灯光NTL年度合成影像的亮度值、2000—2013年LULC栅格类别，以及由LULC构造的不透水面比例IAP和接近不透水面PIA。研究还使用GPW（Gridded Population of the World）人口栅格用于分析和讨论结果；为处理DHS位置扰动，协变量按报告GPS点周围5 km缓冲区平均，并在5 km分辨率上预测。",
+      "method_paradigm": "方法范式为基于地统计的空间回归建模，并用Integrated Nested Laplace Approximation（INLA）进行近似推断。作者比较了仅固定效应GLM、含空间随机效应、含空间随机效应加年份固定效应、以及时空随机效应模型，最终依据CPO选择包含NTL、LULC变量、空间随机效应和年份固定效应的模型。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1371_journal.pone.0214635.methods.txt",
+        "chars": 10598,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:45"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_015",
+      "source_paper_doi": "10.22617/sgp210110",
+      "title": "Creating Livable Asian Cities",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The first step, the yearly NTL data accessed from the website of the NOAA were used to delineate human\nsettlements in Asia and the Pacific Satellites from the United States Air Force Defense Meteorological Satellite\nProgram (DMSP)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Starting in , LandScan provides global\npopulation counts at a spatial resolution of approximately  km\n\nbased on a dasymetric model.\n\nThis grid\npopulation data was filled into the delineated area of each natural city."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The first step, the yearly NTL data accessed from the website of the NOAA were used to delineate human\nsettlements in Asia and the Pacific Satellites from the United States Air Force Defense Meteorological Satellite\nProgram (DMSP).",
+        "Starting in , LandScan provides global\npopulation counts at a spatial resolution of approximately  km\n\nbased on a dasymetric model.\n\nThis grid\npopulation data was filled into the delineated area of each natural city."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_018_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "该书探讨亚洲快速增长的城市如何发挥经济繁荣引擎的潜力，并为所有市民提供宜居环境。它关注哪些主要挑战削弱了城市社区的生活质量和经济机会，以及可以采取哪些解决方案。",
+      "hypothesis_or_mechanism": "核心机制是：若要实现经济繁荣与宜居环境，必须解决规划不善、缺乏可负担住房、不平等、污染、气候脆弱性和城市基础设施不足等问题。书中提出的解决路径集中在智慧和包容性规划、可持续交通与能源、创新融资、韧性与城市更新。",
+      "variables_and_data_use": "原文未提及具体变量、数据产品或传感器，也未说明使用遥感、统计数据库或调查数据。文本仅说明该书包含19篇文章，用于展开城市挑战并提出相应解决方案。",
+      "method_paradigm": "方法范式表现为多文章的综合性议题分析与政策解决方案归纳。原文未描述定量模型、时序分析、回归、神经网络或其他具体技术方法。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.22617/sgp210110",
+        "chars": 639,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:48"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_016",
+      "source_paper_doi": "10.1016/j.oneear.2020.03.007",
+      "title": "Satellite Observations Reveal Inequalities in the Progress and Effectiveness of Recent Electrification in Sub-Saharan Africa",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "To estimate electricity access, we calculated the yearly median radiance value\nin each pixel of the Suomi National Polar-orbiting Partnership-VIIRS monthly\ncomposites within the Google Earth Engine platform"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "map the power transmission and distribution\ninfrastructure,34"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We relied on the 250-m-resolution 2015 GHSL data, down-\nscaled it to a 30-m resolution imposing a constraint such that the sum of the\npixels remains constant after the downscaling"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "To estimate electricity access, we calculated the yearly median radiance value\nin each pixel of the Suomi National Polar-orbiting Partnership-VIIRS monthly\ncomposites within the Google Earth Engine platform",
+        "We relied on the 250-m-resolution 2015 GHSL data, down-\nscaled it to a 30-m resolution imposing a constraint such that the sum of the\npixels remains constant after the downscaling"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_018_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "卫星夜间灯光数据能否在国家和社区尺度补充、验证家庭调查中的电力接入、用电量和家电拥有量信息，并用于2014—2019年撒哈拉以南非洲省级及城乡电力接入进展和不平等评估？研究还考察其能否识别不同技术方案下的接入质量及能源贫困。",
+      "hypothesis_or_mechanism": "夜间灯光辐亮度与电力使用及接入质量相关，因此将连续的灯光强度而非二元有光/无光指标与人口、聚落类型等信息结合，可以依据世界银行多维度框架（MTF）划分电力接入层级并识别省级不平等。该机制假设灯光分布能够反映电气化进展及其有效性，即使当地已有电力基础设施。",
+      "variables_and_data_use": "使用2014—2019年卫星夜间灯光辐亮度数据（文段未指明具体传感器或产品名称），并结合地理配准的人口分布、聚落类型及其他空间图层，估算省级以及城乡电力接入和不平等指标。研究将灯光亮度与电力使用联系起来，依据世界银行MTF定义接入层级，并用于补充和验证家庭来源的电力接入、消费及家电拥有量信息。",
+      "method_paradigm": "多源遥感与人口空间数据融合的地理空间指标构建范式：将连续夜间灯光辐亮度与人口、聚落和家庭调查信息关联，按世界银行MTF划分接入层级，并进行省级、国家级及城乡分层比较和验证。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.oneear.2020.03.007.methods.txt",
+        "chars": 4189,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:04"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_017",
+      "source_paper_doi": "10.1080/10106049.2026.2657705",
+      "title": "Spatio-temporal estimation of electricity consumption in Bolivian municipalities using nighttime lights",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Only pixels flagged as\nhigh-quality and cloud-free in the VNP46A2 products were used for analysis (Wang et al. 2022)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "Accurate and up-to-date information on the existing electricity network and consumption could\nsupport multiple goals: planning for universal electricity access, managing demand, sustainable develop￾ment of energy sources and designing region-appropriate electricity networks."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "For estimating the most likely maximum extent of human settlements and economic activity between\n2012 and 2016 (with the denomination built versus non-built areas), we have combined the various\ninformation on built-up areas with population maps (WorldPop 2020) into a single spatial layer,"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Only pixels flagged as\nhigh-quality and cloud-free in the VNP46A2 products were used for analysis (Wang et al. 2022).",
+        "For estimating the most likely maximum extent of human settlements and economic activity between\n2012 and 2016 (with the denomination built versus non-built areas), we have combined the various\ninformation on built-up areas with population maps (WorldPop 2020) into a single spatial layer,"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_018_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ],
+      "research_question": "论文旨在回答玻利维亚市镇尺度的电力消费能否通过夜间灯光和其他开放遥感、社会经济数据进行估计与预测，并比较年度与月度两个时间维度下的关系。研究还关注不同用电类型，如居民、商业/服务、路灯及其合计用电的可预测性。",
+      "hypothesis_or_mechanism": "核心机制是夜间灯光辐亮度能够作为电力消费的代理变量，因为室内照明、街灯和其他人类活动产生的光源与用电需求相关。作者同时假定地形、土地覆盖、建成区、人口和市镇社会经济属性会影响夜间灯光与电力消费之间的关系，因此需与NTL变量联合建模。",
+      "variables_and_data_use": "因变量来自ELBOL电力消费数据库，包括2012—2016年月度市镇尺度居民用电、商业/服务用电、路灯用电及其合计，并计算居民和商业用户平均用电；采矿用电因极端且集中而被排除。核心自变量使用NASA Black Marble VNP46A3、VNP46A4夜间灯光产品，来源于VIIRS Day-Night Band，并结合VNP46A2质量标志筛选高质量、无云像元；还使用ALOS DSM高程、Copernicus CGLS-LC100土地覆盖、Global Urban Footprint、GHSL GHS-BUILT、OpenStreetMap建筑与POI、WorldPop人口以及玻利维亚市镇可持续发展目标图集中的人口、城镇化、能源贫困等指标。",
+      "method_paradigm": "方法范式为基于遥感与社会经济变量的监督式非线性回归预测，主要采用随机森林回归分别建立年度和月度模型。作者对夜间灯光在市镇、建成区、非建成区和不同土地覆盖区域内进行空间聚合与分布统计，并用重复交叉验证、R²、MAPE、预测区间和SHAP Shapley值评估模型性能与变量重要性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1080_10106049.2026.2657705.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:44:57"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_005",
+      "source_paper_doi": "10.1007/s11027-019-09877-2",
+      "title": "Errors and uncertainties in a gridded carbon dioxide emissions inventory",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The rest of the emissions (total emissions minus point source\nemissions) are distributed as an aggregated area source sector using the Defense\nMeteorological Satellite Program (DMSP) calibrated radiance nightlight product\n(Ziskin et al. 2010)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ODIAC employs the global power plant database CARMA\n(CARbon Monitoring and Action, www.carma.org; Wheeler and Ummel 2008; Ummel\n2012) to estimate the power plant portion of a country’s total emissions and maps its\nemissions as point sources."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We also found that population data outperformed nightlight data in estimating provincial\nemissions (R2 = 0.95)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The rest of the emissions (total emissions minus point source\nemissions) are distributed as an aggregated area source sector using the Defense\nMeteorological Satellite Program (DMSP) calibrated radiance nightlight product\n(Ziskin et al. 2010).",
+        "ODIAC employs the global power plant database CARMA\n(CARbon Monitoring and Action, www.carma.org; Wheeler and Ummel 2008; Ummel\n2012) to estimate the power plant portion of a country’s total emissions and maps its\nemissions as point sources.",
+        "We also found that population data outperformed nightlight data in estimating provincial\nemissions (R2 = 0.95)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_018_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文考察全球1 km高分辨率化石燃料二氧化碳排放清单 ODIAC 与波兰多分辨率、空间显式的 GESAPU 排放清单在不同空间尺度和排放部门上的一致性、偏差及不确定性。重点是识别 ODIAC 空间分配在国家、省域、城市和1 km网格尺度上的潜在偏差及其根源。",
+      "hypothesis_or_mechanism": "基于国家或区域总量、再借助代理变量进行空间下推的排放清单，其空间格局可能不能准确反映真实排放，尤其在城市—农村过渡区域。采用点源、线源和面源多分辨率建模并充分利用细粒度数据的自下而上清单，可用于揭示和评估这种空间分配偏差。",
+      "variables_and_data_use": "研究比较2010年波兰化石燃料 CO2 排放，使用全球1×1 km、月尺度的 ODIAC（基于 CDIAC/ORNL 国家排放总量，并结合大型点源信息和卫星夜间灯光数据进行空间下推）与覆盖波兰和乌克兰、100×100 m、年度尺度的 GESAPU（按 IPCC 部门并采用点、线、面源多分辨率方法）。比较变量包括总排放量、按燃料类型或排放部门划分的排放量，以及点源和非点源在国家、省域、城市和1 km网格尺度上的空间分布与相对差异。",
+      "method_paradigm": "空间显式排放清单的多尺度对比与误差/不确定性分析范式。具体将高分辨率 ODIAC 与多分辨率自下而上 GESAPU 统一到共同网格后，按排放部门和空间聚合尺度进行分层比较，以识别空间下推造成的偏差及其来源。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1007_s11027-019-09877-2.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:46:06"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_018",
+      "research_question": "供电不可靠及停电如何影响发展中国家的就业、收入和工作时长，家庭中小企业是否为主要传导渠道。",
+      "hypothesis_or_mechanism": "停电降低家庭中小企业活动与收入生成机会，并通过工业增长放缓/产业结构变化进一步影响就业；论文检验电力质量的劳动市场机制。",
+      "variables_and_data_use": "使用 Ghana Living Standards Survey 家庭就业、工时和收入资料构造 2005–2013 区级面板，结合加纳人口普查、工业普查/IBES；以 DMSP-OLS 稳定灯光与归一化灯光的变化比衡量停电。",
+      "method_paradigm": "采用固定效应估计停电对就业、收入与工时的影响，并分析中小企业及工业变化机制。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "This paper studies the effects of electrification at the intensive margin, using a fixed effects approach.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 18–18"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "A key channel through which \noutages affect employment is decreased prevalence of small and medium enterprises (SMEs) among households. \nEvidence indicates that severe outages reduce opportunities for households to indulge in income generating activities. \nThe decrease in employment opportunities is further exacerbated by reduced industrial growth and changes in the \nindustrial composition.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 19–23"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "I find \nthat power outages significantly reduce employment, earnings, and hours of work.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 18–19"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "This paper studies the effects of electrification at the intensive margin, using a fixed effects approach.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 18–18"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "The main source of data for the employment effects of power outages is the Ghana Living Standards Survey (GLSS), a \nrepeated cross section survey. I construct a panel data set of district aggregate variables covering the years 2005 to 2013, \ntogether with district level information on population, population per square kilometers, poverty rate, average monthly \nrainfall and infrastructure.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 141–144"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "To overcome this challenge, I use nighttime lights data from meteorological \nsatellite following an approach introduced by Alam (2013). The US Air Force Defense Meteorological Satellite Program \n(known as the DMSP-OLS Nighttime Lights Global Composites) compiles this data .9 All composites are at a \nresolution of 30 arc seconds.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 172–175"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "I \nthen construct a measure of variability by obtaining the ratio of SL to NL at each 30 arc second grid point (pixel by \npixel). The median of all ratios within the boundaries of a district is then used as measure of power outage for the \ndistrict.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.11114_aef.v7i4.4919.txt",
+        "doi": "10.11114/aef.v7i4.4919",
+        "locator": "text lines 214–217"
+       }
+      ],
+      "source_paper_doi": "10.11114/aef.v7i4.4919",
+      "title": "Electrification, Power Outages and Employment",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "To overcome this challenge, I use nighttime lights data from meteorological satellite following an approach introduced by Alam (2013)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "districts and communities do not control their own electricity supply (i.e in terms of generation, transmission and distribution)."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The population data comes from the Ghana Statistical Service population census and covers the periods 2000 and 2010."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "To overcome this challenge, I use nighttime lights data from meteorological satellite following an approach introduced by Alam (2013).",
+        "The population data comes from the Ghana Statistical Service population census and covers the periods 2000 and 2010."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ]
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_019",
+      "research_question": "群体间横向经济不平等是否增加内战/民间暴力发生风险，多源融合测量能否提升关系检验的稳健性。",
+      "hypothesis_or_mechanism": "相对全国平均水平较贫困的群体面临更高冲突风险；横向不平等可能触发群体不满，融合指标减少单一数据测量误差影响。",
+      "variables_and_data_use": "结合 G-Econ 地理经济数据、卫星夜光和调查经济估计构造群体不平等指标，并连接族群与冲突发生资料。",
+      "method_paradigm": "先融合 G-Econ 与夜光空间值，再纳入调查形成复合指标，比较复合及单一指标对民间暴力发生的统计预测和稳健性。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "Does economic inequality cause civil war? Deviating from individualist measures of\ninequality such as the Gini coefficient, recent studies have found a statistical link between\ngroup-level inequalities and conflict onset.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1177_0022343315597969.txt",
+        "doi": "10.1177/0022343315597969",
+        "locator": "text lines 9–11"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "confirming the initial hypothesis that horizontal\neconomic inequality does drive conflict in the case of groups that are relatively poorer com-\npared to the country average.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1177_0022343315597969.txt",
+        "doi": "10.1177/0022343315597969",
+        "locator": "text lines 21–23"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "The first step of our method combines geocoded data from the\nG-Econ project with night lights emissions data from satellites. In a second step, we bring\ntogether the combined spatial values with survey estimates in order to arrive at an improved\nmeasure of group-level inequality",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1177_0022343315597969.txt",
+        "doi": "10.1177/0022343315597969",
+        "locator": "text lines 15–18"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "We evaluate the effect of the combined indicator and its components\non the onset of civil violence.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1177_0022343315597969.txt",
+        "doi": "10.1177/0022343315597969",
+        "locator": "text lines 19–20"
+       }
+      ],
+      "source_paper_doi": "10.1177/0022343315597969",
+      "title": "Triangulating horizontal inequality",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "m violence in India. Journal of Political Economy 122(4): 719–765. 21 National Geophysical Data Center (2014). DMSP-OLS nighttime lights time series, version 4 (http://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html). Nordhaus, William D (2006) Geography and macroeconomics: New data and new findings. Proceedings of the National Acade"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This procedure is repeated for spatial estimates of population that allow us to compute GDP per capita estimates for each group."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "We replace the G-Econ maps with satellite imagery from the DMSP-OLS project (National Geophysical Data Center, 2014)",
+        "This procedure is repeated for spatial estimates of population that allow us to compute GDP per capita estimates for each group."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ]
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_020",
+      "research_question": "日际、季节和年际温度变率分别如何影响长期经济发展，其作用能否由温度水平非线性解释。",
+      "hypothesis_or_mechanism": "温度变化的不确定性可能抑制经济活动；多数变率影响不能仅由温度水平的非线性解释，年际变率效应随温度水平而异。",
+      "variables_and_data_use": "利用卫星夜光代理经济活动，气候数据区分日际/季节/年际温度变率，并比较城市/农村及农业分布异质性。",
+      "method_paradigm": "采用基于空间一阶差分的计量识别策略估计长期温度变率效应，分析温度水平非线性及城乡/农业稳健性。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "Thisstudyexaminestheeffectsoftemperaturevariabilityonlong-runeconomicdevelopment.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1016_j.jeem.2023.102840.txt",
+        "doi": "10.1016/j.jeem.2023.102840",
+        "locator": "text lines 39–39"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "mostoftheestimatedeffectsofvariability\ncannotbeexplainedwiththisnon-linearityandinsteadseemtobeduetolargeruncertainty\naboutfuturetemperaturerealisations.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1016_j.jeem.2023.102840.txt",
+        "doi": "10.1016/j.jeem.2023.102840",
+        "locator": "text lines 46–48"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "Economicactivityisproxiedbysatellitedataonnightlights.Drawingonclimate\nscience,thestudydistinguishesbetweentemperaturevariabilityonthreetimescales:day-today,seasonal,andinterannualvariability.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1016_j.jeem.2023.102840.txt",
+        "doi": "10.1016/j.jeem.2023.102840",
+        "locator": "text lines 40–41"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "Toidentifycausaleffects,anoveleconometricstrategyisemployed,basedonspatialfirstdifferences.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1016_j.jeem.2023.102840.txt",
+        "doi": "10.1016/j.jeem.2023.102840",
+        "locator": "text lines 40–40"
+       }
+      ],
+      "source_paper_doi": "10.1016/j.jeem.2023.102840",
+      "title": "Temperature variability and long-run economic development",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ItakedataontheintensityoflightsatnightfromthesatellitesoftheVisibleInfraredImagingRadiometerSuite(VIIRS)(Elvidgeetal.,2017)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Furthermore,IusepopulationdatafromtheGriddedPopulationoftheWorld(GPW)datasetversion4.0(CIESIN,2018)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "ItakedataontheintensityoflightsatnightfromthesatellitesoftheVisibleInfraredImagingRadiometerSuite(VIIRS)(Elvidgeetal.,2017).",
+        "Furthermore,IusepopulationdatafromtheGriddedPopulationoftheWorld(GPW)datasetversion4.0(CIESIN,2018)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ]
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_021",
+      "research_question": "1992 年哥伦比亚配给停电是否导致短期生育上升、持续的终身生育变化及多年后的母亲社会经济后果。",
+      "hypothesis_or_mechanism": "长时间停电改变家庭生育行为并产生非计划生育冲击；检验家庭是否通过以后少生保持原计划规模，以及停电导致生育对长期结果的影响。",
+      "variables_and_data_use": "以 2005 年哥伦比亚人口普查微样本回溯母亲生育史，结合卫星夜光变化测量市级 1992–1993 停电配给强度，分析教育、就业及儿童健康。",
+      "method_paradigm": "利用 El Niño 干旱引起的长达一年电力配给自然实验，依据市级停电强度的空间异质性进行短长期生育及后果估计。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "This paper examines the short- and long-run effects of a quasi-exogenous\nvariation in fertility behavior due to a yearlong period of power rationing in Colombia\nin 1992.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 42–44"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Second, we answer the\nquestion: how persistent is this shock on fertility? We check the claim that after hav-\ning an unplanned baby, women maintain the size of family they originally desired by\nhaving fewer children in the future (Ward and Butz 1980; Barmby and Cigno 1990",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 73–76"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "We do so by constructing a retrospective mother-level birth history using the micro\nsample of the 2005 population census of Colombia. This provides us with the number\nof birth events. We combine this with the municipality-level variation in the inten-\nsity of the power rationing. This measure of treatment intensity is constructed from\nnighttime lights satellite",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 91–95"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "We exploit a unique natural experiment set in Colombia to address these questions.\nIn 1992, the El Nin˜o climate phenomena caused a drought, which led to such low\nwater levels in rivers and reservoirs that power generation plummeted, resulting in\ndaily electricity rationing over the period from March 1992 to March 1993.2 This\nconstitutes a natural experiment with quasi-random treatment appealing at two levels.\nFirst, the yearlong power rationing gives us sufficient statistical power to detect even\nminor effects. Second, the power rationing was heterogeneous across Colombia. We\nexploit this spatial variation in the intensity of power rationing to study how short-\nand long-term fertility rates varied accordingly.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 82–90"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "using nighttime luminosity data\navailable from the US Defense Meteorological Satellite Program (DMSP).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 254–255"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "we construct individual-\nlevel birth histories using the 2005 micro sample census of Colombia provided by\nIPUMS.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1007_s00148-017-0685-5.txt",
+        "doi": "10.1007/s00148-017-0685-5",
+        "locator": "text lines 346–348"
+       }
+      ],
+      "source_paper_doi": "10.1007/s00148-017-0685-5",
+      "title": "More than an urban legend: the short- and long-run effects of unplanned fertility shocks",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Figure 2 highlights our approach to measuring power rationing indirectly, using nighttime luminosity data available from the US Defense Meteorological Satellite Program (DMSP)."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "In the south, some regions were barely connected to the national electricity grid."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we construct individual-level birth histories using the 2005 micro sample census of Colombia provided by IPUMS."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Figure 2 highlights our approach to measuring power rationing indirectly, using nighttime luminosity data available from the US Defense Meteorological Satellite Program (DMSP).",
+        "we construct individual-level birth histories using the 2005 micro sample census of Colombia provided by IPUMS."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "utility_infrastructure"
+      ]
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_006",
+      "research_question": "南非民主化中的选举权扩大与政治组织自由化如何影响家庭电气化，新增服务由哪些群体受益。",
+      "hypothesis_or_mechanism": "扩大选举权改变选民结构和服务分配激励；地方配电能力受限时，国家电力公司可能优先服务执政党核心支持区。",
+      "variables_and_data_use": "结合 1990 年代夜间灯光、地理定位人口普查与市政选举结果，利用新增选举权人口占比及家庭电气化变化，并控制电网/道路等地理条件。",
+      "method_paradigm": "采用新增选民比例异质性的双重差分，加入协变量、安慰剂回归及相邻普查单元比较，区分选举权与政党组织影响。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "Does democracy affect basic service delivery? If yes, who benefits, and which elements of\ndemocracy matter - enfranchisement, the liberalization of political organization, or both?",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1086_685451.txt",
+        "doi": "10.1086/685451",
+        "locator": "text lines 27–28"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "In parts of the\ncountry where municipalities lacked distribution capacity, the national electricity company prioritized core\nconstituencies of the ANC. The effect of democratization on basic services depends on the national\ngovernments ability to influence distribution at the local level.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1086_685451.txt",
+        "doi": "10.1086/685451",
+        "locator": "text lines 34–37"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "Our unique dataset combines nightlight satellite imagery, geo-referenced census\ndata, and municipal election results from the 1990s.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1086_685451.txt",
+        "doi": "10.1086/685451",
+        "locator": "text lines 32–33"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "Using a difference-in-differences approach, we exploit heterogeneity in the\nshare of newly enfranchised voters across municipalities to evaluate how franchise extension affected\nhousehold electrification.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1086_685451.txt",
+        "doi": "10.1086/685451",
+        "locator": "text lines 30–32"
+       }
+      ],
+      "source_paper_doi": "10.1086/685451",
+      "title": "A Better Life for All? Democratization and Electrification in Post-Apartheid South Africa",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we first use the raw nighttime lights images (Map 1) to classify each of the over one million pixels"
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we include geographic covariates that affect the supply of electricity: the distance to the electricity grid in 1996, the distance to the closest main road in 1996, the average slope, and elevation."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "demographic variables such as population density and the total number of households, as well as the number of nonelectrified households in 1996."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "we first use the raw nighttime lights images (Map 1) to classify each of the over one million pixels",
+        "we include geographic covariates that affect the supply of electricity: the distance to the electricity grid in 1996, the distance to the closest main road in 1996, the average slope, and elevation.",
+        "demographic variables such as population density and the total number of households, as well as the number of nonelectrified households in 1996."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_007",
+      "research_question": "如何联合优化能源、水和土地系统的长期转型路径，识别可持续发展政策间的协同、权衡与投资成本。",
+      "hypothesis_or_mechanism": "资源系统存在跨部门反馈；同时优化资源供需并连接分布式水文过程，可揭示单部门规划遗漏的约束并减少反作用。",
+      "variables_and_data_use": "使用开放地理与国家库存数据、人口和社会经济/气候 SSP-RCP 场景、能源基础设施及水文资料；夜光与人口变化用于估计缺电区域的电气化率和电网容量。",
+      "method_paradigm": "NEST 将多尺度能源—水—土地资源优化与分布式水文模型集成，并以印度河流域情景分析比较跨境/地方政策及转型投资。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "In this paper, we present the NExus Solutions Tool (NEST): a new open modeling platform that integrates multi-scale energy–water–land resource optimization with distributed hydrological modeling.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_gmd-13-1095-2020.txt",
+        "doi": "10.5194/gmd-13-1095-2020",
+        "locator": "text lines 955–955"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "A nexus approach balances EWL interactions across multiple sectors and livelihoods to better understand the synergies and trade-offs associated with meeting future resource demands in a sustainable way",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_gmd-13-1095-2020.txt",
+        "doi": "10.5194/gmd-13-1095-2020",
+        "locator": "text lines 1099–1099"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "For regions lacking universal electricity access and transmission data, gridded electrification rates are estimated using satellite-derived nighttime light intensity combined with recent maps of population changes ( Falchetta et al. ,  2019 ) and used to parameterize historical grid capacities and downscale national electricity projections from econometric models.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_gmd-13-1095-2020.txt",
+        "doi": "10.5194/gmd-13-1095-2020",
+        "locator": "text lines 1412–1412"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "A case study analysis of the Indus River basin in south Asia demonstrates the capability of the model to capture important interlinkages across system transformation pathways towards the United Nations' Sustainable Development Goals, including the intersections between local and regional transboundary policies and incremental investment costs from rapidly increasing regional consumption projected over the coming decades.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_gmd-13-1095-2020.txt",
+        "doi": "10.5194/gmd-13-1095-2020",
+        "locator": "text lines 955–955"
+       }
+      ],
+      "source_paper_doi": "10.5194/gmd-13-1095-2020",
+      "title": "The NExus Solutions Tool (NEST) v1.0: an open platform for optimizing multi-scale energy–water–land system transformations",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "For regions lacking universal electricity access and transmission data, gridded electrification rates are estimated using satellite-derived nighttime light intensity combined with recent maps of population changes ( Falchetta et al. , 2019 ) and used to parameterize historical grid capacities and downscale national electricity projections from econometric models."
+          ]
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "A number of large-scale hydropower projects are also planned in the region (Table S2) that were not found in the global databases, and these projects have also been included in the model."
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The SSP-RCP scenario data are harmonized at 7.5 arcmin and include urban and rural populations, income-level and climatic indicators."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "For regions lacking universal electricity access and transmission data, gridded electrification rates are estimated using satellite-derived nighttime light intensity combined with recent maps of population changes ( Falchetta et al. , 2019 ) and used to parameterize historical grid capacities and downscale national electricity projections from econometric models.",
+        "A number of large-scale hydropower projects are also planned in the region (Table S2) that were not found in the global databases, and these projects have also been included in the model.",
+        "The SSP-RCP scenario data are harmonized at 7.5 arcmin and include urban and rural populations, income-level and climatic indicators."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_022",
+      "research_question": "停电风险与社会脆弱性综合分析如何识别小型居民社区的不平等，并解释家庭对应急电力的支付意愿。",
+      "hypothesis_or_mechanism": "停电特定的政策/运维、基础设施、环境风险与基本资源可达性影响社区脆弱性；更脆弱群体可能有不同应急电力支付意愿，本文分析关联而非实验因果。",
+      "variables_and_data_use": "结合家庭调查的支付意愿、健康、收入、家庭构成与资源可达性，构建 PO-RSVI；结合输电线路地理资料及人口社区特征评估停电风险。",
+      "method_paradigm": "构造停电风险综合社会脆弱性指数，进行支付意愿分层分析和 Cramér V 特征筛选，再以 80/20 训练测试划分及分类模型评估。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "OurPowerOutage-RiskintegratedSocialVulnerabilityIndex\n(PO-RSVI)analysisincorporatesthesetwoaspectsandhighlightsseveral\nkeyimplicationsinthisregard.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s43247-025-02278-1.txt",
+        "doi": "10.1038/s43247-025-02278-1",
+        "locator": "text lines 158–160"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "First,ouranalysishighlightsdisparitiesinthe\nriskofextendedpoweroutagesamongcommunities,drivenbyvarious\npolicy-operational,environmental,andinfrastructuralfactors.Byconcentratingonthesedisparities,at-riskcommunitiescanbeidenti\u0001edmore\nef\u0001ciently.Thisfocusallowsforthedevelopmentoftargetedstrategiesand\nsolutionstomitigateriskbyaddressingthemostin\u0003uentialfactorsand\nindicators.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s43247-025-02278-1.txt",
+        "doi": "10.1038/s43247-025-02278-1",
+        "locator": "text lines 160–165"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "ThepathsoftransmissionlinespassingthroughthecommunitiesweredeterminedusingEsriU.S.\nFederalDatasets,U.S.ElectricPowerTransmissionLines",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s43247-025-02278-1.txt",
+        "doi": "10.1038/s43247-025-02278-1",
+        "locator": "text lines 477–478"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "ThecorrelationbetweenfeaturesisdeterminedusingCramersV\nstatisticandisreportedinTable4inadescendingorder.Featureswitha\nCramérsVvaluelessthan0.2areremoved,astheyshownomajorcorrelationwithWTP.Thedatasetissplitintotrainingandtestingsets,with80%\nallocatedfortrainingand20%fortesting,followingarandomshuf\u0003ingof\nthedatatoeradicateorderpatterns.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s43247-025-02278-1.txt",
+        "doi": "10.1038/s43247-025-02278-1",
+        "locator": "text lines 48–52"
+       }
+      ],
+      "source_paper_doi": "10.1038/s43247-025-02278-1",
+      "title": "Power outage-risk integrated social vulnerability analysis highlights disparities in small residential communities",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Electric utility infrastructure network GIS",
+        "WorldPop/GHSL ambient population grid"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_light_observation",
+          "role": "nighttime_light_observation",
+          "anchor_product": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "actual_dataset": "NASA VIIRS Black Marble VNP46A2 nighttime lights",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "utility_infrastructure",
+          "role": "utility_infrastructure",
+          "anchor_product": "Electric utility infrastructure network GIS",
+          "actual_dataset": "Electric utility infrastructure network GIS",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ThepathsoftransmissionlinespassingthroughthecommunitiesweredeterminedusingEsriU.S.FederalDatasets,U.S.ElectricPowerTransmissionLines"
+          ]
+        },
+        {
+          "member_id": "ambient_population",
+          "role": "ambient_population",
+          "anchor_product": "WorldPop/GHSL ambient population grid",
+          "actual_dataset": "WorldPop/GHSL ambient population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Forneighbourhoodpopulationcharacteristics,includingfactorslikepopulationdensityandneighbouringcommunities,publicdatasetssourcedfromtheUSCensusBureau,AmericanCommunitySurvey5-YearData(2009-2023)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "ThepathsoftransmissionlinespassingthroughthecommunitiesweredeterminedusingEsriU.S.FederalDatasets,U.S.ElectricPowerTransmissionLines",
+        "Forneighbourhoodpopulationcharacteristics,includingfactorslikepopulationdensityandneighbouringcommunities,publicdatasetssourcedfromtheUSCensusBureau,AmericanCommunitySurvey5-YearData(2009-2023)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_018_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "nighttime_light_observation"
+      ]
+    }
+  ],
+  "quality": {
+    "ref_count": 29,
+    "source_paper_count": 29,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 29,
+    "partial_set_support_count": 22,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": false,
+    "manual_admission_count": 29
+  },
+  "coverage": {
+    "formal_reference_count": 29,
+    "minimum_target": 20,
+    "minimum_met": true,
+    "latest_manual_audit": "reference_sets/audit/broad_recall_partial_pools_20261006/"
+  }
+}

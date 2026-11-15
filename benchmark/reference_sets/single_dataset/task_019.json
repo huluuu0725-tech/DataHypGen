@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_019",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 Raw Scenes",
+    "spatial_coverage": {
+      "region_name": "Bulawayo metropolitan area, Zimbabwe",
+      "coverage": "Landsat scene coverage over Bulawayo and surrounding terrestrial surfaces, subject to sensor availability, scene footprint, cloud conditions, and Tier-1 geometric-quality filtering."
+    },
+    "temporal_coverage": "2013-03-18 to present, subject to catalog holdings at evaluation time",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m optical grid; thermal bands originate at 100 m before catalog resampling; panchromatic B8 is 15 m",
+    "temporal_unit": "Scene-based Landsat 8 observations with an approximately 16-day repeat cycle",
+    "analytical_capabilities": [
+      "Perform multispectral land-cover and local-climate-zone classification from Landsat 8 raw scenes",
+      "Compare seasonal spectral patterns of built-up surfaces, vegetation, bare land, and water",
+      "Convert raw thermal digital numbers to radiance and brightness temperature using scene metadata",
+      "Estimate land-surface temperature after applying an explicit emissivity method",
+      "Map land-cover and thermal patterns while retaining Landsat 8 sensor provenance"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Raw quantized and calibrated digital numbers for multispectral and thermal bands; solar and view angles are supplied as angle bands.",
+      "runtime_hint": "Use LANDSAT/LC08/C02/T1 only. These are Raw Tier-1 scenes, not TOA or Level-2 surface-reflectance/surface-temperature products; do not apply Level-2 SR/ST scaling factors. Landsat 8 optical bands are B2 blue, B3 green, B4 red, B5 NIR, B6 SWIR1, and B7 SWIR2; thermal bands are B10 and B11. Convert thermal digital numbers to radiance and brightness temperature using scene metadata, then apply an explicit emissivity method for LST. QA_PIXEL bit 0 is fill, bit 1 dilated cloud, bit 2 cirrus, bit 3 cloud, bit 4 cloud shadow, bit 5 snow, bit 6 clear, and bit 7 water. Use QA_RADSAT to reject saturated observations. Do not add Landsat 5, Landsat 7, Level-2, TOA, annual composites, or index-only products as required anchor data."
+    },
+    "data_source": "United States Geological Survey and NASA Landsat Program",
+    "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:LANDSAT/LC08/C02/T1",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_019.json",
+    "source_sha256": "05bf682a93f065081acde766bbb4ccbe6b22c162b4f559226accfcf7cad074c2",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_019/prompt.json",
+    "current_prompt_sha256": "499838e56ed1c721acca8a0d88e51e82f0b45c655276e72248a44fc93f2d3311",
+    "original_anchor_asset": {
+      "id": "LANDSAT/LT05/C02/T1; LANDSAT/LE07/C02/T1; LANDSAT/LC08/C02/T1",
+      "observable_group": "landsat_5_7_8_tier1_raw_multispectral_and_thermal_dn",
+      "asset_alias_policy": "A direction must operationally use raw Landsat 5 TM, Landsat 7 ETM+, and Landsat 8 OLI/TIRS scenes, or an explicitly equivalent historical raw-scene lineage, for a multi-decadal workflow spanning pre-2013 and post-2013 observations. Level-2 surface reflectance/temperature, TOA-only collections, Landsat 8/9-only studies, precomputed composites, and workflows that omit the TM/ETM+ historical record are excluded.",
+      "substituted_for": {
+        "paper_asset": "Historical EarthExplorer Landsat 5, 7, and 8 scene products with unspecified Collection/version",
+        "former_anchor": "LANDSAT/LC08/C02/T1_L2",
+        "why_the_former_anchor_was_wrong": "The source analyzes 1990, 2005, and 2020 and explicitly converts thermal digital numbers to radiance. Landsat 8 Level-2 begins in 2013 and is both temporally incomplete and at the wrong processing level.",
+        "why_this_asset": "The three ready Tier-1 Raw collections cover all source sensors and years and expose the raw optical and thermal bands needed for multispectral LCZ classification and DN-based LST retrieval.",
+        "rejected_alternatives": [
+          {
+            "asset": "LANDSAT/LC08/C02/T1_L2",
+            "reason": "Cannot cover 1990 or 2005 and does not match raw DN processing."
+          },
+          {
+            "asset": "LANDSAT/LT05/C02/T1_L2; LANDSAT/LE07/C02/T1_L2; LANDSAT/LC08/C02/T1_L2",
+            "reason": "Sensor coverage is adequate but the Level-2 processing is incompatible with the stated DN-to-radiance thermal workflow."
+          },
+          {
+            "asset": "Landsat TOA collections",
+            "reason": "The supplied Methods do not establish TOA as the LCZ predictor product and explicitly begin LST retrieval from thermal DN."
+          }
+        ],
+        "residual_gap": "The source does not report Collection/version or exact product identifiers. Current Collection 2 Raw scenes may differ from historical EarthExplorer downloads in geometric processing, calibration metadata and QA encoding.",
+        "review_date": "2026-08-29"
+      },
+      "verification": {
+        "status": "verified_against_supplied_methods_open_fulltext_and_catalog",
+        "evidence": "The Methods list Landsat 5/7/8 scenes for 1990, 2005 and 2020. Section 2.7.4 explicitly converts thermal DN to radiance and brightness temperature with sensor-specific constants before emissivity correction.",
+        "catalog_match": "The current ready LT05, LE07 and LC08 Collection 2 Tier-1 Raw collections jointly cover the source years and expose raw multispectral bands, LT05 B6, LE07 B6_VCID_1/B6_VCID_2, LC08 B10/B11, QA_PIXEL, QA_RADSAT and angle bands.",
+        "review_date": "2026-08-29"
+      },
+      "observation_identity_contract": {
+        "physical_object": "USGS Landsat 5 TM, Landsat 7 ETM+, and Landsat 8 OLI/TIRS Collection 2 Tier 1 Raw Scenes, representing landsat 5 7 8 tier1 raw multispectral and thermal dn.",
+        "source_lineage": "Task Prompt source: United States Geological Survey and NASA Landsat Program. Current task anchor: LANDSAT/LT05/C02/T1; LANDSAT/LE07/C02/T1; LANDSAT/LC08/C02/T1 (landsat_5_7_8_tier1_raw_multispectral_and_thermal_dn). Catalog-substitution context recorded in the task definition: The three ready Tier-1 Raw collections cover all source sensors and years and expose the raw optical and thermal bands needed for multispectral LCZ classification and DN-based LST retrieval.",
+        "core_measurement_semantics": "Raw quantized and calibrated digital numbers for multispectral and thermal bands; solar and view angles are supplied as angle bands.; spatial resolution: 30 m optical grid; Landsat 7 thermal bands originate at 60 m and Landsat 8 thermal bands at 100 m before catalog resampling; Landsat 7/8 panchromatic B8 is 15 m; temporal structure: Scene-based observations with an approximately 16-day repeat cycle per satellite",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: A direction must operationally use raw Landsat 5 TM, Landsat 7 ETM+, and Landsat 8 OLI/TIRS scenes, or an explicitly equivalent historical raw-scene lineage, for a multi-decadal workflow spanning pre-2013 and post-2013 observations. Level-2 surface reflectance/temperature, TOA-only collections, Landsat 8/9-only studies, precomputed composites, and workflows that omit the TM/ETM+ historical record are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "research_question": "Assess how built-up patch structure and spatial configuration influence land surface temperature in arid urban settlements southwest of Isfahan, Iran.",
+      "hypothesis_or_mechanism": "Urban form metrics such as patch area, patch size, shape complexity, nearest-neighbor distance, and patch number have nonlinear and interacting effects on local land surface temperature after isolating built-up areas and removing vegetation or other confounders.",
+      "variables_and_data_use": "Landsat 8 and Landsat 9 Collection 2 Tier 1 Band 10 thermal DN values were converted to TOA radiance, brightness temperature, and emissivity-corrected LST; Landsat-derived NDVI supported emissivity and vegetation filtering; Sentinel-2 Level-2A 10 m bands were classified to extract built-up areas; Fragstats patch metrics served as predictors in GAMs and clustering.",
+      "method_paradigm": "Remote-sensing LST retrieval, supervised image classification, spatial filtering, landscape-metric computation, generalized additive modeling, and K-means clustering with residual comparison.",
+      "used_assets": [
+        "LANDSAT/LC09/C02/T1"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_802982c8ad0ab1f2c4ea",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-58080-2",
+        "title": "Area-adjusted influence of built-up pattern on urban land surface temperature in an arid landscape",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Ali Asgarian"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC09/C02/T1",
+        "name": "USGS Landsat 9 Collection 2 Tier 1 Raw Scenes"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Landsat 9 is a separate sensor with a later observation window, while retaining the approved Collection 2 Tier 1 Level-1 raw-scene processing domain; keep its Band 10 thermal support distinct from reflective-band support.",
+      "comparability_quote": "from the thermal band were converted to top-of-atmosphere radiance using the radiometric rescaling coefficients provided in the image metadata. This radiance was then transformed into brightness temperature (BT) in Kelvin using the inverse ",
+      "differences_vs_anchor": [
+        "Landsat 9 is a different sensor and period from the LT05/LE07/LC08 anchor family; this entry covers LC09 only.",
+        "Reflective bands have 30 m support; Band 10 thermal observations have 100 m native support. The paper converts raw DN through radiance to brightness temperature; LC08 is excluded from this product entry."
+      ],
+      "comparability_handling": "Store the exact product ID, release/sensor, operational fields, dates, support and processing as recorded; keep this entry separate from the strict anchor and other product branches.",
+      "doi": "10.1038/s41598-026-58080-2",
+      "task_id": "single_dataset/task_019",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "LANDSAT/LT05/C02/T1; LANDSAT/LE07/C02/T1; LANDSAT/LC08/C02/T1",
+      "actual_dataset_id": "LANDSAT/LC09/C02/T1",
+      "actual_product_name": "USGS Landsat 9 Collection 2 Tier 1 Raw Scenes",
+      "expansion_contract_id": "single_dataset/task_019_expansion_v1",
+      "expansion_contract_sha256": "389889d485ebbccaf5838f0362e382ee6aeacd329c445e5160fbf750db8712c6",
+      "task_card_sha256": "364f1f9f0735d6ee5aba196f7b4d5c0e9c3e309d89d590ad212d716c3332ef88",
+      "source_text_sha256": "36400703ec25550f6b616fde16e124784317eacca0cf9e65465946555f73d27a",
+      "product_use_quote": "temperature analysis due to its thermal infrared sensitivity and minimal atmospheric interference 17 . The raw data were accessed through Google Earth Engine (GEE) using the image collections LANDSAT/LC08/C02/T1 and LANDSAT/LC09/C02/T1. A ",
+      "operational_use_quote": "approach has been extensively validated in studies performed in the region 5 , 6 , 21 and showed reliable surface temperature estimates when applied to Landsat thermal imagery under clear-sky conditions. Initially, the digital numbers (DN) ",
+      "application_scope_quote": "is negligible. The dataset included 9 Landsat 8 and 13 Landsat 9 images. Since Band 10 in the Landsat Collection 2 products has a native spatial resolution of 100 m, it was used directly without further downscaling. To generate a ",
+      "supporting_quote": "approach has been extensively validated in studies performed in the region 5 , 6 , 21 and showed reliable surface temperature estimates when applied to Landsat thermal imagery under clear-sky conditions. Initially, the digital numbers (DN) ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:36:20Z",
+      "human_reason": "Methods identify the exact Landsat 9 Collection 2 Tier 1 raw-scene collection and operational Band 10 DN-to-radiance-to-brightness-temperature processing. This entry covers only the approved LC09 branch; LC08 observations are not represented by this product ID.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_019_r001_repair1",
+      "source_pool_sha256": "3fb5bca5132bb34895dd39906b1350905f4ffd7f754bde058c7157f4a7b36015",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Ali Asgarian"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 1,
+    "source_paper_count": 1,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

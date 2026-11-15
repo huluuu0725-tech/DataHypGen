@@ -1,0 +1,2007 @@
+{
+ "schema_version": "3.0-multidataset-reference-space",
+ "task_id": "three_or_more_datasets/task_007",
+ "reference_coverage": "manual_independent_read_admitted_20261006",
+ "evaluation_year": 2026,
+ "anchor_asset": {
+  "id": "COMPOSITE:three_or_more_datasets/task_007:composite_observation",
+  "type": "composite_observation",
+  "name": "extreme_rainfall_economic_disruption composite observation",
+  "observable_group": "extreme_rainfall_economic_disruption_multidataset_observation",
+  "components": [
+   {
+    "role": "urban_activity_observation",
+    "data_description": {
+     "dataset_name": "VIIRS Black Marble nighttime radiance",
+     "data_type": "Daily corrected nighttime-radiance raster",
+     "data_format": "Role-labeled raster/time-series or external panel",
+     "data_source": "NASA Black Marble VNP46A2",
+     "data_path": "NASA/VIIRS/002/VNP46A2",
+     "spatial_coverage": {
+      "region_name": "Latin American cities",
+      "coverage": "Declared analysis region within Latin American cities."
+     },
+     "analytical_capabilities": [
+      "Declared-role feature construction",
+      "Spatial/temporal alignment",
+      "Validation or mechanism analysis"
+     ]
+    },
+    "data_path": "NASA/VIIRS/002/VNP46A2"
+   },
+   {
+    "role": "extreme_rainfall_driver",
+    "data_description": {
+     "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+     "data_type": "Daily gridded precipitation raster collection",
+     "data_format": "Role-labeled raster/time-series or external panel",
+     "data_source": "Climate Hazards Center",
+     "data_path": "UCSB-CHG/CHIRPS/DAILY",
+     "spatial_coverage": {
+      "region_name": "Latin American cities",
+      "coverage": "Declared analysis region within Latin American cities."
+     },
+     "analytical_capabilities": [
+      "Declared-role feature construction",
+      "Spatial/temporal alignment",
+      "Validation or mechanism analysis"
+     ]
+    },
+    "data_path": "UCSB-CHG/CHIRPS/DAILY"
+   },
+   {
+    "role": "urban_greenness_context",
+    "data_description": {
+     "dataset_name": "Landsat Collection 2 Level-2 Surface Reflectance",
+     "data_type": "Multispectral surface-reflectance image collection",
+     "data_format": "Role-labeled raster/time-series or external panel",
+     "data_source": "USGS/NASA Landsat 8/9",
+     "data_path": "LANDSAT/LC08/C02/T1_L2",
+     "spatial_coverage": {
+      "region_name": "Latin American cities",
+      "coverage": "Declared analysis region within Latin American cities."
+     },
+     "analytical_capabilities": [
+      "Declared-role feature construction",
+      "Spatial/temporal alignment",
+      "Validation or mechanism analysis"
+     ]
+    },
+    "data_path": "LANDSAT/LC08/C02/T1_L2"
+   }
+  ],
+  "combination_contract": {
+   "physical_object": "Composite observation formed by all required dataset roles",
+   "required_roles": [
+    "urban_activity_observation",
+    "extreme_rainfall_driver",
+    "urban_greenness_context"
+   ],
+   "component_count": 3,
+   "alignment": "All required roles must be operationally used in the same research instance after declared spatial and temporal alignment.",
+   "supplement_policy": "Supplementary data may be added only with a distinct mechanism, validation or context role; no supplement may replace a required role."
+  }
+ },
+ "seed_exclusion": {
+  "doi": "10.1016/j.gloenvcha.2024.102857",
+  "exclusion_reason": "seed paper excluded from the reference space"
+ },
+ "construction": {
+  "channels": [
+   "multidataset_anchor_asset_lineages",
+   "bclass_slice_presence_batch_20261005"
+  ],
+  "time_window": "paper_year <= evaluation_year; seed DOI excluded",
+  "required_methods_evidence": "A reference must operationally use the anchor members; this batch admits on model member findings plus corpus slice presence under the user ruling of 2026-10-05 (weaker basis, admission_basis recorded per paper)."
+ },
+ "quality": {
+  "ref_count": 23,
+  "source_paper_count": 23,
+  "direct_set_reference_count": 0,
+  "expanded_set_reference_count": 23,
+  "partial_set_support_count": 15,
+  "component_support_count": 0,
+  "uncertain_count": 0,
+  "rejected_count": 0,
+  "error_count": 0,
+  "quote_guard_review_count": 0,
+  "sparse_reference_space": false,
+  "manual_admission_count": 23
+ },
+ "reference_papers": [
+  {
+   "doi": "10.1016/j.scitotenv.2019.02.206",
+   "title": "Quantifying increased groundwater demand from prolonged drought in the East African Rift Valley",
+   "year": 2019,
+   "venue": "The Science of The Total Environment",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['urban_activity_observation']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0",
+    "Landsat Collection 2 Level-2 Surface Reflectance"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "verdict": "not_used",
+     "evidence": "absent or mention-only in full text (independent read)"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "verdict": "used_exact",
+     "evidence": "We used the Monthly CHIRPS v2.0"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "verdict": "used_analogous",
+     "evidence": "strong use-context window in full text (independent read)"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ]
+  },
+  {
+   "doi": "10.26554/sti.2026.11.3.1106-1126",
+   "title": "Interlinkage of Drought, Fire Severity, Vegetation Degradation, and Hydrological Response in Peatland Ecosystems",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2026,
+   "venue": "Science & Technology Indonesia"
+  },
+  {
+   "doi": "10.1038/s41598-020-79480-y",
+   "title": "Reanalysis datasets outperform other gridded climate products in vegetation change analysis in peripheral conservation areas of Central Asia",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2020,
+   "venue": "Scientific Reports"
+  },
+  {
+   "doi": "10.1080/17538947.2018.1548655",
+   "title": "Digital world meets urban planet–new prospects for evidence based urban studies arising from joint exploitation of big earth data",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2018,
+   "venue": "International Journal of Digital Earth"
+  },
+  {
+   "doi": "10.1038/s41598-026-68682-5",
+   "title": "Combining RUSLE and vegetation health index model to unravel the relations between soil erosion and agricultural drought",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2026,
+   "venue": "Scientific Reports"
+  },
+  {
+   "doi": "10.3390/rs12223734",
+   "title": "Determining Optimal Location for Mangrove Planting Using Remote Sensing and Climate Model Projection in Southeast Asia",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2020,
+   "venue": "Remote Sensing"
+  },
+  {
+   "doi": "10.3389/frwa.2025.1545821",
+   "title": "Downscaling GRACE total water storage data using random forest: a three-round validation approach under drought conditions",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2025,
+   "venue": "Frontiers in Water"
+  },
+  {
+   "doi": "10.9728/dcs.2025.26.12.3521",
+   "title": "Deep Learning-Based Wildfire Prediction Using Landsat 8 and ERA5-Land Data",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2025,
+   "venue": "Journal of Digital Contents Society"
+  },
+  {
+   "doi": "10.3390/rs15020349",
+   "title": "Estimating Nighttime PM2.5 Concentration in Beijing Based on NPP/VIIRS Day/Night Band",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2023,
+   "venue": "Remote Sensing"
+  },
+  {
+   "doi": "10.3390/rs16071298",
+   "title": "2.1. Datasets（切片无题名页，起始章节标题代）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2024,
+   "venue": "Remote Sensing"
+  },
+  {
+   "doi": "10.1016/j.rse.2024.114321",
+   "title": "S. Shetty et al. / Remote Sensing of Environment 312 (2024) 114321（切片无题名页，以页眉代）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2024,
+   "venue": "Remote Sensing of Environment"
+  },
+  {
+   "doi": "10.1088/2752-5295/ae6887",
+   "title": "Global monthly 0.1° land XCO 2 data (2017–2024) estimated via multi-source fusion and spatiotemporal pattern integration",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2026,
+   "venue": "Environmental Research Climate"
+  },
+  {
+   "doi": "10.5281/zenodo.10416850",
+   "title": "Reassessing the climate mitigation potential of Chinese ecological restoration: the undiscovered potential of urban areas",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2023,
+   "venue": "Zenodo (CERN European Organization for Nuclear Research)"
+  },
+  {
+   "doi": "10.5194/egusphere-egu26-9563",
+   "title": "Vulnerability Index for croplands of Greece, with a twist",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2026
+  },
+  {
+   "doi": "10.1021/acs.est.2c03834",
+   "title": "Daily seamless 1 km resolution high-quality surface NO 2 dataset across mainland China is generated from big data using artificial intelligence（切片无题名页，以摘要句代）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2022,
+   "venue": "Environmental Science & Technology"
+  },
+  {
+   "doi": "10.21203/rs.3.rs-9349878_v1",
+   "title": "SATELLITE EVIDENCE ACROSS … ATLANTIC STORMS（头部为移位编码仅部分可解码；正文为飓风停电与健康差异研究）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2026,
+   "venue": "Research Square"
+  },
+  {
+   "doi": "10.1038/s41467-024-51355-0",
+   "title": "（切片无题名页，仅 Urban data 等方法节）全球主要城市绿度冷却效率与降温不平等研究",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2024,
+   "venue": "Nature Communications"
+  },
+  {
+   "doi": "10.1109/jstars.2021.3105645",
+   "title": "The Third Generation of Pan-Canadian Wetland Map at 10m Resolution Using Multisource Earth Observation Data on Cloud Computing Platform",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2021,
+   "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing"
+  },
+  {
+   "doi": "10.3389/frsen.2023.1197523",
+   "title": "Linking forest management to surrounding lands: a citizen-based approach towards the regional understanding of land-use transitions",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2023,
+   "venue": "Frontiers in Remote Sensing"
+  },
+  {
+   "doi": "10.1038/s41598-022-25570-y",
+   "title": "Data utilized in this study（切片无题名页，以节标题代；东南亚多可再生能源潜力评估论文）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2023,
+   "venue": "Scientific Reports"
+  },
+  {
+   "doi": "10.3389/frsen.2026.1840277",
+   "title": "2.2.1 Data sources and preprocessing（切片无题名页，以节标题代；新疆荒漠 FVC 植被覆盖度反演论文）",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2026,
+   "venue": "Frontiers in Remote Sensing"
+  },
+  {
+   "doi": "10.5194/acp-6-1409-2006",
+   "title": "Screening the ESA ATSR-2 World Fire Atlas (1997–2002)",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2006,
+   "venue": "Atmospheric chemistry and physics"
+  },
+  {
+   "doi": "10.3390/rs18172948",
+   "title": "Assessing Vegetation–Hydrothermal Trend Regimes Across Elevation Gradients in Semiarid Mountains via Gaussian Mixture Models in Saudi Arabia",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "year": 2026,
+   "venue": "Remote Sensing"
+  }
+ ],
+ "directions": [
+  {
+   "direction_id": "manual_admitted_partial_set_001",
+   "source_paper_doi": "10.1016/j.scitotenv.2019.02.206",
+   "title": "Quantifying increased groundwater demand from prolonged drought in the East African Rift Valley",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0",
+    "Landsat Collection 2 Level-2 Surface Reflectance"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文回答的问题是：在肯尼亚北部和埃塞俄比亚阿法尔地区，地下水井泵的使用强度是否会随当地降雨变化而变化。具体检验前一周降雨量或无降雨是否与下一周钻孔泵运行时间相关。",
+   "hypothesis_or_mechanism": "核心机制是降雨会降低对地下水抽取的需求，而缺雨会增加对钻孔供水系统的依赖。由于降雨影响牧畜、灌溉和饮用水等用水需求，作者假设本地降雨事件后井泵运行时间下降，反之无雨后运行时间上升。",
+   "variables_and_data_use": "因变量为卫星或蜂窝联网电流传感器记录的每日钻孔泵运行时长，并汇总为每站点每周运行小时数；核心自变量为CHIRPS v2.0降雨数据在井点位置提取的2017–2018年每日降雨并汇总为前一周降雨量或是否无雨。作者还考察了USGS Landsat 8 Collection 1 Tier 1及实时TOA反射率计算的NDVI、NASA GRACE月尺度总水储量异常，并收集mWater调查中的井龄、井深、产水量、服务人口等水点特征，但最终统计模型主要使用CHIRPS与传感器运行时长进行关联分析。",
+   "method_paradigm": "方法范式是时间序列—截面（TSCS）回归建模，将221个井点的周尺度运行时间与站点特异的滞后一周降雨配对分析。模型采用负二项回归，包含钻孔固定效应、滞后因变量和按钻孔聚类的稳健标准误，并分别估计总体模型、国家分组模型以及连续降雨和二元无雨指标模型。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.scitotenv.2019.02.206.methods.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:38:56"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_002",
+   "source_paper_doi": "10.26554/sti.2026.11.3.1106-1126",
+   "title": "Interlinkage of Drought, Fire Severity, Vegetation Degradation, and Hydrological Response in Peatland Ecosystems",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The runoff was modeled using the Soil Conservation Service-Curve Number (SCS-CN) method based on downscaled land cover, CHIRPS, GLDAS, and MODIS data."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The deforestation map was created by analyzing the Landsat-8 image through Spectral Mixture Analysis (SMA) and the Normalized Difference Fraction Index (NDFI)."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "The runoff was modeled using the Soil Conservation Service-Curve Number (SCS-CN) method based on downscaled land cover, CHIRPS, GLDAS, and MODIS data.",
+    "The deforestation map was created by analyzing the Landsat-8 image through Spectral Mixture Analysis (SMA) and the Normalized Difference Fraction Index (NDFI)."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文回答的问题是：2014—2025年印度尼西亚南苏门答腊9个泥炭水文单元（KHG）中，毁林如何影响径流、干旱状况和火灾严重度。研究还关注这些影响在2015、2019和2023等火灾年份中的表现差异。",
+   "hypothesis_or_mechanism": "核心机制是毁林导致植被损失和入渗能力下降，从而增强流域水文响应、提高年径流系数，并加剧泥炭地干旱与火灾风险。文中指出2015年毁林显著、表层土壤水分异常为负，极端干旱范围扩大，且中高强度火烧面积最大。",
+   "variables_and_data_use": "研究使用Landsat-8影像，通过光谱混合分析（SMA）和归一化差异分数指数（NDFI）制作毁林图；使用CHIRPS降水、GLDAS土壤水分、MODIS数据和降尺度土地覆盖数据，基于SCS-CN方法模拟径流。干旱用植被健康指数（VHI）评估，火灾严重度用相对化燃烧比率（RBR）评估，并分析年降雨量、1米表层土壤水分异常、年径流系数及RBR阈值等变量。",
+   "method_paradigm": "方法范式是多源遥感与水文模型耦合分析：先用Landsat-8的SMA/NDFI进行毁林监测，再用SCS-CN曲线数法进行径流建模。随后结合VHI干旱指数和RBR火烧严重度指数，对泥炭地毁林、干旱、火灾严重度和水文响应进行时空对比评估。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.26554_sti.2026.11.3.1106-1126.txt",
+    "chars": 15386,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:38:57"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_003",
+   "source_paper_doi": "10.1038/s41598-020-79480-y",
+   "title": "Reanalysis datasets outperform other gridded climate products in vegetation change analysis in peripheral conservation areas of Central Asia",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The CHIRPS product was utilized to derive precipitation variables."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "MODIS NDVI: MOD13Q1. Vegetation data was used as the variable of interest of this study. We selected MODIS NDVI to derive vegetation anomalies as it is an essential and widely used parameter for vegetation monitoring and change  detection56."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "The CHIRPS product was utilized to derive precipitation variables.",
+    "MODIS NDVI: MOD13Q1. Vegetation data was used as the variable of interest of this study. We selected MODIS NDVI to derive vegetation anomalies as it is an essential and widely used parameter for vegetation monitoring and change  detection56."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文旨在评估在气象站数据稀缺的偏远保护区中，哪些先进格网气候产品、气候变量和时间区间适合用于解释植被异常；同时回答气候异常与植被异常的相关强度及其空间范围，以及结果是否可在区域间转移。研究对象为阿富汗 Wakhan 和 Band-e-Amir 两个国家公园。",
+   "hypothesis_or_mechanism": "核心假设是，在站点观测数据缺乏地区，较少依赖观测数据的气候数据集，如再分析和卫星产品，会优于基于雨量站的格网数据。其机制是干旱至半干旱地区植被状况与水分可用性、温度和积雪等气候条件耦合，能准确表征区域气候的数据应与大范围相对原生植被的 NDVI 异常呈稳健相关。",
+   "variables_and_data_use": "研究使用 MODIS MOD13Q1 的 250 m、16 天 NDVI 计算 2001–2018 年植被峰值异常；使用 CHIRPS 2.0、CRU TS4.03、ERA5-Land、GPCC Monitoring Product Version 6、IMERG-GPM、MERRA-2 和 MODIS MOD10A1 生成降水、温度、积雪等气候变量异常。作者共计算 156 个气候变量和季节时段的异常，并将其与 NDVI 植被异常相关，以评估各数据产品解释植被变化的适用性。",
+   "method_paradigm": "方法范式是基于遥感植被异常的多数据产品比较评估：先构建气候变量和 NDVI 的年度异常时间序列，再进行相关分析并控制多重比较的 false discovery rate。随后计算显著相关的空间覆盖表现，并采用交叉验证变量选择与 Boruta 算法进行变量重要性评估。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s41598-020-79480-y.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:38:57"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_004",
+   "source_paper_doi": "10.1080/17538947.2018.1548655",
+   "title": "Digital world meets urban planet–new prospects for evidence based urban studies arising from joint exploitation of big earth data",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Theglobeimage(A)illustratestheaccumulatednightlightsintensity2015productofthe cloud-freeaverageradiancevaluesoftheVisibleInfraredImagingRadiometerSuite(VIIRS) (Elvidgeetal.2017)inrelationtothetotal/country-basedpopulationin2015derivedfrom theWorldBankOpenDataCatalogue(TheWorldBank2018b)."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Apartfromthestudydescribedafore,theTimeScanon-demandservicehasalreadybeenusedby theU-TEPteamtosuccessfullygeneratethreeglobalTimeScanlayersfor2015,2010and2000from atotalofmorethanonemillionLandsatimages(seealsoEschetal.2018)."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Theglobeimage(A)illustratestheaccumulatednightlightsintensity2015productofthe cloud-freeaverageradiancevaluesoftheVisibleInfraredImagingRadiometerSuite(VIIRS) (Elvidgeetal.2017)inrelationtothetotal/country-basedpopulationin2015derivedfrom theWorldBankOpenDataCatalogue(TheWorldBank2018b).",
+    "Apartfromthestudydescribedafore,theTimeScanon-demandservicehasalreadybeenusedby theU-TEPteamtosuccessfullygeneratethreeglobalTimeScanlayersfor2015,2010and2000from atotalofmorethanonemillionLandsatimages(seealsoEschetal.2018)."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文探讨如何通过城市专题开发平台（U-TEP）联合利用大地球数据、信息技术和共享知识，为城市研究与可持续城市发展决策提供新的事实、指标和经验证据。具体关注该平台能否支持城市数据访问、处理、分析与可视化，并通过用例服务于全球城市化和区域土地利用动态监测。",
+   "hypothesis_or_mechanism": "核心机制是将用户带到数据和分析工具所在的在线平台，而不是让用户分散下载数据和工具到本地环境。通过开放虚拟工作空间、高性能处理基础设施、共享算法与知识，U-TEP被认为能够降低大数据分析门槛并促进可操作城市信息的生成。",
+   "variables_and_data_use": "使用的变量包括建成环境信息、人类住区/城市化指标、区域土地利用动态，以及由规划和决策需求定义的城市相关度量。数据来源包括Sentinel系列地球观测卫星、Landsat任务影像、Sentinel-2场景、无人机数据，以及统计数据、地形数据、志愿地理信息和社交媒体内容；这些数据被用于生成无云镶嵌、处理无人机数据、开展全球城市化数据分析和区域土地利用动态监测。",
+   "method_paradigm": "方法范式是基于云端/平台化的大地球数据协同处理与分析，即Platform as a Service、Infrastructure as a Service、Information as a Service和Software as a Service等服务模式。具体实现包括Web门户、EO数据目录、Web Processing Services、高性能处理基础设施，以及可视化与分析工具箱（VISAT）的联合使用。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1080_17538947.2018.1548655.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:00"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_005",
+   "source_paper_doi": "10.1038/s41598-026-68682-5",
+   "title": "Combining RUSLE and vegetation health index model to unravel the relations between soil erosion and agricultural drought",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "23 years of daily CHIRPS precipitation data (2001 2023) at a spatial resolution of 0.05掳 (~5 km) were obtained from the Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS) at https://chc .ucsb.edu/data/chirps ."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "the VHI was derived by integrating the Vegetation Condition Index (VCI) and the Temperature Condition Index (TCI), both of which were computed using the Normalized Differ ence Vegetation Index (NDVI) from the MOD13A2 product and Land Surface Temperature (LST) from the MOD11A2 product, respectively."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "23 years of daily CHIRPS precipitation data (2001 2023) at a spatial resolution of 0.05掳 (~5 km) were obtained from the Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS) at https://chc .ucsb.edu/data/chirps .",
+    "the VHI was derived by integrating the Vegetation Condition Index (VCI) and the Temperature Condition Index (TCI), both of which were computed using the Normalized Differ ence Vegetation Index (NDVI) from the MOD13A2 product and Land Surface Temperature (LST) from the MOD11A2 product, respectively."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文旨在回答埃塞俄比亚 Awash River Basin 在2001—2023年间农业干旱与土壤侵蚀的时空发生特征是什么，以及二者之间是否存在空间关联。研究特别针对以往在该流域缺乏将干旱条件与土壤侵蚀问题综合评估的不足。",
+   "hypothesis_or_mechanism": "核心假设是长期干旱会通过植被损失触发负反馈机制，从而加剧 Awash River Basin 的土壤侵蚀过程。论文还指出土壤流失在高地主要受降雨、坡长和坡度增强，在低地则受土壤质地、土壤性质和较低植被覆盖影响。",
+   "variables_and_data_use": "农业干旱用 VHI 表征，VHI 由 VCI 和 TCI 集成得到；VCI 基于 MOD13A2 产品的 NDVI 计算，TCI 基于 MOD11A2 产品的 LST 计算，用于刻画2001—2023年农业干旱的时空动态。土壤侵蚀用 GEE 上的 RUSLE 估算定性和定量土壤流失，并结合降雨、坡长坡度、土壤、植被覆盖等因子；随后用平均年土壤流失与平均农业干旱指标进行相关分析。",
+   "method_paradigm": "方法范式是基于 Google Earth Engine 的遥感—GIS 集成建模，将 RUSLE 土壤侵蚀模型与 VHI 农业干旱指数模型结合，用于时空制图与定量评估。论文进一步采用 Pearson 相关分析检验土壤侵蚀与干旱条件之间的空间关系。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1038_s41598-026-68682-5.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-07T00:27:56"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_006",
+   "source_paper_doi": "10.3390/rs12223734",
+   "title": "Determining Optimal Location for Mangrove Planting Using Remote Sensing and Climate Model Projection in Southeast Asia",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "studyweretheblackmarblenighttimelight(VNP46)dataoftheNationalAeronauticsandSpace Administration(NASA).Thesedatahadaspatialresolutionof500m."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "TheprecipitationdatausedinthisstudywereobtainedfromtheClimateHazardsGroupInfraRed PrecipitationwithStationsversion2.0(CHIRPSv.2.0).TheCHIRPSdatawereacombinationof"
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "studyweretheblackmarblenighttimelight(VNP46)dataoftheNationalAeronauticsandSpace Administration(NASA).Thesedatahadaspatialresolutionof500m.",
+    "TheprecipitationdatausedinthisstudywereobtainedfromtheClimateHazardsGroupInfraRed PrecipitationwithStationsversion2.0(CHIRPSv.2.0).TheCHIRPSdatawereacombinationof"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_greenness_context"
+   ],
+   "research_question": "论文旨在回答：在当前以及2050、2070年不同气候变化情景下，东南亚哪些区域最适合开展新的红树林种植或恢复。研究还比较不同RCP情景和气候模型对各国红树林土地适宜性面积的影响。",
+   "hypothesis_or_mechanism": "核心机制是红树林种植成败受水动力、地貌、气候以及人类压力共同限制；潮汐淹没、坡度、海拔、降水和气温决定生态适宜性，而土地覆盖、人口、GDP和夜间灯光代表的人类活动会降低适宜性。未来降水和气温变化可能改变红树林适宜区，并推动红树林向陆地方向迁移。",
+   "variables_and_data_use": "研究使用TPXO9.0潮汐模型数据生成潮汐淹没参数；使用MERIT DEM（由SRTM3 v2.1和AW3D-30m v1改进）提取海拔和坡度；使用ECMWF 2米气温、CHIRPS v2.0降水作为当前气候变量。人类压力变量来自ESA CCI-LC土地覆盖、GPWv4人口密度、Kummu等GDP栅格数据和NASA Black Marble VNP46夜间灯光；未来气候使用CNRM-CM5.1和MIROC5在RCP2.6、RCP4.5、RCP8.5下的2050和2070年气温与降水。",
+   "method_paradigm": "方法范式是基于遥感、模型和统计栅格数据的多准则土地适宜性评价，并采用层次分析法（AHP）确定各参数和子参数权重。研究还用等权重方案、既有适宜性产品对比以及Wilcoxon敏感性检验评估AHP权重和变量变化的影响。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs12223734.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:07"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_007",
+   "source_paper_doi": "10.3389/frwa.2025.1545821",
+   "title": "Downscaling GRACE total water storage data using random forest: a three-round validation approach under drought conditions",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Precipitation from the Global Precipitation Measurement (GPM) sensor at 10 km resolution."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "2.2.3 Normalized di\u001eerence vegetation index NDVI (MODIS 1 \u001fe Terra MODIS Vegetation Indices 16-Day (MOD13A2) Version 6.1 product provides NDVI at 1 km resolution ( Yin et\u001dal., 2020 ). Serving as a continuity index with NOAA-AVHRR derived NDVI ( Ma et\u001dal., 2022 ), it selects the best pixel from each 16-day"
+     ],
+     "quote_source": "machine_located_window_20261006"
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Precipitation from the Global Precipitation Measurement (GPM) sensor at 10 km resolution.",
+    "2.2.3 Normalized di\u001eerence vegetation index NDVI (MODIS 1 \u001fe Terra MODIS Vegetation Indices 16-Day (MOD13A2) Version 6.1 product provides NDVI at 1 km resolution ( Yin et\u001dal., 2020 ). Serving as a continuity index with NOAA-AVHRR derived NDVI ( Ma et\u001dal., 2022 ), it selects the best pixel from each 16-day"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文回答的问题是：如何克服GRACE卫星总水储量（TWS）数据100–300 km空间分辨率过粗的限制，将其用于摩洛哥等干旱易发地区的地方水资源管理。具体评估了将GRACE TWS从100 km降尺度到1 km后，是否能可靠表征局地水文变化和含水层动态。",
+   "hypothesis_or_mechanism": "核心假设是：降水、植被、地表温度、蒸散发、地形和积雪等高分辨率环境变量与TWS空间变化相关，可通过随机森林模型学习这种关系并实现GRACE TWS降尺度。机制上，降尺度后的1 km TWS应能揭示原始GRACE数据难以捕捉的局地变化，并与地下水位和已知含水层动态更一致。",
+   "variables_and_data_use": "因变量为GRACE卫星反演的总水储量（TWS），从100 km降尺度到1 km；输入变量包括GPM降水数据（10 km）、MODIS NDVI（1 km）、MODIS地表温度LST（1 km）、MODIS蒸散发（500 m）、SRTM高程（30 m）和MODIS归一化差异雪指数NDSI（500 m）。降尺度结果用统计指标、139口井的实测地下水位数据以及已知含水层动态进行验证。",
+   "method_paradigm": "方法范式为基于随机森林的遥感水文变量空间降尺度回归，并结合多源辅助变量建立100 km到1 km的TWS映射。验证采用统计验证、交叉验证、原位地下水位对比和含水层动态一致性检验的综合验证框架。",
+   "four_dim_provenance": {
+    "tier": "abstract",
+    "source": "crossref:10.3389/frwa.2025.1545821",
+    "chars": 2278,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:09"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_009",
+   "source_paper_doi": "10.9728/dcs.2025.26.12.3521",
+   "title": "Deep Learning-Based Wildfire Prediction Using Landsat 8 and ERA5-Land Data",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "ERA5-Land 2 m (t2m), 2 m (d2m), (rh2m; t2m d2m ), (tp), (swvl1), 10 m (u10, v10)"
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Google Earth Engine(GEE) ERA5-Land( ) Landsat-8 Collection 2 Level-2( )"
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "ERA5-Land 2 m (t2m), 2 m (d2m), (rh2m; t2m d2m ), (tp), (swvl1), 10 m (u10, v10)",
+    "Google Earth Engine(GEE) ERA5-Land( ) Landsat-8 Collection 2 Level-2( )"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation"
+   ],
+   "research_question": "论文旨在回答：融合30 m Landsat-8卫星影像与小时尺度9 km ERA5-Land气象再分析数据，能否构建可靠且可业务化使用的野火风险预测模型。研究还评估了类别不平衡处理、超参数优化和阈值调优是否能提升火灾类别的识别性能。",
+   "hypothesis_or_mechanism": "核心假设是卫星地表状态信息与气象条件共同影响野火发生风险，二者融合可提高预测能力。论文提出AUC-PR和F1可作为优化目标，SMOTE等不平衡处理可降低火灾漏报，并通过PR曲线上的F1最大点调整阈值以平衡Precision与Recall。",
+   "variables_and_data_use": "自变量来自ERA5-Land的2m_temperature、2m_dewpoint_temperature、relative_humidity_2m、total_precipitation、volumetric_soil_water_layer_1以及10 m风场等气象变量，并使用Landsat-8 Collection 2 Level-2/TIRS Band 10推导LST_C；火灾标签来自NASA LANCE/FIRMS MODIS/VIIRS Active Fire，定义为fire={0,1}。数据在Google Earth Engine中处理，Landsat-8约16天时相与ERA5-Land前7天气象序列对齐，并以约300 m匹配生成训练与季节预测样本。",
+   "method_paradigm": "方法范式为多源遥感—气象数据融合的深度神经网络二分类回归/分类建模。具体采用DNN、StandardScaler、SMOTE仅用于训练折、5-fold交叉验证、GridSearchCV超参数搜索，并基于Precision-Recall曲线选择F1最大化阈值进行野火预测。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.9728_dcs.2025.26.12.3521.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:08"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_001",
+   "source_paper_doi": "10.3390/rs15020349",
+   "title": "Estimating Nighttime PM2.5 Concentration in Beijing Based on NPP/VIIRS Day/Night Band",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "weusedNTLofVIIRS/DNB,rstanalyzingthemoonlight'simpactonit,thenselecting\ntheimpactfactorsquarterly,andusingMLRtobuildaPM"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "temperature,dewpointtemperature,airpressure,evaporation,precipitation,\nu-componentofwind,andv-componentofwinddatacamefromtheERA5-Landreanalysis\nproduct."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "MOD13A3provides\ntwovegetationindices:NormalizedDifferenceVegetationIndexandEnhancedVegetation\nIndex.ComparedwithNDVI,EVIminimizesthebackgroundvariationofthecanopyand\nmaintainssensitivitytodensevegetationconditions,sowechoseEVIforthisstudy."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "weusedNTLofVIIRS/DNB,rstanalyzingthemoonlight'simpactonit,thenselecting\ntheimpactfactorsquarterly,andusingMLRtobuildaPM",
+    "temperature,dewpointtemperature,airpressure,evaporation,precipitation,\nu-componentofwind,andv-componentofwinddatacamefromtheERA5-Landreanalysis\nproduct.",
+    "MOD13A3provides\ntwovegetationindices:NormalizedDifferenceVegetationIndexandEnhancedVegetation\nIndex.ComparedwithNDVI,EVIminimizesthebackgroundvariationofthecanopyand\nmaintainssensitivitytodensevegetationconditions,sowechoseEVIforthisstudy."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在回答如何利用 Suomi NPP 和 NOAA-20 搭载的 VIIRS/DNB 夜间灯光数据估算北京地区夜间 PM2.5 浓度，并提高夜间遥感反演精度。研究特别关注月光、季节性气象影响和卫星观测天顶角等因素对夜间 PM2.5 反演的影响。",
+   "hypothesis_or_mechanism": "核心机制是夜间 PM2.5 会影响 VIIRS/DNB 观测到的夜间灯光辐射，但该信号同时受到月光、云、地表反照率、气象条件、季节差异和观测角度的干扰。作者假设通过对月光、季节性影响因子和 VZA 角度效应进行筛选与补偿，可以提高夜间 PM2.5 反演精度。",
+   "variables_and_data_use": "因变量为北京市生态环境监测中心地面站逐小时 PM2.5 浓度；核心自变量为 VIIRS/DNB SDR 夜间灯光辐射亮度，并使用 GDNBO 中的经纬度、卫星观测天顶角 VZA、月球天顶角 LZA、月相角 LPA，以及 VIIRS/EDR 的 VCCLO 云覆盖层进行云筛选。辅助变量包括 MOD09A1 地表反射率计算 DNB 可见光地表反照率、MOD13A3 EVI，EAC4 550 nm AOD，以及 ERA5/ERA5-Land 的2米温度、露点温度、地表气压、蒸发、降水、10米风场和边界层高度等气象变量。",
+   "method_paradigm": "方法范式为基于遥感夜间灯光的多元统计回归反演：先进行云掩膜、月光校正和数据整合，再用逐步回归按季节筛选 PM2.5 影响因子，最后建立多元线性回归模型估算夜间 PM2.5。模型性能通过十折交叉验证，并分析 VZA 分组、城乡和季节条件下的反演效果。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs15020349.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:12"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_002",
+   "source_paper_doi": "10.3390/rs16071298",
+   "title": "2.1. Datasets（切片无题名页，起始章节标题代）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "and nighttime light (NTL) data from the visible infrared imaging radiometer suite (VIIRS)."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The meteorological data were from the fifth generation European center for medium-range weather forecasts atmospheric reanalysis of the global climate (ERA5), produced by the Copernicus climate change service, which included 2m temperature (TEM), 2m dewpoint temperature (DT), 10m u-component of wind (WU), 10m v-component of wind (WV), surface pressure (SP), total evaporation (ET), total precipitation (PRE)"
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Land surface data included the normalized difference vegetation index (NDVI) from the MOD13A3 product"
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "and nighttime light (NTL) data from the visible infrared imaging radiometer suite (VIIRS).",
+    "The meteorological data were from the fifth generation European center for medium-range weather forecasts atmospheric reanalysis of the global climate (ERA5), produced by the Copernicus climate change service, which included 2m temperature (TEM), 2m dewpoint temperature (DT), 10m u-component of wind (WU), 10m v-component of wind (WV), surface pressure (SP), total evaporation (ET), total precipitation (PRE)",
+    "Land surface data included the normalized difference vegetation index (NDVI) from the MOD13A3 product"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在估计2019—2023年中国六种空气污染物（PM2.5、PM10、NO2、SO2、O3、CO）的月均浓度，并评估其在空间和时间上的热点、冷点及动态变化趋势。研究还比较多输出LightGBM相对于单输出LightGBM在多污染物估计中的效果。",
+   "hypothesis_or_mechanism": "核心机制是六种空气污染物具有共同来源，并在相同气象条件下存在化学或物理联系，因此可通过多输出模型利用污染物之间的相关性来提高估计效率。研究还认为空气污染物分布具有显著时空变异，需要引入空间距离编码和周期性时间特征来捕捉区域差异和季节模式。",
+   "variables_and_data_use": "因变量为中国国家环境监测中心约2020个站点的PM2.5、PM10、NO2、SO2、O3、CO小时观测，经日均和月均聚合后用于模型训练与验证。自变量包括MODIS Terra/Aqua的MAIAC AOD产品MCD19A2、Sentinel-5P TROPOMI离线Level 3的AAI及O3、CO、NO2柱浓度，ERA5气象变量，MOD13A3 NDVI、SRTM DEM、MCD12Q1 LUC、LandScan人口、GID排放清单和VIIRS夜间灯光，并统一到10 km × 10 km网格。",
+   "method_paradigm": "方法范式为多输出LightGBM机器学习回归，结合地理编码空间特征（到网格中心和四角点距离）与周期性月份时间特征，同时估计六种污染物浓度。模型采用样本、站点和时间三种10折交叉验证，并用R2、RMSE、MAE评价；随后通过新兴热点分析，结合Getis–Ord Gi*统计和Mann–Kendall趋势检验识别时空热点/冷点模式。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs16071298.methods.txt",
+    "chars": 14449,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:13"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_010",
+   "source_paper_doi": "10.1016/j.rse.2024.114321",
+   "title": "S. Shetty et al. / Remote Sensing of Environment 312 (2024) 114321（切片无题名页，以页眉代）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "we use monthly cloud-free night light radiance composites which\nare corrected for stray lights and provided by the Earth Observation\nGroup (Elvidge et al., 2013)."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "For this study, the 16-day global NDVI product\nfrom MODIS-Aqua at 1 km spatial resolution is used (Didan, 2021)."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "we use monthly cloud-free night light radiance composites which\nare corrected for stray lights and provided by the Earth Observation\nGroup (Elvidge et al., 2013).",
+    "For this study, the 16-day global NDVI product\nfrom MODIS-Aqua at 1 km spatial resolution is used (Didan, 2021)."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文旨在回答如何利用卫星、再分析和地面站观测等多源数据，在欧洲范围内生成2019—2021年高空间分辨率的逐日地表NO2浓度图，并评估模型在不同年份上的表现。",
+   "hypothesis_or_mechanism": "核心机制是地表NO2受对流层NO2柱浓度、人类活动分布、气象条件、太阳辐射、土地覆盖和地形共同影响；这些变量可作为机器学习模型的输入来估计地面站尺度的地表NO2。夜间灯光表征人口密度和工业活动等人为排放代理，NDVI区分建成区与植被区并间接反映NOx来源，气象和边界层条件影响NO2的浓度与输送。",
+   "variables_and_data_use": "目标变量为EEA e-Reporting数据库中约3044个空气质量监测站在卫星过境时间匹配的经质量控制地表NO2观测；输入变量包括S5P TROPOMI RPRO v2.4对流层NO2柱浓度和太阳天顶角、VIIRS DNB月度无云夜间灯光辐亮度、MODIS-Aqua 16天NDVI月平均、ERA5-Land 2米温度和10米风速/风向、NCEP-CFSR行星边界层高度、MERIT DEM高程及5公里邻域高程变化，以及周末指示变量和年内日。所有输入特征被重采样或重网格到1×1 km²，用于在站点处提取训练/测试样本并生成逐日栅格预测。",
+   "method_paradigm": "方法范式为多源遥感与再分析变量融合的监督式机器学习回归制图。研究将2019—2020年数据主要用于模型训练和测试，并将2021年测试数据作为独立年份评估；通过GEE和HARP进行特征提取、质量筛选、重采样与1 km网格化后进行逐日地表NO2预测。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.rse.2024.114321.methods.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:20"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_011",
+   "source_paper_doi": "10.1088/2752-5295/ae6887",
+   "title": "Global monthly 0.1° land XCO 2 data (2017–2024) estimated via multi-source fusion and spatiotemporal pattern integration",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "multi-source geospatial predictors, including ERA5-Land reanalysis, MODIS normalized difference vegetation index, NPP-VIIRS nighttime lights, population density, and elevation to estimate XCO 2"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_textually_confirmed"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "multi-source geospatial predictors, including ERA5-Land reanalysis, MODIS normalized difference vegetation index, NPP-VIIRS nighttime lights, population density, and elevation to estimate XCO 2"
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "multi-source geospatial predictors, including ERA5-Land reanalysis, MODIS normalized difference vegetation index, NPP-VIIRS nighttime lights, population density, and elevation to estimate XCO 2",
+    "multi-source geospatial predictors, including ERA5-Land reanalysis, MODIS normalized difference vegetation index, NPP-VIIRS nighttime lights, population density, and elevation to estimate XCO 2"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文旨在回答如何利用多源遥感、再分析和地理协变量，在全球0.1°网格和月尺度上估算XCO₂，并评估其在不同地表类型下的精度与不确定性。研究还关注模型能否在保持空间合理性和物理一致性的同时捕捉XCO₂的时空变化。",
+   "hypothesis_or_mechanism": "核心机制是XCO₂受局地空间格局、长距离空间依赖、季节周期、长期时间趋势以及植被、气象、地形和人类活动等因素共同影响。模型假定CNN可提取7×7邻域内的局地空间特征，Transformer可捕捉区域间长程依赖，而总变差平滑约束可减少相邻区域不合理突变。",
+   "variables_and_data_use": "目标变量为OCO-2卫星2017年1月至2024年12月的XCO₂观测，经quality_flag=0筛选、月平均聚合到0.1°网格并用3σ剔除异常值；辅助变量包括ERA5-Land的8个陆面变量及派生特征，如NDVI×elevation、t2m/d2m、sp×blh、t2m×NDVI、population density×nighttime light radiance。其他输入数据产品包括Suomi NPP/VIIRS月度夜间灯光‘vcmslcfg’产品、Terra MODIS MOD13C2 V6.1 NDVI、GEBCO_2023 DEM、LandScan全球人口分布、Copernicus Climate Change Service年度全球土地覆盖产品；这些数据被重采样到0.1°并作为动态或静态协变量输入模型，TCCON用于地基验证。",
+   "method_paradigm": "方法范式为多源特征融合的深度学习回归：将协变量与OCO-2观测时空配准为7×7邻域斑块，经CNN提取局地空间特征，再用Transformer编码器建模长距离空间依赖，并结合时空位置嵌入进行XCO₂回归预测。训练采用MSE与L1总变差空间平滑约束组成的复合损失，验证采用独立OCO-2和TCCON对比， uncertainty 通过Monte Carlo Dropout与OCO-2检索不确定性传播估计，特征重要性用置换法评估。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1088_2752-5295_ae6887.methods.txt",
+    "chars": 13196,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-07T00:27:59"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_003",
+   "source_paper_doi": "10.5281/zenodo.10416850",
+   "title": "Reassessing the climate mitigation potential of Chinese ecological restoration: the undiscovered potential of urban areas",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "We combined multisource remote sensing data with ERA5-land reanalysis data and selected 8 variables, NTL, IBI, POP, TEMP, PRE, WIND, SR and PRES, to explore the sensitivity of natural factors and human activity factors to urban surface temperature (UST) from systematic time series observations."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "We combined multisource remote sensing data with ERA5-land reanalysis data and selected 8 variables, NTL, IBI, POP, TEMP, PRE, WIND, SR and PRES, to explore the sensitivity of natural factors and human activity factors to urban surface temperature (UST) from systematic time series observations."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Then, the time trends of surface temperature, NDVI, and dominant factors were calculated based on the Theil-Sen Median slope estimation method."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "We combined multisource remote sensing data with ERA5-land reanalysis data and selected 8 variables, NTL, IBI, POP, TEMP, PRE, WIND, SR and PRES, to explore the sensitivity of natural factors and human activity factors to urban surface temperature (UST) from systematic time series observations.",
+    "We combined multisource remote sensing data with ERA5-land reanalysis data and selected 8 variables, NTL, IBI, POP, TEMP, PRE, WIND, SR and PRES, to explore the sensitivity of natural factors and human activity factors to urban surface temperature (UST) from systematic time series observations.",
+    "Then, the time trends of surface temperature, NDVI, and dominant factors were calculated based on the Theil-Sen Median slope estimation method."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在评估中国生态修复项目在城市区域的气候减缓潜力，即城市绿化变化对城市日间地表温度趋势的缓解效益。数据覆盖中国371个城市和1,721个城市簇，并汇总不同生态修复项目与气候背景下的减缓效益。",
+   "hypothesis_or_mechanism": "核心机制是城市绿化（以NDVI表征）会通过改变城市地表主导因子（如不透水面等）影响城市地表温度趋势。研究通过构建“无绿化情景”下的地表温度趋势，并将其与观测地表温度趋势比较，来表征生态修复带来的城市气候减缓效益。",
+   "variables_and_data_use": "使用MOD13A2（1000 m、16天）提取NDVI作为城市绿化UG指标，使用MOD11A1（1000 m、日尺度）提取城市地表温度UST，使用MOD09A1（500 m、8天）计算IBI/城市不透水性相关指标。还使用ERA5-Land再分析数据、WorldPop人口密度数据、Global Urban Boundaries及NTL、TEMP、PRE、WIND、SR、PRES等变量，用于逐像元识别除NDVI外影响日间地表温度的主导因子及敏感性分析。",
+   "method_paradigm": "方法范式为多源遥感与再分析数据融合下的逐像元多元回归归因和时序趋势分析。具体包括偏最小二乘/多元线性回归并用标准差归一化回归系数识别主导因子，采用Theil-Sen Median斜率估计计算UST、NDVI和主导因子趋势，再基于三者线性统计关系构建无绿化情景并估算气候减缓率。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.5281_zenodo.10416850.txt",
+    "chars": 6400,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-07T00:27:58"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_004",
+   "source_paper_doi": "10.5194/egusphere-egu26-9563",
+   "title": "Vulnerability Index for croplands of Greece, with a twist",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Adaptive capacity was approximated through WorldPop population density and VIIRS night-time lights, representing socio-economic resources and infrastructural robustness."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "the Standardized Precipitation Evapotranspiration Index (SPEI) for drought intensity, CHIRPS precipitation for extreme rainfall detection, and MODIS Land Surface Temperature for thermal stress."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Sensitivity was characterized using NDVI, SMAP soil moisture, SRTM terrain data, and JRC Water Occurrence, capturing variations in vegetation health, soil water availability, topography, and flood-prone areas."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Adaptive capacity was approximated through WorldPop population density and VIIRS night-time lights, representing socio-economic resources and infrastructural robustness.",
+    "the Standardized Precipitation Evapotranspiration Index (SPEI) for drought intensity, CHIRPS precipitation for extreme rainfall detection, and MODIS Land Surface Temperature for thermal stress.",
+    "Sensitivity was characterized using NDVI, SMAP soil moisture, SRTM terrain data, and JRC Water Occurrence, capturing variations in vegetation health, soil water availability, topography, and flood-prone areas."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在回答如何利用完全开源、全球可扩展的数据与流程，对地中海农业景观的气候脆弱性进行综合评估，并以希腊为案例展示其适用性。研究还检验了 Google Satellite Embeddings 结合 Copernicus Crop Map 是否能支持区域尺度作物类型制图。",
+   "hypothesis_or_mechanism": "研究依据 GIZ Vulnerability Sourcebook，将脆弱性定义为暴露度、敏感性和适应能力的交互结果；干旱、极端降雨和热胁迫通过影响植被健康、土壤水分、地形与洪涝暴露等因素增加农业风险。低洼、集约耕作且适应能力有限的区域被认为更容易出现干旱和洪水风险叠加。",
+   "variables_and_data_use": "暴露度使用 SPEI 表征干旱强度、CHIRPS precipitation 检测极端降雨、MODIS Land Surface Temperature 表征热胁迫；敏感性使用 NDVI、SMAP soil moisture、SRTM terrain data 和 JRC Water Occurrence 表征植被健康、土壤水分、地形和洪泛易发区。适应能力用 WorldPop population density 和 VIIRS night-time lights 近似社会经济资源与基础设施稳健性；作物分类中使用 Google Satellite Embeddings 的 64 维、10 m 特征，并与 Copernicus Crop Map 2021 配对训练样本。",
+   "method_paradigm": "方法范式是在 Google Earth Engine 中进行多源遥感指标归一化与 AHP 专家加权，构建空间显式的 Drought Vulnerability Index、Flood Vulnerability Index 和 Composite Vulnerability Index。作物制图部分采用嵌入特征空间与 Random Forest 分类器，对 Larisa 地区 19 类作物进行监督分类与精度评估。",
+   "four_dim_provenance": {
+    "tier": "abstract",
+    "source": "crossref:10.5194/egusphere-egu26-9563",
+    "chars": 3009,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:19"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_005",
+   "source_paper_doi": "10.1021/acs.est.2c03834",
+   "title": "Daily seamless 1 km resolution high-quality surface NO 2 dataset across mainland China is generated from big data using artificial intelligence（切片无题名页，以摘要句代）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Population-related data include the 1 km\nlandScan population distribution (POD) and 1 km visible infrared imaging\nradiometer suite nighttime light (NTL) products."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The ERA5 hourly atmospheric reanalysis product contains eight meteorological\nfields, i.e., boundary layer height (BLH), 2 m temperature (TEM),\nevaporation (ET), precipitation (PRE), relative humidity (RH), 10\nm u-component of wind (WU), 10 m v-component of wind (WV), and surface\npressure (SP), collected from the ERA5 hourly atmospheric reanalysis\nproducts."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Land-surface-related\ndata include the moderate resolution imaging spectroradiometer (MODIS)\nland-use type (500 m) and normalized difference vegetation index (NDVI,\n1 km) products"
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Population-related data include the 1 km\nlandScan population distribution (POD) and 1 km visible infrared imaging\nradiometer suite nighttime light (NTL) products.",
+    "The ERA5 hourly atmospheric reanalysis product contains eight meteorological\nfields, i.e., boundary layer height (BLH), 2 m temperature (TEM),\nevaporation (ET), precipitation (PRE), relative humidity (RH), 10\nm u-component of wind (WU), 10 m v-component of wind (WV), and surface\npressure (SP), collected from the ERA5 hourly atmospheric reanalysis\nproducts.",
+    "Land-surface-related\ndata include the moderate resolution imaging spectroradiometer (MODIS)\nland-use type (500 m) and normalized difference vegetation index (NDVI,\n1 km) products"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在回答如何结合地面观测、卫星遥感、再分析和模拟数据，在中国大陆高时空分辨率地估算地表 NO2 浓度，并评估模型在无地面站点地区的预测能力。",
+   "hypothesis_or_mechanism": "核心机制是卫星对流层 NO2 与地表 NO2 之间存在可由气象、排放、人口和地表条件调节的复杂关系，且这种关系具有显著时空异质性。通过在机器学习和深度森林模型中加入时空加权信息，可更好地区分污染物的空间和季节差异并提高估算精度。",
+   "variables_and_data_use": "因变量为中国生态环境部约 1630 个站点的小时地表 NO2，经质控后计算日均值；关键自变量包括 TROPOMI 1 km 对流层 NO2、重建的 OMI 0.25°对流层 NO2、CAMS 对流层和地表 NO2 模拟以及 CAMS 月度人为 NOx 排放。辅助变量包括 ERA5 的 BLH、2 m 温度、蒸发、降水、相对湿度、10 m 风场和地表气压，LandScan 1 km 人口、VIIRS 夜间灯光、MODIS 土地利用和 NDVI、SRTM DEM；所有辅助数据统一重网格到约 1 km。",
+   "method_paradigm": "方法范式为结合时空加权的机器学习缺失填补与深度森林回归：先用时空加权 missing extra-trees（SWMET）依次填补 OMI 和 TROPOMI 对流层 NO2 缺测，再用时空加权深度森林（SWDF）构建对流层—地表 NO2 转换模型。模型验证采用随机样本的 10 折交叉验证和独立的 out-of-city 10 折交叉验证。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1021_acs.est.2c03834.methods.txt",
+    "chars": 7353,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-07T00:27:57"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_006",
+   "source_paper_doi": "10.21203/rs.3.rs-9349878_v1",
+   "title": "SATELLITE EVIDENCE ACROSS … ATLANTIC STORMS（头部为移位编码仅部分可解码；正文为飓风停电与健康差异研究）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Nighttime radiance data were obtained from NASAÕs Black Marble VIIRS Day/Night Band daily product 386\n(VNP46A2) via Google Earth Engine"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Precipitation was extracted from ERA5-Land 393\nreanalysis data (~9-km resolution; European Centre for Medium-Range Weather Forecasts, ECMWF) via Google 394\nEarth Engine; we calculated total accumulation during the 4-day landfall window."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Tree canopy and impervious surface data: Tract-level percent tree canopy cover was obtained from the MODIS\n398\nVegetation Continuous Fields product (MOD44B, Collection 6), which provides annual estimates of percent tree 399\ncover at 250-m resolution; we used the 2020 annual composite."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Nighttime radiance data were obtained from NASAÕs Black Marble VIIRS Day/Night Band daily product 386\n(VNP46A2) via Google Earth Engine",
+    "Precipitation was extracted from ERA5-Land 393\nreanalysis data (~9-km resolution; European Centre for Medium-Range Weather Forecasts, ECMWF) via Google 394\nEarth Engine; we calculated total accumulation during the 4-day landfall window.",
+    "Tree canopy and impervious surface data: Tract-level percent tree canopy cover was obtained from the MODIS\n398\nVegetation Continuous Fields product (MOD44B, Collection 6), which provides annual estimates of percent tree 399\ncover at 250-m resolution; we used the 2020 annual composite."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文回答的问题是：在2012—2024年30个大西洋飓风中，美国不同社区谁更可能停电、停电有多严重、恢复有多快，以及这些停电负担是否按社会脆弱性不平等分布。研究还关注这些差异是否能被灾害地理、土地覆盖或公用事业服务区差异解释。",
+   "hypothesis_or_mechanism": "核心机制是，停电负担可分为发生、严重程度和恢复三个阶段，这些阶段可能对应不同的基础设施过程和政策杠杆。少数族裔/语言脆弱性与更高停电发生概率和更深夜间辐亮度损失相关，而住房类型/交通脆弱性与更慢恢复相关；严重程度差异部分依赖建成环境特征。",
+   "variables_and_data_use": "研究使用Visible Infrared Imaging Radiometer Suite（VIIRS）每日500米夜间辐亮度来度量飓风后普查区层面的辐亮度损失、停电严重程度和30天恢复率。社会脆弱性使用CDC Social Vulnerability Index（SVI）四个主题，尤其是Minority Status/Language与Housing Type/Transportation；并结合土地覆盖变量如树冠和不透水面、公共电力公用事业服务区多边形，以及飓风暴露特征如降雨、风速、右侧路径和暴露持续时间进行调整或交互分析。",
+   "method_paradigm": "方法范式是基于卫星夜间灯光的准监测框架，将停电负担分解为三阶段：是否发生停电、辐亮度损失严重程度、以及恢复速度。统计上采用普查区—飓风观测的多变量回归/固定效应模型，并进行县×飓风、公用事业×飓风固定效应、土地覆盖调整、条件与非条件严重程度模型及分层/交互稳健性分析。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.21203_rs.3.rs-9349878_v1.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:22"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_007",
+   "source_paper_doi": "10.1038/s41467-024-51355-0",
+   "title": "（切片无题名页，仅 Urban data 等方法节）全球主要城市绿度冷却效率与降温不平等研究",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "human activity intensity (VIIRS nighttime light data as a proxy indicator 103 )"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "background climate (mean annual temperature from ECMWF ERA5 dataset 95 and precipitation from TerraClimate dataset 96 )"
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "We used Landsat satellite data provided by the United States Geological Survey (USGS) to calculate the cooling efficiency of each studied city. We used the cloud-free Landsat 8 Level 2 LST and NDVI data."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "human activity intensity (VIIRS nighttime light data as a proxy indicator 103 )",
+    "background climate (mean annual temperature from ECMWF ERA5 dataset 95 and precipitation from TerraClimate dataset 96 )",
+    "We used Landsat satellite data provided by the United States Geological Survey (USGS) to calculate the cooling efficiency of each studied city. We used the cloud-free Landsat 8 Level 2 LST and NDVI data."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "论文旨在回答全球主要城市中，城市绿地的降温效率、降温能力和居民实际获得的降温收益如何分布，以及全球北方与全球南方城市之间是否存在不平等。研究还考察自然气候、地形和社会经济因素在多大程度上塑造这些降温指标，并估计提升绿地质量、数量和空间匹配后可实现的降温改善潜力。",
+   "hypothesis_or_mechanism": "核心机制是城市绿地通过较高植被覆盖降低地表温度，降温效率由NDVI与LST关系中的负向斜率表征；降温能力进一步取决于绿地数量及其降温效率。居民降温收益不仅取决于城市总体降温能力，还取决于人口空间分布与绿地空间分布是否匹配。",
+   "variables_and_data_use": "研究使用World’s Cities in 2018 Data Booklet筛选百万人口以上城市，用HDI划分全球北方/南方，用30 m GAIA 2018确定城市范围，并用CGLS Land Cover 2018排除水体；主要在100 m尺度使用Landsat 8 Level 2的LST和NDVI计算最热月地表温度、植被覆盖和降温效率，并用WorldPop Global Project Population Data 2018计算人口加权的降温收益。还使用CGLS、GHSL Built-up height、MERIT DEM、GSHHG、ECMWF ERA5、TerraClimate和GDP数据构建局地气候区、控制地形/建筑高度/距水体距离并分析气候与社会经济影响；稳健性检验在1 km尺度使用MODIS LST/NDVI、MODIS MCD43A3反照率、MODIS MCD19A2气溶胶、NASA FLDAS湿度和VIIRS夜间灯光等数据。",
+   "method_paradigm": "方法范式包括基于遥感栅格的城市边界提取与局地气候区分层、普通最小二乘多元线性回归估计NDVI对LST的降温效率，并以VIF进行变量筛选。随后构建降温能力和人口加权降温收益指标，使用多变量分析、分段结构方程模型和空间自回归模型检验驱动因素，并用基尼系数量化城市间不平等及情景上界法估计改善潜力。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s41467-024-51355-0.methods.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:25"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_expanded_set_008",
+   "source_paper_doi": "10.1109/jstars.2021.3105645",
+   "title": "The Third Generation of Pan-Canadian Wetland Map at 10m Resolution Using Multisource Earth Observation Data on Cloud Computing Platform",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 3,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Nighttimelightdatawas\nusedasanotherinputfeature.TheDefenseMeteorological\nProgram(DMSP)OperationalLine-ScanSystem(OLS)hasa\nuniquecapabilitytodetectvisibleandnear-infrared(VNIR)\nemissionsourcesatnight.Inparticular,thenightlightdatais\namonthlyaverageradiancecompositeimageusingnighttime\ndatafromtheVisibleInfraredImagingRadiometerSuite\n(VIIRS)Day/NightBand(DNB)."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Finally,climatedata,\nincludingtemperatureandprecipitation,witharesolutionof\n25km,wereaddedtoouranalysisfromtheERA5\nfth-generationECMWFatmosphericreanalysisofthe\nglobalclimate(CopernicusClimateChangeService,2017).\nInparticular,a10-year(20102020)averageandstandard\ndeviationinmonthlyprecipitationandtemperaturewere\nextractedfromtheclimatedata."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Inthisstudy,S2SurfaceReectance\n(SR,Level-2A)andTopofAtmosphere(TOA,Level-1C)imagerywerecollectedonatri-monthlyperiod,fromJuneto\nAugust."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Nighttimelightdatawas\nusedasanotherinputfeature.TheDefenseMeteorological\nProgram(DMSP)OperationalLine-ScanSystem(OLS)hasa\nuniquecapabilitytodetectvisibleandnear-infrared(VNIR)\nemissionsourcesatnight.Inparticular,thenightlightdatais\namonthlyaverageradiancecompositeimageusingnighttime\ndatafromtheVisibleInfraredImagingRadiometerSuite\n(VIIRS)Day/NightBand(DNB).",
+    "Finally,climatedata,\nincludingtemperatureandprecipitation,witharesolutionof\n25km,wereaddedtoouranalysisfromtheERA5\nfth-generationECMWFatmosphericreanalysisofthe\nglobalclimate(CopernicusClimateChangeService,2017).\nInparticular,a10-year(20102020)averageandstandard\ndeviationinmonthlyprecipitationandtemperaturewere\nextractedfromtheclimatedata.",
+    "Inthisstudy,S2SurfaceReectance\n(SR,Level-2A)andTopofAtmosphere(TOA,Level-1C)imagerywerecollectedonatri-monthlyperiod,fromJuneto\nAugust."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "research_question": "研究旨在开发第三代泛加拿大湿地制图系统（CWIM3），检验整合多源遥感与辅助数据是否能够提高湿地类别分类精度、减少湿地面积高估并缩短制图处理时间。论文还比较不同预处理方式、数据源组合以及按生态区或全国范围建模对分类精度的影响。",
+   "hypothesis_or_mechanism": "整合光学、SAR、地形、气候和夜间灯光等多源特征能够增强不同湿地类别之间的可分性，从而提高总体精度并减少类别混淆。按生态区分别建模应能适应区域性的生态和气候差异；增加非湿地训练数据则有助于降低湿地类别的过度分类，尤其是沼泽类别的面积高估。",
+   "variables_and_data_use": "分类变量包括光学反射率、SAR特征、地形高程、夜间灯光、降水和温度；具体使用了Sentinel-2（S2）、ALOS PALSAR-2、加拿大范围10 m数字高程模型（DEM）、夜间灯光数据以及气候降水和温度数据。湿地与非湿地多边形样本经边界、类别标签和面积筛选后，按生态区划分为训练集和测试集，用于监督分类及精度评价。",
+   "method_paradigm": "采用面向对象的随机森林（RF）监督分类与多源数据融合范式，在加拿大生态区尺度进行湿地类别制图。通过设置不同分类情景，对大气校正、光学与SAR数据融合、辅助数据加入以及生态区分区建模进行对比，并以总体精度、Kappa系数和F1-score评价结果。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1109_jstars.2021.3105645.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:50"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_012",
+   "source_paper_doi": "10.3389/frsen.2023.1197523",
+   "title": "Linking forest management to surrounding lands: a citizen-based approach towards the regional understanding of land-use transitions",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Nighttimesatelliteimagerywasusedasproxiesofmapping\nhumanwellbeingandurbandevelopment(Suttonetal.,2009;\nLietal.,2017)(GoogleEarthengineID:NOAA/VIIRS/DNB/\nMONTHLY_V1/VCMSLCFG).VIIRSStrayLightCorrected\nNighttimeDay/NightBandCompositesVersion1(Miller\netal.,2013)"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "WeusedLandsatdatafor1/1/2013and8/1/2018,availableonthe\nGEEAPI(GoogleEarthengineID:LANDSAT/LC8_L1T_\nANNUAL_GREENEST_TOA).TheseCollection2Landsat\n8OperationalLandImager(OLI)datahaveaspatial\nresolutionof30-mandareTop-of-atmosphere(TOA)and\nLandsat5TOAre\u0001ectances(Chanderetal.,2009"
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Nighttimesatelliteimagerywasusedasproxiesofmapping\nhumanwellbeingandurbandevelopment(Suttonetal.,2009;\nLietal.,2017)(GoogleEarthengineID:NOAA/VIIRS/DNB/\nMONTHLY_V1/VCMSLCFG).VIIRSStrayLightCorrected\nNighttimeDay/NightBandCompositesVersion1(Miller\netal.,2013)",
+    "WeusedLandsatdatafor1/1/2013and8/1/2018,availableonthe\nGEEAPI(GoogleEarthengineID:LANDSAT/LC8_L1T_\nANNUAL_GREENEST_TOA).TheseCollection2Landsat\n8OperationalLandImager(OLI)datahaveaspatial\nresolutionof30-mandareTop-of-atmosphere(TOA)and\nLandsat5TOAre\u0001ectances(Chanderetal.,2009"
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文旨在回答：如何在美国东南部区域尺度上绘制森林管理实践，并描述不同森林管理类型与周边土地利用之间的空间邻近关系。研究还关注土地利用在5年期间如何变化，以及这些变化如何帮助理解森林管理与周边土地之间的相互影响。",
+   "hypothesis_or_mechanism": "核心机制是不同土地利用类型之间存在邻近性关联，某类土地利用更可能在靠近另一类土地利用的区域发生转化。森林管理实践既可能受到周边农业、城市等土地利用的影响，也可能反过来推动周边土地利用变化。",
+   "variables_and_data_use": "研究使用OpenStreetMap（OSM）历史众包数据绘制区域土地利用并生成5年土地利用变化图；使用Google Earth Engine处理地球观测数据以支持大尺度空间分析。具体数据还包括VIIRS Stray Light Corrected Nighttime Day/Night夜间灯光数据、土地所有权数据、长期物候模式及其变化、周边景观结构，用于推断生产林、生态林、保护/荒野林和被动管理林等森林管理类别，并分析其与农田等土地利用的邻近关系。",
+   "method_paradigm": "方法范式是基于公民科学/志愿地理信息的区域土地利用制图，结合Google Earth Engine云计算和机器学习进行地球观测影像处理与森林管理分类。随后通过土地利用变化制图和空间邻近分析，比较不同森林管理类型与周边土地利用之间的空间关系。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3389_frsen.2023.1197523.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:29"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_013",
+   "source_paper_doi": "10.1038/s41598-022-25570-y",
+   "title": "Data utilized in this study（切片无题名页，以节标题代；东南亚多可再生能源潜力评估论文）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The urban and rural area data in this study were obtained from a combination of impervious surface and night light data that separated urban and rural areas based on population density and level of economic activity."
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "exact_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "To obtain precipitation data, the Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) data product was used 56 ."
+     ]
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "The urban and rural area data in this study were obtained from a combination of impervious surface and night light data that separated urban and rural areas based on population density and level of economic activity.",
+    "To obtain precipitation data, the Climate Hazards Group InfraRed Precipitation with Station (CHIRPS) data product was used 56 ."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_greenness_context"
+   ],
+   "research_question": "论文旨在回答东南亚哪些地点最适合建设太阳能、风能和水电基础设施，以及这些地点的可再生能源潜力能否满足城市与农村能源需求。研究还将估算结果与 WRI Global Power Plant Database 中现有电厂信息进行比较。",
+   "hypothesis_or_mechanism": "核心机制是将能源需求空间化，并用多准则适宜性评价识别不同可再生能源的优先开发区域。太阳能、风能和水电潜力受气象条件、地形、水文、土地覆盖及约束区影响，因此通过参数加权、约束排除和潜力模型叠加得到最优组合。",
+   "variables_and_data_use": "能源需求使用 Energy Information Administration、World Bank、Index Mundi/CIA 的人均能耗统计，并结合 FROM-GLC 不透水面、VIIRS DNB 夜间灯光和 WorldPop Global Project Population Data 区分城乡并估算像元用电量。适宜性与潜力建模使用 Global Solar Atlas 的 GHI、MODIS Terra/Aqua MCD19A2 AOD、MYDAL2 云光学厚度、CHIRPS 降水、CFSv2 短波辐射和温度、Global Wind Atlas 风速和空气密度、ALOS-DEM/AW3D30 与 SRTMGL1 高程坡度、MERIT Hydro 河流阶次和汇流累积、CGLS-LC100 土地覆盖、GSCD 径流特征，并用 WDPA、Geonode Global Airports、GranD v1.3、DMA ONC 水体/河流和 WRI Global Power Plant Database 作为约束或验证/比较数据。",
+   "method_paradigm": "方法范式是 GIS 栅格化多源数据融合、AHP 加权的多准则土地适宜性分析，以及太阳能、风能和水电的物理/经验潜力估算模型。所有不同分辨率数据通过双线性插值统一到 1 km 空间分辨率，并通过适宜区叠加确定多能源基础设施的最优空间组合。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1038_s41598-022-25570-y.methods.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:33"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_014",
+   "source_paper_doi": "10.3389/frsen.2026.1840277",
+   "title": "2.2.1 Data sources and preprocessing（切片无题名页，以节标题代；新疆荒漠 FVC 植被覆盖度反演论文）",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 1,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "In this study, Landsat 8 OLI surface reflectance data provided by the United States Geological Survey (USGS) are used, covering the time span from 2016 to 2025."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "In this study, Landsat 8 OLI surface reflectance data provided by the United States Geological Survey (USGS) are used, covering the time span from 2016 to 2025."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "urban_activity_observation",
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文旨在回答新疆荒漠区不同典型地貌类型中，2016—2025年春季植被覆盖度（FVC）的空间格局、年际变化趋势及稳定性如何。研究还评估基于NDVI、MSAVI和EVI的像元二分模型在荒漠稀疏植被背景下反演FVC的精度差异。",
+   "hypothesis_or_mechanism": "核心机制是像元光谱信号可视为植被与裸土端元的线性混合，因此可用植被指数在裸土端元与纯植被端元之间的位置估算FVC。研究假定5%和95%分位数可分别代表荒漠区近裸土和相对高覆盖植被端元，以适应新疆荒漠植被稀疏且空间异质性强的特征。",
+   "variables_and_data_use": "使用USGS提供的Landsat 8 OLI地表反射率数据，在GEE中选取2016—2025年每年5—6月影像，利用pixel_qa波段进行云和云影掩膜，并以中值合成生成年度影像；由近红外、红光和蓝光波段计算NDVI、MSAVI和EVI，并分别驱动像元二分模型生成FVC。新疆荒漠分布数据来自National Cryosphere Desert Data Center；2025年86个30 m×30 m地面样方的无人机垂直照片经ACGISmap监督分类得到实测FVC，用于与2025年Landsat反演FVC进行R²和RMSE验证。",
+   "method_paradigm": "方法范式为基于遥感植被指数的像元二分模型反演，并结合地面样方监督分类结果进行精度验证。时空变化分析采用Theil-Sen Median斜率估计与Mann-Kendall趋势检验划分显著增减等级，并用变异系数（CV）评估2016—2025年FVC时间序列稳定性。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.3389_frsen.2026.1840277.methods.txt",
+    "chars": 9181,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:32"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_015",
+   "source_paper_doi": "10.5194/acp-6-1409-2006",
+   "title": "Screening the ESA ATSR-2 World Fire Atlas (1997–2002)",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+    "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)"
+   ],
+   "covered_member_count": 2,
+   "member_adjudications": [
+    {
+     "member_id": "urban_activity_observation",
+     "role": "urban_activity_observation",
+     "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance (DMSP-OLS 等夜光同类词=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "Thescreeningofobservationscorrespondingtogas\u0003aresreliedondatafromtheDefenseMeteorologicalSatelliteProgram(DMSP)OperationalLinescanSystem(OLS)Night\ntimeLightsoftheWorlddataproduct"
+     ]
+    },
+    {
+     "member_id": "extreme_rainfall_driver",
+     "role": "extreme_rainfall_driver",
+     "anchor_product": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "actual_dataset": "CHIRPS Daily Final Precipitation v2.0 (TRMM/IMERG/ERA5/GPCC/TerraClimate 等降雨同类词=analogous)",
+     "identity_match": "no_match",
+     "usage": "not_used"
+    },
+    {
+     "member_id": "urban_greenness_context",
+     "role": "urban_greenness_context",
+     "anchor_product": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance (TM/ETM+/OLI=compatible；MODIS NDVI/Sentinel-2=analogous)",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "TheGLC2000landcovermapandLandsat\nscenebands5-4-3colorcompositequick-looks,withanominalspatialresolutionof240m480m(UnitedStatesGeologicalSurvey(USGS)GlobalVisualizationViewer,http://\nglovis.usgs.gov/)wereoftenused,todetermineifthecounts\nmightbevegetation\u0002res,possiblyignitedasaresultofvolcaniceruptions."
+     ]
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "Thescreeningofobservationscorrespondingtogas\u0003aresreliedondatafromtheDefenseMeteorologicalSatelliteProgram(DMSP)OperationalLinescanSystem(OLS)Night\ntimeLightsoftheWorlddataproduct",
+    "TheGLC2000landcovermapandLandsat\nscenebands5-4-3colorcompositequick-looks,withanominalspatialresolutionof240m480m(UnitedStatesGeologicalSurvey(USGS)GlobalVisualizationViewer,http://\nglovis.usgs.gov/)wereoftenused,todetermineifthecounts\nmightbevegetation\u0002res,possiblyignitedasaresultofvolcaniceruptions."
+   ],
+   "machine_state_at_admission": {
+    "source_batch": "task_007_broad_verify",
+    "verify": "task_007_verify_20261006 (strict+broad independent read)",
+    "quote_verification": "passed",
+    "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同地区同事件同领域"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "extreme_rainfall_driver"
+   ],
+   "research_question": "论文旨在回答ESA ATSR-2 World Fire Atlas（WFA，1997—2002年，算法2的308 K阈值产品）中有多少观测并非植被火，以及如何将这些虚警和非植被火从全球多年火活动数据集中筛除。研究目标是为全球变化研究提供改进后的全球多年植被火活动数据集。",
+   "hypothesis_or_mechanism": "作者基于对WFA在沙漠和稀疏植被区的目视检查，认为该产品包含相当多不对应植被火的观测，而非原先认为的误报比例较小。主要误差机制包括热裸地表、油气火炬、城市灯光和火山活动等被ATSR-2夜间3.7 μm通道的高温阈值误判为火点。",
+   "variables_and_data_use": "核心数据为ESA World Fire Atlas中由ERS-2卫星ATSR-2传感器夜间观测生成的全球火点，使用1997—2002年算法2、3.7 μm通道亮温大于308 K的1 km观测；其变量是每个WFA observation/count的空间位置、时间和是否为植被火的分类。辅助使用土地覆盖、夜间灯光和火山活动数据集，并结合油气火炬相关空间掩膜，用于识别和剔除热地表、城市灯光、气体火炬和火山喷发等非植被火或虚警。",
+   "method_paradigm": "方法范式是基于辅助空间掩膜的规则筛选与时空异常聚类检测相结合的遥感产品质量筛查。具体流程为两阶段分类：先用土地覆盖、夜间灯光、火山活动和气体火炬等空间掩膜自动标记虚警和非植被火，再对剩余WFA数据进行目视分析以识别第一阶段未检测到的错误观测。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.5194_acp-6-1409-2006.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:39:35"
+   }
+  },
+  {
+    "direction_id": "manual_admitted_partial_set_016",
+    "source_paper_doi": "10.3390/rs18172948",
+    "title": "Assessing Vegetation–Hydrothermal Trend Regimes Across Elevation Gradients in Semiarid Mountains via Gaussian Mixture Models in Saudi Arabia",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261006",
+    "actual_datasets": [
+      "CHIRPS Daily Final Precipitation v2.0",
+      "Landsat Collection 2 Level-2 surface reflectance"
+    ],
+    "covered_member_count": 2,
+    "member_adjudications": [
+      {
+        "member_id": "urban_activity_observation",
+        "role": "urban_activity_observation",
+        "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+        "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+        "identity_match": "no_match",
+        "usage": "not_used"
+      },
+      {
+        "member_id": "extreme_rainfall_driver",
+        "role": "extreme_rainfall_driver",
+        "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+        "actual_dataset": "CHIRPS Daily Final Precipitation v2.0",
+        "identity_match": "analogous_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "Climaticvariables,includinglong-termtrendcoefcientsforprecipitation(RF_K),maximumtemperature(Tmax,),andminimumtemperature(Tmin,),wereobtainedfromtheTerraClimatedataset(https://www.climatologylab.org/terraclimate.html,accessedon25March2026)"
+        ]
+      },
+      {
+        "member_id": "urban_greenness_context",
+        "role": "urban_greenness_context",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance",
+        "actual_dataset": "Landsat Collection 2 Level-2 surface reflectance",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "Vegetation,moisture,andthermaldynamicswerederivedfromLandsat8surfacereectance(Collection2,Level2)datafor20142025(https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2,accessedon20March2026)."
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "Climaticvariables,includinglong-termtrendcoefcientsforprecipitation(RF_K),maximumtemperature(Tmax,),andminimumtemperature(Tmin,),wereobtainedfromtheTerraClimatedataset(https://www.climatologylab.org/terraclimate.html,accessedon25March2026)",
+      "Vegetation,moisture,andthermaldynamicswerederivedfromLandsat8surfacereectance(Collection2,Level2)datafor20142025(https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2,accessedon20March2026)."
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_partial_pools_20261006",
+      "verify": "task_007_broad_20261006",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+    },
+    "partial_set_support": true,
+    "missing_member_ids": [
+      "urban_activity_observation"
+    ],
+    "research_question": "沙特Al Baha半干旱山地的多维植被—水热趋势能否划分为概率状态，其组成与气候关联如何随海拔变化？",
+    "hypothesis_or_mechanism": "植被、水分与地表温度趋势共同形成重叠的多维状态，气候与状态的关联随海拔变化；状态是标准化趋势空间中的相对类别，不应解读为单一变量的绝对变化或确定因果关系。",
+    "variables_and_data_use": "2014–2025年Landsat生成NDVI、NDWI、LST趋势，TerraClimate提供水热变量，SRTM提供海拔分层，VIIRS用于跨传感器一致性验证；不将CHIRPS或ERA5冒充实际输入。",
+    "method_paradigm": "Mann–Kendall趋势提取后标准化，使用GMM概率分类，通过BIC、ICL、熵、重采样稳定性和留出预测评价选择六类解，再进行海拔分层气候关联和跨传感器验证。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "Abstract\nVegetationhydrothermaltrendpatternsinsemiaridmountainsareinherentlymultidimensionalacrossaltitudinalgradients,requiringprobabilisticframeworkstocharacterize\noverlappingvegetationhydrothermaltrendpatterns.WedevelopaGaussianmixture\nmodel(GMM)-basedframeworktoclassifyvegetationtrendregimesfrommultidimensionaltrendvariablesandtocharacterizetheirclimateregimeassociationsacrosselevationgradientsinthesemiaridAlBaharegion,SaudiArabia.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 52-55",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Whenanalyzedovertime,theseindicatorsoffer\nvaluableinsightsintoecosystemresponsestoclimatevariability[1013\nexistingstudiestreatthesevariablesindependently,implicitlyassuminglinearandisolated\nresponses[1416\nplehydrothermalfactorsratherthananysingleclimaticvariable,suggestingthatecosystem\nresponsesaremoreappropriatelyconceptualizedasintegratedvegetationhydrothermal\ntrendregimesratherthansingle-variabletrends[1719\nNumerousstudieshaveexaminedvegetationdynamicsusingstatisticalandmachine\nlearningmodels[2023\ndetectionanddonotexplicitlyresolvetheunderlyingstructureofmultidimensionalecosystemresponses.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 99-108",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Theframeworkintegratesmulti-sourceremotesensingdatasets,includingLandsatderivedvegetationandthermalindicators,TerraClimatehydroclimaticvariables,VIIRS\nobservationsforcross-sensorcomparison,andSRTMelevationdata,withinaharmonized\nspatiotemporalstructure.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 187-189",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Thesestandardizedtrendvariableswereintegratedwithin\naprobabilisticGMMframework,withcandidatemodelsevaluatedusingBayesianinformationcriterion(BIC),IntegratedCompletedLikelihood(ICL),classi\u0002cationentropy,\nresampling-basedpartitionstability,andheld-outpredictiveperformance.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 58-60",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Thesestandardizedtrendvariableswereintegratedwithin\naprobabilisticGMMframework,withcandidatemodelsevaluatedusingBayesianinformationcriterion(BIC),IntegratedCompletedLikelihood(ICL),classi\u0002cationentropy,\nresampling-basedpartitionstability,andheld-outpredictiveperformance.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 58-60",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "WedevelopaGaussianmixture\nmodel(GMM)-basedframeworktoclassifyvegetationtrendregimesfrommultidimensionaltrendvariablesandtocharacterizetheirclimateregimeassociationsacrosselevationgradientsinthesemiaridAlBaharegion,SaudiArabia.Landsattime-seriesdata\n(20142025)wereusedtoderivetrendsintheNormalizedDifferenceVegetationIndex\n(NDVI),normalizeddifferencewaterindex(NDWI),andlandsurfacetemperature(LST)\nusingtheMannKendalltest.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 54-58",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "AlthoughBIC\nfavoredtheeight-componentVVVmodel,thesix-componentsolutionwasretainedasa\n\nRemoteSens.2026,18,2948https://doi.org/10.3390/rs18172948\n\nRemoteSens.2026,18,2948\n\n2of23\n\nbalancedintermediate-complexityrepresentationbasedonpartitionreproducibility,near-optimalpredictiveperformance,classi\u0002cationambiguity,andparsimony.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_rs18172948.txt",
+        "doi": "10.3390/rs18172948",
+        "locator": "UTF-8 text lines 60-69",
+        "source_sha256": "765580c0cf12743ba26ffb5a6c1738bb76e0d3c128ee252e3cbeb1e500656090"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  }
+ ],
+ "coverage": {
+  "formal_reference_count": 23,
+  "minimum_target": 20,
+  "minimum_met": true,
+  "latest_manual_audit": "reference_sets/audit/broad_recall_partial_pools_20261006/"
+ },
+ "reference_count": 23
+}

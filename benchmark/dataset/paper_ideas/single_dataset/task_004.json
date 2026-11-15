@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.3390/geosciences8090326",
+  "task_id": "single_dataset/task_004",
+  "title": "An Improved Data-Driven Approach for the Prediction of Rainfall-Triggered Soil Slides Using Downscaled Remotely Sensed Soil Moisture",
+  "category": "geological_hazards",
+  "year": 2018,
+  "journal": "Geosciences",
+  "impact_level": "medium",
+  "datasets": [
+    "ESA CCI soil moisture",
+    "GPM"
+  ],
+  "anchor_substitution": {
+    "paper_used": "ESA CCI soil moisture",
+    "task_anchor": "NASA_USDA/HSL/SMAP10KM_soil_moisture",
+    "reason": "ESA CCI soil moisture is not published in the Earth Engine catalog, so the NASA-USDA SMAP-enhanced Palmer product stands in as the task anchor.",
+    "consequence": "The seed paper itself does not use the task anchor. Reference directions are admitted on operational use of the NASA-USDA SMAP family, so the seed would not satisfy this task's own admission rule.",
+    "fields_left_unchanged": [
+      "datasets",
+      "idea.data_sources",
+      "idea.analytical_approach"
+    ],
+    "note": "These fields still name ESA CCI because they record what the paper actually did. Do not rewrite them to match the anchor.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "下尺度遥感土壤湿度能否作为孔隙水压力代理变量，用于改进降雨诱发浅层土滑坡的资料驱动预测？",
+    "hypothesis": "在降雨诱发土滑坡预测中，加入经过下尺度处理的遥感土壤湿度变量，可以比仅使用降雨或常规环境因子的模型更好地表征滑坡发生前的水文状态，从而提高预测能力。",
+    "mechanism": "降雨入渗会增加土体含水量并抬升孔隙水压力，进而降低有效应力和抗剪强度，使斜坡更接近失稳条件。遥感土壤湿度虽然观测的是近地表含水状态，但经过空间下尺度后可更好匹配滑坡尺度，并作为孔隙水压力或前期湿润状态的代理变量嵌入数据驱动模型中，以刻画降雨触发滑坡的水文准备条件和触发过程。",
+    "key_variables": {
+      "target": "降雨诱发土滑坡的发生或发生概率",
+      "predictors": [
+        "下尺度遥感土壤湿度",
+        "降雨量或降雨强度",
+        "前期降雨条件",
+        "地形因子",
+        "土壤或地质条件",
+        "土地覆盖或植被条件"
+      ]
+    },
+    "data_sources": [
+      "ESA CCI soil moisture",
+      "GPM precipitation data",
+      "滑坡事件或土滑坡编录数据",
+      "地形、地质、土壤或土地覆盖辅助数据"
+    ],
+    "analytical_approach": "构建资料驱动的降雨诱发土滑坡预测框架，将GPM降雨信息与ESA CCI遥感土壤湿度数据结合，并对土壤湿度进行空间下尺度处理，使其更适用于滑坡尺度分析；随后将下尺度土壤湿度作为孔隙水压力代理变量，与降雨及环境因子共同输入预测模型，并通过对比包含与不包含土壤湿度变量的模型设定来评估其设计价值。",
+    "expected_contribution": "提出一种将下尺度遥感土壤湿度纳入降雨诱发土滑坡预测的研究设计，为缺乏现场孔隙水压力观测的区域提供可替代的水文状态表征方法，并为区域尺度滑坡预警和数据驱动地质灾害预测提供更具物理含义的变量构建思路。",
+    "falsification_condition": "如果加入下尺度遥感土壤湿度后，模型在独立验证或时空外推条件下相对于不包含该变量的基准模型没有稳定改进，或土壤湿度变量与滑坡发生前的水文失稳条件缺乏一致关系，则该假设将被削弱或推翻。"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Europe",
+  "data_description": {
+    "dataset_name": "Sentinel-5P OFFL NO2: Offline Nitrogen Dioxide",
+    "spatial_coverage": {
+      "region_name": "Europe",
+      "coverage": "European land areas and adjacent regions covered by the global Sentinel-5P orbital swath, with valid observations available according to retrieval conditions."
+    },
+    "temporal_coverage": "2018-06-28T10:24:07Z to 2026-06-27T21:37:21Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1113.2 m nominal GEE L3 raster grid (source TROPOMI L2 nadir footprint is approximately 3.5 x 7 km)",
+    "temporal_unit": "ImageCollection acquisitions with a nominal 2-day revisit interval; individual orbit observations are not a regular daily record at every pixel",
+    "analytical_capabilities": [
+      "Mapping the spatial distribution and regional gradients of tropospheric and total NO2 column densities",
+      "Assessing temporal trends, seasonal variability, and long-term changes",
+      "Detecting spatial hotspots, clusters, and geographic anomalies",
+      "Comparing NO2 column conditions across regions, time periods, and land-cover contexts",
+      "Computing spatial and temporal aggregates, zonal statistics, and relationships with auxiliary geographic datasets",
+      "Using the catalog quality-screened L3 raster observations for regional column mapping"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NO2 column number density in moles per square meter (mol/m²)",
+      "runtime_hint": "Use tropospheric_NO2_column_number_density for lower-atmosphere-focused analyses and NO2_column_number_density for the total column; both are in mol/m² with catalog scale 1. The L3 asset is produced from L2 by harpconvert spatial binning and retains one grid per orbit. Source pixels were filtered at ingestion using tropospheric-band validity >75% (and >50% for other NO2 fields). Apply region/date filters and aggregate valid observations before comparison. Do not discard all negative columns: only treat values below about -0.001 mol/m² as outliers, consistent with the catalog guidance. cloud_fraction is a fraction (0–1) and may be used for an additional cloud screen."
+    },
+    "data_source": "European Space Agency Copernicus Sentinel-5P TROPOMI mission",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/OFFL/L3_NO2",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_NO2"
+}

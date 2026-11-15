@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Groundwater-stressed basins",
+  "datasets": [
+    {
+      "role": "grace_storage_input",
+      "data_description": {
+        "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "data_type": "Monthly satellite-gravimetry raster time series",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+        "spatial_coverage": {
+          "region_name": "Groundwater-stressed basins",
+          "coverage": "Declared analysis region within Groundwater-stressed basins."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+    },
+    {
+      "role": "soil_moisture_state",
+      "data_description": {
+        "dataset_name": "GLDAS Noah Land Surface Model L4 3-hourly 0.25 degree",
+        "data_type": "Soil-moisture gridded time series",
+        "data_format": "Google Earth Engine ImageCollection asset",
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+        "spatial_coverage": {
+          "region_name": "Groundwater-stressed basins",
+          "coverage": "Declared analysis region within Groundwater-stressed basins."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+      "data_type": "Monthly satellite-gravimetry raster time series",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "spatial_coverage": {
+        "region_name": "Groundwater-stressed basins",
+        "coverage": "Declared analysis region within Groundwater-stressed basins."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "GLDAS Noah Land Surface Model L4 3-hourly 0.25 degree",
+      "data_type": "Soil-moisture gridded time series",
+      "data_format": "Google Earth Engine ImageCollection asset",
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+      "spatial_coverage": {
+        "region_name": "Groundwater-stressed basins",
+        "coverage": "Declared analysis region within Groundwater-stressed basins."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_013:composite_observation",
+    "type": "composite_observation",
+    "name": "grace_sm_data composite observation",
+    "observable_group": "grace_sm_data_multidataset_observation",
+    "components": [
+      {
+        "role": "grace_storage_input",
+        "data_description": {
+          "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "data_type": "Monthly satellite-gravimetry raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+          "spatial_coverage": {
+            "region_name": "Groundwater-stressed basins",
+            "coverage": "Declared analysis region within Groundwater-stressed basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+      },
+      {
+        "role": "soil_moisture_state",
+        "data_description": {
+          "dataset_name": "GLDAS Noah Land Surface Model L4 3-hourly 0.25 degree",
+          "data_type": "Soil-moisture gridded time series",
+          "data_format": "Google Earth Engine ImageCollection asset",
+          "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+          "spatial_coverage": {
+            "region_name": "Groundwater-stressed basins",
+            "coverage": "Declared analysis region within Groundwater-stressed basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "grace_storage_input",
+        "soil_moisture_state"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_013:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "grace_storage_input",
+      "soil_moisture_state"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

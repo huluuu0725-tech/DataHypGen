@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Two forest stands near Arnsberg, North Rhine-Westphalia, Germany",
+  "data_description": {
+    "dataset_name": "ERA5-Land Hourly - ECMWF Climate Reanalysis",
+    "spatial_coverage": {
+      "region_name": "Two forest stands near Arnsberg, North Rhine-Westphalia, Germany",
+      "coverage": "Global land-surface reanalysis coverage; the supplied study area is represented by one approximately 0.1° ERA5-Land grid cell containing both measurement sites."
+    },
+    "temporal_coverage": "1950-01-01T01:00:00Z to 2026-07-01T23:00:00Z in the catalog; the paper uses daily values at 14:00 UTC across its 2019-2022 observation span.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.1° (~11 km; nominal 11132 m)",
+    "temporal_unit": "Hourly (1-hour cadence)",
+    "analytical_capabilities": [
+      "Extract hourly volumetric soil-water content for ERA5-Land soil layers",
+      "Select daily 14:00 UTC snapshots to match the paper's downloaded forcing data",
+      "Compare dynamic reanalysis soil moisture with in-situ measurements and terrain predictors",
+      "Construct temporal covariates for random-forest soil-moisture modeling",
+      "Analyze spatial and temporal soil-moisture variability at regional scale"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Volumetric soil-water content in cubic metres per cubic metre (m³/m³) for the soil-layer bands; layer 1 represents 0-7 cm and layer 2 represents 7-28 cm in the supplied Methods.",
+      "runtime_hint": "Use `volumetric_soil_water_layer_1` and `volumetric_soil_water_layer_2` from the hourly collection. For paper-faithful inputs, select the 14:00 UTC image each day over the observation span, then sample the grid cell containing each field location. The authenticated catalog asset is an EPSG:4326, 0.1° grid with DOUBLE bands and MEAN pyramiding. Do not substitute `ECMWF/ERA5_LAND/MONTHLY_AGGR`: monthly aggregates do not preserve the daily 14:00 UTC temporal signal used here."
+    },
+    "data_source": "European Centre for Medium-Range Weather Forecasts (ECMWF), distributed through Google Earth Engine",
+    "gee_asset": {
+      "id": "ECMWF/ERA5_LAND/HOURLY",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY"
+}

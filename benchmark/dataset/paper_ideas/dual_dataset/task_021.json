@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.3390/rs12193194",
+  "task_id": "dual_dataset/task_021",
+  "title": "Indicators of Electric Power Instability from Satellite Observed Nighttime Lights",
+  "category": "nighttime_lights_electricity",
+  "year": 2020,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Satellite nighttime lights",
+    "Electricity reliability indicators"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "nighttime_lights",
+      "dataset": "Satellite nighttime lights"
+    },
+    {
+      "role": "electricity_reliability",
+      "dataset": "Electricity reliability indicators"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between nighttime lights and electricity reliability?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "PLANETARY_COMPUTER:hrea"
+    ],
+    "required_component_usage": [
+      "nighttime_lights",
+      "electricity_reliability"
+    ],
+    "expected_contribution": "A reproducible benchmark for association discovery across two core data components.",
+    "falsification_condition": "Reject if either required component is absent or not jointly represented."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_021:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_associations_20260930\\seed_audit.json"
+  }
+}

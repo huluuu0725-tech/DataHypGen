@@ -1,0 +1,64 @@
+{
+  "paper_id": "10.4995/raet.2021.15211",
+  "task_id": "dual_dataset/task_001",
+  "title": "Monitoreo de la variación del almacenamiento de agua en la cuenca del Medio y Bajo Paraná a partir de datos GRACE, GRACE FO, TRMM y GLDAS",
+  "category": "terrestrial_water_storage_reconstruction",
+  "year": 2021,
+  "journal": "Revista de Teledetección",
+  "impact_level": "medium",
+  "datasets": [
+    "GRACE Monthly Mass Grids Land",
+    "GLDAS-2.1 Noah Land Surface Model"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "satellite_gravimetry_tws_input",
+      "dataset": "GRACE Monthly Mass Grids Land"
+    },
+    {
+      "role": "land_surface_state_input",
+      "dataset": "GLDAS-2.1 Noah Land Surface Model"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "GRACE-FO continuation",
+    "TRMM or CHIRPS precipitation",
+    "ERA5-Land or other reanalysis",
+    "MODIS vegetation or land-surface products",
+    "surface-water, groundwater-well, GNSS, InSAR or DEM data"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_001:grace_gldas_water_storage",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Methods/Data evidence shows GRACE/GRACE-FO terrestrial water-storage grids, GLDAS-NOAH evapotranspiration and additional precipitation/runoff data used in a common water-balance analysis."
+  },
+  "idea": {
+    "research_question": "How can GRACE terrestrial water-storage anomalies and GLDAS Noah land-surface components be combined to explain and reconstruct groundwater-storage change across heterogeneous regions?",
+    "hypothesis": "GRACE provides the basin-scale storage constraint, while GLDAS Noah separates soil-moisture, snow and canopy-water contributions; adding hydroclimatic or geodetic observations improves attribution, validation and spatial refinement.",
+    "mechanism": "The two required inputs are aligned to a common spatial and monthly temporal support. GLDAS water-storage components are removed or modeled against GRACE total storage, and optional precipitation, reanalysis, vegetation, surface-water, well, GNSS, InSAR or terrain data are introduced only when they test a distinct driver, validation pathway or downscaling mechanism.",
+    "key_variables": {
+      "target": "GRACE terrestrial water-storage anomaly and derived groundwater-storage anomaly",
+      "predictors": [
+        "GLDAS Noah soil moisture, snow water equivalent, canopy water and flux variables",
+        "Optional precipitation, reanalysis, vegetation, surface-water, geodetic or in-situ observations",
+        "Time, season, basin and hydroclimatic regime"
+      ]
+    },
+    "data_sources": [
+      "NASA/GRACE/MASS_GRIDS/LAND",
+      "NASA/GLDAS/V021/NOAH/G025/T3H",
+      "Optional verified supplementary datasets selected for the idea type"
+    ],
+    "analytical_approach": "Common-grid and temporal alignment, anomaly decomposition, residual groundwater estimation, trend and change-point analysis, uncertainty propagation, causal or predictive modeling, and independent validation where supplementary observations are available.",
+    "expected_contribution": "A reusable benchmark for testing whether an idea preserves the gravimetric water-storage signal while using land-surface-model components and optional auxiliary observations for mechanism, validation or spatial refinement.",
+    "falsification_condition": "The proposed mechanism fails if the idea drops either required input, cannot align the two required records, produces residual storage estimates indistinguishable from noise, or gains no validated explanatory or predictive value from its supplementary data.",
+    "required_component_usage": [
+      "satellite_gravimetry_tws_input",
+      "land_surface_state_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently verified GRACE-GLDAS Methods/Data evidence and the two-role composite prompt specification on 2026-09-29."
+}

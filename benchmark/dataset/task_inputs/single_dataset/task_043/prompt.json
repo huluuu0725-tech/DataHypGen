@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrestrial land areas",
+  "data_description": {
+    "dataset_name": "WorldClim BIO Variables V1",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial land areas",
+      "coverage": "Global gridded long-term temperature and precipitation summaries, including annual means, ranges, seasonality, and wettest, driest, warmest, and coldest monthly or quarterly conditions."
+    },
+    "temporal_coverage": "Static long-term climatological normals; the Earth Engine catalog represents the layer with a nominal 1960-1990 interval, so it must not be interpreted as a current-weather or interannual time series.",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "927.67 m nominal pixel size",
+    "temporal_unit": "Long-term climatological normal",
+    "analytical_capabilities": [
+      "Mapping long-term temperature and precipitation gradients at global to regional scales",
+      "Separating annual mean conditions from seasonality and climatic extremes",
+      "Comparing multivariate climate regimes among regions",
+      "Identifying combinations of limiting cold, heat, wetness, and dryness conditions",
+      "Quantifying climatic similarity, environmental gradients, and spatially unusual climate combinations while auditing predictor collinearity"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "bio01-bio11 are temperature-derived variables, with documented 0.1 degrees Celsius scales except bio03 (%) and bio04 (0.01 degrees Celsius); bio12-bio14 and bio16-bio19 are precipitation in millimetres; bio15 is a precipitation coefficient of variation.",
+      "runtime_hint": "Load the asset as ee.Image('WORLDCLIM/V1/BIO'); apply each band's documented scale before analysis; do not treat the static normal as yearly observations; reduce correlated bio variables or report sensitivity to predictor selection when fitting multivariate models."
+    },
+    "data_source": "WorldClim, University of California, Berkeley",
+    "gee_asset": {
+      "id": "WORLDCLIM/V1/BIO",
+      "type": "image"
+    }
+  },
+  "data_path": "GEE:WORLDCLIM/V1/BIO"
+}

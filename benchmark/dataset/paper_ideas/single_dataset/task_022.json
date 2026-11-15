@@ -1,0 +1,80 @@
+{
+  "paper_id": "10.3390/rs13214380",
+  "task_id": "single_dataset/task_022",
+  "title": "Spatial-Temporal Evolution of Vegetation NDVI and Climatic, Environmental and Anthropogenic Factors in the Loess Plateau",
+  "category": "environmental_monitoring",
+  "year": 2021,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "SPOT VEGETATION NDVI (1 km, annual maximum composite)",
+    "CMA station precipitation and temperature, ANUSPLIN-interpolated",
+    "SRTM DEM",
+    "RESDC geomorphology, soil, vegetation, land-use, GDP and population grids"
+  ],
+  "study_area_verified": {
+    "name": "Loess Plateau, north-central China",
+    "period": "2000-2015, annual time step",
+    "elevation_range_m": "90 to 4914, classified into 6 natural-break categories",
+    "review_date": "2026-08-28"
+  },
+  "anchor_substitution": {
+    "paper_used": "SPOT VEGETATION NDVI at 1 km, annual maximum-value composites over 2000-2015, from the Chinese Academy of Sciences RESDC",
+    "task_anchor": "MODIS/061/MOD13A2",
+    "former_anchor": "MODIS/061/MOD13Q1",
+    "why_a_substitute_is_needed": "The Earth Engine catalog publishes no SPOT VEGETATION NDVI. Only SPOT high-resolution imagery restricted to Brazil and PROBA-V top-of-canopy reflectance from 2013 onward are available.",
+    "why_mod13a2": "It is the only catalog collection matching all three requirements: 1 km grid as in the source, 16-day cadence fine enough to reproduce annual maximum-value compositing, and coverage from February 2000 across the 2000-2015 period.",
+    "why_the_former_anchor_was_wrong": "MOD13Q1 is 250 m, which matches neither the source NDVI grid nor the 1 km grid its climate, terrain, soil and socioeconomic covariates were all co-registered to.",
+    "residual_gap": "MODIS and SPOT VEGETATION differ in sensor, band placement and compositing, so absolute NDVI values are not interchangeable; only the 1 km annual-maximum construction carries over.",
+    "companion_datasets": [
+      "101 CMA meteorological stations, monthly precipitation and temperature 2000-2015, interpolated with ANUSPLIN v4.3 onto the NDVI grid",
+      "SRTM DEM, with slope and aspect derived in GIS",
+      "RESDC 1:1,000,000 geomorphology, soil and vegetation type maps",
+      "RESDC GDP density and population density for 2000, 2005, 2010, 2015",
+      "RESDC 1 km land-use classification, 6 classes and 36 transition combinations"
+    ],
+    "corrections": [
+      "The earlier datasets list named MODIS NDVI, ERA5 and a bare 'precipitation' entry. The source uses SPOT VEGETATION NDVI, not MODIS; meteorology comes from CMA station records interpolated with ANUSPLIN, not ERA5."
+    ],
+    "fields_left_unchanged": [
+      "idea.data_sources",
+      "idea.analytical_approach"
+    ],
+    "note": "Those fields describe what the source did and must not be rewritten to match the anchor.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "2000–2015年黄土高原不同水分分区内，植被NDVI时空变化分别受气候、环境与人类活动因子的何种主导控制及交互作用影响？",
+    "hypothesis": "以400 mm等降水量线划分后，半干旱区植被NDVI变化更受降水、土壤类型和植被类型等自然因子限制，而半湿润区植被NDVI变化更受GDP密度、人口密度和土地利用类型等人类活动因子驱动；多因子交互对NDVI空间分异的解释力高于任一单因子。",
+    "mechanism": "区域水分条件决定植被生长的主控约束：在半干旱区，降水通过改变土壤水分供给，并受土壤类型的持水能力和植被类型的生态适应性调节，影响植被光合作用和覆盖度，从而改变NDVI；在半湿润区，水分限制相对减弱，退耕还林还草、土地利用转换、人口集聚和经济活动通过改变耕地、林地、草地的空间配置及人为管理强度，影响植被恢复过程和NDVI变化；不同因子之间通过水分供给、地表覆盖类型和人类土地管理的耦合产生增强型交互作用。",
+    "key_variables": {
+      "target": "植被NDVI及其时空变化指标，包括年均NDVI、NDVI变化趋势斜率、NDVI变异系数",
+      "predictors": [
+        "年降水量",
+        "年均气温",
+        "土壤类型",
+        "植被类型",
+        "土地利用类型",
+        "GDP密度",
+        "人口密度",
+        "地形因子",
+        "400 mm等降水量线划分的水分分区"
+      ]
+    },
+    "data_sources": [
+      "MODIS NDVI遥感产品，2000–2015年，建议使用MOD13Q1 16天合成、250 m空间分辨率，并计算年度NDVI指标",
+      "中国气象站点观测或栅格化气候数据，2000–2015年，包括年降水量和年均气温，空间插值或重采样至NDVI一致分辨率",
+      "中国土壤类型数据集，空间分辨率按研究区栅格化处理",
+      "中国植被类型图或土地覆盖/植被分类数据，空间分辨率按NDVI栅格重采样",
+      "土地利用/土地覆盖数据，2000–2015年或相邻年份序列，用于识别耕地、草地、林地等类型变化",
+      "县域或栅格GDP密度数据，2000–2015年，重采样或空间化至统一网格",
+      "县域或栅格人口密度数据，2000–2015年，重采样或空间化至统一网格",
+      "黄土高原边界数据与400 mm等降水量线，用于划分西北半干旱区和东南半湿润区"
+    ],
+    "analytical_approach": "首先对2000–2015年MODIS NDVI进行最大值合成或年度均值合成，计算年均NDVI、Theil-Sen或普通最小二乘线性趋势斜率以及变异系数；其次以400 mm等降水量线将黄土高原划分为半干旱区和半湿润区，并按土地利用类型统计NDVI变化；随后采用地理探测器模型，包括因子探测器、交互探测器、风险探测器和生态探测器，定量评估降水、气温、土壤类型、植被类型、土地利用类型、GDP密度、人口密度等因子对NDVI空间分异的解释力。连续变量需采用自然断点法、分位数分级或等距分级离散化，比较不同分区内各因子的q统计量，并检验双因子交互是否表现为双因子增强或非线性增强。",
+    "expected_contribution": "构建一个区分水分梯度的黄土高原植被恢复驱动机制框架，明确自然水分约束与人类土地管理在不同生态区内的相对作用路径，为退耕还林还草等生态修复政策的分区优化提供可迁移的分析设计。",
+    "falsification_condition": "若地理探测器结果显示半干旱区中降水、土壤类型和植被类型的q值均低于0.10且不高于GDP密度、人口密度和土地利用类型，或半湿润区中GDP密度、人口密度和土地利用类型的q值均低于0.10且不高于降水、土壤类型和植被类型，则主导驱动分区假设不成立；若主要双因子交互q值不大于两个单因子q值中的最大值，则多因子增强交互假设不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

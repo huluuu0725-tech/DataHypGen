@@ -1,0 +1,85 @@
+{
+  "paper_id": "10.5194/hess-25-4185-2021",
+  "task_id": "single_dataset/task_002",
+  "title": "Development and evaluation of 0.05 degree terrestrial water storage estimates using Community Atmosphere Biosphere Land Exchange (CABLE) land surface model and assimilation of GRACE data",
+  "category": "environmental_monitoring",
+  "year": 2021,
+  "journal": "Hydrology and Earth System Sciences",
+  "impact_level": "high",
+  "datasets": [
+    "CHIRPS v2.0 precipitation forcing",
+    "CABLE SubgridSoil GroundWater (CABLE-SSGW)",
+    "GSFC GRACE Mascon product",
+    "Princeton University meteorological forcing version 2",
+    "GLASS LAI",
+    "ESA CCI COMBINED soil moisture",
+    "GLEAM evapotranspiration",
+    "SASMAS soil moisture",
+    "Australian Groundwater Explorer",
+    "FLUXNET2015"
+  ],
+  "study_area_verified": {
+    "name": "Australia",
+    "analysis_period": "1981-2012 model simulations; GRACE assimilation from 2003-2012",
+    "source": "replacement seed full text sections 2.1-2.4",
+    "review_date": "2026-09-24"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "UCSB-CHG/CHIRPS/DAILY",
+    "operationally_used": true,
+    "paper_actually_used": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)",
+    "processing_level": "CHIRPS v2.0 Final 0.05 degree precipitation",
+    "evidence": "Section 2.2 states that the CABLE model is forced with precipitation and that, for precipitation, the study uses CHIRPS on a 0.05 degree grid. It then spatially averages CHIRPS for 0.5 degree simulations and temporally disaggregates daily CHIRPS to 3-hour time steps.",
+    "current_catalog_equivalent": "UCSB-CHG/CHIRPS/DAILY is the GEE CHIRPS v2.0 Final daily precipitation collection with the precipitation band in mm/day.",
+    "companion_datasets": [
+      "CABLE-SSGW land surface and groundwater model",
+      "GSFC GRACE Mascon monthly TWS variations",
+      "Princeton meteorological forcing variables",
+      "GLASS LAI and land-cover/soil parameter sources",
+      "ESA CCI, GLEAM, SASMAS, groundwater and FLUXNET validation data"
+    ],
+    "review_date": "2026-09-24"
+  },
+  "seed_replacement": {
+    "former_seed": "10.3390/hydrology12040068",
+    "replacement_reason": "The user requested CHIRPS to replace single_dataset/task_002. This 2021 HESS seed is earlier than the evaluation year, contains explicit operational CHIRPS precipitation use, and opens the strict window 2021 < paper_year <= 2026.",
+    "audit_record": "reference_sets/audit/task_seed_replacements_20260924/single_dataset/task_002.json"
+  },
+  "idea": {
+    "research_question": "在澳大利亚，0.05° CHIRPS 降水强迫与高分辨率 CABLE-SSGW 和 GRACE 同化结合后，能否更准确地重建陆地水储量及其土壤水、地下水和蒸散发相关变化？",
+    "hypothesis": "站点校正的高分辨率 CHIRPS 降水能够改善陆面模型水量输入；当其与 CABLE-SSGW 状态方程和 GRACE 月尺度总水储量约束结合时，模型可同时保留细空间结构并降低水储量状态误差。",
+    "mechanism": "降水强迫控制土壤水、冠层水、雪水和地下水补给过程；CABLE-SSGW 将这些水文过程转化为多分量水储量状态，GRACE Mascon 提供月尺度总水储量观测用于同化校正，独立土壤水分、蒸散发、地下水和通量塔数据用于验证。",
+    "key_variables": {
+      "target": "0.05° 陆地水储量及其组成部分",
+      "predictors": [
+        "CHIRPS precipitation",
+        "air temperature",
+        "wind speed",
+        "humidity",
+        "surface pressure",
+        "shortwave and longwave downward radiation",
+        "land cover",
+        "soil properties",
+        "leaf area index",
+        "GRACE Delta TWS"
+      ]
+    },
+    "data_sources": [
+      "UCSB-CHG CHIRPS v2.0 precipitation",
+      "CABLE-SSGW model parameters and outputs",
+      "GSFC GRACE Mascon product",
+      "Princeton University meteorological forcing version 2",
+      "GLASS LAI",
+      "ESA CCI COMBINED soil moisture",
+      "GLEAM ET",
+      "SASMAS",
+      "Australian Groundwater Explorer",
+      "FLUXNET2015"
+    ],
+    "analytical_approach": "以 CHIRPS 日降水和 Princeton 气象强迫驱动 CABLE-SSGW，在 0.5° 与 0.05° 网格上模拟多分量水储量；对 CHIRPS 做空间聚合或时间分解以匹配模型步长；用集合卡尔曼平滑将 GSFC GRACE Mascon 月尺度 TWS 变化同化进模型状态，并用卫星和地面观测评估土壤水分、蒸散发和地下水结果。",
+    "expected_contribution": "展示高分辨率站点融合降水、陆面模型和 GRACE 观测同化如何联合提升大陆尺度水储量重建，为干旱、水资源和地下水监测提供可复用的数据组合。",
+    "falsification_condition": "如果 CHIRPS 强迫与高分辨率 CABLE 配置无法相对于低分辨率模拟改善独立土壤水、蒸散发或地下水验证，或 GRACE 同化后的水储量改进主要来自平滑而非降水驱动过程，则该假设不成立。"
+  },
+  "enriched": true,
+  "enrichment_source": "replacement seed full text"
+}

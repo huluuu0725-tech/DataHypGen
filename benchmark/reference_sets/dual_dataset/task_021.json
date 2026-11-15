@@ -1,0 +1,2716 @@
+{
+  "schema_version": "2.1-current-task-paired-reference-pool",
+  "task_id": "dual_dataset/task_021",
+  "reference_coverage": "user_confirmed_historical_reference_pairing",
+  "evaluation_year": 2026,
+  "seed_paper": {
+    "title": "Indicators of Electric Power Instability from Satellite Observed Nighttime Lights",
+    "doi": "10.3390/rs12193194",
+    "year": 2020,
+    "venue": "Remote Sensing",
+    "datasets": [
+      "Satellite nighttime lights",
+      "Electricity reliability indicators"
+    ],
+    "dataset_roles": [
+      {
+        "role": "nighttime_lights",
+        "dataset": "Satellite nighttime lights"
+      },
+      {
+        "role": "electricity_reliability",
+        "dataset": "Electricity reliability indicators"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:dual_dataset/task_021:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_021:composite_observation",
+    "type": "composite_observation",
+    "name": "nighttime_lights_electricity composite observation",
+    "observable_group": "nighttime_lights_electricity_multidataset_observation",
+    "components": [
+      {
+        "role": "nighttime_lights",
+        "data_description": {
+          "dataset_name": "Satellite nighttime lights",
+          "data_type": "Nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS"
+      },
+      {
+        "role": "electricity_reliability",
+        "data_description": {
+          "dataset_name": "Electricity reliability indicators",
+          "data_type": "Electricity-supply reliability time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "PLANETARY_COMPUTER:hrea",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "PLANETARY_COMPUTER:hrea"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "nighttime_lights",
+        "electricity_reliability"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "current_task_binding": {
+    "datasets": [
+      {
+        "role": "nighttime_lights",
+        "data_description": {
+          "dataset_name": "Satellite nighttime lights",
+          "data_type": "Nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS"
+      },
+      {
+        "role": "electricity_reliability",
+        "data_description": {
+          "dataset_name": "Electricity reliability indicators",
+          "data_type": "Electricity-supply reliability time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "PLANETARY_COMPUTER:hrea",
+          "spatial_coverage": {
+            "region_name": "Electricity reliability observation space",
+            "coverage": "Declared analysis region within Electricity reliability observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "PLANETARY_COMPUTER:hrea"
+      }
+    ]
+  },
+  "required_roles": [
+    "nighttime_lights",
+    "electricity_reliability"
+  ],
+  "reference_count": 12,
+  "admitted_count": 12,
+  "independent_reference_count": 12,
+  "references": [
+    {
+      "doi": "10.1007/s10708-022-10689-2",
+      "rounds": [
+        "round1",
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2022,
+      "title": "Keeping the lights On or Off: tracking the progress of access to electricity for sustainable development in Nigeria",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2022,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1016/j.oneear.2020.03.007",
+      "rounds": [
+        "round1"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2020,
+      "title": "Satellite Observations Reveal Inequalities in the Progress and Effectiveness of Recent Electrification in Sub-Saharan Africa",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2020,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1038/s41467-020-16185-w",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2020,
+      "title": "Using publicly available satellite imagery and deep learning to understand economic well-being in Africa",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2020,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1038/s41467-022-30099-9",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2022,
+      "title": "Estimating global economic well-being with unlit settlements",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2022,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1086/685451",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2016,
+      "title": "A Better Life for All? Democratization and Electrification in Post-Apartheid South Africa",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2016,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1109/jstars.2023.3316310",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2023,
+      "title": "Multiscale Estimation of Electrification Rate Using Night-Time Light Imagery",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2023,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.1371/journal.pone.0327031",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2025,
+      "title": "Forecasting electricity consumption of India through nighttime satellite imagery",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2025,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.21203/rs.3.rs-6030545/v1",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2025,
+      "title": "Daily night-time lights reveal prolonging global electric power system recovery times following tropical cyclone damage",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2025,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/ijgi9010032",
+      "rounds": [
+        "round1"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2020,
+      "title": "Statistical Correlation between Monthly Electric Power Consumption and VIIRS Nighttime Light",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2020,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/rs17142478",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2025,
+      "title": "Monthly Urban Electricity Power Consumption Prediction Using Nighttime Light Remote Sensing: A Case Study of the Yangtze River Delta Urban Agglomeration",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2025,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.5194/isprs-archives-xlii-4-w19-425-2019",
+      "rounds": [
+        "round1",
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2019,
+      "title": "MAPPING POVERTY IN THE PHILIPPINES USING MACHINE LEARNING, SATELLITE IMAGERY, AND CROWD-SOURCED GEOSPATIAL INFORMATION",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2019,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    },
+    {
+      "doi": "10.5614/jpwk.2025.36.1.5",
+      "rounds": [
+        "round1",
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2025,
+      "title": "Nighttime Lights as Indicators of Energy Efficiency Across Urban Morphologies in Malang City",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_021",
+      "target_task_id": "dual_dataset/task_021",
+      "pairing_status": "user_confirmed_selected_measurements",
+      "year": 2025,
+      "admission_status": "admitted",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json"
+    }
+  ],
+  "pairing_status": "user_confirmed_selected_measurements",
+  "pairing_provenance": {
+    "source_task_id": "dual_dataset/task_021",
+    "historical_pool_sha256": "fd29e124d94c9075b2e23b67a97aa8b2b6048409fbfc076072bca80554e0ec8d",
+    "paired_pool_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_021_direct_pairings.json",
+    "paired_pool_sha256": "ccb158f0bdb5c2edf362e7c061920ccac92e03768ce1fa98ef295b870bcbea2e",
+    "current_prompt_sha256": "fea242f274c5617f7717e0ecf80cc46356a5b0075ca65c686e95b78419a66cfe",
+    "user_confirmed_observations": [
+      "nighttime lights",
+      "electricity access"
+    ]
+  },
+  "audit_note": "Historical admission reused under user decisions; actual product identities and original coverage tiers retained. No new fulltext or eligibility adjudication and no assertion of exact current-product equivalence. This is a paper pool, not a newly extracted semantic direction space.",
+  "quality": {
+    "paper_count": 12,
+    "semantic_directions_extracted": true,
+    "direction_count": 12,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 12,
+    "complete_member_combination_count": 3,
+    "disputed_complete_pending_recheck_count": 4,
+    "partial_set_support_count": 5,
+    "component_support_count": 5,
+    "zero_member_support_count": 0,
+    "member_conflict_count": 4,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  },
+  "directions": [
+    {
+      "direction_id": "task_021_ref_01",
+      "source_paper_doi": "10.1007/s10708-022-10689-2",
+      "source_paper": {
+        "doi": "10.1007/s10708-022-10689-2",
+        "title": "Keeping the lights On or Off: tracking the progress of access to electricity for sustainable development in Nigeria",
+        "year": 2022,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Satellite Night Lights (SNLs)",
+        "electricity supply, electricity access, and electricity consumption indicators from DISCOs and related Nigerian statistical sources"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Satellite Night Lights (SNLs)",
+          "actual_product_in_paper": "Satellite Night Lights (SNLs)",
+          "evidence_quotes": [
+            "For the second stage, we use the SNLs data for selected years/periods (2016–2019) to illustrate a visual approximation of electricity availability.",
+            "All SNLs data used in this work is retrieved by the Visible Infrared Imaging Radiometer Suite (VIIRS) on the Suomi National Polar-orbiting Partnership weather satellite system operated by the United States National Oceanic and Atmospheric Administration (NOAA) and the resulting data is archived by the National Aeronautics and Space Administration (NASA).",
+            "The data was processed using Python, where the NetCDF files (DNB observations and geolocation-data-product) were read and information at each pixel location was extracted.",
+            "Individual images are described by date and time stamps of VIIRS/NPP Day/Night Band 6-Min L1B Swath SDR 750 m NRT (NASA, 2017 )."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS/NPP Day/Night Band 6-Min L1B Swath SDR 750 m NRT",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS DNB nighttime lights (SNLs)",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "electricity supply, electricity access, and electricity consumption indicators from DISCOs and related Nigerian statistical sources",
+          "actual_product_in_paper": "electricity supply, electricity access, and electricity consumption indicators from DISCOs and related Nigerian statistical sources",
+          "evidence_quotes": [
+            "The ground data on electricity supply is derived from actual electricity consumption data from the distribution companies (DISCOs).",
+            "The actual electricity consumption data (ground data) from the DISCOs is obtained for the whole year 2019 and is plotted in bar charts, shown in Fig. 4 .",
+            "Other data used to map the pattern of electricity access include that on, population,poverty, and household electricity consumption spending, sourced from the Nigerian National Bureau of Statistics (NBS) Oxford poverty and human development initiative (Alkire et al., 2015 , 2020 ), and the United Nations Office for the Coordination of Humanitarian Affairs (OCHA).",
+            "We focus on key sustainable development indicators including population density, multiple poverty and expenditure on energy and fuel, electricity access, and electricity consumption.",
+            "Load shedding is also implemented by the DISCOs in the distribution of electricity to end users across the six geographical zones.",
+            "We observe that the electricity consumption data for the years 2016 to 2018 to be somewhat incomplete. For instance, the monthly consumption for 2018 was unavailable and there was no energy consumption data for 2016..."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "electricity supply, electricity access, and electricity consumption indicators from DISCOs and related Nigerian statistical sources",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "DISCOs electricity consumption & load shedding data",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "electricity_reliability"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "For the second stage, we use the SNLs data for selected years/periods (2016–2019) to illustrate a visual approximation of electricity availability.",
+        "The ground data on electricity supply is derived from actual electricity consumption data from the distribution companies (DISCOs).",
+        "In the third stage, the interaction between step one and two is determined by identifying patterns in the areas/regions with highest and lowest share of electricity availability based on the SNLs for 2019 as discussed in Sect. 3.3 ."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究尼日利亚各地理区域的电力可及性及其进展，关注电力可见性在区域、州首府和工业中心之间的差异。论文还考察电力可及性与人口、贫困、家庭消费/支出等人类和社会经济发展指标之间的关系。",
+      "hypothesis_or_mechanism": "核心机制是卫星夜间灯光可以作为电力可得性和电力消费可见性的空间代理，用于弥补尼日利亚可持续发展监测中数据不足的问题。论文假定夜间灯光的空间分布和变化能够揭示电力接入差距及其对社会经济福祉的影响。",
+      "variables_and_data_use": "论文实际使用 Satellite Night Lights (SNLs) 数据，在2016–2019年选定年份/时期对尼日利亚电力可用性进行视觉近似和空间比较。论文还使用来自 distribution companies (DISCOs) 的2019年实际电力消费地面数据，用于描述各配电公司及地理区域的电力供应/消费格局。人口、贫困、家庭消费和支出等社会经济指标被用于分析电力可及性与人类发展和家庭负担之间的相互作用。",
+      "method_paradigm": "方法范式是基于卫星夜间灯光的空间制图与多源指标对照分析，结合地面电力消费数据对区域电力可及性进行描述性和空间比较。论文按三阶段分析：先描述电力供应结构和社会经济数据，再用SNLs近似电力可用性，最后识别2019年电力可用性最高和最低区域的模式。",
+      "study_area": "Nigeria；six geographical zones: South West, South East, North West, North East, North Central, South South",
+      "study_period": "2016–2019；ground electricity consumption data for the whole year 2019",
+      "datasets_used": [
+        {
+          "name_in_paper": "Satellite Night Lights (SNLs)",
+          "role_in_study": "作为卫星夜间灯光数据，用于跟踪尼日利亚电力接入进展，并在2016–2019年选定年份/时期近似表示电力可用性。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the second stage, we use the SNLs data for selected years/periods (2016–2019) to illustrate a visual approximation of electricity availability.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "actual electricity consumption data from the distribution companies (DISCOs)",
+          "role_in_study": "作为地面电力消费数据，用于描述尼日利亚配电公司供电覆盖和2019年实际电力消费情况。",
+          "usage": "used_as_data",
+          "evidence_quote": "The ground data on electricity supply is derived from actual electricity consumption data from the distribution companies (DISCOs).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "human and socioeconomic development indicators (population, poverty, and household consumption)",
+          "role_in_study": "作为社会经济发展变量，用于分析卫星夜间灯光所反映的电力接入与人口、贫困和家庭消费之间的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Specifically, we explore how SNLs interact with human and socioeconomic development indicators (population, poverty, and household consumption) to demonstrate the implications of slow and/or delayed progress in closing the electricity access gap in Nigeria.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Suomi-NPP VIIRS Day Night Band",
+          "role_in_study": "在文献综述中作为其他研究使用的夜间灯光来源被提及，并非本文实际输入数据。",
+          "usage": "mention_only",
+          "evidence_quote": "Stokes and Seto ( 2019 ) explore how fusing multi-temporal population and land data with SNLs data, derived from the Suomi-NPP VIIRS Day Night Band, can provide better understanding of urban infrastructural transitions to create a typology of urban development processes.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1007_s10708-022-10689-2.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "ac2204f84abfd61e1f79730b692e1a6a976d4f919695d1ba56ed3bd76a552100",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:05",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1007_s10708-022-10689-2.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1007_s10708-022-10689-2.json",
+        "sha256": "1eebb391ea5d246bbd12403b574db5cf27add472b6552e577d1c4d76e7428efc",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_02",
+      "source_paper_doi": "10.1016/j.oneear.2020.03.007",
+      "source_paper": {
+        "doi": "10.1016/j.oneear.2020.03.007",
+        "title": "Satellite Observations Reveal Inequalities in the Progress and Effectiveness of Recent Electrification in Sub-Saharan Africa",
+        "year": 2020,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "satellite-measured nighttime light",
+        "WorldBankMTF / EnergySector ManagementAssistanceProgram(ESMAP) multi-tier data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "satellite-measured nighttime light",
+          "actual_product_in_paper": "satellite-measured nighttime light",
+          "evidence_quotes": [
+            "weprocess6yearsofhigh-resolutionpopulation,nighttimelight,andsettlement\ndataforsub-SaharanAfricatoderivemultidimensionalestimatesofelectricityaccess."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "WorldBankMTF / EnergySector ManagementAssistanceProgram(ESMAP) multi-tier data",
+          "actual_product_in_paper": "WorldBankMTF / EnergySector ManagementAssistanceProgram(ESMAP) multi-tier data",
+          "evidence_quotes": [
+            "recenthousehold\nsurveydatabuildingontheWorldBankMTFformeasuringelectricityaccessquality."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "wecreatefourper-capitalightintensitycategories\n(seetheExperimentalProceduresandFigureS4)toproxyresidentialelectricityuseandvalidatethemonrecenthousehold\nsurveydatabuildingontheWorldBankMTFformeasuringelectricityaccessquality.",
+        "Table2illustratestheresultsofthevalidationprocedure,whichiscarriedoutfor\nthethreecountriesforwhichmulti-tier\ndataareavailablethankstoÞelddatacollectioneffortsbytheEnergySector\nManagementAssistanceProgram(ESMAP).",
+        "These results provideafurtherlayerofvalidationto\nournighttime-light-basedapproachtoassesselectricityaccess\nmulti-dimensionally."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究撒哈拉以南非洲2014—2019年电气化进展及其质量是否存在空间和城乡不平等，并评估现有统计难以捕捉的电力接入、用电强度和供电质量差异。",
+      "hypothesis_or_mechanism": "核心机制是夜间灯光强度可作为居民电力使用和电气化水平的遥感代理变量，与人口分布和聚落信息叠加后可估计不同地区人口的电力接入及接入层级。论文还假定仅提高名义连接数不足以消除能源贫困，因为消费水平、可负担性和可靠性不足会导致接入质量不平等。",
+      "variables_and_data_use": "论文使用高分辨率人口分布图、卫星测量夜间灯光和聚落信息，估计撒哈拉以南非洲人口是否获得电力接入及其空间变化；文本未给出夜间灯光的具体传感器或产品级别。论文还使用World Bank MTF/ESMAP多层级电力接入质量调查数据、DHS调查数据、Tracking SDG7、Africa Energy Outlook等记录来验证或比较遥感估计，并用DHS财富不平等和家电拥有量变量解释接入质量差异。",
+      "method_paradigm": "遥感代理变量与人口栅格叠加的时空估计，并将人均夜间灯光强度划分为四个电力接入层级；同时使用与调查/统计资料的相关验证、洛伦兹曲线和Gini指数分析不平等。",
+      "study_area": "sub-Saharan Africa",
+      "study_period": "2014–2019",
+      "datasets_used": [
+        {
+          "name_in_paper": "high-resolution population distribution maps",
+          "role_in_study": "用于刻画人口空间分布、人口增长和迁移趋势，并与夜间灯光叠加估计有无电力接入人口。",
+          "usage": "used_as_data",
+          "evidence_quote": "Inthisstudy,weprocesshigh-resolutionpopulationdistributionmaps\n(includingdemographicandmigrationtrends),satellite-measured\nnighttimelight,andsettlementinformationforsub-SaharanAfrica.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite-measured nighttime light",
+          "role_in_study": "作为电力接入和居民电力使用强度的遥感代理变量，用于估计电气化进展和接入层级。",
+          "usage": "used_as_data",
+          "evidence_quote": "weprocess6yearsofhigh-resolutionpopulation,nighttimelight,andsettlement\ndataforsub-SaharanAfricatoderivemultidimensionalestimatesofelectricityaccess.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "settlement information",
+          "role_in_study": "用于区分和定位聚落/城乡区域，并与人口和夜间灯光共同构建空间化电力接入估计。",
+          "usage": "used_as_data",
+          "evidence_quote": "Inthisstudy,weprocesshigh-resolutionpopulationdistributionmaps\n(includingdemographicandmigrationtrends),satellite-measured\nnighttimelight,andsettlementinformationforsub-SaharanAfrica.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TrackingSDG7:\nTheEnergy\nProgress\nReport2019\nandtheAtlas\noftheSustainable\nDevelopment\nGoals",
+          "role_in_study": "作为已发表电力接入记录，用于与论文估计结果进行相关性比较和验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "TrackingSDG7:\nTheEnergy\nProgress\nReport2019\nandtheAtlas\noftheSustainable\nDevelopment\nGoals\n15\n1990Ð20170.860.28(2014Ð2017)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "AfricaEnergy\nOutlook2019",
+          "role_in_study": "作为国家尺度电力接入记录，用于与论文估计结果进行比较验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "AfricaEnergy\nOutlook2019\n13\n2000Ð20170.810.08(2010Ð2017)",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "DHSSTATcompiler\n41\nhouseholdsurveys",
+          "role_in_study": "作为省级住户调查数据，用于验证电力接入估计，并提供财富不平等和家电拥有量等变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "DHSSTATcompiler\n41\nhouseholdsurveys\n(variousyears,\nprovincelevel)\n2014Ð20170.82Ð",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldBankMTF",
+          "role_in_study": "用于测量电力接入质量，并验证论文构建的夜间灯光接入层级。",
+          "usage": "used_as_data",
+          "evidence_quote": "wecreatefourper-capitalightintensitycategories\n(seetheExperimentalProceduresandFigureS4)toproxyresidentialelectricityuseandvalidatethemonrecenthousehold\nsurveydatabuildingontheWorldBankMTFformeasuringelectricityaccessquality.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EnergySector\nManagementAssistanceProgram(ESMAP)",
+          "role_in_study": "提供Ethiopia、Zambia和Rwanda的多层级电力接入现场数据，用于验证接入质量层级。",
+          "usage": "used_as_data",
+          "evidence_quote": "Table2illustratestheresultsofthevalidationprocedure,whichiscarriedoutfor\nthethreecountriesforwhichmulti-tier\ndataareavailablethankstoÞelddatacollectioneffortsbytheEnergySector\nManagementAssistanceProgram(ESMAP).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "traveltimetothenearestcitywith50,000+inhabitants",
+          "role_in_study": "用于分析未通电人口增长和潜在需求热点与城市可达性的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Figure5Bshowstheempiricalcumulativedistributioncurves\nofthepopulationlivingintheidentiÞedhotspotsagainstthe\ntraveltimetothenearestcitywith50,000+inhabitants.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part3_round1_unique\\round1_unique\\text\\10.1016_j.oneear.2020.03.007.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part3_round1_unique\\round1_unique\\text\\10.1016_j.oneear.2020.03.007.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "429c1080a288600b88c7b1bb62ea22bee5a638b16b798d79d6a492f9dab71eeb",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:32",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1016_j.oneear.2020.03.007.json",
+        "quote_gate": {
+          "total": 14,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.9
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_021_ref_03",
+      "source_paper_doi": "10.1038/s41467-020-16185-w",
+      "source_paper": {
+        "doi": "10.1038/s41467-020-16185-w",
+        "title": "Using publicly available satellite imagery and deep learning to understand economic well-being in Africa",
+        "year": 2020,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "DMSP nightlights and VIIRS nightlights"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "DMSP nightlights and VIIRS nightlights",
+          "actual_product_in_paper": "DMSP nightlights and VIIRS nightlights",
+          "evidence_quotes": [
+            "Because no single satellite captured nightlights for all of 2009–2016, we used DMSP 27 for the 2009–11 composite, and VIIRS 28 for the 2012–14 and 2015–17 composites.",
+            "We obtained Landsat surface reflectance and nighttime lights (nightlights) images centered on each cluster location, using the Landsat archives available on Google Earth Engine.",
+            "Both MS and NL images were processed in and exported from Google Earth Engine 29 in 255 × 255 tiles, then center-cropped to 224 × 224, the input size of our CNN architecture, spanning 6.72 km on each side (30 m Landsat pixel size × 224 px = 6.72 km).",
+            "DMSP nightlights have 30 arc-second/pixel resolution and are unitless, whereas VIIRS nightlights have 15 arc-second/pixel resolution and units of nWcm −2 sr −1 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "DMSP and VIIRS nighttime lights imagery",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "DMSP/VIIRS nighttime-light observations",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "DHS household survey response: if the home has electricity",
+          "evidence_quotes": [
+            "The asset wealth index is constructed from responses to the set of questions about asset ownership that are common across DHS countries and waves: number of rooms occupied in a home, if the home has electricity, the quality of house floors, water supply and toilet, and ownership of a phone, radio, tv, car and motorbike.",
+            "Survey data are derived from 43 Demographic and Health Surveys (DHS) surveys conducted for 23 countries in Africa from 2009 to 2016 (Supplementary Table S 1 ).",
+            "Following standard approaches 13 , 16 , for each household we compute a wealth index from the first principal component of survey responses to questions about ownership of specific assets (“Methods”)."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "DHS household survey response: if the home has electricity",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "mention_only",
+              "matched_product": "",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "electricity_reliability"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We obtained Landsat surface reflectance and nighttime lights (nightlights) images centered on each cluster location, using the Landsat archives available on Google Earth Engine.",
+        "Both MS and NL images were processed in and exported from Google Earth Engine 29 in 255 × 255 tiles, then center-cropped to 224 × 224, the input size of our CNN architecture, spanning 6.72 km on each side (30 m Landsat pixel size × 224 px = 6.72 km).",
+        "For models incorporating both Landsat and nightlights (i.e. our combined model), we trained two ResNet-18 models separately on the Landsat bands and nightlights bands, respectively, and joined the models in their final fully connected layer."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究非洲约2万个村庄/社区的经济福祉，回答能否用公开可得的多光谱卫星影像和夜间灯光影像通过深度学习预测当地资产财富，并用于估计财富的空间差异和时间变化。",
+      "hypothesis_or_mechanism": "核心假设是村庄周边地表特征和夜间灯光强度包含与经济活动、基础设施和生活条件相关的信息，因而可作为资产财富的遥感代理。论文还将夜间灯光视为经济活动的噪声但全球可得代理，并检验白天多光谱影像与夜间灯光在财富水平和变化预测中的互补作用。",
+      "variables_and_data_use": "论文用43个非洲国家级DHS调查中的资产拥有、住房质量、电力、水厕等变量经PCA构建 household/village asset wealth index，并用DHS集群GPS坐标作为训练标签位置；另用普查数据和LSMS面板调查构建外部资产财富指数进行验证和变化分析。遥感输入包括Google Earth Engine中的Landsat 5、Landsat 7、Landsat 8 surface reflectance三年中值合成的RED、GREEN、BLUE、NIR、SWIR1、SWIR2、TEMP1多光谱波段，以及DMSP和VIIRS nighttime lights三年中值合成，分别作为CNN图像输入。模型采用修改后的ResNet-18，分别或联合使用Landsat与nightlights影像预测财富；部分模型使用ImageNet预训练权重初始化。",
+      "method_paradigm": "方法范式是监督式深度学习回归：以调查构建的资产财富指数为标签，用多波段卫星影像训练ResNet-18 CNN，并将Landsat模型和nightlights模型的末层特征通过岭回归组合。财富指数本身用资产变量的第一主成分构建，模型评估采用跨国、跨时间和外部数据验证。",
+      "study_area": "Africa；23 countries in Africa；并示范生成 Nigeria 财富图",
+      "study_period": "DHS surveys conducted from 2009 to 2016；satellite composites for 2009–11, 2012–14, and 2015–17",
+      "datasets_used": [
+        {
+          "name_in_paper": "43 Demographic and Health Surveys (DHS) surveys",
+          "role_in_study": "用于构建资产财富指数标签，并提供调查集群的经纬度位置作为模型训练和评估的地面数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Survey data are derived from 43 Demographic and Health Surveys (DHS) surveys conducted for 23 countries in Africa from 2009 to 2016",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "census data",
+          "role_in_study": "用于在第二级行政区尺度构建外部资产财富指数，与DHS和卫星估计进行验证比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "We then create similar asset indices using two separate external data sets: census data from countries whose censuses report asset ownership questions, and data from Living Standards Measurement Study (LSMS) conducted by the World Bank.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Living Standards Measurement Study (LSMS)",
+          "role_in_study": "用于构建外部资产财富指数、村庄级面板以及财富随时间变化的验证数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "We utilized asset wealth data from LSMS panel surveys for five countries (Malawi, Nigeria, Tanzania, Ethiopia, and Uganda).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat surface reflectance images captured by the Landsat 5, Landsat 7, and Landsat 8 satellites",
+          "role_in_study": "作为白天多光谱卫星影像输入，生成三年中值合成并供CNN预测资产财富和财富变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used 3-year median composite Landsat surface reflectance images of the African continent captured by the Landsat 5, Landsat 7, and Landsat 8 satellites.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DMSP nightlights",
+          "role_in_study": "作为2009–11时段夜间灯光影像输入，和VIIRS共同构成nightlights波段用于CNN财富预测。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used DMSP 27 for the 2009–11 composite, and VIIRS 28 for the 2012–14 and 2015–17 composites.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS nightlights",
+          "role_in_study": "作为2012–14和2015–17时段夜间灯光影像输入，和DMSP共同构成nightlights波段用于CNN财富预测。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used DMSP 27 for the 2009–11 composite, and VIIRS 28 for the 2012–14 and 2015–17 composites.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ImageNet",
+          "role_in_study": "用于初始化ResNet-18模型的部分预训练权重，而非作为财富标签或遥感观测输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "weights for the RGB channels are initialized to values pre-trained on ImageNet",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41467-020-16185-w.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41467-020-16185-w.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "f9b4e5caf215e7bf32eea1e42daa35729b06cf17f0ba97ec4f01898849f902ef",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:14",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1038_s41467-020-16185-w.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1038_s41467-020-16185-w.json",
+        "sha256": "95fa984a4325bd03c97d79f0057b4e72dfca5d9b2f9c99616784f20518953750",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "uncertain"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_04",
+      "source_paper_doi": "10.1038/s41467-022-30099-9",
+      "source_paper": {
+        "doi": "10.1038/s41467-022-30099-9",
+        "title": "Estimating global economic well-being with unlit settlements",
+        "year": 2022,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "annual average radiance composite from the VIIRS DNB sensor; vcm-ntl"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "annual average radiance composite from the VIIRS DNB sensor; vcm-ntl",
+          "actual_product_in_paper": "annual average radiance composite from the VIIRS DNB sensor; vcm-ntl",
+          "evidence_quotes": [
+            "From the Earth Observation Group (EOG) of the Colorado School of Mines, we downloaded the annual average radiance composite from the VIIRS DNB sensor ( https://eogdata.mines.edu/download_dnb_composites.html ; created 01.31.2017) for the year 2015 20 (version 1).",
+            "We used the version that contains cloud-free and moonlight-free average radiance values (vcm-ntl).",
+            "We assigned the value of either lit or unlit as per the VIIRS DNB pixel (using the vcm-ntl layer, with non-anthropogenic lighting removed), to the percent of WSF infrastructure located within each VIIRS DNB pixel.",
+            "From the Earth Observation Group (EOG) of the Colorado School of Mines, we downloaded the annual average radiance composite from the VIIRS DNB sensor ( https://eogdata.mines.edu/download_dnb_composites.html ; created 01.31.2017) for the year 2015 20 (version 1). We used the version that contains cloud-free and moonlight-free average radiance values (vcm-ntl)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "annual average radiance composite from the VIIRS DNB sensor, vcm-ntl, year 2015, version 1",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS DNB vcm-ntl annual composite (EOG)",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "World Bank WDI electric power consumption (kWh per capita)",
+          "evidence_quotes": [
+            "From the World Bank’s World Development Indicators database ( https://data.worldbank.org/indicator ) we downloaded: GDP per capita based on purchasing power parity (PPP) (current international $) for the year 2015; electric power consumption (kWh per capita), taking the mean results between 2014 and 2016 to increase data coverage;"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "World Bank WDI electric power consumption (kWh per capita)",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "electricity_reliability"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Here we combine satellite nighttime lights and the world settlement footprint for the year 2015 to show that 19% of the total settlement footprint of the planet had no detectable artificial radiance associated with it.",
+        "We assigned the value of either lit or unlit as per the VIIRS DNB pixel (using the vcm-ntl layer, with non-anthropogenic lighting removed), to the percent of WSF infrastructure located within each VIIRS DNB pixel.",
+        "To determine the ability to use the percentage of unlit settlements to distinguish between wealth classes (i.e. poorer, average, richer), we use Naïve Bayes to classify the observations based on the Bayes formula"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "本文研究全球2015年人类聚居区中没有可探测人工夜间辐射的聚居足迹分布，并评估这些未点亮聚居区比例能否在非洲、亚洲和美洲49个国家预测家庭财富/经济福祉类别。",
+      "hypothesis_or_mechanism": "核心机制是卫星夜间灯光与经济繁荣相关，而低辐射或无辐射的聚居区通常对应较低的发展水平；将夜间辐射与聚居足迹叠加后，未点亮基础设施比例可作为财富类别的预测信号。",
+      "variables_and_data_use": "研究使用VIIRS DNB年度平均夜间辐射合成产品vcm-ntl识别2015年人工夜间辐射，并与World Settlement Footprint 2015的500 m聚居地百分比面积叠加，确定每个VIIRS像元内WSF基础设施为lit或unlit。研究还用GHSL 1 km 2015 GHS-SMOD区分城乡，用World Bank World Development Indicators做国家/洲际发展指标回归，用DHS家庭调查财富指数和地理坐标训练与验证财富类别预测。基准与外部比较使用了Nigeria深度学习财富估计图、SHDI空间数据、SHDI income index以及GADM行政区。",
+      "method_paradigm": "方法范式包括基于VIIRS DNB像元是否有人工辐射的叠加分类/阈值式判定未点亮WSF、双变量回归分析，以及用Naïve Bayes分类器和10折交叉验证按未点亮聚居比例预测财富类别。",
+      "study_area": "全球；并在49个分布于Africa, Asia and the Americas的国家进行家庭财富类别预测。",
+      "study_period": "2015年为主要遥感与指标年份；部分World Development Indicators取2014–2016均值，DHS选择2010年后的调查。",
+      "datasets_used": [
+        {
+          "name_in_paper": "annual average radiance composite from the VIIRS DNB sensor",
+          "role_in_study": "作为2015年夜间人工辐射输入，用于判定聚居足迹是否有可探测灯光。",
+          "usage": "used_as_data",
+          "evidence_quote": "From the Earth Observation Group (EOG) of the Colorado School of Mines, we downloaded the annual average radiance composite from the VIIRS DNB sensor ( https://eogdata.mines.edu/download_dnb_composites.html ; created 01.31.2017) for the year 2015 20 (version 1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "vcm-ntl",
+          "role_in_study": "VIIRS DNB中去除云、月光和非人为光后的夜间灯光层，用于把WSF基础设施赋值为lit或unlit。",
+          "usage": "used_as_data",
+          "evidence_quote": "We assigned the value of either lit or unlit as per the VIIRS DNB pixel (using the vcm-ntl layer, with non-anthropogenic lighting removed), to the percent of WSF infrastructure located within each VIIRS DNB pixel.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WSF2015",
+          "role_in_study": "作为2015年全球聚居地足迹/基础设施面积输入，与VIIRS夜间辐射叠加计算未点亮聚居区比例。",
+          "usage": "used_as_data",
+          "evidence_quote": "Nonetheless, the WSF2015 is both accurate and reliable (average accuracy 86%) and outperforms similar existing datasets, having been quantitatively assessed through an unprecedented validation exercise based on 900,000 ground-truth samples 22 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Human Settlement Layer (GHSL) 1 km 2015 GHS-SMOD",
+          "role_in_study": "用于区分农村和城市地区，并支撑城乡分组分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use the Global Human Settlement Layer (GHSL) 1 km 2015 GHS-SMOD ( https://ghsl.jrc.ec.europa.eu/ ) to separate rural and urban areas.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "country dataset",
+          "role_in_study": "用于按国家汇总被分类为lit或unlit的WSF面积。",
+          "usage": "used_as_data",
+          "evidence_quote": "Using a country dataset ( https://www.naturalearthdata.com/ ), we could then summarize the amount of WSF area (km 2 ) per country classified as being either lit or unlit.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "World Bank’s World Development Indicators database",
+          "role_in_study": "提供GDP、用电量、入学率、城市人口比例等国家发展指标，与未点亮聚居足迹做双变量回归。",
+          "usage": "used_as_data",
+          "evidence_quote": "From the World Bank’s World Development Indicators database ( https://data.worldbank.org/indicator ) we downloaded: GDP per capita based on purchasing power parity (PPP) (current international $) for the year 2015; electric power consumption (kWh per capita), taking the mean results between 2014 and 2016 to increase data coverage; secondary school enrollment (% gross), taking the mean results between 2014 and 2016 to increase data coverage; and urban population (% of total population) for the year 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Demographic and Health Surveys (DHS)",
+          "role_in_study": "提供家庭财富相关资产数据、家庭调查文件和聚类地理坐标，用于构建和谐化财富指数并与未点亮基础设施比例合并。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Demographic and Health Surveys (DHS) were obtained at https://dhsprogram.com/data/ .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "World Bank’s Living Standards Measurement Study (LSMS)",
+          "role_in_study": "作为补充比较数据，用于评估四个非洲国家中未点亮基础设施比例与消费之间关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "For comparison, an assessment was made of the World Bank’s Living Standards Measurement Study (LSMS), similar to a recent study on poverty prediction 10 , between percent unlit infrastructure and consumption for four African countries (Supplementary Fig. 4 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite-based map of wealth estimates derived from a deep learning approach",
+          "role_in_study": "用于对Nigeria经济福祉制图结果进行基准比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Firstly we compared our resulting map of economic well-being for Nigeria with a satellite-based map of wealth estimates derived from a deep learning approach 30 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "gadm.org",
+          "role_in_study": "提供Nigeria二级行政区边界，用于聚合深度学习财富指数和本文财富类别结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "Within each level 2 district (775 in total) from gadm.org for Nigeria, we determined the mean wealth index from the deep learning approach and the median wealth class from our results, plotting these with notched boxplots.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SHDI spatial dataset",
+          "role_in_study": "提供2015年次国家人类发展指数空间数据，用于与本文财富类别结果比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "Secondly, we obtained the SHDI spatial dataset from https://globaldatalab.org/shdi/shdi/ for the year 2015.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "income index from the SHDI",
+          "role_in_study": "用于分析未点亮聚居区比例在控制夜间灯光后对收入的预测关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Thirdly, we obtained the income index from the SHDI and for each subnational SHDI district determined the mean percentage of unlit settlements.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "over 700,000 multitemporal 2014-2015 optical Landsat-8 multispectral images and the Copernicus radar Sentinel-1 imagery",
+          "role_in_study": "作为WSF2015产品生成所利用的底层遥感影像来源；论文用于说明WSF来源而非直接处理这些影像。",
+          "usage": "mention_only",
+          "evidence_quote": "This maps the 2015 settlement extent, jointly exploiting over 700,000 multitemporal 2014-2015 optical Landsat-8 multispectral images and the Copernicus radar Sentinel-1 imagery 21 .",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41467-022-30099-9.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41467-022-30099-9.methods.txt"
+        ],
+        "chars": 18767,
+        "text_mode": "head+methods",
+        "source_sha256": "418cd0c1455126a8912a9889a399e5dd1141e816efaaae45c137d96998b4353a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:45:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1038_s41467-022-30099-9.json",
+        "quote_gate": {
+          "total": 17,
+          "verified": 17
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1038_s41467-022-30099-9.json",
+        "sha256": "892babecc41702b376ca46fe88a9582d3b54668ddeefb8b67b1d1ae1131323f5",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_05",
+      "source_paper_doi": "10.1086/685451",
+      "source_paper": {
+        "doi": "10.1086/685451",
+        "title": "A Better Life for All? Democratization and Electrification in Post-Apartheid South Africa",
+        "year": 2016,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "nightlight satellite imagery",
+        "Statistics South Africa census-based household access to electricity indicator"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "nightlight satellite imagery",
+          "actual_product_in_paper": "nightlight satellite imagery",
+          "evidence_quotes": [
+            "Here, we replace the dependent variable with changes in the share of lit pixels during 1992-1996.",
+            "We use Nightlight\nit\nas an alternative dependent variable, which is calculated using satellite images of the\nearth at night for the years 1992, 1996, and 2001.",
+            "Figure 2 visualizes how we transform these data: we first\nuse the raw nighttime lights images (Map 1) to classify each of the over one million pixels as either lit or\nunlit (Map 2).",
+            "We then calculate the percentage share of lit pixels\nwithin the 1996 municipal boundaries to yield information on local electrification levels (Map 3) as well as\nthe change between 1996-2001 (Map 4).",
+            "We use Nightlight_it as an alternative dependent variable, which is calculated using satellite images of the earth at night for the years 1992, 1996, and 2001.",
+            "we first use the raw nighttime lights images (Map 1) to classify each of the over one million pixels as either “lit” or “unlit”... We then calculate the percentage share of lit pixels within the 1996 municipal boundaries to yield information on local electrification levels"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "satellite images of the earth at night / nighttime lights images for 1992, 1996, and 2001",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Satellite nighttime lights",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Statistics South Africa census-based household access to electricity indicator",
+          "actual_product_in_paper": "Statistics South Africa census-based household access to electricity indicator",
+          "evidence_quotes": [
+            "Dependent variables. Our main dependent variable Electricity\nit\nis based on census information and measures\nthe percentage share of households with access to electricity in municipality i at time t.",
+            "The empirical analysis is based on a dataset of 799 municipalities located in nine provinces (see Figure B1 in\nthe appendix).",
+            "To\nmake data from 1996 and 2001 comparable, we took advantage of their spatial attributes and aggregated\ninformation on 21,243 enumeration units or census tracts from the 2001 census up to the level of 1996\nmunicipal boundaries.",
+            "Our main dependent variable Electricity_it is based on census information and measures the percentage share of households with access to electricity in municipality i at time t.",
+            "We used Statistics South Africa’s Community Profiles and GIS databases to generate a unique dataset that aligns 2001 census results with 1996 municipal data for the first time."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "Statistics South Africa census-based household access to electricity indicator",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Electricity reliability indicators",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "electricity_reliability"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "Our unique dataset combines nightlight satellite imagery, geo-referenced census data, and municipal election results from the 1990s.",
+        "Here, we replace the dependent variable with changes in the share of lit pixels during 1992-1996.",
+        "We also experimented with a range of alternative nightlight-based variables used in the literature, notably population-adjusted measures discussed in the data appendix."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究南非后种族隔离时期民主化是否影响基本服务供给，具体考察1990年代市政层面新获选举权人口比例对家庭电气化的影响。它还追问谁从电气化中受益，以及选举权扩展、政党政治和地方/国家配电责任如何影响服务分配。",
+      "hypothesis_or_mechanism": "核心机制是选举权扩展改变地方政治激励，使政府和配电主体更有动力向新获选举权群体提供电力服务。论文还检验政党机制：在由国家电力公司Eskom直接配电的地区，ANC核心选区可能获得额外优先供给。",
+      "variables_and_data_use": "论文使用“nightlight satellite imagery”构造夜间灯光相关变量，例如“changes in the share of lit pixels”，用于安慰剂回归和替代电气化指标检验；使用地理编码人口普查数据构造家庭用电、人口和普查区/市政层面的控制变量。它还使用1990年代市政选举结果和Elections Task Group 1996中的ANC席位份额衡量政党力量，并用1996年Association of Municipal Electricity Undertakings会员数据区分Eskom供电与地方配电。",
+      "method_paradigm": "主要方法是市政层面的双重差分设计，利用新获选举权人口比例的异质性识别电气化变化。论文还采用夜间灯光安慰剂回归、协变量控制、以及相邻但位于不同市政边界两侧的普查区空间不连续/配对固定效应分析。",
+      "study_area": "South Africa",
+      "study_period": "1992-2001，重点为1996-2001及1995/6地方选举后的首个民主地方政府时期",
+      "datasets_used": [
+        {
+          "name_in_paper": "nightlight satellite imagery",
+          "role_in_study": "用于构造夜间灯光变量，包括点亮像元比例变化，作为安慰剂回归和替代电气化指标检验。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our unique dataset combines nightlight satellite imagery, geo-referenced census data, and municipal election results from the 1990s.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "geo-referenced census data",
+          "role_in_study": "用于构造家庭电气化、人口和空间单元变量，并与市政边界及普查区分析结合。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our unique dataset combines nightlight satellite imagery, geo-referenced census data, and municipal election results from the 1990s.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "1996 “placename” level data with 2001 “subplace” level data",
+          "role_in_study": "用于构建普查区数据集，支持相邻普查区跨市政边界的空间不连续分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our census tract dataset combines 1996 “placename” level data with 2001 “subplace” level data following the same approach as for our municipality dataset, as explained in detail in the data appendix.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "municipal election results from the 1990s",
+          "role_in_study": "用于衡量市政层面政治代表性和选举结果，支持民主化与政党政治分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our unique dataset combines nightlight satellite imagery, geo-referenced census data, and municipal election results from the 1990s.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "1996 membership data from the Association of Municipal Electricity Undertakings (AMEU)",
+          "role_in_study": "用于区分由Eskom服务的市政与由地方配电商服务的市政。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use 1996 membership data from the Association of Municipal Electricity Undertakings (AMEU) to distinguish municipalities served by Eskom from municipalities served by a local distributor.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Elections Task Group 1996",
+          "role_in_study": "用于获得1995/6地方选举中ANC赢得的地方议会席位份额。",
+          "usage": "used_as_data",
+          "evidence_quote": "Our statistical analysis relies on the variable ANC seat share i , the share of total seats on local council i won by the ANC in the 1995/6 elections (Elections Task Group 1996).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1086_685451.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1086_685451.methods.txt"
+        ],
+        "chars": 17944,
+        "text_mode": "head+methods",
+        "source_sha256": "c312922acc5658812e0378693006343a24fe15f556a435c82c9d99ff7059b771",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:07",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1086_685451.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1086_685451.json",
+        "sha256": "5dc3ade4975b11fddfbf3000462ac5eb720c1c4a3ccf4a2c42bcf1e9978393dd",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_06",
+      "source_paper_doi": "10.1109/jstars.2023.3316310",
+      "source_paper": {
+        "doi": "10.1109/jstars.2023.3316310",
+        "title": "Multiscale Estimation of Electrification Rate Using Night-Time Light Imagery",
+        "year": 2023,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Annual VNL V2 product; Black Marble night-time light product VNP46A2; VIIRS DNB data",
+        "power stability index (PSI) derived from daily night-time light data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Annual VNL V2 product; Black Marble night-time light product VNP46A2; VIIRS DNB data",
+          "actual_product_in_paper": "Annual VNL V2 product; Black Marble night-time light product VNP46A2; VIIRS DNB data",
+          "evidence_quotes": [
+            "The critical data of our study is night-time light data.",
+            "The Annual VNL V2 product is provided by Earth Observation Group (EOG).",
+            "The Black Marble night-time light product VNP46A2 is provided by the National Aeronautics and Space Administration (NASA). This product takes VIIRS DNB data as input.",
+            "We will combine the annual products from EOG and daily data from Black Marble to generate more electricity related information.",
+            "The critical data of our study is night-time light data. The Annual VNL V2 product is provided by Earth Observation Group (EOG)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Annual VNL V2 product from EOG; Black Marble night-time light product VNP46A2",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS/EOG夜间灯光影像 (VNP46A2, Annual VNL V2)",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "power stability index (PSI) derived from daily night-time light data",
+          "actual_product_in_paper": "power stability index (PSI) derived from daily night-time light data",
+          "evidence_quotes": [
+            "The essence of this method is constructing a power stability index viewed as a key parameter which is derived from daily night-time light data",
+            "The province-level electrification rate statistics used in our study are obtained from the Demographic and Health Surveys (DHS) program.",
+            "Electrification rate is one of the indexes.",
+            "The other statistical data of electrification rate used in our study is obtained from the World Bank, which records electrification rate at national scale.",
+            "Our study used the DHS statistical data to verify the accuracy of model at province-level.",
+            "We adjusted the threshold to find the estimated electrified population closest to the statistical data at national scale from the World Bank, and the most proper threshold was determined."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "Demographic and Health Surveys (DHS) province-level electrification rate statistics; World Bank national electrification rate data",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "DHS与世界银行电气化率统计数据",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "W e will combine the annual products from EOG and daily data from Black Marble to generate more electricity related information.",
+        "The essence of this method is constructing a power stability index viewed as a key parameter which is derived from daily night-time light data, and the method considers both reliability of electricity supply and the average power supply which is represented by the annual night-time light luminosity.",
+        "We assumed that areas with unstable night-time light had no reliable power supply, and the Landscan population map was overlaid to estimate electrification rates in different regions."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究如何利用夜间灯光影像在津巴布韦估算多空间尺度的电气化率，尤其是在国家级统计数据之外获得省级和区级电气化信息。研究对象是具有稳定电力供应的人口及其空间分布。",
+      "hypothesis_or_mechanism": "核心假设是夜间灯光较亮的区域更可能有电力供应，而夜间灯光不稳定的区域没有可靠电力供应。论文将年度夜间灯光亮度表示平均供电水平，并用逐日夜间灯光构建电力稳定性指数来表征供电可靠性。",
+      "variables_and_data_use": "论文使用 EOG 提供的 Annual VNL V2 夜间灯光年合成产品表示每地每年的平均夜间亮度，并使用 NASA Black Marble night-time light product VNP46A2 的 VIIRS DNB 逐日数据估计日尺度灯光波动和 power stability。LandScan 人口分布数据被叠加到被判定为电气化的区域以估算不同区域电气化率，DHS 省级电气化率和 World Bank 国家级电气化率统计用于验证或对照。",
+      "method_paradigm": "方法范式是基于夜间灯光阈值与时间稳定性的指数构建方法，即 Power Stability Method。它通过逐日灯光是否超过阈值计算 power stability index，再结合年度灯光亮度和人口栅格估算电气化率。",
+      "study_area": "Zimbabwe",
+      "study_period": "2015（给定文本中明确出现的年度；文本未完整说明全部研究时段）",
+      "datasets_used": [
+        {
+          "name_in_paper": "Annual VNL V2 product",
+          "role_in_study": "作为年度夜间灯光年合成产品，用于反映每个位置一年的平均夜间亮度和与电气化有关的空间信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Annual VNL V2 product is provided by Earth Observation Group (EOG).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Black Marble night-time light product VNP46A2",
+          "role_in_study": "作为逐日夜间灯光数据，用于考虑电力供应的日波动并估计电力稳定性。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Black Marble night-time light product VNP46A2 is provided by the National Aeronautics and Space Administration (NASA).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS DNB data",
+          "role_in_study": "作为 VNP46A2 产品的输入数据来源，支撑逐日夜间灯光观测。",
+          "usage": "used_as_data",
+          "evidence_quote": "This product takes VIIRS DNB data as input",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LandScan",
+          "role_in_study": "作为人口分布数据，与夜间灯光判定结果叠加以估算各区域电气化率。",
+          "usage": "used_as_data",
+          "evidence_quote": "The population distribution data used in our study is LandScan provided by the Oak Ridge National Laboratory in the United States.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Demographic and Health Surveys (DHS) program",
+          "role_in_study": "提供省级电气化率统计，用于验证估算结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The province-level electrification rate statistics used in our study are obtained from the Demographic and Health Surveys (DHS) program.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "World Bank",
+          "role_in_study": "提供国家尺度电气化率统计数据，用作研究中的另一类电气化率统计数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "The other statistical data of electrification rate used in our study is obtained from the World Bank, which records electrification rate at national scale.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Defense Meteorological Satellite Program/Operational Linescan System (DMSP/OLS)",
+          "role_in_study": "作为夜间灯光数据来源的背景性提及；文本说明其 2013 年后不再可用，未作为本研究输入。",
+          "usage": "mention_only",
+          "evidence_quote": "At present, the main night-time light data are mainly acquired from Defense Meteorological Satellite Program/Operational Linescan System (DMSP/OLS) and National Polar-orbiting Partnership/Visible Infrared Imaging Radiometer (NPP/VIIRS)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Polar-orbiting Partnership/Visible Infrared Imaging Radiometer (NPP/VIIRS)",
+          "role_in_study": "作为夜间灯光传感器谱系被说明，并支撑论文使用的 VIIRS 夜间灯光产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "The DMSP/OLS product was no longer available since 2013, while NPP/VIIRS has been more widely used in recent years.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1109_jstars.2023.3316310.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1109_jstars.2023.3316310.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "4b4eb17d5d0b40e95e433f744b42bee7ce1aead0b61dcc0d3e664f891b45c7f9",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:19",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1109_jstars.2023.3316310.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.714
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1109_jstars.2023.3316310.json",
+        "sha256": "21193ac2d01ed0ca69296999955affacbec79ae3cdf0959c7a2d84ac0c3384d6",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_07",
+      "source_paper_doi": "10.1371/journal.pone.0327031",
+      "source_paper": {
+        "doi": "10.1371/journal.pone.0327031",
+        "title": "Forecasting electricity consumption of India through nighttime satellite imagery",
+        "year": 2025,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "VIIRS Day/Night Band (DNB) NASA Black Marble VNP46A2 and VNP46A4"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "VIIRS Day/Night Band (DNB) NASA Black Marble VNP46A2 and VNP46A4",
+          "actual_product_in_paper": "VIIRS Day/Night Band (DNB) NASA Black Marble VNP46A2 and VNP46A4",
+          "evidence_quotes": [
+            "This study uses the VNP46A2 and VNP46A4 product suites for the daily and yearly night light changes respectively.",
+            "To harness the potential of the VIIRS Day/Night Band (DNB) dataset, NASA has introduced a set of products known as the Black Marble product suite (VNP46/VJI46). This suite comprises 4 distinct product sets generated by the Black Marble algorithm. This study uses the VNP46A2 and VNP46A4 product suites for the daily and yearly night light changes respectively.",
+            "The NTL data processing of the VNP46A2 product has been performed in Google Earth Engine (GEE) interface, used for remote sensing applications.",
+            "VNP46A4 was not accessible on GEE like VNP46A2, hence alternative measures were taken to obtain data for the geographic region of India.",
+            "The sum of total radiance values was determined for VNP46A2/A4, with quality pixels of either 0 or 1 only were selected."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS Day/Night Band Black Marble VNP46A2 and VNP46A4",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "VIIRS Black Marble VNP46A2/VNP46A4",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "POSOCO Daily/State-wise Electric Power Consumption",
+          "evidence_quotes": [
+            "The Electric power consumption of India was obtained from Power System Operation Cooperation (POSOCO).",
+            "In addition to extracting the daily power consumption data for India, state-wise daily electricity usage was obtained through web scraping techniques from the POSOCO website."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "POSOCO Daily/State-wise Electric Power Consumption",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "electricity_reliability"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This section outlines the study’s aim to integrate night light satellite imagery data, particularly the sum of lights, into forecasting models for electricity consumption.",
+        "In this study LSTM models were assessed by developing a baseline model for univariate electricity forecasting and subsequently incorporating the SOL as a predictor.",
+        "The Electric power consumption of India was obtained from Power System Operation Cooperation (POSOCO)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究印度全国及各邦的电力消费，回答夜间灯光卫星影像能否用于预测印度电力消耗趋势的问题。研究目标是评估夜间灯光数据作为电力需求可靠指标的预测能力。",
+      "hypothesis_or_mechanism": "核心假设是人类电力消费会以夜间光辐射的形式被卫星观测到，因此夜间灯光强度与电力消耗存在强相关关系。通过汇总指定区域内的夜间灯光辐射值，可以作为电力消费时间序列预测模型的输入特征。",
+      "variables_and_data_use": "论文使用VIIRS Day/Night Band的NASA Black Marble产品VNP46A2和VNP46A4提取印度全国及各邦夜间灯光辐射，并计算Sum of Lights作为预测变量。电力消费因变量来自Power System Operation Cooperation（POSOCO）的每日实际用电量PDF报告和网站抓取数据，单位为MU。模型上使用LSTM及其变体进行时间序列预测，并用k-means clustering进行各邦空间消费差异分析。",
+      "method_paradigm": "方法范式为夜间灯光遥感时间序列特征提取与深度学习时间序列预测。具体包括质量标志筛选、辐射阈值去噪、Sum of Lights计算、缺失值线性插值、Min-Max归一化、按时间顺序训练测试划分以及LSTM模型预测。",
+      "study_area": "India，全国及state-wise",
+      "study_period": "April 1, 2012 to December 31, 2023；state-wise electricity usage from April 1, 2013 to December 31, 2023",
+      "datasets_used": [
+        {
+          "name_in_paper": "VIIRS Day/Night Band (DNB) dataset",
+          "role_in_study": "作为夜间灯光观测来源，用于提取印度夜间灯光影像并估计电力消费相关特征。",
+          "usage": "used_as_data",
+          "evidence_quote": "To harness the potential of the VIIRS Day/Night Band (DNB) dataset, NASA has introduced a set of products known as the Black Marble product suite (VNP46/VJI46).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA’s Black Marble product",
+          "role_in_study": "作为夜间灯光遥感产品体系，用于支持电力消费趋势分析和预测。",
+          "usage": "used_as_data",
+          "evidence_quote": "Utilizing data from the VIIRS satellite and NASA’s Black Marble product, the research employs various LSTM models to analyse electricity consumption trends.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VNP46A2 product",
+          "role_in_study": "每日夜间灯光产品，用于2012年至2023年逐日提取印度夜间灯光辐射并计算Sum of Lights。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NTL data processing of the VNP46A2 product has been performed in Google Earth Engine (GEE) interface, used for remote sensing applications.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VNP46A4 dataset",
+          "role_in_study": "年度和月度夜间灯光合成产品，用于印度地理范围内年度夜间灯光变化和各邦年度指标提取。",
+          "usage": "used_as_data",
+          "evidence_quote": "VNP46A4 was not accessible on GEE like VNP46A2, hence alternative measures were taken to obtain data for the geographic region of India.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Power System Operation Cooperation (POSOCO) daily power consumption",
+          "role_in_study": "作为印度每日电力消费实测目标变量，用于训练和评估电力消费预测模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Electric power consumption of India was obtained from Power System Operation Cooperation (POSOCO).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "POSOCO website state-wise daily electricity usage",
+          "role_in_study": "作为各邦每日电力使用数据，用于state-wise分析和模型输入/验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "In addition to extracting the daily power consumption data for India, state-wise daily electricity usage was obtained through web scraping techniques from the POSOCO website.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "level 1 geographic boundaries of India",
+          "role_in_study": "作为空间边界掩膜，用于提取各邦夜间灯光指标。",
+          "usage": "used_as_data",
+          "evidence_quote": "For state wise satellite image extraction, level 1 geographic boundaries of India were utilized to extract state-wise metrics, considering daily and annual temporal variations using VNP46A2/A4, respectively.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1371_journal.pone.0327031.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1371_journal.pone.0327031.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "09ab6059c585d4d0d20521fa31929efb00d36d90af68e693b869dfae4dc8c3f4",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:42",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.1371_journal.pone.0327031.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.1371_journal.pone.0327031.json",
+        "sha256": "65aa39de033bc30f765a2d7a8668aeae29cf39dc2ec159e879c4629d36c3d418",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "uncertain"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_08",
+      "source_paper_doi": "10.21203/rs.3.rs-6030545/v1",
+      "source_paper": {
+        "doi": "10.21203/rs.3.rs-6030545/v1",
+        "title": "Daily night-time lights reveal prolonging global electric power system recovery times following tropical cyclone damage",
+        "year": 2025,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2)",
+        "PowerOutage.US data (POUS)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2)",
+          "actual_product_in_paper": "NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2)",
+          "evidence_quotes": [
+            "The NTL blackout was estimated using NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2 [ 24 ]).",
+            "The NTL blackout analysis was performed based on the (spatial) mean NTL brightness of each cluster, and only high-quality measurements with more than half of the pixels of a cluster showing persistent nighttime light (as defined by the quality layer of the Black Marble data) were used in the subsequent analysis.",
+            "The blackout was detected with a dynamic baseline approach: for each cluster, NTL brightness was measured from 3 months before the storm to one month after, with the NTL brightness measured 3 months prior to the storm defining the baseline conditions."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "NASA Black Marble global daily nocturnal visible light data (500m; VNP46A2)",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "NASA Black Marble global daily nocturnal visible light data (VNP46A2)",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "PowerOutage.US data (POUS)",
+          "actual_product_in_paper": "PowerOutage.US data (POUS)",
+          "evidence_quotes": [
+            "The accuracy of our NTL blackout measurement was assessed by comparison with PowerOutage.US data (POUS) [ 31 ].",
+            "POUS is utility records of power cuts in the USA from 2017 2022.",
+            "The POUS data provides the number of customers tracked, \\(\\:{p}_{track}\\) and the number reported as disconnected, \\(\\:{p}_{disc}\\) , at the company level and an hourly time step.",
+            "The electricity supply fraction was computed as: \\(\\:{f}_{sup}=1-\\left(\\frac{{p}_{disc}}{{p}_{track}}\\right)\\) .",
+            "The accuracy of our NTL blackout measurement was assessed by comparison with PowerOutage.US data (POUS) [ 31 ]. POUS is utility records of power cuts in the USA from 2017 2022."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "PowerOutage.US data (POUS)",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "PowerOutage.US data (POUS)",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "The accuracy of our NTL blackout measurement was assessed by comparison with PowerOutage.US data (POUS) [ 31 ].",
+        "In total, there were 134 events (storm-county pairs) overlapping between the POUS and NTL data, which are associated with 19 storms between 2017 2021 (Fig. 2 a).",
+        "Both the POUS outage and NTL blackout data followed the Beta distribution (with, respectively, α = 0.93, β = 170, and Kolmogorov Smirnov test P = 0.07; and α = 2, β = 160, and P = 0.49)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究面向全球65个国家2012—2021年407场热带气旋后的电力系统停电恢复过程，询问如何用卫星每日夜间灯光观测系统衡量停电持续时间及其时空变化。研究还比较不同城市化水平区域的停电恢复时间，并分析恢复时间变化与风暴属性和灾前夜间灯光亮度的关系。",
+      "hypothesis_or_mechanism": "核心机制是热带气旋造成电力系统损坏后会引发供电中断，供电中断会表现为夜间灯光亮度相对灾前基线显著降低。灯光亮度恢复到基线可作为电力系统恢复的遥感代理指标，而恢复时间可能受风暴强度、移动速度、城市化水平和灾前用电/灯光水平影响。",
+      "variables_and_data_use": "研究使用NASA Black Marble全球每日夜间可见光数据VNP46A2（500 m）提取城市簇平均夜间灯光亮度，用动态基线检测热带气旋后的blackout并计算持续天数。热带气旋路径和风速来自IBTrACS，城市簇来自GHSL并分为HDC、LDC和RUR，国家收入水平来自World Bank Classification。PowerOutage.US（POUS）逐小时公用事业停电记录被处理为县级供电比例，用于验证NTL推导的停电持续时间。",
+      "method_paradigm": "方法范式为基于每日夜间灯光时序的动态基线异常检测与阈值显著性检验，并结合缺测填补、空间聚合和POUS停电记录验证。趋势和驱动分析使用Poisson GLM、ANCOVA、线性回归及相关分析。",
+      "study_area": "全球65个国家；热带气旋路径周围200 km范围内的urban clusters，并包含美国POUS验证县域样本",
+      "study_period": "2012–2021；风暴记录提到2012–2022，POUS验证数据为2017–2022且重叠事件为2017–2021",
+      "datasets_used": [
+        {
+          "name_in_paper": "International Best Track Archive for Climate Stewardship (IBTrACS)",
+          "role_in_study": "识别全球历史热带气旋，并提供风暴路径、风速等风暴属性输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Historical storms that occurred worldwide from 2012 2022 were identified from the International Best Track Archive for Climate Stewardship (IBTrACS [ 20 ]; Table S1).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GHSL",
+          "role_in_study": "识别研究范围内城市簇，并将其划分为高密度、低密度和农村簇用于分组分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Urban clusters were identified based on the GHSL [ 22 ], which were classified into three groups: High Density Clusters (HDC, cities), Low Density Clusters (LDC, towns and cities), and Rural Cluster (RUR).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "World Bank Classification",
+          "role_in_study": "定义国家收入水平，作为社会经济数据输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The income levels of counties were defined based on the World Bank Classification [ 23 ].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2)",
+          "role_in_study": "作为每日夜间灯光观测数据，用于检测热带气旋后的灯光下降、估计停电和计算blackout duration。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NTL blackout was estimated using NASA s Black Marble global daily nocturnal visible light data (500m; VNP46A2 [ 24 ]).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PowerOutage.US data (POUS)",
+          "role_in_study": "作为美国公用事业停电记录，用于验证NTL推导的停电测量结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The accuracy of our NTL blackout measurement was assessed by comparison with PowerOutage.US data (POUS) [ 31 ].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "POUS",
+          "role_in_study": "提供公司级逐小时跟踪客户数和断电客户数，聚合为县级供电比例并定义停电事件。",
+          "usage": "used_as_data",
+          "evidence_quote": "The POUS data provides the number of customers tracked, \\(\\:{p}_{track}\\) and the number reported as disconnected, \\(\\:{p}_{disc}\\) , at the company level and an hourly time step.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.21203_rs.3.rs-6030545_v1.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.21203_rs.3.rs-6030545_v1.methods.txt"
+        ],
+        "chars": 12143,
+        "text_mode": "head+methods",
+        "source_sha256": "8b4322f7fc0dd5f3bfb0418a7670ea3d534b45ee0649557645abc6bd5e246874",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:45:15",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.21203_rs.3.rs-6030545_v1.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.21203_rs.3.rs-6030545_v1.json",
+        "sha256": "89a6a70695e817951f1e497d97609db1c40548fa85f254e9c75e831d4b67c1f8",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_09",
+      "source_paper_doi": "10.3390/ijgi9010032",
+      "source_paper": {
+        "doi": "10.3390/ijgi9010032",
+        "title": "Statistical Correlation between Monthly Electric Power Consumption and VIIRS Nighttime Light",
+        "year": 2020,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "monthlycloud-freecompositesofVIIRSNTLimages"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "monthlycloud-freecompositesofVIIRSNTLimages",
+          "actual_product_in_paper": "monthlycloud-freecompositesofVIIRSNTLimages",
+          "evidence_quotes": [
+            "Themonthlycloud-freecompositesofVIIRSNTLimagescollectedfromDecember2012toJanuary2019wereusedinthisstudy."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "electricity_reliability"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "ThispaperisthefirstattempttodiscussthequantitativecorrelationbetweenmonthlycompositeVIIRSDNBNTLdataandmonthlystatisticaldataofelectricpowerconsumption(EPC),using14provincesofsouthernChinaasstudyarea.",
+        "Twocommonregressionmodels,linearregressionandpolynomialregression,wereperformedbetweeneachsumofNTLandEPCdata,respectively.",
+        "SumofNTLofeachprovincialregionwascalculatedforeachkindofNTLdata(NTL0-NTL7andNTLg)byaccumulatingvaluesofallpixelsineachregionandeachmonth."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文以中国南方14个省份为研究区，回答月尺度VIIRS DNB夜间灯光数据与月度电力消费量之间是否存在稳定定量相关关系，以及能否用夜间灯光估算各省月度电力消费量。",
+      "hypothesis_or_mechanism": "核心假设是夜间灯光辐亮度的范围和强度能够表征人类社会经济活动，而电力消费量也是反映区域经济与能源消费水平的指标，因此二者在月尺度上应存在可建模的统计相关关系。通过去噪和空间滤波可降低VIIRS DNB夜间灯光中的背景噪声和异常高值，从而提高回归估算可靠性。",
+      "variables_and_data_use": "论文使用Suomi NPP卫星VIIRS Day/Night Band的月度无云夜间灯光合成影像，经过缺口填补、0.3 nW/(cm2 sr)阈值去噪和多种空间滤波后，按省级行政区汇总为各省每月灯光总量。月度电力消费量来自各省政府统计网站，作为回归的因变量和精度评价依据。GADM省级行政区矢量数据用于对VIIRS DNB夜间灯光进行省域聚合。",
+      "method_paradigm": "方法范式为夜间灯光时序预处理与省域汇总后，分别建立月尺度线性回归和多项式回归，并用R-squared、RMSE、MARE和MRE评价模型。预处理包括缺口填补、阈值去噪以及均值、中值和中间值空间滤波。",
+      "study_area": "FourteenprovincesofsouthernChina，包括Anhui,Hubei,Hunan,Jiangsu,Jiangxi,Shanghai,Sichuan,Chongqing,Yunnan,Zhejiang,Fujian,Guangdong,Guangxi,andGuizhou",
+      "study_period": "VIIRS夜间灯光为December2012toJanuary2019；月度EPC为January2013toDecember2018",
+      "datasets_used": [
+        {
+          "name_in_paper": "monthlycloud-freecompositesofVIIRSNTLimages",
+          "role_in_study": "作为主要遥感自变量，提取月度夜间灯光辐亮度并按省域汇总，用于与EPC建立回归关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "Themonthlycloud-freecompositesofVIIRSNTLimagescollectedfromDecember2012toJanuary2019wereusedinthisstudy.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "monthlyEPCdata",
+          "role_in_study": "作为统计因变量和验证参照，表示14省月度工业和居民电力消费量。",
+          "usage": "used_as_data",
+          "evidence_quote": "MonthlyEPCdataof14provincesinstudyareafromJanuary2013toDecember2018wereacquiredfromstatisticalwebsiteofeachprovincialgovernment.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "vectordataofprovincialadministrativeregions",
+          "role_in_study": "作为省级空间边界，用于对VIIRS DNB夜间灯光数据进行区域聚合。",
+          "usage": "used_as_data",
+          "evidence_quote": "ThevectordataofprovincialadministrativeregionsofstudyareawasacquiredfromwebsiteofDatabaseofGlobalAdministrativeAreas(GADM,https://gadm.org/)willbeusedforregionalaggregationofNTLdata.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DefenseMeteorologicalSatelliteProgram/OperationalLinescanSystem(DMSP/OLS)",
+          "role_in_study": "在引言中作为既有夜间灯光遥感数据源进行背景比较，未作为本文输入数据。",
+          "usage": "mention_only",
+          "evidence_quote": "TwokindsofremotelysensedNTLdata,theDefenseMeteorologicalSatelliteProgram/OperationalLinescanSystem(DMSP/OLS)andtheVisibleInfraredImagingRadiometerSuiteDay/NightBand",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VisibleInfraredImagingRadiometerSuiteDay/NightBand(VIIRSDNB)",
+          "role_in_study": "在引言中作为夜间灯光遥感数据源介绍，并在本文实际用作月度夜间灯光输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "ThispaperisthefirstattempttodiscussthequantitativecorrelationbetweenmonthlycompositeVIIRSDNBNTLdataandmonthlystatisticaldataofelectricpowerconsumption(EPC),using14provincesofsouthernChinaasstudyarea.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part3_round1_unique\\round1_unique\\text\\10.3390_ijgi9010032.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part3_round1_unique\\round1_unique\\text\\10.3390_ijgi9010032.methods.txt"
+        ],
+        "chars": 11250,
+        "text_mode": "head+methods",
+        "source_sha256": "bcdf96138d2b659696b289a09fcc42101d2d641027f71721b0e57c8bf555e437",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:44:50",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.3390_ijgi9010032.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_021_ref_10",
+      "source_paper_doi": "10.3390/rs17142478",
+      "source_paper": {
+        "doi": "10.3390/rs17142478",
+        "title": "Monthly Urban Electricity Power Consumption Prediction Using Nighttime Light Remote Sensing: A Case Study of the Yangtze River Delta Urban Agglomeration",
+        "year": 2025,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "global monthly synthetic NPP/VIIRS data; SDGSAT-1 nightlight imageries"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "global monthly synthetic NPP/VIIRS data; SDGSAT-1 nightlight imageries",
+          "actual_product_in_paper": "global monthly synthetic NPP/VIIRS data; SDGSAT-1 nightlight imageries",
+          "evidence_quotes": [
+            "The20172023globalmonthlysyntheticNPP/VIIRSdatausedinthisstudyweredownloadedfromtheNationalOceanicandAtmosphericAdministration,EarthObservationGroupdataplatform",
+            "The20172023globalmonthlysyntheticNPP/VIIRSdatausedinthisstudyaredownloadedfromtheNationalOceanicandAtmosphericAdministration,EarthObservationGroupdataplatform(https://eogdata.mines.edu/nighttime_light/,accessedon28June2025).",
+            "SincetheEPCdatafrom2017to2022wereusedtotrainthemodelbasedontheNPP/VIIRSdataset,and2023wasreservedforvalidation..."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "NPP/VIIRS monthly synthetic nighttime light data",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "electricity_reliability"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Finally,toconstructtheNPP/VIIRSdatasetforurbanEPCestimation,theseNTLdatathencombinedwiththecorrespondingmonthlyEPCstatisticaldatapublishedforeachcity,andmonthlyaveragetemperature.",
+        "theextractedNTLvalueswerecombinedwiththemonthlyEPCstatisticsandaveragetemperaturedataofthecorrespondingcitiestoformtheSDGSAT-1dataset."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究如何利用夜间灯光遥感与月平均温度，预测长江三角洲城市群各城市的月度城市用电量（EPC），并刻画其空间分布与时间变化？研究对象是长江三角洲城市群的城市月度EPC及其空间格局。",
+      "hypothesis_or_mechanism": "夜间灯光强度能够反映人类活动和能源使用水平，因此与城市EPC存在相关性；月平均温度通过影响居民和商业部门的供暖、制冷需求改变月度EPC。温度对EPC具有非线性影响，且温度与夜间灯光之间存在交互作用。",
+      "variables_and_data_use": "以NPP/VIIRS和SDGSAT-1夜间灯光数据提取的城市NTL作为核心解释变量，以统计年鉴中的月度EPC作为预测目标，并使用中国1 km月平均温度数据构建城市月平均温度序列。NPP/VIIRS数据以约400 m分辨率构建2017—2023年月度数据，并用Prophet进行异常检测和邻月替换；SDGSAT-1使用40 m红、绿、蓝三波段并通过最大值合成生成单波段夜间灯光影像。最终采用包含NTL、温度、NTL与温度交互项及温度平方项的五参数模型进行月度EPC预测。",
+      "method_paradigm": "采用多源夜间灯光遥感与辅助气象变量相结合的月度回归预测范式，并通过温度二次项和NTL—温度交互项刻画非线性与交互效应。数据处理中包括城市尺度栅格聚合、Prophet时间序列异常检测、邻月替换、SDGSAT-1 RGB最大值合成，以及训练期—预测期验证和留一交叉验证。",
+      "study_area": "长江三角洲城市群，包括上海市以及江苏省、浙江省和安徽省。",
+      "study_period": "2017—2023年；其中NPP/VIIRS数据以2017—2022年训练、2023年验证，SDGSAT-1影像主要为2023年不同月份。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Monthly statistics EPC data",
+          "role_in_study": "作为城市月度电力消费量预测的目标变量和统计验证数据，来源于统计年鉴。",
+          "usage": "used_as_data",
+          "evidence_quote": "MonthlystatisticsEPCdatafor20172023usedinthisstudywereobtainedfromstatisticalyearbooks.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "1km monthly average temperature dataset for China",
+          "role_in_study": "提供2017—2023年城市月平均温度；裁剪至城市行政边界后，对边界内栅格求空间平均以形成城市温度序列。",
+          "usage": "used_as_data",
+          "evidence_quote": "Monthlyaveragetemperaturedataforthesecitiesduring20172023wereacquiredfrom1kmmonthlyaveragetemperaturedatasetforChina",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Administrative boundary data",
+          "role_in_study": "用于裁剪温度数据、匹配城市行政边界并进行城市尺度空间平均和夜间灯光提取。",
+          "usage": "used_as_data",
+          "evidence_quote": "Afterclippingtheoriginaltemperaturedatatomatchtheadministrativeboundaries,therastervalueswithineachcityboundarywerespatiallyaveragedtogeneratemonthlymeantemperatureseriesforeachcity.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "global monthly synthetic NPP/VIIRS data",
+          "role_in_study": "提供2017—2023年月度夜间灯光观测，约400 m分辨率；经异常检测和邻月替换后提取城市NTL，并与EPC和温度数据构成NPP/VIIRS数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "The20172023globalmonthlysyntheticNPP/VIIRSdatausedinthisstudyweredownloadedfromtheNationalOceanicandAtmosphericAdministration,EarthObservationGroupdataplatform",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SDGSAT-1 nightlight imageries",
+          "role_in_study": "提供城市尺度高分辨率夜间灯光影像；使用40 m红、绿、蓝三波段进行最大值合成，提取NTL并构建SDGSAT-1数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "SDGSAT-1nightlightimageriesusedinthisstudywasobtainedfromtheInternationalResearchCenterofBigDataforSustainableDevelopmentGoals(CBAS).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Three40mresolutioncolorglimmerbands,i.e.,red,green,andbluebandsfromSDGSAT-1",
+          "role_in_study": "作为SDGSAT-1夜间灯光数据的实际输入波段，用于RGB最大值合成和夜间灯光信息提取。",
+          "usage": "used_as_data",
+          "evidence_quote": "Three40mresolutioncolorglimmerbands,i.e.,red,green,andbluebandsfromSDGSAT-1wereusedinthisstudy.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs17142478.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs17142478.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "8a29619dc975cbda4af2ecf1d52566df76e837ed0020664fd3f14c19901411d4",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:46:47",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.3390_rs17142478.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.3390_rs17142478.json",
+        "sha256": "69af9b2188b1e8c6ec5bf13125fb17cff4fb807d26ed69be47bd84eb45d16026",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "uncertain"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_11",
+      "source_paper_doi": "10.5194/isprs-archives-xlii-4-w19-425-2019",
+      "source_paper": {
+        "doi": "10.5194/isprs-archives-xlii-4-w19-425-2019",
+        "title": "MAPPING POVERTY IN THE PHILIPPINES USING MACHINE LEARNING, SATELLITE IMAGERY, AND CROWD-SOURCED GEOSPATIAL INFORMATION",
+        "year": 2019,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Visible Infrared Imaging Radiometer Suite Day/Night Band (VIIRS DNB) nighttime lights (NTL) data",
+        "access to electricity"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Visible Infrared Imaging Radiometer Suite Day/Night Band (VIIRS DNB) nighttime lights (NTL) data",
+          "actual_product_in_paper": "Visible Infrared Imaging Radiometer Suite Day/Night Band (VIIRS DNB) nighttime lights (NTL) data",
+          "evidence_quotes": [
+            "The nighttime lights (NTL) data is taken from the Visible\n\nInfrared Imaging Radiometer Suite Day/Night Band (VIIRS\n\nDNB) for the year 2016",
+            "we examine the extent to which geospatial data including nighttime lights, daytime satellite imagery, human settlement data, and crowd\n-\nsourced\ninformation can be used to estimate socioeconomic well\n-\nbeing\nin the Philippines.",
+            "We also propose an alternative,\n\ncost\n-\neffective\napproach that leverages a combination of volunteered geographic information from OpenStreetMap and nighttime lights satellite\n\nimagery for estimating socioeconomic indicators.",
+            "leverages a combination of volunteered geographic information from OpenStreetMap and nighttime lights satellite imagery for estimating socioeconomic indicators."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "nighttime lights satellite imagery",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "nighttime lights satellite imagery",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "access to electricity",
+          "actual_product_in_paper": "access to electricity",
+          "evidence_quotes": [
+            "In this study, we investiga\nte the\nextent to which this method can be applied in the context of the Philippine archipelago to predict four different socioeconom\nic\nindicators: wealth level, years of education, access to electricity, and access to water.",
+            "we examine the extent to which geospatial data including nighttim\n\ne lights, daytime\nsatellite imagery, human settlement data, and crowd\n-\nsourced\ninformation can be used to estimate socioeconomic well\n-\nbeing\nin the Philippines.",
+            "predict four different socioeconomic indicators: wealth level, years of education, access to electricity, and access to water."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "access to electricity",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "access to electricity",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "electricity_reliability"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "we examine the extent\n\nto which geospatial data including nighttim\n\ne lights, daytime\n\nsatellite imagery, human settlement data, and crowd\n\n-\n\nsourced\n\ninformation can be used to estimate socioeconomic well\n\n-\n\nbeing\n\nin the Philippines.",
+        "We also propose an alternative,\n\ncost\n\n-\n\neffective\n\napproach that leverages a combination of volunteered geographic information from OpenStreetMap and nighttime lights satellite\n\nimagery for estimating socioeconomic indicators."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "本文研究菲律宾群岛背景下，利用地理空间数据估计贫困和社会经济福祉的可行性，具体对象包括财富水平、受教育年限、用电可及性和用水可及性四类指标。论文还比较了基于遥感影像的方法与基于公开众包地理信息的方法在菲律宾贫困估计中的预测表现。",
+      "hypothesis_or_mechanism": "核心假设是夜间灯光、白天卫星影像、人类聚居和众包地理要素中包含与财富和基础服务可及性相关的空间模式，例如道路、建筑、土地覆盖和灯光强度可作为社会经济状况的代理信号。通过机器学习可从这些地理空间信号中学习社会经济指标的空间差异。",
+      "variables_and_data_use": "论文使用2017 Philippine Demographic and Health Survey作为财富指数、受教育年限、用电可及性和用水可及性的地面真值；使用2016年VIIRS DNB nighttime lights数据计算夜间光亮度并分级，作为遥感预测特征和迁移学习相关信号。论文还使用Google Static Maps获取2018年白天卫星影像，并使用Human Settlement Data (HRSL)及OpenStreetMap相关的众包地理信息特征，用于训练和比较贫困及社会经济指标预测模型。",
+      "method_paradigm": "方法范式为机器学习和深度学习的空间预测建模，包括利用卷积神经网络/迁移学习从白天卫星影像学习与夜间灯光及贫困相关的表征，并将遥感特征、众包地理信息和区域指标用于社会经济指标预测。",
+      "study_area": "Philippine archipelago / Philippines",
+      "study_period": "2016–2018",
+      "datasets_used": [
+        {
+          "name_in_paper": "2017 Philippine Demographic and Health Survey (DHS)",
+          "role_in_study": "作为四类社会经济指标的地面真值来源，包括财富指数、受教育年限、用电可及性和用水可及性。",
+          "usage": "used_as_data",
+          "evidence_quote": "We used the 2017 Philippine Demographic and Health Survey\n\n(DHS) as a measure of ground truth for the different\n\nsocioeconomic indicators.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Visible Infrared Imaging Radiometer Suite Day/Night Band (VIIRS DNB)",
+          "role_in_study": "提供2016年菲律宾夜间灯光亮度数据，用于计算和分级夜间光强并分析其与社会经济指标的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The nighttime lights (NTL) data is taken from the Visible\n\nInfrared Imaging Radiometer Suite Day/Night Band (VIIRS\n\nDNB) for the year 2016",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Daytime Satellite Imagery (Google Static Maps)",
+          "role_in_study": "提供2018年白天卫星影像，用于遥感/深度学习贫困估计模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daytime Satellite Imagery (Google Static Maps)\n\nYear collected\n\n2018",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Human Settlement Data (HRSL)",
+          "role_in_study": "作为人类聚居相关地理空间数据，用于构建道路、建筑和POI等特征。",
+          "usage": "used_as_data",
+          "evidence_quote": "Human\n\nSettlement Data (HRSL)\n\nYear collected\n\n2017\n\nNo. of road features\n\n16\n\nNo. of building features\n\n28\n\nNo. of POI features\n\n101",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "OpenStreetMap",
+          "role_in_study": "作为公开志愿者众包地理信息来源，用于提出低成本社会经济指标估计方法。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also propose an alternative,\n\ncost\n\n-\n\neffective\n\napproach that leverages a combination of volunteered geographic information from OpenStreetMap and nighttime lights satellite\n\nimagery for estimating socioeconomic indicators.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.5194_isprs-archives-xlii-4-w19-425-2019.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "312812bb172db6ffd66811c4de520e925038dc8d211cdadaf1619493bf10ebd7",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:45:44",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.5194_isprs-archives-xlii-4-w19-425-2019.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.5194_isprs-archives-xlii-4-w19-425-2019.json",
+        "sha256": "ea85dfa5305f0255498c8aafd192018a76ce3db730eeb3a9b6f958657a79d0bd",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_021_ref_12",
+      "source_paper_doi": "10.5614/jpwk.2025.36.1.5",
+      "source_paper": {
+        "doi": "10.5614/jpwk.2025.36.1.5",
+        "title": "Nighttime Lights as Indicators of Energy Efficiency Across Urban Morphologies in Malang City",
+        "year": 2025,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User confirmed the selected measurement interpretation and direct inclusion of historical references; seed reproduction is not required.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Light Pollution Map data 2012-2021",
+        "Malang City installed electricity capacity data 2018-2021 from National Statistics Agency / BPS Kota Malang"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "nighttime_lights",
+          "anchor_product": "Satellite nighttime lights",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Light Pollution Map data 2012-2021",
+          "actual_product_in_paper": "Light Pollution Map data 2012-2021",
+          "evidence_quotes": [
+            "The NTL data, which is Light Pollution Map data 2012-2021",
+            "The NTL data, which is Light Pollution Map data 2012 - 2021, was obtained from VIIRS data, which was processed and downloaded from lightpollutionmap.info.",
+            "Light Pollution Map\n\nUsed as a proxy for electrification approach and also as a criterion in determining urban morphological categories or hierarchies\n\nRaster, 500\nm\n\nlightpollutionmap.info,\n2022",
+            "raster data obtained from WorldPop for population data and the Light Pollution Map for NTL imagery data\nunder\nwent\n\nzonal statistical processes and clipping.",
+            "The NTL data, which is Light Pollution Map data 2012-2021, was obtained from VIIRS data, which was processed and downloaded from lightpollutionmap.info.",
+            "NTL data combined with population data from WorldPOP were processed through zonal statistics in GIS to calculate energy consumption per morphology level."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Light Pollution Map data 2012-2021 obtained from VIIRS data, processed and downloaded from lightpollutionmap.info",
+              "dataset_name": "Satellite nighttime lights"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Light Pollution Map (VIIRS data)",
+              "dataset_name": "Satellite nighttime lights"
+            }
+          }
+        },
+        {
+          "member_id": "electricity_reliability",
+          "anchor_product": "Electricity reliability indicators",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Malang City installed electricity capacity data 2018-2021 from National Statistics Agency / BPS Kota Malang",
+          "actual_product_in_paper": "Malang City installed electricity capacity data 2018-2021 from National Statistics Agency / BPS Kota Malang",
+          "evidence_quotes": [
+            "In the initial stage, this research\nconduct\ned\n\na correlation analysis to examine the extent of the\nrelationship between electrification statistical data from the\nNational Statistics Agency\nand the\namount or intensity of light pollution.",
+            "Another data\nset is the Malang City installed electricity capacity data 2018\n-\n2021 obtained from the National\nStatistics Agency website.",
+            "Electricity\n\nTabular data of installed electricity\ncapacity (Kwh)\n\n-\n\nBPS Kota Malang,\n2022",
+            "In this study, energy consumption efficiency\nw\nas\n\ncalculated by integrating electrification data\n(\nwatt\n/cm².str), population, land area, and nighttime light intensity (Nighttime Light/NTL)",
+            "Another data set is the Malang City installed electricity capacity data 2018-2021 obtained from the National Statistics Agency website.",
+            "In this study, energy consumption efficiency was calculated by integrating electrification data (watt/cm².str)... By comparing electricity consumption and activities detected through NTL, we can evaluate whether a region has an electricity supply surplus relative to its economic activity level."
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "Malang City installed electricity capacity data 2018-2021 from National Statistics Agency / BPS Kota Malang",
+              "dataset_name": "Electricity reliability indicators"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Malang City installed electricity capacity data",
+              "dataset_name": "Electricity reliability indicators"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "electricity_reliability"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "NTL data combined with population data from WorldPOP were processed through zonal statistics in GIS to calculate energy consumption per morphology level.",
+        "Electrification data from the national statistics agency were correlated with light intensity to validate NTL as a reliable proxy.",
+        "The NTL data, which is Light Pollution Map data 2012-2021, was obtained from"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究印度尼西亚东爪哇省玛琅市不同城市形态层级之间的城市形态与电气化效率/能源消费之间的关系，并评估夜间灯光是否能够作为能源分配和消费的代理指标。研究对象包括玛琅市的城市中心、内城、郊区、城市边缘、城市外围和农村腹地等城市形态类别。",
+      "hypothesis_or_mechanism": "城市形态通过人口密度、建筑布局、土地利用和人类活动强度影响电力分配与消费，因此不同城市形态的电气化效率存在差异。夜间灯光强度能够反映人类活动和能源消费，并可通过与国家统计电气化数据的相关性验证其作为能源消费代理指标的有效性。",
+      "variables_and_data_use": "研究使用2012—2021年的Light Pollution Map夜间灯光数据表征人工光强度、能源消费和人类活动，使用WorldPOP人口数据表示空间人口分布，并通过基于行政区和城市形态类别的GIS分区统计计算各形态层级的夜间灯光与人口统计量。研究还使用National Statistics Agency的电气化统计数据，与灯光强度进行相关分析以验证夜间灯光作为能源消费代理指标的可靠性；论文未说明具体卫星传感器型号或电力可靠性时间序列产品。",
+      "method_paradigm": "方法范式为相关分析与GIS栅格空间分析相结合，包括基于行政边界和城市形态类别的分区统计，以及栅格到等值线转换和城市形态分层制图。研究据此比较不同城市形态层级的能源消费和电气化效率。",
+      "study_area": "Malang City, East Java Province, Indonesia",
+      "study_period": "2012—2021",
+      "datasets_used": [
+        {
+          "name_in_paper": "GADM.org administrative area data at the level 3",
+          "role_in_study": "提供三级行政区边界，用于空间分析和分区统计。",
+          "usage": "used_as_data",
+          "evidence_quote": "GADM.org provided administrative area data at the level 3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WorldPOP population data from 2012 to 2021",
+          "role_in_study": "提供2012—2021年空间人口分布数据，用于与夜间灯光联合计算各城市形态层级的能源消费和效率。",
+          "usage": "used_as_data",
+          "evidence_quote": "WorldPOP.org provided population data from 2012 to 2021",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Light Pollution Map data 2012-2021",
+          "role_in_study": "提供2012—2021年夜间灯光/光污染栅格数据，用于表征人工光强度、人类活动和能源消费，并开展分区统计。",
+          "usage": "used_as_data",
+          "evidence_quote": "The NTL data, which is Light Pollution Map data 2012-2021",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "electrification statistical data from the National Statistics Agency",
+          "role_in_study": "提供电气化统计数据，用于与夜间灯光强度进行相关分析，以验证夜间灯光作为能源消费代理指标的可靠性。",
+          "usage": "used_as_data",
+          "evidence_quote": "electrification statistical data from the National Statistics Agency",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.5614_jpwk.2025.36.1.5.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.5614_jpwk.2025.36.1.5.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "d657b6402e35bbee817f3c137ab2bbde292b6b94f0b46ee291d8cc4c0bab2c1c",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:46:37",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_021/10.5614_jpwk.2025.36.1.5.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_021/10.5614_jpwk.2025.36.1.5.json",
+        "sha256": "fa00328499244622f6d5ae86ada491e76f6d233c1a6827065c7780e3b34e2ddc",
+        "source_task_id": "dual_dataset/task_021",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010"
+}

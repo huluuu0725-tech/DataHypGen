@@ -1,0 +1,47 @@
+{
+  "paper_id": "10.64862/ajeg.2025.2sp.123.277",
+  "task_id": "dual_dataset/task_008",
+  "title": "Effects of DEM Resolution and Sampling Strategy on Deep-Learning Debris-Flow Susceptibility Models",
+  "category": "dem_precipitation",
+  "year": 2025,
+  "journal": "Asian Journal of Engineering Geology",
+  "impact_level": "medium",
+  "datasets": [
+    "SRTM 30 m Digital Elevation Model",
+    "CHIRPS Daily Final Precipitation v2.0"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "terrain_context",
+      "dataset": "SRTM 30 m Digital Elevation Model"
+    },
+    {
+      "role": "precipitation_driver",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    }
+  ],
+  "idea": {
+    "research_question": "How can terrain controls and precipitation variability improve hydroclimatic hazard assessment?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:USGS/SRTMGL1_003",
+      "GEE:UCSB-CHG/CHIRPS/DAILY"
+    ],
+    "required_component_usage": [
+      "terrain_context",
+      "precipitation_driver"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves the audited multidataset observation contract.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_008:composite_observation",
+    "task_seed_audit": "independent_combination_seed_audit_20260929.json",
+    "seed_selection_basis": "independent_section_ready_audit",
+    "audited_combination_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\batch_reference_spaces_20260929\\dem_precipitation.json",
+    "selected_candidate_evidence": "section_ready"
+  }
+}

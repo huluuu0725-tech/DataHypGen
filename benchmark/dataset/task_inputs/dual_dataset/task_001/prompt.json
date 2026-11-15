@@ -1,0 +1,175 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrestrial water-storage and land-surface-state observation space",
+  "datasets": [
+    {
+      "role": "satellite_gravimetry_tws_input",
+      "data_description": {
+        "dataset_name": "GRACE Monthly Mass Grids Land",
+        "data_type": "Satellite gravimetry raster time series",
+        "data_format": "Monthly terrestrial water-storage equivalent-water-thickness grid",
+        "spatial_resolution": "Product-dependent coarse global grid",
+        "temporal_unit": "Monthly terrestrial water-storage anomaly",
+        "temporal_coverage": "2002-present for GRACE/GRACE-FO-compatible records",
+        "data_source": "NASA GRACE/GRACE-FO land mass-grid and mascon lineage",
+        "gee_asset": {
+          "id": "NASA/GRACE/MASS_GRIDS/LAND",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+        "analytical_capabilities": [
+          "Provide monthly terrestrial water-storage anomaly observations",
+          "Support trend, seasonal, drought and inter-mission gap analysis",
+          "Constrain groundwater-storage estimation or spatial downscaling"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Equivalent water thickness or terrestrial water-storage mass anomaly",
+          "runtime_hint": "Declare processing center, release, scaling and leakage correction."
+        },
+        "spatial_coverage": {
+          "region_name": "Global terrestrial water-storage and land-surface-state observation space",
+          "coverage": "GRACE/GRACE-FO land-mass-grid coverage intersected with the declared study region."
+        }
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+    },
+    {
+      "role": "land_surface_state_input",
+      "data_description": {
+        "dataset_name": "GLDAS-2.1 Noah Land Surface Model",
+        "data_type": "Land-surface-model raster time series",
+        "data_format": "Sub-daily or aggregated land-surface state and flux fields",
+        "spatial_resolution": "0.25 degree model grid",
+        "temporal_unit": "3-hourly fields with monthly or other declared aggregation",
+        "temporal_coverage": "2000-present for GLDAS-2.1-compatible records",
+        "data_source": "NASA Global Land Data Assimilation System Noah model",
+        "gee_asset": {
+          "id": "NASA/GLDAS/V021/NOAH/G025/T3H",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+        "analytical_capabilities": [
+          "Provide soil-moisture, snow, canopy-water and land-surface flux components",
+          "Supply hydrological covariates for GRACE anomaly interpretation",
+          "Support residual groundwater-storage estimation and model-based validation"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Land-surface water stores and flux variables in model-specific units",
+          "runtime_hint": "Align temporal aggregation and units with the GRACE monthly anomaly."
+        },
+        "spatial_coverage": {
+          "region_name": "Global terrestrial water-storage and land-surface-state observation space",
+          "coverage": "GLDAS Noah model coverage intersected with the declared study region."
+        }
+      },
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "GRACE Monthly Mass Grids Land",
+      "data_type": "Satellite gravimetry raster time series",
+      "data_format": "Monthly terrestrial water-storage equivalent-water-thickness grid",
+      "spatial_resolution": "Product-dependent coarse global grid",
+      "temporal_unit": "Monthly terrestrial water-storage anomaly",
+      "temporal_coverage": "2002-present for GRACE/GRACE-FO-compatible records",
+      "data_source": "NASA GRACE/GRACE-FO land mass-grid and mascon lineage",
+      "gee_asset": {
+        "id": "NASA/GRACE/MASS_GRIDS/LAND",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "analytical_capabilities": [
+        "Monthly storage anomaly",
+        "Trend and gap analysis",
+        "Groundwater-storage constraint"
+      ]
+    },
+    {
+      "dataset_name": "GLDAS-2.1 Noah Land Surface Model",
+      "data_type": "Land-surface-model raster time series",
+      "data_format": "Sub-daily or aggregated land-surface state and flux fields",
+      "spatial_resolution": "0.25 degree model grid",
+      "temporal_unit": "3-hourly fields with monthly or other declared aggregation",
+      "temporal_coverage": "2000-present for GLDAS-2.1-compatible records",
+      "data_source": "NASA Global Land Data Assimilation System Noah model",
+      "gee_asset": {
+        "id": "NASA/GLDAS/V021/NOAH/G025/T3H",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+      "analytical_capabilities": [
+        "Land-surface water components",
+        "Hydrological covariates",
+        "Residual decomposition"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "GRACE water-storage and GLDAS land-surface-state composite observation",
+    "observable_group": "grace_tws_plus_gldas_land_surface_state",
+    "data_description": {
+      "dataset_name": "GRACE water-storage and GLDAS land-surface-state composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled satellite-gravimetry and land-surface-model bundle",
+      "spatial_coverage": {
+        "region_name": "Global terrestrial water-storage and land-surface-state observation space"
+      },
+      "analytical_capabilities": [
+        "Joint GRACE and GLDAS water-storage analysis",
+        "Residual groundwater-storage estimation",
+        "Temporal reconstruction, drought analysis and spatial downscaling"
+      ]
+    },
+    "components": [
+      {
+        "role": "satellite_gravimetry_tws_input",
+        "data_description": {
+          "dataset_name": "GRACE Monthly Mass Grids Land",
+          "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+      },
+      {
+        "role": "land_surface_state_input",
+        "data_description": {
+          "dataset_name": "GLDAS-2.1 Noah Land Surface Model",
+          "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+        },
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "GRACE terrestrial water-storage anomalies jointly interpreted with GLDAS Noah land-surface water components.",
+      "alignment": "Spatially collocate and temporally aggregate both inputs before modeling, residual decomposition or validation.",
+      "required_roles": [
+        "satellite_gravimetry_tws_input",
+        "land_surface_state_input"
+      ],
+      "component_count": 2,
+      "supplement_policy": "Ideas may add verified precipitation, reanalysis, vegetation, surface-water, groundwater-well, GNSS, InSAR, DEM or climate-index datasets with distinct scientific roles; added datasets cannot replace either required role."
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "satellite_gravimetry_tws_input",
+      "land_surface_state_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  },
+  "schema_version": "2.0-composite-anchor"
+}

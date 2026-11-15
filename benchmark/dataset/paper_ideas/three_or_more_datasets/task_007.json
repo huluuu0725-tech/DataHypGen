@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.1016/j.gloenvcha.2024.102857",
+  "task_id": "three_or_more_datasets/task_007",
+  "title": "Greening to shield: The impacts of extreme rainfall on economic activity in Latin American cities",
+  "category": "extreme_rainfall_economic_disruption",
+  "year": 2024,
+  "journal": "Global Environmental Change",
+  "impact_level": "medium",
+  "datasets": [
+    "VIIRS Black Marble nighttime radiance",
+    "CHIRPS Daily Final Precipitation v2.0",
+    "Landsat Collection 2 Level-2 Surface Reflectance"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "urban_activity_observation",
+      "dataset": "VIIRS Black Marble nighttime radiance"
+    },
+    {
+      "role": "extreme_rainfall_driver",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    },
+    {
+      "role": "urban_greenness_context",
+      "dataset": "Landsat Collection 2 Level-2 Surface Reflectance"
+    }
+  ],
+  "idea": {
+    "research_question": "How does extreme rainfall alter urban economic activity, and does greener land cover moderate the disruption?",
+    "hypothesis": "Rainfall extremes reduce activity, while greener urban land cover attenuates the reduction through improved infiltration and flood buffering.",
+    "mechanism": "City-month panel, fixed effects, rainfall-extreme indicators, interaction terms and counterfactual avoided-loss estimation",
+    "expected_contribution": "Transfers satellite activity measurement into flood-economics and green-infrastructure evaluation.",
+    "required_component_usage": [
+      "urban_activity_observation",
+      "extreme_rainfall_driver",
+      "urban_greenness_context"
+    ],
+    "data_sources": [
+      "NASA/VIIRS/002/VNP46A2",
+      "UCSB-CHG/CHIRPS/DAILY",
+      "LANDSAT/LC08/C02/T1_L2"
+    ],
+    "falsification_condition": "Reject if any required role is omitted, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_007:composite_observation",
+    "anchor_type": "composite_observation",
+    "extraction_basis": "Full-text seed evidence; empirical results are excluded from the task prompt."
+  }
+}

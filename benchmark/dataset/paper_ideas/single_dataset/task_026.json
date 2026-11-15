@@ -1,0 +1,85 @@
+{
+  "paper_id": "10.1038/s41598-019-40155-y",
+  "task_id": "single_dataset/task_026",
+  "title": "Identifying Climate-Induced Groundwater Depletion in GRACE Observations",
+  "category": "environmental_monitoring",
+  "year": 2019,
+  "journal": "Scientific Reports",
+  "impact_level": "high",
+  "datasets": [
+    "GRACE JPL-RL05.1 monthly gravity solutions (67 coefficients, October 2003-December 2015)",
+    "SNODAS daily snow-water equivalent (1 km, spatially upscaled to 0.5 degree and temporally interpolated to monthly)",
+    "PRISM Climate Group monthly gridded precipitation and minimum, maximum and mean temperature",
+    "USGS groundwater-use reports for 2000, 2005, 2010 and 2015, temporally interpolated and county values spatially weighted to 0.5 degree grids",
+    "USGS National Map reservoir inventory used to exclude 0.5 degree cells containing large reservoirs",
+    "Soil-moisture, surface-water/runoff and total-water-storage anomaly components used in the mass-balance decomposition"
+  ],
+  "study_area_verified": {
+    "name": "0.5 degree GRACE land-grid analysis over the United States; exact grid subset is not specified in the supplied excerpt",
+    "study_period": "October 2003 through December 2015 for the GRACE JPL-RL05.1 series; the anomaly baseline is January 2004 through December 2009.",
+    "analysis_grid": "GRACE-derived terrestrial water storage anomalies and auxiliary fields aggregated to 0.5 degree cells; cells containing large reservoirs were excluded.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NASA/GRACE/MASS_GRIDS/LAND",
+    "operationally_used": true,
+    "role": "GRACE terrestrial water storage anomaly is the gravimetric total-water-storage input from which groundwater storage anomaly is separated by mass balance.",
+    "evidence": "The supplied Methods use JPL-RL05.1 GRACE monthly gravity coefficients, form gridded TWSA, and subtract soil-moisture, snow-water-equivalent and surface-water components to obtain groundwater storage anomaly.",
+    "corrections": [
+      "The previous datasets field listed only GRACE and GRACE-FO and omitted SNODAS, PRISM, USGS groundwater-use and reservoir-mask inputs.",
+      "The task prompt now describes the catalog's historical Release 05 land mass-grid product rather than a generic GRACE/GRACE-FO product."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "NASA/GRACE/MASS_GRIDS/LAND (historical Release 05; deprecated catalog record)"
+      ],
+      "not_available_as_identified_source": [
+        "JPL-RL05.1 spherical-harmonic coefficient files and the paper's gridding/post-processing workflow",
+        "SNODAS SWE fields as used by the paper",
+        "PRISM monthly climate grids as used by the paper",
+        "USGS groundwater-use reports and National Map reservoir exclusion mask",
+        "Paper-specific soil-moisture, runoff and surface-water anomaly realizations"
+      ]
+    },
+    "sibling_task_boundary": "Admission requires operational use of GRACE land mass-grid or equivalent terrestrial-water-storage solutions. GRACE-FO-only studies do not satisfy the anchor; the deprecated Release 05 record is retained because it matches the paper's RL05.1 processing generation.",
+    "fields_left_unchanged": [
+      "idea.research_question",
+      "idea.hypothesis",
+      "idea.mechanism",
+      "idea.key_variables",
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.expected_contribution",
+      "idea.falsification_condition"
+    ],
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "在持续、近似恒定抽水条件下，GRACE/GRACE-FO是否只能识别含水层初期的地下水储量下降，而无法识别由水平补给（capture）补偿抽水的准平衡阶段地下水流动变化？",
+    "hypothesis": "若抽水速率在时间上保持近似稳定，则地下水系统会先出现由去水引起的储量下降和漏斗状降深；随后在Dupuit水平流与侧向补给逐步补偿抽水后，GRACE/GRACE-FO观测到的地下水储量异常将趋于零或接近零。换言之，GRACE对“储量变化”敏感，但对仅表现为流场重分配的capture过程不敏感。",
+    "mechanism": "持续抽水首先导致井周围含水层去水，形成降深漏斗并引起地下水储量下降；随着时间推进，区域侧向地下水流入增强，capture逐步补偿抽水体积，使局地储量变化减弱并进入准平衡。该过程中，中间变量包括抽水速率、含水层可压缩性、水平水力梯度、侧向补给通量与地下水储量异常；GRACE/GRACE-FO只响应后者，而不直接响应流动重分配本身。",
+    "key_variables": {
+      "target": "地下水储量异常（Groundwater Storage Anomaly, GWSA）或总水储量异常（TWSA）中扣除土壤水、地表水和积雪后的地下水分量",
+      "predictors": [
+        "地下水抽水速率（井群/灌溉区年度或月度抽水量）",
+        "GRACE/GRACE-FO mascon陆地水储量异常（约0.5°空间分辨率，月尺度）",
+        "土壤湿度与蒸散发（用于剥离气候驱动，优先采用GLDAS/ERA5陆面变量）",
+        "降水（用于控制补给变化）",
+        "含水层水文地质参数（导水率、贮水系数、厚度）",
+        "河流/灌渠水位或地表水体变化（用于表征侧向补给与capture）"
+      ]
+    },
+    "data_sources": [
+      "GRACE/GRACE-FO mascon陆地水储量产品（RL06类产品，月尺度，约0.5°空间分辨率，2002年至今）",
+      "地下水抽水统计或井观测资料（月度/年度，研究区尺度；可来自区域水资源管理部门或井网记录）",
+      "GLDAS或ERA5陆面变量（0.25°-0.5°，月尺度；土壤湿度、蒸散发、降水，用于分解气候信号）",
+      "研究区地下水位/孔隙水压监测井资料（逐日到月尺度，作为GRACE解释和验证数据）"
+    ],
+    "analytical_approach": "采用基于水量平衡的分量剥离框架：先用GLDAS/ERA5的土壤湿度、雪水当量、地表水与蒸散发校正GRACE/GRACE-FO TWSA，得到地下水储量异常；再结合抽水序列建立时滞回归或状态空间模型，检验“初期储量下降-后期准平衡”两阶段响应。建议使用分段回归或贝叶斯变点检测识别从dewatering向capture主导的转折点，并用5折交叉验证比较含抽水项与不含抽水项模型的解释力。若研究采用空间尺度聚合，可按流域/含水层单元做月尺度异常标准化，设置1-3个月滞后窗口评估抽水响应。",
+    "expected_contribution": "把GRACE可观测的地下水变化限定到“储量变化”而非“流动变化”的物理边界上，建立抽水情景下GRACE信号可探测性的判别框架。该设计有助于区分短期去水造成的储量损失与长期capture导致的流场重分配，为地下水遥感监测的解释边界提供定量约束。",
+    "falsification_condition": "若在抽水速率稳定（月变异系数<10%）且气候补给已校正后，GRACE/GRACE-FO地下水储量异常仍持续显著偏离零，例如连续6个月满足|GWSA|>1个标准差或线性趋势仍小于-1 cm/yr并与抽水变化无显著时滞响应（p>0.05），则“GRACE仅响应初期储量下降、对capture不敏感”的假设被证伪。"
+  },
+  "pdf_url": "https://www.nature.com/articles/s41598-019-40155-y.pdf",
+  "enriched": true,
+  "enrichment_source": "pdf_fulltext"
+}

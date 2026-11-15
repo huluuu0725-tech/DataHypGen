@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.3390/rs14153839",
+  "task_id": "single_dataset/task_027",
+  "title": "Evaluation of Methods for Estimating Lake Surface Water Temperature Using Landsat 8",
+  "category": "environmental_monitoring",
+  "year": 2022,
+  "journal": "Remote Sensing",
+  "impact_level": null,
+  "datasets": [
+    "Landsat 8 Collection 2 Tier 1 TOA (`LANDSAT/LC08/C02/T1_TOA`): calibrated OLI reflectance and TIRS B10/B11 observations, 2013-2020",
+    "Landsat 8 Collection 2 Tier 1 Level-2 Surface Temperature (`LANDSAT/LC08/C02/T1_L2`): ST_B10 surface-temperature science product and auxiliary layers",
+    "Polish Institute of Meteorology and Water Management (IMWM) daily in situ lake-water temperature at 06:00 UTC, approximately 0.4 m depth, 2013-2020"
+  ],
+  "study_area_verified": {
+    "name": "38 lakes in northern Poland",
+    "period": "April-October, 2013-2020",
+    "sampling": "Daily IMWM measurements at 06:00 UTC in the near-shore zone, approximately 0.4 m below the surface. Landsat values were sampled at an in-lake point 60 m from the monitoring location to avoid mixed land and shoreline-vegetation pixels.",
+    "scene_filtering": "Scenes below 60% cloud cover were considered; CFMask cloud and shadow pixels, negative reflectance, B10 temperature below 0 °C, B1 values at or above 0.14 and duplicate same-day observations were removed.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_repoint": {
+    "paper_used": "Landsat 8 Collection 2 Tier-1 calibrated TOA data; the USGS Level-2 surface-temperature science product is a companion comparison input",
+    "task_anchor": "LANDSAT/LC08/C02/T1_TOA",
+    "former_anchor": "LANDSAT/LC08/C02/T1_L2",
+    "why_former_anchor_was_incomplete": "The empirical lake-temperature models use Level-1 Tier-1 calibrated TOA reflectance and thermal bands. Level-2 surface temperature is a separate comparison workflow, so a Level-2-only anchor omitted the main TOA predictors and mislabeled them as surface reflectance. The benchmark exposes only the primary TOA dataset as input.",
+    "corrections": [
+      "The former datasets list did not distinguish calibrated TOA bands from the Level-2 surface-temperature science product.",
+      "The supplied Methods establish 38 northern-Poland lakes and IMWM daily water-temperature measurements, not a generic global Landsat study.",
+      "The Level-2 collection includes both L2SR and L2ST processing branches; ST_B10 and its auxiliary bands must be selected from L2ST observations."
+    ],
+    "companion_dataset_availability": {
+      "LANDSAT/LC08/C02/T1_TOA": "ready Earth Engine catalog collection and exact representation of the GEE TOA input",
+      "LANDSAT/LC08/C02/T1_L2": "ready Earth Engine catalog collection representing the Level-2 surface-temperature companion product; it is not the single task anchor",
+      "IMWM in situ water temperature": "institutional station observations rather than an Earth Engine catalog dataset"
+    },
+    "sibling_task_boundary": "single_dataset/task_027 is anchored on Landsat 8 Collection 2 Tier-1 TOA scenes for northern-Poland lake-temperature analysis. Level-2 surface-temperature data are companion comparison data, not required input; Level-2-only studies, raw-DN workflows and multi-sensor Landsat land-cover studies are excluded.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule.",
+    "review_date": "2026-08-29"
+  },
+  "idea": {
+    "research_question": "Can Landsat 8 imagery, together with local lake and climate covariates, be used to estimate lake surface water temperature across Polish lakes with enough spatial and temporal fidelity to replace sparse single-point in situ monitoring?",
+    "hypothesis": "A non-linear machine-learning model trained on Landsat 8 spectral/thermal information and lake-context variables will predict lake surface water temperature more accurately than a simple linear regression, and a corrected Landsat Level-2 Surface Temperature product will further improve estimation near shorelines; the gain should be strongest for lakes with greater spatial heterogeneity and stronger local morphometric influence.",
+    "mechanism": "Landsat 8 captures surface thermal and radiometric signals that respond to lake heating and cooling, while lake morphometry and local shoreline conditions modulate how that signal is expressed across each lake surface. Regional climate forcing drives the broad seasonal temperature trajectory, and local factors such as lake size, shape, and coastal adjacency introduce within-lake thermal gradients. A model that combines spectral/thermal inputs with lake-context variables should therefore map satellite-observed surface characteristics to true water temperature more faithfully than a purely linear relation, especially after correcting systematic coastal-zone bias in the Level-2 temperature product.",
+    "key_variables": {
+      "target": "Lake surface water temperature (LSWT, °C)",
+      "predictors": [
+        "Landsat 8 OLI/TIRS spectral bands",
+        "Landsat 8-derived surface temperature / Landsat Level-2 Surface Temperature (LST-L2)",
+        "lake location and acquisition date",
+        "regional climatic conditions",
+        "lake morphometric attributes",
+        "coastal-zone / shoreline proximity"
+      ]
+    },
+    "data_sources": [
+      "Landsat 8 OLI/TIRS imagery over Poland, 2013-2020, including Landsat Level-2 Surface Temperature Science Product (LST-L2) from USGS/NASA; 16-day revisit; multispectral 30 m data and thermal-derived surface temperature layers",
+      "In situ lake surface water temperature observations for 28 Polish lakes used for model development and 10 additional lakes used for independent validation; single-point monitoring records matched to satellite overpass dates"
+    ],
+    "analytical_approach": "Train and compare a linear regression model and a random forest regressor for LSWT estimation using coincident Landsat 8 observations and in situ measurements; evaluate performance with RMSE and R2 on held-out lakes; test a separate LST-L2-based estimation workflow and apply shoreline/coastal-zone bias diagnosis and correction to reduce systematic edge effects; validate transferability by withholding 10 lakes from model development.",
+    "expected_contribution": "A reproducible remote-sensing framework for lake temperature monitoring that scales from point measurements to national coverage, supports spatially explicit mapping of lake thermal patterns, and provides a practical benchmark for choosing between linear, random-forest, and product-based Landsat temperature estimation workflows.",
+    "falsification_condition": "The hypothesis is not supported if, on the independent 10-lake validation set, the random forest model does not outperform linear regression and fails to reach at least RMSE <= 2.0 degrees C and R2 >= 0.85, or if coastal-zone correction does not materially reduce shoreline bias in the LST-L2 estimates."
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

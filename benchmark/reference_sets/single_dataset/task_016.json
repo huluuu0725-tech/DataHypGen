@@ -1,0 +1,1411 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_016",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MOD13A3.061 Vegetation Indices Monthly L3 Global 1 km SIN Grid",
+    "spatial_coverage": {
+      "region_name": "Kubuqi Desert and surrounding terrestrial areas in Inner Mongolia, China",
+      "coverage": "Global terrestrial coverage on a 1 km sinusoidal grid, including the Kubuqi Desert and adjacent arid and semi-arid land surfaces."
+    },
+    "temporal_coverage": "February 2000 to present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1 km",
+    "temporal_unit": "Monthly composite",
+    "analytical_capabilities": [
+      "Monthly vegetation condition mapping and interannual comparison",
+      "Vegetation index time-series analysis at monthly resolution",
+      "Seasonal cycle, phenology-window, and growing-season aggregation",
+      "Vegetation trend detection and change attribution against gridded covariates",
+      "Spatial stratification of vegetation state by terrain, climate zone, or land-cover class"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI and EVI as dimensionless indices, stored with a scale factor of 0.0001",
+      "runtime_hint": "Multiply `NDVI` or `EVI` by 0.0001 to obtain physical index values. Screen pixels with `SummaryQA` for routine filtering, or `DetailedQA` when specific quality bits matter. `sur_refl_b01` through `sur_refl_b07` carry the contributing surface reflectances at the same scale, and `ViewZenith`, `SolarZenith` and `RelativeAzimuth` are in degrees with a 0.01 scale. Monthly compositing means a single image already averages within its month, so avoid double-averaging when building seasonal means. Note this collection has no per-pixel `DayOfYear` band, so the exact observation date within a month is not recoverable."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center, derived from Terra MODIS",
+    "gee_asset": {
+      "id": "MODIS/061/MOD13A3",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD13A3",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_016.json",
+    "source_sha256": "7edab7211d21f0fd920bbd48ba092b12f3f0e41e8d6f1b0bac0c62fb8c837ee1",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_016/prompt.json",
+    "current_prompt_sha256": "1bbbfd0200965cf6bda0cd55a0c4019fd6e287c51346ba5fa13cdb5f5b89b997",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD13A3",
+      "observable_group": "modis_1km_monthly_vegetation_indices",
+      "observation_identity_contract": {
+        "physical_object": "spectral vegetation greenness and vigor",
+        "source_lineage": "Terra MODIS MOD13 vegetation-index production lineage",
+        "core_measurement_semantics": "MODIS-derived NDVI or EVI",
+        "non_material_variations": "MOD13 collection version, grid, cadence, archive, resampling or temporal aggregation retaining Terra MODIS NDVI/EVI",
+        "material_mismatches": "Aqua-only, AVHRR, Landsat or another vegetation-index production lineage, or LAI/FPAR rather than NDVI/EVI"
+      },
+      "asset_alias_policy": "MOD13A3 Collection 6/6.1 monthly 1 km NDVI or EVI is admitted; MOD13Q1/A1/A2/C1, the Aqua MYD13 series, and derived products that merely cite MOD13A3 are excluded.",
+      "anchor_repointed": {
+        "from": "MODIS/061/MOD13Q1",
+        "to": "MODIS/061/MOD13A3",
+        "reason": "The admitted product is the monthly 1 km vegetation-index collection, not the 16-day 250 m one. The former anchor's own alias policy excluded other MODIS vegetation-index resolutions, so the source work could not have satisfied this task's admission rule.",
+        "verified_against": "Earth Engine catalog entry MODIS/061/MOD13A3 (status ready, 1 km gsd, monthly cadence, NDVI and EVI bands)",
+        "review_date": "2026-08-28"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "Where are subtropical chir-pine forests most vulnerable to wildfire? Task transfer scope: assess the same question for Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "hypothesis_or_mechanism": "Vegetation condition interacts with terrain, climate, and human access to shape ignition and fire-spread susceptibility. Task mechanism condition: interpret the mechanism under Kubuqi Desert vegetation response to water diversion under arid climate stress, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are combined with terrain, climate, infrastructure, and fire observations. Task operationalization: use the anchor asset and task-specific covariates needed to represent Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "method_paradigm": "Machine-learning fire-vulnerability mapping with predictor importance and validation. Task evaluation frame: stratify, compare, or validate results against the constraints of Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "terrain and climate",
+        "human-access and fire data"
+      ],
+      "author_team": [
+        "Sultan Muhammad",
+        "Syed Moazzam Nizami",
+        "Qunou Jiang",
+        "Kaleem Mehmood",
+        "M. Hussain",
+        "Shoaib Ahmad Anees",
+        "Fahad Shahzad",
+        "Waseem Razzaq Khan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning-based forest fire vulnerability assessment in subtropical chir pine forests of Pakistan",
+        "doi": "10.1186/s42408-025-00408-w",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Kubuqi Desert vegetation response to water diversion under arid climate stress",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Where is land productivity declining along the Great Green Wall, and how much change is attributable to human restoration or degradation? Task transfer scope: assess the same question for Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "hypothesis_or_mechanism": "Climate-adjusted vegetation productivity residuals separate human-associated departures from environmentally expected trends. Task mechanism condition: interpret the mechanism under Kubuqi Desert vegetation response to water diversion under arid climate stress, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation time series are analyzed with climate, land-cover, and restoration information. Task operationalization: use the anchor asset and task-specific covariates needed to represent Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "method_paradigm": "Land-productivity trend assessment with human-versus-climate attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate",
+        "land management and land cover"
+      ],
+      "author_team": [
+        "Yubo Zhi",
+        "Xiaosong Li",
+        "Tong Shen",
+        "Graciela Metternicht",
+        "Anne Grainger",
+        "Yude Pan",
+        "Qi Lu",
+        "Amos T. Kabo–bah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Land productivity declines in the GGW while human contributions to restoration far outweighing degradation",
+        "doi": "10.1038/s41598-025-18963-2",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Kubuqi Desert vegetation response to water diversion under arid climate stress",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "How does vegetation respond to interacting climate factors after removing long-term and temporal confounding? Task transfer scope: assess the same question for Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "hypothesis_or_mechanism": "Climate-trend and residual-trend decomposition distinguishes direct climatic response from persistent residual vegetation change. Task mechanism condition: interpret the mechanism under Kubuqi Desert vegetation response to water diversion under arid climate stress, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are analyzed with four climate factors using CTSS-RESTREND. Task operationalization: use the anchor asset and task-specific covariates needed to represent Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "method_paradigm": "Climate time-series decomposition and residual trend attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of Kubuqi Desert vegetation response to water diversion under arid climate stress.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate variables"
+      ],
+      "author_team": [
+        "Baihui Hao",
+        "Songlin Ding",
+        "Zhengfang Wu",
+        "Z. Ruan",
+        "Li Mai",
+        "Yaning Kuang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of vegetation response to four climate factors based on the CTSS-RESTREND method",
+        "doi": "10.1007/s13762-025-06527-w",
+        "year": 2025,
+        "venue": "International Journal of Environmental Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Kubuqi Desert vegetation response to water diversion under arid climate stress",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "研究2002—2021年Mu Us Sandy Land的NDVI变化及其对气候变化和人类活动的响应机制。",
+      "hypothesis_or_mechanism": "温度、降水和人类活动共同影响NDVI变化，其中人类活动可能是植被变化的主要驱动因素。",
+      "variables_and_data_use": "使用MOD13A3的NDVI数据生成年度和季节NDVI序列，并结合National Earth System Science Data Center的温度和降水数据开展趋势、相关性、残差归因和未来趋势分析。",
+      "method_paradigm": "趋势分析与驱动归因",
+      "used_assets": [
+        "MOD13A3",
+        "MODIS (Moderate-Resolution Imaging Spectroradiometer)",
+        "National Earth System Science Data Center",
+        "global climate datasets"
+      ],
+      "author_team": [
+        "Yan Chao",
+        "Yonghua Zhu",
+        "Xiaohan Wang",
+        "Jiamin Li",
+        "Li’e Liang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Dynamic evolution of the NDVI and driving factors in the Mu Us Sandy Land of China from 2002 to 2021",
+        "doi": "10.1007/s40333-025-0052-4",
+        "year": 2025,
+        "venue": "Journal of Arid Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "研究气候变化与人为活动分别如何影响中国西部渭河流域 1998–2023 年生长季植被 NDVI 的时空变化。",
+      "hypothesis_or_mechanism": "降水是半干旱区植被改善的主要气候限制因素，而生态恢复工程促进植被变绿、城市扩张导致植被退化，因此人为活动总体上对 NDVI 变化具有重要影响。",
+      "variables_and_data_use": "使用 MOD1S MOD13A3 和 SPOT-VGT VEGETATION 的 NDVI 构建 1998–2023 年生长季 NDVI 序列；使用中国气象局年度平均温度和降水量作为气候变量，并结合土地覆盖、人口密度、植被类型和高程数据，通过趋势分析、相关分析及一阶差分回归分离气候和人为因素对 NDVI 趋势的贡献。",
+      "method_paradigm": "过程归因与趋势分析",
+      "used_assets": [
+        "SPOT-VGT VEGETATION",
+        "MOD1S MOD13A3",
+        "China Meteorological Administration Climate data",
+        "ASTER GDEM product",
+        "Vegetation type distribution map",
+        "Landsat based annual land cover data set for China (CLCD)",
+        "Population density spatial distribution dataset"
+      ],
+      "author_team": [
+        "Lina Li",
+        "Rui Xia",
+        "Ming Dou",
+        "Minhua Ling",
+        "Guiqiu Li",
+        "Cai Wang",
+        "Qingbin Mi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Integrating landsat NDVI data with climate and anthropogenic factors reveals drivers of vegetation dynamics in the semi-arid Basin of Western China",
+        "doi": "10.1038/s41598-025-02360-w",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究黄河流域植被干旱在生态修复背景下的时空变化及其影响因素。",
+      "hypothesis_or_mechanism": "生态修复提高植被覆盖，但可能通过增强蒸散发和水分消耗降低土壤湿度，从而加剧植被干旱。",
+      "variables_and_data_use": "使用 MOD13A3/MODIS13A3 NDVI、MOD11A2 地表温度和 ERA5-land 降水构建 TVPDI，并结合蒸发、土壤湿度、温度、人口密度和现场土壤水分数据开展趋势分析、结构方程分析和精度验证。",
+      "method_paradigm": "遥感指数构建与机制分析",
+      "used_assets": [
+        "MODIS13A3",
+        "MOD13A3",
+        "MOD11A2",
+        "ERA5-land",
+        "DEM",
+        "Rainfall",
+        "Temperature",
+        "Population density",
+        "LandScan",
+        "Evaporation",
+        "Soil moisture"
+      ],
+      "author_team": [
+        "Wei Chen",
+        "Yuxing Guo",
+        "Congjian Sun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Influence of ecological restoration on regional temperature-vegetation-precipitation dryness index in the middle Yellow River of China",
+        "doi": "10.1007/s11629-024-9177-8",
+        "year": 2025,
+        "venue": "Journal of Mountain Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "如何利用GRACE/GRACE-FO及多源环境预测变量对数据稀缺地区的地下水储量异常进行高分辨率时空下采样？",
+      "hypothesis_or_mechanism": "融合MODIS地表温度、蒸散发、NDVI、CHIRPS降水、SRTM高程和地面地下水观测的堆叠集成机器学习能够恢复地下水储量异常的局地空间异质性，并识别长期耗竭变化。",
+      "variables_and_data_use": "以GRACE/GRACE-FO陆地总水储量异常结合GLDAS水文分量推导地下水储量异常，使用MODIS LST、ET、NDVI、CHIRPS降水和SRTM高程作为卫星或地形预测变量，并结合地面地下水观测进行堆叠集成机器学习下采样。",
+      "method_paradigm": "机器学习空间下采样",
+      "used_assets": [
+        "GRACE/GRACE-FO",
+        "GLDAS",
+        "MODIS LST",
+        "ET",
+        "MODIS NDVI",
+        "CHIRPS",
+        "SRTM",
+        "in-situ groundwater observations"
+      ],
+      "author_team": [
+        "S. Karunarathna",
+        "B. C. Dissanayake",
+        "L. Gunawardhana",
+        "L. Rajapakse"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "High-Resolution Downscaling of GRACE-Derived Groundwater Storage Anomalies using Stacking Ensemble Machine Learning in the Data-Scarce Tropical Catchments",
+        "doi": "10.1007/s41748-026-01022-9",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "研究评估并预测半干旱Papagni河流域的农业干旱时空变化及其未来演变。",
+      "hypothesis_or_mechanism": "植被绿度与地表热应激共同反映水分胁迫，而LSTM能够从历史VHI、NDVI、LST及其他地表变量中学习植被胁迫的持续性和滞后关系。",
+      "variables_and_data_use": "使用MOD13A2 NDVI计算VCI并作为VHI和LSTM预测变量，使用MOD11A2 LST计算TCI并作为LSTM预测变量，结合NDBI、MNDWI、DBS、DBU、IMD降水和温度数据计算VHI、SPI-12和SPEI-12，并用历史序列训练LSTM预测2025—2040年VHI。",
+      "method_paradigm": "深度学习干旱预测",
+      "used_assets": [
+        "MOD13A2 NDVI product",
+        "MOD11A2 LST product",
+        "Normalized Difference Built-up Index (NDBI)",
+        "Modified Normalized Difference Water Index (MNDWI)",
+        "Dry Bare Soil (DBS) index",
+        "Dry Built-up (DBU) index",
+        "Indian Meteorological Department (IMD)",
+        "SPI-12",
+        "SPEI-12",
+        "Vegetation Health Index (VHI)"
+      ],
+      "author_team": [
+        "Chinthu Naresh",
+        "Aneesh Mathew"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Deep Learning-Based Agricultural Drought Monitoring and Prediction Using Vegetation Health Index in the Papagni River Basin, India",
+        "doi": "10.1007/s41748-026-01097-4",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究如何整合长期 MODIS 植被胁迫指标与 ERA5-Land 水文气候变量，识别尼日利亚内部具有不同生态气候特征的区域。",
+      "hypothesis_or_mechanism": "水分可利用性是生态气候差异的主要驱动因素，并通过与温度、土壤湿度和蒸散相关的耦合过程形成从尼日利亚北部到南部的植被胁迫梯度。",
+      "variables_and_data_use": "使用 MODIS 的 Moisture Stress Index、Temperature Condition Index 和 Vegetation Health Index 表征植被水分胁迫、热胁迫和综合植被健康；使用 ERA5-Land 的降水、温度、土壤湿度、太阳辐射和径流变量描述水文气候条件；将数据重采样到共同的 0.1° 网格后进行主成分分析、层次聚类和 K-means 聚类，并与 Köppen–Geiger 分类进行验证。",
+      "method_paradigm": "多变量区域化与聚类分析",
+      "used_assets": [
+        "MODIS",
+        "MODIS land surface products",
+        "Moisture Stress Index (MSI)",
+        "Temperature Condition Index (TCI)",
+        "Vegetation Health Index (VHI)",
+        "ERA5‐Land"
+      ],
+      "author_team": [
+        "Afeez Alabi Salami",
+        "Muchaiteyi Togo",
+        "Zehra Işık",
+        "Mehmet Ali Çelik"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Multivariate Eco‑Climatic Zoning of Nigeria Using Four Decades of MODIS and ERA5‑Land Data",
+        "doi": "10.1007/s41748-026-01306-0",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "云南-贵州高原过去数十年间植被NDVI的时空演变特征及其对温湿度变化的响应机制是什么？",
+      "hypothesis_or_mechanism": "气候变暖与降水格局变化是驱动该区域植被绿度增加的主要环境因子，且不同植被类型对气候因子的敏感性存在显著差异。",
+      "variables_and_data_use": "使用MOD13A3提供的1km月度NDVI作为目标变量进行趋势分析与异常值计算；结合高分辨率气象数据（温度、降水）作为预测变量进行相关性检验；利用中国植被图进行植被类型分层分析。",
+      "method_paradigm": "OLS回归趋势分析与相关性检验",
+      "used_assets": [
+        "MOD13A3",
+        "GIMMS NDVI 3g.v1",
+        "high-resolution meteorological data",
+        "China Vegetation Map (1:1,000,000)"
+      ],
+      "author_team": [
+        "Xuelian Song",
+        "Zhiwei Wang",
+        "Puchang Wang",
+        "Xiri Ruan",
+        "Shumin He",
+        "Qian Wang",
+        "Wen Zhang",
+        "Leilei Ding"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "NDVI-based Vegetation Change and Its Response\nto Hydrothermal Changes in the Yunnan-Guizhou\nPlateau of Chinese Karst Regions\nfrom 1982 to 2019",
+        "doi": "10.15244/pjoes/214890",
+        "year": 2025,
+        "venue": "Polish Journal of Environmental Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何通过空间相关性分析将 MODIS NDVI 的时间序列向后延伸至 1980 年代，以构建蒙古国长期的植被动态数据集？",
+      "hypothesis_or_mechanism": "GIMMS NDVI 与 MODIS NDVI 之间存在稳定的空间统计相关性，可通过偏最小二乘回归（PLSR）模型实现跨传感器 NDVI 的可靠重建与时间序列拼接。",
+      "variables_and_data_use": "使用 Terra MODIS Collection 006 的 MOD13Q1 产品获取 2002-2021 年 NDVI；使用 NOAA AVHRR 衍生的 GIMMS v3g 获取 1982-2015 年 NDVI；通过 PLSR 建模两者关系，并将 MODIS NDVI 重采样至 8 km 进行时空对齐与趋势分析。",
+      "method_paradigm": "跨传感器统计重建与时间序列延伸",
+      "used_assets": [
+        "MOD13Q1",
+        "gimmsNDVI3g"
+      ],
+      "author_team": [
+        "Munkhdulam Otgonbayar",
+        "Davaagatan Tuyagerel",
+        "Renchinmyadag Tovuudorj",
+        "Odbaatar Enkhjargal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Extending NDVI time series in Mongolia using spatial correlation analysis between AVHRR-GIMMS and MODIS TERRA data",
+        "doi": "10.5564/mjgg.v62i46.4133",
+        "year": 2025,
+        "venue": "Mongolian Journal of Geography and Geoecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用 Terra MODIS NDVI 时间序列预测 Karnataka 各行政区下一年度的植被绿度？",
+      "hypothesis_or_mechanism": "基于历史 NDVI 的加权移动平均能够减弱短期波动并利用近期年份的更高权重，从而比简单移动平均更准确地预测下一年度植被状态。",
+      "variables_and_data_use": "使用 NASA EOS MODIS Terra NDVI 栅格数据，提取 Karnataka 各行政区 7月至11月的月平均 NDVI，并计算 2000—2022 年年度平均 NDVI；随后以历史 NDVI 构建三年简单移动平均和加权移动平均模型，预测 2023 年 NDVI，并使用 MAE、MSE、RMSE 和 MAPE 评价预测表现。",
+      "method_paradigm": "时序预测与空间聚合",
+      "used_assets": [
+        "NASA’s MODIS terra satellites",
+        "NASA’s earth observing system (EOS) MODIS dataset",
+        "NDVI"
+      ],
+      "author_team": [
+        "Bharathi N. Hassan",
+        "Dilendra Hiran",
+        "Amiya Kumar Tripathy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatio-temporal Assessment of Vegetation and NDVI Time Series Forecasting Model using Remote Sensing and Machine Learning for Karnataka, India",
+        "doi": "10.18805/ag.d-6498",
+        "year": 2026,
+        "venue": "Agricultural Science Digest - A Research Journal",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究不同气象干旱指数、植被指数及其时间尺度组合，哪一种最适合监测 Srepok 流域土地覆盖状况以及咖啡和水稻产量受到的干旱影响？",
+      "hypothesis_or_mechanism": "降水亏缺通过影响植被绿度和地表温度而改变 VCI、TCI 和 VHI，其中 VHI 与适当时间尺度的 SPI 应能更敏感地反映作物干旱胁迫并解释产量变化。",
+      "variables_and_data_use": "使用 MOD13A1 v006 的 NDVI 计算月尺度 NDVI、VCI 和 VHI，使用 MOD11A2 v006 的 LST 计算 TCI，并结合 14 个监测站的降水数据计算 SPI 和 EDI；随后按土地利用类型分析干湿条件差异及干旱指数与植被指数、咖啡和水稻产量之间的相关关系。",
+      "method_paradigm": "遥感指数与相关分析",
+      "used_assets": [
+        "MODIS/Terra Vegetation Indices 16-Day L3 Global 500 m version 6",
+        "MOD13A1 v006",
+        "MODIS/Terra Land Surface Temperature/Emissivity 8-Day L3 Global 1 km version 6",
+        "MOD11A2 v006",
+        "rainfall data from 14 monitoring stations",
+        "crop yield data for coffee and rice",
+        "a land use map of the Srepok Basin in 2015"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Determining suitable meteorological drought and vegetation indices for monitoring drought and crop yield in Srepok River basin, Vietnam",
+        "doi": "10.34044/j.anres.2025.59.2.09",
+        "year": 2025,
+        "venue": "Agriculture and Natural Resources",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "探究印度贾坎德邦2001至2018年间植被覆盖的时空演变特征及其突变节点。",
+      "hypothesis_or_mechanism": "气候变化（温度、降水）与人为干扰（采矿、城市化、森林砍伐）共同驱动了该区域植被绿度的长期趋势变化与突发性转折。",
+      "variables_and_data_use": "提取MODIS MOD13A2.006产品的1公里级EVI时间序列，经Savitzky-Golay滤波降噪后，输入BFAST算法进行趋势、季节性与残差分量分解，以识别并量化植被变化的断点时间与幅度。",
+      "method_paradigm": "时间序列断点检测",
+      "used_assets": [
+        "MODIS MOD13A2.006"
+      ],
+      "author_team": [
+        "Niraj Priyadarshi",
+        "Suparn Pathak",
+        "C. Sudhakar Reddy",
+        "Sushil Kumar Srivastav",
+        "Vemuri Muthayya Chowdary",
+        "Chandrasekar Kamalakannan",
+        "Jeganathan Chockalingam",
+        "Soumya Bandyopadhyay"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "MODIS EVI-based assessment of regional level vegetation changes using BFAST algorithm",
+        "doi": "10.1007/s12517-025-12325-y",
+        "year": 2025,
+        "venue": "Arabian Journal of Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "青藏高原极端气候事件与植被物候特征如何影响区域净初级生产力（NPP）的时空演变？",
+      "hypothesis_or_mechanism": "极端温度与降水指标通过改变光能利用率与水分胁迫，结合生长季长度，共同驱动NPP的显著变化。",
+      "variables_and_data_use": "使用MOD13A2 NDVI提取物候参数并作为CASA模型输入；利用CN05.1计算极端气候指数；结合样地生物量验证NPP估算结果。",
+      "method_paradigm": "过程模型与机器学习耦合评估",
+      "used_assets": [
+        "MOD13A2",
+        "GIMMS NDVI",
+        "CN05.1"
+      ],
+      "author_team": [
+        "Huaizhang Sun",
+        "Xueqiang Zhao",
+        "Yangbo Chen",
+        "Jun Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impacts of extreme climate and vegetation phenology on net primary productivity across the Qinghai-Xizang Plateau, China from 1982 to 2020",
+        "doi": "10.1007/s40333-025-0075-x",
+        "year": 2025,
+        "venue": "Journal of Arid Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "基于随机森林模型评估植被、气象、地形及社会经济因素对江西省森林火灾发生概率的影响。",
+      "hypothesis_or_mechanism": "植被干燥度（NDVI）、气温、降水及坡度等环境因子通过改变燃料湿度和可燃性，共同决定森林火灾的发生风险。",
+      "variables_and_data_use": "使用MOD13A2月合成NDVI作为植被干湿度指标，结合CRU/WorldClim/CMIP6降尺度温湿度与降水数据、GDEMv2高程地形数据、FIRMS火点数据及夜间灯光/人口密度等社会经济变量构建预测模型。",
+      "method_paradigm": "机器学习分类预测",
+      "used_assets": [
+        "MOD13A2",
+        "MCD12Q1",
+        "CRU",
+        "WorldClim",
+        "CMIP6",
+        "GDEMv2",
+        "FIRMS",
+        "VIIRS夜间灯光",
+        "WorldPop",
+        "OpenStreetMap"
+      ],
+      "author_team": [
+        "Qing Ye",
+        "Guofan Lu",
+        "Wangyu Peng",
+        "Jiahui Peng",
+        "Guoai Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Projecting spatiotemporal forest fire probability in Jiangxi Province under climate change scenarios",
+        "doi": "10.1186/s42408-025-00433-9",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "研究如何利用 NDVI、降水、蒸发、径流、实际蒸散发和地下水储量等高分辨率变量，将 GRACE 总水储量异常下推到西孟加拉邦的精细空间尺度。",
+      "hypothesis_or_mechanism": "高分辨率植被和水文气象变量能够表征影响地下水储量和陆地水储量变化的空间异质性，从而改善 GRACE 水储量异常的空间细化结果。",
+      "variables_and_data_use": "以 GRACE 月度总水储量异常为目标变量，以 MOD13A1.061 Terra Vegetation Indices 的 NDVI、GLDAS-2.2 地下水储量、ERA5-Land 的降水、总蒸发和径流，以及 TerraClimate 的实际蒸散发为预测变量；所有数据统一到月尺度，并用于训练机器学习模型，将约 111 千米的 GRACE 结果下推至 5 千米网格。",
+      "method_paradigm": "机器学习空间下推",
+      "used_assets": [
+        "GRACE Release 6.1 Version 3",
+        "GLDAS-2.2",
+        "ERA5-Land",
+        "TerraClimate",
+        "MOD13A1.061 Terra Vegetation Indices",
+        "Google Earth Engine",
+        "ArcGIS Pro"
+      ],
+      "author_team": [
+        "Pekham Ganguly"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Machine Learning-Based Downscaling of GRACE-Derived Groundwater Storage for West Bengal, India.",
+        "doi": "10.22214/ijraset.2026.82503",
+        "year": 2026,
+        "venue": "International Journal for Research in Applied Science and Engineering Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究新疆植被覆盖度在时空上的变化、稳定性及其自然和人为驱动因素。",
+      "hypothesis_or_mechanism": "气候条件、地形、土壤、水文条件和人类活动共同影响植被覆盖度，并且这种影响在不同生态功能分区之间存在空间异质性。",
+      "variables_and_data_use": "使用MOD13A2.061的NDVI计算植被覆盖度，并对其进行夏季数据融合、质量控制、趋势分析、稳定性分析和未来趋势判断；同时使用年平均温度、年降水、Copernicus DEM GLO30及其派生坡度坡向、地貌、土壤、排水密度、道路和河流距离、夜间灯光、人口密度等变量作为驱动因素。",
+      "method_paradigm": "时空变化与驱动因素分析",
+      "used_assets": [
+        "MOD13A2.061",
+        "Copernicus DEM GLO30",
+        "GEE",
+        "https://www.resdc.cn/",
+        "https://cstr.cn/31253.11.sciencedb.j00001.00759",
+        "OpenStreetMap (OSM)"
+      ],
+      "author_team": [
+        "He Yang",
+        "Min Xiong",
+        "Yongxiang Yao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "MODIS-Based Spatiotemporal Inversion and Driving-Factor Analysis of Cloud-Free Vegetation Cover in Xinjiang from 2000 to 2024",
+        "doi": "10.3390/s25082394",
+        "year": 2025,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "印度不同生态区和行政单元的植被平均绿度、季节性振幅和峰值时间在2001—2023年间如何变化，以及这些变化与气候因子有何关系？",
+      "hypothesis_or_mechanism": "气温、降水、蒸汽压亏缺和土壤水分变化会通过影响植被生长条件，改变长期NDVI水平、季节振幅和峰值绿度时间。",
+      "variables_and_data_use": "使用MOD13A1 Version 6.1的NDVI作为主要植被观测，并使用同一产品的EVI检验高植被覆盖区域的NDVI饱和效应；通过质量筛选后，对2001—2011年和2013—2023年两个时期的像元时间序列进行谐波回归，提取平均NDVI、季节振幅和峰值相位，再计算时期差异、Mann-Kendall趋势和Theil-Sen斜率。使用ERA5-Land提供温度、降水、VPD和土壤水分，并与植被变化进行相关分析；使用GADM、RESOLVE Ecoregions和MCD12Q1进行行政区、生物群系和土地覆盖分层汇总。",
+      "method_paradigm": "遥感变化检测与气候关系分析",
+      "used_assets": [
+        "MOD13A1 Version 6.1",
+        "ECMWF Reanalysis v5 (ERA5)-Land monthly aggregated dataset",
+        "Database of Global Administrative Areas (GADM) version 4.1 (2022)",
+        "RESOLVE Ecoregions dataset",
+        "MODIS Land Cover Type product (MCD12Q1 Collection 6.1)"
+      ],
+      "author_team": [
+        "Satyam Shah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "&lt;b&gt;Spatiotemporal Patterns of Vegetation Greenness Dynamics Across India (2001&lt;/b&gt;&lt;b&gt;-&lt;/b&gt;&lt;b&gt;2023): A Harmonic Analysis of MODIS NDVI Time Series&lt;/b&gt;",
+        "doi": "10.64229/7j1ysx89",
+        "year": 2026,
+        "venue": "Journal of Environmental Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究不同空气污染物暴露与阿尔茨海默病及其他痴呆疾病负担之间的关联，以及这种关联是否受到国家层面植被绿度的影响。",
+      "hypothesis_or_mechanism": "较高的PM 2.5和臭氧暴露可能增加阿尔茨海默病及其他痴呆的发病、死亡和DALY负担，而较高植被绿度可能对污染物效应产生修饰作用。",
+      "variables_and_data_use": "使用GBD database中的阿尔茨海默病及其他痴呆发病、死亡和DALY作为结局变量，使用PM 2.5和臭氧作为主要暴露变量，使用MOD13A3提供的月度NDVI和EVI计算国家层面绿度指标，并将NDVI、EVI及人口、社会经济、医疗、气象和行为因素作为调整变量或效应修饰变量；POP-PM 2.5和GEO-PM 2.5用于污染物暴露敏感性分析。",
+      "method_paradigm": "生态关联分析与效应修饰分析",
+      "used_assets": [
+        "GBD database",
+        "MOD13A3",
+        "POP-PM 2.5",
+        "GEO-PM 2.5"
+      ],
+      "author_team": [
+        "Wenjia Peng",
+        "Ting Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Greenness modified the association of PM2.5 and ozone with global disease burden of Alzheimer’s disease and other dementias",
+        "doi": "10.1038/s41598-025-11552-3",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "COVID-19感染者的居住地植被绿度是否与感染后发生炎症性肠病相关？",
+      "hypothesis_or_mechanism": "较高的居住地植被绿度可能与较低或不同的感染后IBD发生风险相关，潜在机制包括绿色环境对健康行为、心理状态或炎症过程的影响。",
+      "variables_and_data_use": "使用Terra MODIS MOD13A3 version 6.1的月度1 km NDVI作为居住地绿度暴露，将各地区NDVI均值链接至参与者居住地；使用NHIS和KDCA数据识别COVID-19感染、人口和临床协变量及IBD结局，并通过逆概率处理加权和Cox比例风险模型估计关联。",
+      "method_paradigm": "观察性队列因果推断",
+      "used_assets": [
+        "National Health Insurance Service (NHIS)",
+        "Korea Disease Control and Prevention Agency (KDCA)",
+        "K-COV-N cohort",
+        "MOD13A3, version 6.1"
+      ],
+      "author_team": [
+        "Dongjin Yeo",
+        "Kyeongeun Kim",
+        "Juyeong Kim",
+        "Sooji Lee",
+        "Hayeon Lee",
+        "Francesco Branda",
+        "Masoud Rahmati",
+        "Sunyoung kim",
+        "Ho Geol Woo",
+        "Selin Woo",
+        "Yerin Hwang",
+        "Dong Keon Yon"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Association between residential greenness and the risk of inflammatory bowel disease in patients with COVID-19: A Korean nationwide cohort study",
+        "doi": "10.4103/sjg.sjg_430_25",
+        "year": 2026,
+        "venue": "Saudi Journal of Gastroenterology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "如何利用多变量聚类模型构建从全球尺度到区域尺度的生态区分类？",
+      "hypothesis_or_mechanism": "地形、气候水分、温度和植被绿度等环境梯度的联合变化能够识别具有一致生态特征的生态区。",
+      "variables_and_data_use": "研究使用MOD13A3 v061的MODIS NDVI表征植被绿度，并结合数字高程、CHELSA气候水分平衡或气候湿润指数以及平均温度数据，通过多变量聚类生成全球生态区结果。",
+      "method_paradigm": "多变量无监督聚类",
+      "used_assets": [
+        "dem_5km.tif",
+        "CMI_mean_1980_2018_4326.tif",
+        "CMI_mean_1980_2018_8857.tif",
+        "TAS_mean_1980_2018_4326.tif",
+        "TAS_mean_1980_2018_8857.tif",
+        "MODIS NDVI",
+        "MOD13A3 v061",
+        "mask.7z"
+      ],
+      "author_team": [
+        "Michael Kempf"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Data to \"Global to regional ecozone classifications from multivariate clustering models\"",
+        "doi": "10.5281/zenodo.17374944",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "中国2001至2020年地表反照率呈现何种时空变化，并且NDVI及气候因素如何影响这些变化？",
+      "hypothesis_or_mechanism": "植被绿度变化会通过改变地表覆盖和辐射特征影响地表反照率，且这种作用受降水、温度及空间和时间异质性的调节。",
+      "variables_and_data_use": "使用MCD43A3(V061)短波黑天空与白天空反照率计算实际地表反照率，将MOD13A3月尺度NDVI聚合为年度和季节尺度植被变量，并结合月降水量和月平均气温数据开展趋势检验及地理和时间加权回归。",
+      "method_paradigm": "时空关系机制分析",
+      "used_assets": [
+        "MOD13A3",
+        "MCD43A3(V061)",
+        "monthly precipitation and monthly mean temperature datasets"
+      ],
+      "author_team": [
+        "Jiqiang Niu",
+        "Ziming Wang",
+        "Hao Lin",
+        "Hongrui Li",
+        "Zijian Liu",
+        "Mengyang Li",
+        "Xiaodong Deng",
+        "Bohan Wang",
+        "Tong Wu",
+        "Junkuan Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Long-Term Trends and Seasonally Resolved Drivers of Surface Albedo Across China Using GTWR",
+        "doi": "10.3390/atmos16111287",
+        "year": 2025,
+        "venue": "Atmosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "土耳其 Antalya、Şanlıurfa 和 Konya 三个农业省份的气象干旱、水分平衡压力、大气蒸发需求与植被响应如何随时间变化并相互滞后关联？",
+      "hypothesis_or_mechanism": "短期大气蒸发需求和中长期水分平衡异常会以不同时间滞后影响基于 NDVI 的植被状况，并共同形成可识别的农业干旱信号。",
+      "variables_and_data_use": "使用 MODIS/Terra MOD13A3 v6.1 的月尺度 NDVI，并按多年同月最小值和最大值归一化为 VCI；使用 CHIRPS 降水计算 SPI，使用 ERA5-Land 潜在蒸发与降水计算 SPEI，并用 ERA5-Land 潜在蒸发计算 EDDI，随后进行多尺度趋势、相关性、滞后关系和综合干旱指数分析。",
+      "method_paradigm": "综合指数分析",
+      "used_assets": [
+        "UCSB-CHG/CHIRPS/DAILY",
+        "ECMWF/ERA5_LAND/MONTHLY",
+        "MODIS/061/MOD13A3",
+        "MODISNDVI Monthly (MOD13A3 v6.1)",
+        "FAO/GAUL/2015/level1",
+        "GADM",
+        "OpenStreetMap"
+      ],
+      "author_team": [
+        "Yunus Ziya Kaya"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Application of Various Statistical Indicators for Drought Analysis Based on Remote Sensing Data: A Case Study of Three Major Provinces of Turkey",
+        "doi": "10.3390/su18042147",
+        "year": 2026,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究 21 世纪主要干旱事件对亚马逊河流域植被活力时空变化的影响。",
+      "hypothesis_or_mechanism": "干旱会导致流域植被活力下降，并在不同年份和月份表现出空间与时间上的差异。",
+      "variables_and_data_use": "使用 MOD13A3 v. 6.1 的 EVI 作为植被活力变量，构建 2001 至 2024 年的月度时间序列并计算年度平均、长期月平均和干旱年份偏差；使用 MOD09GA v. 6.1 的地表反射率计算 MNDWI 并生成动态水体掩膜，以排除水体对 EVI 流域平均值的影响。",
+      "method_paradigm": "时空变化评估",
+      "used_assets": [
+        "MOD13A3 v. 6.1",
+        "MOD09GA v. 6.1",
+        "HydroSHEDS",
+        "hydrobasins",
+        "Metadata Catalog of the National Water and Sanitation Agency (ANA)"
+      ],
+      "author_team": [
+        "Pedro Freitas Ramos Grande",
+        "Raiane Cristina Pereira",
+        "Everton Rodrigues da Silva",
+        "Marcelo de Oliveira Latuf"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Análise do Vigor da Vegetação na Bacia Amazônica Durante Grandes Eventos de Seca",
+        "doi": "10.5752/p.2318-2962.2026v36nesp2p129",
+        "year": 2026,
+        "venue": "Caderno de Geografia",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "在摩洛哥 Rabat-Salé-Kénitra 与 Casablanca-Settat 沿海城市区，如何利用 MODIS-Terra 的月度 1 km NDVI 与配套蒸散、叶面积指数刻画 2003–2023 年的干旱演变？",
+      "hypothesis_or_mechanism": "MODIS 衍生的植被绿度与水分状况指标可共同表征干旱胁迫的累积：2003–2023 年间蒸散上升、叶面积指数波动、NDVI 下降，指向水分亏缺增强。",
+      "variables_and_data_use": "以 MOD13A3 派生月度 1 km NDVI（植被绿度与活力）为主指标，与 MOD16A2 派生 8 天 500 m 实际蒸散、MOD15A2 派生 8 天 500 m 叶面积指数/FPAR 对照；选取 2003、2013、2023 三个基准年做十年际比较，仅保留三年均有完整时序覆盖的像元，通过地理空间分析与统计趋势评估识别植被显著退化与蒸散增强的区域。",
+      "method_paradigm": "多指标遥感趋势分析",
+      "used_assets": [
+        "MOD13A3 (MODIS-Terra monthly 1 km NDVI)",
+        "MOD16A2 (MODIS-Terra 8-day 500 m ET)",
+        "MOD15A2 (MODIS-Terra 8-day 500 m LAI/FPAR)"
+      ],
+      "author_team": [
+        "Abir Habib",
+        "Youssef Houali",
+        "Yassine Labbassi",
+        "Kamal Labbassi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Manual anchor verification against the re-fetched publisher PDF (7 pages, Copernicus, CC-BY); the pipeline had fetched an unrelated document (ISPRS Green Book) so both models judged on text that did not belong to this paper | Re-adjudicated 2026-09-28 on the corrected publisher full text after the queued_pdfs wrong-document fix (ISPRS Green Book): both models admitted with exact_anchor_observation and verbatim-quote verification (machine_verdict=admitted); supersedes the manual-verification-only basis.",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "MODIS-Terra for Long-Term Environmental Monitoring: Insights into Drought Dynamics in Morocco",
+        "doi": "10.5194/isprs-archives-xlviii-4-w17-2025-135-2026",
+        "year": 2026,
+        "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "全球范围内MODIS NDVI数据的长期异常特征与空间分布规律是什么？",
+      "hypothesis_or_mechanism": "全球气候变化与自然及人为干扰共同驱动了植被绿度的年际波动与区域性异常累积。",
+      "variables_and_data_use": "使用MODIS月度与年度NDVI栅格数据，结合气候参考期计算平均值、正态分布值及异常值，用于全球尺度的时空模式分析。",
+      "method_paradigm": "时间序列异常分析",
+      "used_assets": [
+        "MODIS/Terra MOD13A3 monthly 1 km NDVI"
+      ],
+      "author_team": [
+        "Iporã Brito Possantti",
+        "Erica A. Canamary",
+        "Guilherme Fernandes Marques"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT uncertain caused by the 485-char dataset sidebar excerpt that omits the product identity, while the fetched full text contains an explicit ## Methods section naming MOD13A3 and MOD13A3.061",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Anomaly Analysis of NDVI Worldwide",
+        "doi": "10.5281/zenodo.22967479",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "全球不同生态系统中地上植被生产力稳定性与地下土壤呼吸稳定性如何耦合，以及气候稳定性如何影响这种关系？",
+      "hypothesis_or_mechanism": "地上植被生产力及其稳定性能够通过碳输入和生态系统过程耦合影响土壤呼吸稳定性，而气候稳定性会调节这种地上—地下联系。",
+      "variables_and_data_use": "研究使用 MODIS MOD13A2 派生的 NDVI 和 EVI、GLASS 的 NPP 和 LAI、GOSIF 的 SIF，以及土壤呼吸数据库、TerraClimate 气候变量、SoilGrids250m 土壤属性、ASTER Global DEM 地形变量和 ESA global land cover product。各类时间序列被重采样到 1 km 网格并聚合为年度值，用于计算地上和地下生态系统稳定性、建立土壤呼吸模型并分析其耦合关系。",
+      "method_paradigm": "全球栅格建模与耦合分析",
+      "used_assets": [
+        "MODIS MOD13A2",
+        "Global Land Surface Satellite (GLASS)",
+        "GOSIF dataset",
+        "Global Soil Respiration Database (SRDB), version 20200220a",
+        "TerraClimate dataset",
+        "SoilGrids250m",
+        "ASTER Global DEM",
+        "ESA global land cover product",
+        "dataset provided by Gao et al."
+      ],
+      "author_team": [
+        "Alexey A. Voinov",
+        "Daniel Revillini",
+        "Diego Ábalos",
+        "Fubo Zhao",
+        "Guopeng Liang",
+        "Huiwen Li",
+        "Ji Chen",
+        "Jingfeng Xiao",
+        "Linjing Qiu",
+        "Manuel Delgado‐Baquerizo",
+        "Nico Eisenhauer",
+        "Peter B. Reich",
+        "Shantao An",
+        "Shuguang Liu",
+        "Wende Yan",
+        "Ying‐Ping Wang",
+        "Yiping Wu",
+        "Zexin Meng",
+        "Zhifeng Yang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Coupled Above‐ and Belowground Ecosystem Stability Worldwide",
+        "doi": "10.1002/advs.202517411",
+        "year": 2026,
+        "venue": "Advanced Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "季节性复合干旱-高温事件如何影响植被生长响应？",
+      "hypothesis_or_mechanism": "复合干旱与高温胁迫会通过同时限制水分供应并增强热胁迫而抑制植被绿度和生长活力。",
+      "variables_and_data_use": "使用TerraClimate的累计降水和最高气温构建2000—2022年的复合干旱-高温指数，并使用MODIS/061/MOD13A1的NDVI观测分析植被对季节性CDHI的生长响应。",
+      "method_paradigm": "关系机制分析",
+      "used_assets": [
+        "TerraClimate",
+        "MODIS Normalized Difference Vegetation Index",
+        "MODIS/061/MOD13A1"
+      ],
+      "author_team": [
+        "Peng Zhao",
+        "Wenjuan Li",
+        "Wenqi Song",
+        "Xiang Li",
+        "Xiuchen Wu",
+        "Zekai Meng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Pervasive seasonal divergence in lagged responses of vegetation growth to compound drought-heat stress on the Tibetan Plateau",
+        "doi": "10.3389/fpls.2026.1879954",
+        "year": 2026,
+        "venue": "Frontiers in Plant Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究区在2004至2024年间土地利用/覆盖（LULC）的变化趋势、范围与幅度是什么？NDVI值随LULC变化发生了怎样的时空演变？驱动这些变化的主要人为与自然过程有哪些？",
+      "hypothesis_or_mechanism": "大规模农业投资、定居计划等人类活动叠加热带干湿季气候波动，共同驱动了Gambela地区的LULC转换，进而引发植被绿度（NDVI）的显著时空变化。",
+      "variables_and_data_use": "使用MOD13Q1产品的NDVI波段作为植被绿度指标，结合Landsat多时相影像进行监督分类，通过混淆矩阵评估分类精度，并利用Mann-Kendall检验量化NDVI长期趋势与显著性。",
+      "method_paradigm": "多源遥感融合与变化检测",
+      "used_assets": [
+        "MOD13Q1",
+        "Landsat 5 TM",
+        "Landsat 8 OLI"
+      ],
+      "author_team": [
+        "Elias Bojago",
+        "Gemechu Tadila",
+        "Mamush Masha"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Monitoring spatio-temporal changes in land use, land cover, and NDVI using MODIS data in Ethiopia’s Gambela region",
+        "doi": "10.1007/s42452-025-07879-1",
+        "year": 2025,
+        "venue": "Discover Applied Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "如何改进植被指数时间序列的质量，以便在存在连续缺测和噪声的情况下更准确地重建植被变化与物候特征？",
+      "hypothesis_or_mechanism": "利用时间自相关和空间邻域相似像元估计缺失或不确定的植被指数，再结合迭代 Savitzky-Golay 滤波，可以减少噪声并更好地保留植被物候形状。",
+      "variables_and_data_use": "研究使用 MOD13A2V061 的 1 km、16 天 MODIS NDVI/EVI 时间序列及像元质量层，依据质量标记处理缺失、不确定和污染观测，重建 2020 年 NDVI 时间序列，并利用多年 MODIS NDVI 生成参考时间序列进行定量评价；MCD12Q1 用于提供测试区域的土地覆盖信息。",
+      "method_paradigm": "时间序列重建与滤波",
+      "used_assets": [
+        "MOD13A2V061",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Ji Ping Zhou",
+        "Jin Chen",
+        "Licong Liu",
+        "Miaogen Shen",
+        "Ruyin Cao",
+        "Weiyi Wang",
+        "Xiaolin Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen identity admitted but quote guard downgraded to uncertain",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "An Improved Spatiotemporal Savitzky–Golay (iSTSG) Method to Improve the Quality of Vegetation Index Time-Series Data on the Google Earth Engine",
+        "doi": "10.1109/tgrs.2025.3528988",
+        "year": 2025,
+        "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "增强型时空自适应反射率融合模型（ESTARFM）在生成高时空分辨率遥感影像以识别水稻种植轮作模式方面的能力如何？",
+      "hypothesis_or_mechanism": "利用Landsat 8的高空间分辨率与MODIS的高时间分辨率之间的辐射与几何相关性，通过时空融合算法插值可生成兼具两者优势的影像，从而更精确地捕捉作物生长相位与种植轮作规律。",
+      "variables_and_data_use": "使用Landsat 8影像作为高空间分辨率参考基准，使用MODIS影像作为高时间分辨率输入；通过ESTARFM算法进行时空融合生成目标影像，并提取融合影像的NDVI值与Landsat 8实测NDVI进行RMSE精度验证，进而绘制平均NDVI时序图分析水稻生长阶段。",
+      "method_paradigm": "时空反射率融合与精度验证",
+      "used_assets": [
+        "Landsat 8",
+        "citra MODIS"
+      ],
+      "author_team": [
+        "Raden Ibnu Rosyadi",
+        "Ananda Shabrina Putri Gunawan",
+        "Bayu Kurniawan",
+        "Gilang Cahya Nusantara"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analisis Pola Rotasi Tanam Padi Menggunakan Model Fusi Spasial Temporal ESTARFM Pada Citra Landsat 8 Dan MODIS",
+        "doi": "10.22236/jgel.v10i1.20142",
+        "year": 2026,
+        "venue": "Jurnal Geografi, Edukasi dan Lingkungan (JGEL)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "研究不同海拔和农业生态分区中降雨变化与植被 NDVI/EVI 变化之间的关系及其差异。",
+      "hypothesis_or_mechanism": "降雨异常会通过水分供给影响植被绿度和活力，而且这种植被—降雨耦合关系会因海拔、地形和生态分区而异。",
+      "variables_and_data_use": "使用 MODIS Terra MOD13Q1 Version 6.1 的 NDVI 和 EVI 构建 2000—2024 年植被时间序列，并计算月度异常；使用 CHIRPS 降雨估计和 BMKG 站点降雨观测构建降雨变量，将二者按高地、低地和过渡带进行空间平均后开展相关和回归分析；同时使用 Landsat 8/9 OLI 数据进行跨传感器验证。",
+      "method_paradigm": "时序关系分析与跨传感器验证",
+      "used_assets": [
+        "MODIS Terra MOD13Q1 Version 6.1 16 day NDVI and EVI composites",
+        "Landsat 8/9 OLI surface reflectance products",
+        "CHIRPS gridded rainfall estimates",
+        "daily/monthly rainfall observations from BMKG stations"
+      ],
+      "author_team": [
+        "Brian Rahardi",
+        "Estri Laras Arumingtyas",
+        "Fatih Al Haq An Nashr Muhsin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen identity admitted but quote guard downgraded to uncertain",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate-Resilient Vegetation Monitoring in Malang Regency Using Multi-Temporal Remote Sensing",
+        "doi": "10.29303/jppipa.v12i4.14556",
+        "year": 2026,
+        "venue": "Jurnal Penelitian Pendidikan IPA",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "伊兹密尔南部过火区生态系统在火灾后的植被恢复过程与气候变量之间存在怎样的长期动态关系？",
+      "hypothesis_or_mechanism": "过火区的植被恢复不仅受生物指标（如NDVI、LAI）变化的影响，还显著受土壤湿度和温度等气候条件的调控，二者共同决定生态系统的恢复速率与轨迹。",
+      "variables_and_data_use": "使用MODIS NDVI和LAI监测植被健康与密度变化；利用Landsat和Sentinel-2计算BAI与dNBR以提取过火掩膜；结合TerraClimate的土壤湿度与温度数据评估气候对植被恢复的驱动作用。",
+      "method_paradigm": "多尺度遥感趋势分析与统计检验",
+      "used_assets": [
+        "MODIS NDVI",
+        "Landsat",
+        "Sentinel-2",
+        "TerraClimate"
+      ],
+      "author_team": [
+        "Mehmet Ali Çelik",
+        "Zehra Işık",
+        "Figen Akpınar",
+        "Yasin Paşa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Monitoring Vegetation Dynamics and Climate Variability of Burned Areas: The Case of İzmir, Türkiye",
+        "doi": "10.3390/f17091011",
+        "year": 2026,
+        "venue": "Forests",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "墨西哥索诺拉州巴维斯佩自然保护区及其周边缓冲区域近三十年（1990-2020）的土地覆盖演变趋势及其对植被物候参数的影响是什么？",
+      "hypothesis_or_mechanism": "气候变暖与干旱加剧导致橡树等阔叶物种扩张并取代松林与草地，进而引发植被生长季起始延迟、季节长度缩短及季节性生产力下降。",
+      "variables_and_data_use": "使用Landsat TM/OLI多光谱影像进行监督分类以获取1990、2002/2003和2020年的土地覆盖图；利用MODIS MOD13Q1的NDVI时间序列（2000-2023）结合TIMESAT软件提取物候参数（生长季起始日、长度和季节积分）；辅以CHIRPS降水数据和NED地形数据进行年份筛选与地形因子计算。",
+      "method_paradigm": "监督分类与物候时序分析",
+      "used_assets": [
+        "Landsat 5 TM",
+        "Landsat 8 OLI",
+        "MOD13Q1",
+        "CHIRPS",
+        "NED"
+      ],
+      "author_team": [
+        "Alberto Macías‐Duarte",
+        "Alejandro E. Castellanos",
+        "Alán Félix-Navarro",
+        "César Hinojo‐Hinojo",
+        "José Raúl Romo-León"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Analyzing Grassland Reduction and Woody Vegetation Expansion in Protected Sky Island of Northwest Mexico",
+        "doi": "10.3390/land14122357",
+        "year": 2025,
+        "venue": "Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "肯尼亚Kiborgoch野生动物与湿地保护区过去三十年（1994-2024）土地利用与植被动态的变化模式及其人为驱动因素是什么？",
+      "hypothesis_or_mechanism": "人类活动（如过度放牧、水资源截留、植被采伐和土地转换）导致湿地生态系统退化与土地利用格局发生显著时空转变。",
+      "variables_and_data_use": "使用MODIS NDVI作为植被绿度与生产力的核心代理变量进行长时序趋势分析；结合Landsat多时相影像进行土地覆盖分类与变化检测；利用GPS野外调查与Google Earth影像进行地面验证与训练样本构建。",
+      "method_paradigm": "多时相遥感与GIS空间分析结合野外验证",
+      "used_assets": [
+        "MODIS NDVI",
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat 8",
+        "Google Earth imagery"
+      ],
+      "author_team": [
+        "Glarion Isiaho",
+        "George Morara Ogendi",
+        "Ammon Mwangi Karanja"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Assessing Land Use and Vegetation Change in Kiborgoch Wetland Conservancy, Kenya: Evidence from 30 Years of Remote Sensing (1994–2024)",
+        "doi": "10.37284/eajenr.8.2.3336",
+        "year": 2025,
+        "venue": "East African Journal of Environment and Natural Resources",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "如何结合深度学习架构准确预测北澳大利亚热带稀树草原中Themeda grass的植被动态与火灾风险？",
+      "hypothesis_or_mechanism": "ConvLSTM的遗忘门机制能够有效模拟火灾导致的植被状态突变重置，而Temporal U-Net能精准捕捉空间边界，二者集成可提升火后恢复轨迹与土地覆盖分类的预测精度。",
+      "variables_and_data_use": "使用MODIS NDVI作为时间序列预测的核心变量；利用Landsat地表反射率构建TVI指数；结合降雨网格与NAFI火斑掩膜作为协变量与验证基准。",
+      "method_paradigm": "时空深度学习集成建模",
+      "used_assets": [
+        "MOD13Q1",
+        "Landsat 8/9 OLI",
+        "BOM Rainfall Grids",
+        "NAFI Fire Scars",
+        "Sentinel-2 MSI"
+      ],
+      "author_team": [
+        "Vincent Kibet",
+        "Raphael Agong",
+        "Julius Sirma",
+        "Nancy Mbugua"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen identity admitted, quote failed verbatim check; admitted under user-approved single-side quote guard exception",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Themeda-Based Spatiotemporal Deep Learning for Predicting Vegetation Dynamics and Fire-Induced Land Cover Change in Northern Australia Using ConvLSTM and Temporal U-Net Models",
+        "doi": "10.47772/ijriss.2026.100600022",
+        "year": 2026,
+        "venue": "International Journal of Research and Innovation in Social Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "过去十年“一带一路”实施期间中亚及西亚经济走廊（CWAEC）植被绿度（NDVI）的时空演变特征及其主要驱动因素是什么？",
+      "hypothesis_or_mechanism": "气候变化与人类活动的共同作用是导致该区域植被退化或恢复的主导机制，干旱区植被变化受水热条件综合影响，而生态工程或局部气候改善可促进植被恢复。",
+      "variables_and_data_use": "使用MOD13A3产品提取NDVI作为目标变量进行时空趋势分析；结合ERA5-Land的温度和降水数据作为自变量，通过多元线性回归残差模型量化气候与人类活动对NDVI变化的相对贡献。",
+      "method_paradigm": "趋势分析与驱动归因",
+      "used_assets": [
+        "MOD13A3",
+        "ERA5-Land Monthly Aggregated"
+      ],
+      "author_team": [
+        "Chunxiang Cao",
+        "Haijing Tian",
+        "Heyi Guo",
+        "Jingbo Li",
+        "Kaimin Wang",
+        "Lin Wang",
+        "Min Xu",
+        "Ruichen Hu",
+        "Shaohua Wang",
+        "Sornkitja Boonprong",
+        "Xiaotong Gao",
+        "Xinwei Yang",
+        "Yu Zhang",
+        "Yujie Yang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote on an exact anchor observation (MODIS MOD13A3 NDVI 16-day composite named verbatim); GPT identity admitted but quote failed verbatim check",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Spatiotemporal patterns and driving factors of NDVI changes in the central and Western Asia economic corridor over the past decade",
+        "doi": "10.3389/fenvs.2025.1546190",
+        "year": 2025,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 38,
+    "source_paper_count": 38,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

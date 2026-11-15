@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+  "datasets": [
+    {
+      "role": "land_cover",
+      "data_description": {
+        "dataset_name": "Land-use and land-cover map",
+        "data_type": "Categorical land-cover raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:ESA/WorldCover/v200",
+        "spatial_coverage": {
+          "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+          "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:ESA/WorldCover/v200"
+    },
+    {
+      "role": "drainage",
+      "data_description": {
+        "dataset_name": "Drainage and hydrographic network",
+        "data_type": "Hydrographic vector or raster data",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MERIT/Hydro/v1_0_1",
+        "spatial_coverage": {
+          "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+          "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MERIT/Hydro/v1_0_1"
+    },
+    {
+      "role": "terrain",
+      "data_description": {
+        "dataset_name": "SRTM digital elevation model",
+        "data_type": "Static elevation raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:USGS/SRTMGL1_003",
+        "spatial_coverage": {
+          "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+          "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal or spatial alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Land-use and land-cover map",
+      "data_type": "Categorical land-cover raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:ESA/WorldCover/v200",
+      "spatial_coverage": {
+        "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+        "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Drainage and hydrographic network",
+      "data_type": "Hydrographic vector or raster data",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MERIT/Hydro/v1_0_1",
+      "spatial_coverage": {
+        "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+        "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "SRTM digital elevation model",
+      "data_type": "Static elevation raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:USGS/SRTMGL1_003",
+      "spatial_coverage": {
+        "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+        "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal or spatial alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:ESA/WorldCover/v200",
+    "GEE:MERIT/Hydro/v1_0_1",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_020:composite_observation",
+    "type": "composite_observation",
+    "name": "land_cover_drainage_terrain composite observation",
+    "observable_group": "land_cover_drainage_terrain_multidataset_observation",
+    "components": [
+      {
+        "role": "land_cover",
+        "data_description": {
+          "dataset_name": "Land-use and land-cover map",
+          "data_type": "Categorical land-cover raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:ESA/WorldCover/v200",
+          "spatial_coverage": {
+            "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+            "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:ESA/WorldCover/v200"
+      },
+      {
+        "role": "drainage",
+        "data_description": {
+          "dataset_name": "Drainage and hydrographic network",
+          "data_type": "Hydrographic vector or raster data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MERIT/Hydro/v1_0_1",
+          "spatial_coverage": {
+            "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+            "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MERIT/Hydro/v1_0_1"
+      },
+      {
+        "role": "terrain",
+        "data_description": {
+          "dataset_name": "SRTM digital elevation model",
+          "data_type": "Static elevation raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:USGS/SRTMGL1_003",
+          "spatial_coverage": {
+            "region_name": "Hualian River and comparable groundwater-recharge landscapes",
+            "coverage": "Declared analysis region within Hualian River and comparable groundwater-recharge landscapes."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal or spatial alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "land_cover",
+        "drainage",
+        "terrain"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_020:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:ESA/WorldCover/v200",
+    "GEE:MERIT/Hydro/v1_0_1",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "land_cover",
+      "drainage",
+      "terrain"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

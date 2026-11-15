@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Sunkoshi River watershed vegetation-moisture space",
+  "datasets": [
+    {
+      "role": "modis_ndvi",
+      "data_description": {
+        "dataset_name": "MODIS NDVI vegetation observations",
+        "data_type": "MOD13A1 normalized-difference vegetation-index observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MOD13A1",
+        "spatial_coverage": {
+          "region_name": "Sunkoshi River watershed vegetation-moisture space",
+          "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MOD13A1"
+    },
+    {
+      "role": "soil_moisture",
+      "data_description": {
+        "dataset_name": "Soil-moisture observations",
+        "data_type": "Spatial or temporal soil-moisture observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+        "spatial_coverage": {
+          "region_name": "Sunkoshi River watershed vegetation-moisture space",
+          "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "MODIS NDVI vegetation observations",
+      "data_type": "MOD13A1 normalized-difference vegetation-index observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MOD13A1",
+      "spatial_coverage": {
+        "region_name": "Sunkoshi River watershed vegetation-moisture space",
+        "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Soil-moisture observations",
+      "data_type": "Spatial or temporal soil-moisture observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+      "spatial_coverage": {
+        "region_name": "Sunkoshi River watershed vegetation-moisture space",
+        "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:MODIS/061/MOD13A1",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_033:composite_observation",
+    "type": "composite_observation",
+    "name": "ndvi_soil_moisture composite observation",
+    "observable_group": "ndvi_soil_moisture_multidataset_observation",
+    "components": [
+      {
+        "role": "modis_ndvi",
+        "data_description": {
+          "dataset_name": "MODIS NDVI vegetation observations",
+          "data_type": "MOD13A1 normalized-difference vegetation-index observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MOD13A1",
+          "spatial_coverage": {
+            "region_name": "Sunkoshi River watershed vegetation-moisture space",
+            "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD13A1"
+      },
+      {
+        "role": "soil_moisture",
+        "data_description": {
+          "dataset_name": "Soil-moisture observations",
+          "data_type": "Spatial or temporal soil-moisture observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H",
+          "spatial_coverage": {
+            "region_name": "Sunkoshi River watershed vegetation-moisture space",
+            "coverage": "Declared analysis region within Sunkoshi River watershed vegetation-moisture space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "modis_ndvi",
+        "soil_moisture"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_033:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:MODIS/061/MOD13A1",
+    "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "modis_ndvi",
+      "soil_moisture"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

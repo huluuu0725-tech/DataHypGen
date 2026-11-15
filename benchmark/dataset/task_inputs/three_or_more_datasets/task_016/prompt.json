@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Hydroclimatic basins",
+  "datasets": [
+    {
+      "role": "grace_storage_input",
+      "data_description": {
+        "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "data_type": "Monthly satellite-gravimetry raster time series",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+        "spatial_coverage": {
+          "region_name": "Hydroclimatic basins",
+          "coverage": "Declared analysis region within Hydroclimatic basins."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+    },
+    {
+      "role": "precipitation_driver",
+      "data_description": {
+        "dataset_name": "TRMM/IMERG precipitation estimates",
+        "data_type": "Gridded precipitation time series",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:NASA/GPM_L3/IMERG_V07",
+        "spatial_coverage": {
+          "region_name": "Hydroclimatic basins",
+          "coverage": "Declared analysis region within Hydroclimatic basins."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/GPM_L3/IMERG_V07"
+    },
+    {
+      "role": "soil_moisture_state",
+      "data_description": {
+        "dataset_name": "ESA CCI or GLDAS soil-moisture product",
+        "data_type": "Soil-moisture raster time series",
+        "data_format": "Role-labeled raster or time-series data",
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+        "spatial_coverage": {
+          "region_name": "Hydroclimatic basins",
+          "coverage": "Declared analysis region within Hydroclimatic basins."
+        },
+        "analytical_capabilities": [
+          "Spatial-temporal alignment",
+          "Role-specific feature construction",
+          "Mechanism or validation analysis"
+        ]
+      },
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+      "data_type": "Monthly satellite-gravimetry raster time series",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "spatial_coverage": {
+        "region_name": "Hydroclimatic basins",
+        "coverage": "Declared analysis region within Hydroclimatic basins."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "TRMM/IMERG precipitation estimates",
+      "data_type": "Gridded precipitation time series",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:NASA/GPM_L3/IMERG_V07",
+      "spatial_coverage": {
+        "region_name": "Hydroclimatic basins",
+        "coverage": "Declared analysis region within Hydroclimatic basins."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    },
+    {
+      "dataset_name": "ESA CCI or GLDAS soil-moisture product",
+      "data_type": "Soil-moisture raster time series",
+      "data_format": "Role-labeled raster or time-series data",
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+      "spatial_coverage": {
+        "region_name": "Hydroclimatic basins",
+        "coverage": "Declared analysis region within Hydroclimatic basins."
+      },
+      "analytical_capabilities": [
+        "Spatial-temporal alignment",
+        "Role-specific feature construction",
+        "Mechanism or validation analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GPM_L3/IMERG_V07",
+    "GEE:NASA/SMAP/SPL4SMGP/008"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_016:composite_observation",
+    "type": "composite_observation",
+    "name": "grace_precipitation_sm_data composite observation",
+    "observable_group": "grace_precipitation_sm_data_multidataset_observation",
+    "components": [
+      {
+        "role": "grace_storage_input",
+        "data_description": {
+          "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "data_type": "Monthly satellite-gravimetry raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "TRMM/IMERG precipitation estimates",
+          "data_type": "Gridded precipitation time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/GPM_L3/IMERG_V07",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GPM_L3/IMERG_V07"
+      },
+      {
+        "role": "soil_moisture_state",
+        "data_description": {
+          "dataset_name": "ESA CCI or GLDAS soil-moisture product",
+          "data_type": "Soil-moisture raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "grace_storage_input",
+        "precipitation_driver",
+        "soil_moisture_state"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_016:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:NASA/GPM_L3/IMERG_V07",
+    "GEE:NASA/SMAP/SPL4SMGP/008"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "grace_storage_input",
+      "precipitation_driver",
+      "soil_moisture_state"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

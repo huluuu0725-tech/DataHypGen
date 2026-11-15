@@ -1,0 +1,339 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+  "datasets": [
+    {
+      "role": "flood_extent_observation",
+      "data_description": {
+        "dataset_name": "Sentinel-1 SAR GRD C-band backscatter",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "10 m ground-range pixel spacing for IW GRD products",
+        "temporal_unit": "Scene-level repeat-pass observations",
+        "temporal_coverage": "2014-10-03 to near present",
+        "data_source": "ESA Copernicus Sentinel-1 mission",
+        "gee_asset": {
+          "id": "COPERNICUS/S1_GRD",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:COPERNICUS/S1_GRD",
+        "analytical_capabilities": [
+          "Flood-water extent mapping from VV/VH backscatter",
+          "Temporal inundation change detection",
+          "Terrain-aware SAR feature extraction",
+          "Cross-checking flood footprints against independent observations"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Calibrated radar backscatter coefficient in decibels",
+          "runtime_hint": "Filter by instrument mode, orbit direction, polarization and acquisition date; apply border-noise and speckle handling before compositing."
+        },
+        "spatial_coverage": {
+          "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+          "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S1_GRD"
+    },
+    {
+      "role": "land_cover_mapping",
+      "data_description": {
+        "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+        "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+        "temporal_coverage": "2017-03-28 to near present",
+        "data_source": "ESA Copernicus Sentinel-2 MSI",
+        "gee_asset": {
+          "id": "COPERNICUS/S2_SR_HARMONIZED",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+        "analytical_capabilities": [
+          "Cloud-masked spectral compositing",
+          "Land-cover and vegetation classification",
+          "NDVI, BSI, NDWI and other index derivation",
+          "Multi-date change detection"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Surface reflectance scaled integer bands",
+          "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+        },
+        "spatial_coverage": {
+          "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+          "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    },
+    {
+      "role": "elevation_and_terrain",
+      "data_description": {
+        "dataset_name": "SRTM Digital Elevation Data 30 m",
+        "data_type": "Raster image",
+        "data_format": "Google Earth Engine Image",
+        "spatial_resolution": "1 arc-second, approximately 30 m",
+        "temporal_unit": "Static elevation composite",
+        "temporal_coverage": "2000-02-11 to 2000-02-22 source acquisitions",
+        "data_source": "NASA Shuttle Radar Topography Mission",
+        "gee_asset": {
+          "id": "USGS/SRTMGL1_003",
+          "type": "image"
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003",
+        "analytical_capabilities": [
+          "Elevation, slope and aspect derivation",
+          "Drainage and terrain-position analysis",
+          "Topographic wetness and relief covariates",
+          "Terrain normalization of environmental patterns"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Elevation in metres above the EGM96 geoid",
+          "runtime_hint": "Derive terrain variables at a declared scale and retain the original elevation for reproducibility."
+        },
+        "spatial_coverage": {
+          "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+          "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+        }
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003"
+    }
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "Coastal tidal-flood composite observation",
+    "observable_group": "coastal_tidal_flood_vulnerability_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Coastal tidal-flood composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+        "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+      },
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "flood_extent_observation",
+        "data_description": {
+          "dataset_name": "Sentinel-1 SAR GRD C-band backscatter",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m ground-range pixel spacing for IW GRD products",
+          "temporal_unit": "Scene-level repeat-pass observations",
+          "temporal_coverage": "2014-10-03 to near present",
+          "data_source": "ESA Copernicus Sentinel-1 mission",
+          "gee_asset": {
+            "id": "COPERNICUS/S1_GRD",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S1_GRD",
+          "analytical_capabilities": [
+            "Flood-water extent mapping from VV/VH backscatter",
+            "Temporal inundation change detection",
+            "Terrain-aware SAR feature extraction",
+            "Cross-checking flood footprints against independent observations"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Calibrated radar backscatter coefficient in decibels",
+            "runtime_hint": "Filter by instrument mode, orbit direction, polarization and acquisition date; apply border-noise and speckle handling before compositing."
+          },
+          "spatial_coverage": {
+            "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+            "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S1_GRD"
+      },
+      {
+        "role": "land_cover_mapping",
+        "data_description": {
+          "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+          "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+          "temporal_coverage": "2017-03-28 to near present",
+          "data_source": "ESA Copernicus Sentinel-2 MSI",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "analytical_capabilities": [
+            "Cloud-masked spectral compositing",
+            "Land-cover and vegetation classification",
+            "NDVI, BSI, NDWI and other index derivation",
+            "Multi-date change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Surface reflectance scaled integer bands",
+            "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+          },
+          "spatial_coverage": {
+            "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+            "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      },
+      {
+        "role": "elevation_and_terrain",
+        "data_description": {
+          "dataset_name": "SRTM Digital Elevation Data 30 m",
+          "data_type": "Raster image",
+          "data_format": "Google Earth Engine Image",
+          "spatial_resolution": "1 arc-second, approximately 30 m",
+          "temporal_unit": "Static elevation composite",
+          "temporal_coverage": "2000-02-11 to 2000-02-22 source acquisitions",
+          "data_source": "NASA Shuttle Radar Topography Mission",
+          "gee_asset": {
+            "id": "USGS/SRTMGL1_003",
+            "type": "image"
+          },
+          "data_path": "GEE:USGS/SRTMGL1_003",
+          "analytical_capabilities": [
+            "Elevation, slope and aspect derivation",
+            "Drainage and terrain-position analysis",
+            "Topographic wetness and relief covariates",
+            "Terrain normalization of environmental patterns"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Elevation in metres above the EGM96 geoid",
+            "runtime_hint": "Derive terrain variables at a declared scale and retain the original elevation for reproducibility."
+          },
+          "spatial_coverage": {
+            "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+            "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+          }
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Observed inundation interpreted jointly with land cover and terrain context.",
+      "alignment": "Sentinel-1, Sentinel-2 and SRTM are aligned to the coastal study area and declared flood-analysis window.",
+      "required_roles": [
+        "flood_extent_observation",
+        "land_cover_mapping",
+        "elevation_and_terrain"
+      ],
+      "component_count": 3
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "schema_version": "2.0-composite-anchor",
+  "data_descriptions": [
+    {
+      "dataset_name": "Sentinel-1 SAR GRD C-band backscatter",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "10 m ground-range pixel spacing for IW GRD products",
+      "temporal_unit": "Scene-level repeat-pass observations",
+      "temporal_coverage": "2014-10-03 to near present",
+      "data_source": "ESA Copernicus Sentinel-1 mission",
+      "gee_asset": {
+        "id": "COPERNICUS/S1_GRD",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:COPERNICUS/S1_GRD",
+      "analytical_capabilities": [
+        "Flood-water extent mapping from VV/VH backscatter",
+        "Temporal inundation change detection",
+        "Terrain-aware SAR feature extraction",
+        "Cross-checking flood footprints against independent observations"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Calibrated radar backscatter coefficient in decibels",
+        "runtime_hint": "Filter by instrument mode, orbit direction, polarization and acquisition date; apply border-noise and speckle handling before compositing."
+      },
+      "spatial_coverage": {
+        "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+        "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+      }
+    },
+    {
+      "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+      "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+      "temporal_coverage": "2017-03-28 to near present",
+      "data_source": "ESA Copernicus Sentinel-2 MSI",
+      "gee_asset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "analytical_capabilities": [
+        "Cloud-masked spectral compositing",
+        "Land-cover and vegetation classification",
+        "NDVI, BSI, NDWI and other index derivation",
+        "Multi-date change detection"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Surface reflectance scaled integer bands",
+        "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+      },
+      "spatial_coverage": {
+        "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+        "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+      }
+    },
+    {
+      "dataset_name": "SRTM Digital Elevation Data 30 m",
+      "data_type": "Raster image",
+      "data_format": "Google Earth Engine Image",
+      "spatial_resolution": "1 arc-second, approximately 30 m",
+      "temporal_unit": "Static elevation composite",
+      "temporal_coverage": "2000-02-11 to 2000-02-22 source acquisitions",
+      "data_source": "NASA Shuttle Radar Topography Mission",
+      "gee_asset": {
+        "id": "USGS/SRTMGL1_003",
+        "type": "image"
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003",
+      "analytical_capabilities": [
+        "Elevation, slope and aspect derivation",
+        "Drainage and terrain-position analysis",
+        "Topographic wetness and relief covariates",
+        "Terrain normalization of environmental patterns"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Elevation in metres above the EGM96 geoid",
+        "runtime_hint": "Derive terrain variables at a declared scale and retain the original elevation for reproducibility."
+      },
+      "spatial_coverage": {
+        "region_name": "Pekalongan City coastal zone, Central Java, Indonesia",
+        "coverage": "Catalog coverage intersected with Pekalongan City coastal zone, Central Java, Indonesia."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "flood_extent_observation",
+      "land_cover_mapping",
+      "elevation_and_terrain"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

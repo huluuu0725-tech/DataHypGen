@@ -1,0 +1,2505 @@
+{
+ "schema_version": "3.0-multidataset-reference-space",
+ "task_id": "three_or_more_datasets/task_004",
+ "reference_coverage": "provisional_adequate",
+ "evaluation_year": 2026,
+ "anchor_asset": {
+  "id": "COMPOSITE:three_or_more_datasets/task_004:permafrost_landscape",
+  "type": "composite_observation",
+  "name": "Mountain permafrost landscape composite observation",
+  "observable_group": "mountain_permafrost_landscape_multidataset_observation",
+  "data_description": {
+   "dataset_name": "Mountain permafrost landscape composite observation",
+   "data_type": "Composite multi-dataset observation",
+   "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+   "spatial_coverage": "Orulgan Ridge, Northeast Siberia",
+   "analytical_capabilities": [
+    "Joint feature construction across all declared components",
+    "Role-aware spatial and temporal alignment",
+    "Multidataset mechanism and interaction analysis"
+   ]
+  },
+  "components": [
+   {
+    "role": "multispectral_landscape_mapping",
+    "data_description": {
+     "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "data_type": "Raster image collection",
+     "data_format": "Google Earth Engine ImageCollection",
+     "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+     "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+     "temporal_coverage": "2017-03-28 to near present",
+     "data_source": "ESA Copernicus Sentinel-2 MSI",
+     "gee_asset": {
+      "id": "COPERNICUS/S2_SR_HARMONIZED",
+      "type": "image_collection"
+     },
+     "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+     "analytical_capabilities": [
+      "Cloud-masked spectral compositing",
+      "Land-cover and vegetation classification",
+      "NDVI, BSI, NDWI and other index derivation",
+      "Multi-date change detection"
+     ],
+     "unit_of_measurement": {
+      "primary_measurement": "Surface reflectance scaled integer bands",
+      "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+     },
+     "spatial_coverage": {
+      "region_name": "Orulgan Ridge, Northeast Siberia",
+      "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+     }
+    },
+    "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+   },
+   {
+    "role": "historical_optical_time_series",
+    "data_description": {
+     "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "data_type": "Raster image collection",
+     "data_format": "Google Earth Engine ImageCollection",
+     "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+     "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+     "temporal_coverage": "2013-04-11 to near present",
+     "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+     "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1_L2",
+      "type": "image_collection"
+     },
+     "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+     "analytical_capabilities": [
+      "Long-term multispectral vegetation monitoring",
+      "Surface-temperature and bare-soil indicators",
+      "Land-cover transition mapping",
+      "Cross-sensor temporal comparison"
+     ],
+     "unit_of_measurement": {
+      "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+      "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+     },
+     "spatial_coverage": {
+      "region_name": "Orulgan Ridge, Northeast Siberia",
+      "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+     }
+    },
+    "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+   },
+   {
+    "role": "landform_and_elevation",
+    "data_description": {
+     "dataset_name": "ASTER Global Digital Elevation Model V003",
+     "data_type": "Raster collection",
+     "data_format": "NASA Earthdata tiled elevation product",
+     "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+     "temporal_unit": "Static global elevation composite",
+     "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+     "data_source": "NASA/METI ASTER GDEM",
+     "data_path": "NASA_CMR:ASTGTM_003",
+     "analytical_capabilities": [
+      "Megarelief and landform derivation",
+      "Elevation and hypsometric profiles",
+      "Terrain stratification of ecological units",
+      "Topographic support for landscape classification"
+     ],
+     "unit_of_measurement": {
+      "primary_measurement": "Elevation in metres above the EGM96 geoid",
+      "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+     },
+     "spatial_coverage": {
+      "region_name": "Orulgan Ridge, Northeast Siberia",
+      "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+     }
+    },
+    "data_path": "NASA_CMR:ASTGTM_003"
+   }
+  ],
+  "combination_contract": {
+   "joint_observable": "Phenological optical response interpreted jointly with historical optical coverage and terrain/landform structure.",
+   "alignment": "Sentinel-2 and Landsat time-series features are harmonized to the landscape mapping grid and linked to ASTER-derived terrain variables.",
+   "required_roles": [
+    "multispectral_landscape_mapping",
+    "historical_optical_time_series",
+    "landform_and_elevation"
+   ],
+   "component_count": 3
+  },
+  "observation_identity_contract": {
+   "physical_object": "seasonal optical surface properties and vegetation structure across mountain permafrost landscapes",
+   "source_lineage": "Copernicus Sentinel-2 MSI surface-reflectance lineage",
+   "core_measurement_semantics": "multitemporal spectral and vegetation-index features used to classify landscape units",
+   "non_material_variations": "sensor harmonization, phenological compositing, index selection, classifier and declared resampling",
+   "material_mismatches": "single-date optical mapping with no landscape classification or no Sentinel-2 input"
+  },
+  "asset_alias_policy": "The anchor requires Sentinel-2 optical time series with a supporting Landsat time series and terrain/elevation variables. DEM-only or single-sensor vegetation mapping is excluded from the core direction space."
+ },
+ "seed_exclusion": {
+  "title": "Distribution and Structure Analysis of Mountain Permafrost Landscape in Orulgan Ridge (Northeast Siberia) Using Google Earth Engine",
+  "doi": "10.3390/land11081187",
+  "year": 2022,
+  "excluded_from_directions": true,
+  "seed_uses_anchor": true
+ },
+ "construction": {
+  "channels": [
+   "multidataset_anchor_asset_lineages",
+   "complete_literature_pool_20260929"
+  ],
+  "time_window": "2020 <= paper_year <= 2026; seed DOI, existing formal references and non-paper records excluded",
+  "required_methods_evidence": "A reference must operationally use the anchor and supporting data components in a common research instance. Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis; title-only dataset co-occurrence is insufficient. References without an explicit sentinel_2 signal are retained only as adjacent partial-overlap evidence.",
+  "candidate_audit_source": "complete_literature_pool_20260929 with section-ready/fulltext preference",
+  "anchor_semantics": "The task anchor is the complete role-labeled dataset combination, not the first component. A reference direction must preserve the joint observable and may not be admitted solely because it uses one component."
+ },
+ "quality": {
+  "ref_count": 21,
+  "source_paper_count": 21,
+  "direct_set_reference_count": 6,
+  "expanded_set_reference_count": 15,
+  "partial_set_support_count": 6,
+  "component_support_count": 0,
+  "uncertain_count": 0,
+  "rejected_count": 0,
+  "error_count": 0,
+  "quote_guard_review_count": 0,
+  "sparse_reference_space": false,
+  "manual_admission_count": 21
+ },
+ "reference_papers": [
+  {
+   "doi": "10.1134/s0001433825700252",
+   "title": "Predicting Promising Areas for Gold Ore Mineralization Based on the Integration of Geological and Geophysical Information and Processing the Data Set of the Harmonized Landsat Sentinel-2 Remote Sensing Space Vehicle for the Northern End of the Eastern Slope of the Polar Urals",
+   "year": 2024,
+   "venue": "Izvestiya Atmospheric and Oceanic Physics",
+   "evidence_level": "fulltext",
+   "matched_signals": [
+    "sentinel_2",
+    "landsat",
+    "dem"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "single_dataset/task_001"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ]
+  },
+  {
+   "doi": "10.1088/1748-9326/adacff",
+   "title": "Snow persistence lowers and delays peak NDVI, the vegetation index that underpins Arctic greening analyses",
+   "year": 2025,
+   "venue": "Environmental Research Letters",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "single_dataset/task_016",
+    "single_dataset/task_020"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ]
+  },
+  {
+   "doi": "10.1186/s42408-025-00371-6",
+   "title": "Fire severity shows limited dependence on fuel structure under adverse fire weather conditions: a case study of two extreme wildfire events",
+   "year": 2025,
+   "venue": "Fire Ecology",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "sentinel_2",
+    "dem",
+    "vegetation_index"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "single_dataset/task_034",
+    "single_dataset/task_038"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ]
+  },
+  {
+   "doi": "10.1007/s00484-026-03276-4",
+   "title": "Can time-series of Landsat data be used to map the onset of growth at 78°N (central Svalbard)?",
+   "year": 2026,
+   "venue": "International Journal of Biometeorology",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "landsat",
+    "vegetation_index"
+   ],
+   "selection_tier": "adjacent_partial_overlap",
+   "source_task_ids": [
+    "single_dataset/task_003"
+   ],
+   "reference_tier": "expanded_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ]
+  },
+  {
+   "doi": "10.21009/jsg.v4i1.01",
+   "title": "Multi-Sensor NDVI Analysis of Eruption Impacts and Vegetation Recovery at Mount Kelud, East Java (2013–2025)",
+   "year": 2026,
+   "venue": "Jurnal Sains Geografi",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "task_012",
+    "single_dataset/task_012"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ]
+  },
+  {
+   "doi": "10.29303/jwd.v6i1.287",
+   "title": "PERBANDINGAN PENGGUNAAN CITRA LANDSAT 8 DAN SENTINEL 2 TERHADAP ANALISIS KESEHATAN MANGROVE DENGAN METODE NDVI DI TELUK JAKARTA",
+   "year": 2024,
+   "venue": "Jurnal Warta Desa (JWD)",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "single_dataset/task_030"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ]
+  },
+  {
+   "doi": "10.3389/ffgc.2026.1809572",
+   "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems",
+   "year": 2026,
+   "venue": "Frontiers in Forests and Global Change",
+   "evidence_level": "section_ready",
+   "matched_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "source_task_ids": [
+    "single_dataset/task_002"
+   ],
+   "reference_tier": "direct_set_reference",
+   "record_type": "article",
+   "admission_basis": "legacy_1_0_pool_migrated_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ]
+  },
+  {
+   "doi": "10.1038/s41598-025-17426-y",
+   "title": "Large driftwood accumulations along arctic coastlines and rivers",
+   "year": 2025,
+   "venue": "Scientific Reports",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_human_adjudicated_cross_family_analogous_verified_fulltext",
+   "adjudication_note": "跨族类比口径准入（用户 2026-10-05 裁定）：gpt 将替代产品判为 analogous/parent/compatible 且全文核验确认替代产品在锚点角色中实际被使用，故覆盖 qwen 的 not_matched/mention_only。identity_relation_evidence 由 gpt 逐字引文补回，非准入门。\n  multispectral_landscape_mapping: gpt=parent_scope / qwen=not_matched -> 声明 parent_scope（human_review_overrules_weaker_model）\n  historical_optical_time_series: gpt=parent_scope / qwen=not_matched -> 声明 parent_scope（human_review_overrules_weaker_model）\n  landform_and_elevation: gpt=analogous_product / qwen=not_matched -> 声明 analogous_product（human_review_overrules_weaker_model）",
+   "adjudication_date": "2026-10-05",
+   "actual_datasets": [
+    "Sentinel-2 scenes",
+    "Landsat 7/8 scenes",
+    "ArcticDEM digital elevation model"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Sentinel-2 scenes",
+     "identity_match": "parent_scope",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied.",
+      "The composites were generated by computing the pixel-wise medoid of all scenes 50 , 51 ."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "actual_observable": "Sentinel-2 scenes",
+      "relation_explanation": "实际产品 Sentinel-2 scenes 是锚点 Harmonized Sentinel-2 MSI Level-2A Surface Reflectance 的上游/同谱系产品（处理级别或集合不同），观测对象与测量能力一致，故判 parent_scope。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": true,
+      "evidence_quotes": [
+       "transformation of the histograms of input images to match that of a larger reference image, thereby ensuring seamless transitions between scenes 47 . The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied. The composites were generated by computing the pixel-wise medoid of all"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "Sentinel-2 scenes",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "Landsat 7/8 scenes",
+     "identity_match": "parent_scope",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+      "actual_observable": "Landsat 7/8 scenes",
+      "relation_explanation": "实际产品 Landsat 7/8 scenes 是锚点 USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance 的上游/同谱系产品（处理级别或集合不同），观测对象与测量能力一致，故判 parent_scope。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": true,
+      "evidence_quotes": [
+       "transformation of the histograms of input images to match that of a larger reference image, thereby ensuring seamless transitions between scenes 47 . The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied. The composites were generated by computing the pixel-wise medoid of all"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "Landsat 7/8 scenes",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ArcticDEM digital elevation model",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "In addition to the four spectral bands, we extended the image data by adding information on elevation derived from the ArcticDEM digital elevation model downloaded through Google Earth Engine and resampled to match the spatial resolution of the PlanetScope mosaics as an additional fifth band.",
+      "The model received all available bands (RGB + NIR + DEM) as input."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "ASTER Global Digital Elevation Model V003",
+      "actual_observable": "ArcticDEM digital elevation model",
+      "relation_explanation": "实际产品 ArcticDEM digital elevation model 与锚点 ASTER Global Digital Elevation Model V003 分属不同传感器/产品族，但本研究将其直接用作锚点角色（landform_and_elevation）的输入，提供相同的地表观测对象与遥感模态；经全文核验确为实际操作使用而非仅提及，按跨族类比计入 expanded_set_reference（用户 2026-10-05 裁定口径）。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": false,
+      "evidence_quotes": [
+       "vering the North American Subarctic and Arctic coastline and coastal lowlands between the Kuskokwim River (Alaska) and Horton River (North West Canada). The image data was further supplemented by the ArcticDEM digital elevation model. Additionally, we acquired and used very high-resolution aerial imagery of specific target sites to train a second deep learning model to generate a fine-scale map of driftwood deposits, allowing independent validation and un"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "analogous_product",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "ArcticDEM digital elevation model",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "model_disagreements": {
+    "multispectral_landscape_mapping": {
+     "gpt": "parent_scope",
+     "qwen": "not_matched",
+     "declared": "parent_scope"
+    },
+    "historical_optical_time_series": {
+     "gpt": "parent_scope",
+     "qwen": "not_matched",
+     "declared": "parent_scope"
+    },
+    "landform_and_elevation": {
+     "gpt": "analogous_product",
+     "qwen": "not_matched",
+     "declared": "analogous_product"
+    }
+   },
+   "non_anchor_requirements": [],
+   "joint_use_evidence_quotes": [
+    "To streamline processing, we created annual mosaics 45 and divided the study area into 1 × 1-degree tiles.",
+    "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied.",
+    "In addition to the four spectral bands, we extended the image data by adding information on elevation derived from the ArcticDEM digital elevation model downloaded through Google Earth Engine and resampled to match the spatial resolution of the PlanetScope mosaics as an additional fifth band.",
+    "The model received all available bands (RGB + NIR + DEM) as input."
+   ],
+   "adjudication_evidence_file": "reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/adjudication_gpt_qwen_v8/uncertain_remaining_task001_012_20261005/MANUAL_REVIEW.md",
+   "machine_state_at_admission": {
+    "record_machine_verdict": "uncertain",
+    "gpt_verdict": "admitted",
+    "gpt_confidence": 0.96,
+    "gpt_coverage_tier": "expanded_set_reference",
+    "gpt_matched_member_count": 3,
+    "qwen_verdict": "rejected",
+    "qwen_confidence": 0.95,
+    "qwen_coverage_tier": "rejected",
+    "qwen_matched_member_count": 0,
+    "evidence_source_quality": "unverified_section_boundary",
+    "note": "gpt derived matched_member_count=3 and an expanded_set_reference tier; the consensus layer kept the record out because it requires every selected model to hand-write admitted. qwen marked the cross-family substitute not_matched/mention_only; the 2026-10-05 cross-family policy overrides that because the substitute was verified verbatim to be actually used in the anchor role. identity_relation_evidence was backfilled from gpt's verbatim quotes and is not an admission gate."
+   }
+  },
+  {
+   "doi": "10.1101/2023.05.25.542318",
+   "title": "Mapping oak wilt disease using phenological observations from space",
+   "year": 2023,
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "record_type": "preprint",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+   "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multispectral_landscape_mapping<-['sentinel-2']; historical_optical_time_series<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): landform_and_elevation. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+   "adjudication_date": "2026-10-05",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "mappingoakwiltusingsentinel-247venables,w.n.,ripley,b.d.,2002.modernappliedstatisticswiths,statisticsand873computing.springernewyork,newyork,ny.https://doi.org/10.1007/978-0-387-87421706-2875ain,m.a.,ensminger,i.,2020.trackingthephenologyof876877inatemperatee"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "881zhu,z.,wang,s.,woodcock,c.e.,2015.improvementandexpansionofthefmaskalgorithm:882cloud,cloudshadow,andsnowdetectionforlandsats47,8,andsentinel2images.883remotesensingofenvironment159,269277.https://doi.org/10.1016/j.rse.2014.12.014884zhu,z.,woodcock,c.e.,2012.object-basedcloudandcloudshadowdetectioninlandsat885imagery.remotesensingofenvironment118,8394.886"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ASTER Global Digital Elevation Model V003",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [],
+     "identity_basis": "human_batch_ruling_no_member_evidence",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "model_disagreements": {},
+   "non_anchor_requirements": [],
+   "joint_use_evidence_quotes": [],
+   "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+   "machine_state_at_admission": {
+    "record_machine_verdict": "uncertain",
+    "gpt_verdict": "uncertain",
+    "gpt_initial_verdict": "uncertain",
+    "gpt_coverage_tier": "uncertain",
+    "gpt_matched_member_count": 0,
+    "gpt_missing_member_ids": [
+     "multispectral_landscape_mapping",
+     "historical_optical_time_series",
+     "landform_and_elevation"
+    ],
+    "qwen_verdict": "uncertain",
+    "qwen_initial_verdict": "uncertain",
+    "qwen_coverage_tier": "rejected",
+    "qwen_matched_member_count": 0,
+    "qwen_missing_member_ids": [
+     "multispectral_landscape_mapping",
+     "historical_optical_time_series",
+     "landform_and_elevation"
+    ],
+    "evidence_source_quality": "unverified_section_boundary",
+    "bclass_triage": "REVIEW_FOR_ADMIT",
+    "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+    "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+   }
+  },
+  {
+   "doi": "10.3390/books978-3-03928-093-3",
+   "title": "Earth Observation Data Cubes",
+   "year": 2020,
+   "venue": null,
+   "record_type": "book",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+   "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage ADMIT_CANDIDATE). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multispectral_landscape_mapping<-['sentinel-2']; landform_and_elevation<-['aster']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): none. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+   "adjudication_date": "2026-10-05",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "Digital Earth Australia (DEA) Landsat Analysis Ready Data",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "ndremotesensingsymposium,valencia,spain,2227july2018;pp.86398642.32.giuliani,g.;chatenoux,b.;honeck,e.;richard,j.towardssentinel-2analysisreadydata:aswissdatacubeperspective.inproceedingsoftheigarss20182018ieeeinternationalgeoscienceandremotesensingsymposium,valencia,spain,2227july2018;pp.86598662.290data2019,4,144correspondingopensourceapplicationalgorithms"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "not_matched",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "mention_only",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "Digital Earth Australia (DEA) Landsat Analysis Ready Data",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "This dataset represents the tidal range of the Australian coastline, generated from the frequency of inundation as quantified from all cloud free Landsat observations of the coastal margin over a 28-year period.",
+      "Figure 2. Landsat annual false colour composites for (a) Ayr (Queensland), (b) Diamantina (Queensland), (c) Gwydir (New South Wales) and (d) the Leichhardt River (northern Queensland)."
+     ],
+     "identity_basis": "conservative_weakest_model_with_used_as_data",
+     "human_identity_verdict": "compatible_lineage",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "compatible_lineage"
+     },
+     "model_products": {
+      "gpt": "Landsat archive and Landsat-derived annual composites",
+      "qwen": "Digital Earth Australia (DEA) Landsat Analysis Ready Data"
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "used_as_data"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ASTER Global Digital Elevation Model V003",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "y,2015;pp.7598.74.beniston,m.climatechangeinmountainregionsareviewofpossibleimpacts.clim.chang.2003,59,531.[crossref]75.asterglobaldigitalelevationmap.astergdemisaproductofmetiandnasa.availableonline:https://asterweb.jpl.nasa.gov/gdem.asp(accessedon31may2019).76.schmucki,e.;marty,c.;fierz,c.;weingartner,r.;lehning,m.impactofclimatechangeinswitzerlandonsocioe"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "not_matched",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "mention_only",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "model_disagreements": {},
+   "non_anchor_requirements": [],
+   "joint_use_evidence_quotes": [],
+   "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+   "machine_state_at_admission": {
+    "record_machine_verdict": "uncertain",
+    "gpt_verdict": "uncertain",
+    "gpt_initial_verdict": "rejected",
+    "gpt_coverage_tier": "component_support",
+    "gpt_matched_member_count": 1,
+    "gpt_missing_member_ids": [
+     "multispectral_landscape_mapping",
+     "landform_and_elevation"
+    ],
+    "qwen_verdict": "uncertain",
+    "qwen_initial_verdict": "rejected",
+    "qwen_coverage_tier": "component_support",
+    "qwen_matched_member_count": 1,
+    "qwen_missing_member_ids": [
+     "multispectral_landscape_mapping",
+     "landform_and_elevation"
+    ],
+    "evidence_source_quality": "verified_methods_or_data_boundary",
+    "bclass_triage": "ADMIT_CANDIDATE",
+    "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+    "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+   }
+  },
+  {
+   "doi": "10.1109/tgrs.2025.3636434",
+   "title": "BiomSHARP: Biomass Super-Resolution for High Accuracy Prediction",
+   "year": 2025,
+   "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['landform_and_elevation']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "verdict": "used_exact",
+     "evidence": "we used multispectral optical data from both Landsat-5 and Sentinel-2"
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "verdict": "used_analogous",
+     "evidence": "for Landsat-5, we selected the Level-2, Collection 2, Tier 1 product"
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "verdict": "not_used",
+     "evidence": "absent or mention-only in full text (independent read)"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ]
+  },
+  {
+   "doi": "10.31223/x51z1r",
+   "title": "Direct mapping of plantation forest aboveground biomass change with deep learning and SAR-optical fusion",
+   "year": 2026,
+   "venue": null,
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['historical_optical_time_series']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "verdict": "used_exact",
+     "evidence": "multi-sensor fusion of Sentinel-1, ALOS PALSAR, and Sentinel-2 optical"
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "verdict": "not_used",
+     "evidence": "dataset list is S1/PALSAR/S2/DEM, no Landsat"
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "verdict": "used_analogous",
+     "evidence": "Copernicus GLO-30 DEM provided terrain attributes of slope, elevation, and aspect"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "historical_optical_time_series"
+   ]
+  },
+  {
+   "doi": "10.3390/geosciences15080316",
+   "title": "Testing Satellite Snow Cover Observations Using Time-Lapse Camera Images in Mid-Latitude Mountain Ranges (Northern Spain)",
+   "year": 2025,
+   "venue": "Geosciences",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['landform_and_elevation']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "verdict": "used_exact",
+     "evidence": "Harmonized Sentinel-2 MSI Level2A used"
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "verdict": "used_exact",
+     "evidence": "USGS Landsat5/8/9 Level2, Collection2, Tier1 used"
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "verdict": "not_used",
+     "evidence": "absent or mention-only in full text (independent read)"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ]
+  },
+  {
+   "doi": "10.3390/rs16071290",
+   "title": "Estimating Carbon Dioxide Emissions from Power Plant Water Vapor Plumes Using Satellite Imagery and Machine Learning",
+   "year": 2024,
+   "venue": "Remote Sensing",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['landform_and_elevation']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "verdict": "used_analogous",
+     "evidence": "We downloaded Harmonized Sentinel-2A/B Level-1C TOA products"
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "verdict": "used_exact",
+     "evidence": "Landsat 8 ... operated by USGS (data section input)"
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "verdict": "not_used",
+     "evidence": "absent or mention-only in full text (independent read)"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ]
+  },
+  {
+   "doi": "10.5194/isprs-archives-xlviii-m-1-2023-41-2023",
+   "title": "WATER RESERVOIRS MONITORING THROUGH GOOGLE EARTH ENGINE: APPLICATION TO SENTINEL AND LANDSAT IMAGERY",
+   "year": 2023,
+   "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['landform_and_elevation']。逐成员判定与证据见 member_adjudications。",
+   "adjudication_date": "2026-10-06",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "verdict": "used_exact",
+     "evidence": "applied to Sentinel-2 and Landsat-8 multispectral imagery"
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "verdict": "used_exact",
+     "evidence": "QA PIXEL and QA RADSAT bands of Landsat-8"
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "verdict": "not_used",
+     "evidence": "absent or mention-only in full text (independent read)"
+    }
+   ],
+   "covered_member_count": 2,
+   "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+   "machine_state_at_admission": {
+    "independent_read": true,
+    "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+   },
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ]
+  },
+  {
+   "doi": "10.3390/su18147201",
+   "title": "Multi-temporal Landsat and Sentinel-2 analysis of post-fire vegetation regeneration in the Ouled Yagoub Forest",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2026,
+   "venue": "Sustainability"
+  },
+  {
+   "doi": "10.3389/feart.2019.00305",
+   "title": "Cropland extent and abandonment in conflict-affected Ukraine from multi-temporal Landsat and Sentinel-2 imagery",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2019,
+   "venue": "Frontiers in Earth Science"
+  },
+  {
+   "doi": "10.3390/rs11192228",
+   "title": "Sentinel-1 and Sentinel-2 synergy for wheat phenology and crop monitoring in Lebanon",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2019,
+   "venue": "Remote Sensing"
+  },
+  {
+   "doi": "10.3390/rs11222668",
+   "title": "Spatio-temporal crop mapping from Sentinel-2 time series with Landsat-based validation",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2019,
+   "venue": "Remote Sensing"
+  },
+  {
+   "doi": "10.51470/psa.2025.10.3.106",
+   "title": "Multi-decadal vegetation health dynamics in the Southern Guinea Savannah of Taraba State, Nigeria",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+   "year": 2025,
+   "venue": "Plant Science Archives"
+  },
+  {
+   "doi": "10.5418/ra2025.v21i44.19756",
+   "title": "Integration of Landsat 8, Sentinel-2 and Sentinel-1 imagery with vegetation indices for coffee cultivation analysis",
+   "record_type": "article",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261007",
+   "year": 2025,
+   "venue": "Revista da ANPEGE"
+  }
+ ],
+ "directions": [
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_01",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; landsat: historical multispectral context; dem: terrain and elevation covariate. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, Landsat multispectral time series, digital elevation and terrain variables.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "Landsat multispectral time series",
+    "digital elevation and terrain variables"
+   ],
+   "source_paper": {
+    "title": "Predicting Promising Areas for Gold Ore Mineralization Based on the Integration of Geological and Geophysical Information and Processing the Data Set of the Harmonized Landsat Sentinel-2 Remote Sensing Space Vehicle for the Northern End of the Eastern Slope of the Polar Urals",
+    "doi": "10.1134/s0001433825700252",
+    "year": 2024,
+    "venue": "Izvestiya Atmospheric and Oceanic Physics"
+   },
+   "author_team": [
+    "Yu. N. Ivanova"
+   ],
+   "extraction_confidence": "medium",
+   "evidence_granularity": "full text",
+   "idea_type": "relationship_mechanism",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "landsat",
+    "dem"
+   ],
+   "source_paper_doi": "10.1134/s0001433825700252",
+   "reference_tier": "direct_set_reference",
+   "title": "Predicting Promising Areas for Gold Ore Mineralization Based on the Integration of Geological and Geophysical Information and Processing the Data Set of the Harmonized Landsat Sentinel-2 Remote Sensing Space Vehicle for the Northern End of the Eastern Slope of the Polar Urals"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_02",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; landsat: historical multispectral context; vegetation_index: vegetation-state response indicator. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, Landsat multispectral time series, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "Landsat multispectral time series",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "Snow persistence lowers and delays peak NDVI, the vegetation index that underpins Arctic greening analyses",
+    "doi": "10.1088/1748-9326/adacff",
+    "year": 2025,
+    "venue": "Environmental Research Letters"
+   },
+   "author_team": [
+    "Calum G Hoad",
+    "Claudia Colesie",
+    "Isla H Myers-Smith",
+    "Isla H. Myers‐Smith",
+    "Jakob J Assmann",
+    "Jakob J. Assmann",
+    "Jeff T Kerby",
+    "Jeffrey Taylor Kerby"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "change_detection",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.1088/1748-9326/adacff",
+   "reference_tier": "direct_set_reference",
+   "title": "Snow persistence lowers and delays peak NDVI, the vegetation index that underpins Arctic greening analyses"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_03",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; dem: terrain and elevation covariate; vegetation_index: vegetation-state response indicator. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, digital elevation and terrain variables, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "digital elevation and terrain variables",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "Fire severity shows limited dependence on fuel structure under adverse fire weather conditions: a case study of two extreme wildfire events",
+    "doi": "10.1186/s42408-025-00371-6",
+    "year": 2025,
+    "venue": "Fire Ecology"
+   },
+   "author_team": [
+    "José Manuel Fernández-Guisuraga",
+    "Leonor Calvo"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "decision_support",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "dem",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.1186/s42408-025-00371-6",
+   "reference_tier": "direct_set_reference",
+   "title": "Fire severity shows limited dependence on fuel structure under adverse fire weather conditions: a case study of two extreme wildfire events"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_04",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "landsat: historical multispectral context; vegetation_index: vegetation-state response indicator. Matched evidence: Landsat multispectral time series, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Landsat multispectral time series",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "Can time-series of Landsat data be used to map the onset of growth at 78°N (central Svalbard)?",
+    "doi": "10.1007/s00484-026-03276-4",
+    "year": 2026,
+    "venue": "International Journal of Biometeorology"
+   },
+   "author_team": [
+    "Giovanni Argenti",
+    "Laura Stendardi",
+    "Luigi Ranghetti",
+    "Stein Rune Karlsen"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "relationship_mechanism",
+   "selection_tier": "adjacent_partial_overlap",
+   "matched_dataset_signals": [
+    "landsat",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.1007/s00484-026-03276-4",
+   "reference_tier": "expanded_set_reference",
+   "title": "Can time-series of Landsat data be used to map the onset of growth at 78°N (central Svalbard)?"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_05",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; landsat: historical multispectral context; vegetation_index: vegetation-state response indicator. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, Landsat multispectral time series, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "Landsat multispectral time series",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "Multi-Sensor NDVI Analysis of Eruption Impacts and Vegetation Recovery at Mount Kelud, East Java (2013–2025)",
+    "doi": "10.21009/jsg.v4i1.01",
+    "year": 2026,
+    "venue": "Jurnal Sains Geografi"
+   },
+   "author_team": [
+    "Bubacarr Jawla",
+    "Faye Jerreh Manneh",
+    "Omar M Camara",
+    "Sainey Danjo",
+    "Sherif A Bah",
+    "Yesenia Zabrina Maharani Yaffa Hardianto"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "change_detection",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.21009/jsg.v4i1.01",
+   "reference_tier": "direct_set_reference",
+   "title": "Multi-Sensor NDVI Analysis of Eruption Impacts and Vegetation Recovery at Mount Kelud, East Java (2013–2025)"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_07",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; landsat: historical multispectral context; vegetation_index: vegetation-state response indicator. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, Landsat multispectral time series, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "Landsat multispectral time series",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "PERBANDINGAN PENGGUNAAN CITRA LANDSAT 8 DAN SENTINEL 2 TERHADAP ANALISIS KESEHATAN MANGROVE DENGAN METODE NDVI DI TELUK JAKARTA",
+    "doi": "10.29303/jwd.v6i1.287",
+    "year": 2024,
+    "venue": "Jurnal Warta Desa (JWD)"
+   },
+   "author_team": [
+    "Berry El Hamdi",
+    "Ilma Nur Amalia",
+    "Melyani Safitri",
+    "Muhamad Salman Al-Fariziz",
+    "Nandi Nandi",
+    "Riki Ridwana"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "relationship_mechanism",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.29303/jwd.v6i1.287",
+   "reference_tier": "direct_set_reference",
+   "title": "PERBANDINGAN PENGGUNAAN CITRA LANDSAT 8 DAN SENTINEL 2 TERHADAP ANALISIS KESEHATAN MANGROVE DENGAN METODE NDVI DI TELUK JAKARTA"
+  },
+  {
+   "direction_id": "three_or_more_datasets/task_004_ref_08",
+   "research_question": "How can harmonized optical time series and terrain variables distinguish mountain permafrost landscape units and their ecological structure?",
+   "hypothesis_or_mechanism": "Phenological spectral signals identify vegetation and moisture regimes, while terrain and elevation explain the spatial organization of intrazonal valleys, tundra and forest units.",
+   "variables_and_data_use": "sentinel_2: optical observation and land-cover/vegetation feature extraction; landsat: historical multispectral context; vegetation_index: vegetation-state response indicator. Matched evidence: Sentinel-2 optical surface reflectance and land-cover indicators, Landsat multispectral time series, vegetation indices such as NDVI/EVI/LAI.",
+   "method_paradigm": "Multisensor compositing, vegetation-index feature engineering, SVM/random-forest classification and landscape-structure analysis",
+   "used_assets": [
+    "Sentinel-2 optical surface reflectance and land-cover indicators",
+    "Landsat multispectral time series",
+    "vegetation indices such as NDVI/EVI/LAI"
+   ],
+   "source_paper": {
+    "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems",
+    "doi": "10.3389/ffgc.2026.1809572",
+    "year": 2026,
+    "venue": "Frontiers in Forests and Global Change"
+   },
+   "author_team": [
+    "Afnan Abdullah Alturki",
+    "Aliat Toufik",
+    "Erkin Kholiyarov",
+    "Mirjalol Ismoilov",
+    "Mohamed S. Shokr",
+    "Nazih Yacer Rebouh",
+    "Oussama Meghithi",
+    "Sobhi Abdelhameed Abdeljawad",
+    "Youssef M. Youssef"
+   ],
+   "extraction_confidence": "medium_high",
+   "evidence_granularity": "full text Methods/Data",
+   "idea_type": "change_detection",
+   "selection_tier": "exact_or_near_exact_multidataset",
+   "matched_dataset_signals": [
+    "sentinel_2",
+    "landsat",
+    "vegetation_index"
+   ],
+   "source_paper_doi": "10.3389/ffgc.2026.1809572",
+   "reference_tier": "direct_set_reference",
+   "title": "Multi-index analysis for wildfire severity and vegetation dieback assessment in semi-arid forest ecosystems"
+  },
+  {
+   "direction_id": "manual_admitted_complete_set_reference_009",
+   "source_paper_doi": "10.1038/s41598-025-17426-y",
+   "title": "Large driftwood accumulations along arctic coastlines and rivers",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_human_adjudicated_cross_family_analogous_verified_fulltext",
+   "actual_datasets": [
+    "Sentinel-2 scenes",
+    "Landsat 7/8 scenes",
+    "ArcticDEM digital elevation model"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Sentinel-2 scenes",
+     "identity_match": "parent_scope",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied.",
+      "The composites were generated by computing the pixel-wise medoid of all scenes 50 , 51 ."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "actual_observable": "Sentinel-2 scenes",
+      "relation_explanation": "实际产品 Sentinel-2 scenes 是锚点 Harmonized Sentinel-2 MSI Level-2A Surface Reflectance 的上游/同谱系产品（处理级别或集合不同），观测对象与测量能力一致，故判 parent_scope。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": true,
+      "evidence_quotes": [
+       "transformation of the histograms of input images to match that of a larger reference image, thereby ensuring seamless transitions between scenes 47 . The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied. The composites were generated by computing the pixel-wise medoid of all"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "Sentinel-2 scenes",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "Landsat 7/8 scenes",
+     "identity_match": "parent_scope",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+      "actual_observable": "Landsat 7/8 scenes",
+      "relation_explanation": "实际产品 Landsat 7/8 scenes 是锚点 USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance 的上游/同谱系产品（处理级别或集合不同），观测对象与测量能力一致，故判 parent_scope。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": true,
+      "evidence_quotes": [
+       "transformation of the histograms of input images to match that of a larger reference image, thereby ensuring seamless transitions between scenes 47 . The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied. The composites were generated by computing the pixel-wise medoid of all"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "Landsat 7/8 scenes",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ArcticDEM digital elevation model",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "In addition to the four spectral bands, we extended the image data by adding information on elevation derived from the ArcticDEM digital elevation model downloaded through Google Earth Engine and resampled to match the spatial resolution of the PlanetScope mosaics as an additional fifth band.",
+      "The model received all available bands (RGB + NIR + DEM) as input."
+     ],
+     "identity_relation_evidence": {
+      "anchor_observable": "ASTER Global Digital Elevation Model V003",
+      "actual_observable": "ArcticDEM digital elevation model",
+      "relation_explanation": "实际产品 ArcticDEM digital elevation model 与锚点 ASTER Global Digital Elevation Model V003 分属不同传感器/产品族，但本研究将其直接用作锚点角色（landform_and_elevation）的输入，提供相同的地表观测对象与遥感模态；经全文核验确为实际操作使用而非仅提及，按跨族类比计入 expanded_set_reference（用户 2026-10-05 裁定口径）。",
+      "same_observed_object": true,
+      "same_measurement_capability": true,
+      "same_modality": true,
+      "same_lineage": false,
+      "evidence_quotes": [
+       "vering the North American Subarctic and Arctic coastline and coastal lowlands between the Kuskokwim River (Alaska) and Horton River (North West Canada). The image data was further supplemented by the ArcticDEM digital elevation model. Additionally, we acquired and used very high-resolution aerial imagery of specific target sites to train a second deep learning model to generate a fine-scale map of driftwood deposits, allowing independent validation and un"
+      ]
+     },
+     "identity_basis": "human_review_overrules_weaker_model",
+     "model_identity_matches": {
+      "gpt": "analogous_product",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "ArcticDEM digital elevation model",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "joint_use_evidence_quotes": [
+    "To streamline processing, we created annual mosaics 45 and divided the study area into 1 × 1-degree tiles.",
+    "The reference images were composites created from Landsat 7/8 48 and Sentinel-2 49 scenes, resampled to Landsat’s 30 × 30 m spatial resolution and harmonized to the spectral resolution of Landsat 7, with cloud and shadow masking applied.",
+    "In addition to the four spectral bands, we extended the image data by adding information on elevation derived from the ArcticDEM digital elevation model downloaded through Google Earth Engine and resampled to match the spatial resolution of the PlanetScope mosaics as an additional fifth band.",
+    "The model received all available bands (RGB + NIR + DEM) as input."
+   ],
+   "adjudication_evidence_file": "reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/adjudication_gpt_qwen_v8/uncertain_remaining_task001_012_20261005/MANUAL_REVIEW.md",
+   "adjudication_note": "跨族类比口径准入（用户 2026-10-05 裁定）：gpt 将替代产品判为 analogous/parent/compatible 且全文核验确认替代产品在锚点角色中实际被使用，故覆盖 qwen 的 not_matched/mention_only。identity_relation_evidence 由 gpt 逐字引文补回，非准入门。\n  multispectral_landscape_mapping: gpt=parent_scope / qwen=not_matched -> 声明 parent_scope（human_review_overrules_weaker_model）\n  historical_optical_time_series: gpt=parent_scope / qwen=not_matched -> 声明 parent_scope（human_review_overrules_weaker_model）\n  landform_and_elevation: gpt=analogous_product / qwen=not_matched -> 声明 analogous_product（human_review_overrules_weaker_model）",
+   "research_question": "论文旨在回答如何在北美亚北极和北极海岸及低地范围内利用高分辨率卫星影像制图漂木沉积，并评估其相对于传统超高分辨率航空影像制图的可靠性。研究还分析漂木沉积的空间聚集格局，以及其与河口距离、流域北方森林覆盖之间的关系。",
+   "hypothesis_or_mechanism": "核心机制是北极苔原地区的漂木来源于南部北方森林，并依赖河流系统运输至北冰洋及其海岸，因此漂木覆盖应与有森林覆盖的流域和河口空间位置相关。方法上假定加入DEM、年度多时相合成与水体/基础设施掩膜可提高漂木与沙地、岩面、水体和人工地物的区分能力。",
+   "variables_and_data_use": "主要变量包括漂木/背景二分类标签、漂木沉积面积与覆盖度、沉积到最近有森林流域河口的距离、流域森林覆盖、海岸/三角洲位置、水体覆盖比例以及道路和建筑物相交情况。数据产品和传感器包括PlanetScope PSScene analytic_sr四波段地表反射率影像、ArcticDEM高程数据、MACS-Polar18航空RGB+NIR正射影像、Dynamic World水体类别、OpenStreetMap道路与建筑、ARCADE泛北极流域、Natural Canada北方森林范围数据、HYDRORivers河流数据，并用Landsat 7/8和Sentinel-2合成影像作直方图匹配参考。",
+   "method_paradigm": "方法范式是基于扩展U-Net的深度学习语义分割，使用RGB、NIR和DEM等多源栅格输入识别漂木沉积，并将多年度预测概率融合后矢量化计算面积。空间分析采用10×10 km六边形聚合、Anselin Local Moran’s I热点识别、Mann–Whitney U检验、BEST贝叶斯t检验、Spearman秩相关和贝叶斯相关验证，并用独立航空影像模型对PlanetScope模型进行偏差与不确定性评估。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s41598-025-17426-y.methods.txt",
+    "chars": 14924,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:20"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_complete_set_reference_010",
+   "source_paper_doi": "10.1101/2023.05.25.542318",
+   "title": "Mapping oak wilt disease using phenological observations from space",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "mappingoakwiltusingsentinel-247venables,w.n.,ripley,b.d.,2002.modernappliedstatisticswiths,statisticsand873computing.springernewyork,newyork,ny.https://doi.org/10.1007/978-0-387-87421706-2875ain,m.a.,ensminger,i.,2020.trackingthephenologyof876877inatemperatee"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "881zhu,z.,wang,s.,woodcock,c.e.,2015.improvementandexpansionofthefmaskalgorithm:882cloud,cloudshadow,andsnowdetectionforlandsats47,8,andsentinel2images.883remotesensingofenvironment159,269277.https://doi.org/10.1016/j.rse.2014.12.014884zhu,z.,woodcock,c.e.,2012.object-basedcloudandcloudshadowdetectioninlandsat885imagery.remotesensingofenvironment118,8394.886"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ASTER Global Digital Elevation Model V003",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [],
+     "identity_basis": "human_batch_ruling_no_member_evidence",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "uncertain",
+      "qwen": "uncertain"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "uncertain",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "joint_use_evidence_quotes": [],
+   "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+   "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multispectral_landscape_mapping<-['sentinel-2']; historical_optical_time_series<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): landform_and_elevation. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+   "research_question": "论文关注如何利用 Sentinel-2 影像在景观尺度上制图橡树枯萎病（oak wilt），即从遥感光谱和物候信息中识别或区分受病害影响的橡树冠层。",
+   "hypothesis_or_mechanism": "核心机制是橡树枯萎病作为维管束萎蔫病害会引起树木生理和冠层状态变化，这些变化可反映在冠层光谱反射率、红边信息和季节性物候指标中。文中引用的研究还指出病害可与导管堵塞、叶片真菌病和干旱等生理变化相关。",
+   "variables_and_data_use": "数据产品/传感器包括 Sentinel-2 MultiSpectral Instrument（MSI）影像，重点使用其多光谱反射率、红边波段信息以及由时间序列估计的地表物候指标；文中还提到 Landsat Collection 2、FORCE Landsat + Sentinel-2 Analysis Ready Data、Fmask 云/云影检测、AROSICS 配准，以及 Copernicus GLO-90 Digital Surface Model 等作为预处理或辅助数据来源。",
+   "method_paradigm": "方法范式属于基于 Sentinel-2/Landsat 时间序列的遥感病害制图与监督建模，结合云掩膜、影像配准、物候指标提取和光谱特征建模。文献中出现 randomForest、caret、PLS 和 kernlab，表明其方法背景包括随机森林、偏最小二乘和核方法等机器学习分类/回归框架。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1101_2023.05.25.542318.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:29"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_complete_set_reference_011",
+   "source_paper_doi": "10.3390/books978-3-03928-093-3",
+   "title": "Earth Observation Data Cubes",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "Digital Earth Australia (DEA) Landsat Analysis Ready Data",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "member_adjudications": [
+    {
+     "member_id": "multispectral_landscape_mapping",
+     "role": "multispectral_landscape_mapping",
+     "anchor_product": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "actual_dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "ndremotesensingsymposium,valencia,spain,2227july2018;pp.86398642.32.giuliani,g.;chatenoux,b.;honeck,e.;richard,j.towardssentinel-2analysisreadydata:aswissdatacubeperspective.inproceedingsoftheigarss20182018ieeeinternationalgeoscienceandremotesensingsymposium,valencia,spain,2227july2018;pp.86598662.290data2019,4,144correspondingopensourceapplicationalgorithms"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "not_matched",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "mention_only",
+      "qwen": "mention_only"
+     }
+    },
+    {
+     "member_id": "historical_optical_time_series",
+     "role": "historical_optical_time_series",
+     "anchor_product": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+     "actual_dataset": "Digital Earth Australia (DEA) Landsat Analysis Ready Data",
+     "identity_match": "compatible_lineage",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "This dataset represents the tidal range of the Australian coastline, generated from the frequency of inundation as quantified from all cloud free Landsat observations of the coastal margin over a 28-year period.",
+      "Figure 2. Landsat annual false colour composites for (a) Ayr (Queensland), (b) Diamantina (Queensland), (c) Gwydir (New South Wales) and (d) the Leichhardt River (northern Queensland)."
+     ],
+     "identity_basis": "conservative_weakest_model_with_used_as_data",
+     "human_identity_verdict": "compatible_lineage",
+     "model_identity_matches": {
+      "gpt": "parent_scope",
+      "qwen": "compatible_lineage"
+     },
+     "model_products": {
+      "gpt": "Landsat archive and Landsat-derived annual composites",
+      "qwen": "Digital Earth Australia (DEA) Landsat Analysis Ready Data"
+     },
+     "model_usage": {
+      "gpt": "used_as_data",
+      "qwen": "used_as_data"
+     }
+    },
+    {
+     "member_id": "landform_and_elevation",
+     "role": "landform_and_elevation",
+     "anchor_product": "ASTER Global Digital Elevation Model V003",
+     "actual_dataset": "ASTER Global Digital Elevation Model V003",
+     "identity_match": "analogous_product",
+     "usage": "used_as_data",
+     "evidence_quotes": [
+      "y,2015;pp.7598.74.beniston,m.climatechangeinmountainregionsareviewofpossibleimpacts.clim.chang.2003,59,531.[crossref]75.asterglobaldigitalelevationmap.astergdemisaproductofmetiandnasa.availableonline:https://asterweb.jpl.nasa.gov/gdem.asp(accessedon31may2019).76.schmucki,e.;marty,c.;fierz,c.;weingartner,r.;lehning,m.impactofclimatechangeinswitzerlandonsocioe"
+     ],
+     "identity_basis": "human_slice_presence_user_ruled_batch",
+     "human_identity_verdict": "analogous_product",
+     "model_identity_matches": {
+      "gpt": "not_matched",
+      "qwen": "not_matched"
+     },
+     "model_products": {
+      "gpt": "",
+      "qwen": ""
+     },
+     "model_usage": {
+      "gpt": "mention_only",
+      "qwen": "mention_only"
+     }
+    }
+   ],
+   "joint_use_evidence_quotes": [],
+   "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+   "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage ADMIT_CANDIDATE). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multispectral_landscape_mapping<-['sentinel-2']; landform_and_elevation<-['aster']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): none. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+   "research_question": "论文探讨开放数据立方体（ODC）及分析就绪地球观测数据，能否支持国家和区域尺度对自然资源、城市化及环境变化进行常态化监测，并服务于政策与可持续发展决策。",
+   "hypothesis_or_mechanism": "核心机制是：将多源卫星影像标准化为分析就绪数据，并通过开放、可扩展的数据立方体基础设施提供一致的时空序列，可降低数据处理和使用门槛，支持各国开展自主、可重复的监测分析。",
+   "variables_and_data_use": "主要使用Landsat时间序列（包括Landsat-7和Landsat-8光学数据）以及Sentinel-2等卫星数据；在达累斯萨拉姆案例中，利用Landsat-8光学数据和分数覆盖率阈值提取2007年与2016年的城市范围，并与Urban Footprint的专有X波段雷达产品进行比较。城市增长率进一步与人口增长率比较，并依据SDG 11.3.1计算土地消耗率与人口增长率之比。",
+   "method_paradigm": "开放地球观测数据立方体与分析就绪数据（ARD）的时空数据处理范式，结合多时相卫星影像合成、分数覆盖率阈值法提取城市范围，以及不同数据产品之间的结果对比验证。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_books978-3-03928-093-3.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:54"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_012",
+   "source_paper_doi": "10.1109/tgrs.2025.3636434",
+   "title": "BiomSHARP: Biomass Super-Resolution for High Accuracy Prediction",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ],
+   "research_question": "论文旨在回答如何将低分辨率森林地上生物量（AGB）图从100 m提升到25 m，并提高其精度。研究还比较了利用多光谱引导信息时，时间更接近的Landsat-5影像是否优于空间和光谱分辨率更高但时间较晚的Sentinel-2影像。",
+   "hypothesis_or_mechanism": "核心机制是将高分辨率多光谱光学数据作为引导信息，帮助深度学习超分辨率模型重建低分辨率AGB图中的空间细节。作者假定通过扩展HAT模型、引入多光谱引导，并将上采样提前到网络中用转置卷积完成，可比传统插值和现有超分辨率模型更准确地生成高分辨率生物量图。",
+   "variables_and_data_use": "目标变量是森林地上生物量AGB：低分辨率输入使用ESA Biomass Climate Change Initiative（Biomass_cci）全球森林AGB数据集v4的100 m数据（2010年和2020年），高分辨率参照使用GlobBiomass 25 m森林生物量数据，时间泛化实验还使用法国2020年30 m FORMS AGB图。引导变量为多光谱光学波段，来自Google Earth Engine中的Sentinel-2 Level-2A产品（选取10个10/20 m波段并重采样到25 m）和Landsat-5 Level-2 Collection 2 Tier 1产品（6个30 m波段并插值到25 m），并通过云过滤和时间中位数合成生成代表影像。",
+   "method_paradigm": "方法范式是多光谱引导的深度学习图像超分辨率回归。具体模型BiomSHARP基于HAT超分辨率架构进行扩展，使用多光谱数据作为引导，并采用转置卷积提前上采样，同时与现有SOTA方法开展对比、波段冗余分析、全球与时间泛化测试及消融实验。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1109_tgrs.2025.3636434.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:26"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_013",
+   "source_paper_doi": "10.31223/x51z1r",
+   "title": "Direct mapping of plantation forest aboveground biomass change with deep learning and SAR-optical fusion",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "ASTER Global Digital Elevation Model V003"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "historical_optical_time_series"
+   ],
+   "research_question": "论文旨在回答：能否通过直接建模而非差分两个独立生物量预测，来更准确地监测智利中部人工林地上生物量（AGB）变化。研究还关注多传感器融合、重复森林清查和不确定性估计是否能提高森林碳监测的可靠性。",
+   "hypothesis_or_mechanism": "核心机制是：间接差分法会叠加多个时间点预测误差，而直接预测生物量变化可减少误差传播。由于渐进生长与突发损失在幅度和样本分布上不平衡，模型先区分变化类型，再分别用专门回归模型估计增长或损失。",
+   "variables_and_data_use": "因变量为重复样地两次清查之间的AGB变化量，并按采伐、新造林、早期生长、中后期生长、修枝/间伐等变化类型组织；训练/验证数据来自ARAUCO 2016—2021年重复森林清查样地，并补充经Google Earth Pro高分辨率影像验证的合成裸地—清查和采伐变化样本。自变量来自30米分辨率多源遥感数据，包括Sentinel-1 C波段SAR后向散射、ALOS PALSAR L波段SAR、Sentinel-2光学多光谱/植被指数，以及Copernicus GLO-30 DEM，用于表征冠层结构、光谱状态和地形条件。",
+   "method_paradigm": "方法范式为多传感器SAR—光学融合的Mixture-of-Experts深度学习框架：先用分类器识别像元变化类型，再将像元路由到AGB增长或AGB损失的神经网络回归模型。模型采用异方差高斯负对数似然损失和Monte Carlo dropout，为每个30米像元同时输出AGB变化预测及预测不确定性。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.31223_x51z1r.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:14"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_014",
+   "source_paper_doi": "10.3390/geosciences15080316",
+   "title": "Testing Satellite Snow Cover Observations Using Time-Lapse Camera Images in Mid-Latitude Mountain Ranges (Northern Spain)",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ],
+   "research_question": "论文回答的问题是：在西班牙北部中纬度山地，卫星雪盖观测与地基延时相机观测之间存在多大差异，尤其是在云覆盖、重访周期和短时雪事件影响下，卫星能否可靠刻画雪盖存在及季节性指标。研究还评估多源卫星层级融合与短期缺口填补能否减轻这些观测偏差。",
+   "hypothesis_or_mechanism": "核心机制是山地频繁云覆盖和光学卫星重访限制会造成可用影像缺失，使卫星低估雪盖存在并错过短暂雪事件，从而导致雪季开始和融雪结束日期出现时间偏差。地基延时相机具有更高时间频率且可在多云条件下提供局地观测，因此可用于检验并补偿卫星雪盖记录的局限。",
+   "variables_and_data_use": "研究使用29个ROI内的地基相机雪盖分类变量，包括全雪盖、部分雪盖、无雪盖和不可用影像；相机数据来自公共webcam、WiFi-webcam和trap camera，2003年11月至2025年3月共99,412张10:00影像。卫星端在Google Earth Engine中处理MODIS Terra Snow Cover Daily Global 500 m（MOD10A1.061）、USGS Landsat 5/8/9 Level 2 Collection 2 Tier 1、Harmonized Sentinel-2 MSI Level-2A等产品，用NDSI或MODIS雪盖波段转换得到分数雪盖，并与相机同日同地记录比较。",
+   "method_paradigm": "方法范式是地基延时相机人工雪盖判读与多源光学卫星雪盖反演的时空配准验证，并结合传感器层级优先级融合。具体包括基于NDSI阈值的Landsat/Sentinel-2雪盖分类、MODIS分数雪盖转换、按Sentinel-2优先于Landsat再优先于MODIS的层级日尺度合成，以及最多5天的缺口填补来分析一致性、漏检和雪季时序偏差。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_geosciences15080316.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:31"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_015",
+   "source_paper_doi": "10.3390/rs16071290",
+   "title": "Estimating Carbon Dioxide Emissions from Power Plant Water Vapor Plumes Using Satellite Imagery and Machine Learning",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ],
+   "research_question": "论文旨在回答：能否利用多光谱卫星影像中电厂水汽羽流作为代理信号，独立估算燃烧电厂的发电量和 CO2 排放，并将该方法扩展到全球大量电厂。研究还关注这种方法相对于基线方法在发电量和排放估算上的表现。",
+   "hypothesis_or_mechanism": "核心机制是电厂运行会产生与发电活动相关的可见水汽羽流，尤其来自自然通风冷却塔（NDT）和湿法烟气脱硫（FGD）烟囱；这些羽流在多光谱影像中的可见性可作为电厂活动和排放的代理。模型先估算影像时刻的运行状态或容量因子，再聚合为 30 天利用率，并用按地区、燃料和技术区分的排放因子将发电量转换为 CO2 排放。",
+   "variables_and_data_use": "使用 Landsat 8、Sentinel-2 和 PlanetScope 多光谱卫星影像观测电厂 NDT 冷却塔和 FGD 烟囱附近的水汽羽流；影像与美国、欧洲和澳大利亚报告的小时或亚小时发电数据配对，用于训练模型。还使用电厂容量、燃料类型、prime mover 类型、冷却技术、污染控制设备、局地天气数据，以及 Global Energy Monitor 协作整理的全球燃烧电厂清单；验证数据包括美国、欧洲、澳大利亚、土耳其和印度的发电量与排放报告数据。",
+   "method_paradigm": "方法范式是基于遥感代理变量的机器学习回归与分类流水线，包括卷积神经网络和梯度提升决策树。模型分为影像时刻的 sounding-level 分类/回归模型，以及将多源卫星预测聚合为滚动 30 天容量因子的 generation model，最后结合排放因子进行排放估算。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs16071290.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:33"
+   }
+  },
+  {
+   "direction_id": "manual_admitted_partial_set_016",
+   "source_paper_doi": "10.5194/isprs-archives-xlviii-m-1-2023-41-2023",
+   "title": "WATER RESERVOIRS MONITORING THROUGH GOOGLE EARTH ENGINE: APPLICATION TO SENTINEL AND LANDSAT IMAGERY",
+   "reference_tier": "expanded_set_reference",
+   "admission_basis": "manual_fulltext_independent_read_20261006",
+   "actual_datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+   ],
+   "covered_member_count": 2,
+   "partial_set_support": true,
+   "missing_member_ids": [
+    "landform_and_elevation"
+   ],
+   "research_question": "论文回答的问题是：能否利用 Google Earth Engine 中的免费地球观测数据，对任意水库或水体的水面范围进行连续、准确、常规化监测。研究重点是比较 Sentinel-1、Sentinel-2 和 Landsat-8 影像上的三种水体分割方法，并评估其提取水体面积的精度。",
+   "hypothesis_or_mechanism": "核心机制是水体与陆地在多光谱反射率、颜色空间以及 SAR 后向散射强度上存在可分辨差异，因此可通过阈值分割提取水体边界与面积。AWEI 通过增强水体与非水体像元的可分性，并结合 Otsu 自适应阈值和边缘信息，预期能比 HSV 阈值和 SAR 经验阈值获得更高精度。",
+   "variables_and_data_use": "使用 Sentinel-2 和 Landsat-8 多光谱影像的 RGB、GREEN、NIR、SWIR1、SWIR2 等波段计算 AWEI 或进行 RGB 到 HSV 转换，并用 QA60、QA_PIXEL、QA_RADSAT 波段进行云掩膜；仅选择云量低于 30% 的影像。使用 Sentinel-1 SAR GRD IW 影像的 VV 极化后向散射，并通过中值合成、斑点噪声滤波和 -16 dB 经验阈值提取水体；输出水体掩膜后按水体像元数量乘以影像分辨率计算面积。",
+   "method_paradigm": "方法范式是在 Google Earth Engine 上进行遥感影像水体语义分割与阈值分类比较，包括 AWEI 指数加 Otsu 自适应阈值和 Canny 边缘检测、HSV 色调参数阈值分割、以及 Sentinel-1 SAR 后向散射经验阈值分割。验证采用静态验证策略，以 Marghera 港区参考矢量边界作为独立真值，并用混淆矩阵和 F1 等标准分割指标评价精度。",
+   "four_dim_provenance": {
+    "tier": "fulltext",
+    "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.5194_isprs-archives-xlviii-m-1-2023-41-2023.txt",
+    "chars": 16000,
+    "model": "gpt-5.5",
+    "attempts": 1,
+    "extracted_at": "2026-10-06T23:37:40"
+   }
+  },
+  {
+    "direction_id": "manual_admitted_expanded_set_001",
+    "source_paper_doi": "10.3390/su18147201",
+    "title": "Multi-temporal Landsat and Sentinel-2 analysis of post-fire vegetation regeneration in the Ouled Yagoub Forest",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series",
+      "NASA CMR ASTGTM_003 landform/elevation model"
+    ],
+    "covered_member_count": 3,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 imagery combined with Landsat series and SRTM DEM",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "intheOuledYagoubForest.Thework\u0003owincludedsatelliteandancillarydataacquisition,imageselection,preprocessing,spectral-indexcalculation,NDVIclassi\u0002cation,area estimation,changedetection,post-\u0002reassessment,validation,andecologicalinterpretation(Figure1).LandsatandSentinel-2imageswereusedtogetherwithSRTMDEM, \u0002rerecords,\u0002eldobservations,andpreviouslocalstudies.NBR,anddNBRwerecalculatedtosupportvegetationand\u0002re-impactanalysis.NDVImapswereclassi\u0002edintofour vegetation-coverclasses:verylow,low,moderate,anddensevegetation.Theareaofeach"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Landsat 5 TM / 7 ETM+ / 8 OLI / 9 OLI-2 time series 1994-2025",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "hemreliablefor comparingvegetationindicesacrossdifferenttimeperiods[12 https://doi.org/10.3390/su18147201 Sustainability2026,18,7201 10of36 Table1.Datausedinthestudy. DataTypePeriodSpatialResolutionUses Landsat5TM1994201130mHistoricalvegetationanalysis Landsat7ETM+1999202130mComplementaryLandsatdata Landsat8OLI2013202530mRecentvegetationanalysis Landsat9OLI-22021202530mRecentvegetationanalysis Sentinel-2MSI201720251020mDetailedrecentmappingandpost-\u0002reanalysis SRTMDEM30mElevation,slope,andaspect Fieldobserv"
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "SRTM DEM as terrain and fire-reimpact reference",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ludedsatelliteandancillarydataacquisition,imageselection,preprocessing,spectral-indexcalculation,NDVIclassi\u0002cation,area estimation,changedetection,post-\u0002reassessment,validation,andecologicalinterpretation(Figure1).LandsatandSentinel-2imageswereusedtogetherwithSRTMDEM, \u0002rerecords,\u0002eldobservations,andpreviouslocalstudies.NBR,anddNBRwerecalculatedtosupportvegetationand\u0002re-impactanalysis.NDVImapswereclassi\u0002edintofour vegetation-coverclasses:verylow,low,moderate,anddensevegetation.Theareaofeach classwascalculatedinhectaresa"
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "intheOuledYagoubForest.Thework\u0003owincludedsatelliteandancillarydataacquisition,imageselection,preprocessing,spectral-indexcalculation,NDVIclassi\u0002cation,area estimation,changedetection,post-\u0002reassessment,validation,andecologicalinterpretation(Figure1).LandsatandSentinel-2imageswereusedtogetherwithSRTMDEM, \u0002rerecords,\u0002eldobservations,andpreviouslocalstudies.NBR,anddNBRwerecalculatedtosupportvegetationand\u0002re-impactanalysis.NDVImapswereclassi\u0002edintofour vegetation-coverclasses:verylow,low,moderate,anddensevegetation.Theareaofeach",
+      "hemreliablefor comparingvegetationindicesacrossdifferenttimeperiods[12 https://doi.org/10.3390/su18147201 Sustainability2026,18,7201 10of36 Table1.Datausedinthestudy. DataTypePeriodSpatialResolutionUses Landsat5TM1994201130mHistoricalvegetationanalysis Landsat7ETM+1999202130mComplementaryLandsatdata Landsat8OLI2013202530mRecentvegetationanalysis Landsat9OLI-22021202530mRecentvegetationanalysis Sentinel-2MSI201720251020mDetailedrecentmappingandpost-\u0002reanalysis SRTMDEM30mElevation,slope,andaspect Fieldobserv",
+      "ludedsatelliteandancillarydataacquisition,imageselection,preprocessing,spectral-indexcalculation,NDVIclassi\u0002cation,area estimation,changedetection,post-\u0002reassessment,validation,andecologicalinterpretation(Figure1).LandsatandSentinel-2imageswereusedtogetherwithSRTMDEM, \u0002rerecords,\u0002eldobservations,andpreviouslocalstudies.NBR,anddNBRwerecalculatedtosupportvegetationand\u0002re-impactanalysis.NDVImapswereclassi\u0002edintofour vegetation-coverclasses:verylow,low,moderate,anddensevegetation.Theareaofeach classwascalculatedinhectaresa"
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+    "research_question": "评估阿尔及利亚Ouled Yagoub森林1994–2025年植被覆盖变化，特别是2021年火灾前后退化及恢复的空间差异。",
+    "hypothesis_or_mechanism": "火灾及干旱、人类压力与植被退化有关，NDVI反映植被状况，可用于监测灾后恢复；研究采用变化描述，不将前后对比当作隔离其他驱动的因果估计。",
+    "variables_and_data_use": "历史Landsat与近期Sentinel-2用于计算NDVI、植被覆盖等级及多时期变化图；各级面积按公顷和百分比汇总。",
+    "method_paradigm": "采用GIS多时相NDVI分级与变化检测，比较多个1994–2025年区间和2021年火灾前后植被状态。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "S.)\nAbstractMediterraneanandsemi-aridmountainforestsareincreasinglyaffectedbyrecurrent\ndrought,wild\u0002re,overgrazing,andanthropogenicpressure,withdirectimplicationsfor\nforestsustainability.Thisstudyassessesthespatio-temporaldynamicsofvegetationcover\nintheOuledYagoubForest,KhenchelaProvince,northeasternAlgeria,from1994to2025,\nusingGISandremotesensing.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 31-36",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "S.)\nAbstractMediterraneanandsemi-aridmountainforestsareincreasinglyaffectedbyrecurrent\ndrought,wild\u0002re,overgrazing,andanthropogenicpressure,withdirectimplicationsfor\nforestsustainability.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 31-34",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Multi-temporalsatelliteimages,includingLandsatdata\nforhistoricalperiodsandSentinel-2dataforrecentyears,wereprocessedtocalculate\nNDVI,classifyNDVI-derivedvegetation-coverclasses,anddetectvegetationchangesbeforeandafterthe2021wild\u0002re.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 36-38",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Vegetation-coverclasseswerequanti\u0002edinhectaresand\npercentages,andNDVIchangemapswereproducedfortheperiods19942000,20002010,\n20102020,20202021,20212022,20212025,and19942025.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 38-40",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Multi-temporalsatelliteimages,includingLandsatdata\nforhistoricalperiodsandSentinel-2dataforrecentyears,wereprocessedtocalculate\nNDVI,classifyNDVI-derivedvegetation-coverclasses,anddetectvegetationchangesbeforeandafterthe2021wild\u0002re.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 36-38",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Vegetation-coverclasseswerequanti\u0002edinhectaresand\npercentages,andNDVIchangemapswereproducedfortheperiods19942000,20002010,\n20102020,20202021,20212022,20212025,and19942025.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.3390_su18147201.txt",
+        "doi": "10.3390/su18147201",
+        "locator": "UTF-8 text lines 38-40",
+        "source_sha256": "7640ea2683df80de48501179ea3771ee9790116a149f9680ce581fe2f41ab0cd"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  },
+  {
+    "direction_id": "manual_admitted_expanded_set_002",
+    "source_paper_doi": "10.3389/feart.2019.00305",
+    "title": "Cropland extent and abandonment in conflict-affected Ukraine from multi-temporal Landsat and Sentinel-2 imagery",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series",
+      "NASA CMR ASTGTM_003 landform/elevation model"
+    ],
+    "covered_member_count": 3,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 imagery in the multi-temporal MLP cropland classifier",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "griculturetotheregionaleconomyhasincreased.Weusefreelyavailablesatellite dataandmachinelearningmethodstomapcroplandextentin2013and2018and derivecorrespondingchangesincroplandareas.Weuseamulti-layerperceptron(MLP) toclassifymulti-temporalLandsat-7,Landsat-8,andSentinel-2imagesintocropland andnon-croplandareas,andasampling-basedapproachtoestimatetheareasof croplandchange.Wefoundthatnetcroplandlosseswerenotuniformacrossthe regions,andweremoresubstantialintheareasnotundercontroloftheUkrainian Government(22%ofnetcroplandarealossc"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Multi-temporal Landsat-7 and Landsat-8 surface reflectance time series",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "assesfromthechangedetectionmapusedasstrata.Each samplerepresenteda30\u000230mpixel,andwaslabeledthrough photo-interpretationbyanexpert.Forthis,veryhighspatial resolution(VHR)imageryfromGoogleEarthandtime-seriesof moderatespatialresolutionsatelliteimagery(Landsat-7,Landsat8,andSentinel-2)wereanalyzedvisuallytolabeleachsampled pixelintocroplandornon-croplandclassin2013and2018. Thesampleswereusedtocalculateaconfusionmatrixinterms ofareaproportions.Finally,proportionsofareasderivedfrom samples(astrati\u0002edestimator,whenmapclassesares"
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "SRTM 1-arcsec DEM as additional topographic input for cropland mapping",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ne18,July713,August2427,andSeptember24.For croplandmapping,weusedtime-seriesofsurfacere\u0003ectance valuesinthefollowingsixspectralbands:blue(\u00180.480mm), green(\u00180.560mm),red(\u00180.660mm),nearinfrared(NIR) (\u00180.865mm),andtwoshort-waveinfrared(SWIR)(\u00181.6mm and\u00182.2mm). TopographyData Onearc-seconddigitalelevationmodel(DEM)derivedfromthe ShuttleRadarTopographyMission(SRTM)(Farretal.,2007)was usedasanadditionalinputforcroplandmapping.TheDEMwas re-projectedtoAlbersEqualAreaprojectionat30mresolution tomatchopticalsatellitedata,andthreefe"
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "griculturetotheregionaleconomyhasincreased.Weusefreelyavailablesatellite dataandmachinelearningmethodstomapcroplandextentin2013and2018and derivecorrespondingchangesincroplandareas.Weuseamulti-layerperceptron(MLP) toclassifymulti-temporalLandsat-7,Landsat-8,andSentinel-2imagesintocropland andnon-croplandareas,andasampling-basedapproachtoestimatetheareasof croplandchange.Wefoundthatnetcroplandlosseswerenotuniformacrossthe regions,andweremoresubstantialintheareasnotundercontroloftheUkrainian Government(22%ofnetcroplandarealossc",
+      "assesfromthechangedetectionmapusedasstrata.Each samplerepresenteda30\u000230mpixel,andwaslabeledthrough photo-interpretationbyanexpert.Forthis,veryhighspatial resolution(VHR)imageryfromGoogleEarthandtime-seriesof moderatespatialresolutionsatelliteimagery(Landsat-7,Landsat8,andSentinel-2)wereanalyzedvisuallytolabeleachsampled pixelintocroplandornon-croplandclassin2013and2018. Thesampleswereusedtocalculateaconfusionmatrixinterms ofareaproportions.Finally,proportionsofareasderivedfrom samples(astrati\u0002edestimator,whenmapclassesares",
+      "ne18,July713,August2427,andSeptember24.For croplandmapping,weusedtime-seriesofsurfacere\u0003ectance valuesinthefollowingsixspectralbands:blue(\u00180.480mm), green(\u00180.560mm),red(\u00180.660mm),nearinfrared(NIR) (\u00180.865mm),andtwoshort-waveinfrared(SWIR)(\u00181.6mm and\u00182.2mm). TopographyData Onearc-seconddigitalelevationmodel(DEM)derivedfromthe ShuttleRadarTopographyMission(SRTM)(Farretal.,2007)was usedasanadditionalinputforcroplandmapping.TheDEMwas re-projectedtoAlbersEqualAreaprojectionat30mresolution tomatchopticalsatellitedata,andthreefe"
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+    "research_question": "乌克兰东南部Donetsk和Luhansk军事冲突期间，耕地范围及损失如何变化，在政府控制区、非控制区和冲突缓冲区有何空间差异？",
+    "hypothesis_or_mechanism": "冲突及其社会经济影响可能改变农业土地利用；比较2013年冲突前与2018年冲突期的空间变化，提供与冲突相关的观测证据，而非随机化因果识别。",
+    "variables_and_data_use": "2013年和2018年多时相Landsat-7/8与Sentinel-2用于30 m耕地/非耕地分类；抽样参考资料估计耕地变化面积及不确定性，按控制区和冲突边界缓冲区分析。",
+    "method_paradigm": "多层感知器监督分类结合抽样参考数据，生成变化图并进行无偏面积估计和不确定性量化。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "Themilitarycon\u0003ictinSouth-EasternUkrainehasbeenongoingsince2014,withamajorsocio-economicimpactontheDonetskandLuhansk\nregions.Inthisstudy,wequantifylandcoverlandusechangesinthoseregionsrelated\ntocroplandchanges.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 66-68",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Wefoundthatnetcroplandlosseswerenotuniformacrossthe\nregions,andweremoresubstantialintheareasnotundercontroloftheUkrainian\nGovernment(22%ofnetcroplandarealosscomparedtocroplandareasin2013)and\nwithinabufferzonealongthecon\u0003ictborderline(46%),wherecombatactivitiesoccur.\nTheseresultshighlighttheimpactofthecon\u0003ictonagricultureandtheutilityofspatially\nexplicitinformationacquiredfromEarthobservationsatellites,especiallyforareas,where\ncollectingground-baseddataisimpractical.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 75-81",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Weusefreelyavailablesatellite\ndataandmachinelearningmethodstomapcroplandextentin2013and2018and\nderivecorrespondingchangesincroplandareas.Weuseamulti-layerperceptron(MLP)\ntoclassifymulti-temporalLandsat-7,Landsat-8,andSentinel-2imagesintocropland\nandnon-croplandareas,andasampling-basedapproachtoestimatetheareasof\ncroplandchange.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 70-75",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Sincesatellitederivedmapshaveerrorsandprovidebiasedestimatesof\nareas,wecombinethosemapswithsample-basedreference\ndatatoderiveunbiasedareaestimatesalongwithuncertainties\n(Stehman,2013;Olofssonetal.,2014).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 147-150",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Wefoundthatnetcroplandlosseswerenotuniformacrossthe\nregions,andweremoresubstantialintheareasnotundercontroloftheUkrainian\nGovernment(22%ofnetcroplandarealosscomparedtocroplandareasin2013)and\nwithinabufferzonealongthecon\u0003ictborderline(46%),wherecombatactivitiesoccur.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 75-78",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Weuseamulti-layerperceptron(MLP)\ntoclassifymulti-temporalLandsat-7,Landsat-8,andSentinel-2imagesintocropland\nandnon-croplandareas,andasampling-basedapproachtoestimatetheareasof\ncroplandchange.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3389_feart.2019.00305.txt",
+        "doi": "10.3389/feart.2019.00305",
+        "locator": "UTF-8 text lines 72-75",
+        "source_sha256": "70cb6dc4737efb2725169d7cc897f10303196f575dfcbb1f644985d580a1af64"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  },
+  {
+    "direction_id": "manual_admitted_expanded_set_003",
+    "source_paper_doi": "10.3390/rs11192228",
+    "title": "Sentinel-1 and Sentinel-2 synergy for wheat phenology and crop monitoring in Lebanon",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series",
+      "NASA CMR ASTGTM_003 landform/elevation model"
+    ],
+    "covered_member_count": 3,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 optical data for phenological crop monitoring in Bekaa",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "edforsoftdough ofWestBekaaandharvestingforbothWestandNorthBekaa(3.1,0.6,and3.6days,respectively). Theseresultsareencouraging,andthusprovethatS1dataarepowerfulasatoolforcropmonitoring, toserveenhancedcropmanagementandproductionhandling. Keywords:SAR;Sentinel-1;Sentinel-2;NDVI;wheat;phenology;Lebanon;Bekaa;Mediterranean 1.IntroductionDemandingandachievingsu\u000ecientandstablecropproductivityisaglobaldesire.Crop managementmustbeconscientioustoclimaticvariabilityandadaptitspracticestothegiven conditions,whethersocio-economicoriente"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Landsat 8 referenced as optical comparator for Sentinel-1/Sentinel-2 crop monitoring",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ibution[24 onthephenologicalstatusandvegetationdevelopment.From\u0002eldtoglobalscale,remotesensing toolscantackletheseinformation,especiallywhencoupledwithcropgrowthmodelsforassessing cropyields[25282932 Bytherouteofvegetationindices,opticaldata(e.g.,Sentinel-2,Landsat8,andMODIS)havebeen widelyusedbyseekingtheinterconnectionbetweentheplantopticalpropertiesanditsphotosynthetic activitycharacterizedbythecontentofchlorophyllintheleaves[33 erentvegetation RemoteSens.2019,11,22283of29indiceshavebeendevelopedandused(e.g.,Enhanced"
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "SRTM 30 m DEM used for SAR ortho-rectification and terrain correction",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ded thermalnoiseremoval,radiometricandgeometriccalibration,andspeckle\u0002ltering[63,64 theradiometriccalibration,therawimagedigitalvalueswereconvertedintobackscatteringcoe\u000ecients inlinearunit,whereasthroughthegeometriccalibration,theimageswereortho-recti\u0002edusingaDigital ElevationModel(DEM)oftheShuttleRadarTopographyMission(SRTM)at30mspatialresolution. Foreachreferenceplot,themeanbackscatteringcoe\u000ecient(\u001b 0)wascalculatedfromeachcalibrated Sentinel-1imagebyaveragingallpixelvalueswithinthatplot. TheexpressionoftheSentinel-1(S1)temporalbe"
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "edforsoftdough ofWestBekaaandharvestingforbothWestandNorthBekaa(3.1,0.6,and3.6days,respectively). Theseresultsareencouraging,andthusprovethatS1dataarepowerfulasatoolforcropmonitoring, toserveenhancedcropmanagementandproductionhandling. Keywords:SAR;Sentinel-1;Sentinel-2;NDVI;wheat;phenology;Lebanon;Bekaa;Mediterranean 1.IntroductionDemandingandachievingsu\u000ecientandstablecropproductivityisaglobaldesire.Crop managementmustbeconscientioustoclimaticvariabilityandadaptitspracticestothegiven conditions,whethersocio-economicoriente",
+      "ibution[24 onthephenologicalstatusandvegetationdevelopment.From\u0002eldtoglobalscale,remotesensing toolscantackletheseinformation,especiallywhencoupledwithcropgrowthmodelsforassessing cropyields[25282932 Bytherouteofvegetationindices,opticaldata(e.g.,Sentinel-2,Landsat8,andMODIS)havebeen widelyusedbyseekingtheinterconnectionbetweentheplantopticalpropertiesanditsphotosynthetic activitycharacterizedbythecontentofchlorophyllintheleaves[33 erentvegetation RemoteSens.2019,11,22283of29indiceshavebeendevelopedandused(e.g.,Enhanced",
+      "ded thermalnoiseremoval,radiometricandgeometriccalibration,andspeckle\u0002ltering[63,64 theradiometriccalibration,therawimagedigitalvalueswereconvertedintobackscatteringcoe\u000ecients inlinearunit,whereasthroughthegeometriccalibration,theimageswereortho-recti\u0002edusingaDigital ElevationModel(DEM)oftheShuttleRadarTopographyMission(SRTM)at30mspatialresolution. Foreachreferenceplot,themeanbackscatteringcoe\u000ecient(\u001b 0)wascalculatedfromeachcalibrated Sentinel-1imagebyaveragingallpixelvalueswithinthatplot. TheexpressionoftheSentinel-1(S1)temporalbe"
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+    "research_question": "Sentinel-1时序能否自动识别黎巴嫩 Bekaa 平原冬小麦的萌发、抽穗、软面团期与收获日期，并推广至不同气候子区？",
+    "hypothesis_or_mechanism": "小麦物候变化在不同极化和入射角的SAR时序中形成显著变化；相较NDVI，VV/VH、VV和VH分别对不同阶段敏感，可利用这些时序结构提取日期。",
+    "variables_and_data_use": "Sentinel-1 VV、VH、VV/VH及两个入射角范围用于日期识别；实地物候日期用于检验，Sentinel-2 NDVI作为光学比较，30 m SRTM DEM用于正射校正。",
+    "method_paradigm": "对SAR时序平滑并拟合最多三个高斯函数，从高斯和提取关键阶段日期；在西Bekaa开发、北Bekaa测试并以日期RMSE评价。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "Abstract:TheabilityofSyntheticApertureRadar(SAR)Sentinel-1datatodetectthemainwheat\nphenologicalphaseswasinvestigatedintheBekaaplainofLebanon.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 42-43",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Particularly,theratioVV/VHatlowincidence\nangle(3234\n\u000e\n)wasabletodetectthegerminationandharvestingdates.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 48-51",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Thepreprocessingprocedureincluded\nthermalnoiseremoval,radiometricandgeometriccalibration,andspeckle\u0002ltering[63,64\ntheradiometriccalibration,therawimagedigitalvalueswereconvertedintobackscatteringcoe\u000ecients\ninlinearunit,whereasthroughthegeometriccalibration,theimageswereortho-recti\u0002edusingaDigital\nElevationModel(DEM)oftheShuttleRadarTopographyMission(SRTM)at30mspatialresolution.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 309-313",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Anautomatedapproachformainwheatphenologicalphases'determinationwasthendevelopedon\nthewesternpartoftheBekaaplain.ThisapproachmodelledtheS1SARtemporalseriesbysmoothing\nand\u0002ttingthetemporalserieswithGaussianfunctions(uptothreeGaussians)allowingthusto\nautomaticallydetectthemainwheatphenologicalphasesfromthesumoftheseGaussians.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 60-63",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Foreachreferenceplot,themeanbackscatteringcoe\u000ecient(\u001b\n0)wascalculatedfromeachcalibrated\nSentinel-1imagebyaveragingallpixelvalueswithinthatplot.\nTheexpressionoftheSentinel-1(S1)temporalbehaviorforthestudysitewasthroughVV(dB),\nVH(dB),andtheratioVV/VH(dB)atthetworangesofincidenceangles.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 314-318",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Accordingly,thetemporal\nvariationofSentinel-1(S1)signalwasanalyzedasafunctionofthephenologicalphases'dates\nobservedinsitu(germination;headingandsoftdough),andharvesting.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 43-45",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "FirstexperiencewithSentinel-2dataforcropandtreespecies\nclassi\u0002cationsincentralEurope.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 1903-1904",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "ThisapproachmodelledtheS1SARtemporalseriesbysmoothing\nand\u0002ttingthetemporalserieswithGaussianfunctions(uptothreeGaussians)allowingthusto\nautomaticallydetectthemainwheatphenologicalphasesfromthesumoftheseGaussians.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11192228.txt",
+        "doi": "10.3390/rs11192228",
+        "locator": "UTF-8 text lines 61-63",
+        "source_sha256": "98cb78bf2005232afe32ddaad0c23af0b39265f1cfd7871c4bffe0eec7e25c2b"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  },
+  {
+    "direction_id": "manual_admitted_expanded_set_004",
+    "source_paper_doi": "10.3390/rs11222668",
+    "title": "Spatio-temporal crop mapping from Sentinel-2 time series with Landsat-based validation",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series",
+      "NASA CMR ASTGTM_003 landform/elevation model"
+    ],
+    "covered_member_count": 3,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 time series used to build the crop-type purity reference dataset",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ngdatafromregionalagriculturalacreagestatistics. Afterautomaticlabelling,clusterswere\u0002lteredbasedonagronomicknowledgeandphenological informationextractedfromthesametimeseries.Theresultingpurepixelswerevalidatedwithtwo di erentdatasets,onebasedonhigh-resolutionSentinel-2data(5sites,2years)andonebasedona regionalcropmap(1site,7years).Forthewinterandspringcropclass,pixelpurityamountedto93% usingthe\u0002rstvalidationdatasetandto73%usingthesecondone,averagedoverthedi erentyears. Forsummercrops,therespectivevalueswere61%(91%withoutone"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Landsat 8 imagery referenced in the land-cover accuracy assessment lineage",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "rg/web/20161022230301/http://www.congreso2015aet.com/web/ descargas/XVI_Congreso_AET_libro_actas_BAJA.pdf(accessedon10March2018). 29. ParedesGâmez,V.;DelBlancoMedina,V.;Bengoa,J.L.;Nafr½aGarc½a,D.A.Accuracyassessmentofa 122classeslandcovermapbasedonSentinel-2,Landsat8,andDeimos-1imagesandancillarydata.In ProceedingsoftheObserving,UnderstandingandForecastingtheDynamicsofOurPlanet,Valencia,Spain, 2227July2018. 30. EEA.CorineLandCover(CLC)2012.Version18.5.1.Availableonline:https://land.copernicus.eu/paneuropean/corine-land-c"
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "SRTM v4 90 m DEM void-filled and used to mask highlands",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "noftheyears20112017. 4. CORINElandcover2012,version18.5[30 theoriginalvectordata(withthematicaccuracy>85%)byamaximumcombinedareaapproach. AEuropeanlanduse/landcovermap,todistinguisharableland(irrigatedandnon-irrigated) fromotherlanduse/landcoverclasses. 5. SRTM(ShuttleRadarTopographyMission),aradar-baseddigitalelevationdataset(version4)at 90mresolution,whichwasvoid\u0002lledandcomplementedbyotherDEMs[31 usedtomaskhighlands. 6. FarmHeterogeneityIndex(FHI),aspatial,highlydetailedindicatorexpressingthe\u0002eld heterogeneityoffa"
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "ngdatafromregionalagriculturalacreagestatistics. Afterautomaticlabelling,clusterswere\u0002lteredbasedonagronomicknowledgeandphenological informationextractedfromthesametimeseries.Theresultingpurepixelswerevalidatedwithtwo di erentdatasets,onebasedonhigh-resolutionSentinel-2data(5sites,2years)andonebasedona regionalcropmap(1site,7years).Forthewinterandspringcropclass,pixelpurityamountedto93% usingthe\u0002rstvalidationdatasetandto73%usingthesecondone,averagedoverthedi erentyears. Forsummercrops,therespectivevalueswere61%(91%withoutone",
+      "rg/web/20161022230301/http://www.congreso2015aet.com/web/ descargas/XVI_Congreso_AET_libro_actas_BAJA.pdf(accessedon10March2018). 29. ParedesGâmez,V.;DelBlancoMedina,V.;Bengoa,J.L.;Nafr½aGarc½a,D.A.Accuracyassessmentofa 122classeslandcovermapbasedonSentinel-2,Landsat8,andDeimos-1imagesandancillarydata.In ProceedingsoftheObserving,UnderstandingandForecastingtheDynamicsofOurPlanet,Valencia,Spain, 2227July2018. 30. EEA.CorineLandCover(CLC)2012.Version18.5.1.Availableonline:https://land.copernicus.eu/paneuropean/corine-land-c",
+      "noftheyears20112017. 4. CORINElandcover2012,version18.5[30 theoriginalvectordata(withthematicaccuracy>85%)byamaximumcombinedareaapproach. AEuropeanlanduse/landcovermap,todistinguisharableland(irrigatedandnon-irrigated) fromotherlanduse/landcoverclasses. 5. SRTM(ShuttleRadarTopographyMission),aradar-baseddigitalelevationdataset(version4)at 90mresolution,whichwasvoid\u0002lledandcomplementedbyotherDEMs[31 usedtomaskhighlands. 6. FarmHeterogeneityIndex(FHI),aspatial,highlydetailedindicatorexpressingthe\u0002eld heterogeneityoffa"
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+    "research_question": "如何从欧盟2001–2017年遥感长时序中识别足够纯净的冬春作物和夏季作物像元，以支持作物监测与产量模型？",
+    "hypothesis_or_mechanism": "作物组物候与农业面积先验可以帮助区分混合像元；按行政区和年份聚类以适应气候及管理差异，再用农学知识过滤提高像元纯度。",
+    "variables_and_data_use": "250 m MODIS NDVI日时序（2001–2017）用于物候提取；区域农业面积统计预设簇数；高分辨率Sentinel-2数据与区域作物图分别验证纯度。",
+    "method_paradigm": "对平滑NDVI提取物候，按区、年实施高斯混合模型聚类、自动标注和农学过滤，再进行两套独立数据验证及物候趋势分析。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "Theyare\nparticularlyimportantforregression-basedcropmonitoringsystemsthatrelyonhistoricinformation.\nThemajorchallengeliesinidentifyingpixelsfromsatelliteimagerythatrepresentpureenoughcrop\nsignals.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 38-41",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Pre-processedandsmoothed,\ndailynormalizeddi\u000berencevegetationindex(NDVI)data(20012017)wereusedto\u0002rstextract\nthephenologicaldata.Toaccountforregionalcharacteristics(varyingclimate,agro-management,\netc.),thesedatawereclusteredbyadministrativeunitsandbyyearusingaGaussianmixturemodel.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 43-46",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Theresultingpurepixelswerevalidatedwithtwo\ndi\u000berentdatasets,onebasedonhigh-resolutionSentinel-2data(5sites,2years)andonebasedona\nregionalcropmap(1site,7years).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 49-51",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Toaccountforregionalcharacteristics(varyingclimate,agro-management,\netc.),thesedatawereclusteredbyadministrativeunitsandbyyearusingaGaussianmixturemodel.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 45-46",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "Toaccountforregionalcharacteristics(varyingclimate,agro-management,\netc.),thesedatawereclusteredbyadministrativeunitsandbyyearusingaGaussianmixturemodel.\nThenumberofclusterswaspre-de\u0002nedusingdatafromregionalagriculturalacreagestatistics.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 45-47",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Thenumberofclusterswaspre-de\u0002nedusingdatafromregionalagriculturalacreagestatistics.\nAfterautomaticlabelling,clusterswere\u0002lteredbasedonagronomicknowledgeandphenological\ninformationextractedfromthesametimeseries.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 47-49",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "We\nappliedthismethodtotheEuropeanUnionata250mspatialresolution.Pre-processedandsmoothed,\ndailynormalizeddi\u000berencevegetationindex(NDVI)data(20012017)wereusedto\u0002rstextract\nthephenologicaldata.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.3390_rs11222668.txt",
+        "doi": "10.3390/rs11222668",
+        "locator": "UTF-8 text lines 42-45",
+        "source_sha256": "8329be5d78a394a1a89a5360911ea97ce0d41f233c1c81035f98db72beca19c3"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  },
+  {
+    "direction_id": "manual_admitted_expanded_set_005",
+    "source_paper_doi": "10.51470/psa.2025.10.3.106",
+    "title": "Multi-decadal vegetation health dynamics in the Southern Guinea Savannah of Taraba State, Nigeria",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series",
+      "NASA CMR ASTGTM_003 landform/elevation model"
+    ],
+    "covered_member_count": 3,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 imagery for 2024 in the 1987-2024 vegetation health series",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "ned by anthropogenic pressures and climatic variability. This study assessed the spatio-temporal dynamics of vegetation health in the Southern Guinea Savannah (SGS) agro-ecological zone of Taraba State, Nigeria, over 37 (1987–2024). Multi-temporal Landsat and Sentinel-2 imagery were processed to surface reflectance, cloud-masked, and analyzed using the Normalized Difference Vegetation Index (NDVI). Change detection and Mann–Kendall trend analyses were employed to quantify temporal trajectories, while Getis-Ord Gi* hotspot an"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Landsat TM / ETM+ / OLI multi-temporal series processed to surface reflectance",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          " to aid interpretation of degradation hotspots and accessibility-driven vegetation change [11]. Satellite imagery formed the core dataset. Landsat Thematic Mapper (TM) and Enhanced Thematic Mapper Plus (ETM+) were used for 1987 and 2004, respectively, while Landsat 8 Operational Land Imager (OLI) was selected for 2014. For 2024, imagery was sourced from Landsat 8/9 OLI and Sentinel-2 MultiSpectral Instrument (MSI), which provide higher spatial resolution (10–20 m) but were resampled to 30 m to maintain comparability with "
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "SRTM 30 m DEM integrated for slope and aspect terrain covariates",
+        "identity_match": "compatible_lineage",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "y data and ecological zone layers, projected into the Universal Transverse Mercator (UTM) coordinate system appropriate for Nigeria. This ensured consistency in area calculations and spatial overlays. Ancillary geospatial datasets, including the Shuttle Radar Topography Mission (SRTM) 30 m digital elevation model, were integrated to capture terrain characteristics such as slope and aspect that influence vegetation patterns. Additional contextual data , such as roads, rivers, and settlement layers , were incorporated to aid "
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "ned by anthropogenic pressures and climatic variability. This study assessed the spatio-temporal dynamics of vegetation health in the Southern Guinea Savannah (SGS) agro-ecological zone of Taraba State, Nigeria, over 37 (1987–2024). Multi-temporal Landsat and Sentinel-2 imagery were processed to surface reflectance, cloud-masked, and analyzed using the Normalized Difference Vegetation Index (NDVI). Change detection and Mann–Kendall trend analyses were employed to quantify temporal trajectories, while Getis-Ord Gi* hotspot an",
+      " to aid interpretation of degradation hotspots and accessibility-driven vegetation change [11]. Satellite imagery formed the core dataset. Landsat Thematic Mapper (TM) and Enhanced Thematic Mapper Plus (ETM+) were used for 1987 and 2004, respectively, while Landsat 8 Operational Land Imager (OLI) was selected for 2014. For 2024, imagery was sourced from Landsat 8/9 OLI and Sentinel-2 MultiSpectral Instrument (MSI), which provide higher spatial resolution (10–20 m) but were resampled to 30 m to maintain comparability with ",
+      "y data and ecological zone layers, projected into the Universal Transverse Mercator (UTM) coordinate system appropriate for Nigeria. This ensured consistency in area calculations and spatial overlays. Ancillary geospatial datasets, including the Shuttle Radar Topography Mission (SRTM) 30 m digital elevation model, were integrated to capture terrain characteristics such as slope and aspect that influence vegetation patterns. Additional contextual data , such as roads, rivers, and settlement layers , were incorporated to aid "
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+    "research_question": "尼日利亚Taraba南几内亚稀树草原1987–2024年植被健康有哪些时间趋势、退化热点和保育避难区？",
+    "hypothesis_or_mechanism": "植被健康反映绿度、活力与压力，受气候变率和人类土地利用压力影响；研究分析NDVI长期趋势与空间聚集，不能仅由趋势图确认各驱动的独立因果贡献。",
+    "variables_and_data_use": "多时相Landsat与Sentinel-2处理为地表反射率、去云后计算NDVI，划分植被等级并识别1987–2024年退化与保育区域。",
+    "method_paradigm": "GIS变化检测与Mann–Kendall趋势检验描述时间轨迹，Getis-Ord Gi*热点分析识别退化聚集与保育避难区。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "Vegetation health is a critical indicator of ecosystem resilience, agricultural productivity, and climate regulation, yet it is increasingly threatened by anthropogenic pressures and climatic variability. This study assessed the spatio-temporal dynamics of vegetation health in the Southern Guinea Savannah (SGS) agro-ecological zone of Taraba State, Nigeria, over 37 (1987–2024).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.51470_psa.2025.10.3.106.txt",
+        "doi": "10.51470/psa.2025.10.3.106",
+        "locator": "UTF-8 text lines 50-50",
+        "source_sha256": "1b0c7aef52c600d3aa2d0c7d8fb9e5d460e5b29d42b5e96656b4a70315b821fe"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Vegetation health is a critical indicator of ecosystem resilience, agricultural productivity, and climate regulation, yet it is increasingly threatened by anthropogenic pressures and climatic variability.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.51470_psa.2025.10.3.106.txt",
+        "doi": "10.51470/psa.2025.10.3.106",
+        "locator": "UTF-8 text lines 50-50",
+        "source_sha256": "1b0c7aef52c600d3aa2d0c7d8fb9e5d460e5b29d42b5e96656b4a70315b821fe"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "This study assessed the spatio-temporal dynamics of vegetation health in the Southern Guinea Savannah (SGS) agro-ecological zone of Taraba State, Nigeria, over 37 (1987–2024). Multi-temporal Landsat and Sentinel-2 imagery were processed to surface reflectance, cloud-masked, and analyzed using the Normalized Difference Vegetation Index (NDVI).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.51470_psa.2025.10.3.106.txt",
+        "doi": "10.51470/psa.2025.10.3.106",
+        "locator": "UTF-8 text lines 50-50",
+        "source_sha256": "1b0c7aef52c600d3aa2d0c7d8fb9e5d460e5b29d42b5e96656b4a70315b821fe"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "Multi-temporal Landsat and Sentinel-2 imagery were processed to surface reflectance, cloud-masked, and analyzed using the Normalized Difference Vegetation Index (NDVI). Change detection and Mann–Kendall trend analyses were employed to quantify temporal trajectories, while Getis-Ord Gi* hotspot analysis identified degradation centers and conservation refugia.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/l2_under30_pre31_merged_text_pool_20260928_v7/text/10.51470_psa.2025.10.3.106.txt",
+        "doi": "10.51470/psa.2025.10.3.106",
+        "locator": "UTF-8 text lines 50-50",
+        "source_sha256": "1b0c7aef52c600d3aa2d0c7d8fb9e5d460e5b29d42b5e96656b4a70315b821fe"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  },
+  {
+    "direction_id": "manual_admitted_partial_set_017",
+    "source_paper_doi": "10.5418/ra2025.v21i44.19756",
+    "title": "Integration of Landsat 8, Sentinel-2 and Sentinel-1 imagery with vegetation indices for coffee cultivation analysis",
+    "reference_tier": "expanded_set_reference",
+    "admission_basis": "manual_fulltext_independent_read_20261007",
+    "actual_datasets": [
+      "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+      "Landsat Collection 2 Level-2 surface reflectance time series"
+    ],
+    "covered_member_count": 2,
+    "member_adjudications": [
+      {
+        "member_id": "sentinel2_optical",
+        "role": "sentinel2_optical",
+        "anchor_product": "Copernicus S2_SR_HARMONIZED multispectral optical imagery",
+        "actual_dataset": "Sentinel-2 imagery integrated with L8 and S1 for coffee vegetation indices",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "4953 Marcos Reis Rosa Universidade de São Paulo (USP) https://orcid.org/0000-0001-5367-8059 ## DOI: https://doi.org/10.5418/ra2025.v21i44.19756 ## Palavras-chave: café, GEE, Landsat 8, Sentinel-2, Sentinel-1 ## Resumo Esta pesquisa investigou a integração de imagens dos satélites Landsat 8 (L8), Sentinel-2 (S2) e Sentinel-1 (S1) com os índices de vegetação (NDVI, EVI, SAVI e NDWI). Foram comparadas duas áreas de estudo: a região Média Mog"
+        ]
+      },
+      {
+        "member_id": "landsat_optical",
+        "role": "landsat_optical",
+        "anchor_product": "Landsat Collection 2 Level-2 surface reflectance time series",
+        "actual_dataset": "Landsat 8 imagery used with vegetation indices NDVI/EVI/SAVI/NDWI",
+        "identity_match": "exact_product",
+        "usage": "used_as_data",
+        "evidence_quotes": [
+          "-0003-4038-4953 Marcos Reis Rosa Universidade de São Paulo (USP) https://orcid.org/0000-0001-5367-8059 ## DOI: https://doi.org/10.5418/ra2025.v21i44.19756 ## Palavras-chave: café, GEE, Landsat 8, Sentinel-2, Sentinel-1 ## Resumo Esta pesquisa investigou a integração de imagens dos satélites Landsat 8 (L8), Sentinel-2 (S2) e Sentinel-1 (S1) com os índices de vegetação (NDVI, EVI, SAVI e NDWI). Foram comparadas duas áreas de estudo: a regi"
+        ]
+      },
+      {
+        "member_id": "aster_gdem",
+        "role": "aster_gdem",
+        "anchor_product": "NASA CMR ASTGTM_003 landform/elevation model",
+        "actual_dataset": "NASA CMR ASTGTM_003 landform/elevation model",
+        "identity_match": "no_match",
+        "usage": "not_used",
+        "evidence_quotes": [
+          "hia Nacional de Abastecimento. Safra Brasileira de Café. Disponível em: https://www.conab.gov.br/info-agro/safras/cafe . Acesso em: jan. 2024. CORDERO-SANCHO, S., SADER, S.A. Spectral analysis and classification accuracy of coffee crops using Landsat and a topographic-environmental model. International Journal of Remote Sensing, V. 28 (7), 1577–1593, 2007. Disponível em: https://doi.org/10.1080/01431160600887680 . Acesso em: jan. 2021. EMBRAPA, Empresa Brasileira de Pesquisa Agropecuária. Unidade Embrapa Café. Disponí"
+        ]
+      }
+    ],
+    "joint_use_evidence_quotes": [
+      "4953 Marcos Reis Rosa Universidade de São Paulo (USP) https://orcid.org/0000-0001-5367-8059 ## DOI: https://doi.org/10.5418/ra2025.v21i44.19756 ## Palavras-chave: café, GEE, Landsat 8, Sentinel-2, Sentinel-1 ## Resumo Esta pesquisa investigou a integração de imagens dos satélites Landsat 8 (L8), Sentinel-2 (S2) e Sentinel-1 (S1) com os índices de vegetação (NDVI, EVI, SAVI e NDWI). Foram comparadas duas áreas de estudo: a região Média Mog",
+      "-0003-4038-4953 Marcos Reis Rosa Universidade de São Paulo (USP) https://orcid.org/0000-0001-5367-8059 ## DOI: https://doi.org/10.5418/ra2025.v21i44.19756 ## Palavras-chave: café, GEE, Landsat 8, Sentinel-2, Sentinel-1 ## Resumo Esta pesquisa investigou a integração de imagens dos satélites Landsat 8 (L8), Sentinel-2 (S2) e Sentinel-1 (S1) com os índices de vegetação (NDVI, EVI, SAVI e NDWI). Foram comparadas duas áreas de estudo: a regi"
+    ],
+    "machine_state_at_admission": {
+      "source_batch": "broad_recall_pending_20261007",
+      "verify": "task_004_pending_20261007",
+      "quote_verification": "passed",
+      "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+    },
+    "partial_set_support": true,
+    "missing_member_ids": [
+      "aster_gdem"
+    ],
+    "research_question": "多时相、多传感器影像与植被指数整合能否提高圣保罗州Média Mogiana及Espirito Santo do Pinhal咖啡种植区与土地利用制图？",
+    "hypothesis_or_mechanism": "以咖啡生产的两年周期组织多时相观测，并融合雷达、光学和植被指数以减少单传感器信息限制；研究验证制图精度，不识别种植面积变化的因果机制。",
+    "variables_and_data_use": "2017–2023年Landsat 8、Sentinel-2及Sentinel-1影像与NDVI、EVI、SAVI、NDWI作为分类输入；比较两个研究区域并计算总体与咖啡类别生产者精度。",
+    "method_paradigm": "在Google Earth Engine完成影像选择、指数计算、随机森林分类与精度验证，比较多时相、多传感器组合的咖啡制图表现。",
+    "four_dimension_evidence": [
+      {
+        "field": "research_question",
+        "quote": "ABSTRACT: This research investigated the integration of Landsat 8, Sentinel-2\n                                                                 and Sentinel-1 images with vegetation indices (NDVI, EVI, SAVI and NDWI).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 96-97",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      },
+      {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Two study areas were compared: the Média Mogiana region and the municipality\n                                                                 of Espirito Santo do Pinhal, both located in the state of São Paulo. The biennial\n                                                                 characteristic of coffee production was adopted to define analysis cycles (from\n                                                                 2017 to 2023).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 98-101",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "ABSTRACT: This research investigated the integration of Landsat 8, Sentinel-2\n                                                                 and Sentinel-1 images with vegetation indices (NDVI, EVI, SAVI and NDWI).",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 96-97",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "The biennial\n                                                                 characteristic of coffee production was adopted to define analysis cycles (from\n                                                                 2017 to 2023). The selection of images, creation of indices, classification (Random\n                                                                 Forest) and accuracy verification were carried out on the Google Earth Engine\n                                                                 cloud processing platform.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 99-103",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      },
+      {
+        "field": "variables_and_data_use",
+        "quote": "ABSTRACT: This research investigated the integration of Landsat 8, Sentinel-2\n                                                                 and Sentinel-1 images with vegetation indices (NDVI, EVI, SAVI and NDWI).\n                                                                 Two study areas were compared: the Média Mogiana region and the municipality\n                                                                 of Espirito Santo do Pinhal, both located in the state of São Paulo.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 96-99",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      },
+      {
+        "field": "method_paradigm",
+        "quote": "The results highlighted the relevance of integrating\n                                                                 multi-temporal and multi-sensor images for land use and occupation classifications,\n                                                                 with a global accuracy of 90.2% and, for coffee mapping, with a producer accuracy\n                                                                 of 91%, indicating few omissions of planting areas for this crop.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.5418_ra2025.v21i44.19756.txt",
+        "doi": "10.5418/ra2025.v21i44.19756",
+        "locator": "UTF-8 text lines 103-106",
+        "source_sha256": "d85173bd0dde023e88bc315a29aa235fb6a0abc9d1f2201c490490db63d808d3"
+      }
+    ],
+    "four_dim_provenance": {
+      "tier": "fulltext",
+      "status": "verified_fulltext_backfill",
+      "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+      "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+      "verified_at": "2026-10-11"
+    }
+  }
+ ],
+ "migration": {
+  "migrated_from": "1.0",
+  "migrated_on": "2026-10-05",
+  "notes": "Migrated legacy 1.0 pool to 3.0-multidataset-reference-space. selection_tier mapped to reference_tier (exact_or_near_exact_multidataset->direct_set_reference; adjacent_partial_overlap->expanded_set_reference). The 8 legacy entries were promoted to formal references with tiers derived from their legacy selection_tier; member_adjudications / verbatim evidence_quotes were NOT reconstructed (no verbatim evidence available for the legacy pool). Legacy provenance retained in selection_tier, matched_signals, evidence_level, source_task_ids. 1.0-only keys s_level/s_assessment/anchor_asset_type/anchor_component_paths dropped; anchor fully represented by anchor_asset.components."
+ },
+ "coverage": {
+  "formal_reference_count": 21,
+  "minimum_target": 20,
+  "minimum_met": true,
+  "latest_manual_audit": "reference_sets/audit/broad_recall_pending_20261007/"
+ },
+ "reference_count": 21
+}

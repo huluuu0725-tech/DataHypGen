@@ -1,0 +1,206 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Algerian arid-zone crop-monitoring space",
+  "datasets": [
+    {
+      "role": "sentinel1_sar_backscatter",
+      "data_description": {
+        "dataset_name": "Sentinel-1 GRD SAR Backscatter",
+        "data_type": "Synthetic-aperture-radar backscatter observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:COPERNICUS/S1_GRD",
+        "spatial_coverage": {
+          "region_name": "Algerian arid-zone crop-monitoring space",
+          "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ],
+        "data_source": "ESA Copernicus Sentinel-1",
+        "gee_asset": {
+          "id": "COPERNICUS/S1_GRD",
+          "type": "image_collection"
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S1_GRD",
+      "dataset_name": "Sentinel-1 GRD SAR Backscatter",
+      "data_source": "ESA Copernicus Sentinel-1",
+      "gee_asset": {
+        "id": "COPERNICUS/S1_GRD",
+        "type": "image_collection"
+      }
+    },
+    {
+      "role": "landsat8_optical",
+      "data_description": {
+        "dataset_name": "Landsat 8 Collection 2 Tier 1 Level 2",
+        "data_type": "Multispectral optical reflectance observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "spatial_coverage": {
+          "region_name": "Algerian arid-zone crop-monitoring space",
+          "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ],
+        "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        }
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "dataset_name": "Landsat 8 Collection 2 Tier 1 Level 2",
+      "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Sentinel-1 GRD SAR Backscatter",
+      "data_type": "Synthetic-aperture-radar backscatter observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:COPERNICUS/S1_GRD",
+      "spatial_coverage": {
+        "region_name": "Algerian arid-zone crop-monitoring space",
+        "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ],
+      "data_source": "ESA Copernicus Sentinel-1",
+      "gee_asset": {
+        "id": "COPERNICUS/S1_GRD",
+        "type": "image_collection"
+      }
+    },
+    {
+      "dataset_name": "Landsat 8 Collection 2 Tier 1 Level 2",
+      "data_type": "Multispectral optical reflectance observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "spatial_coverage": {
+        "region_name": "Algerian arid-zone crop-monitoring space",
+        "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ],
+      "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:LANDSAT/LC08/C02/T1_L2"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_027:composite_observation",
+    "type": "composite_observation",
+    "name": "sentinel1_sar_landsat8_crop_monitoring composite observation",
+    "observable_group": "sentinel1_sar_landsat8_crop_monitoring_multidataset_observation",
+    "components": [
+      {
+        "role": "sentinel1_sar_backscatter",
+        "data_description": {
+          "dataset_name": "Sentinel-1 GRD SAR Backscatter",
+          "data_type": "Synthetic-aperture-radar backscatter observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:COPERNICUS/S1_GRD",
+          "spatial_coverage": {
+            "region_name": "Algerian arid-zone crop-monitoring space",
+            "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ],
+          "data_source": "ESA Copernicus Sentinel-1",
+          "gee_asset": {
+            "id": "COPERNICUS/S1_GRD",
+            "type": "image_collection"
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S1_GRD",
+        "dataset_name": "Sentinel-1 GRD SAR Backscatter",
+        "data_source": "ESA Copernicus Sentinel-1",
+        "gee_asset": {
+          "id": "COPERNICUS/S1_GRD",
+          "type": "image_collection"
+        }
+      },
+      {
+        "role": "landsat8_optical",
+        "data_description": {
+          "dataset_name": "Landsat 8 Collection 2 Tier 1 Level 2",
+          "data_type": "Multispectral optical reflectance observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "spatial_coverage": {
+            "region_name": "Algerian arid-zone crop-monitoring space",
+            "coverage": "Declared analysis region within Algerian arid-zone crop-monitoring space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ],
+          "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "dataset_name": "Landsat 8 Collection 2 Tier 1 Level 2",
+        "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        }
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "sentinel1_sar_backscatter",
+        "landsat8_optical"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_027:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:LANDSAT/LC08/C02/T1_L2"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "sentinel1_sar_backscatter",
+      "landsat8_optical"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

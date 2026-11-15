@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land surface and user-defined regional study areas",
+  "data_description": {
+    "dataset_name": "ERA5-Land Monthly Aggregated - ECMWF Land Climate Reanalysis",
+    "spatial_coverage": {
+      "region_name": "Global land surface",
+      "coverage": "Global land-surface reanalysis coverage; users may subset any basin, station network, ecological region or other land study area."
+    },
+    "temporal_coverage": "1950-01-01 to present in the ERA5-Land monthly aggregated collection, subject to the catalog holdings at evaluation time.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.1° (~11 km; nominal ERA5-Land grid)",
+    "temporal_unit": "Monthly",
+    "analytical_capabilities": [
+      "Analyse monthly precipitation, snowfall, evapotranspiration, runoff and air-temperature fields",
+      "Analyse monthly soil-moisture and land-surface variables where the collection band is available",
+      "Compute monthly anomalies, trends, drought indices, lagged relationships and water-balance terms",
+      "Validate monthly reanalysis variables against station, hydrological, groundwater, lake-level or ecological observations",
+      "Aggregate monthly fields over basins, ecological regions, stations and other user-defined geometries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Monthly ERA5-Land land-surface meteorological and hydrological fields; units depend on the selected band (for example mm for accumulated precipitation/runoff and °C or K for temperature).",
+      "runtime_hint": "Use ECMWF/ERA5_LAND/MONTHLY_AGGR and select the band matching the research question. Keep accumulated bands (for example total_precipitation_sum and runoff_sum) distinct from monthly mean bands. If starting from the hourly collection, aggregate explicitly to monthly before analysis."
+    },
+    "data_source": "European Centre for Medium-Range Weather Forecasts (ECMWF), distributed through Google Earth Engine and the Copernicus Climate Data Store",
+    "gee_asset": {
+      "id": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR"
+}

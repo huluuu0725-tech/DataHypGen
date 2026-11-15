@@ -1,0 +1,1271 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_036",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Harmonized Sentinel-2 MSI Level-1C Top-of-Atmosphere Reflectance",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial surfaces",
+      "coverage": "Global coverage over land areas observed by Sentinel-2, supporting environmental monitoring across diverse terrestrial regions."
+    },
+    "temporal_coverage": "June 2015–present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "10 m (B2/B3/B4/B8) / 20 m (B5/B6/B7/B8A/B11/B12)",
+    "temporal_unit": "Per-scene acquisition with irregular revisit intervals",
+    "analytical_capabilities": [
+      "Comparing top-of-atmosphere reflectance across visible, near-infrared, and shortwave-infrared bands",
+      "Constructing within-scene and cross-date spectral ratios and normalized differences",
+      "Detecting spatially coherent shortwave-infrared anomalies against nearby or earlier reference surfaces",
+      "Characterizing the persistence, geometry, and acquisition-to-acquisition variability of spectral anomalies",
+      "Auditing cloud, cirrus, viewing-geometry, and surface-reflectance confounding in temporal comparisons"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Top-of-atmosphere reflectance, dimensionless after applying the 0.0001 scale factor",
+      "runtime_hint": "Use the harmonized Level-1C collection. B11 and B12 are 20 m shortwave-infrared bands; resample other bands only when needed, mask clouds and cirrus, and match reference scenes by season, viewing geometry, and surface state before comparing weak spectral differences."
+    },
+    "data_source": "European Space Agency Copernicus Sentinel-2 mission",
+    "gee_asset": {
+      "id": "COPERNICUS/S2_HARMONIZED",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:COPERNICUS/S2_HARMONIZED",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_036.json",
+    "source_sha256": "2f2f6a2759b40d0d0fd9caf40ba0355999ed7cb4fadd6c1367de50c322e777e1",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_036/prompt.json",
+    "current_prompt_sha256": "465fa8cc808c8962ab523e6a13d676d049e9b807de80a70807a23fde626b8692",
+    "original_anchor_asset": {
+      "id": "COPERNICUS/S2_HARMONIZED",
+      "observable_group": "sentinel2_l1c_toa_multispectral_swir",
+      "asset_alias_policy": "Sentinel-2A/B Level-1C TOA scenes with B11 and B12 are admitted whether downloaded from Copernicus or hosted in Earth Engine; Level-2A surface reflectance, Landsat, TROPOMI, PRISMA, and GHGSat are not the same anchor asset.",
+      "observation_identity_contract": {
+        "physical_object": "Harmonized Sentinel-2 MSI Level-1C Top-of-Atmosphere Reflectance, representing sentinel2 l1c toa multispectral swir.",
+        "source_lineage": "Task Prompt source: European Space Agency Copernicus Sentinel-2 mission. Current task anchor: COPERNICUS/S2_HARMONIZED (sentinel2_l1c_toa_multispectral_swir). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "Top-of-atmosphere reflectance, dimensionless after applying the 0.0001 scale factor; spatial resolution: 10 m (B2/B3/B4/B8) / 20 m (B5/B6/B7/B8A/B11/B12); temporal structure: Per-scene acquisition with irregular revisit intervals",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: Sentinel-2A/B Level-1C TOA scenes with B11 and B12 are admitted whether downloaded from Copernicus or hosted in Earth Engine; Level-2A surface reflectance, Landsat, TROPOMI, PRISMA, and GHGSat are not the same anchor asset."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "s2ch4_ref_01",
+      "research_question": "Can a model trained mainly on synthetic absorption plumes detect much smaller methane point sources automatically in global Sentinel-2 imagery?",
+      "hypothesis_or_mechanism": "Beer-Lambert embedding of synthetic plumes into paired L1C scenes teaches a vision transformer to separate long-range plume geometry from multispectral surface noise.",
+      "variables_and_data_use": "Ten Sentinel-2 L1C TOA bands at two dates, including B11 and B12 resampled to 20 m, are paired with synthetic Gaussian plumes and reference scenes.",
+      "method_paradigm": "Synthetic-to-real weak supervision with a vision-transformer U-Net and airborne-campaign validation.",
+      "used_assets": [
+        "Sentinel-2A/B Level-1C TOA multispectral imagery",
+        "synthetic methane plumes",
+        "airborne methane observations"
+      ],
+      "source_paper": {
+        "title": "Automatic detection of methane emissions in multispectral satellite imagery using a vision transformer",
+        "doi": "10.1038/s41467-024-47754-y",
+        "year": 2024,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Bertrand Rouet-Leduc",
+        "Claudia Hulbert"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "method_innovation",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "s2ch4_ref_02",
+      "research_question": "What share of regional oil-and-gas methane comes from individually detectable superemitters versus diffuse sources?",
+      "hypothesis_or_mechanism": "MBMP ratios between methane-sensitive SWIR bands and multiple reference days retrieve plume enhancement; mass balance converts detected plumes to rates, which become priors in a TROPOMI-WRF-Chem area inversion.",
+      "variables_and_data_use": "Sentinel-2 B11/B12 multipass enhancements quantify eleven point sources and are fused with TROPOMI columns and atmospheric transport.",
+      "method_paradigm": "Multiscale satellite fusion combining facility-level plume mass balance with regional transport inversion.",
+      "used_assets": [
+        "Sentinel-2 Level-1C B11/B12 imagery",
+        "TROPOMI methane",
+        "WRF-Chem transport simulations"
+      ],
+      "source_paper": {
+        "title": "Assessing the Relative Importance of Satellite-Detected Methane Superemitters in Quantifying Total Emissions for Oil and Gas Production Areas in Algeria",
+        "doi": "10.1021/acs.est.3c04746",
+        "year": 2023,
+        "venue": "Environmental Science & Technology",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "S. Naus",
+        "J. D. Maasakkers",
+        "S. Pandey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "state_reconstruction",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "s2ch4_ref_03",
+      "research_question": "Can the extraordinary Nord Stream release be independently quantified from Sentinel-2 despite a bright, changing sea-bubble surface?",
+      "hypothesis_or_mechanism": "The B12-to-B11 methane-sensitive ratio retrieves column enhancement, a plume mask isolates the signal, and integrated mass enhancement plus wind converts it to flux, with surface-reflectance effects treated as uncertainty.",
+      "variables_and_data_use": "Sentinel-2B B12 and B11, a reference observation, plume pixels, wind, in-situ stations, and atmospheric inversions are compared.",
+      "method_paradigm": "Event-specific spectral-ratio retrieval and IME flux estimation triangulated against in-situ inversion.",
+      "used_assets": [
+        "Sentinel-2B Level-1C B11/B12 imagery",
+        "in-situ methane observations",
+        "atmospheric transport models"
+      ],
+      "source_paper": {
+        "title": "The Nord Stream pipeline gas leaks released approximately 220,000 tonnes of methane into the atmosphere",
+        "doi": "10.1016/j.ese.2022.100210",
+        "year": 2022,
+        "venue": "Environmental Science and Ecotechnology",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Mengwei Jia",
+        "Fei Li",
+        "Yuzhong Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text and supplementary Methods",
+      "idea_type": "impact_assessment",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "s2ch4_ref_04",
+      "research_question": "不同 UAV-LiDAR 和手持 LiDAR 点云对森林三维结构的表征能力，能否通过辐射传输模拟与 Sentinel-2 TOA 近红外反射率的一致性进行评价？",
+      "hypothesis_or_mechanism": "点云对冠层结构和点密度的表征越准确，基于体素点密度模拟的冠层遮阴和辐射空间变化就越能重现 Sentinel-2 TOA 近红外反射率的空间模式。",
+      "variables_and_data_use": "使用 Explorer、Voyager、Hovermap-ST 和 Trion S1 的 LiDAR 点云作为结构输入，将点云体素化并通过 VPDP RT 框架模拟相对辐射；使用 COPERNICUS/S2_HARMONIZED 的 Sentinel-2 TOA NIR 反射率作为经验观测和验证参照，以 Pearson 相关系数评价模拟反射率与卫星观测的一致性。",
+      "method_paradigm": "结构建模与观测验证",
+      "used_assets": [
+        "Explorer",
+        "Voyager",
+        "Hovermap-ST",
+        "Trion S1",
+        "COPERNICUS/S2_HARMONIZED"
+      ],
+      "author_team": [
+        "Takumi Fujiwara",
+        "Naoko Miura",
+        "Hiroki Naito",
+        "Fumiki Hosoi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating UAV and Handheld LiDAR Point Clouds for Radiative Transfer Modeling Using a Voxel-Based Point Density Proxy",
+        "doi": "10.3390/s26020590",
+        "year": 2026,
+        "venue": "Sensors",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "s2ch4_ref_05",
+      "research_question": "研究如何利用 Sentinel-2 B11 和 B12 的 TOA 反射率观测检测和定量估计油气区甲烷点源排放。",
+      "hypothesis_or_mechanism": "甲烷在 SWIR 波段的吸收会改变 B12 与 B11 的反射率比，通过时间归一化、透射率查找表和羽流积分质量增强可以反演甲烷浓度增强及排放通量。",
+      "variables_and_data_use": "使用 Sentinel-2A/B Level-1C TOA 反射率的 B11、B12 波段构造甲烷透射率和浓度增强图；使用 WRF-LES 生成的甲烷羽流进行模拟验证；使用 NASA GEOS-FP 风速估计有效风速并计算通量；使用 S2 L2A products 辅助场景分类。",
+      "method_paradigm": "遥感反演与模拟验证",
+      "used_assets": [
+        "S2A",
+        "S2B",
+        "S2A tile 40SBH",
+        "S2A tile 32SKA",
+        "S2A tile 13SGR",
+        "NASA GEOS-FP meteorological reanalysis product",
+        "Weather and Research Forecasting Model in large-eddy simulation mode (WRF-LES)",
+        "S2 L2A products",
+        "MODTRAN",
+        "HITRAN"
+      ],
+      "author_team": [
+        "Javier Gorroño",
+        "Daniel J. Varon",
+        "Itziar Irakulis‐Loitxate",
+        "Luis Guanter"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Understanding the potential of Sentinel-2 for monitoring methane point emissions",
+        "doi": "10.5194/amt-16-89-2023",
+        "year": 2023,
+        "venue": "Atmospheric measurement techniques",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "s2ch4_ref_06",
+      "research_question": "Sentinel-2B 和 Landsat 8 的 TOA SWIR 观测能否识别 Nord Stream 2 海泡区域的甲烷增强并估算泄漏率？",
+      "hypothesis_or_mechanism": "甲烷在约 2.2 微米波段产生吸收，使 Sentinel-2B 和 Landsat 8 两个 SWIR 波段之间的 TOA 反射率关系偏离海泡背景光谱关系，从而可反演甲烷增强和排放率。",
+      "variables_and_data_use": "使用 Sentinel-2B 的 B11、B12 TOA 反射率作为锚点观测，并结合 Landsat 8 对应 SWIR 波段；通过海泡与静止海面像元筛选、经验光谱校准和 MBSP 计算甲烷柱浓度增强，再结合 ERA5、GFS、GEOS-FP 和 Bornholm Airport 风速及 IME 方法估算泄漏率。",
+      "method_paradigm": "遥感反演与不确定性量化",
+      "used_assets": [
+        "Landsat 8",
+        "Sentinel-2B",
+        "S-2B",
+        "ERA5",
+        "GFS",
+        "GEOS-FP",
+        "Bornholm Airport",
+        "HITRAN"
+      ],
+      "author_team": [
+        "Matthieu Dogniaux",
+        "Joannes D. Maasakkers",
+        "Daniel J. Varon",
+        "Ilse Aben"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Report on Landsat 8 and Sentinel-2B observations of the Nord Stream 2 pipeline methane leak",
+        "doi": "10.5194/amt-17-2777-2024",
+        "year": 2024,
+        "venue": "Atmospheric measurement techniques",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "Can multispectral reflectance and environmental predictors model forest community functional trait composition, functional diversity, and redundancy across Chilean temperate forests?",
+      "hypothesis_or_mechanism": "Spectral properties associated with canopy structure, greenness, and photosynthetic activity, together with environmental conditions, contain information useful for predicting community functional traits and diversity.",
+      "variables_and_data_use": "Plot-level means and variances of selected remote-sensing predictors, including red, red-edge, NIR, NDVI, NDRE, SAVI, and MSAVI, are used with climate, hydrological stress, topographic, soil, and canopy-height variables to predict trait composition, functional diversity, and redundancy. Sentinel-2 inputs are harmonized Level-2A surface reflectance, scaled by 0.0001, cloud- and cirrus-masked with QA60, and composited over the stated field-data period.",
+      "method_paradigm": "Random-forest regression with a train/test split and leave-one-out cross-validation, followed by variable-importance analysis and spatial prediction across the study area.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_8a8f9476e843eeab7d97",
+      "source_paper": {
+        "doi": "10.1016/j.jag.2025.104704",
+        "title": "Quantifying the functional composition and potential resilience hotspots across a large latitudinal and environmental gradient in South American forests",
+        "year": 2025,
+        "venue": "International Journal of Applied Earth Observation and Geoinformation",
+        "authors": [
+          "Xiongjie Deng",
+          "Danny E. Carvajal",
+          "Rocío Urrutia‐Jalabert",
+          "Waira S. Machida",
+          "Alice Rosen",
+          "H. Zhang",
+          "David Roberto Galbraith",
+          "Sandra M. Díaz",
+          "Yadvinder Singh Malhi",
+          "Jesús Aguirre‐Gutiérrez"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "computing platform (Gorelick et al., 2017), which \nprovides atmospherically corrected and harmonised Level-2A surface \nreflectance data. As part of additional pre-processing, we masked cloud \nand cirrus pixels using the QA60 band (bits 10 ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1016/j.jag.2025.104704",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "319ef4a4cc803bda853ac09fb1f8f1c87fece18af47b10e542d04713e8349898",
+      "product_use_quote": "Sentinel-2 images \ninvaluable for applications in ecology, forestry, and climate studies.\nSpecifically, we used the COPERNICUS/S2_SR_HARMONIZED \ncollection available through Google Earth Engine (https://earthengine. \ngoogle.com/) cloud ",
+      "operational_use_quote": "mean and variance values of red, red \nedge, NIR, NDVI, NDRE, SAVI, MSAVI, height, MCWD, temperature, ET, \nESI, WUE, slope, aspect, CEC, clay, sand, pHH2O, and SOC were \nselected.\nWe then used machine learning (Random forests regression \n",
+      "application_scope_quote": "topography and the remote sensing data \ndescribed above. For all remote sensing predictors, we calculated their \nmean and variance at the plot level. The data were then divided into \nseven categories: 1) spectral bands: blue, green, red, ",
+      "supporting_quote": "mean and variance values of red, red \nedge, NIR, NDVI, NDRE, SAVI, MSAVI, height, MCWD, temperature, ET, \nESI, WUE, slope, aspect, CEC, clay, sand, pHH2O, and SOC were \nselected.\nWe then used machine learning (Random forests regression \n",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and use its surface-reflectance predictors in the study models.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Xiongjie Deng",
+        "Danny E. Carvajal",
+        "Rocío Urrutia‐Jalabert",
+        "Waira S. Machida",
+        "Alice Rosen",
+        "H. Zhang",
+        "David Roberto Galbraith",
+        "Sandra M. Díaz",
+        "Yadvinder Singh Malhi",
+        "Jesús Aguirre‐Gutiérrez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can a latent stochastic differential equation layer applied to OlmoEarth embeddings predict NDVI and land-surface temperature with calibrated uncertainty and spatial generalization?",
+      "hypothesis_or_mechanism": "A learned drift-diffusion transformation of foundation-model embeddings may improve predictive uncertainty calibration; spatial coherence is attributed to similarity in neighboring embeddings rather than explicit geographic interaction in the SDE layer.",
+      "variables_and_data_use": "OlmoEarth embeddings are model inputs. NDVI calculated from Sentinel-2 L2A B8 and B4 is one prediction target; Landsat 8 Collection 2 Level-2 ST_B10-derived land-surface temperature is another. The study evaluates prediction accuracy and uncertainty calibration.",
+      "method_paradigm": "Predictive modeling with a pointwise latent-SDE neural layer, Gaussian negative log-likelihood training, and spatial holdout and operational-extent evaluation.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_9946ef84e09705955656",
+      "source_paper": {
+        "doi": "10.1016/j.rse.2026.115610",
+        "title": "Calibrated spatial uncertainty for Earth observation foundation models via Matérn-motivated latent stochastic regularization",
+        "year": 2026,
+        "venue": "Remote Sensing of Environment",
+        "authors": [
+          "Daniel Johnson"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "August2020windowandcloud-maskedusingtheSceneClassi\u001ccationLayer\n(SCLband),retainingpixelsclassi\u001cedasvegetation,baresoil,orwater.A\nper-pixelmediancompositewascomputedacrossallvalidobservationsin\n",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1016/j.rse.2026.115610",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "cb768a3f51b5b956cf8fef6b1c9aee9d35bba93c1f2aa2a7aae34dea5a6e9914",
+      "product_use_quote": "Normaliseddi\u001berencevegetationindex(NDVI)wascomputedfromSentinel2Level-2Asurfacere\u001dectanceimageryaccessedviaGoogleEarthEngine(collectionCOPERNICUS/S2_SR_HARMONIZED).Imageswere\u001clteredtotheJune\u0015\n",
+      "operational_use_quote": "thetemporalwindow,withNDVIcalculatedas(B8\u0000B4)=(B8+B4)where\nB8isthenear-infraredbandandB4istheredband.Theresulting10m\nrasterwasexportedinEPSG:32616andalignedtotheembeddinggridvia\n",
+      "application_scope_quote": "Normaliseddi\u001berencevegetationindex(NDVI)wascomputedfromSentinel2Level-2Asurfacere\u001dectanceimageryaccessedviaGoogleEarthEngine(collectionCOPERNICUS/S2_SR_HARMONIZED).Imageswere\u001clteredtotheJune\u0015\n",
+      "supporting_quote": "thetemporalwindow,withNDVIcalculatedas(B8\u0000B4)=(B8+B4)where\nB8isthenear-infraredbandandB4istheredband.Theresulting10m\nrasterwasexportedinEPSG:32616andalignedtotheembeddinggridvia\n",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify the exact harmonized Sentinel-2 L2A surface-reflectance collection and calculate NDVI from B8 and B4. The research purpose is permitted by the fixed scope.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Daniel Johnson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How does agricultural land-use intensity derived from Sentinel-2 time series relate to the spatial distribution and recovery rates of archaeological artifacts across survey tracts?",
+      "hypothesis_or_mechanism": "Rapid agricultural clearing and plowing produce persistent declines in vegetation index values; areas with more frequent agricultural land-use activity are expected to have different artifact recovery rates because cultivation can expose artifacts at the surface.",
+      "variables_and_data_use": "Harmonized Sentinel-2 Level-2A surface-reflectance imagery is cloud filtered and converted to NDVI from red and near-infrared bands. Weekly median NDVI composites are differenced between consecutive weeks; persistent declines of at least 0.3 identify annual land-use events, which are summed across six years into land-use intensity. The resulting intensity is summarized for survey tracts and related to artifact count, density, and weight. Geological shapefile data are also used to investigate spatial factors associated with land-use intensity.",
+      "method_paradigm": "Multitemporal multispectral change detection followed by spatial aggregation and correlation analysis with archaeological survey data.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_79d19699d210633eedf7",
+      "source_paper": {
+        "doi": "10.1017/aap.2025.10103",
+        "title": "Effects of Land-Use Intensity on Archaeological Survey",
+        "year": 2025,
+        "venue": "Advances in Archaeological Practice",
+        "authors": [
+          "Daniel Plekhov",
+          "Linda R. Gosner",
+          "Jessica Nowlin"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "therefore processed to remove pixels with values above a preset cloud probability threshold, which was set to 50 for this study. This value was selected to provide aggressive filtering, even at the risk of removing pixels potentially ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1017/aap.2025.10103",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "a3617e7da1a3de3b9b40fac0f4c836a3136001191f96b3fa5bd7a2d542a5d4f9",
+      "product_use_quote": "started.\n\n This study employs the Harmonized Sentinel-2 MSI: MultiSpectral Instrument, Level-2A (COPERNICUS/S2_SR_HARMONIZED) surface reflectance dataset from the GEE Data Catalog. This dataset covers the period from March 2017 until the ",
+      "operational_use_quote": "unrelated to cloud cover.\n\n Each cloud-masked image is then used to produce a normalized vegetation difference index (NDVI) image. NDVI is a widely employed spectral index that is calculated as the ratio between the difference and sum of ",
+      "application_scope_quote": "1, unhealthy vegetation closer to 0.3, and other land-cover classes closer to 0. These NDVI images are then composited into a single image representing a single week period, taking the median values of all images within that week. We do so ",
+      "supporting_quote": "unrelated to cloud cover.\n\n Each cloud-masked image is then used to produce a normalized vegetation difference index (NDVI) image. NDVI is a widely employed spectral index that is calculated as the ratio between the difference and sum of ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and operationally use red and near-infrared reflectance for NDVI; archaeology is within the unrestricted application scope.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Daniel Plekhov",
+        "Linda R. Gosner",
+        "Jessica Nowlin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How can analysis-ready Sentinel-2 time series and derived spectral indices be produced for mountain ecosystems, and how do FORCE-derived NDVI time series compare with values derived from a harmonized Sentinel-2 dataset?",
+      "hypothesis_or_mechanism": "FORCE processing and its quality controls may yield smoother NDVI time series than the comparison series at some locations.",
+      "variables_and_data_use": "Multispectral Sentinel-2 bands, including red, near-infrared, red-edge, and SWIR bands, and calculated indices are provided as monthly and annual products. NDVI derived from FORCE outputs is compared with NDVI derived from the harmonized Sentinel-2 dataset at four points.",
+      "method_paradigm": "Satellite-data processing and quality control, followed by a point-based comparison of vegetation-index time series.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "measurement_validation",
+      "direction_id": "exp_0610fa079a73db1b6906",
+      "source_paper": {
+        "doi": "10.1038/s41597-024-03283-3",
+        "title": "Multispectral analysis-ready satellite data for three East African mountain ecosystems",
+        "year": 2024,
+        "venue": "Scientific Data",
+        "authors": [
+          "Netra Bhandari",
+          "Lisa Bald",
+          "Luise Wraase",
+          "Dirk Zeuss"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "some points (e.g., point 1) both datasets seem quite consistent, for others the FORCE dataset provided a smoother time series.\n Fig. 8 Comparative analysis of FORCE processed Normalized Difference Vegetation Index (NDVI) vs. NDVI derived ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41597-024-03283-3",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "38620e010d75aa2e85a0eda68e490b8d1610079d28f4551860cd6e6a134617fb",
+      "product_use_quote": "Sentinel-2 dataset (COPERNICUS/S2_SR_HARMONIZED) derived via Google Earth Engine 57 . Fig.  8 shows the mean NDVI values for four points in the Mounts Kilimanjaro and Meru ecosystems derived using FORCE and Google Earth Engine. While for ",
+      "operational_use_quote": "health, monitoring environmental changes, and supporting studies in urban planning, disaster response, and biodiversity conservation 56 . We compared the NDVI values derived from our dataset 55 processed with FORCE and a harmonized ",
+      "application_scope_quote": "and analyze specific geographic information without downloading entire datasets. Each point in time (monthly and annual products) for each mountain ecosystem includes ten spectral bands (red, green, blue, broad near-infrared, ",
+      "supporting_quote": "health, monitoring environmental changes, and supporting studies in urban planning, disaster response, and biodiversity conservation 56 . We compared the NDVI values derived from our dataset 55 processed with FORCE and a harmonized ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify the exact harmonized Sentinel-2 reflectance product and operationally derive NDVI for the study sites; its comparison with another NDVI source does not change actual product use.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Netra Bhandari",
+        "Lisa Bald",
+        "Luise Wraase",
+        "Dirk Zeuss"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can multispectral Sentinel-2 surface-reflectance observations, combined with Sentinel-1 radar data and field observations, classify intensive versus extensive grassland management in Polish grasslands?",
+      "hypothesis_or_mechanism": "Spectral differences associated with vegetation condition and structure, together with radar backscatter information, provide predictive information for distinguishing intensive and extensive grassland management.",
+      "variables_and_data_use": "The study uses Sentinel-2 L2A surface-reflectance bands 1–9, 8A, 11, and 12 from 2021 median mosaics, Sentinel-1 VV and VH observations from ascending and descending orbits, field-verified grassland polygons, and classification metrics. LOESS and Mann-Whitney tests assess spectral patterns, while Random Forest uses the combined optical and radar features.",
+      "method_paradigm": "Supervised multisensor remote-sensing classification with Random Forest, feature-importance analysis, spectral-response exploration, and repeated train-validation evaluation.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_136ea2b4a73051be2b05",
+      "source_paper": {
+        "doi": "10.1038/s41598-024-83699-4",
+        "title": "Mapping management intensity types in grasslands with synergistic use of Sentinel-1 and Sentinel-2 satellite images",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Maciej Bartold",
+          "Marcin Kluczek",
+          "Konrad Wróblewski",
+          "Katarzyna Dąbrowska‐Zielińska",
+          "P. Goliński",
+          "Barbara Golińska"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "Code Editor. While the study areas are characterized by a short and variable growing season, prolonged periods of snow and ice, and significant cloud cover, median mosaic were created from Sentinel satellite images to generate ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-024-83699-4",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "22122eceb48c773a0d12b1690b04d9bfe77be0d7fa338ffe53dc542747830a74",
+      "product_use_quote": "COPERNICUS/S2_SR_HARMONIZED dataset to prepare cloud-free mosaics for 2021, using images collected between March and September. In our study, we used twelve of the S-2 spectral bands, excluding Band 10, which corresponds to the Cirrus ",
+      "operational_use_quote": "filter. The included S-2 bands were as follows: Band 1 (Coastal Aerosol), Band 2 (Blue), Band 3 (Green), Band 4 (Red), Band 5 (Vegetation Red Edge), Band 6 (Vegetation Red Edge), Band 7 (Vegetation Red Edge), Band 8 (NIR), Band 8 A (Narrow ",
+      "application_scope_quote": "in recent numerous studies 15 , 50 – 52 . The classifier was trained on the extracted features from the combined Sentinel-1 and Sentinel-2 datasets. To reduce the impact of variability of clustering of grassland patches, the classification ",
+      "supporting_quote": "filter. The included S-2 bands were as follows: Band 1 (Coastal Aerosol), Band 2 (Blue), Band 3 (Green), Band 4 (Red), Band 5 (Vegetation Red Edge), Band 6 (Vegetation Red Edge), Band 7 (Vegetation Red Edge), Band 8 (NIR), Band 8 A (Narrow ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and use its multispectral reflectance bands, including SWIR bands, to prepare cloud-free mosaics and derive study variables.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Maciej Bartold",
+        "Marcin Kluczek",
+        "Konrad Wróblewski",
+        "Katarzyna Dąbrowska‐Zielińska",
+        "P. Goliński",
+        "Barbara Golińska"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can Harmonized Sentinel-2 Level-2A multispectral surface-reflectance imagery and machine learning generate a national solar-PV map for Japan and support analysis of PV-related land-cover change, forest fragmentation, and spatial concentration patterns?",
+      "hypothesis_or_mechanism": "Solar PV installations have distinctive multispectral reflectance characteristics, including SWIR behavior, that can be learned by XGBoost; the resulting PV distribution is associated with land-cover conversion and increased forest fragmentation, while environmental and socioeconomic factors help explain PV concentration.",
+      "variables_and_data_use": "Sentinel-2 SR bands B4, B3, B2, B8, B11, and B12 are used as Red, Green, Blue, NIR, SWIR1, and SWIR2 inputs. NDVI, MNDWI, PVSI, and BSI support detection and post-processing. Cloud probability is used for masking and temporal median compositing. Model outputs are evaluated with ROC-AUC and classification metrics, then used to derive PV polygons, estimate capacity, quantify land-cover change, calculate forest fragmentation, and model PV hotspots using land-cover, fragmentation, and socioeconomic variables. Additional assets include GHS-POP R2023A, governmental PV statistics, national land-cover data, PALSAR-2-derived data, OpenStreetMap roads, agricultural field shapes, AW3D DSM, slope data, and reference PV datasets.",
+      "method_paradigm": "Scene-level multispectral remote-sensing classification using XGBoost with spectral-index feature engineering, cloud masking and temporal compositing, morphological and graph-based spatial post-processing, validation against reference points and governmental statistics, followed by spatial change and impact analysis.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_dbcdbf9d0ebf5828d77f",
+      "source_paper": {
+        "doi": "10.1038/s41598-025-11222-4",
+        "title": "Satellite-based analysis uncovers uneven solar PV distribution across Japan and its consumption of forest and agricultural lands",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Shoki Shimada",
+          "Wataru Takeuchi"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "from the lightGBM model and 10 Sentinel-2 bands 36 . The pixels having a cloud probability larger than 50% were masked. To ensure dataset robustness, a median value approach was adopted for time-series data, recognized for its resilience ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-025-11222-4",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "2554476d3c115e938f2a030c1f19f5cbdbe8b23f57a9450d8bc8efdcb79080e9",
+      "product_use_quote": "image from the “COPERNICUS/S2_SR_HARMONIZED” product was paired with the corresponding cloud probability product “COPERNICUS/S2_CLOUD_PROBABILITY”. The cloud-probability product gives the likelihood of clouds at pixel level as calculated ",
+      "operational_use_quote": "against extreme values 20 . Processing was applied to Sentinel-2 images covering Japan, organized into 0.25° × 0.25° square regions.\n From the 13 Sentinel-2 bands, ‘B4’, ‘B3’, ‘B2’, ‘B8’, ‘B11’, and ‘B12’ were chosen and renamed to ‘Red’, ",
+      "application_scope_quote": "PV polygons within the above-mentioned buffered area.\n\n \n\n## Sentinel-2 image preprocessing and input-data preparation for solar PV detection\n In this study, we employed Sentinel-2 Level-2A products, representing atmospherically corrected ",
+      "supporting_quote": "against extreme values 20 . Processing was applied to Sentinel-2 images covering Japan, organized into 0.25° × 0.25° square regions.\n From the 13 Sentinel-2 bands, ‘B4’, ‘B3’, ‘B2’, ‘B8’, ‘B11’, and ‘B12’ were chosen and renamed to ‘Red’, ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and use its multispectral reflectance with cloud-probability screening for the solar-PV distribution analysis; research purpose is unrestricted.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Shoki Shimada",
+        "Wataru Takeuchi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can a deep-learning model trained on globally diverse annotated Sentinel-2 imagery segment wetlands reliably across varied scenes and locations?",
+      "hypothesis_or_mechanism": "Geographically diverse training annotations and multispectral inputs, including visible, NIR, and SWIR bands, can support generalizable wetland segmentation; location-separated validation and independent testing assess transfer beyond the training scenes.",
+      "variables_and_data_use": "Uses Sentinel-2 L2A surface-reflectance bands B2, B3, B4, B8, B11, and B12 as model inputs, with pixel values scaled down by 10^4 and normalized to [0, 1]. Wetland masks are curated with reference to GWL_FCS30D, NDVI, and TerraSAR-X DEM context; PlanetScope imagery supports independent test annotations.",
+      "method_paradigm": "Supervised deep-learning semantic segmentation with geographic train/validation separation, independent test evaluation against annotated masks, and qualitative map inspection.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_5b85dcba60966d1d7102",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-39257-1",
+        "title": "Swamp-AI: a deep learning model for monitoring wetlands change across the globe",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Charles S. Andros",
+          "Ian W. Conery",
+          "Taylor R. Alvarado",
+          "Katherine DeVore",
+          "Tristan D. Calaway",
+          "André Rovai",
+          "Jin Ikeda",
+          "Adam M. Collins",
+          "Yoko Masue‐Slowey"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "generalization error would be further estimated by a separate test exercise. Prior to segmentation, all pixel’s values across all bands were scaled down by a factor of 1 × 10 4 and the pixels within each of the six bands were normalized to ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-026-39257-1",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "f9ef2f1d86d3c9f55243c701d3894d8af66f77b16472bc47456fe275a3cdb063",
+      "product_use_quote": "Harmonized Sentinel-2 MSI Level-2 A Surface Reflectance dataset (COPERNICUS/S2_SR_HARMONIZED), and processed within ArcGIS Pro (version 3.6.0, Esri; https://www.esri.com/ ).\n\n \n\n The labeling approach employed a flexible workflow that ",
+      "operational_use_quote": "selection chosen by Luo et al. (2021) who successfully classified surface water across diverse global scenes using the red, green, blue, NIR, SWIR1 and SWIR2 Sentinel-2 bands (labeled B2, B3, B4, B8, B11, B12, respectively).\n The 34 ",
+      "application_scope_quote": "obtained from the Sentinel-2 MultiSpectral Instrument, specifically the Level-2 A surface reflectance product 31 . The Sentinel-2 sensor has 13 spectral bands, 10-meter resolution, a 5 day revisit interval, and global coverage since 2015. ",
+      "supporting_quote": "selection chosen by Luo et al. (2021) who successfully classified surface water across diverse global scenes using the red, green, blue, NIR, SWIR1 and SWIR2 Sentinel-2 bands (labeled B2, B3, B4, B8, B11, B12, respectively).\n The 34 ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify the harmonized Sentinel-2 L2A surface-reflectance product and use it operationally to map global wetland change.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Charles S. Andros",
+        "Ian W. Conery",
+        "Taylor R. Alvarado",
+        "Katherine DeVore",
+        "Tristan D. Calaway",
+        "André Rovai",
+        "Jin Ikeda",
+        "Adam M. Collins",
+        "Yoko Masue‐Slowey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How can multitemporal Sentinel-2 observations and terrain constraints be used to detect and delineate landslides associated with the September 2020 extreme rainfall event in the Arunachal Pradesh-Assam corridor?",
+      "hypothesis_or_mechanism": "Rainfall-triggered landslides produce vegetation-cover changes detectable as relative NDVI reductions, while slope, elevation, and aspect constraints can suppress non-landslide disturbances and improve the spatial delineation of failures.",
+      "variables_and_data_use": "Sentinel-2 Level-2A surface-reflectance scenes were filtered for low cloud cover and cloud/cirrus contamination. NDVI was computed for cloud-free pre-event and post-event observations, and relative-difference NDVI was derived from maximum pre-event and post-event values. SRTM-derived slope, elevation, and aspect were used as terrain constraints; landslide polygons and thresholds supported candidate-pixel extraction and polygonization.",
+      "method_paradigm": "Multitemporal optical change detection combined with terrain-constrained semi-automatic classification and spatial post-processing.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_d75daf7026b8d01e39ce",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-52915-8",
+        "title": "Compound hydrogeomorphic cascades and rapid upstream to downstream hazard coupling in the Eastern Himalaya",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Kuldeep Dutta",
+          "Rupankar Rajkhowa",
+          "Mari Riba",
+          "Laxmi Linggi",
+          "Tana Tage"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "from satellite imagery. While this ensures internal consistency, the absence of an independent validation dataset and the dependence on spatial resolution (10 m Sentinel-2) introduce uncertainty in the delineation and representation of ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-026-52915-8",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "c1f09bb121f76b09daa13da64df7141f8a7c38c6daed4e224f8970f6cf9cb311",
+      "product_use_quote": "Level-2A (COPERNICUS/S2_SR_HARMONIZED) and Sentinel-1 SAR GRD (COPERNICUS/S1_GRD) datasets were used for landslides, sedimentation and flood mapping. Terrain attributes were derived from the SRTM DEM (USGS/SRTMGL1_003). Surface water ",
+      "operational_use_quote": "2021 April) Sentinel-2 scenes were filtered for low cloud cover and corrected using the cloud and cirrus mask. Normalized Difference Vegetation Index (NDVI) was computed for all cloud-free images, and a Relative Difference NDVI (Rd-NDVI) ",
+      "application_scope_quote": "2021 April) Sentinel-2 scenes were filtered for low cloud cover and corrected using the cloud and cirrus mask. Normalized Difference Vegetation Index (NDVI) was computed for all cloud-free images, and a Relative Difference NDVI (Rd-NDVI) ",
+      "supporting_quote": "2021 April) Sentinel-2 scenes were filtered for low cloud cover and corrected using the cloud and cirrus mask. Normalized Difference Vegetation Index (NDVI) was computed for all cloud-free images, and a Relative Difference NDVI (Rd-NDVI) ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and use its scenes for NDVI-based landslide change detection; admit the exact product branch and preserve its Level-2A processing.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Kuldeep Dutta",
+        "Rupankar Rajkhowa",
+        "Mari Riba",
+        "Laxmi Linggi",
+        "Tana Tage"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do seasonal vegetation conditions, prey abundance, habitat type, human proximity, and environmental conditions influence leopard occupancy and detection in Margalla Hills National Park?",
+      "hypothesis_or_mechanism": "Seasonal vegetation productivity represented by NDVI, together with prey availability and habitat structure, influences leopard site use, while disturbance and daily temperature primarily affect detection probability.",
+      "variables_and_data_use": "Leopard detections from camera traps were modeled with seasonal occupancy and detection probabilities. Sentinel-2 SR B4 and B8 were used to calculate 10 m NDVI seasonal statistics, including mean, minimum, maximum, and range. Other covariates included prey relative abundance, forest type, distance to settlements, human disturbance, elevation during screening, and ERA5-LAND temperature and precipitation.",
+      "method_paradigm": "Single-season static occupancy modeling with maximum likelihood and AICc, using camera-trap detection histories, seasonal covariates, covariate screening for collinearity, sequential detection and occupancy model selection, and goodness-of-fit assessment.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_2dfa61f72457ce1f5e0a",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-53346-1",
+        "title": "Seasonal shifts in Leopard (Panthera pardus) occupancy driven by prey availability and proximity to human settlements in Margalla Hills National Park, Pakistan",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Muhammad Saeed",
+          "Sakhawat Ali"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "threshold of < 10%, creating an annual median composite, and clipping the imagery to the study area boundary. NDVI was calculated using near-infrared (Band 8) and red (Band 4) reflectance values. Per-pixel seasonal statistics (mean, ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-026-53346-1",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "517deb35c5300dead8fac7b123e2ded5c6652ed36ddd382fa5cb1f1dee402b92",
+      "product_use_quote": "composites were generated for summer (May–August) and winter (November–February). For each year and season, Sentinel-2 Surface Reflectance Harmonized imagery (COPERNICUS/S2_SR_HARMONIZED) was pre-processed by applying a cloud cover ",
+      "operational_use_quote": "threshold of < 10%, creating an annual median composite, and clipping the imagery to the study area boundary. NDVI was calculated using near-infrared (Band 8) and red (Band 4) reflectance values. Per-pixel seasonal statistics (mean, ",
+      "application_scope_quote": "minimum, maximum, and range) were subsequently derived using spatial reducer functions at the sensor’s native 10-m resolution.\n\n \n\n## Observation covariates\n Daily climatic variables were used as observation-level covariates and obtained ",
+      "supporting_quote": "threshold of < 10%, creating an annual median composite, and clipping the imagery to the study area boundary. NDVI was calculated using near-infrared (Band 8) and red (Band 4) reflectance values. Per-pixel seasonal statistics (mean, ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods use Sentinel-2 surface-reflectance bands B4 and B8 to calculate seasonal NDVI from COPERNICUS/S2_SR_HARMONIZED scenes.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Muhammad Saeed",
+        "Sakhawat Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do multitemporal vegetation dynamics and ecological anomalies vary across habitats in the Sauro and Camastra sub-basins of Basilicata, Italy, during 2017–2023?",
+      "hypothesis_or_mechanism": "The second principal component of a multitemporal NDVI dataset captures seasonal phenological transitions and can identify spatially coherent vegetation anomalies associated with ecological or land-change processes.",
+      "variables_and_data_use": "Monthly NDVI is computed from Sentinel-2 red and NIR surface-reflectance bands for May–October observations from 2017–2023. Cloud-free images are selected, cloud-masked, mosaicked across tiles, clipped, and reprojected. PCA is applied to the centered NDVI time-series matrix, with PC2 filtered for positive and negative anomalies and interpreted alongside habitat classes and meteorological observations.",
+      "method_paradigm": "Multitemporal remote-sensing index analysis combining cloud-masked Sentinel-2 surface reflectance, NDVI feature construction, PCA-based dimensionality reduction, threshold anomaly detection, and spatial habitat analysis.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_f868347008dcb7b31c10",
+      "source_paper": {
+        "doi": "10.1038/s41598-026-53825-5",
+        "title": "Detecting vegetation anomalies in mediterranean ecosystems in southern Italy using sentinel-2 NDVI time series and principal component analysis",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "authors": [
+          "Giuseppe Cillis",
+          "Antonio Lanorte",
+          "Gabriele Nolè"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "were calculated for the period from 2017 to 2023. For each month of the May-October semester, a single cloud-free image was chosen, thus avoiding a bias toward certain periods of the year with more images (Table 1 ). In the case of ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1038/s41598-026-53825-5",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "7387e2525502773d6f4e45f4231c3ad9b3bab3d68262462337145e4bfc4271a4",
+      "product_use_quote": "for more detailed ecological investigations. Specifically, the COPERNICUS/S2_SR_HARMONIZED dataset was used. This dataset comprises a global collection of Sentinel-2 images in surface reflectance (SR) processed with Sen2Cor and ",
+      "operational_use_quote": "the images were selected using the Copernicus Browser (Copernicus Data Ecosystem Service, 2025) while the mosaicing of the tiles, the clipping of the study area, the calculation of the NDVI, and the download of the rasters reprojected in ",
+      "application_scope_quote": "Reed et al., 1994), land-cover change 56 , and ecological responses to climatic variability 11 .\n In this study, multitemporal NDVI datasets were generated using satellite imagery from Sentinel-2 MSI (.MultiSpectral Instrument) For each ",
+      "supporting_quote": "the images were selected using the Copernicus Browser (Copernicus Data Ecosystem Service, 2025) while the mosaicing of the tiles, the clipping of the study area, the calculation of the NDVI, and the download of the rasters reprojected in ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and use its surface-reflectance time series to calculate NDVI anomalies.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Giuseppe Cillis",
+        "Antonio Lanorte",
+        "Gabriele Nolè"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can Google Earth Engine and Sentinel-2 Level-2A MSI imagery be used to estimate seagrass and other coastal habitat types in the wider Paphos district of Cyprus?",
+      "hypothesis_or_mechanism": "Multispectral Sentinel-2 MSI reflectance, especially visible coastal-water-relevant bands combined with water masking and supervised classification, can distinguish seagrass, sand, reefs, and deep water from a selected cloud-filtered image.",
+      "variables_and_data_use": "The study filters Sentinel-2 Level-2A imagery by date range, cloud coverage, and area of interest; selects a specific COPERNICUS/S2_SR_HARMONIZED scene; calculates NDWI for land/water masking; uses photointerpreted training points for seagrass, sand, reefs, and deep water; and applies a Random Forest classifier, with DLS validation polygons transformed to points for comparison.",
+      "method_paradigm": "Cloud-based remote-sensing classification workflow using Google Earth Engine, Sentinel-2 Level-2A multispectral imagery, NDWI masking, photointerpreted training samples, and Random Forest classification.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "state_reconstruction",
+      "direction_id": "exp_35932bbcbe4559cff9ca",
+      "source_paper": {
+        "doi": "10.1117/12.3072248",
+        "title": "Habitat types mapping using remote sensing techniques in Cyprus",
+        "year": 2025,
+        "venue": "International Conference on Remote Sensing and Geoinformation of the Environment (RSCy)",
+        "authors": [
+          "Despina Makri",
+          "Eleftheria Kalogirou",
+          "Amjad Iqbal",
+          "Diofantos  G. Hadjimitsis",
+          "Christodoulos Mettas"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "temporal resolution\n(every 10 days for single Sentinel\n-\n2 or every 5 days for combined\nconstellation revisit)\n. For the Google Earth Engine platform, the Level\n\n2A Sentinal\n-\n2 data are downloaded from scihub\nand they are processed with ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1117/12.3072248",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "9adb8c14035265dc72fac91c5579ddf0cc1c7d78a96d3d096d0c641e4a1921c0",
+      "product_use_quote": "following\n:\n\nCOPERNICUS/S2_SR_HARMONIZED/20220702T082609_20220702T082835_T36SVD. When we use\nthe Sentinel\n-\n2 satellite data in a software, the first part of our analysis is to resample our data. This processing step in the\nGoogle\nEarth\n\n",
+      "operational_use_quote": "Engine platform is\nomitted because\n\nit is done automatically.\n\nThe second step of our analysis is the Land\nmasking. First, we calculate the Normalized Difference Water Index, to discriminate land and water, and finally, we\nextract the land ",
+      "application_scope_quote": "Copernicus program. Here, we provided a single\n-\nimage\nseagrass mapping\nclassification\nwith the\nsatellite data of Sentinel\n-\n2A, Level\n-\n2A\n\nwith the MSI (Multispectral Instrument\n)\n7\n.\n\n3.1.\n\nTraining data\n\nOur training dataset is ",
+      "supporting_quote": "Engine platform is\nomitted because\n\nit is done automatically.\n\nThe second step of our analysis is the Land\nmasking. First, we calculate the Normalized Difference Water Index, to discriminate land and water, and finally, we\nextract the land ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify an exact COPERNICUS/S2_SR_HARMONIZED scene and operationally resample/process its reflectance for habitat mapping.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Despina Makri",
+        "Eleftheria Kalogirou",
+        "Amjad Iqbal",
+        "Diofantos  G. Hadjimitsis",
+        "Christodoulos Mettas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "Can multisource remote-sensing variables, including Sentinel-2 surface-reflectance-derived vegetation fractions, Sentinel-1 SAR, and LiDAR structure metrics, accurately map Prometheus fire-propagating fuel types across Mediterranean and Atlantic landscapes?",
+      "hypothesis_or_mechanism": "Combining Sentinel-2 spectral and fractional vegetation information with Sentinel-1 backscatter and LiDAR-derived vertical structure should improve discrimination of grass, shrub, and tree fire-propagating elements and the associated Prometheus fuel types because spectral composition captures vegetation cover while SAR and LiDAR capture structural complexity and fuel height.",
+      "variables_and_data_use": "COPERNICUS/S2_SR_HARMONIZED Level-2A surface reflectance scenes were selected near field sampling dates or composited over up to 30 days after QA filtering. Sentinel-2 data supplied MESMA subpixel fractions for non-fuel, grass, shrub, and tree and PROSAIL-D-inverted FCOVER. Sentinel-1 GRD supplied the VH/VV cross-polarization ratio. PNOA LiDAR supplied vertical density, height, canopy complexity, LAD, and related metrics. Field plots supplied Prometheus fuel-type labels and structural measurements for training and validation.",
+      "method_paradigm": "Physics-informed spectral unmixing and radiative-transfer inversion combined with multisource supervised machine-learning classification. MESMA and PROSAIL-D characterize Sentinel-2 vegetation fractions and FCOVER; Boruta-selected predictors are used in Random Forest models to produce wall-to-wall fuel-type maps, followed by independent validation.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_f15d58dbe3643507c2fd",
+      "source_paper": {
+        "doi": "10.1186/s42408-025-00373-4",
+        "title": "Estimation of Prometheus fuel types using physically based remote sensing techniques",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "authors": [
+          "José Manuel Fernández‐Guisuraga",
+          "Andrea Monzón-González",
+          "Víctor Fernández‐García",
+          "Sergio Alberto Peña-Pérez",
+          "Leonor Calvo"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "metrics with ecological relevance. \nThe metrics were derived at a spatial resolution of \n20 m × 20 m and aligned with the grid of Sentinel-2 \nLevel-2 A scenes. The calculated metrics included \nthe point cloud density (%) across height bin ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1186/s42408-025-00373-4",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "92cf9bf7b169f89d18a4c566b3afcef72f3e5ea46e1187a2a08d1107c15f7885",
+      "product_use_quote": "form (\"COPERNICUS/S2_SR_HARMONIZED\"product). \nThe scenes were selected using a single-date approach, \nprioritizing the acquisition date closest to the field sam-\npling date in each site and free of invalid pixels defined as \nclouds, haze, ",
+      "operational_use_quote": "to implement the MESMA pro-\ncedure and retrieve the subpixel image fractions of each \nfire-propagating element in Prometheus from Sentinel-2 \nLevel-2 A surface reflectance scenes.\nThe first phase of the MESMA procedure requires the \n",
+      "application_scope_quote": "the study sites integrated several \nremote sensing datasets: (i) Sentinel-2 multispectral \nimagery and (ii) Sentinel-1 C-band SAR data from the \nCopernicus program of the European Space Agency \n(ESA), as well as (iii) LiDAR data provided ",
+      "supporting_quote": "to implement the MESMA pro-\ncedure and retrieve the subpixel image fractions of each \nfire-propagating element in Prometheus from Sentinel-2 \nLevel-2 A surface reflectance scenes.\nThe first phase of the MESMA procedure requires the \n",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED Level-2A surface reflectance and use it operationally for vegetation/fuel-type retrieval.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "José Manuel Fernández‐Guisuraga",
+        "Andrea Monzón-González",
+        "Víctor Fernández‐García",
+        "Sergio Alberto Peña-Pérez",
+        "Leonor Calvo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How do habitat covariates and heterogeneous landscape features influence dispersal movement behavior and habitat selection of tigers in the central Indian highlands?",
+      "hypothesis_or_mechanism": "Anthropogenic proximity, vegetation condition, water access, and forest type affect tiger behavioral states and relative habitat selection during dispersal.",
+      "variables_and_data_use": "GPS telemetry for five dispersed tigers was modeled with HMM and integrated step-selection functions; NDVI from Landsat imagery, distance to villages, distance to water, and forest type layers were used as covariates after spatial resampling to 100 m.",
+      "method_paradigm": "Movement ecology modeling using hidden Markov models and integrated step-selection functions with remotely sensed and GIS covariates.",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1_TOA"
+      ],
+      "idea_type": "relationship_mechanism",
+      "direction_id": "exp_3d86b2728b66e3f0f36f",
+      "source_paper": {
+        "doi": "10.1371/journal.pone.0309517",
+        "title": "Multiphasic movement and step-selection patterns of dispersed tigers in the central Indian landscape",
+        "year": 2024,
+        "venue": "PLoS ONE",
+        "authors": [
+          "Supratim Dutta",
+          "Ramesh Krishnamurthy"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LC08/C02/T1_TOA",
+        "name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 TOA Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "Landsat 8 OLI/TIRS is a different sensor from the Sentinel-2 MSI L1C anchor; preserve its Collection 2 Tier 1 TOA measurement, band response and native optical support.",
+      "comparability_quote": "reclassified and resampled at a 100m scale in R using the ’raster’ package [ 58 ].\n\n \n\n## Understanding the effects of habitat and heterogenous landscape in movement\n We used NDVI and distance to the village as covariates along with forest ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 MSI L1C; this is Landsat 8 OLI/TIRS Collection 2 Tier 1 TOA with a different sensor and spectral response.",
+        "Retain the Landsat bands and TOA processing level; exclude any separate LE07/other-sensor branch from this product entry."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1371/journal.pone.0309517",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "LANDSAT/LC08/C02/T1_TOA",
+      "actual_product_name": "USGS Landsat 8 OLI/TIRS Collection 2 Tier 1 TOA Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "a3606f16267c006654da0d0650a55a2dede6ba3c2c32e75331d799afe1183641",
+      "product_use_quote": "obtained from the Google Earth Engine cloud computing service using the image number ’LANDSAT/LE07/C02/T1’ (2009 and 2012) and ’LANDSAT/LC08/C02/T1_TOA’ (2014, 2016, 2021; https://code.earthengine.google.com/ ). Similarly, spatial layers ",
+      "operational_use_quote": "reclassified and resampled at a 100m scale in R using the ’raster’ package [ 58 ].\n\n \n\n## Understanding the effects of habitat and heterogenous landscape in movement\n We used NDVI and distance to the village as covariates along with forest ",
+      "application_scope_quote": "[ 4 ]. Consequently, we incorporated distance to villages, distance to water, and normalized difference vegetation index (NDVI) as covariates to investigate their influence on the behavioral phases of tigers. The build-up class data was ",
+      "supporting_quote": "reclassified and resampled at a 100m scale in R using the ’raster’ package [ 58 ].\n\n \n\n## Understanding the effects of habitat and heterogenous landscape in movement\n We used NDVI and distance to the village as covariates along with forest ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify and operationally use the approved LANDSAT/LC08/C02/T1_TOA collection for multispectral NDVI covariates. The separate LE07 branch is excluded from this entry.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Supratim Dutta",
+        "Ramesh Krishnamurthy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How can multispectral remote sensing, terrain, climate, soil, thermal, and field data be integrated to map and validate land-degradation vulnerability in the Southern Main Ethiopian Rift?",
+      "hypothesis_or_mechanism": "Land-degradation vulnerability is driven by interacting patterns of land cover, vegetation and moisture stress, land-surface temperature, soil salinity, soil loss, rainfall erosivity, terrain, and soil properties; integrating these indicators through weighted multi-criteria analysis can identify spatial vulnerability classes.",
+      "variables_and_data_use": "Harmonized Sentinel-2 Level-2A surface-reflectance imagery from 2025 is used for LULC classification and for SAVI, NMDI, salinity, and related spectral indices, including visible, near-infrared, and SWIR bands. Landsat 8 Level-2 ST_B10 supplies land-surface temperature. CHIRPS supplies rainfall and rainfall erosivity, SRTM supplies elevation and terrain factors, FAO soil data supply soil erodibility, and field GPS observations support classification and vulnerability-map validation. The resulting LULC, SAVI, NMDI, LST, salinity, and soil-loss indicators are integrated using AHP-based MCDA.",
+      "method_paradigm": "Multi-source geospatial decision support combining Google Earth Engine preprocessing, random-forest LULC classification, spectral-index derivation, RUSLE soil-loss modeling, AHP weighting, weighted linear combination, and field-based accuracy validation.",
+      "used_assets": [
+        "COPERNICUS/S2_SR_HARMONIZED"
+      ],
+      "idea_type": "decision_support",
+      "direction_id": "exp_be00681854cf91c7b121",
+      "source_paper": {
+        "doi": "10.1371/journal.pone.0359349",
+        "title": "Multi source Earth observation and machine learning framework for mapping land degradation vulnerability in salinity- and hydrothermal-stressed regions of the southern main Ethiopian Rift",
+        "year": 2026,
+        "venue": "PLoS ONE",
+        "authors": [
+          "Talema Moged Reda",
+          "Alemu Tadese",
+          "Wondimu Haimanote",
+          "Muralitharan Jothimani",
+          "Asmamaw Hangibayna",
+          "Solomon Gunta",
+          "Gizachew Kabite Wedajo",
+          "Berhan Gessesse",
+          "Admasu Adamu",
+          "Zewdneh Tomass",
+          "Guchie Gulie",
+          "Abdisa Yilma",
+          "Dereje Tsegaye"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The approved Sentinel-2 L2A product shares the MSI sensor and band family with the L1C anchor but represents atmospherically corrected surface reflectance rather than TOA reflectance; retain the L2A processing level and its reflectance scaling.",
+      "comparability_quote": "~5 km), a spatial harmonization protocol was implemented in Google Earth Engine (GEE) before multi-criteria integration. All spatial layers were reprojected to a unified coordinate system (WGS 1984 datum) and snapped to a consistent ",
+      "differences_vs_anchor": [
+        "The anchor is Sentinel-2 L1C TOA; this is Sentinel-2 L2A surface reflectance with atmospheric correction and a different measurement level.",
+        "Retain MSI band identifiers, 10 m/20 m support, reflectance scaling/QA and study-specific compositing."
+      ],
+      "comparability_handling": "Keep this exact approved product separate from the L1C anchor; retain the paper’s actual bands, reflectance level, scaling, native support, cadence, coverage and QA in the benchmark direction.",
+      "doi": "10.1371/journal.pone.0359349",
+      "task_id": "single_dataset/task_036",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "COPERNICUS/S2_HARMONIZED",
+      "actual_dataset_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "actual_product_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "expansion_contract_id": "single_dataset/task_036_expansion_v1",
+      "expansion_contract_sha256": "2067036cf468c54078ceeb78f8dc99e4ac5ebd2186f2460cab629347cac73a12",
+      "task_card_sha256": "3af3a202b8a4c128efdf8412de973fedaae300b0c7bd1066f916bfade10f46a7",
+      "source_text_sha256": "8d78020ec7c6d7b66630cdcb305280e799757c1c66a6de6f0b6c7dff142a8b3f",
+      "product_use_quote": "pixel-value distortion.\n\n \n\n## 2.3 Methods\n \n\n## 2.3.1 LULC classification.\n The LULC was classified from Sentinel-2 MSI surface reflectance datasets for 2025 obtained from the GEE data catalogue (“COPERNICUS/S2_SR_HARMONIZED”). First, a ",
+      "operational_use_quote": "image was generated by taking the median value of a collection of satellite images, which was then clipped to the area of interest on the GEE computing platform. For the LULC classification, five Sentinel-2 MSI surface reflectance bands ",
+      "application_scope_quote": "The mean annual NMDI of 2025 was calculated from Sentinel-2 multispectral surface reflectance bands of NIR and Short-Wave Infrared (SWIR 1 and 2) using Equation (2) as described by [ 48 ] through the GEE computational platform and ",
+      "supporting_quote": "image was generated by taking the median value of a collection of satellite images, which was then clipped to the area of interest on the GEE computing platform. For the LULC classification, five Sentinel-2 MSI surface reflectance bands ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:40:58Z",
+      "human_reason": "Methods identify COPERNICUS/S2_SR_HARMONIZED and operationally use its surface-reflectance bands for land-degradation classification and spectral indices.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_036_r001",
+      "source_pool_sha256": "8a73db711861bffbd6c5bb9b93e45d3218058c96dc8965b02bdc42a82be649e2",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Talema Moged Reda",
+        "Alemu Tadese",
+        "Wondimu Haimanote",
+        "Muralitharan Jothimani",
+        "Asmamaw Hangibayna",
+        "Solomon Gunta",
+        "Gizachew Kabite Wedajo",
+        "Berhan Gessesse",
+        "Admasu Adamu",
+        "Zewdneh Tomass",
+        "Guchie Gulie",
+        "Abdisa Yilma",
+        "Dereje Tsegaye"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 20,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

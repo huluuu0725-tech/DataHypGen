@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Conterminous United States river corridors",
+  "data_description": {
+    "dataset_name": "MERIT Hydro: Global Hydrography Datasets",
+    "spatial_coverage": {
+      "region_name": "Conterminous United States river corridors",
+      "coverage": "Global hydrography is available between approximately 90 degrees north and 60 degrees south; analysis is restricted to river corridors in the conterminous United States."
+    },
+    "temporal_coverage": "1987-01-01 to 2017-01-01 source-data span (static image asset)",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "92.77 m (3 arc-seconds)",
+    "temporal_unit": "Static hydrography image",
+    "analytical_capabilities": [
+      "Analyze hydrologically adjusted terrain and local drainage directions",
+      "Delineate and characterize drainage networks and contributing areas",
+      "Map permanent water and river-channel structure",
+      "Compare upstream drainage area and channel-width patterns across basins",
+      "Support terrain-conditioned watershed and floodplain analyses"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Hydrologically adjusted elevation in meters, with companion hydrography variables",
+      "runtime_hint": "The hnd band is described by the catalog as hydrologically adjusted elevation, also labeled height above the nearest drainage, in meters above the EGM96 geoid with 0.1 m vertical increments. The elv band is elevation in meters; dir is categorical local drainage direction (1, 2, 4, 8, 16, 32, 64, 128; 0 for river mouth; -1 for inland depression); wat is 0 for land and 1 for permanent water; upa is upstream drainage area in km^2; upg is the number of upstream pixels. Other bands are wth for channel width and viswth for width visualization. The network assigns only one downstream direction per pixel, so channel bifurcations and complex delta or braided-river connectivity are not fully represented; permanent-water masks and below-sea-level terrain also have documented limitations."
+    },
+    "data_source": "MERIT Hydro, produced by the University of Tokyo from MERIT DEM and multiple waterbody and river datasets",
+    "gee_asset": {
+      "id": "MERIT/Hydro/v1_0_1",
+      "type": "image"
+    }
+  },
+  "data_path": "GEE:MERIT/Hydro/v1_0_1"
+}

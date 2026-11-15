@@ -1,0 +1,74 @@
+{
+  "paper_id": "10.5194/acp-24-7523-2024",
+  "task_id": "single_dataset/task_029",
+  "title": "Monitoring European anthropogenic NOx emissions from space",
+  "category": "climate_surface_interaction",
+  "year": 2024,
+  "journal": "Atmospheric Chemistry and Physics",
+  "impact_level": "emerging",
+  "datasets": [
+    "Sentinel-5P TROPOMI Offline NO2 v2.4 (primary satellite observation; GEE anchor COPERNICUS/S5P/OFFL/L3_NO2)",
+    "DECSO v6.3 daily NOx emission inversion and super-observation processing",
+    "CHIMERE v2020r3 Eulerian chemical transport model",
+    "ECMWF operational weather forecasts",
+    "Copernicus Land Cover 2019",
+    "HTAP v3 2018 emissions and sector distributions",
+    "TM5-MP stratosphere/free-troposphere NO2 assimilation fields",
+    "EEA NEC and LRTAP official national emission reports",
+    "E-PRTR industrial facility emissions",
+    "CAMS-REG-ANT v5.1 anthropogenic emissions inventory",
+    "CAMS-GLOB-TEMPO v5.3 temporal profiles"
+  ],
+  "study_area_verified": "Europe (35–55°N, 10°W–30°E), analyzed on a 0.2° × 0.2° grid for 2019–2022 daily inversions aggregated to monthly and annual values.",
+  "anchor_use_verified": "The Methods operationally use reprocessed TROPOMI Offline NO2 v2.4 observations, converted to 0.2° super-observations and assimilated by DECSO v6.3. The single benchmark input is the GEE OFFL L3 NO2 collection; the paper's L2 retrieval/version and super-observation processing are not separate GEE assets.",
+  "companion_dataset_availability": {
+    "gee_exact_anchor": "COPERNICUS/S5P/OFFL/L3_NO2",
+    "gee_companion_assets": [],
+    "not_exactly_mapped_in_local_catalog": [
+      "DECSO v6.3 software and daily emission outputs",
+      "CHIMERE v2020r3 model fields and ECMWF operational forecast inputs",
+      "Copernicus Land Cover 2019 and HTAP v3 sector inputs as used by the study",
+      "TM5-MP assimilation fields used to remove stratosphere/free-troposphere columns",
+      "EEA NEC/LRTAP, E-PRTR, CAMS-REG-ANT v5.1 and CAMS-GLOB-TEMPO comparison data"
+    ],
+    "catalog_version_gap": "The GEE collection is the public OFFL L3 representation and its catalog interval extends beyond the study. The paper-specific reprocessed v2.4 L2 files and DECSO super-observations are not guaranteed to be byte-identical to the current GEE collection."
+  },
+  "sibling_task_boundary": "Only TROPOMI Offline NO2 is exposed as the benchmark test input. CHIMERE, meteorology, land cover, inventories and validation datasets remain paper companions and must not be combined into a joint anchor.",
+  "fields_left_unchanged": [
+    "idea"
+  ],
+  "idea": {
+    "research_question": "如何利用TROPOMI Sentinel-5P NO2对流层柱浓度观测，通过DECSO v6.3反演算法在欧洲实现日尺度、月平均0.2°网格NOx排放监测，并评估其相对于官方及自下而上排放清单的空间尺度一致性？",
+    "hypothesis": "若TROPOMI NO2柱浓度能够充分约束短寿命NOx的近源输送与化学损耗过程，则基于DECSO v6.3反演得到的月平均NOx排放将在国家、城市和大型点源尺度上与EEA/CAMS等底层排放估算保持可比一致性，同时能够更及时地捕捉空间分布和短期排放变化。",
+    "mechanism": "人为NOx排放进入边界层后经化学转化、湍流混合和平流输送形成NO2对流层柱浓度信号；TROPOMI在每日过境时观测NO2柱浓度，CHIMERE CTM根据当前排放估计和ECMWF气象场模拟NO2浓度；DECSO使用Kalman滤波将观测-预报差异映射回排放增量，通过高时间分辨率轨迹建立排放-浓度敏感性矩阵，并在150 km范围内利用源区及下风向浓度约束排放；随后利用土地覆盖信息估计并扣除土壤NOx排放，得到人为NOx排放。",
+    "key_variables": {
+      "target": "欧洲0.2°网格逐日反演、月平均人为NOx排放量",
+      "predictors": [
+        "TROPOMI/Sentinel-5P NO2对流层柱浓度，reprocessed and offline version 2.4，超观测处理后输入DECSO",
+        "CHIMERE v2020r3化学输送模型模拟NO2浓度场",
+        "ECMWF operational weather forecasts气象输入，包括平流和输送相关气象场",
+        "Copernicus Land Cover 2019土地覆盖类型，用于土壤NOx排放分离",
+        "HTAP v3 2018源部门分布及其他物种排放信息，用于CHIMERE部门拆分和辅助化学模拟",
+        "DECSO观测-预报差OmF与观测-分析差OmA统计，用于排放模型和观测误差参数化",
+        "EEA/LRTAP/NEC官方国家NOx排放报告与大型工业设施排放数据，用于独立对比验证",
+        "CAMS空间化NOx排放清单，用于网格尺度空间分布对比"
+      ]
+    },
+    "data_sources": [
+      "TROPOMI/Sentinel-5P NO2产品：version 2.4 reprocessed and offline NO2 observations；卫星2017年10月发射，地方过境时间13:30；NO2由可见光波段反演，光谱分辨率0.54 nm，采样0.2 nm，信噪比约1500；NO2对流层柱空间分辨率5.5 x 7 km，2019年8月6日后为5.5 x 3.5 km，幅宽约2600 km，全球每日覆盖。",
+      "DECSO v6.3反演系统输出：欧洲区域NOx排放，逐日同化更新，并聚合为月平均排放图；默认网格分辨率0.2°；单月处理约需30核计算机12小时。",
+      "CHIMERE v2020r3 Eulerian regional offline CTM：用于由排放计算NO2浓度，并与TROPOMI观测比较。",
+      "ECMWF operational weather forecasts：作为CHIMERE气象驱动数据。",
+      "Copernicus Land Cover 2019：用于土地覆盖分类，支持森林、农业、灌丛等类别的土壤NOx排放估计。",
+      "HTAP v3 2018：用于CHIMERE中源部门拆分及其他物种排放设置；不作为DECSO NOx先验排放。",
+      "EEA欧洲环境署公开排放报告：包括LRTAP/NEC框架下EU国家年度NOx总量和大型工业设施排放。",
+      "CAMS Copernicus Atmosphere Monitoring Service排放清单：用于与DECSO反演排放进行国家和空间网格尺度对比。"
+    ],
+    "analytical_approach": "采用DECSO v6.3 Daily Emissions Constrained by Satellite Observations反演框架。首先将TROPOMI NO2 version 2.4 reprocessed/offline观测转换为super-observations，以降低单像元噪声并匹配模型网格。CHIMERE v2020r3在ECMWF预报气象场驱动下进行单次正向模拟，计算由排放产生的NO2浓度。DECSO采用Kalman filter同化框架，排放预报模型设为persistency，即当日排放等于前一日分析排放；排放更新采用加法增量而非乘法缩放，因此允许未知源和快速变化源被识别。排放-浓度敏感性矩阵通过多条正向轨迹计算，轨迹时间步长7.5 min，默认0.2°网格下仅保留源点150 km以内的排放-浓度关系，以同时利用源区和下风向TROPOMI观测并限制长距离轨迹误差。误差参数化基于前期运行的OmF和OmA统计。逐日反演结果聚合为月平均NOx排放，预期单个网格月排放精度约25%。后处理阶段基于Lin et al.方法，从无显著人为源的网格中按土地利用类型拟合森林、农业和灌丛类别的月平均土壤NOx排放，将其按各网格土地覆盖权重分配并从总NOx中扣除，得到人为NOx排放。验证设计包括与EEA国家年度排放及大型工业设施报告、CAMS空间化排放清单进行国家总量、城市区域、农村区域和点源尺度的对比。",
+    "expected_contribution": "提供一个可操作的欧洲NOx排放卫星反演研究设计，用TROPOMI高空间分辨率NO2观测和DECSO v6.3实现日尺度更新、月尺度0.2°人为NOx排放制图，为官方年度排放报告和CAMS/HTAP等自下而上清单提供独立、及时的约束，并为城市、工业设施和突发排放变化监测提供方法基础。",
+    "falsification_condition": "若DECSO v6.3反演的月平均人为NOx排放在独立验证中不能达到方法宣称的约束能力，则假设应被否定：具体包括单网格月排放相对不确定性长期高于25%；国家尺度DECSO年/月聚合NOx总量与EEA或CAMS对应排放差异系统性超过25%；大型孤立点源在150 km敏感性范围内无法与报告位置和排放量形成一致信号；或OmF/OmA统计显示同化后NO2柱浓度残差相较预报残差无稳定降低。"
+  },
+  "pdf_url": "https://acp.copernicus.org/articles/24/7523/2024/acp-24-7523-2024.pdf",
+  "enriched": true,
+  "enrichment_source": "pdf_fulltext"
+}

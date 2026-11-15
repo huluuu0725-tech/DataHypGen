@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "United States terrestrial surfaces",
+  "data_description": {
+    "dataset_name": "GRACE Monthly Mass Grids - Land [deprecated]",
+    "spatial_coverage": {
+      "region_name": "United States terrestrial surfaces",
+      "coverage": "Global land areas represented by terrestrial water-equivalent-thickness anomaly grids; the supplied study domain uses 0.5 degree land cells over the United States and excludes ocean regions."
+    },
+    "temporal_coverage": "2002-04-01T00:00:00Z to 2017-01-07T00:00:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "111320 m nominal (~1 degree)",
+    "temporal_unit": "Monthly mass-grid solution",
+    "analytical_capabilities": [
+      "Map spatial patterns and regional contrasts in terrestrial water storage anomalies",
+      "Analyze monthly trends, variability and seasonal cycles in land water storage",
+      "Compare independent CSR, GFZ and JPL processing-center solutions",
+      "Detect spatially coherent storage changes and hydrological anomalies",
+      "Relate GRACE storage anomalies to climate, hydrology and groundwater covariates"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Equivalent liquid water thickness calculated independently by CSR, GFZ and JPL, expressed in centimetres.",
+      "runtime_hint": "Use the catalog bands `lwe_thickness_csr`, `lwe_thickness_gfz` and `lwe_thickness_jpl`; each has units cm and nominal 111320 m ground sampling. The catalog provides no scale factor, offset or fill value for these bands. Their catalog-declared estimated ranges are CSR -139.2 to 74.88 cm, GFZ -145.45 to 70.19 cm and JPL -137.94 to 71.86 cm. The collection is deprecated; use the historical Release 05 record only when that processing generation is required, and apply the published scaling grid for quantitative regional analyses."
+    },
+    "data_source": "NASA Jet Propulsion Laboratory GRACE Tellus processing centers (CSR, GFZ and JPL)",
+    "gee_asset": {
+      "id": "NASA/GRACE/MASS_GRIDS/LAND",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+}

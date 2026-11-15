@@ -1,0 +1,1299 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_038",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "FireCCI51: MODIS Fire_cci Burned Area Pixel Product, Version 5.1",
+    "spatial_coverage": {
+      "region_name": "Global land areas",
+      "coverage": "Global monthly burned-area observations within the FireCCI51 product footprint."
+    },
+    "temporal_coverage": "2001-01-01 to 2020-12-01",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "250 m",
+    "temporal_unit": "Monthly",
+    "analytical_capabilities": [
+      "Map and quantify the spatial distribution of burned areas",
+      "Analyze monthly and seasonal patterns of fire occurrence",
+      "Detect interannual and long-term variability in burned area",
+      "Compare fire activity across locations, ecological zones, or administrative boundaries",
+      "Stratify burned pixels using the supplied ESA CCI land-cover class",
+      "Evaluate detection confidence and distinguish unobserved or non-burnable pixels"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "BurnDate, the estimated day of year of first burn detection; ConfidenceLevel is expressed as a percentage",
+      "runtime_hint": "Use the BurnDate band to identify and time detected burning. ConfidenceLevel ranges from 1 to 100 percent. LandCover contains ESA CCI categorical classes for burned pixels. ObservedFlag uses -1 for pixels not observed during the month and -2 for non-burnable pixels; these values must not be counted as valid unburned observations. No catalog scale factor is specified for these bands."
+    },
+    "data_source": "European Space Agency Climate Change Initiative Fire ECV, hosted in Google Earth Engine",
+    "gee_asset": {
+      "id": "ESA/CCI/FireCCI/5_1",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:ESA/CCI/FireCCI/5_1",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_038.json",
+    "source_sha256": "713f4d408563cad187bbc56e9a541493d3217bfcb67e922c183b00aeb157486a",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_038/prompt.json",
+    "current_prompt_sha256": "27389776a5ae2a4d81ef4e9815e381dfcb19184ae8980d298eb06386033ad446",
+    "original_anchor_asset": {
+      "id": "ESA/CCI/FireCCI/5_1",
+      "observable_group": "firecci51_monthly_global_burned_area",
+      "observation_identity_contract": {
+        "physical_object": "surface area and timing affected by vegetation fire",
+        "source_lineage": "ESA CCI FireCCI51 burned-area production lineage derived from MODIS observations",
+        "core_measurement_semantics": "FireCCI51 burned-area pixel detection and burn timing",
+        "non_material_variations": "official mirror, archive, format, reprojection, resampling or temporal aggregation retaining FireCCI51 observations",
+        "material_mismatches": "MCD64A1, GFED, active-fire detection or another burned-area algorithm without FireCCI51 input"
+      },
+      "asset_alias_policy": "ESA FireCCI MODIS burned-area pixel product version 5.1 distributed by CEDA/Copernicus or hosted in Earth Engine is admitted. C3S burned-area v1.0 may be used as a companion comparison but is not an alias; MODIS MCD64A1, GFED, FireCCILTDR, active-fire detections and other burned-area products are excluded unless FireCCI51 is also operationally processed.",
+      "repointed_from": {
+        "former_anchor": "MODIS/061/MCD64A1",
+        "why_former_anchor_was_wrong": "The supplied Methods use FireCCI v5.1 and C3S v1.0 as the satellite burned-area records. MCD64A1 is not identified as an operational input.",
+        "why_new_anchor": "ESA/CCI/FireCCI/5_1 is the exact ready catalog representation of one of the two burned-area products explicitly used in the Methods and is present in the current dataset index.",
+        "review_date": "2026-08-31"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_02",
+      "research_question": "How do land cover, livestock density, weather, fire danger, and protected-area status relate to the occurrence of large fires in the Greater Côa Valley from 2001 to 2020?",
+      "hypothesis_or_mechanism": "Large-fire occurrence is expected to increase with flammable land cover and dry conditions, while protected areas and livestock grazing may alter fire risk through differences in fuel and land management.",
+      "variables_and_data_use": "FireCCI51-derived FRY fire patches were processed into daily 250 m grid voxels and used to define the binary fire-occurrence response for fires larger than 1 km2. Predictors included land cover, MODIS MOD13Q1/MYD13Q1 NDVI, ERA5 temperature and rainfall, TerraClimate soil moisture, Copernicus elevation, Copernicus Climate Data Store FFMC/DC/FWI/KBDI metrics, travel speed, population density, road distance, livestock density, and protected-area status.",
+      "method_paradigm": "Fire occurrence driver modeling from FireCCI burned-area patches",
+      "used_assets": [
+        "ESA/CCI/FireCCI/5_1",
+        "FRY fire-patch dataset",
+        "MODIS vegetation indices",
+        "ERA5",
+        "TerraClimate",
+        "Copernicus fire-danger metrics"
+      ],
+      "author_team": [
+        "Máire Kirkland",
+        "Philip W. Atkinson",
+        "Sara Aliácar",
+        "Deli Saavedra",
+        "Mark C. De Jong",
+        "Thomas P. F. Dowling",
+        "Adham Ashton-Butt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Protected areas, drought, and grazing regimes influence fire occurrence in a fire-prone Mediterranean region",
+        "doi": "10.1186/s42408-024-00320-9",
+        "year": 2024,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "该论文评估多个 burned area 产品与 PlanetRF、S2RF 参考分类之间的空间一致性和精度差异。",
+      "hypothesis_or_mechanism": "不同空间分辨率和传感器来源的 burned area 产品会因混合像元、云掩膜和遗漏/误报差异而表现出不同的精度和偏差。",
+      "variables_and_data_use": "论文使用 PlanetRF 和 S2RF burned/unburned 分类作为比较基准，并将 FireCCISFD20、FireCCI51、FireCCIS311 和 MCD64 burned area products 按共同区域、日期和投影进行空间与时间采样后，计算 agreement、omission errors、commission errors、Dice Coefficient、relative bias 等指标。",
+      "method_paradigm": "产品精度验证",
+      "used_assets": [
+        "PlanetRF",
+        "S2RF",
+        "FireCCISFD20",
+        "FireCCI51",
+        "FireCCIS311",
+        "MCD64"
+      ],
+      "author_team": [
+        "Daniela Stroppiana",
+        "Matteo Sali",
+        "Pietro Brivio",
+        "Giovanna Sona",
+        "Magí Franquesa",
+        "M. Pettinari",
+        "Emilio Chuvieco"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Spatial Agreement of Burned Area Products Derived from Very High to Coarse-Resolution Satellite Imagery in African Biomes",
+        "doi": "10.3390/fire8040126",
+        "year": 2025,
+        "venue": "Fire",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "研究评估Sentinel-2生成的参考火灾边界，并据此检验全球燃烧面积产品的精度及其与高分辨率PlanetScope参考结果的一致性。",
+      "hypothesis_or_mechanism": "不同燃烧面积产品由于空间分辨率、传感器波段和燃烧检测算法不同，在燃烧区域识别、遗漏和误报方面会产生差异。",
+      "variables_and_data_use": "研究使用Sentinel-2表面反射率影像提取参考燃烧边界，使用PlanetScope影像进行高分辨率对比；使用MCD64A1v061计算样本单元2019年的燃烧面积比例并开展精度评估，同时访问ESA/CCI/FireCCI/5_1以获取约250米月度燃烧面积、燃烧日期、土地覆盖和检测置信度变量。",
+      "method_paradigm": "燃烧面积精度验证",
+      "used_assets": [
+        "COPERNICUS/S2_SR",
+        "Ecoregions2017©Resolve",
+        "MCD64A1v061",
+        "MODIS/061/MCD64A1",
+        "ESA/CCI/FireCCI/5_1",
+        "FireCCI51v5.1",
+        "PlanetScope",
+        "VIIRS375m"
+      ],
+      "author_team": [
+        "Jon Gonzalez-Ibarzabal",
+        "Magí Franquesa",
+        "Armando Rodriguez-Montellano",
+        "Aitor Bastarrika"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Sentinel-2 Reference Fire Perimeters for the Assessment of Burned Area Products over Latin America and the Caribbean for the Year 2019",
+        "doi": "10.3390/rs16071166",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文研究如何利用 VIIRS surface reflectance 和 active fire 数据在 Google Earth Engine 中生成 250 m、双周尺度 burned area 产品，并评估其相对现有 burned area 产品的表现。",
+      "hypothesis_or_mechanism": "机制假设是火烧后地表在 NIR、SWIR 和相关光谱指数中出现可分离变化，结合 active fire 构建训练样本和随机森林分类可改进 burned area 探测。",
+      "variables_and_data_use": "论文使用 VIIRS-SR 计算 NDVI、NDWI、MNDWI、NDMI、NBR、NBR2、MIRBI 和 TCT 指标，使用 VIIRS-AF 构建 burned/unburned core，使用 MCD12Q1 进行可燃地表过滤，并将生成的 VIIRS-BA 与 FireCCI51、MCD64A1、FireCCIS310、FireCCISFD20 进行 burned area fraction、空间一致性、月度分布和精度比较，最后用 BARD 参考数据验证。",
+      "method_paradigm": "遥感制图验证",
+      "used_assets": [
+        "VNP09A1 collection 1",
+        "VNP14IMGML (collection 1)",
+        "MCD12Q1 (version 6.1)",
+        "MCD64A1 (collection 6)",
+        "FireCCI51 (version 5.1)",
+        "FireCCIS310 (version 1.0)",
+        "FireCCISFD20 (version 2.0)",
+        "Burned Area Reference Database (BARD)"
+      ],
+      "author_team": [
+        "Boris Ouattara",
+        "Michael Thiel",
+        "Barbara Sponholz",
+        "Heiko Paeth",
+        "Marta Yebra",
+        "Florent Mouillot",
+        "Patrick Kacic",
+        "Kwame Oppong Hackman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Enhancing burned area monitoring with VIIRS dataset: A case study in Sub-Saharan Africa",
+        "doi": "10.1016/j.srs.2024.100165",
+        "year": 2024,
+        "venue": "Science of Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该研究旨在估算 2001—2020 年黑龙江省森林、草地和农田开放生物质燃烧产生的大气污染物排放。",
+      "hypothesis_or_mechanism": "植被火烧毁面积、燃料负荷、燃烧效率和排放因子共同决定不同土地类型开放生物质燃烧的污染物排放强度与时空分布。",
+      "variables_and_data_use": "研究使用 FireCCI51 250 m pixel BA product 和 CONFIDENCE band 获取月度高置信度 burned area；使用 CLCD land use data 划分土地类型；使用森林地上生物量碳数据集、MOD13A NDVI、作物统计数据和 VCF tree cover 分别估算燃料负荷、草地生物量、秸秆燃烧量和燃烧效率，并结合排放因子计算排放清单。",
+      "method_paradigm": "排放清单估算",
+      "used_assets": [
+        "FireCCI51 product",
+        "MODO9GQ products",
+        "CLCD land use data",
+        "1 km resolution aboveground biomass carbon dataset of Chinese forests",
+        "GlobBiomass 2010 dataset",
+        "MOD13A monthly scale data",
+        "Heilongjiang Agricultural Statistical Yearbook",
+        "China CLCD dataset",
+        "annual-scale vegetation continuous fields (VCF) product"
+      ],
+      "author_team": [
+        "Bin Li",
+        "Zehua Xu",
+        "Baiyin Liu",
+        "Zhimiao Zhang",
+        "Wenting Qiu",
+        "Wei Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Development of a finer-resolution multi-year emission inventory for open biomass burning in Heilongjiang Province, China",
+        "doi": "10.1038/s41598-024-81092-9",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "如何利用现代卫星燃烧面积观测以及气候、植被和人为活动变量重建 1901–2020 年全球月度燃烧面积分布及其长期变化？",
+      "hypothesis_or_mechanism": "FireCCI51 观测所揭示的燃烧面积与气候条件、燃料状态、植被、土地利用和人口活动之间的非线性关系，可以通过机器学习外推到卫星观测之前的历史时期。",
+      "variables_and_data_use": "以 FireCCI51 的月度 burned area fraction 作为模型训练目标和验证基准；使用 CRUJRA v2.2 的温度、降水、风速、VPD 和 FWI，HYDE3.2 的人口密度，ESA CCI land cover maps 和 LUH2-GCB2020 的土地利用变量，GIMMS LAI4g 与 TRENDY v11 的叶面积指数作为预测变量；使用 Global Charcoal Database v4、Reading Palaeofire Database 及区域燃烧面积数据进行独立验证和比较。",
+      "method_paradigm": "机器学习重建",
+      "used_assets": [
+        "FireCCI51",
+        "CRUJRA v2.2",
+        "HYDE3.2",
+        "ESA CCI land cover maps",
+        "LUH2-GCB2020",
+        "GIMMS LAI4g",
+        "TRENDY v11",
+        "Global Charcoal Database v4",
+        "Reading Palaeofire Database",
+        "Fire history reconstruction by Mouillot and Field (2005)"
+      ],
+      "author_team": [
+        "Zhixuan Guo",
+        "Wei Li",
+        "Philippe Ciais",
+        "Stephen Sitch",
+        "Guido R. van der Werf",
+        "Simon Bowring",
+        "Ana Bastos",
+        "Florent Mouillot",
+        "Jiaying He",
+        "Minxuan Sun",
+        "Lei Zhu",
+        "Xiaomeng Du",
+        "Nan Wang",
+        "Xiaomeng Huang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Reconstructed global monthly burned area maps from 1901 to 2020",
+        "doi": "10.5194/essd-17-3599-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何利用全球 FireCCI51 燃烧面积、MCD14ML 火灾辐射功率和火灾周界信息识别并表征 2003—2022 年的极端火灾事件？",
+      "hypothesis_or_mechanism": "在相同生态背景下，同时具有异常高燃烧面积和异常高火灾辐射功率，或具有异常火灾周界属性的火灾单元，可被识别为极端火灾事件。",
+      "variables_and_data_use": "使用 FireCCI51 提供的燃烧面积 BA，将其聚合到 0.25° 月度网格；使用 MCD14ML 提供的 FRP 并进行筛选和月度求和；使用 FRY versión 2.0 提供的火灾周界规模、持续时间、平均 FRP、传播速度和严重度；再依据 biomas de Dinerstein et al. (2017) 划分生态参照区域，在区域内进行对数变换、标准化和极端阈值判定。",
+      "method_paradigm": "全球事件识别与空间统计",
+      "used_assets": [
+        "FireCCI51",
+        "MCD14ML",
+        "FRY versión 2.0",
+        "biomas de Dinerstein et al. (2017)"
+      ],
+      "author_team": [
+        "Erika Solano-Romero",
+        "Carlota Segura-Garcia",
+        "M. Lucrecia Pettinari",
+        "Amin Khairoun",
+        "Miguel Ángel Torres-Vázquez",
+        "Emilio Chuvieco"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Creación de una base de datos de incendios extremos a escala global (2003-2022)",
+        "doi": "10.17398/3101-7177.2.225",
+        "year": 2026,
+        "venue": "Congresos UEX actas de congresos",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究长期气候条件与土耳其不同土地覆盖类型烧毁面积之间存在何种关系。",
+      "hypothesis_or_mechanism": "较高气温、较低相对湿度和较高VPD会使植被和森林燃料更加干燥，从而增加火灾发生风险和烧毁面积。",
+      "variables_and_data_use": "使用FireCCI51月度烧毁面积像元产品提取2001—2020年的烧毁面积，并按土地覆盖类型统计；使用TSMS的月度气温、相对湿度和降雨数据计算Angström指数与VPD，同时使用GDF火灾记录进行补充对照。",
+      "method_paradigm": "关系机制分析",
+      "used_assets": [
+        "FireCCI51 burned area product",
+        "FireCCI51 monthly burned area pixel products",
+        "MOD09GQ Collection 6",
+        "ESA CCI Land Cover classification system",
+        "CCI Land Cover (LC) products",
+        "General Directorate of Forestry (GDF), Forest Fire Service in Türkiye",
+        "Turkish State Meteorological Service (TSMS 2024)"
+      ],
+      "author_team": [
+        "Kadir Alperen Coskuner",
+        "İsmet Harman",
+        "Sadiq Zeynalov",
+        "Ertuğrul Bılgılı"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Exploring long-term wildfire dynamics across land cover types in relation to climate in the eastern mediterranean landscapes",
+        "doi": "10.31298/sl.149.3-4.4",
+        "year": 2025,
+        "venue": "Šumarski list",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "该研究旨在利用多源火灾、气象、植被和空间辅助数据协调生成 2003 至 2024 年的月度烧毁面积网格及不确定性产品。",
+      "hypothesis_or_mechanism": "不同烧毁面积与火点观测产品之间的系统差异可以通过气候、植被、火险和空间分层变量建模校正，从而形成一致的长期烧毁面积时间序列。",
+      "variables_and_data_use": "研究使用 FireCCI51 作为烧毁面积输入之一，并结合 FireCCIS311、MODIS MCD14ML active fire data、ERA5、MOD13C2 NDVI、TerraClimate、GLEAM、Fire Weather Index data 以及生物群系和陆海掩膜等数据，经过掩膜、协调模型训练与应用、后处理、不确定性估计和 NetCDF 导出，生成月度烧毁面积网格、月度不确定性网格、MRBA60 NetCDF 文件和 burned area fraction。",
+      "method_paradigm": "多源协调重建",
+      "used_assets": [
+        "FireCCI51",
+        "FireCCIS311",
+        "MODIS MCD14ML active fire data",
+        "ERA5",
+        "MOD13C2 NDVI",
+        "TerraClimate",
+        "GLEAM",
+        "Fire Weather Index data",
+        "Spatial layers for biomes and the land-sea mask"
+      ],
+      "author_team": [
+        "Miguel Ángel Torres-Vázquez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Supplementary Code Torres-Vázquez et al. (2026): Harmonised Medium Resolution Burned Area product",
+        "doi": "10.5281/zenodo.20698933",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "该研究旨在构建一个利用多源火灾、气象、植被和空间辅助数据生成 2003 至 2024 年月度谐调 burned area 网格及不确定性的处理链。",
+      "hypothesis_or_mechanism": "通过将 FireCCI51 等 burned area 数据与主动火点、植被、气候和火险变量进行掩膜、建模、谐调和后处理，可以获得时空一致的月度 burned area 产品。",
+      "variables_and_data_use": "FireCCI51 作为核心 burned area 输入参与谐调与月度网格生成；FireCCIS311 作为另一火灾相关输入参与产品生成；MODIS MCD14ML active fire data、ERA5、MOD13C2 NDVI、TerraClimate、GLEAM、Fire Weather Index data 以及 biomes 和 land-sea mask 空间层作为预测、控制、掩膜或验证辅助数据使用；输出包括月度 burned area grids、uncertainty grids、MRBA60 NetCDF、完整时间序列和 burned area fraction。",
+      "method_paradigm": "多源谐调重建",
+      "used_assets": [
+        "FireCCI51",
+        "FireCCIS311",
+        "MODIS MCD14ML active fire data",
+        "ERA5",
+        "MOD13C2 NDVI",
+        "TerraClimate",
+        "GLEAM",
+        "Fire Weather Index data",
+        "Spatial layers for biomes and the land-sea mask"
+      ],
+      "author_team": [
+        "Miguel Ángel Torres-Vázquez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Supplementary Code Torres-Vázquez et al. (2026): Harmonised Medium Resolution Burned Area product",
+        "doi": "10.5281/zenodo.20698934",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "模拟烧毁面积与卫星观测烧毁面积的差异如何影响陆地碳通量模型的结果？",
+      "hypothesis_or_mechanism": "烧毁面积输入的观测来源和空间时间表征会改变火灾影响范围，从而导致模型估计的陆地碳通量出现差异。",
+      "variables_and_data_use": "文本提及 FIRECCI51 和 Burned Area，并以模拟烧毁面积与卫星烧毁面积进行模型基准比较，但未提供足够信息确认 FIRECCI51 的实际输入方式及其他变量的具体用法。",
+      "method_paradigm": "模型比较与碳通量评估",
+      "used_assets": [
+        "FIRECCI51"
+      ],
+      "author_team": [
+        "Tiago Ermitão",
+        "Célia M. Gouveia",
+        "Ana Russo",
+        "Chantelle Burton",
+        "Evgenii Churiulin",
+        "Jefferson Goncalves De Souza",
+        "Michael O. Sullivan",
+        "Philippe Ciais",
+        "Sönke Zaehle",
+        "Stephen Sitch",
+        "Wei Li",
+        "Yidi Xu",
+        "Ana Bastos"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Influence of simulated vs. satellite-based burned areas on modelled terrestrial carbon fluxes",
+        "doi": "10.1186/s13021-025-00366-5",
+        "year": 2026,
+        "venue": "Carbon Balance and Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "该论文研究气候变化、土地利用变化和人类干预如何塑造欧洲未来火灾格局及 burned area 变化。",
+      "hypothesis_or_mechanism": "未来火灾面积由火险天气、燃料和植被状态、土地可燃面积以及人口密度或人类发展水平共同调节，不同火模型会对这些驱动产生不同响应。",
+      "variables_and_data_use": "论文使用 ESA FireCCI51 dataset 与 ESA LandcoverCCI 派生非农田植被 burned area fraction 并支撑 BASE 经验 burned area 模型；使用 CMIP6/FirEUrisk 气候投影和 ERA5‐LAND 校正气候输入，结合 HWSD 土壤、ISIMP3 氮沉降、HILDA+ 与 CLUMondo 土地利用、HDI 和人口密度数据驱动 LPJmL‐SPITFIRE 与 LPJmL‐BASE 模拟，并用 GFED4s burned area product 对历史参考模拟进行比较验证。",
+      "method_paradigm": "耦合过程-经验模拟",
+      "used_assets": [
+        "ESA FireCCI51 dataset",
+        "ESA LandcoverCCI",
+        "CMIP6",
+        "FirEUrisk",
+        "ERA5‐LAND",
+        "Harmonized World Soil Database (HWSD) version 1.2",
+        "ISIMP3 project",
+        "HILDA+ dataset",
+        "CLUMondo",
+        "Human Development Index",
+        "2020–2100 1‐km gridded population density estimates produced by Wang et al. ( 2022 )",
+        "GFED4s burned area product"
+      ],
+      "author_team": [
+        "Maik Billing",
+        "Matthew Forrest",
+        "Simon Bowring",
+        "Luke Oberhagemann",
+        "Alex Neidermeier",
+        "Jessica Hetzer",
+        "Werner von Bloh",
+        "Christoph Müller",
+        "Susanne Rolinski",
+        "Thomas Hickler",
+        "Kirsten Thonicke"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Future Projections of Burned Area in Europe Highlight the Importance of Human Action",
+        "doi": "10.1111/gcb.71043",
+        "year": 2026,
+        "venue": "Global Change Biology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "ENSO及其不同类型如何调制全球不同区域的景观火灾活动及其时间同步性？",
+      "hypothesis_or_mechanism": "ENSO通过改变温度、风速、土壤湿度、降水和大气干燥度等气象条件，进而影响景观火灾的发生和烧毁面积，并且不同ENSO类型的影响存在区域差异。",
+      "variables_and_data_use": "使用FIRECCI v51的月度烧毁面积记录作为火灾活动指标，使用ERA5的气温、风速、土壤湿度、蒸发率、降水、相对湿度、SPI、VPD和水汽通量作为气象变量，并使用monthly sea surface temperature anomaly (SSTA) data (ds277.3)识别和分类ENSO事件；随后对全球14个区域的时间序列进行异常化、去趋势、标准化以及ENSO与火灾变化的交叉谱和小波分析。",
+      "method_paradigm": "全球时频关系分析",
+      "used_assets": [
+        "European Space Agency (ESA) Climate Change Initiative (CCI) burned area pixel product version 5.1",
+        "FIRECCI v51",
+        "C2548142691-FEDEO/1",
+        "ERA5",
+        "monthly sea surface temperature anomaly (SSTA) data",
+        "ds277.3"
+      ],
+      "author_team": [
+        "Fangzhou Li",
+        "Ningran Li",
+        "Martin J. Wooster",
+        "Wenshi Lin",
+        "Tao Xue",
+        "Tong Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatiotemporal pattern of ENSO-induced modulation on landscape fires over Pacific Rim from 2001 to 2020",
+        "doi": "10.1016/j.accre.2024.11.001",
+        "year": 2024,
+        "venue": "Advances in Climate Change Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同时间尺度的同期和前期气候条件如何影响全球生态区火灾季节的 burned area 变化？",
+      "hypothesis_or_mechanism": "同期气候主要通过燃料湿度和可燃性影响 burned area，前期气候则通过影响细燃料生产量及结构间接影响火灾面积。",
+      "variables_and_data_use": "论文以 MCD64CMQ 的月度 burned area 作为主分析目标，并使用 Fire_cci v5.1（FireCCI51）的原始总 burned area 及排除特定农地类别后的序列进行对比；降水来自 MSWEP version 2.8，潜在蒸散发和气象条件来自 ERA5，火险条件使用 FWI version 4，进而构造 SPEI 和标准化 FWI，在生态区和火季尺度上进行汇总、去趋势、标准化及回归建模。",
+      "method_paradigm": "全球生态区回归与交叉验证",
+      "used_assets": [
+        "MODIS C6 data set",
+        "MCD64CMQ",
+        "Fire_cci v5.1",
+        "FireCCI51",
+        "MSWEP version 2.8",
+        "ERA5",
+        "FWI version 4",
+        "MOD09GHK",
+        "MYD09GHK",
+        "MOD14A1",
+        "MYD14A1"
+      ],
+      "author_team": [
+        "Andrina Gincheva",
+        "Juli G. Pausas",
+        "Miguel Ángel Torres‐Vázquez",
+        "Joaquín Bedia",
+        "Sergio M. Vicente‐Serrano",
+        "John T. Abatzoglou",
+        "José A. Sánchez-Espigares",
+        "Emilio Chuvieco",
+        "Sónia Jerez",
+        "Antonello Provenzale",
+        "Ricardo M. Trigo",
+        "Marco Turco"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "The Interannual Variability of Global Burned Area Is Mostly Explained by Climatic Drivers",
+        "doi": "10.1029/2023ef004334",
+        "year": 2024,
+        "venue": "Earth s Future",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究如何结合火灾燃烧面积、火灾严重度、森林燃料负荷和燃烧效率模型，改进意大利森林火灾温室气体与气溶胶排放估算，并与现有排放清单进行比较。",
+      "hypothesis_or_mechanism": "火灾严重度和植被类型通过改变生物量消耗比例与燃烧完整度，导致空间和生态条件异质性显著影响森林火灾排放量。",
+      "variables_and_data_use": "使用ESA FireCCI51 dataset识别受火灾影响的INFC样地；使用EFFIS Burnt Areas Database提供火灾周界和燃烧面积，使用EFFIS fire severity product及Landsat surface reflectance计算或表征火灾严重度，使用CLC18、INFC和RESOLVE global ecoregions dataset估计燃料类型、燃料负荷和生态区差异，使用INFC样地生物量拟合燃烧效率模型，并将这些变量代入IPCC分层排放方程估算CO₂、CH₄、N₂O和气溶胶排放；同时使用GFEDv4s、FINNv2.5、GFASv1.2、FOFEM v6.7和IT NIR进行比较验证。",
+      "method_paradigm": "分层排放估算与模型比较",
+      "used_assets": [
+        "ESA FireCCI51 dataset",
+        "European Forest Fire Information System (EFFIS) Burnt Areas Database",
+        "EFFIS fire severity product",
+        "CORINE Land Cover 2018 (CLC18)",
+        "Italian National Forest Census (INFC)",
+        "RESOLVE global ecoregions dataset",
+        "Landsat surface reflectance",
+        "Google Earth imagery",
+        "GFEDv4s",
+        "FINNv2.5",
+        "GFASv1.2",
+        "FOFEM v6.7",
+        "Italian National Greenhouse Gas Inventory (IT NIR)",
+        "Copernicus Emergency Management Service (CEMS)"
+      ],
+      "author_team": [
+        "Chiara Aquino",
+        "Valentina Bacciu",
+        "Maria Vincenza Chiriacò",
+        "Alessandro D’Anca",
+        "Jishnu Jeevan",
+        "Sergio Noce",
+        "Adriana Torelli",
+        "Manuela Balzarolo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "An Earth Observation-based Tier 3 framework for monitoring greenhouse gas emissions from forest fires in Italy",
+        "doi": "10.1038/s41598-026-55318-x",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "英国2001—2021年火灾及泥炭地火灾造成的碳排放有多大，并且未来变干的气候条件将如何影响泥炭燃烧和碳排放？",
+      "hypothesis_or_mechanism": "火灾发生尤其是泥炭地火灾与年际干燥气候条件呈正相关，较低的土壤湿度会增加泥炭燃烧深度并提高土壤有机碳排放。",
+      "variables_and_data_use": "使用FireCCI51和EFFIS提供月度250 m烧毁面积，结合土地覆盖和植被类型比例、Great Britain及Northern Ireland的地上碳或生物量、燃烧完全度和泥炭碳密度计算火灾及泥炭土壤有机碳排放；使用Copernicus ERA5 FWI和ISI描述火险与火势传播条件，使用ERA5 land月平均体积土壤含水量估算燃烧深度，并使用UK Climate Projections 2018及Kay et al. (2022)的土壤湿度模拟评估2摄氏度全球变暖情景。",
+      "method_paradigm": "空间显式排放估算与情景分析",
+      "used_assets": [
+        "FireCCI51: MODIS Fire_cci Burned Area Pixel Product, Version 5.1",
+        "European Forest Fire Information System (EFFIS)",
+        "Global Fire Emissions Database (GFED)",
+        "high-resolution carbon map of Great Britain and Northern Ireland",
+        "Spawn et al. (2020) data set",
+        "land cover maps",
+        "daily Copernicus ERA5 reanalysis FWI and ISI data",
+        "ERA5 land monthly average volumetric soil water",
+        "UK Climate Projections 2018 regional projections",
+        "1 km grids of monthly mean soil moisture simulated by Kay et al. (2022)"
+      ],
+      "author_team": [
+        "Sarah J. Baker",
+        "Matthew C Perry",
+        "Richard Betts",
+        "Johanna Schoenecker",
+        "Adam F. A. Pellegrini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Spikes in UK wildfire emissions driven by peatland fires in dry years",
+        "doi": "10.1088/1748-9326/adafc6",
+        "year": 2025,
+        "venue": "Environmental Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "该论文研究如何用土地覆盖、气象、植被生产力、人类活动和地形变量解释并模拟欧洲不同土地覆盖类型中的月尺度火灾发生。",
+      "hypothesis_or_mechanism": "火灾发生受燃料积累与状态、火险天气、人类活动强度和地形条件共同调控，并且这些作用在农田与非农植被之间不同。",
+      "variables_and_data_use": "论文使用 ESA FireCCI51 的烧毁像元与 ESA Land Cover CCI 结合，计算不同土地覆盖类型的月尺度 burnt fraction 和 burnt area，并将 burnt fraction 作为 GLM 目标变量；同时使用 ERA5-Land 派生 FWI 和风速，使用 GOSIF GPP 派生 GPP12、MEPI 和 PHI，使用 CGLS FAPAR、Landsat tree canopy、HYDE 人口密度、Kummu et al. 的 HDI/GDP 以及 Geomorpho90 地形变量作为候选预测因子。",
+      "method_paradigm": "过程约束统计建模",
+      "used_assets": [
+        "ESA FireCCI51",
+        "FireCCI51 pixel product",
+        "ESA Land Cover CCI",
+        "ERA5-Land",
+        "Global OCO-2 SIF GPP product (GOSIF)",
+        "FAPAR 1km v2 product by the Copernicus Global Land Service (CGLS)",
+        "global 30 m Landsat tree canopy version 4 product",
+        "HYDE v3.2 database baseline version",
+        "datasets from Kummu et al. (2018)",
+        "Geomorpho90 dataset",
+        "MERIT digital elevation model",
+        "Copernicus Land Cover dataset"
+      ],
+      "author_team": [
+        "Matthew Forrest",
+        "Jessica Hetzer",
+        "Maik Billing",
+        "Simon P. K. Bowring",
+        "Eric Kosczor",
+        "Luke Oberhagemann",
+        "Oliver Perkins",
+        "Dan L. Warren",
+        "Fátima Arrogante‐Funes",
+        "Kirsten Thonicke",
+        "Thomas Hickler"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Understanding and simulating cropland and non-cropland burning in Europe using the BASE (Burnt Area Simulator for Europe) model",
+        "doi": "10.5194/bg-21-5539-2024",
+        "year": 2024,
+        "venue": "Biogeosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "该论文研究 CMIP6 历史火灾模拟在烧毁面积、火碳排放、空间分布、季节性、长期趋势和年际变率方面相对于多种观测基准的表现。",
+      "hypothesis_or_mechanism": "不同地球系统模型的火灾过程方案及其对气候和人类活动驱动的处理差异，会导致模拟火灾总量、空间格局和时间变率相对于观测基准出现系统偏差。",
+      "variables_and_data_use": "论文使用 CMIP6 和 CMIP5 的 burned area 与 fire carbon emissions 模拟作为被评估对象；使用 GFED5、FireCCI51 和 MODIS C6 的 burned area 作为卫星烧毁面积基准；使用 GFED4s、GFAS1.2 和 FEER-G1.2 的 fire carbon emissions 作为排放基准；使用 RPD 木炭记录评估长期趋势；并结合 CRU TS v.4.04 降水、HadISST SST 计算 Niño3.4 指数以及 HYDEv3.2 人口密度分析火灾驱动关系。",
+      "method_paradigm": "多基准模型评估",
+      "used_assets": [
+        "CMIP6 historical fire simulations",
+        "CMIP5 historical fire simulations",
+        "Global Fire Emissions Database version 5 (GFED5)",
+        "European Space Agency Fire Climate Change Initiative version 5.1 (FireCCI51)",
+        "Collection 6 Moderate Resolution Imaging Spectroradiometer (MODIS C6)",
+        "GFED4s",
+        "Global Fire Assimilation System version 1.2 (GFAS1.2)",
+        "Fire Energetics and Emissions Research version 1.0-G1.2 (FEER-G1.2)",
+        "Reading Paleofire Database (RPD)",
+        "Climatic Research Unit Time-series version 4.04 (CRU TS v.4.04)",
+        "Hadley Centre Sea Ice and Sea Surface Temperature (HadISST) data set",
+        "HYDEv3.2"
+      ],
+      "author_team": [
+        "Fang Li",
+        "Xiang Song",
+        "Sandy P. Harrison",
+        "Jennifer R. Marlon",
+        "Zhongda Lin",
+        "L. Ruby Leung",
+        "Jörg Schwinger",
+        "Virginie Marécal",
+        "Shiyu Wang",
+        "D. S. Ward",
+        "Xiao Dong",
+        "Hanna Lee",
+        "Lars Nieradzik",
+        "Sam S. Rabin",
+        "Roland Séférian"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of global fire simulations in CMIP6 Earth system models",
+        "doi": "10.5194/gmd-17-8751-2024",
+        "year": 2024,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "森林火灾引发的陆域径流如何影响贝加尔湖主要入湖河流支流的营养盐与沉积物输送，进而导致湖水叶绿素a和浊度的变化？",
+      "hypothesis_or_mechanism": "火灾导致的植被破坏与土壤裸露会增加地表侵蚀，经降雨冲刷后使大量泥沙与营养盐汇入湖泊，从而引发浮游植物水华（叶绿素a升高）和湖水浊度上升。",
+      "variables_and_data_use": "使用FireCCI51产品获取每日过火面积并聚合为周尺度；使用Lakes_cci产品获取叶绿素a和浊度日值；使用ERA5再分析数据获取降水、温度等气象变量；通过NPMR非线性乘积回归模型分析火灾与气象变量对水质指标的响应关系。",
+      "method_paradigm": "统计回归与时间序列分析",
+      "used_assets": [
+        "FireCCI51",
+        "Lakes_cci",
+        "ERA5"
+      ],
+      "author_team": [
+        "Monica Pinardi",
+        "Daniela Stroppiana",
+        "Rossana Caroni",
+        "Lorenzo Parigi",
+        "Giulio Tellina",
+        "Gary Free",
+        "Claudia Giardino",
+        "Clément Albergel",
+        "Mariano Bresciani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessing the impact of wildfires on water quality using satellite remote sensing: the Lake Baikal case study",
+        "doi": "10.3389/frsen.2023.1107275",
+        "year": 2023,
+        "venue": "Frontiers in Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "冬季 Warm Arctic–Cold Eurasia 型气候变化及其相关积雪变化是否会通过春季干燥和植被暴露影响西西伯利亚春季野火燃烧面积，并能否据此提前预测火灾活动？",
+      "hypothesis_or_mechanism": "冬季 WACE 造成降雪和积雪减少，使春季土壤水分降低、潜在蒸散增强并促进植被提前暴露，从而增加4月至5月的燃烧面积和火灾碳排放。",
+      "variables_and_data_use": "使用 FireCCI51 的2001—2020年 burned area 构建4月至5月 BAWSAM，分析其与冬季 WACE、积雪、土壤水分、潜在蒸散、降水、地表气温、NDVI及其他气象变量的相关关系，并使用 FireCCILT11 进行独立对照验证；同时将 NCEP Coupled Forecast System Model 提供的 Z500CFS 作为预测变量，建立 BAWSAM 和火灾 CO2 排放预测模型。",
+      "method_paradigm": "气候关联与预测建模",
+      "used_assets": [
+        "FireCCI51",
+        "FireCCILT11",
+        "NCEP Coupled Forecast System Model",
+        "SPEI",
+        "soil moisture",
+        "potential evapotranspiration",
+        "precipitation",
+        "surface air temperature",
+        "snow cover",
+        "snowfall",
+        "snow depth",
+        "NDVI"
+      ],
+      "author_team": [
+        "Zhicong Yin",
+        "Yijia Zhang",
+        "Shengping He",
+        "Huijun Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Warm Arctic-Cold Eurasia pattern helps predict spring wildfire burned area in West Siberia",
+        "doi": "10.1038/s41467-024-53470-4",
+        "year": 2024,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "外部强迫与内部变率如何共同影响印支半岛地区春季降水变化？",
+      "hypothesis_or_mechanism": "热带印度洋-太平洋海温模态（如IPO）通过调制大气环流与水分输送，显著影响该区域的春季降水趋势，且其信号可通过集合模式分离识别。",
+      "variables_and_data_use": "使用FireCCI51月度过火面积数据计算研究区春季过火面积变率；结合MPI-GE与CMIP6集合模式输出，分离外部强迫响应与内部气候变率对春季降水的影响；辅以ERA5、ERSST.v5、GFWED等气象与海温数据构建气候指数并验证模式模拟能力。",
+      "method_paradigm": "集合模式信号分离与气候归因分析",
+      "used_assets": [
+        "FireCCI51",
+        "FireCCILT11",
+        "GFED4.1s",
+        "GFED5",
+        "GlobalFireCO2",
+        "MCD12C1",
+        "MOD13A3",
+        "GFWED",
+        "AGLW",
+        "GGCP",
+        "PREC/L",
+        "ERA5",
+        "ERSST.v5",
+        "MPI-GE",
+        "CMIP6"
+      ],
+      "author_team": [
+        "Qingyu Cai",
+        "Wen Chen",
+        "Yan Yu",
+        "Shangfeng Chen",
+        "Tianjiao Ma",
+        "Xu Xue",
+        "Jinling Piao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The Silent Expansion of Fire Activity in Continental Tropical Asia shaped by natural and anthropogenic forces",
+        "doi": "10.1038/s41467-026-73201-1",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "新喀里多尼亚当代野火格局如何影响该生物多样性热点区特有植物与爬行动物的灭绝风险？",
+      "hypothesis_or_mechanism": "气候变暖与极端天气（如干旱、ENSO/IOD事件）加剧野火活动，直接烧毁栖息地并通过生境破碎化间接威胁窄分布物种生存。",
+      "variables_and_data_use": "使用FireCCI51提取2001-2023年年均过火面积，结合l'Oeil的Sentinel-2数据、WWF实地测绘数据及C3SBA10进行交叉验证，量化卫星产品漏检率并评估实际过火范围对IUCN受胁物种的暴露度。",
+      "method_paradigm": "遥感过火制图与生态脆弱性评估",
+      "used_assets": [
+        "FireCCI51",
+        "C3SBA10",
+        "l'Oeil Sentinel-2",
+        "WWF field-mapped burnt area"
+      ],
+      "author_team": [
+        "Thomas Ibanez",
+        "Fabien Albouy",
+        "David Bruy",
+        "Matthias Deuss",
+        "Aurélie Fourdrain",
+        "Hubert Géraux",
+        "Cédric Haverkamp",
+        "Stéphane McCoy",
+        "Christophe Menkes",
+        "Imma Oliveras Menor",
+        "Nicolas Rinck",
+        "Alexandre Rossignol",
+        "Christophe Sand",
+        "Marie Toussaint",
+        "Solène Verda",
+        "Gendrilla Warimavute"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Altered fire regimes and biodiversity in New Caledonia",
+        "doi": "10.1071/pc26037",
+        "year": 2026,
+        "venue": "Pacific Conservation Biology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "该论文研究 logistic regression 与 XGBoost 在 MODIS 多时相遥感数据中识别 burned areas 的分类性能差异。",
+      "hypothesis_or_mechanism": "燃烧会导致 NBR、NBR2、MVI、MIRBI、NDVI 和 NIR 等光谱指数在火前火后发生可分辨变化，结合 active-fire 距离和密度可提高 burned/unburned 像元分类。",
+      "variables_and_data_use": "论文使用 MOD09GA 和 MYD09GA 日尺度影像计算 spectral indices 及火前火后差异，使用 MCD14DL 和 VIIRS active-fire 数据确定最近火点日期、距离和平均火点密度，使用 MCD12Q1 派生 burnability，使用 EFFIS wildfire data base 构建参考分类，并使用 MCD64A1 与 FireCCI5.1 product 对分类结果进行验证。",
+      "method_paradigm": "监督式变化检测",
+      "used_assets": [
+        "MOD09GA",
+        "MYD09GA",
+        "MCD12Q1",
+        "MCD14DL",
+        "VIIRS",
+        "EFFIS wildfire data base",
+        "MCD64A1",
+        "FireCCI5.1 product"
+      ],
+      "author_team": [
+        "Ana F. Militino",
+        "Harkaitz Goyena",
+        "Unai Pérez-Goya",
+        "M. D. Ugarte"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Logistic regression versus XGBoost for detecting burned areas using satellite images",
+        "doi": "10.1007/s10651-023-00590-7",
+        "year": 2024,
+        "venue": "Environmental and Ecological Statistics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "该论文研究全球不同生态区中野火前兆因子与火烧面积之间的时滞因果关系及主导前兆。",
+      "hypothesis_or_mechanism": "天气条件和燃料状态等 top-down 与 bottom-up precursors 会以不同时间滞后影响后续 burned area，且主导因子随生态区变化。",
+      "variables_and_data_use": "论文将 FireCCI51 的 pixel-level burned area、first fire detection day、confidence level 和 land cover 用作 wildfire activity indicator，并经质量控制、重采样和周尺度求和生成 BA 时间序列；同时使用 Tmax、VPD、ET0、Wind、AAI、FPAR、GPP、NDVI、EVI、SWDI 作为前兆变量，并使用 global digital Köppen-Geiger map 与 FireCCI51 land cover layer 定义生态区。所有变量在 232 个生态区中按周聚合后输入 PCMCI。",
+      "method_paradigm": "时滞因果发现",
+      "used_assets": [
+        "FireCCI51",
+        "global digital Köppen-Geiger map",
+        "Tmax",
+        "VPD",
+        "ET0",
+        "Wind",
+        "AAI",
+        "FPAR",
+        "GPP",
+        "NDVI",
+        "EVI",
+        "SWDI"
+      ],
+      "author_team": [
+        "Yuquan Qu",
+        "Diego G. Miralles",
+        "Sander Veraverbeke",
+        "Harry Vereecken",
+        "Carsten Montzka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Wildfire precursors show complementary predictability in different timescales",
+        "doi": "10.1038/s41467-023-42597-5",
+        "year": 2023,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "该论文研究东部西伯利亚火季烧毁面积与降水、VPD、海温年代际变率和大气环流之间的关系及其成因。",
+      "hypothesis_or_mechanism": "SPNA 年代际变率可能通过激发定常 Rossby 波和调制区域降水、水汽亏缺等气候条件，进而影响火季 burned area fraction。",
+      "variables_and_data_use": "论文主要使用 MCD64A1 v6.1 月尺度 burned area 数据计算 burned area fraction，并使用 FireCCI51 global burned area dataset 交叉验证烧毁面积时空格局；同时使用 MOD13A3 NDVI、CRU TS v4.07 气象变量、TerraClimate 风速、GLEAM 土壤湿度、ERSSTv5 SST、NCEP/NCAR Reanalysis-Ⅰ 环流和湿度数据，以及 GPCC、Hadley Centre Sea Ice and Sea Surface Temperature dataset 和 NCEP-DOE Reanalysis-ⅠⅠ 做稳健性检验。",
+      "method_paradigm": "相关与因果路径分析",
+      "used_assets": [
+        "MCD64A1 v6.1",
+        "FireCCI51 global burned area dataset",
+        "MOD13A3",
+        "CRU TS v4.07",
+        "TerraClimate",
+        "GLEAM version 4.1a",
+        "ERSSTv5",
+        "NCEP/NCAR Reanalysis-Ⅰ",
+        "GPCC precipitation database",
+        "Hadley Centre Sea Ice and Sea Surface Temperature dataset",
+        "NCEP-Department of Energy Atmospheric Model Intercomparison Project Reanalysis-ⅠⅠ"
+      ],
+      "author_team": [
+        "Yuhao Zeng",
+        "Jun Wang",
+        "Shangfeng Chen",
+        "Congrong Sun",
+        "Chaoyang Wu",
+        "Jingyun Zheng",
+        "Quansheng Ge"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Subpolar North Atlantic decadal cooling may have aggravated recent Eastern Siberian wildfires",
+        "doi": "10.1038/s41467-025-66520-2",
+        "year": 2025,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "该论文研究 2001 至 2022 年中国野火 CO2 排放的时空格局及其驱动因素。",
+      "hypothesis_or_mechanism": "不同植被类型的 burned area、地上生物量、燃烧效率和排放因子共同决定野火 CO2 排放，且气候和社会经济因素对排放的影响具有时空异质性。",
+      "variables_and_data_use": "论文主要使用 MODIS-MCD64A1 product 提供 burned area，并用 FireCCI51 product 和 global GFED500 product 与 MODIS-derived BA 比较推导 scaling factors；同时使用 CNLUCC 划分植被类型，使用森林、灌木、草地和农田 biomass 数据、NDVI、FVC、作物统计数据、emission factors 和 combustion efficiency 计算 CO2 排放，并进一步进行空间自相关、热点和 GTWR 分析。",
+      "method_paradigm": "排放清单重建",
+      "used_assets": [
+        "MODIS-MCD64A1 product",
+        "FireCCI51 product",
+        "global GFED500 product",
+        "China Land Use Land Cover Remote Sensing Monitoring Dataset (CNLUCC)",
+        "1 km harvesting area dataset for three staple crops",
+        "China's regional 250 m normalized difference vegetation index dataset",
+        "China's regional 250 m fractional vegetation cover dataset",
+        "China Statistical Yearbook"
+      ],
+      "author_team": [
+        "Xuehong Gong",
+        "Zeyu Liu",
+        "Jie Tian",
+        "Qiyuan Wang",
+        "Guohui Li",
+        "Zhisheng An",
+        "Yongming Han"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Spatiotemporal patterns and drivers of wildfire CO 2 emissions in China from 2001 to 2022",
+        "doi": "10.5194/acp-25-10379-2025",
+        "year": 2025,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "该论文研究如何用多源环境变量和多种火灾产品预测北方泥炭地火灾发生、烧毁面积和碳排放。",
+      "hypothesis_or_mechanism": "泥炭地火灾是稀有且极端的事件，其发生和规模受温度、空气干燥度、土壤湿度、降水、植被和人类活动等因素共同控制。",
+      "variables_and_data_use": "论文使用 GFED4.1s carbon emissions、GFED4.1s BA、FireCCI5.1 BA、MCD45A1 和 MCD64A1 作为火灾响应或发生变量；使用 CRU、MERRA-2、GIMMS-3g NDVI、GIMMS-3g GPP、GLEAM soil moisture 和 HYDE population density 等作为解释变量，统一重网格化到 1° × 1° 月尺度后输入分类、回归和因子控制模拟。",
+      "method_paradigm": "机器学习归因预测",
+      "used_assets": [
+        "Global Fire Emission Database (GFED) version 4.1s (GFED4.1s) carbon emissions",
+        "GFED4.1s burned area (BA)",
+        "Fire Climate Change Initiative (FireCCI) version 5.1 (FireCCI5.1) BA",
+        "MCD45A1",
+        "MCD64A1",
+        "Climatic Research Unit (CRU) time series data version 4.04",
+        "Modern-Era Retrospective analysis for Research and Applications Version 2 (MERRA-2) 2 m wind speed",
+        "GIMMS-3g NDVI",
+        "GIMMS-3g gross primary productivity (GPP)",
+        "Global Land Evaporation Amsterdam Model (version 3.3) surface soil moisture (SMsurf) and root-zone soil moisture (SMroot)",
+        "History Database of the Global Environment (version 3.2)"
+      ],
+      "author_team": [
+        "Rongyun Tang",
+        "Mingzhou Jin",
+        "Jiafu Mao",
+        "Daniel Ricciuto",
+        "Anping Chen",
+        "Yulong Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Quantifying wildfire drivers and predictability in boreal peatlands using a two-step error-correcting machine learning framework in TeFire v1.0",
+        "doi": "10.5194/gmd-17-1525-2024",
+        "year": 2024,
+        "venue": "Geoscientific model development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "气候变化与人类活动如何驱动非洲木本植被覆盖的时空变化？",
+      "hypothesis_or_mechanism": "降水变化是控制非洲木本植被覆盖的主导因素，火灾、土壤肥力与人口密度起协同或调节作用。",
+      "variables_and_data_use": "使用CHIRPS降水和ERA5温度等历史气候数据，结合HWSD土壤属性、GPW人口密度及FireCCI51过火面积作为预测因子，训练多种机器学习模型预测木本植被覆盖；利用CMIP6未来降水情景驱动模型评估未来植被变化趋势。",
+      "method_paradigm": "数据驱动机器学习建模",
+      "used_assets": [
+        "PlanetScope woody cover",
+        "CHIRPS",
+        "ERA5",
+        "Regridded Harmonized World Soil Database v.1.2",
+        "FireCCI51",
+        "Gridded Population of World Version 4 Revision 11",
+        "CMIP6 ESMs",
+        "MOD44B",
+        "Hansen et al. woody cover",
+        "Hanan et al. woody cover"
+      ],
+      "author_team": [
+        "Wenmin Zhang",
+        "Rasmus Fensholt",
+        "Martin Brandt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Projected Rainfall‐Driven Expansion of Woody Cover in African Drylands",
+        "doi": "10.1029/2023gl103932",
+        "year": 2023,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "该论文研究澳大利亚和欧洲木本植物群落中重萌芽者比例与火灾回归间隔、生产力和草本覆盖之间的关系。",
+      "hypothesis_or_mechanism": "火灾频率、潜在火强度和草本燃料结构会筛选植物火后再生策略，从而影响群落中重萌芽物种的占比。",
+      "variables_and_data_use": "论文使用 sPlotOpen 样地物种覆盖度和 TRY、BROT、AusTraits 性状数据库计算重萌芽者比例；使用 MODISMCD64CMQ、FireCCI51 和 FireCCI10LT 的烧毁面积比例估计 FRI；使用 P-model GPP 作为火强度替代指标，并使用 ESA CCI LC 草地覆盖作为草本燃料结构指标。",
+      "method_paradigm": "生态关系建模",
+      "used_assets": [
+        "sPlotOpen",
+        "TRY",
+        "BROT",
+        "AusTraits",
+        "MODISMCD64CMQ",
+        "FireCCI51",
+        "FireCCI10LT",
+        "P-model",
+        "WFDEI",
+        "CRU TS4.04",
+        "GIMMs 3g",
+        "ESA CCI LC data"
+      ],
+      "author_team": [
+        "Yicheng Shen",
+        "Wenjia Cai",
+        "I. Colin Prentice",
+        "Sandy P. Harrison"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Community Abundance of Resprouting in Woody Plants Reflects Fire Return Time, Intensity, and Type",
+        "doi": "10.3390/f14050878",
+        "year": 2023,
+        "venue": "Forests",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "如何构建数据驱动的机器学习模型以识别芬诺斯坎迪亚地区火灾危险的主导水文气象因素并生成火灾概率图？",
+      "hypothesis_or_mechanism": "浅层土壤水分异常、温度及深层土壤水分是控制该地区火灾发生概率的关键驱动因子，数据驱动模型能比传统气象指数更准确地捕捉这些非线性关系。",
+      "variables_and_data_use": "使用ESA CCI FireCCI51月度过火面积数据作为二分类目标变量；结合E-OBS降水温度、ERA5-Land风场雪盖土壤水分等30个气象与地表预测变量训练随机森林模型，并使用挪威地面火灾记录进行独立验证。",
+      "method_paradigm": "数据驱动机器学习建模",
+      "used_assets": [
+        "ESA CCI FireCCI v5.1",
+        "E-OBS v23.1e",
+        "ERA5-Land",
+        "Canadian FWI",
+        "Norwegian DSB fire record",
+        "MODIS MOD13C2"
+      ],
+      "author_team": [
+        "Sigrid Jørgensen Bakke",
+        "Niko Wanders",
+        "Karin van der Wiel",
+        "Lena M. Tallaksen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A data-driven model for Fennoscandian wildfire danger",
+        "doi": "10.5194/nhess-23-65-2023",
+        "year": 2023,
+        "venue": "Natural hazards and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 30,
+    "source_paper_count": 30,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

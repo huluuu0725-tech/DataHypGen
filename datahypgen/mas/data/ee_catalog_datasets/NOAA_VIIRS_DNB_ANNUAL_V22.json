@@ -1,0 +1,203 @@
+{
+    "type": "Collection",
+    "id": "NOAA/VIIRS/DNB/ANNUAL_V22",
+    "stac_version": "1.1.0",
+    "description": "Annual global VIIRS nighttime lights dataset is a time series produced from\nmonthly cloud-free average radiance grids for 2022. Data for earlier\nyears are available in the\n[NOAA/VIIRS/DNB/ANNUAL_V21](NOAA_VIIRS_DNB_ANNUAL_V21) dataset.\n\nAn initial filtering step removed sunlit, moonlit and cloudy pixels,\nleading to rough composites that contains lights, fires, aurora and\nbackground. The rough annual composites are made on monthly increments and\nthen combined to form rough annual composites.\n\nThe subsequent steps uses the twelve-month median radiance to discard high\nand low radiance outliers, filtering out most fires and isolating the\nbackground. Background areas are zeroed out using the data range (DR)\ncalculated from 3x3 grid cells. The DR threshold for background is indexed\nto cloud-cover levels, with higher DR thresholds in areas having low numbers\nof cloud-free coverages.\n",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/catalog.json",
+            "type": "application/json",
+            "title": "Google Earth Engine Catalog"
+        },
+        {
+            "rel": "related",
+            "href": "https://code.earthengine.google.com/?scriptPath=Examples:Datasets/NOAA/NOAA_VIIRS_DNB_ANNUAL_V22",
+            "type": "text/html",
+            "title": "Run the example for NOAA/VIIRS/DNB/ANNUAL_V22 in the Earth Engine Code Editor",
+            "code": "JavaScript"
+        },
+        {
+            "rel": "preview",
+            "href": "https://developers.google.com/earth-engine/datasets/images/NOAA/NOAA_VIIRS_DNB_ANNUAL_V22_sample.png",
+            "type": "image/png"
+        },
+        {
+            "rel": "license",
+            "href": "https://developers.google.com/earth-engine/datasets/catalog/NOAA_VIIRS_DNB_ANNUAL_V22#terms-of-use",
+            "type": "text/html"
+        },
+        {
+            "rel": "self",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/NOAA/NOAA_VIIRS_DNB_ANNUAL_V22.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/NOAA/catalog.json",
+            "type": "application/json",
+            "title": "NOAA"
+        }
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/version/v1.2.0/schema.json"
+    ],
+    "gee:categories": [
+        "population"
+    ],
+    "gee:interval": {
+        "interval": 1,
+        "type": "cadence",
+        "unit": "year"
+    },
+    "gee:terms_of_use": "Colorado School of Mines data, information, and products,\nregardless of the method of delivery,\nare not subject to copyright and carry no restrictions on their subsequent\nuse by the public. Once obtained, they may be put to any lawful use. The\nforgoing data is in the public domain and is being provided without\nrestriction on use and distribution.\n",
+    "gee:type": "image_collection",
+    "sci:citation": "Elvidge, C.D, Zhizhin, M., Ghosh T., Hsu FC, Taneja J. Annual time series of\nglobal VIIRS nighttime lights derived from monthly averages:2012 to 2019.\nRemote Sensing 2021, 13(5), p.922, doi:10.3390/rs13050922\n[doi:10.3390/rs13050922](https://doi.org/10.3390/rs13050922)\n",
+    "sci:doi": "10.3390/rs13050922",
+    "version": "V2.2",
+    "gee:status": "ready",
+    "title": "VIIRS Nighttime Day/Night Annual Band Composites V2.2",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -65,
+                    180,
+                    75
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2012-04-01T00:00:00Z",
+                    "2025-01-01T00:00:00Z"
+                ]
+            ]
+        }
+    },
+    "license": "other",
+    "keywords": [
+        "annual",
+        "dnb",
+        "eog",
+        "lights",
+        "nighttime",
+        "noaa",
+        "population",
+        "viirs",
+        "visible"
+    ],
+    "providers": [
+        {
+            "name": "Earth Observation Group, Payne Institute for Public Policy, Colorado School of Mines",
+            "roles": [
+                "licensor",
+                "producer"
+            ],
+            "url": "https://eogdata.mines.edu/products/vnl/#annual_v2"
+        },
+        {
+            "name": "Google Earth Engine",
+            "roles": [
+                "host"
+            ],
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/NOAA_VIIRS_DNB_ANNUAL_V22"
+        }
+    ],
+    "summaries": {
+        "eo:bands": [
+            {
+                "description": "Average DNB radiance values.",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "average",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Average Masked DNB radiance values",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "average_masked",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Cloud-free coverages; the total number of observations that\nwent into each pixel. This band can be used to identify areas with low\nnumbers of observations where the quality is reduced.\n",
+                "name": "cf_cvg",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Total number of observations free of sunlight and moonlight.\n",
+                "name": "cvg",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Maximum DNB radiance values.",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "maximum",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Median DNB radiance values",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "median",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Median masked DNB radiance values.",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "median_masked",
+                "gsd": [
+                    463.83
+                ]
+            },
+            {
+                "description": "Minimum DNB radiance values",
+                "gee:units": "nanoWatts/sr/cm^2",
+                "name": "minimum",
+                "gsd": [
+                    463.83
+                ]
+            }
+        ],
+        "gee:visualizations": [
+            {
+                "display_name": "Nighttime",
+                "image_visualization": {
+                    "band_vis": {
+                        "bands": [
+                            "maximum"
+                        ],
+                        "max": [
+                            60
+                        ],
+                        "min": [
+                            0
+                        ]
+                    }
+                },
+                "lookat": {
+                    "lat": 45.83,
+                    "lon": 1.76,
+                    "zoom": 4
+                }
+            }
+        ],
+        "gsd": [
+            463.83
+        ]
+    }
+}

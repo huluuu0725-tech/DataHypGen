@@ -1,0 +1,32 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Western United States forests (west of 103°W)",
+  "data_description": {
+    "dataset_name": "NLDAS-2: North American Land Data Assimilation System Forcing Fields",
+    "spatial_coverage": {
+      "region_name": "Western United States forests (west of 103°W)",
+      "coverage": "North American land domain from 24.85°N–53.28°N and 125.15°W–66.85°W; use the western-US subset and apply a forest mask for analysis."
+    },
+    "temporal_coverage": "1979-01-01T13:00:00Z to 2026-07-02T23:00:00Z",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "13915 m nominal (1/8°) hourly grid",
+    "temporal_unit": "Hourly forcing fields",
+    "analytical_capabilities": [
+      "Derive daily and monthly temperature, precipitation, humidity, wind and radiation summaries",
+      "Compute fuel-aridity proxies such as vapor-pressure deficit, reference evapotranspiration and fire-weather indices from meteorological inputs",
+      "Aggregate seasonal and annual climate indicators over western-US forest grids",
+      "Calculate spatial anomalies, trends and drought-index covariates for fire-risk analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NLDAS-2 meteorological forcing fields: temperature (°C), specific_humidity (mass fraction), pressure (Pa), wind_u/wind_v (m/s), radiation (W/m²), potential_evaporation and total_precipitation (kg/m²), plus convective_fraction (fraction) and potential_energy (J/kg).",
+      "runtime_hint": "Use catalog band names directly. Combine wind_u and wind_v to derive wind speed; aggregate hourly precipitation and radiation explicitly before computing daily fire indices. The collection is hourly at nominal 1/8° spacing, so it is not a precomputed FWI/ERC/KBDI/PDSI product. Apply the western-US and forest masks and retain the relevant 1979–2015 study interval."
+    },
+    "data_source": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC), NLDAS-2",
+    "gee_asset": {
+      "id": "NASA/NLDAS/FORA0125_H002",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NASA/NLDAS/FORA0125_H002"
+}

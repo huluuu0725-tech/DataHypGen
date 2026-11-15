@@ -1,0 +1,868 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_045",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "JRC Global Surface Water v1.4",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "data_path": "GEE:JRC/GSW1_4/GlobalSurfaceWater",
+    "spatial_resolution": "30 m",
+    "temporal_resolution": "monthly history 1984-2021",
+    "gee_asset": {
+      "id": "JRC/GSW1_4/GlobalSurfaceWater",
+      "type": "image"
+    }
+  },
+  "current_data_path": "GEE:JRC/GSW1_4/GlobalSurfaceWater",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_045.json",
+    "source_sha256": "697e52590840c96921429f0700dedb6cc7c525826c10b39c34c97dc116aa323f",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_045/prompt.json",
+    "current_prompt_sha256": "aefa0d8a11c0860614c7ecfc339732c536e1d4278a5428c45d7bac0e5bfdb7f9",
+    "original_anchor_asset": {
+      "id": "JRC/GSW1_4/GlobalSurfaceWater",
+      "observable_group": "jrc_global_surface_water_v1_4",
+      "kind": "surface_water",
+      "title": "JRC Global Surface Water v1.4",
+      "observation_identity_contract": {
+        "physical_object": "surface water occurrence, change dynamics and seasonality from Landsat archives",
+        "source_lineage": "JRC Global Surface Water v1.4 production lineage (Landsat 1984-2021 expert-system water classification)",
+        "core_measurement_semantics": "GSW v1.4 surface water occurrence/change/seasonality/recurrence layers at 30 m",
+        "non_material_variations": "archive, tile/grid, resampling, or layer aggregation retaining GSW v1.4 output",
+        "material_mismatches": "HydroLAKES, Global Lakes and Wetlands Database, Sentinel-2 water indices products, or other surface-water maps without GSW operational input"
+      },
+      "asset_alias_policy": "Only the JRC Global Surface Water v1.4 layer family is admitted; other surface-water datasets may be companions but are not aliases."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "研究1984—2021年鄱阳湖水面积和地表水空间动态如何变化，以及气候变化和人类活动如何影响这些变化。",
+      "hypothesis_or_mechanism": "降水增加和温度变化会通过影响湖泊补水、径流和蒸发改变水面积，而水利工程、围垦治理和生态迁移等人类活动也会造成水体面积和类型变化。",
+      "variables_and_data_use": "使用JRC global surface water dataset的水体出现频率、时期变化和水体类型转移变量分析地表水空间动态；使用Landsat Collection 2 Tier1及Landsat MSS、TM、OLI表面反射率影像计算NDWI、提取年度和季节湖泊水面积；使用气象站日平均温度和日降水数据聚合并插值后开展相关性分析。",
+      "method_paradigm": "变化检测与过程归因",
+      "used_assets": [
+        "Landsat Collection 2 Tier1 dataset",
+        "JRC global surface water dataset",
+        "Landsat4/5 MSS Tier1",
+        "Landsat5 TM/Landsat8 OLI surface reflectance (SR) Tier1 datasets",
+        "daily observation data from three meteorological stations"
+      ],
+      "author_team": [
+        "Huangao Qiu",
+        "Qiuxi Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Analysis of spatiotemporal change characteristics of Poyang Lake from 1984 to 2021 based on GEE",
+        "doi": "10.1038/s41598-025-25435-0",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "如何利用遥感与地形变量识别安汶市河流流域的洪水易发区域及可能受影响的建成区？",
+      "hypothesis_or_mechanism": "靠近河流、地势低洼且地形和植被条件不利于排水的区域更容易发生洪水积水。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers, v1.4 获取水体相关信息并识别积水区域，使用 NASA SRTM Digital Elevation 30m data 生成高程和 TPI，使用 USGS Landsat 8 Level 2, Collection 2, Tier 1 data 计算 NDVI；结合距河流距离等变量赋权叠加，划分洪水易发区并评估建成区受影响情况。",
+      "method_paradigm": "遥感 GIS 洪水易发性建模",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers, v1.4",
+        "NASA SRTM Digital Elevation 30 m data",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1 data"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Benson Joshua",
+        "Glendy Somae"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Modeling Flood Hazards in Ambon City Watersheds: Case Studies of Wai Batu Gantung",
+        "doi": "10.55537/jistr.v3i2.836",
+        "year": 2024,
+        "venue": "Journal of Information Systems and Technology Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "如何利用地表水、地形和植被等空间数据评估安汶市多个流域的洪水易涝区域及可能受影响的建成区？",
+      "hypothesis_or_mechanism": "靠近河流、地势低洼且地形和植被条件不利于排水的区域，更容易受到洪水影响。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers, v1.4 支持 NDWI 和水面识别；使用 NASA SRTM Digital Elevation 30 m 派生高程和 TPI；使用 USGS Landsat 8 Level 2, Collection 2, Tier 1 派生 NDVI，并结合河流距离等变量赋权叠加，划定易涝区并分析可能受影响的建成区。",
+      "method_paradigm": "遥感与 GIS 洪水易涝评估",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers, v1.4",
+        "NASA SRTM Digital Elevation 30 m",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1",
+        "Google Earth Engine (GEE)"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Philia Christi Latue"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "MODELING FLOOD HAZARDS IN AMBON CITY WATERSHEDS: CASE STUDIES OF WAI BATU GANTUNG, WAI BATU GAJAH, WAI TOMU, WAI BATU MERAH AND WAI RUHU",
+        "doi": "10.59407/jdaics.v1i2.635",
+        "year": 2024,
+        "venue": "Journal of Data Analytics Information and Computer Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "研究如何利用地表水、地形、植被和河流距离等变量对 Wai Ruhu 流域的洪水易涝区及可能受影响的建成区进行建模。",
+      "hypothesis_or_mechanism": "靠近河流、地势较低且地形与植被条件不利于排水的区域，更容易发生积水或洪水影响。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers v1.4 提供地表水信息，结合河流距离、NASA SRTM 高程及 TPI、USGS Landsat 8 数据计算的 NDVI，对变量赋权并叠加以划定洪水易涝区，再与建成区分布叠加。",
+      "method_paradigm": "遥感 GIS 洪水易涝建模",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers data, v1.4",
+        "NASA SRTM Digital Elevation 30m data",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1 data",
+        "Google Earth Engine (GEE)"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "APPLICATION OF REMOTE SENSING DATA AND GEOGRAPHIC INFORMATION SYSTEM FOR FLOOD MODELING IN WAI RUHU WATERSHED AMBON CITY BASED ON GEOGLE EARTH ENGINE",
+        "doi": "10.59407/jdaics.v1i2.739",
+        "year": 2024,
+        "venue": "Journal of Data Analytics Information and Computer Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "如何利用Landsat 8 OLI影像和MNDWI指数提取印度Pune地区地表水体并评估其准确性",
+      "hypothesis_or_mechanism": "MNDWI指数结合Otsu和试错阈值分割方法能有效从中分辨率遥感影像中提取地表水体，通过与JRC GSWE产品对比可验证分类精度",
+      "variables_and_data_use": "使用Landsat 8 OLI的绿光波段（band 3）和短波红外波段（band 7）计算MNDWI指数，经阈值分割生成二值水体图，并累加月度图像计算年度水体发生频率；使用JRC GSWE月度地表水图作为参考进行混淆矩阵精度评估",
+      "method_paradigm": "光谱指数阈值分割 精度验证",
+      "used_assets": [
+        "Landsat 8 OLI",
+        "JRC GSWE"
+      ],
+      "author_team": [
+        "Rushikesh Kulkarni",
+        "Kanchan Chandrashekhar Khare",
+        "Humera Khanum"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Detecting, extracting, and mapping of inland surface water using Landsat 8 Operational Land Imager: A case study of Pune district, India",
+        "doi": "10.12688/f1000research.121740.1",
+        "year": 2022,
+        "venue": "F1000Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "多源遥感和环境数据结合随机森林模型能否在地面数据有限的高山地区可靠评估县区尺度洪水风险？",
+      "hypothesis_or_mechanism": "降水和地表水出现情况是高山洪水风险的主要驱动因素，而土壤水分、地形和地表温度能够进一步改善风险区分能力。",
+      "variables_and_data_use": "使用JRC Global Surface Water occurrence构造静态water_occurrence变量，使用CHIRPS计算降水最大值、均值、异常和方差，使用ERA5-Land计算土壤水分最大值和均值，使用SRTM计算高程和坡度，使用MODIS land surface temperature计算平均地表温度，并结合历史洪水记录训练和验证县区高、中、低风险分类模型。",
+      "method_paradigm": "机器学习决策支持",
+      "used_assets": [
+        "CHIRPS precipitation",
+        "JRC Global Surface Water occurrence",
+        "ERA5-Land soil moisture",
+        "SRTM elevation",
+        "MODIS land surface temperature",
+        "historical flood records from the Gilgit-Baltistan Disaster Management Authority (GBDMA)",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "zahid abbas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "AI-Powered Flood Risk Assessment for Gilgit-Baltistan Using Multi-Source Satellite Data and Machine Learning",
+        "doi": "10.31223/x5k74m",
+        "year": 2025,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "开发基于微生物生物传感器的BOD快速检测方法，并结合卫星地表水数据识别区域环境污染源",
+      "hypothesis_or_mechanism": "岸线水体变化强度与生化需氧量测量结果存在空间关联，可用于污染热点识别",
+      "variables_and_data_use": "使用Global Surface Water Explorer的水体发生率变化强度图层分析采样点对应水体的岸线动态变化，结合生物传感器BOD测量值进行污染源空间评估和排序",
+      "method_paradigm": "生物传感器验证 地理空间叠加分析",
+      "used_assets": [
+        "Global Surface Water Explorer",
+        "JRC Global Surface Water v1.4"
+      ],
+      "author_team": [
+        "George Gurkin",
+        "Alexey Efremov",
+        "Irina Koryakina",
+        "Roman N. Perchikov",
+        "Anna S. Kharkova",
+        "Anastasia S. Medvedeva",
+        "Bruno Fabiano",
+        "Andrea Pietro Reverberi",
+        "Vyacheslav A. Arlyapov"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "A Polyhydroxybutyrate-Supported Xerogel Biosensor for Rapid BOD Mapping and Integration with Satellite Data for Regional Water Quality Assessment",
+        "doi": "10.3390/gels11110849",
+        "year": 2025,
+        "venue": "Gels",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何通过水量平衡方法量化西班牙Primera de Palos淡水泻湖在农业和工业干扰下的水文动态变化",
+      "hypothesis_or_mechanism": "泻湖体积变化由降水、径流、蒸散发和人为灌溉回流/排水共同控制，通过遥感水面与实测水深结合可重建历史水量平衡",
+      "variables_and_data_use": "使用GSWE提供的1984-2020年地表水范围时间序列量化泻湖面积变化，结合2020-2022年Landsat NWDI指数延伸观测，与实测水深数据建立面积-体积关系，配合气象数据计算降水、径流和蒸散项，估算泻湖水量平衡各项",
+      "method_paradigm": "水量平衡重建",
+      "used_assets": [
+        "Global Surface Water Explorer (GSWE)",
+        "Landsat NWDI"
+      ],
+      "author_team": [
+        "Eva Contreras",
+        "Rafael Pimentel",
+        "Cristina Aguilar",
+        "Javier Aparicio",
+        "María José Polo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Quantifying irrigation returns into a highly human managed wetland using remote sensing: The Primera de Palos freshwater lagoon (Spain)",
+        "doi": "10.5194/piahs-385-297-2024",
+        "year": 2024,
+        "venue": "Proceedings of the International Association of Hydrological Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究南方涛动指数变化是否与 Lake Semayang 2000—2020 年地表水范围和永久水体面积的年际变化相关。",
+      "hypothesis_or_mechanism": "正的 SOI 条件可能对应永久水体面积扩张，负的 SOI 条件可能对应永久水体面积收缩，反映 ENSO 对降水、入流和湖泊水文状态的影响。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Dataset 的 Occurrence、Recurrence、Transitions、Seasonality、Persistence 和 Extent 等变量，通过永久水体像元计数计算 30 米分辨率的 Permanent Water Area，并按月和按年聚合；使用 Southern Oscillation Index (SOI) 作为气候预测变量，开展相关、趋势和滞后分析。",
+      "method_paradigm": "遥感时序与相关分析",
+      "used_assets": [
+        "JRC Global Surface Water Dataset",
+        "JRC_GSW1_4_GlobalSurfaceWater",
+        "Southern Oscillation Index (SOI)",
+        "NOAA"
+      ],
+      "author_team": [
+        "Muhammad Riza",
+        "Najwan Al Ghifari",
+        "Zetsaona Sihotang",
+        "Nanda Khoirunisa",
+        "Mislan Mislan",
+        "Idris Mandang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Impact of the Southern Oscillation Index on Surface Water Variability in Floodplain Lake Semayang, Kalimantan, Indonesia: A Satellite Time-Series Approach",
+        "doi": "10.51264/inajl.v6i2.88",
+        "year": 2025,
+        "venue": "Indonesian Journal of Limnology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "气候变化相关的气温、蒸散发和降水变化如何影响卢尔米亚湖流域的地表水资源动态？",
+      "hypothesis_or_mechanism": "气温升高、蒸散发变化和降水减少会通过改变流域水量平衡导致地表水范围和水资源状况发生变化。",
+      "variables_and_data_use": "研究使用JRC Global Surface Water Mapping Layers, v1.4提取1984—2021年的地表水位置、范围和时空变化；使用MOD11A2.061地表温度、MODIS NDVI和气象站数据通过TVX方法估算气温，使用PML_V2 0.1.7获取实际蒸散发，使用GPM Monthly v6获取降水，并通过趋势检验和Spearman偏相关分析评估气候变量与水资源变化之间的关系。",
+      "method_paradigm": "遥感监测与统计归因",
+      "used_assets": [
+        "The JRC Global Surface Water Mapping Layers, v1.4",
+        "MODIS Land Surface Temperature (LST) products (MOD11A2.061)",
+        "meteorological station data",
+        "MODIS Normalized Difference Vegetation Index (NDVI) datasets",
+        "PML_V2 0.1.7: Coupled Evapotranspiration and Gross Primary Product (GPP)",
+        "GPM: Monthly Global Precipitation Measurement (GPM) v6 product"
+      ],
+      "author_team": [
+        "Mohammad Kazemi Garajeh",
+        "Fatemeh Haji",
+        "Mahsa Tohidfar",
+        "Amin Sadeqi",
+        "Reyhaneh Ahmadi",
+        "Narges Kariminejad"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Spatiotemporal monitoring of climate change impacts on water resources using an integrated approach of remote sensing and Google Earth Engine",
+        "doi": "10.1038/s41598-024-56160-9",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "论文研究气候因素、河流流量和人类水资源管理如何共同影响美索不达米亚沼泽的植被与地表水变化。",
+      "hypothesis_or_mechanism": "上游降水、河流流量和水资源调度通过改变沼泽水量驱动水体和植被变化，而植被减少可能进一步导致地表温度升高。",
+      "variables_and_data_use": "论文使用JRC Global Surface Water v1.4的Transitions、Yearly History和Maximum Water Extent图层分析长期水体出现和水体动态；使用MODIS反射率计算MNDWI和NDVI，使用MOD11A1 V6.1获取地表温度，使用MOD16A2获取蒸散发，使用CHIRPS获取降水，并结合实测河流流量进行相关、回归、交叉相关、滞回和趋势分析。",
+      "method_paradigm": "多源遥感与驱动归因分析",
+      "used_assets": [
+        "COPERNICUS/S2_SR",
+        "MODIS/006/MOD09A1",
+        "MODIS/006/MOD09Q1",
+        "MOD11A1 V6.1",
+        "CHIRPS",
+        "MOD16A2",
+        "JRC Global Surface Water v1.4",
+        "In situ discharge measurements"
+      ],
+      "author_team": [
+        "Akram Alqaraghuli",
+        "Peter North",
+        "Sietse Los",
+        "Iain Bye",
+        "J. Rosette"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The impact of climate factors and surface water management on the Mesopotamian Marshes for the period 2000–2023",
+        "doi": "10.1038/s41598-026-61808-9",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究期内Lake Mahalona的pH、TSS、BOD、COD和氨相关指标如何在空间和时间上变化，其水质状况是否符合相关水质标准？",
+      "hypothesis_or_mechanism": "人类活动和流域过程可能导致污染物输入增加，从而使TSS、BOD和COD在特定月份升高，而大气氨沉降可能形成额外的氮输入压力。",
+      "variables_and_data_use": "使用JRC Global Surface Water Mapping Layers v1.4提取湖泊水体并进行水体掩膜；使用Harmonized Sentinel-2 MSI: MultiSpectral Instrument, Level-2A (SR)的表面反射率和光谱波段组合估算pH、TSS、BOD和COD；使用GEOS-CF的氨变量估算湖面上方的大气氨压力指标，并进行时间序列和空间分布分析。",
+      "method_paradigm": "遥感水质时空重建",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers v1.4",
+        "Harmonized Sentinel-2 MSI: MultiSpectral Instrument, Level-2A (SR)",
+        "GEOS-CF (Goddard Earth Observing System Composition Forecast, fcst tavg1hr v1)"
+      ],
+      "author_team": [
+        "Asramid Yasin",
+        "Muhammad Saleh Qadri",
+        "Herlan Hidayat",
+        "Nayla Desviona"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatiotemporal Water Quality Assessment of Lake Mahalona via Google Earth Engine",
+        "doi": "10.36568/gelinkes.v24i3.519",
+        "year": 2026,
+        "venue": "GEMA Lingkungan Kesehatan",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究能否利用多参数沿海脆弱性指标和机器学习方法评估 Bonny Island 的洪水脆弱性，并预测不同未来情景下的风险变化？",
+      "hypothesis_or_mechanism": "基于地形、植被、土地覆盖和距海距离等预测变量的机器学习模型能够重建沿海脆弱性，并通过独立的 JRC Global Surface Water 地表水出现率标签检验其洪水频率预测能力。",
+      "variables_and_data_use": "研究使用 SRTMGL1_003 提供高程并派生坡度，使用边界数据计算距海距离，使用 Sentinel-2 SR Harmonised 计算 2024 年 NDVI，使用 ESRI 10 m LULC 2024 提供土地覆盖类别，使用 Phase 1 Landsat trend 提供岸线变化率；使用 JRC Global Surface Water v1.4 occurrence band 将像元地表水出现率转换为 Never wet、Rare、Seasonal 和 Frequent 洪水频率等级，作为独立监督目标；同时使用 ERA5-Land、CHIRPS、PSMSL Forcados tide-gauge Revised Local Reference record、WorldPop GP 100 m UN-adjusted product、Google Open Buildings v3、OpenStreetMap、NEMA 报告和社区洪水知识开展环境分析、暴露估计和结果验证。",
+      "method_paradigm": "机器学习与独立观测验证",
+      "used_assets": [
+        "JRC Global Surface Water v1.4 occurrence band",
+        "SRTMGL1_003",
+        "Sentinel-2 SR Harmonised",
+        "ESRI 10 m LULC 2024",
+        "Phase 1 Landsat trend",
+        "ERA5-Land",
+        "CHIRPS",
+        "WorldPop GP 100 m UN-adjusted product",
+        "Google Open Buildings v3",
+        "OpenStreetMap",
+        "PSMSL Forcados tide-gauge Revised Local Reference record",
+        "Nigerian Emergency Management Agency (NEMA) situation reports",
+        "community-based flood knowledge"
+      ],
+      "author_team": [
+        "Benjamin Ojoka Shaibu",
+        "Godwin Jeremiah Udom",
+        "Richmond Uwanemesor Ideozu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Independent-Target Machine Learning and a 2040 Coastal Governance Horizon for Bonny Island, Niger Delta",
+        "doi": "10.51244/ijrsi.2026.1307000388",
+        "year": 2026,
+        "venue": "International journal of research and scientific innovation",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "该论文研究如何利用 Landsat-8 和 Sentinel-2 派生的多种水体指数生成 2019 至 2021 年全球月度水面数据并评估其精度。",
+      "hypothesis_or_mechanism": "不同水体指数和卫星传感器在云覆盖、时间分辨率和区域水体特征差异下会产生不同的水体识别性能，其中 Sentinel-2 派生的 NDWI2 可能更稳健。",
+      "variables_and_data_use": "论文使用 Landsat-8 和 Sentinel-2 影像计算 NDWI2、MNDWI 和 WI2015，生成月度水域/非水域 GeoTIFF 数据；使用 JRC Global Surface Water data/JRC data 作为参考数据集，计算 accuracy、balanced accuracy、F1 score 和 Cohen’s kappa，并开展阈值敏感性分析。",
+      "method_paradigm": "遥感产品验证",
+      "used_assets": [
+        "monthly water surface datasets",
+        "NDWI2",
+        "MNDWI",
+        "WI2015",
+        "Landsat-8",
+        "Sentinel-2",
+        "JRC Global Surface Water data",
+        "JRC data"
+      ],
+      "author_team": [
+        "Yohei Miura",
+        "Mohammad Shamsudduha",
+        "Anawat Suppasri",
+        "Daisuke Sano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Global Multi-Sensor Dataset of Surface Water Indices from Landsat-8 and Sentinel-2 Satellite Measurements",
+        "doi": "10.1038/s41597-025-05562-z",
+        "year": 2025,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "研究不同气候条件下地表水范围如何变化，以及未来气候变化将如何影响美国中部多个研究区的地表水动态。",
+      "hypothesis_or_mechanism": "降水、温度、湿度和蒸汽压亏缺等气象变化会通过改变水分供给和蒸散过程，驱动地表水范围及其季节性变化。",
+      "variables_and_data_use": "使用 JRC GSW v1.4 月度数据计算 1984—2021 年地表水总量和水体百分位，用于刻画 2017—2021 年研究时段的长期水文条件；使用 Sentinel‐1 和 Sentinel‐2 分类结果构建 2017—2021 年月度水体范围时间序列；使用 GRIDMET 气象变量建立随机森林模型，并使用 MACAv2‐METDATA 气候投影预测未来地表水变化；MODIS snow cover product、NWI、NLCD 和高分辨率影像用于掩膜、辅助判定或验证。",
+      "method_paradigm": "气候驱动的随机森林预测",
+      "used_assets": [
+        "Joint Research Center (JRC) global surface water (GSW) monthly collection (v1.4, 30 m resolution, March 1984 to January 2022)",
+        "Sentinel‐1",
+        "Sentinel‐2",
+        "GRIDMET",
+        "MACAv2‐METDATA",
+        "MODIS snow cover product",
+        "PlanetScope",
+        "National Wetland Inventory (NWI)",
+        "2019 National Land Cover Database (NLCD)",
+        "WorldView‐2",
+        "WorldView‐3"
+      ],
+      "author_team": [
+        "Melanie K. Vanderhoof",
+        "Jay R. Christensen",
+        "Laurie C. Alexander",
+        "Charles R. Lane",
+        "Heather E. Golden"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Climate Change Will Impact Surface Water Extents and Dynamics Across the Central United States",
+        "doi": "10.1029/2023ef004106",
+        "year": 2024,
+        "venue": "Earth s Future",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "印度尼西亚国家公园中植被绿化、褐化及异常年份的空间和时间变化如何，并与地表水季节性有何关系？",
+      "hypothesis_or_mechanism": "植被动态和异常年份可能受到国家公园土地覆盖条件及地表水季节性变化的影响。",
+      "variables_and_data_use": "使用 MOD13Q1 的 16 天 EVI 计算年度最大值和年度均值，用于绿化、褐化趋势及异常年份分析；使用 JRC Global Surface Water Mapping Layers, v1.4 的水体季节性月份数进行水体季节性制图；使用 ESA WorldCover v200 描述土地覆盖分布，使用 WDPA 确定国家公园边界，并用 Google Earth images 等资料进行定性验证。",
+      "method_paradigm": "时序趋势与异常检测",
+      "used_assets": [
+        "World Database on Protected Areas (WDPA)",
+        "ESA WorldCover v200",
+        "MOD13Q1",
+        "Joint Research Centre (JRC) Global Surface Water Mapping Layers, v1.4",
+        "Google Earth images"
+      ],
+      "author_team": [
+        "Fatwa Ramdani",
+        "Putri Setiani",
+        "Riswan Septriayadi Sianturi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Towards understanding climate change impacts: monitoring the vegetation dynamics of terrestrial national parks in Indonesia",
+        "doi": "10.1038/s41598-024-69276-9",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "植物功能性状的群落组成如何影响欧洲不同生境类型的气候调节功能（地表反射辐照度、蒸散发和净初级生产力）",
+      "hypothesis_or_mechanism": "在控制气候条件后，植物群落的功能性状组成（如叶经济谱、叶面积、植株高度）会通过影响地表结构和生理过程显著调控局地气候调节功能，且这种关系具有生境特异性",
+      "variables_and_data_use": "使用 JRC Global Surface Water v1.4 排除水体覆盖超过 10% 的样地，确保植被样地的陆地属性；使用 MODIS 反照率、蒸散发和净初级生产力数据作为气候调节功能的代理变量；使用 CHELSA 生物气候变量控制气候效应；使用植被样地和 TRY 数据库计算群落加权性状均值",
+      "method_paradigm": "相关性分析 随机森林建模 线性效应模型",
+      "used_assets": [
+        "JRC Global Surface Water map, version 1.4",
+        "MODIS MCD43A3 version 6",
+        "MODIS MOD16A3GF version 6.1",
+        "MODIS MOD17A3HGF version 6",
+        "CHELSA Climatologies version 1.2",
+        "CHELSA-BIOCLIM+",
+        "European Vegetation Archive",
+        "TRY plant trait database version 5"
+      ],
+      "author_team": [
+        "Stephan Kambach",
+        "Fabio Attorre",
+        "Irena Axmanová",
+        "Ariel Bergamini",
+        "Idoia Biurrun",
+        "Gianmaria Bonari",
+        "María Laura Carranza",
+        "Alessandro Chiarucci",
+        "Milan Chytrý",
+        "Jürgen Dengler",
+        "Emmanuel Garbolino",
+        "Valentin B. Golub",
+        "Thomas Hickler",
+        "Ute Jandt",
+        "Jan Jansen",
+        "Borja Jiménez‐Alfaro",
+        "Dirk Nikolaus Karger",
+        "Zdeňka Lososová",
+        "Valerijus Rašomavičius",
+        "Solvita Rūsiņa",
+        "Petra Sieber",
+        "Angela Stanisci",
+        "Wilfried Thuiller",
+        "Erik Welk",
+        "Niklaus E. Zimmermann",
+        "Helge Bruelheide"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate regulation processes are linked to the functional composition of plant communities in European forests, shrublands, and grasslands",
+        "doi": "10.1111/gcb.17189",
+        "year": 2024,
+        "venue": "Global Change Biology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究区内原住民社区森林资源利用空间范围中的毁林、生态系统功能和水资源获取状况在研究期间如何变化？",
+      "hypothesis_or_mechanism": "农业扩张和土地占用会减少森林及永久地表水的可用性，并增加原住民社区获取自然资源的距离和限制。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers, v1.4 的 max_extent 和 waterClass 波段提取水体、区分永久水体与季节性水体，并比较 2001 和 2021 年永久水体可用性；使用 MODIS sensor data 计算 NDVI 和 ESSI；使用毁林数据库和森林界线数据库估计森林损失、土地占用密度及其变化；结合社区位置和资源利用空间范围计算到最近水源的距离。",
+      "method_paradigm": "空间叠加与变化评估",
+      "used_assets": [
+        "map of native peoples in Argentina",
+        "database of Indigenous Peoples of the 'Chaco Salteño'",
+        "printed maps based on Landsat satellite images",
+        "plot-level, hand-digitized geo-database of deforestation due to agricultural expansion",
+        "MODIS sensor data",
+        "database of forest demarcation lines produced by del Giorgio et al. (2025)",
+        "Sentinel-2 imagery",
+        "Landsat image time series",
+        "JRC Global Surface Water Mapping Layers, v1.4"
+      ],
+      "author_team": [
+        "María Vallejos",
+        "Ana María Álvarez",
+        "Olivia del Giorgio",
+        "Tobias Kuemmerle"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impacts of agricultural expansion on the resource availability of forest-dependent Indigenous communities in the Dry Chaco",
+        "doi": "10.1007/s13280-025-02217-6",
+        "year": 2025,
+        "venue": "AMBIO",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "论文研究城市扩张如何改变 Upper Bhima Basin 的土地利用/土地覆盖格局，并影响其地表水资源。",
+      "hypothesis_or_mechanism": "城市扩张通过增加建设用地并改变流域土地覆盖，进而影响河流、 tributaries 和其他地表水体的空间分布与动态。",
+      "variables_and_data_use": "使用 Landsat 5 TM 和 Landsat 8 OLI 的 TOA 反射率影像提取 1990 年和 2020 年土地利用/土地覆盖类别，使用 JRC Global Surface Water v1.4 的 YearlyHistory 年度水体分类分析地表水动态，使用 SRTM Version 3.0 (SRTMGL1V003) DEM 进行流域和河网划分，并用 Google Earth snapshots 与 Ground truth data from field surveys 进行分类验证。",
+      "method_paradigm": "遥感变化检测与 GIS 分析",
+      "used_assets": [
+        "SRTM Version 3.0 (SRTMGL1V003) DEM",
+        "Landsat 5 TM",
+        "Landsat 8 OLI",
+        "JRC Global Surface Water (GSW) Mapping Layers, v1.4",
+        "JRC/GSW1_4/GlobalSurfaceWater",
+        "JRC/GSW1_4/YearlyHistory",
+        "Google Earth snapshots",
+        "Ground truth data from field surveys"
+      ],
+      "author_team": [
+        "Dilip Gulabrao Patil",
+        "Sachchidanand Singh",
+        "Ram Yash",
+        "Pankaj Aashish",
+        "Sawant Sushant Anil",
+        "Arun Magar",
+        "Prasenjit Kumar Mandal",
+        "Neha Rarh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Analyzing land use change and surface water dynamics (1990–2020) in the upper Bhima River basin using Google Earth engine",
+        "doi": "10.1007/s43832-025-00308-9",
+        "year": 2025,
+        "venue": "Discover Water",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究如何利用多源地理空间数据在Hulu Sungai Utara Regency评估洪水易感性。",
+      "hypothesis_or_mechanism": "距水体越近、地势越低、地形位置越不利且植被覆盖越低的区域，洪水易感性越高。",
+      "variables_and_data_use": "使用JRC Global Surface Water Mapping Layers v1.4提取永久水体存在并计算距水体距离，使用NASA SRTM Digital Elevation data (30m resolution)获取高程并派生TPI，使用USGS Landsat 8 Level 2, Collection 2, Tier 1 data计算NDVI和NDWI，再将各变量按等级评分并叠加生成洪水易感性等级。",
+      "method_paradigm": "多因子空间决策支持",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers v1.4",
+        "NASA SRTM Digital Elevation data (30m resolution)",
+        "USGS Landsat 8 Level 2, Collection 2, Tier 1 data",
+        "boundary data for the study area"
+      ],
+      "author_team": [
+        "Krisna Aditya",
+        "Ichsan Ridwan",
+        "Nurlina Nurlina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Flood Risk Modelling Based on Machine Learning Using Google Earth Engine in Hulu Sungai Utara Regency",
+        "doi": "10.46488/nept.2025.v24i04.d1756",
+        "year": 2025,
+        "venue": "Nature Environment and Pollution Technology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "Ohrid-Prespa 湖泊系统的地表水变化如何与周边农业、土地利用和人类聚落发展相联系，并如何支持该区域的未来情景分析？",
+      "hypothesis_or_mechanism": "农业和城市发展可能通过增加水资源抽取等压力促进 Great Prespa 湖泊水面和水量下降，而可持续发展与保护措施可能有助于稳定湖泊环境。",
+      "variables_and_data_use": "使用 JRC Global Surface Water Mapping Layers v1.4 提取和比较 1984 至 2021 年地表水分布及变化；使用 MODIS Land Cover Type (MCD12Q1) Version 6.1 分析 2001 至 2022 年土地覆盖变化；使用 World Settlement Footprint 2015 (WSF2015) 和 GHS-UCDB R2019A - GHS Urban Centre Database 2015 分析人类聚落和城市发展；使用 SRTM DEM (NASA) 作为地形背景。",
+      "method_paradigm": "地理空间变化分析与情景规划",
+      "used_assets": [
+        "JRC Global Surface Water Mapping Layers v1.4",
+        "MODIS Land Cover Type (MCD12Q1) Version 6.1",
+        "World Settlement Footprint 2015 (WSF2015)",
+        "GHS-UCDB R2019A - GHS Urban Centre Database 2015",
+        "SRTM DEM (NASA)"
+      ],
+      "author_team": [
+        "Francesco Axel Pio Romio"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Valorising Earth’s Ancient Landscapes: The case of Lake Prespa and Lanzarote",
+        "doi": "10.37199/o41010117",
+        "year": 2025,
+        "venue": "The Scientific Journal of the Observatory of Mediterranean Basin",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "研究 1990-2021 年 Shijiu Lake 地表水面积的变化及其与降水和水文干旱之间的关系。",
+      "hypothesis_or_mechanism": "降水变化通过影响湖泊水量和淹没范围驱动地表水面积变化，并形成可由标准化水面指数识别的水文干旱过程。",
+      "variables_and_data_use": "使用 Global Surface Water Mapping Layers V1.4 和 JRC Global Surface Water Monthly History 提取月度湖泊水面面积，使用两个气象站的月度降水记录计算 SPI，并使用月度水面面积计算 SWI（Drought Water Index），同时利用 Second National Land Survey 流域边界进行空间裁剪和面积汇总。",
+      "method_paradigm": "遥感时序重建与干旱指数分析",
+      "used_assets": [
+        "Global Surface Water Mapping Layers V1.4",
+        "JRC Global Surface Water Monthly History",
+        "Lishui China National Basic Meteorological Station (Station ID: 58340)",
+        "Gaochun China National Basic Meteorological Station (Station ID: 58339)",
+        "fundamental geographic information dataset of the Second National Land Survey (2007-2009)"
+      ],
+      "author_team": [
+        "Shanshan Chen",
+        "Jing Li",
+        "Yu Yang",
+        "Kai Wang",
+        "Chenkai Tang",
+        "Feiran Luo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Satellite-Based Monitoring of Drought Characteristics and Meteorological-Hydrological Drought Propagation in Shijiu Lake, China",
+        "doi": "10.4236/gep.2026.149006",
+        "year": 2026,
+        "venue": "Journal of Geoscience and Environment Protection",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究比较随机森林、极端梯度提升和梯度提升回归模型在蒙古Bayanzurkh soum土壤有机碳含量与储量建模和制图中的表现。",
+      "hypothesis_or_mechanism": "植被、气候、地形、土壤属性和地表水状况共同影响土壤有机碳空间分布，基于树模型集成的机器学习方法能够提高SOC预测精度。",
+      "variables_and_data_use": "以123个0至30厘米土层样品通过灼烧减量法测得的SOC为目标变量，使用SoilGrids 2.0的土壤属性、WorldClim 2.1的气候变量、Landsat 8 OLI/TIRS Surface Reflectance派生的光谱和植被水分指数、Hansen Global Forest Change database的森林覆盖、JRC Global Surface Water Explorer v1.4的地表水出现数据，以及Shuttle Radar Topography Mission (STRM)派生的地形变量作为预测变量，并将数据重采样至250米。",
+      "method_paradigm": "机器学习空间制图",
+      "used_assets": [
+        "SoilGrids 2.0",
+        "WorldClim 2.1",
+        "Landsat 8 OLI/TIRS Surface Reflectance",
+        "Hansen Global Forest Change database",
+        "JRC Global Surface Water Explorer v1.4",
+        "Shuttle Radar Topography Mission (STRM)"
+      ],
+      "author_team": [
+        "Maralmaa Ariunbold",
+        "Saruulzaya Adiya",
+        "Purevdulam Yondonrentsen",
+        "Dawaadorj Dawaasuren"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Mapping of soil organic carbon content using machine learning algorithms in Bayanzurkh soum",
+        "doi": "10.5564/mjgg.v62i46.4161",
+        "year": 2025,
+        "venue": "Mongolian Journal of Geography and Geoecology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 23,
+    "source_paper_count": 23,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

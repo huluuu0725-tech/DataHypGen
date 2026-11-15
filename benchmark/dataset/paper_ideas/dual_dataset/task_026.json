@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1002/2015gl063325",
+  "task_id": "dual_dataset/task_026",
+  "title": "Impact of soil moisture on dust outbreaks in East Asia: Using satellite and assimilation data",
+  "category": "aerosol_optical_depth_soil_moisture",
+  "year": 2015,
+  "journal": "Geophysical Research Letters",
+  "impact_level": "medium",
+  "datasets": [
+    "Aerosol optical depth",
+    "Volumetric soil moisture"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "aerosol_optical_depth",
+      "dataset": "Aerosol optical depth"
+    },
+    {
+      "role": "soil_moisture",
+      "dataset": "Volumetric soil moisture"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial-temporal associations are present between aerosol optical depth and soil-moisture observations?",
+    "hypothesis": "The required components contain a joint signal not represented by any component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:MODIS/061/MCD19A2_GRANULES",
+      "GEE:NASA/GLDAS/V021/NOAH/G025/T3H"
+    ],
+    "required_component_usage": [
+      "aerosol_optical_depth",
+      "soil_moisture"
+    ],
+    "expected_contribution": "A benchmark task that requires every component of a composite observation.",
+    "falsification_condition": "Reject an idea if a required component is absent, background-only, or not operationally used with the other required components."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_026:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "online_recall_atmosphere_nontraditional_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\online_recall_atmosphere_nontraditional_20260930\\seed_fulltext_audit.json"
+  }
+}

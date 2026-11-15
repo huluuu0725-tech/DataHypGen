@@ -1,0 +1,2071 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_011",
+  "reference_coverage": "manual_independent_read_admitted_20261006",
+  "evaluation_year": 2026,
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_011:composite_observation",
+    "type": "composite_observation",
+    "name": "atmospheric_proxy_economic_activity composite observation",
+    "observable_group": "atmospheric_proxy_economic_activity_multidataset_observation",
+    "components": [
+      {
+        "role": "atmospheric_emission_observation",
+        "data_description": {
+          "dataset_name": "Satellite atmospheric NO2 column observations",
+          "data_type": "Daily/monthly atmospheric-composition raster time series",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "OMI/OMNO2d and Sentinel-5P TROPOMI",
+          "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2"
+      },
+      {
+        "role": "economic_activity_target",
+        "data_description": {
+          "dataset_name": "Prefecture-level economic indicators",
+          "data_type": "Annual/monthly socioeconomic panel",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "Japan prefectural GDP and monthly economic statistics",
+          "data_path": "datasets/e-Stat/a003.xls",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "datasets/e-Stat/a003.xls"
+      },
+      {
+        "role": "nighttime_proxy_comparator",
+        "data_description": {
+          "dataset_name": "VIIRS Black Marble nighttime radiance",
+          "data_type": "Daily corrected nighttime-radiance raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA Black Marble VNP46A2",
+          "data_path": "NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/VIIRS/002/VNP46A2"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "atmospheric_emission_observation",
+        "economic_activity_target",
+        "nighttime_proxy_comparator"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after declared spatial and temporal alignment.",
+      "supplement_policy": "Supplementary data may be added only with a distinct mechanism, validation or context role; no supplement may replace a required role."
+    }
+  },
+  "seed_exclusion": {
+    "doi": "COMPOSITE:three_or_more_datasets/task_011:composite_observation",
+    "excluded_from_directions": true
+  },
+  "construction": {
+    "admission_rule": "Independent full-text data-inventory read (2026-10-06); partial_set_support entries carry missing_member_ids."
+  },
+  "quality": {
+    "ref_count": 23,
+    "source_paper_count": 23,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 23,
+    "partial_set_support_count": 21,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": false,
+    "manual_admission_count": 23
+  },
+  "reference_papers": [
+    {
+      "doi": "10.3390/urbansci10050226",
+      "title": "Declining Agglomeration Elasticities and the Geography of Urban Growth in China",
+      "year": 2026,
+      "venue": "Urban Science",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['atmospheric_emission_observation']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "verdict": "used_analogous",
+          "evidence": "bleisln(urban residentpopulation,Separatecrosssectionalregressionsareestimatedfor2000,2010,and 2020.PanelAhasresultsformergeddistricts(n=298)andPanelBformergedcountiesandcounty levelcities(n= 278).PanelCreports 2 testsofcoecientequalitybasedonS"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ]
+    },
+    {
+      "doi": "10.3390/rs14051282",
+      "title": "Using Multi-Source Nighttime Lights Data to Proxy for County-Level Economic Activity in China from 2012 to 2019",
+      "year": 2022,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['atmospheric_emission_observation']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "verdict": "used_analogous",
+          "evidence": "annual information on the total GDP for each county-level unit 2012-2019"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "verdict": "used_exact",
+          "evidence": "the NASA Black Marble annual composites (one of three NTL sources)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ]
+    },
+    {
+      "doi": "10.3390/rs16071298",
+      "title": "Spatiotemporal Patterns of Air Pollutants over the Epidemic Course: A National Study in China",
+      "year": 2024,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['economic_activity_target']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Satellite atmospheric NO2 column observations",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "verdict": "used_exact",
+          "evidence": "TROPOMI ... tropospheric NO2 column number density used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "verdict": "not_used",
+          "evidence": "GDP: 0 occurrences; socioeconomic aux = LandScan + GID"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "verdict": "used_analogous",
+          "evidence": "nighttime light (NTL) data from VIIRS as auxiliary"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ]
+    },
+    {
+      "doi": "10.3390/rs18081247",
+      "title": "Monitoring Urban GDP Growth in China Using Time-Series Nightlight Satellite Data",
+      "year": 2026,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['atmospheric_emission_observation']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "verdict": "used_analogous",
+          "evidence": "compared with the actual GDP statistics for these years"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "verdict": "used_analogous",
+          "evidence": "The VNP46A3 dataset are from the open LAADS DAAC archive"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ]
+    },
+    {
+      "doi": "10.21203/rs.3.rs-9703586_v1",
+      "title": "Smoke Signals from a Failed State: What Stopped, Who Left, and What Survived",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Research Square"
+    },
+    {
+      "doi": "10.24014/ijaidm.v7i1.25278",
+      "title": "The Use of Satellite Imagery Data for Poverty Clustering at the District Level Administration in Indonesia",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2024,
+      "venue": "Indonesian Journal of Artificial Intelligence and Data Mining"
+    },
+    {
+      "doi": "10.3390/ijgi11050275",
+      "title": "Developing Relative Spatial Poverty Index Using Integrated Remote Sensing and Geospatial Big Data Approach: A Case Study of East Java, Indonesia",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2022,
+      "venue": "ISPRS International Journal of Geo-Information"
+    },
+    {
+      "doi": "10.22617/tcs250511-2",
+      "title": "Mapping the Spatial Distribution of Poverty in Indonesia",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025
+    },
+    {
+      "doi": "10.1021/acs.est.2c03834",
+      "title": "Ground-Level NO2 Surveillance from Space Across China for High Resolution Using Interpretable Spatiotemporally Weighted Artificial Intelligence",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Environmental Science & Technology"
+    },
+    {
+      "doi": "10.70675/3b89822fz587cz4e99z8c2fzd0334dc9489f",
+      "title": "Capital naturel et capital humain: trois essais en Afrique Subsaharienne",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024
+    },
+    {
+      "doi": "10.3390/rs18142336",
+      "title": "A Dual-Perspective Analysis of Ozone Formation Sensitivity in the Yangtze River Delta: Satellite and Ground-Based Evidence",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.3390/atmos13050697",
+      "title": "Analysis of the Effect of Economic Development on Air Quality in Jiangsu Province Using Satellite Remote Sensing and Statistical Modeling",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Atmosphere"
+    },
+    {
+      "doi": "10.3390/rs12223734",
+      "title": "Determining Optimal Location for Mangrove Planting Using Remote Sensing and Climate Model Projection in Southeast Asia",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1007/s40980-025-00142-6",
+      "title": "Migration Spillover: Spatial Panel Analysis on Small Areas in Europe",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025,
+      "venue": "Spatial Demography"
+    },
+    {
+      "doi": "10.1016/j.jue.2020.103242",
+      "title": "Metropolitan areas in the world. Delineation and population trends",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Journal of Urban Economics"
+    },
+    {
+      "doi": "10.2139/ssrn.3237340",
+      "title": "Shedding Light on the Spatial Diffusion of Disasters",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2018,
+      "venue": "SSRN Electronic Journal"
+    },
+    {
+      "doi": "10.3390/ijgi10090614",
+      "title": "An Analysis of the Work Resumption in China under the COVID-19 Epidemic Based on Night Time Lights Data",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2021,
+      "venue": "ISPRS International Journal of Geo-Information"
+    },
+    {
+      "doi": "10.1016/j.rse.2024.114321",
+      "title": "Estimating surface NO2 concentrations over Europe using Sentinel-5P TROPOMI observations and Machine Learning",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024,
+      "venue": "Remote Sensing of Environment"
+    },
+    {
+      "doi": "10.3390/rs15020378",
+      "title": "Estimations of the Ground-Level NO2 Concentrations Based on the Sentinel-5P NO2 Tropospheric Column Number Density Product",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1093/restud_rdw020",
+      "title": "Farther on down the Road: Transport Costs, Trade and Urban Growth in Sub-Saharan Africa",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2016,
+      "venue": "The Review of Economic Studies"
+    },
+    {
+      "doi": "10.1596/978-1-4648-1570-6",
+      "title": "The Economy in the Time of Covid-19",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020
+    },
+    {
+      "doi": "10.1016/j.lanwpc.2024.101112",
+      "title": "Urban health advantage and penalty in aging populations: a comparative study across major megacities in China",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024,
+      "venue": "The Lancet Regional Health - Western Pacific"
+    },
+    {
+      "doi": "10.2139/ssrn.3202802",
+      "title": "The Lights of Iraq: Electricity Usage and the Iraqi War-Fare Regime",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2018,
+      "venue": "SSRN Electronic Journal"
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "manual_admitted_partial_set_001",
+      "source_paper_doi": "10.3390/urbansci10050226",
+      "title": "Declining Agglomeration Elasticities and the Geography of Urban Growth in China",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文旨在回答：中国城市体系中的集聚经济究竟发生在地级辖区内的密集城区，还是也存在于周边县和县级市等低密度地区。它还考察2000、2010、2020年间集聚弹性是否随时间变化，以及近期人口增长和建设活动是否转向了集聚收益较弱的地区。",
+      "hypothesis_or_mechanism": "核心机制是城市规模通过集聚经济提高生产率，但这种效应应主要集中在高密度城市核心区，而不是行政地级市所包含的广大低密度腹地。由于生产率较高的地方也可能吸引人口，论文将生产率与城市规模之间的反馈视为内生性问题，并用工具变量方法处理。",
+      "variables_and_data_use": "城市规模使用2000、2010、2020年全国人口普查的常住人口，生产率用GDP/城市居民或第二、第三产业GDP/从业人员衡量，GDP来自《中国县域统计年鉴（县市卷）》《中国城市统计年鉴》和省市统计年鉴；就业结构来自人口普查长表10%样本。遥感验证使用辐射校准的DMSP-OLS夜间灯光、VIIRS传感器的Black Marble夜间灯光，以及ESA Climate Change Initiative（ESA CCI）30米全球土地覆盖数据，用来比较建设就业变化与建成区扩张和夜间经济活动的空间分布。",
+      "method_paradigm": "方法范式是基于地级辖区内“合并市辖区”与“合并县及县级市”的空间平衡面板分析，并分别估计集聚弹性。计量上先用OLS估计对数生产率与对数常住城市人口的关系，再用工具变量回归处理城市规模与生产率之间的内生性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_urbansci10050226.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:41"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_002",
+      "source_paper_doi": "10.3390/rs14051282",
+      "title": "Using Multi-Source Nighttime Lights Data to Proxy for County-Level Economic Activity in China from 2012 to 2019",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "本文回答的问题是：多源夜间灯光数据能否在2012—2019年中国县级尺度上有效代理经济活动，尤其是能否分别预测地区间GDP差异和地区内GDP随时间变化。研究还比较了不同夜间灯光产品及不同空间聚合层级下这种关系的表现。",
+      "hypothesis_or_mechanism": "核心机制是夜间灯光亮度与经济活动强度相关，因此县域灯光总量应能反映GDP水平。论文特别检验一个关键差异：夜间灯光可能较好解释横截面上的地区经济差异，但对时间序列中GDP变化的预测能力可能较弱，并考察这种现象是否不仅存在于DMSP，也存在于VIIRS产品。",
+      "variables_and_data_use": "因变量为2012—2019年中国2657个县级单元年度GDP，来自《中国县域统计年鉴》《中国城市统计年鉴》和各城市统计年鉴；核心解释变量为县域年度灯光总量。夜间灯光数据具体包括DMSP F15/F18 stable lights年度合成产品的DN值、VIIRS version 2 VNL年度合成产品的masked average radiance，以及NASA Black Marble VIIRS年度合成产品的radiance值，均按县级空间单元逐年求和后与GDP对应。",
+      "method_paradigm": "方法范式是面板数据验证回归，区分“between”横截面弹性和“within”时间序列弹性，以比较夜间灯光对地区间GDP差异和地区内GDP变化的预测能力。模型使用年度固定效应来控制不同年份及DMSP卫星时段差异，并在不同夜间灯光产品和空间聚合层级上进行对比。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs14051282.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:39"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_003",
+      "source_paper_doi": "10.3390/rs16071298",
+      "title": "Spatiotemporal Patterns of Air Pollutants over the Epidemic Course: A National Study in China",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Satellite atmospheric NO2 column observations",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "论文旨在估计2019—2023年中国六种空气污染物（PM2.5、PM10、NO2、SO2、O3、CO）的月均浓度，并评估其在空间和时间上的热点、冷点及动态变化趋势。研究还比较多输出LightGBM相对于单输出LightGBM在多污染物估计中的效果。",
+      "hypothesis_or_mechanism": "核心机制是六种空气污染物具有共同来源，并在相同气象条件下存在化学或物理联系，因此可通过多输出模型利用污染物之间的相关性来提高估计效率。研究还认为空气污染物分布具有显著时空变异，需要引入空间距离编码和周期性时间特征来捕捉区域差异和季节模式。",
+      "variables_and_data_use": "因变量为中国国家环境监测中心约2020个站点的PM2.5、PM10、NO2、SO2、O3、CO小时观测，经日均和月均聚合后用于模型训练与验证。自变量包括MODIS Terra/Aqua的MAIAC AOD产品MCD19A2、Sentinel-5P TROPOMI离线Level 3的AAI及O3、CO、NO2柱浓度，ERA5气象变量，MOD13A3 NDVI、SRTM DEM、MCD12Q1 LUC、LandScan人口、GID排放清单和VIIRS夜间灯光，并统一到10 km × 10 km网格。",
+      "method_paradigm": "方法范式为多输出LightGBM机器学习回归，结合地理编码空间特征（到网格中心和四角点距离）与周期性月份时间特征，同时估计六种污染物浓度。模型采用样本、站点和时间三种10折交叉验证，并用R2、RMSE、MAE评价；随后通过新兴热点分析，结合Getis–Ord Gi*统计和Mann–Kendall趋势检验识别时空热点/冷点模式。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs16071298.methods.txt",
+        "chars": 14449,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:13"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_004",
+      "source_paper_doi": "10.3390/rs18081247",
+      "title": "Monitoring Urban GDP Growth in China Using Time-Series Nightlight Satellite Data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Prefecture-level economic indicators",
+        "VIIRS Black Marble nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文旨在回答多时相夜间灯光数据能否用于监测中国城市经济动态，并在官方GDP统计滞后或不可得时提供快速估计。研究还评估将时间序列夜光与城市功能/土地利用信息结合后，能否刻画城市尺度GDP变化并衡量COVID-19疫情对中国城市经济的影响。",
+      "hypothesis_or_mechanism": "核心机制是夜间灯光强度可作为人类活动和经济活动强度的遥感代理变量，因此其时序变化与城市GDP动态存在耦合关系。作者进一步认为，不同城市功能用地和区域发展背景会导致夜光—GDP关系存在空间异质性，需要用空间显式模型加以刻画。",
+      "variables_and_data_use": "研究使用NASA Black Marble VIIRS的VNP46A3月度夜间灯光产品（2017年1月至2023年12月，全角度版本）提取县域/城市夜光强度，并按行政区面积加权汇总。还使用香港大学土地利用/土地覆盖数据集，该数据由OSM、Sentinel-2A/B、Luojia-1夜光、POI和腾讯位置数据等构建，用于提供住宅、商业、工业、交通、公共管理与服务等城市功能信息；官方省级统计机构GDP数据用于训练和验证，2020—2021年城市GDP及用电量作为独立验证输入。",
+      "method_paradigm": "方法范式是时间序列夜间灯光遥感与城市功能用地协变量融合的城市GDP建模，并采用地理加权/多尺度地理加权回归（MGWR）刻画夜光强度与经济活动关系的空间异质性。数据处理上包括栅格夜光向行政单元的面积加权汇总、坐标统一和分辨率重采样，以支持模型校准、验证和疫情经济损失评估。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs18081247.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:48"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_005",
+      "source_paper_doi": "10.21203/rs.3.rs-9703586_v1",
+      "title": "Smoke Signals from a Failed State: What Stopped, Who Left, and What Survived",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TroposphericNO\n2\ncolumndensitiesareextractedfromtheTROPOMI\nsensor(Sentinel-5P,quality\u0002lter\nqa_value>0.75)atbothdaily(259,299commune-days,\nJune2018ÂDecember2025)andmonthly(12,194commune-months)frequency."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Prefecture-level economic indicator panel",
+          "actual_dataset": "Prefecture-level economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "radianceisextractedfromtheNASABlackMarbleVNP46A2productatdailyfrequency\n(315,145commune-days,January2018ÂDecember2025)andfromNOAAVIIRSmonthly\ncompositesatmonthlyfrequency(19,296commune-months,January2014ÂDecember2025)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "TroposphericNO\n2\ncolumndensitiesareextractedfromtheTROPOMI\nsensor(Sentinel-5P,quality\u0002lter\nqa_value>0.75)atbothdaily(259,299commune-days,\nJune2018ÂDecember2025)andmonthly(12,194commune-months)frequency.",
+        "radianceisextractedfromtheNASABlackMarbleVNP46A2productatdailyfrequency\n(315,145commune-days,January2018ÂDecember2025)andfromNOAAVIIRSmonthly\ncompositesatmonthlyfrequency(19,296commune-months,January2014ÂDecember2025)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_011_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "论文回答在海地国家统计体系失灵、帮派控制和大规模流离失所背景下，如何用卫星观测估计国家崩溃的经济成本，并区分经济活动停止、人口离开与物质资本存续这三个组成部分。它还追问海地危机究竟是资产毁灭还是“未被恢复的遗弃”。",
+      "hypothesis_or_mechanism": "核心机制是不同卫星指标对应不同经济对象：NO2反映可快速中断和恢复的燃烧型经济活动，夜间灯光反映有人居住和使用的基础设施，NDBI反映物质建成资本存量。暴力会在帮派控制地区造成活动中断和人口外流，但若NDBI未下降而夜间灯光下降，则说明主要机制是流离失所和遗弃，而非物理毁灭。",
+      "variables_and_data_use": "论文使用Sentinel-5P/TROPOMI对流层NO2作为燃烧密集型经济活动流量指标，使用Suomi NPP/VIIRS夜间辐射并补充NASA Black Marble日数据衡量有人占用的基础设施和人口存在，使用Sentinel-2计算NDBI衡量建成区/物质资本存量。它还用ACLED冲突事件强度作为连续暴力处理变量，并将卫星推断的流离失所与IOM内部流离失所数据作外部对照。",
+      "method_paradigm": "方法范式是多卫星指标经济分解结合暴力剂量—反应面板估计：以ACLED周度冲突强度为连续时变处理，并与帮派控制公社状态交互，在公社和年月固定效应下估计NO2和夜间灯光响应。论文还利用2022年Varreux燃料码头封锁作为自然实验，在日尺度检验NO2和夜间灯光对同一冲击的不同幅度与动态响应。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.21203_rs.3.rs-9703586_v1.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:52"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_001",
+      "source_paper_doi": "10.24014/ijaidm.v7i1.25278",
+      "title": "The Use of Satellite Imagery Data for Poverty Clustering at the District Level Administration in Indonesia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "Prefecture-level economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The variables referred\nto include carbon mono\nxide (CO), nitrogen dioxide (NO\n2\n), and sulfur dioxid\ne (SO\n2\n) obtained from the Sentinel\n-\n5P satellite"
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Prefecture-level economic indicator panel",
+          "actual_dataset": "Prefecture-level economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "From this locus, per capita expenditure data were taken, obtained from the BPS\nwebsite for each province"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "night\n-\ntime light intensity (NTL) obtained from the NOAA\n-\nVIIRS satellite"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The variables referred\nto include carbon mono\nxide (CO), nitrogen dioxide (NO\n2\n), and sulfur dioxid\ne (SO\n2\n) obtained from the Sentinel\n-\n5P satellite",
+        "From this locus, per capita expenditure data were taken, obtained from the BPS\nwebsite for each province",
+        "night\n-\ntime light intensity (NTL) obtained from the NOAA\n-\nVIIRS satellite"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_011_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答：如何基于卫星影像数据与汇总统计数据，获得印度尼西亚全国514个县/市层面的贫困聚类，并识别哪些地区属于低贫困或高贫困类别。研究目标是为政府提供可用于贫困识别和政策制定的区域贫困分组结果。",
+      "hypothesis_or_mechanism": "论文依据的机制是，贫困可由经济活动、建成环境、植被覆盖、地表温度、空气污染和居民消费能力等变量间接反映。除NDVI外，文中认为CO、SO2、NO2、NTL、LST、NDBI和人均支出均与贫困负相关，即这些变量越高通常表示经济活动或福利水平越高、贫困越低。",
+      "variables_and_data_use": "研究使用2021年县/市层面人均支出数据，来源为各省BPS网站；同时使用Google Earth Engine获取栅格遥感变量，并通过QGIS分区统计得到各县/市的年度中位数。具体数据产品/传感器包括Sentinel-5P/TROPOMI的CO、NO2、SO2柱浓度，NOAA-VIIRS的夜间灯光NTL，MODIS MOD11A1 V6的地表温度LST，以及Sentinel-2的NDVI和NDBI。",
+      "method_paradigm": "方法范式为基于多源遥感与统计变量的数据预处理后进行无监督聚类分析，核心算法是K-Means聚类。研究还结合描述性分析展示各变量在印度尼西亚县/市层面的空间分布，并将聚类结果解释为低贫困和高贫困两个类别。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.24014_ijaidm.v7i1.25278.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:52"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_002",
+      "source_paper_doi": "10.3390/ijgi11050275",
+      "title": "Developing Relative Spatial Poverty Index Using Integrated Remote Sensing and Geospatial Big Data Approach: A Case Study of East Java, Indonesia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "Prefecture-level economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "andcarbonmonoxide(CO),nitrogendioxide(NO\n2\n),andsulfurdioxide(SO\n2\n)from\nSentinel-5P.Weselected"
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Prefecture-level economic indicator panel",
+          "actual_dataset": "Prefecture-level economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Forvalidationpurposes,weusedtheof\u0002cialpovertydataattheregency/municipality\nlevel,aspublishedbyBPS."
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ThecollectedNTLdataarethecompositeimagethathasbeencorrectedforcloud\ncoverusingtheVIIRSCloudMask(VCM)product."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "andcarbonmonoxide(CO),nitrogendioxide(NO\n2\n),andsulfurdioxide(SO\n2\n)from\nSentinel-5P.Weselected",
+        "Forvalidationpurposes,weusedtheof\u0002cialpovertydataattheregency/municipality\nlevel,aspublishedbyBPS.",
+        "ThecollectedNTLdataarethecompositeimagethathasbeencorrectedforcloud\ncoverusingtheVIIRSCloudMask(VCM)product."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_011_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答：能否利用多源遥感与地理空间大数据，以比传统入户社会经济调查更低成本、更高空间粒度的方式识别印度尼西亚东爪哇省2020年的细粒度贫困空间分布。",
+      "hypothesis_or_mechanism": "核心机制是贫困可由地理空间上的经济集聚、基础设施分布、土地覆盖、空气污染和可达性等代理指标反映。高贫困地区预期表现为夜间灯光较弱、建成环境不足、POI稀疏或距离较远，并呈现地理剥夺和可达性不足。",
+      "variables_and_data_use": "研究使用夜间灯光强度（NTL）、建成区指数（BUI）、二氧化硫（SO2）、兴趣点密度（POI density）和兴趣点距离（POI distance）作为变量；文本称其来自多源遥感和地理空间大数据，但未注明具体传感器或数据产品名称。上述变量被叠加到1.5 km × 1.5 km网格上，用于构建相对空间贫困指数（RSPI），并与官方贫困数据进行Pearson、Spearman相关和RMSE评估。",
+      "method_paradigm": "方法范式是基于多源遥感与地理空间大数据叠加的空间贫困指数构建，具体采用多情景加权求和模型生成RSPI。随后通过与官方贫困数据的相关性和误差指标验证该指数的有效性。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/ijgi11050275",
+        "chars": 1994,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:58"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.22617/tcs250511-2",
+      "title": "Mapping the Spatial Distribution of Poverty in Indonesia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Prefecture-level economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Prefecture-level economic indicator panel",
+          "actual_dataset": "Prefecture-level economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "BPS shared the district-level poverty rates for \u001f\u001e\u001b\u0016,\nwhich were estimated from the March round of the \u001f\u001e\u001b\u0016 National Socioeconomic Survey."
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "With the objective of generating Indonesia poverty statistics for \u001f\u001e\u001b\u0016, a custom year composite from the VIIRS\nmonthly composite images was generated. The median of the monthly values was calculated to minimize distortions\ndue to outliers."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "BPS shared the district-level poverty rates for \u001f\u001e\u001b\u0016,\nwhich were estimated from the March round of the \u001f\u001e\u001b\u0016 National Socioeconomic Survey.",
+        "With the objective of generating Indonesia poverty statistics for \u001f\u001e\u001b\u0016, a custom year composite from the VIIRS\nmonthly composite images was generated. The median of the monthly values was calculated to minimize distortions\ndue to outliers."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_011_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文回答的是：能否利用卫星影像、夜间灯光和其他地理空间数据，结合机器学习，为印度尼西亚生成更频繁、更细粒度的贫困率估计。研究重点是这些估计能否在传统调查粒度不足的情况下支持政策定位和资源配置。",
+      "hypothesis_or_mechanism": "核心机制是，日间卫星影像中的视觉特征、夜间灯光所反映的经济活动，以及其他地理空间协变量共同包含与贫困率相关的空间信号。多源数据整合可提高贫困估计的准确性，但夜间灯光对城市贫困估计更有效，在农村或视觉指标较弱地区不确定性更高。",
+      "variables_and_data_use": "使用CNN从日间卫星影像中提取特征，并将这些特征与夜间灯光影像（NTL imagery）和其他地理空间解释变量合并，用于预测4 km × 4 km网格层面的贫困率；原文未给出日间影像或NTL的具体传感器名称。模型用基于政府和国际数据源模拟得到的村级贫困率进行校准和验证，并与印度尼西亚Relative Wealth Index进行比较，该指数利用Facebook connectivity data、satellite imagery和National Socioeconomic Survey。",
+      "method_paradigm": "方法范式是监督式机器学习贫困制图：先用卷积神经网络从日间卫星影像提取特征，再用岭回归和随机森林对贫困率进行回归预测。研究还比较了不同训练—验证划分策略，并用相关性评估预测结果与Relative Wealth Index及模拟村级贫困率的一致性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.22617_tcs250511-2.methods.txt",
+        "chars": 13207,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:05"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_007",
+      "source_paper_doi": "10.1021/acs.est.2c03834",
+      "title": "Ground-Level NO2 Surveillance from Space Across China for High Resolution Using Interpretable Spatiotemporally Weighted Artificial Intelligence",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Daily TROPOMI tropospheric\nNO 2 products (unit: 1e15 mol/cm 2 ) at a high\nspatial resolution of 1 km in China generated using a new algorithm\nand downscaled following the area-weighted method were employed."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Prefecture-level economic indicator panel",
+          "actual_dataset": "Prefecture-level economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Population-related data include the 1 km\nlandScan population distribution (POD) and 1 km visible infrared imaging\nradiometer suite nighttime light (NTL) products."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Daily TROPOMI tropospheric\nNO 2 products (unit: 1e15 mol/cm 2 ) at a high\nspatial resolution of 1 km in China generated using a new algorithm\nand downscaled following the area-weighted method were employed.",
+        "Population-related data include the 1 km\nlandScan population distribution (POD) and 1 km visible infrared imaging\nradiometer suite nighttime light (NTL) products."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "task_011_verify_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即为准入标准，不要求领域/地区/事件一致；analogous 数据集按 analogous_product 计入；task_018 rs-846222 去重取 v2"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "论文旨在回答如何结合地面观测、卫星遥感、再分析和模拟数据，在中国大陆高时空分辨率地估算地表 NO2 浓度，并评估模型在无地面站点地区的预测能力。",
+      "hypothesis_or_mechanism": "核心机制是卫星对流层 NO2 与地表 NO2 之间存在可由气象、排放、人口和地表条件调节的复杂关系，且这种关系具有显著时空异质性。通过在机器学习和深度森林模型中加入时空加权信息，可更好地区分污染物的空间和季节差异并提高估算精度。",
+      "variables_and_data_use": "因变量为中国生态环境部约 1630 个站点的小时地表 NO2，经质控后计算日均值；关键自变量包括 TROPOMI 1 km 对流层 NO2、重建的 OMI 0.25°对流层 NO2、CAMS 对流层和地表 NO2 模拟以及 CAMS 月度人为 NOx 排放。辅助变量包括 ERA5 的 BLH、2 m 温度、蒸发、降水、相对湿度、10 m 风场和地表气压，LandScan 1 km 人口、VIIRS 夜间灯光、MODIS 土地利用和 NDVI、SRTM DEM；所有辅助数据统一重网格到约 1 km。",
+      "method_paradigm": "方法范式为结合时空加权的机器学习缺失填补与深度森林回归：先用时空加权 missing extra-trees（SWMET）依次填补 OMI 和 TROPOMI 对流层 NO2 缺测，再用时空加权深度森林（SWDF）构建对流层—地表 NO2 转换模型。模型验证采用随机样本的 10 折交叉验证和独立的 out-of-city 10 折交叉验证。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1021_acs.est.2c03834.methods.txt",
+        "chars": 7353,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:27:57"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_008",
+      "source_paper_doi": "10.70675/3b89822fz587cz4e99z8c2fzd0334dc9489f",
+      "title": "Capital naturel et capital humain: trois essais en Afrique Subsaharienne",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used",
+          "evidence_quotes": [
+            "InadditiontothesurveydataIusethedatabaseofvanDonkelaaretal.(2018)which\ncontainsannualconcentrationsofnesparticlesatgroundlevel(PM2.5),withoutdust\nandseasalt."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "usedatafromthe2015Côted'IvoireHouseholdLivingStandardsSurveyandtheWorld\nDatabaseonProtectedAreas(WDPA)."
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "whichissatelliteimagerydatafromTheEarthObservationsGroupdatabase.Thesedata\nallowmetohaveinformationonthelevelofdevelopmentofthesub-prefecturesofCote\nd'Ivoire."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "usedatafromthe2015Côted'IvoireHouseholdLivingStandardsSurveyandtheWorld\nDatabaseonProtectedAreas(WDPA).",
+        "whichissatelliteimagerydatafromTheEarthObservationsGroupdatabase.Thesedata\nallowmetohaveinformationonthelevelofdevelopmentofthesub-prefecturesofCote\nd'Ivoire."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文总体回答撒哈拉以南非洲自然资本退化如何影响人力资本，尤其是健康与教育的问题。三个章节分别考察科特迪瓦保护区存在与家庭烹饪燃料选择的关系、室内空气质量与呼吸系统疾病风险的因果关系，以及南非环境空气污染对学龄儿童缺课的影响。",
+      "hypothesis_or_mechanism": "核心机制是自然资本退化通过空气污染、森林覆盖损失及环境保护政策改变家庭能源使用和污染暴露，进而影响个体健康和教育结果。保护区可能限制或改变生物质燃料获取，固体燃料使用造成室内空气污染，而细颗粒物浓度升高会增加儿童健康风险并导致缺课。",
+      "variables_and_data_use": "研究使用科特迪瓦2015年“Household Living Standards Survey/Enquête sur le niveau de vie des ménages”构造家庭燃料选择、保护区存在、室内空气污染指标、呼吸系统疾病、户主特征、社会经济地位和居住地区发展水平等变量。南非部分使用2015和2016年“General Household Survey”衡量5—15岁儿童缺课、家庭财富、家庭规模与结构等，并使用PM2.5细颗粒物浓度以及温度逆温事件、风速和风向作为影响空气污染暴露的工具变量。",
+      "method_paradigm": "方法范式以微观计量因果识别为主：前两章采用多层次混合效应模型分析家庭和地区层面的嵌套数据。第三章针对空气污染暴露的非随机性，采用工具变量方法，并使用控制函数方法估计PM2.5对学校缺课的影响，同时进行稳健性检验和异质性分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.70675_3b89822fz587cz4e99z8c2fzd0334dc9489f.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:05"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_009",
+      "source_paper_doi": "10.3390/rs18142336",
+      "title": "A Dual-Perspective Analysis of Ozone Formation Sensitivity in the Yangtze River Delta: Satellite and Ground-Based Evidence",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "Regional economic indicator panel"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TVCDofHCHOandNO\n2\nusedinthisstudywereretrievedfromTROPOMIonboard\ntheCopernicusSentinel-5Precursorsatellite."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "bothapermanentresidentpopulationexceeding5millionandagrossdomesticproduct\n(GDP)exceeding1trillionCNYin2022wereclassiedasGroup1cities(G1),whereasthe"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "TVCDofHCHOandNO\n2\nusedinthisstudywereretrievedfromTROPOMIonboard\ntheCopernicusSentinel-5Precursorsatellite.",
+        "bothapermanentresidentpopulationexceeding5millionandagrossdomesticproduct\n(GDP)exceeding1trillionCNYin2022wereclassiedasGroup1cities(G1),whereasthe"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "nighttime_proxy_comparator"
+      ],
+      "research_question": "论文旨在回答长三角城市臭氧生成敏感性如何在不同城市发展水平之间变化，以及卫星柱浓度指标能否与地基垂直观测共同刻画白天城市尺度的臭氧生成机制。重点比较超大/高发展水平城市（G1）与较小城市（G2）在 VOC 受限、过渡和 NOx 受限 regimes 下的差异。",
+      "hypothesis_or_mechanism": "核心机制是地表 O3 由 NOx 与 VOCs 的非线性光化学相互作用共同控制，HCHO/NO2 柱浓度比值（FNR）可作为臭氧生成敏感性的指示量。G1 城市因较强 NOx 排放和较高 VOC 背景，可能在较低 FNR 下达到臭氧峰值，并使单独削减 NOx 在部分情形下不足以降低 O3。",
+      "variables_and_data_use": "使用 TROPOMI/Sentinel-5P Level-2 离线 HCHO 和 NO2 对流层垂直柱浓度（TVCD）产品，计算 HCHO-to-NO2 ratio（FNR），并通过普通克里金插值与 CNEMC 地面站 12:00–14:00 的小时 O3 浓度配对。地基部分使用南京 NUIST-BJ-AEMS 的 MAX-DOAS 反演 HCHO、NO2 垂直廓线和柱浓度，并结合共址 NOx 与 O3 观测，用于检验日变化和垂直解析的前体物—臭氧关系。",
+      "method_paradigm": "方法范式是卫星—地基多平台融合的臭氧敏感性诊断：按城市人口和 GDP 将长三角城市分为 G1/G2，基于 FNR 分箱统计 O3，并用三次多项式拟合 O3–FNR 非线性关系。通过最高 10% O3 对应的 FNR 范围划定过渡区，低于和高于该范围分别判定为 VOC 受限和 NOx 受限。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs18142336.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:06"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_010",
+      "source_paper_doi": "10.3390/atmos13050697",
+      "title": "Analysis of the Effect of Economic Development on Air Quality in Jiangsu Province Using Satellite Remote Sensing and Statistical Modeling",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "Regional economic indicator panel"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "theoverpasstimeisabout13:45localsolartime.Inthisresearch,NASA'sversion3OMI\ntroposphericNO\n2standarddataproduct(https://ac\ndisc.gesdisc.eosdis.nasa.gov/data/Aura_OMI_Level3/OMNO2d.003,accessedon28\nMarch2022)isused"
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "theindustrialelectricityconsumptionandthetotalimportsandexports,whichindicate\ntheintensityofindustrialproductionandthedegreeofforeigntradedevelopment,re\nspectively,wereselectedforanalysis.Thefiveyeardatafrom2016to2020areavailable\nfromtheofficialwebsitesofthelocalbureausofstatistics"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "theoverpasstimeisabout13:45localsolartime.Inthisresearch,NASA'sversion3OMI\ntroposphericNO\n2standarddataproduct(https://ac\ndisc.gesdisc.eosdis.nasa.gov/data/Aura_OMI_Level3/OMNO2d.003,accessedon28\nMarch2022)isused",
+        "theindustrialelectricityconsumptionandthetotalimportsandexports,whichindicate\ntheintensityofindustrialproductionandthedegreeofforeigntradedevelopment,re\nspectively,wereselectedforanalysis.Thefiveyeardatafrom2016to2020areavailable\nfromtheofficialwebsitesofthelocalbureausofstatistics"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "nighttime_proxy_comparator"
+      ],
+      "research_question": "江苏省南京、苏州和徐州的经济发展，尤其是工业生产与进出口贸易，如何影响城市空气质量？在控制气象因素后，经济指标变化对对流层二氧化氮（NO₂）污染的影响程度和关系形态如何？",
+      "hypothesis_or_mechanism": "工业生产强度和对外贸易发展可能通过增加能源消耗及人为排放，提高对流层NO₂浓度；风速、温度和行星边界层高度等气象条件会混杂这一关系，因此需加以控制。论文以经济发展与空气污染可能存在复杂非线性关系为背景，但未将倒U形环境库兹涅茨曲线明确作为已验证结论。",
+      "variables_and_data_use": "以NASA Aura卫星OMI传感器的V3对流层NO₂标准产品（OMNO2d.003）作为空气质量指标，筛选相对误差小于100%、云量小于0.4的数据，并计算2016—2020年南京、苏州和徐州城市边界内的月均或年均NO₂垂直柱浓度。经济解释变量为当地统计局的总出口、总进口和工业用电量；气象控制变量为基于NCEP GFS初始和边界条件、由WRF模拟得到的月均10米风速、2米温度和行星边界层高度，另加入月份变量控制短期时间持续性和残差自相关。",
+      "method_paradigm": "采用广义加性模型（GAM）进行统计建模，以对流层NO₂垂直柱浓度为响应变量，以经济指标和气象变量为解释变量，通过平滑函数刻画潜在的非线性关系并控制气象混杂因素。研究还按城市构建月度时序分析，利用月份变量控制时间效应。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_atmos13050697.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:15"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_011",
+      "source_paper_doi": "10.3390/rs12223734",
+      "title": "Determining Optimal Location for Mangrove Planting Using Remote Sensing and Climate Model Projection in Southeast Asia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TheGDPdatausedinthisstudywereobtainedfromKummuetal.[88"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "studyweretheblackmarblenighttimelight(VNP46)dataoftheNationalAeronauticsandSpace\nAdministration(NASA).Thesedatahadaspatialresolutionof500m."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "TheGDPdatausedinthisstudywereobtainedfromKummuetal.[88",
+        "studyweretheblackmarblenighttimelight(VNP46)dataoftheNationalAeronauticsandSpace\nAdministration(NASA).Thesedatahadaspatialresolutionof500m."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文旨在回答：在当前以及2050、2070年不同气候变化情景下，东南亚哪些区域最适合开展新的红树林种植或恢复。研究还比较不同RCP情景和气候模型对各国红树林土地适宜性面积的影响。",
+      "hypothesis_or_mechanism": "核心机制是红树林种植成败受水动力、地貌、气候以及人类压力共同限制；潮汐淹没、坡度、海拔、降水和气温决定生态适宜性，而土地覆盖、人口、GDP和夜间灯光代表的人类活动会降低适宜性。未来降水和气温变化可能改变红树林适宜区，并推动红树林向陆地方向迁移。",
+      "variables_and_data_use": "研究使用TPXO9.0潮汐模型数据生成潮汐淹没参数；使用MERIT DEM（由SRTM3 v2.1和AW3D-30m v1改进）提取海拔和坡度；使用ECMWF 2米气温、CHIRPS v2.0降水作为当前气候变量。人类压力变量来自ESA CCI-LC土地覆盖、GPWv4人口密度、Kummu等GDP栅格数据和NASA Black Marble VNP46夜间灯光；未来气候使用CNRM-CM5.1和MIROC5在RCP2.6、RCP4.5、RCP8.5下的2050和2070年气温与降水。",
+      "method_paradigm": "方法范式是基于遥感、模型和统计栅格数据的多准则土地适宜性评价，并采用层次分析法（AHP）确定各参数和子参数权重。研究还用等权重方案、既有适宜性产品对比以及Wilcoxon敏感性检验评估AHP权重和变量变化的影响。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs12223734.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:07"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_012",
+      "source_paper_doi": "10.1007/s40980-025-00142-6",
+      "title": "Migration Spillover: Spatial Panel Analysis on Small Areas in Europe",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GDP per Capita\nis\nexpressed in Purchasing Power Parities (PPPs) per inhabitant, adjusted using the\nchain-linked volume index with 2010 as the base year"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The digital pixel values were aggregated within the boundaries of each NUTS III\nregion, producing a composite measure of total nighttime light intensity for each\nregion."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "GDP per Capita\nis\nexpressed in Purchasing Power Parities (PPPs) per inhabitant, adjusted using the\nchain-linked volume index with 2010 as the base year",
+        "The digital pixel values were aggregated within the boundaries of each NUTS III\nregion, producing a composite measure of total nighttime light intensity for each\nregion."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文考察欧盟次区域及更小地理单元中，净迁移是否存在空间溢出，以及经济和人口因素如何影响净迁移。重点分析迁移本身和邻近地区就业机会的空间影响。",
+      "hypothesis_or_mechanism": "研究基于推拉理论和累积因果框架，假设迁移会产生自身的空间溢出，且邻近地区的就业机会对迁移具有显著吸引作用。结果进一步表明，迁移呈现更向外扩散的空间累积因果过程，而本地人口密度与净迁移呈负相关。",
+      "variables_and_data_use": "以净迁移为核心结果变量，使用邻近地区就业机会、当地人口密度及其他经济和人口因素解释其变化，并利用空间邻接关系检验迁移溢出效应。数据来自欧盟次区域及更小区域的迁移、经济和人口统计资料，并辅以卫星夜间灯光影像；原文未指明具体夜间灯光数据产品或传感器。",
+      "method_paradigm": "采用固定效应空间面板分析范式，在短期和长期框架下估计迁移及其经济、人口驱动因素的空间溢出效应。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.1007/s40980-025-00142-6",
+        "chars": 1100,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:21"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_013",
+      "source_paper_doi": "10.1016/j.jue.2020.103242",
+      "title": "Metropolitan areas in the world. Delineation and population trends",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "using country-level GDP per capita can help mitigate a possible bias in\nthe country sample used for the training set"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "is the size of urban centre j (measured by population, area\nor nightlight)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "using country-level GDP per capita can help mitigate a possible bias in\nthe country sample used for the training set",
+        "is the size of urban centre j (measured by population, area\nor nightlight)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文旨在回答如何在缺乏全球通勤流数据的情况下，将全球地表单元划分为属于功能性城市区域（FUA）和不属于FUA，并为各城市中心界定通勤区边界。具体问题是利用已有31个国家的基准FUA边界，估计全球168个国家单元属于FUA的概率并进行分类。",
+      "hypothesis_or_mechanism": "核心机制基于集聚经济和引力框架：城市中心的人口规模与密度代表集聚收益，较短的到城市中心旅行时间使周边低密度地区能够获得这些收益，因此更可能属于该城市中心的通勤区。由于缺乏全球通勤流数据，论文假定每个单元最可能隶属于旅行时间最近的城市中心。",
+      "variables_and_data_use": "论文使用GHSL/GHS-SMOD提供的建成区、人口分布网格和聚落密度分类来识别城市中心及待分类的至少300人/平方公里单元；使用Weiss et al.全球旅行阻抗网格，并结合OpenStreetMap道路、铁路、水体和陆地通行信息，计算单元到城市中心的旅行时间。因变量来自31个国家的EU-OECD FUA基准边界，表示单元是否在FUA内；解释变量包括单元人口、城市中心人口/面积/夜光等规模代理、GDP per capita和每千人车辆数。",
+      "method_paradigm": "方法范式是基于单元格的监督式二分类建模：用31个国家既有FUA边界训练二项Logistic回归模型，并通过逐步模型选择和BIC确定变量组合。随后将估计参数应用到全球样本，按区域校准最优概率阈值，将概率高于阈值的单元分类为FUA，并进行交叉验证。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.jue.2020.103242.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:10"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_014",
+      "source_paper_doi": "10.2139/ssrn.3237340",
+      "title": "Shedding Light on the Spatial Diffusion of Disasters",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TableA4:LightstoGDPGrowthRateElasticity\n\nDependentVariable:ln(GDPinconst.LCU)"
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "usingtherawdataproduct,asdownloadedfromNOAA."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "TableA4:LightstoGDPGrowthRateElasticity\n\nDependentVariable:ln(GDPinconst.LCU)",
+        "usingtherawdataproduct,asdownloadedfromNOAA."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文回答的科学问题是：外生极端自然事件对地方经济活动的影响如何在空间上传播，包括本地平均处理效应和邻近地区的空间溢出效应。研究将讨论推进到地方尺度，考察不同类型自然灾害冲击对夜间灯光增长的影响。",
+      "hypothesis_or_mechanism": "核心机制是自然灾害作为外生冲击会改变受灾地的经济活动，并可能通过临时搬迁、重建或邻近地区承接活动等渠道产生局部空间溢出。作者还强调夜间灯光强度更适合作为收入增长而非收入水平的代理变量，因为人口规模、文化差异和用光习惯会影响灯光水平。",
+      "variables_and_data_use": "因变量使用1992—2013年DMSP卫星Operational Linescan System（DMSP-OLS）夜间灯光数据，具体为NOAA Earth Observation Group的Version 4 DMSP-OLS Night-Time Lights Time Series稳定灯光产品，用夜间灯光排放增长代理地方经济活动增长。解释变量包括分解到0.5°×0.5°全球网格的地震、气候和气象自然灾害事件数据，并控制网格人口；文中还提到使用F18 2010卫星原始夜光数据示例。",
+      "method_paradigm": "方法范式是全球平衡0.5°×0.5°网格上的空间面板固定效应模型，采用最大似然技术估计自然灾害对夜间灯光增长的影响。模型控制网格人口和误差项空间自相关，并显式估计本地处理效应与邻近地区空间溢出效应。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.2139_ssrn.3237340.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:10"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_015",
+      "source_paper_doi": "10.3390/ijgi10090614",
+      "title": "An Analysis of the Work Resumption in China under the COVID-19 Epidemic Based on Night Time Lights Data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "iesandprovedthatthelevelofworkresumptionwassigni\u0002- cantlyrelatedtotheshortageofmanpower,thenumberofbasicregenerationsandGDP. Xuetal.[9 liferecoveryaftertheSpringFestivalaffectedbyCOVID-19in2020.Lietal.[10 theworkresumptionratefor366citiesinChinain2020basedonBaidu'smigration-in andmigration-outdataandpr"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Thedaily\nNTLsdatausedinthestudywereNASA'sdailyBlackMarblenighttimelightsproductsuite(VNP46A1)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "iesandprovedthatthelevelofworkresumptionwassigni\u0002- cantlyrelatedtotheshortageofmanpower,thenumberofbasicregenerationsandGDP. Xuetal.[9 liferecoveryaftertheSpringFestivalaffectedbyCOVID-19in2020.Lietal.[10 theworkresumptionratefor366citiesinChinain2020basedonBaidu'smigration-in andmigration-outdataandpr",
+        "Thedaily\nNTLsdatausedinthestudywereNASA'sdailyBlackMarblenighttimelightsproductsuite(VNP46A1)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "论文回答的问题是：如何利用夜间灯光遥感数据和百度迁徙数据，动态、定量地衡量 COVID-19 疫情影响下中国春节后各城市和省份的线下复工水平。研究还关注不同地区复工进程的时空差异。",
+      "hypothesis_or_mechanism": "核心机制是夜间灯光亮度可作为人类活动和经济活动强度的代理指标，疫情和春节假期会使非居住区灯光减弱，而复工会使灯光逐步恢复。同时，城市出行强度能够反映人口在城市内活动的恢复程度，二者结合可近似表征复工水平。",
+      "variables_and_data_use": "研究使用 NASA LAADS DAAC 的 NPP-VIIRS Day/Night Band 每日夜间灯光产品 VNP46A1 计算复工指数，并用 MODIS MOD09A1 地表反射率辅助校正月光辐射。百度迁徙数据中的城市出行强度 UTI 用于反映复工相关的人口活动恢复；EULUC 中国城市土地利用数据用于剔除居住区夜间灯光像元，行政边界数据用于城市和省域统计。",
+      "method_paradigm": "方法范式是基于遥感时序预处理与指数构建的动态监测。具体包括 VIIRS-DNB 夜间灯光的月光、云、雪冰和异常值校正，利用 EULUC 剔除居住区像元，再用逐像元最小二乘线性回归填补时序缺口，并结合夜间灯光与百度 UTI 计算城市和省域复工指数。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_ijgi10090614.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:17"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_016",
+      "source_paper_doi": "10.1016/j.rse.2024.114321",
+      "title": "Estimating surface NO2 concentrations over Europe using Sentinel-5P TROPOMI observations and Machine Learning",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study uses RPRO version of TROPOMI NO2 data available from\ndataspace.copernicus.eu."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we use monthly cloud-free night light radiance composites which\nare corrected for stray lights and provided by the Earth Observation\nGroup"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study uses RPRO version of TROPOMI NO2 data available from\ndataspace.copernicus.eu.",
+        "we use monthly cloud-free night light radiance composites which\nare corrected for stray lights and provided by the Earth Observation\nGroup"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "论文旨在回答如何利用卫星、再分析和地面站观测等多源数据，在欧洲范围内生成2019—2021年高空间分辨率的逐日地表NO2浓度图，并评估模型在不同年份上的表现。",
+      "hypothesis_or_mechanism": "核心机制是地表NO2受对流层NO2柱浓度、人类活动分布、气象条件、太阳辐射、土地覆盖和地形共同影响；这些变量可作为机器学习模型的输入来估计地面站尺度的地表NO2。夜间灯光表征人口密度和工业活动等人为排放代理，NDVI区分建成区与植被区并间接反映NOx来源，气象和边界层条件影响NO2的浓度与输送。",
+      "variables_and_data_use": "目标变量为EEA e-Reporting数据库中约3044个空气质量监测站在卫星过境时间匹配的经质量控制地表NO2观测；输入变量包括S5P TROPOMI RPRO v2.4对流层NO2柱浓度和太阳天顶角、VIIRS DNB月度无云夜间灯光辐亮度、MODIS-Aqua 16天NDVI月平均、ERA5-Land 2米温度和10米风速/风向、NCEP-CFSR行星边界层高度、MERIT DEM高程及5公里邻域高程变化，以及周末指示变量和年内日。所有输入特征被重采样或重网格到1×1 km²，用于在站点处提取训练/测试样本并生成逐日栅格预测。",
+      "method_paradigm": "方法范式为多源遥感与再分析变量融合的监督式机器学习回归制图。研究将2019—2020年数据主要用于模型训练和测试，并将2021年测试数据作为独立年份评估；通过GEE和HARP进行特征提取、质量筛选、重采样与1 km网格化后进行逐日地表NO2预测。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.rse.2024.114321.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:20"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_017",
+      "source_paper_doi": "10.3390/rs15020378",
+      "title": "Estimations of the Ground-Level NO2 Concentrations Based on the Sentinel-5P NO2 Tropospheric Column Number Density Product",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "NO2 TVCD due\nto different meteorological conditions (T, PBLH, P, WS, WD, CTYPE), as well as anthropogenic and geographical factors (nightlights and population)"
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "as well as anthropogenic and geographical factors (nightlights and population)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "NO2 TVCD due\nto different meteorological conditions (T, PBLH, P, WS, WD, CTYPE), as well as anthropogenic and geographical factors (nightlights and population)",
+        "as well as anthropogenic and geographical factors (nightlights and population)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "该研究回答 Sentinel-5 Precursor（S-5P）对流层 NO2 柱浓度产品是否能够支持波兰空气污染监测，并进一步评估其与气象条件结合后估算地表 NO2 浓度的能力。",
+      "hypothesis_or_mechanism": "研究的核心机制是将卫星观测的 NO2 对流层柱浓度、气象条件和辅助地理社会变量共同输入人工智能模型，以建立其与地表 NO2 浓度之间的关系。结果表明 S-5P NO2 TVCD 是最重要变量，解释了超过 50% 的预测。",
+      "variables_and_data_use": "使用 Sentinel-5 Precursor（S-5P）Tropospheric NO2 Column Number Density（NO2 TVCD）产品作为主要污染观测变量，结合 ERA-5 气象数据以及夜间灯光、太阳辐射通量、道路密度、人口和行星边界层高度等辅助变量，用于估算地表 NO2 浓度。研究还将模型预测结果与 CAMS median ensemble 的估算进行精度比较。",
+      "method_paradigm": "方法范式为将 S-5P NO2 TVCD、ERA-5 和辅助数据同化进人工智能回归模型，并比较模型对地表 NO2 的估算表现。结果显示随机森林回归是最准确的方法，分别用于小时和周尺度地表 NO2 浓度估算。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/rs15020378",
+        "chars": 1322,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:26"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_018",
+      "source_paper_doi": "10.1093/restud_rdw020",
+      "title": "Farther on down the Road: Transport Costs, Trade and Urban Growth in Sub-Saharan Africa",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Regional economic indicator panel",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "China has panel GDP data for two relevant types of subnational regions: cities proper and prefectures."
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Satellites from the United States Air Force Defense Meteorological Satellite Program (DMSP) have been recording data on lights at night using their Operational Linescan System sensor"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "China has panel GDP data for two relevant types of subnational regions: cities proper and prefectures.",
+        "Satellites from the United States Air Force Defense Meteorological Satellite Program (DMSP) have been recording data on lights at night using their Operational Linescan System sensor"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "online_recall_zeropool_fill_20261006",
+        "verify": "task_011_online_fill_20261006 (independent read + verbatim quote check)",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入，同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致；011 的 PM2.5 气溶胶不计 NO2 排放观测角色"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "atmospheric_emission_observation"
+      ],
+      "research_question": "世界油价变化引致的城际运输成本冲击，是否会影响撒哈拉以南非洲城市的经济活动和收入？城市与本国主要港口的距离、道路铺装状况及通往次级中心的连接是否造成不同影响？",
+      "hypothesis_or_mechanism": "运输成本越高，城市与主要港口及市场的贸易联系越弱，因此油价上涨时，距离港口更远或道路条件更差的城市经济活动相对下降。该机制体现为贸易收益随运输成本降低而增加，但文中指出无法在现有经验框架下区分具体理论机制。",
+      "variables_and_data_use": "使用美国空军国防气象卫星计划（DMSP）的Operational Linescan System（OLS）夜间灯光数据，将1992—2008年30弧秒像元的数字量（DN）汇总为289个城市的年度经济活动代理变量；使用道路数据中的路线长度和路面材料，并将其与世界油价变化交互以识别运输成本冲击。进一步按道路是否铺装、通往次级中心的连接以及城市人口考察异质性和扩展结果。",
+      "method_paradigm": "基于城市年度面板的固定效应计量分析，将世界油价与港口路线距离（及道路表面状况）交互，利用油价年度波动形成运输成本冲击；模型控制国家—年份冲击、城市初始特征和城市平均增长率，并进行道路质量、市场可达性及人口结果的异质性分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1093_restud_rdw020.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:43"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_019",
+      "source_paper_doi": "10.1596/978-1-4648-1570-6",
+      "title": "The Economy in the Time of Covid-19",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "Regional economic indicator panel"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "For this report data on NO2 emissions was processed under the form of 30-days moving averages at the country level."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "On average, NO2 emissions across countries increase by about 0.7 percent when GDP increases by 1 percent."
+          ]
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "the relationship between nighttime light data from satellite imageries and the GDP of developing countries (Henderson et al. 2012)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "For this report data on NO2 emissions was processed under the form of 30-days moving averages at the country level.",
+        "On average, NO2 emissions across countries increase by about 0.7 percent when GDP increases by 1 percent."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_011_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "nighttime_proxy_comparator"
+      ],
+      "research_question": "COVID-19遏制措施怎样影响经济活动，能否用高频NO2卫星观测及时衡量国家层面的经济收缩？描述聚焦该报告NO2经济活动分析，不汇总整本报告为单一实验。",
+      "hypothesis_or_mechanism": "NO2与车辆及机械的活跃燃烧高度相关，作为经济活动的高频代理；NO2变化与GDP弹性联系可帮助估计收缩，但报告明确需要更精细的国家弹性估计。",
+      "variables_and_data_use": "卫星NO2浓度在国家层面处理为30天移动平均，与前两年同期及GDP变化比较；夜间灯光为方法背景与比较，不据此认定直接使用Black Marble产品。",
+      "method_paradigm": "进行国家层面的同比排放对比和NO2–GDP弹性换算，以近实时代理评估疫情及遏制措施的经济影响。",
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "For example, targeted contain￾ment measures adopted 15 days after the outbreak of the epidemic do more to slow down its progress than\r\ngeneral measures adopted after 30 days.\r\nAssessing the economic cost of containment measures on economic activity requires high-frequency data on\r\neconomic activity.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 67-70",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "For this report, the selected\r\nhigh-frequency indicator was the volume of nitrogen dioxide, as measured through satellite imageries. These\r\nemissions are highly correlated with active combustion by vehicles and other machinery.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 71-73",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "However, the daily data is noisy, in the sense\r\nthat it fluctuates considerably, especially for small geographic areas. For this report data on NO2 emissions\r\nwas processed under the form of 30-days moving averages at the country level.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 871-873",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "For this report data on NO2 emissions\r\nwas processed under the form of 30-days moving averages at the country level.\r\nA crude assessment of the change in economic activity triggered by the Covid-19 epidemics is provided by a\r\ncomparison between NO2 emissions in the month preceding the closing date for this report and the average\r\nemissions in the same month over the two previous years.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 872-876",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "On\r\naverage, NO2 emissions across countries increase by about 0.7 percent when GDP increases by 1 percent.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 891-892",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "For this report, the selected\r\nhigh-frequency indicator was the volume of nitrogen dioxide, as measured through satellite imageries.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1596_978-1-4648-1570-6.txt",
+          "doi": "10.1596/978-1-4648-1570-6",
+          "locator": "UTF-8 text lines 71-72",
+          "source_sha256": "3fa69acb6077686aef9a4596d0748fe0b6bb16171ac88c1a061a793a04264de2"
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "status": "verified_fulltext_backfill",
+        "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+        "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+        "verified_at": "2026-10-11"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_020",
+      "source_paper_doi": "10.1016/j.lanwpc.2024.101112",
+      "title": "Urban health advantage and penalty in aging populations: a comparative study across major megacities in China",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The NO 2 data in 2000 and 2005–2020 was obtained from a global NO 2 land use regression (LUR) model created by Larkin and colleagues, with surface annual average NO 2 concentrations at 0.0083° (∼1 km 2 ) resolution."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We used nighttime light as an indicator of economic activity. Ecological-level nighttime light data was obtained from Version 4 of the US Air Force Defense Meteorological Program (DMSP) Operational Line-Scan System (OLS)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The NO 2 data in 2000 and 2005–2020 was obtained from a global NO 2 land use regression (LUR) model created by Larkin and colleagues, with surface annual average NO 2 concentrations at 0.0083° (∼1 km 2 ) resolution.",
+        "We used nighttime light as an indicator of economic activity. Ecological-level nighttime light data was obtained from Version 4 of the US Air Force Defense Meteorological Program (DMSP) Operational Line-Scan System (OLS)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_011_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "中国六个大城市不同城市发展布局与环境资源分布，如何关联老年居民的生存优势及污染健康损害？",
+      "hypothesis_or_mechanism": "靠近设施和经济活动可能带来健康收益，而较高空气污染及较少绿地产生健康代价；这些因素可能相互抵消，并随单中心/多中心城市布局而变。队列关联不能等同于随机化因果识别。",
+      "variables_and_data_use": "4992名老人、16824人年纵向队列与NO2/PM2.5/O3、NDVI、环路、夜间灯光及5 km设施POI匹配；NO2实际来源为全球LUR模型，夜间灯光为DMSP OLS v4，不能按名称替换成TROPOMI/Black Marble。",
+      "method_paradigm": "纵向队列采用Cox比例风险回归评估死亡/长寿与环境及设施的关联，控制个体社会人口和行为变量，并比较城市形态。",
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "This study provides a comparative analysis using epidemiological evidence across diverse major Chinese cities, examining how their unique urban development trajectories over time have impacted the health of their aging residents.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 7-7",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "## Interpretation\n Spatial inequalities create urban health advantages for some and penalties for others. Proximity to public facilities and economic activities is associated with health benefits, and may counterbalance the negative health impacts of lower green space and higher air pollution.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 21-22",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "## Nighttime light\n We used nighttime light as an indicator of economic activity. Ecological-level nighttime light data was obtained from Version 4 of the US Air Force Defense Meteorological Program (DMSP) Operational Line-Scan System (OLS), 32 a cloud-free annual composited product that detects visible and near-infrared (VNIR) emission sources at night and collects all the available archived DMSP-OLS smooth resolution data for calendar years from 1992 to 2013.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 97-98",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "We followed a longitudinal cohort of 4992 elderly participants (average age 87.8 years) over 16,824 person-years. We employed Cox proportional hazard regression to assess longevity, assessing 14 variables, including age, sex, ethnicity, marital status, residence, household income, occupation, education, smoking, alcohol consumption, exercise, and points of interest (POI) count of medicine-related facilities, sports, and leisure service-related places, and scenic spots within a 5 km-radius buffer.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 12-12",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "## Air pollution\n We acquired ground-level PM 2.5 for 1998–2020 from the Atmospheric Composition Analysis Group, which combined Aerosol Optical Depth (AOD) retrievals from the NASA MODIS, Multiangle Imaging Spectro Radiometer (MISR), and Sea-viewing Wide Field-of-view instruments with the GEOS-Chem chemical transport model, and subsequently calibrating to global ground-based observations using a Geographically Weighted Regression (GWR). 26 , 27 The NO 2 data in 2000 and 2005–2020 was obtained from a global NO 2 land use regression (LUR) model created by Larkin and colleagues, with surface annual average NO 2 concentrations at 0.0083° (∼1 km 2 ) resolution.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 80-81",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "## Methods\n We tracked changes in air pollution (NO 2 , PM 2.5 , O 3 ), green space (measured by NDVI), road infrastructure (ring road areas), and nighttime lighting over 20 years in six major cities in China. We followed a longitudinal cohort of 4992 elderly participants (average age 87.8 years) over 16,824 person-years.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 11-12",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "## Methods\n We tracked changes in air pollution (NO 2 , PM 2.5 , O 3 ), green space (measured by NDVI), road infrastructure (ring road areas), and nighttime lighting over 20 years in six major cities in China.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1016_j.lanwpc.2024.101112.txt",
+          "doi": "10.1016/j.lanwpc.2024.101112",
+          "locator": "UTF-8 text lines 11-12",
+          "source_sha256": "b5f1a8d667f4f0cb8f48310b595ef149b640536b0cbe0cb72dbba8d8713752a6"
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "status": "verified_fulltext_backfill",
+        "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+        "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+        "verified_at": "2026-10-11"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_021",
+      "source_paper_doi": "10.2139/ssrn.3202802",
+      "title": "The Lights of Iraq: Electricity Usage and the Iraqi War-Fare Regime",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+        "NASA Black Marble VNP46A2 VIIRS nighttime radiance"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "atmospheric_emission_observation",
+          "role": "atmospheric_emission_observation",
+          "anchor_product": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "actual_dataset": "OMI OMNO2d / Sentinel-5P TROPOMI OFFL tropospheric NO2 column",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "I also use the AURA satellite with the Ozone Monitoring Instrument (OMI) sensor, as well as the TERRA satellite with the Measurements of Pollution in the Troposphere (MOPITT) sensor."
+          ]
+        },
+        {
+          "member_id": "economic_activity_target",
+          "role": "economic_activity_target",
+          "anchor_product": "Regional economic indicator panel",
+          "actual_dataset": "Regional economic indicator panel",
+          "identity_match": "no_match",
+          "usage": "not_textually_confirmed"
+        },
+        {
+          "member_id": "nighttime_proxy_comparator",
+          "role": "nighttime_proxy_comparator",
+          "anchor_product": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "actual_dataset": "NASA Black Marble VNP46A2 VIIRS nighttime radiance",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The nighttime lights analysis is based on near real-time big data. It includes high-resolution remote-sensing and satellite imagery from the NASA Earth Observatory. I use the Visible Infrared Imaging Radiometer Suite (VIIRS) sensor on the Suomi NPP satellite."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "I also use the AURA satellite with the Ozone Monitoring Instrument (OMI) sensor, as well as the TERRA satellite with the Measurements of Pollution in the Troposphere (MOPITT) sensor.",
+        "The nighttime lights analysis is based on near real-time big data. It includes high-resolution remote-sensing and satellite imagery from the NASA Earth Observatory. I use the Visible Infrared Imaging Radiometer Suite (VIIRS) sensor on the Suomi NPP satellite."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_partial_pools_20261006",
+        "verify": "task_011_broad_20261006",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；同类/替换/父级词按 analogous 计入；不要求同领域/地区/事件一致"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "economic_activity_target"
+      ],
+      "research_question": "伊拉克及原ISIS控制地区的电力使用、夜间照明与油驱动国家俘获型政治经济和公共财政治理之间有什么关系？",
+      "hypothesis_or_mechanism": "论文将油驱动国家俘获型资本主义及战争治理结构作为解释框架，讨论电力使用对公共和财政治理的意义；主要为政治经济解释与空间描述，不能虚构为因果回归识别。",
+      "variables_and_data_use": "使用Suomi NPP VIIRS夜间灯光与NASA遥感影像表征电力活动，并结合AQUA/TERRA AIRS/MODIS、AURA OMI及TERRA MOPITT的大气观测；来源未证明具体Black Marble VNP46A2产品。",
+      "method_paradigm": "结合近实时卫星夜光和大气遥感的地理空间描述与政治经济制度分析，讨论电力、监管和财政契约；不将其当作定量因果估计。",
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "Abstract\nThis article explores the lights of Iraq, Iraq's variety of capitalism (VoC) and its system of public\nand fiscal governance.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 42-44",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "Abstract\nThis article explores the lights of Iraq, Iraq's variety of capitalism (VoC) and its system of public\nand fiscal governance. The first section examines Iraq's VoC, which I define oil-led state-captured\ncapitalism with associated oil-led state-captured war-fare regime.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 42-45",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "Data on\ngreenhouse gases are obtained through the AQUA and TERRA satellites derived from the\nAtmospheric Infrared Sounder (AIRS) and Moderate-resolution Imaging Spectroradiometer\n(MODIS) sensors. I also use the AURA satellite with the Ozone Monitoring Instrument (OMI)\nsensor, as well as the TERRA satellite with the Measurements of Pollution in the Troposphere\n(MOPITT) sensor.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 50-55",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "The second section investigates electricity\nusage. The nighttime lights analysis is based on near real-time big data.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 47-48",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "I use the\nVisible Infrared Imaging Radiometer Suite (VIIRS) sensor on the Suomi NPP satellite.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 49-50",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "I use the\nVisible Infrared Imaging Radiometer Suite (VIIRS) sensor on the Suomi NPP satellite. Data on\ngreenhouse gases are obtained through the AQUA and TERRA satellites derived from the\nAtmospheric Infrared Sounder (AIRS) and Moderate-resolution Imaging Spectroradiometer\n(MODIS) sensors.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 49-53",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "I also use the AURA satellite with the Ozone Monitoring Instrument (OMI)\nsensor, as well as the TERRA satellite with the Measurements of Pollution in the Troposphere\n(MOPITT) sensor. The third part examines the repercussions of electricity usage for good\ngovernance, for good regulatory and good fiscal practices, as well as for development and growth.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/four_dim_backfill_20261011/sources/10.2139_ssrn.3202802.txt",
+          "doi": "10.2139/ssrn.3202802",
+          "locator": "UTF-8 text lines 53-56",
+          "source_sha256": "343aa741ffb49c5a4dd60d0fcd932db3e5387cfeb3e700b1dde247ef8c503d9e"
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "status": "verified_fulltext_backfill",
+        "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+        "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+        "verified_at": "2026-10-11"
+      }
+    }
+  ],
+  "coverage": {
+    "formal_reference_count": 23,
+    "minimum_target": 20,
+    "minimum_met": true,
+    "latest_manual_audit": "reference_sets/audit/broad_recall_partial_pools_20261006/"
+  },
+  "reference_count": 23
+}

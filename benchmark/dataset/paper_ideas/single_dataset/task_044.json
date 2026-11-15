@@ -1,0 +1,39 @@
+{
+  "paper_id": "10.5194/isprs-archives-xlii-3-1853-2018",
+  "task_id": "single_dataset/task_044",
+  "title": "Monitoring Disaster-Related Power Outages Using NASA Black Marble Nighttime Light Product",
+  "category": "geological_hazards",
+  "year": 2018,
+  "journal": "ISPRS Archives",
+  "impact_level": "emerging",
+  "datasets": [
+    "NASA VIIRS Black Marble VNP46A2",
+    "Hurricane tracks and outage validation data"
+  ],
+  "idea": {
+    "research_question": "能否把每日夜间辐亮度相对灾前基线的骤降、最低点和回升轨迹转化为可跨事件比较的停电冲击与社区恢复指标，从而识别灾害影响强度、恢复速度及其空间差异？",
+    "hypothesis": "稳定人造照明在供电中断后会快速下降，并随基础设施修复而回升；经云、雪、月光和观测几何质量控制后，辐亮度损失幅度反映冲击程度，达到稳定基线所需时间和回升斜率反映恢复能力。",
+    "mechanism": "VNP46A2提供每日、BRDF校正的夜间辐亮度观测。以同一地点灾前匹配日期建立反事实基线，将事件后的归一化辐亮度差分解为冲击发生、最大损失和恢复三个阶段，再把这些轨迹量映射到工程韧性中的抵抗性与恢复性。桥梁不在于观察到灯光变化本身，而在于用供电—照明链和恢复轨迹理论把变化解释为基础设施功能状态。",
+    "key_variables": {
+      "target": "停电发生概率、最大辐亮度损失、恢复斜率、达到灾前基线的时间及社区间恢复差异",
+      "predictors": [
+        "VNP46A2高质量BRDF校正夜间辐亮度",
+        "地点与季节匹配的灾前辐亮度基线",
+        "灾害登陆时间、风圈、强度与距路径距离",
+        "云、雪、临时光源、土地覆盖和观测质量标志",
+        "人口、社会脆弱性和基础设施暴露"
+      ]
+    },
+    "data_sources": [
+      "NASA/VIIRS/002/VNP46A2每日Black Marble影像",
+      "NOAA IBTrACS或相应事件时空范围",
+      "公用事业停电记录或现场报告用于外部验证",
+      "人口、土地覆盖和社会脆弱性数据"
+    ],
+    "analytical_approach": "对每个空间单元构造灾前15—30天及历年同季节基线，使用质量标志屏蔽云雪与低质量像元，计算事件后3、7、14、30天的归一化辐亮度亏损。以分段曲线或状态空间模型估计冲击最低点、恢复斜率和恢复时间，并把抵抗性与恢复性分开报告；用公用事业停电数据验证辐亮度阈值，以未受影响邻近区、安慰剂日期和不同基线窗口检验假信号。",
+    "expected_contribution": "建立一套不依赖单一公用事业上报口径、可跨地区和重复事件比较的基础设施功能与恢复测量框架，并明确灯光代理在云覆盖、备用照明、土地覆盖差异和人口活动变化下的适用边界。",
+    "falsification_condition": "若高质量像元中的辐亮度亏损与独立停电记录无稳定对应，未受灾安慰剂地区出现同等幅度的V形轨迹，或估计的恢复时间对基线窗口和质量筛选极端敏感，则不能把夜间灯光轨迹解释为供电冲击与社区恢复。"
+  },
+  "enriched": true,
+  "enrichment_source": "open_methods_audit"
+}

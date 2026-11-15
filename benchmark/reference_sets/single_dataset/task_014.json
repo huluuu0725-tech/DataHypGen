@@ -1,0 +1,1007 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_014",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "NASADEM: NASA 30m Digital Elevation Model",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial surfaces",
+      "coverage": "Global land areas between about 60 degrees north and 56 degrees south, the acquisition latitude band of the underlying radar mission; voids have been reduced using auxiliary elevation data."
+    },
+    "temporal_coverage": "2000-02-11 to 2000-02-22 (single radar campaign, reprocessed)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Static surface from a single acquisition campaign",
+    "analytical_capabilities": [
+      "Elevation pattern mapping and spatial comparison",
+      "Derivation of slope, aspect, curvature, and other terrain variables",
+      "Terrain classification and geomorphological characterization",
+      "Watershed, drainage, and potential flow-path analysis",
+      "Topographic stratification and spatial relationship analysis with other geographic datasets"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Elevation in meters, referenced to the EGM96 geoid",
+      "runtime_hint": "Use the `elevation` band in metres for terrain analysis. `swb` flags water bodies (0 land, 255 water) and should be masked before hydrological derivation; `num` records the source and count of contributing scenes, useful for judging local reliability. Voids have been filled from auxiliary data, so quality is not uniform across the grid."
+    },
+    "data_source": "NASA; a reprocessing of SRTM radar data with auxiliary elevation input from ASTER GDEM, ICESat GLAS and PRISM",
+    "gee_asset": {
+      "id": "NASA/NASADEM_HGT/001",
+      "type": "image_collection"
+    },
+    "asset_provenance": "Anchor repointed from NASA/ASTER_GED/AG100_003 on 2026-08-28. The former anchor is a 100 m emissivity dataset that merely embeds a GDEM V002 elevation band, while the prompt claimed ASTER GDEM V003 at 30 m. No standalone ASTER GDEM exists in the Earth Engine catalog, so NASADEM stands in: it is 30 m, global, void-free, and incorporates ASTER GDEM as auxiliary input."
+  },
+  "current_data_path": "GEE:NASA/NASADEM_HGT/001",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_014.json",
+    "source_sha256": "423ebf9cb7546b61597c037d84171c6e38e229396296fbabdb9b3653f0e274c8",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_014/prompt.json",
+    "current_prompt_sha256": "4196d12ac71f6619307213a810b81cc4ae43d4a5917cccae34e0f39475e67130",
+    "original_anchor_asset": {
+      "id": "NASA/NASADEM_HGT/001",
+      "observable_group": "nasadem_thirty_metre_void_free_elevation",
+      "asset_alias_policy": "NASADEM 30 m void-free elevation is admitted; SRTM without NASADEM reprocessing, ASTER GED emissivity, Copernicus DEM, AW3D and MERIT are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other elevation products. A study comparing several DEMs is admissible as long as the admitted NASADEM surface is itself operationally processed.",
+      "substituted_for": {
+        "paper_used": "ASTER GDEM (30 m), used to derive slope and flow accumulation for the topographic wetness index",
+        "reason": "The Earth Engine catalog publishes no standalone ASTER GDEM collection. Only ASTER/AST_L1T_003 (L1T radiance) and NASA/ASTER_GED/AG100_003 (a 100 m emissivity dataset that merely embeds a GDEM V002 elevation band) exist.",
+        "why_this_substitute": "NASADEM is a reprocessing of SRTM that incorporates auxiliary data from ASTER GDEM, ICESat GLAS and PRISM, so it shares lineage with the product the paper used. It is 30 m, global, void-free and currently supported, which is what a slope-and-flow-accumulation TWI computation needs.",
+        "rejected_alternatives": {
+          "NASA/ASTER_GED/AG100_003": "the former anchor: a 100 m emissivity product, too coarse for hillslope water redistribution and not a DEM in identity",
+          "USGS/3DEP/10m_collection": "United States only; this task is global",
+          "JAXA/ALOS/AW3D30/V3_2": "deprecated in the catalog",
+          "COPERNICUS/DEM/GLO30": "TanDEM-X lineage, no relation to ASTER",
+          "MERIT/DEM/v1_0_3": "already the anchor of single_dataset/task_001, and multi-error-removed rather than a primary observation"
+        },
+        "residual_gap": "NASADEM is SRTM-based with ASTER GDEM as auxiliary input, not the ASTER GDEM itself; elevation values will differ from the paper's source in detail.",
+        "review_date": "2026-08-28"
+      },
+      "observation_identity_contract": {
+        "physical_object": "NASADEM: NASA 30m Digital Elevation Model, representing nasadem thirty metre void free elevation.",
+        "source_lineage": "Task Prompt source: NASA; a reprocessing of SRTM radar data with auxiliary elevation input from ASTER GDEM, ICESat GLAS and PRISM. Current task anchor: NASA/NASADEM_HGT/001 (nasadem_thirty_metre_void_free_elevation). Catalog-substitution context recorded in the task definition: The Earth Engine catalog publishes no standalone ASTER GDEM collection. Only ASTER/AST_L1T_003 (L1T radiance) and NASA/ASTER_GED/AG100_003 (a 100 m emissivity dataset that merely embeds a GDEM V002 elevation band) exist.",
+        "core_measurement_semantics": "Elevation in meters, referenced to the EGM96 geoid; spatial resolution: 30 m; temporal structure: Static surface from a single acquisition campaign",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: NASADEM 30 m void-free elevation is admitted; SRTM without NASADEM reprocessing, ASTER GED emissivity, Copernicus DEM, AW3D and MERIT are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "ASTER GDEM3、SRTM3、NASADEM、AW3D30 (v3.1)、ALOS PALSAR 和 TanDEM-X90 相对于高精度 TanDEM-X12 的高程与坡度精度表现有何差异？",
+      "hypothesis_or_mechanism": "不同传感器的光学立体或雷达干涉测高机制、空间分辨率和生产处理流程会导致系统性高程偏差及不同程度的坡度误差。",
+      "variables_and_data_use": "使用 ASTER GDEM3、SRTM3、NASADEM、AW3D30 (v3.1)、ALOS PALSAR 和 TanDEM-X90 的高程及派生坡度作为待评估变量，以 TanDEM-X12 的高程和坡度作为参考；统一投影和垂直基准，并重采样后计算描述统计、高程差、相关系数、DoD、RMSE、STDE、ME、AME 和线性误差。",
+      "method_paradigm": "多产品精度验证",
+      "used_assets": [
+        "ASTER GDEM3",
+        "SRTM3",
+        "NASADEM",
+        "AW3D30 (v3.1)",
+        "ALOS PALSAR",
+        "TanDEM-X90",
+        "TanDEM-X12"
+      ],
+      "author_team": [
+        "Zakaria Adiri",
+        "Rachid Lhissou",
+        "Lhou Maacha",
+        "Abdelhakim Jilali",
+        "El Hassan Talbi",
+        "Amine Jellouli",
+        "Mohcine Chakouri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison of ASTER GDEM3, SRTM3, NASADEM, TanDEM-X90, AW3D30, and ALOS PALSAR data with TanDEM-X12: a case study of Tagragra of Akka inlier, Moroccan Anti-Atlas",
+        "doi": "10.1007/s12517-022-10885-x",
+        "year": 2022,
+        "venue": "Arabian Journal of Geosciences",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "该论文研究不同数字高程模型在研究区地形与流域制图中的高程精度和地形派生产品差异。",
+      "hypothesis_or_mechanism": "不同雷达或光学来源 MDE 的空间分辨率、采集方式和插值处理会影响高程一致性、坡向、排水网络和地貌表达精度。",
+      "variables_and_data_use": "论文获取并处理 NASADEM、SRTM、ASTER GDEM、ALOS PALSAR、TopoData、COPERNICUS DEM、TERRASAR-X 等 MDE，高程值通过 QGIS、TAUDEM 和 point sampling tools 提取，并与 IBGE 控制点及派生坡向、流向、流域等栅格子产品进行统计比较。",
+      "method_paradigm": "精度验证对比",
+      "used_assets": [
+        "NASADEM",
+        "SRTM",
+        "COPERNICUS DEM",
+        "ALOS PALSAR",
+        "TopoData",
+        "TERRASAR-X",
+        "ASTER GDEM2",
+        "TANDEM/TERRASAR-X"
+      ],
+      "author_team": [
+        "Fernando Yogi",
+        "Fábio Noel Stanganini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparação e Avaliação de Modelos Digitais de Elevação dos sensores SRTM, ASTER, TANDEM/TERRASAR –X, NASADEM, COPERNICUS DEM e ALOS PALSAR para análise digital de terreno para aplicações no saneamento básico",
+        "doi": "10.33448/rsd-v12i1.39350",
+        "year": 2023,
+        "venue": "Research, Society and Development",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "研究区的地形、土壤密度、降水和植被覆盖等因素如何共同影响东哈萨克斯坦Rudny Altai地区的滑坡易感性分布？",
+      "hypothesis_or_mechanism": "高坡度、低土壤密度、高降水和低植被覆盖会提高区域滑坡易感性。",
+      "variables_and_data_use": "使用NASADEM数字高程模型计算地表坡度，使用OpenLandMap获取土壤密度和平均月降水量，使用Landsat 8数据生成NDVI，并将这些指标重分类后输入AHP-GIS模型进行滑坡易感性制图。",
+      "method_paradigm": "AHP-GIS决策支持",
+      "used_assets": [
+        "NASADEM digital elevation model",
+        "HydroBASINS",
+        "OpenLandMap",
+        "Landsat 8",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Dauren ZHANABAYEV",
+        "Kulchikhan DZHANALEEVA",
+        "Emin Atasoy",
+        "Recep Efe"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "LANDSLIDE SUSCEPTIBILITY MAPPING USING ANALYTICAL HIERARCHY PROCESS AND GEOGRAPHICAL INFORMATION SYSTEM IN RUDNY ALTAI REGION, EAST KAZAKHSTAN",
+        "doi": "10.21163/gt_2024.191.11",
+        "year": 2024,
+        "venue": "Geographia Technica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "不同空间分辨率和数据 lineage 的开放数字高程模型如何影响城市地形形态表达及其在基础设施规划中的适用性？",
+      "hypothesis_or_mechanism": "较粗分辨率的DEM会抑制城市内部的细微地形特征，从而导致坡度、坡向、粗糙度和排水路径等派生结果出现系统差异。",
+      "variables_and_data_use": "研究使用NASADEM、AW3D30和SRTM15Plus高程栅格，将其裁剪至研究区域并进行NoData检查和少量插值；随后派生高程、坡度、坡向、粗糙度、阴影和流路等地形变量，并比较不同DEM的地形表达。",
+      "method_paradigm": "比较性GIS地形形态分析",
+      "used_assets": [
+        "AW3D30",
+        "NASADEM",
+        "SRTM15Plus",
+        "OpenTopography",
+        "QGIS",
+        "GDAL",
+        "OSM"
+      ],
+      "author_team": [
+        "Jamshid Sodikov",
+        "Kuvonchbek Musulmanov",
+        "Dilshodbek Adizov",
+        "Dinh Van Hiep",
+        "Fazilat Saydametova"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Urban terrain morphometry for transport planning: A GIS-based analysis of Tashkent using open DEMs",
+        "doi": "10.21595/vp.2025.25563",
+        "year": 2025,
+        "venue": "Vibroengineering PROCEDIA",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "NASADEM 及其他全球 DEM 在不同地形、坡度、坡向和土地覆盖条件下的垂直高程精度如何？",
+      "hypothesis_or_mechanism": "DEM 的高程误差会受到地形起伏、坡度、坡向和土地覆盖类型影响，复杂地形及植被覆盖可能降低高程精度。",
+      "variables_and_data_use": "使用 NASADEM、SRTMV3、ASTER GDEM、AW3D30、MERIT DEM 和 TanDEM-X DEM 的高程值作为待评估变量，以 LiDAR-based DEMs 和 Pleiades-1A DEM 作为参考，计算逐像元高程误差、ME、MedE、RMSE、STD、NMAD 和分位数，并结合 Copernicus Global Land Cover Layers—Collection 2、Global Forest Change forest cover dataset、坡度和坡向分析误差差异。",
+      "method_paradigm": "DEM 精度验证与误差分析",
+      "used_assets": [
+        "NASADEM",
+        "SRTMV3",
+        "ASTER GDEM2",
+        "ASTER GDEM V3",
+        "AW3D30",
+        "MERIT DEM",
+        "TanDEM-X DEM",
+        "LiDAR-based DEMs",
+        "Pleiades-1A DEM",
+        "Copernicus Global Land Cover Layers—Collection 2",
+        "Global Forest Change forest cover dataset",
+        "CCI long-term global land cover time series",
+        "EGM96 geoid"
+      ],
+      "author_team": [
+        "Evelyn Uuemaa",
+        "Sander Ahi",
+        "Bruno Montibeller",
+        "Merle Muru",
+        "Alexander Kmoch"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Vertical Accuracy of Freely Available Global Digital Elevation Models (ASTER, AW3D30, MERIT, TanDEM-X, SRTM, and NASADEM)",
+        "doi": "10.3390/rs12213482",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该研究探讨流域内构造活动在空间上的分异及其与地貌形态特征之间的关系。",
+      "hypothesis_or_mechanism": "活动构造和结构变形会形成更显著的地貌特征，从而导致不同流域分区之间的构造地貌指数存在空间梯度。",
+      "variables_and_data_use": "使用SRTM v3/NASADEM高程数据 delineate 流域并提取关键形态参数，随后计算一组构造地貌指数以量化不同区域的构造活动特征。",
+      "method_paradigm": "构造地貌定量分析",
+      "used_assets": [
+        "SRTM v3/NASADEM",
+        "ArGIS Pro 3.4.2"
+      ],
+      "author_team": [
+        "Ayad Ali Faris Beg",
+        "Ghadeer F. Al-Kasoob",
+        "Ahmed Hashem Al-Sulttani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Morphotectonic Controls on the Geomorphic Evolution: A Case Study of Diyala River Basin",
+        "doi": "10.38094/jastt62352",
+        "year": 2025,
+        "venue": "Journal of Applied Science and Technology Trends",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "DEMIX 研究不同全球数字高程模型相对于高分辨率激光雷达参考高程的差异及其高程、坡度和粗糙度分布表现。",
+      "hypothesis_or_mechanism": "如果全球 DEM 的高程观测质量较高且无系统偏差，其相对于激光雷达参考模型的差异分布应接近零，并表现出更可靠的高程、坡度和粗糙度统计特征。",
+      "variables_and_data_use": "研究使用 COPDEM、FABDEM、ALOS、NASADEM、SRTM 和 ASTER 的高程数据，与 1-5 m 激光雷达派生 UTM DEM 聚合形成的参考高程进行差异计算，并据此评价高程、坡度和粗糙度分布。",
+      "method_paradigm": "数字高程模型验证",
+      "used_assets": [
+        "COPDEM",
+        "FABDEM",
+        "ALOS",
+        "NASADEM",
+        "SRTM",
+        "ASTER",
+        "1-5 m lidar-derived UTM DEMs"
+      ],
+      "author_team": [
+        "Peter Lorentz Guth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "DEMIX Difference Distribution Histograms",
+        "doi": "10.5281/zenodo.8087803",
+        "year": 2023,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "不同全球 1 角秒数字高程模型在高程、坡度和粗糙度分布上的表现如何？",
+      "hypothesis_or_mechanism": "与高精度激光雷达参考 DEM 的差异分布能够揭示不同全球 DEM 的偏差、质量和地形表征能力差异。",
+      "variables_and_data_use": "使用 COPDEM、FABDEM、ALOS、NASADEM、SRTM 和 ASTER 的高程数据，与由 1-5 米激光雷达派生 UTM DEM 聚合形成的参考 DEM 比较，计算高程、坡度和粗糙度分布的差异及五项评价准则。",
+      "method_paradigm": "DEM 基准评估与分布比较",
+      "used_assets": [
+        "COPDEM",
+        "FABDEM",
+        "ALOS",
+        "NASADEM",
+        "SRTM",
+        "ASTER",
+        "1-5 m lidar-derived UTM DEMs",
+        "DEMIX GIS database"
+      ],
+      "author_team": [
+        "Peter Lorentz Guth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "DEMIX Difference Distribution Histograms",
+        "doi": "10.5281/zenodo.8087804",
+        "year": 2023,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究不同全球数字高程模型在不同地形、土地覆盖和地貌分类区域中的表现差异及其排序特征。",
+      "hypothesis_or_mechanism": "数字高程模型的误差和相对表现会随地形、土地覆盖和地貌类别而变化，因此不同产品的全球排名具有空间和环境依赖性。",
+      "variables_and_data_use": "使用 ALOS、ASTER、CopDEM、FABDEM、NASADEM 和 SRTM 等 1 arc second 数字高程模型的统计数据，并结合高分辨率参考 DEM、土地覆盖和地貌分类，对 236 个 DEMIX tiles 进行类别百分比统计、K-means 聚类和产品比较。",
+      "method_paradigm": "数字高程模型基准评估",
+      "used_assets": [
+        "ALOS",
+        "ASTER",
+        "CopDEM",
+        "FABDEM",
+        "NASADEM",
+        "SRTM",
+        "high resolution reference DEMs"
+      ],
+      "author_team": [
+        "Peter Lorentz Guth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Bar graphs of DEMIX database tile classifications",
+        "doi": "10.5281/zenodo.8287773",
+        "year": 2023,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何构建覆盖加拿大及跨境流域、适用于地下水—地表水模拟的无缝高程和水文地形数据集？",
+      "hypothesis_or_mechanism": "通过整合多源DEM、进行冠层校正和空洞填补并嵌入湖泊测深，可以形成更适合大尺度水文地质模型的连续裸地地形表面。",
+      "variables_and_data_use": "论文使用C1W-DTM的DSM、经冠层校正和空洞填补的DEM、包含湖泊测深的DTM，以及由多源DEM派生的冠层和湖泊测深信息，用于构建和支持HydroGeoSphere水文地质模型。",
+      "method_paradigm": "多源DEM融合与水文地形建模",
+      "used_assets": [
+        "C1W-DTM",
+        "Canada1Water DTM",
+        "DSM",
+        "DEM",
+        "DTM",
+        "NASADEM",
+        "CDSM",
+        "MRDEM",
+        "CDED",
+        "CDEM",
+        "MDREM",
+        "HRDEM"
+      ],
+      "author_team": [
+        "Eric Kessel",
+        "Steve K. Frey",
+        "H A J Russell"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Canada1Water digital terrain model with bathymetry dataset",
+        "doi": "10.1016/j.dib.2026.112878",
+        "year": 2026,
+        "venue": "Data in Brief",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "研究不同河流和沉积物掩膜条件下的stream burning方法如何改善全球河流网络提取的准确性和拓扑连通性。",
+      "hypothesis_or_mechanism": "将水体和沉积物位置燃烧进地形DEM并降低相应像元高程，可以引导流向路由穿过实际河道并提高网络连通性与提取精度。",
+      "variables_and_data_use": "使用Sentinel-1和Sentinel-2提取水体与沉积物掩膜，并将这些掩膜用于条件化NASADEM、COP30、AW3D30和FABDEM等地形DEM；通过比较不同燃烧深度和沉积物燃烧策略评价河流网络精度。",
+      "method_paradigm": "DEM条件化与精度比较",
+      "used_assets": [
+        "Sentinel-1",
+        "Sentinel-2",
+        "NASADEM",
+        "COP30",
+        "AW3D30",
+        "FABDEM"
+      ],
+      "author_team": [
+        "Qiuyang Chen",
+        "Simon M. Mudd",
+        "Mikaël Attal",
+        "Steven Lee Hancock"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Extracting an accurate river network: Stream burning re-revisited",
+        "doi": "10.1016/j.rse.2024.114333",
+        "year": 2024,
+        "venue": "Remote Sensing of Environment",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究区 1999 年 NASADEM 基准高程与 2022 年 UAV-DEM 之间的差异能否揭示 Teesta 河洪泛区的地形、侵蚀沉积和体积变化？",
+      "hypothesis_or_mechanism": "河流地貌过程会导致洪泛区地表高程发生空间变化，UAV-DEM 与 NASADEM 的差分能够识别并量化侵蚀和沉积过程。",
+      "variables_and_data_use": "使用 NASADEM_HGT/NASADEM 的 30 米无空洞填补高程作为 1999 年参考表面，使用 UAV-SfM 生成的 2022 年 UAV-DEM 作为后期高程观测；将两者统一到相同空间分辨率和坐标系后计算 DEM of Difference，并提取地形剖面和体积变化。",
+      "method_paradigm": "地形变化检测",
+      "used_assets": [
+        "NASADEM_HGT",
+        "NASADEM",
+        "UAV-DEM",
+        "DJI Mavic 2 Pro"
+      ],
+      "author_team": [
+        "B. M. Refat Faisal",
+        "Yuichi S. Hayakawa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Topographical dynamics based on global and UAV-SfM derived DEM products: a case study of transboundary Teesta River, Bangladesh",
+        "doi": "10.1080/04353676.2024.2323347",
+        "year": 2023,
+        "venue": "Geografiska Annaler Series A Physical Geography",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何通过统计方法对六个 1 弧秒全球数字高程模型(NASADEM、CopDEM、FABDEM、ALOS、SRTM、ASTER GDEM)进行系统性精度评估与排名?",
+      "hypothesis_or_mechanism": "采用随机完全区组设计(RCBD)方法结合弗里德曼检验,可以在多个测试区域和地表类型条件下,基于高程、坡度和粗糙度指标对全球 DEM 产品进行统计显著的排名比较。",
+      "variables_and_data_use": "使用 NASADEM、CopDEM、FABDEM、ALOS、SRTM、ASTER GDEM 六个全球 DEM 作为候选产品,与来自 24 个测试区域的 236 个高精度参考 DEM(1-5米分辨率的 DTM 和 DSM)进行像素级比较,计算高程差异(ELVD)、坡度差异(SLPD)和粗糙度差异(RUFD)的多个统计指标(RMSE、MAE、LE90、AVD、STD),并结合土地覆盖数据(森林、城市、裸地)和坡度分类(平坦、缓坡、陡坡、悬崖)进行分层评估。",
+      "method_paradigm": "遥感产品精度验证 基准比较 统计排名",
+      "used_assets": [
+        "NASADEM",
+        "CopDEM",
+        "FABDEM",
+        "ALOS World 3D",
+        "SRTM",
+        "ASTER GDEM",
+        "Reference DTMs and DSMs (1-5m)",
+        "Copernicus Global Land Cover Layers Collection 2"
+      ],
+      "author_team": [
+        "Conrad Bielski",
+        "Carlos López-Vázquez",
+        "Carlos Henrique Grohmann",
+        "Peter Lorentz Guth",
+        "Laurence Paul Hawker",
+        "Dean B. Gesch",
+        "Sebastiano Trevisani",
+        "Virginia Herrera-Cruz",
+        "Serge Riazanoff",
+        "Axel Corseaux",
+        "Hannes Isaak Reuter",
+        "Peter A. Strobl"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Novel Approach for Ranking DEMs: Copernicus DEM Improves One Arc Second Open Global Topography",
+        "doi": "10.1109/tgrs.2024.3368015",
+        "year": 2024,
+        "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "NASADEM、SRTM DEM和Copernicus DEM在研究区域的高程精度表现如何？",
+      "hypothesis_or_mechanism": "NASADEM通过对SRTM数据进行再处理、填补空洞并实施高程误差校正，预期比原始SRTM DEM具有更高的高程精度。",
+      "variables_and_data_use": "使用NASADEM、SRTM DEM和Copernicus DEM的高程变量作为待评估DEM，并使用GNSS观测和ICESat-2 ATLAS08测高数据作为参考，通过双线性插值提取DEM高程，计算平均误差、标准差和均方根误差。",
+      "method_paradigm": "DEM精度验证",
+      "used_assets": [
+        "SRTM DEM",
+        "NASADEM",
+        "Copernicus DEM (CopDEM)",
+        "GNSS observations",
+        "ICESat-2 ATLAS08 altimetry"
+      ],
+      "author_team": [
+        "Hairie Ilkham Sibaruddin",
+        "Muhammad Faiz Pa’suya",
+        "Noorfatekah Talib",
+        "A. H. M. Din",
+        "Chien Zheng Yong",
+        "Afreena Nisha Mohd Zamri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating the Performance of SRTM, NASADEM, and Copernicus DEM: A Case Study of the Perlis State Region",
+        "doi": "10.24191/bej.v23i1.8308",
+        "year": 2026,
+        "venue": "Built Environment Journal",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何在海平面上升和沿海洪涝评估中量化数字高程模型的垂直不确定性，并据此改进影响区制图和评估结果的可靠性？",
+      "hypothesis_or_mechanism": "输入 DEM 的垂直误差及其与垂直基准转换相关的不确定性会传播到淹没范围和影响资源估计中，因此显式建模和传播这些误差能够提高评估结果的置信度。",
+      "variables_and_data_use": "使用 NASADEM、SRTM、ASTER GDEM、AW3D30、TanDEM-X、MERIT DEM 以及其他高程模型的高程值，与 GPS on Bench Marks 和 RTK GPS points 等参考高程点进行比较，计算垂直误差、偏差、RMSE 和置信区间，并讨论其对海岸淹没制图及海平面上升增量设定的影响。",
+      "method_paradigm": "DEM 精度评估与不确定性分析",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM)",
+        "Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) Global Digital Elevation Model (GDEM)",
+        "Advanced Land Observing Satellite (ALOS) Global Digital Surface Model (AW3D30)",
+        "TerraSAR-X add-on for Digital Elevation Measurement (TanDEM-X)",
+        "National Aeronautics and Space Administration Digital Elevation Model (NASADEM)",
+        "Multi-Error-Removed Improved-Terrain (MERIT) DEM",
+        "U.S. Geological Survey (USGS) National Elevation Dataset (NED)",
+        "3D Elevation Program (3DEP)",
+        "UAS-SfM DEM",
+        "GPS on Bench Marks",
+        "real-time kinematic (RTK) GPS points"
+      ],
+      "author_team": [
+        "Dean B. Gesch"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Best Practices for Elevation-Based Assessments of Sea-Level Rise and Coastal Flooding Exposure",
+        "doi": "10.3389/feart.2018.00230",
+        "year": 2018,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "不同全球数字高程模型能否满足不同地形图比例尺下等高线生成以及坡度和地形剖面分析的精度要求？",
+      "hypothesis_or_mechanism": "数字高程模型的垂直精度和空间分辨率决定其派生等高线、坡度和地形剖面在不同制图比例尺下的有效性。",
+      "variables_and_data_use": "使用NASADEM_HGT v. 1、SRTMGL1 v. 3、ASTER v. 3和ACE2的高程数据，在研究区域提取和插值控制点高程，计算坡度、生成地形表示，并以精确地面控制点比较各产品的RMSE、坡度有效性和地形表达能力。",
+      "method_paradigm": "数字高程模型精度验证",
+      "used_assets": [
+        "NASADEM_HGT v. 1",
+        "SRTMGL1 v. 3",
+        "ASTER v. 3",
+        "ACE2"
+      ],
+      "author_team": [
+        "Gomaa M. Dawod",
+        "Ibrahim Ascoura"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "The Validity of Open-Source Elevations for Different Topographic Map Scales and Geomatics Applications",
+        "doi": "10.4236/jgis.2021.132009",
+        "year": 2021,
+        "venue": "Journal of Geographic Information System",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "不同数字高程模型在Karaman水库工程设计区域的垂直精度表现如何？",
+      "hypothesis_or_mechanism": "不同DEM的数据源、传感器和处理流程会导致地表高程误差存在差异，从而影响水库设计中的高程、库容和面积估算。",
+      "variables_and_data_use": "使用NASADEM、SRTM Plus DEM、ASTER GDEM、COP30和AW3D30的高程变量，并与地形图提供的36个地面高程点比较，通过RMSE、MAE、MBE、SD和MAD评价垂直精度及其对水库设计结果的影响。",
+      "method_paradigm": "DEM精度验证与工程决策支持",
+      "used_assets": [
+        "SRTM Plus DEM",
+        "ASTER GDEM",
+        "COP30",
+        "AW3D30",
+        "NASADEM",
+        "topographic map (1:25000)"
+      ],
+      "author_team": [
+        "B. Masharif",
+        "Khojiakbar Khasanov",
+        "I. Primbetov"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Vertical Accuracy of Freely Available Global Digital Elevation Models: A Case Study in Karaman Water Reservoir Territory",
+        "doi": "10.52939/ijg.v18i1.2107",
+        "year": 2022,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究比较NASA DEM、MERIT DEM、EarthEnv DEM和SRTM DEM在不同地形与土地覆盖条件下的垂直高程精度。",
+      "hypothesis_or_mechanism": "不同DEM的传感器来源、融合处理、空间分辨率及植被和地形条件会导致其高程误差存在差异。",
+      "variables_and_data_use": "使用NASA DEM、MERIT DEM、EarthEnv DEM和SRTM DEM的高程值作为待评估变量，以GNSS points、TanDEM-X DEM 12m和Airborne IFSAR DEM作为参考，通过EGM96统一垂直基准，并计算平均误差、标准差和RMSE。",
+      "method_paradigm": "多源DEM精度验证",
+      "used_assets": [
+        "NASA DEM",
+        "NASADEM",
+        "MERIT DEM",
+        "EarthEnv DEM",
+        "SRTM DEM V3",
+        "GNSS points",
+        "TanDEM-X DEM 12m",
+        "Airborne IFSAR DEM",
+        "EGM96"
+      ],
+      "author_team": [
+        "M.A. Aziz",
+        "Muhammad Faiz Pa’suya",
+        "N. Talib",
+        "Ami Hassan Md Din",
+        "Siti Syafiqah Hashim",
+        "Muhammad Zahir Ramli"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Vertical Accuracy Assessment of Improvised Global Digital Elevation Models (MERIT, NASADEM, EarthEnv) Using GNSS and Airborne IFSAR DEM",
+        "doi": "10.52939/ijg.v19i12.2979",
+        "year": 2023,
+        "venue": "International Journal of Geoinformatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "论文探讨如何结合数字高程、SAR和光学卫星数据估计哥伦比亚太平洋沿岸红树林的地上生物量。",
+      "hypothesis_or_mechanism": "数字高程及其与植被结构相关的空间信息能够补充SAR和光学观测，从而改善红树林地上生物量估计。",
+      "variables_and_data_use": "使用NASADEM、SRTM V3和ALOSDSM的数字高程值，使用ALOS PALSAR/PALSAR2的后向散射和RFDI指标，使用Landsat 8 OLI/TIRS的表面反射率及红树林光谱指数，并将这些变量组合成19波段输入，通过线性回归、随机森林和梯度提升树估计基于样地计算的地上生物量。",
+      "method_paradigm": "多源遥感生物量估计",
+      "used_assets": [
+        "NASADEM",
+        "Shuttle Radar Topography Mission (SRTM) V3",
+        "ALOS Global Digital Surface Model (ALOSDSM)",
+        "ALOS PALSAR/PALSAR2",
+        "Landsat 8 OLI/TIRS"
+      ],
+      "author_team": [
+        "John Josephraj Selvaraj",
+        "Bryan Ernesto Gallego Pérez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Estimating mangrove aboveground biomass in the Colombian Pacific coast: A multisensor and machine learning approach",
+        "doi": "10.1016/j.heliyon.2023.e20745",
+        "year": 2023,
+        "venue": "Heliyon",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究区流域的地形形态特征如何影响Enrekang城市区域的洪水风险及上下游流域划分？",
+      "hypothesis_or_mechanism": "流域面积、坡度、排水网络、起伏度和崎岖度等形态特征会影响降雨径流汇集和洪水快速上涨，从而造成城市区域洪水风险差异。",
+      "variables_and_data_use": "使用NASADEM高程数据进行流域和子流域划分、河网识别以及高程派生的空间分析，并计算流域周长、流域面积、河流级序、河流长度、分汊比、排水密度、延伸率、圆整率、流域起伏度、起伏比和崎岖度等线性、面积和地形起伏指标。",
+      "method_paradigm": "DEM空间分析与流域形态计量",
+      "used_assets": [
+        "NASADEM"
+      ],
+      "author_team": [
+        "Sudirman Nganro",
+        "Safrudin Suaib Manyila",
+        "Muhammad Saleh Syahrir",
+        "Arifuddin Akil",
+        "Ramdania Tenreng",
+        "Andi Arifuddin Iskandar",
+        "Marsuki Marsuki",
+        "Cucu Nopita",
+        "Muhammad Abduh",
+        "Silfester Stevi Wandan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Watershed Morphometric Controls on Highland Flooding in Enrekang’s Urban Area",
+        "doi": "10.14710/ijpd.11.1.13-26",
+        "year": 2026,
+        "venue": "The Indonesian Journal of Planning and Development",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "研究1970年代至2020年间巴塔哥尼亚冰川的高程、体积和地质质量平衡如何变化。",
+      "hypothesis_or_mechanism": "冰川长期消融导致冰面高程持续降低、体积减少，并形成可由多时相DEM差分和趋势拟合识别的质量损失。",
+      "variables_and_data_use": "使用KH-9 Hexagon imagery生成1970年代历史DEM，使用NASADEM作为2000年高程基准，使用ASTER DEMs和data1.l3a.demzs product构建2000—2020年多时相高程趋势，并借助Copernicus DEM进行配准；再结合冰川边界、像元面积和冰雪密度，将高程变化转换为体积变化和地质质量平衡。",
+      "method_paradigm": "多时相DEM变化检测",
+      "used_assets": [
+        "KH-9 Hexagon imagery",
+        "Copernicus DEM",
+        "ASTER DEMs",
+        "data1.l3a.demzs product",
+        "NASADEM",
+        "Randolph Glacier Inventory 6.0 (RGI 6.0)",
+        "Global Land Survey 1975 (GLS 1975)",
+        "GLS 2000 imagery",
+        "Landsat 8 imagery"
+      ],
+      "author_team": [
+        "Morgan C. McDonnell",
+        "Summer Rupper",
+        "R. R. Forster"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Quantifying Geodetic Mass Balance of the Northern and Southern Patagonian Icefields Since 1976",
+        "doi": "10.3389/feart.2022.813574",
+        "year": 2022,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "NASADEM_HGT与AW3D30在巴西Cerrado地区的高程精度和空间一致性如何？",
+      "hypothesis_or_mechanism": "由于两种DEM具有相近的空间分辨率和EGM96高程基准，NASADEM_HGT与AW3D30应与地面参考高程表现出较高一致性，但其不同传感器和生产流程会造成系统误差与随机误差差异。",
+      "variables_and_data_use": "使用NASADEM_HGT的DEM高程、NUM层和SRTM水体掩膜信息，并与AW3D30高程及IBGE测站和三角测量顶点的参考正高进行比较；使用MapBiomas Project的2018年农作物区域掩膜筛选农业像元，并计算高程差、相关系数、RMSE、偏差、标准差和一致性指标。",
+      "method_paradigm": "DEM精度验证与比较",
+      "used_assets": [
+        "NASADEM_HGT",
+        "global NASADEM Merged DEM version 1 product (NASADEM_HGT)",
+        "AW3D30",
+        "IBGE polygonal stations and triangulation vertices",
+        "MapBiomas Project",
+        "EGM96",
+        "MAPGEO2015"
+      ],
+      "author_team": [
+        "G. M. Bettiol",
+        "Manuel Eduardo Ferreira",
+        "Luiz Pacheco Motta",
+        "Édipo Henrique Cremon",
+        "Edson Eyji Sano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Conformity of the NASADEM_HGT and ALOS AW3D30 DEM with the Altitude from the Brazilian Geodetic Reference Stations: A Case Study from Brazilian Cerrado",
+        "doi": "10.3390/s21092935",
+        "year": 2021,
+        "venue": "Sensors",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "如何利用NASADEM高程和不同太阳位置计算青藏高原山影，并刻画其年内时空变化？",
+      "hypothesis_or_mechanism": "地形高程几何与太阳天顶角、方位角共同决定自阴影和投射阴影的分布，因此太阳位置变化会导致山影覆盖显著变化。",
+      "variables_and_data_use": "使用NASADEM地表高程计算山影及相关地形参数，使用Himawari-8观测的太阳天顶角和太阳方位角作为射线追踪输入，在春分、夏至、秋分和冬至等太阳位置下估计自阴影与投射阴影。",
+      "method_paradigm": "地形几何建模与时空变化分析",
+      "used_assets": [
+        "National Aeronautics and Space Administration Digital Elevation Model (NASADEM)",
+        "nasadem_hgtv001",
+        "Himawari-8"
+      ],
+      "author_team": [
+        "Yuyang Xian",
+        "Tianxing Wang",
+        "Pei Yu",
+        "Yihan Du"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "To Ignore or Not: Understanding the Influence of Hillshade",
+        "doi": "10.1109/jstars.2024.3389829",
+        "year": 2024,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "如何利用NASADEM地表高程与声呐测得的水库深度数据重建Cirata水库底部地形，并模拟沉积导致的水位上升及洪水风险？",
+      "hypothesis_or_mechanism": "水库沉积会改变库底地形并抬高有效库底，从而在相同来水条件下引起水位上升并增加洪水风险。",
+      "variables_and_data_use": "使用NASADEM高程数据作为地形基础，使用Deeper Smart Sonar Pro+获取的22个采样点水深数据并进行插值，随后将两者整合到Global Mapper和QGIS中进行库底地形制图和水位上升模拟。",
+      "method_paradigm": "测量建模与风险评估",
+      "used_assets": [
+        "NASADEM",
+        "Deeper Smart Sonar Pro+",
+        "Fish Deeper",
+        "Global Mapper",
+        "QGIS"
+      ],
+      "author_team": [
+        "Risma Dwi Puteri Wijayanti",
+        "Najla Natasya Aurellia",
+        "Khoirotul Latifah Sobari",
+        "Kartika Hajar Kirana"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Bathymetry Mapping and Simulation of Water Level in Cirata Reservoir Using Dual Beam Sonar",
+        "doi": "10.29303/jppipa.v11i2.10167",
+        "year": 2025,
+        "venue": "Jurnal Penelitian Pendidikan IPA",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "如何利用NASADEM数字高程数据提取印度尼西亚Masamba流域的排水网络及其形态特征？",
+      "hypothesis_or_mechanism": "地表高程梯度决定栅格水流方向和汇流累积，经过填洼、D8流向及阈值提取后可以重建流域排水网络。",
+      "variables_and_data_use": "使用NASADEM高程栅格及其30米空间分辨率，将高程作为基础地形变量，依次进行填洼、流向计算、汇流累积、阈值筛选、河流链接与河流分级，最终提取栅格和矢量排水网络。",
+      "method_paradigm": "DEM水文分析与排水网络提取",
+      "used_assets": [
+        "NASADEM"
+      ],
+      "author_team": [
+        "Sudirman Nganro",
+        "Mohd Amirul Mahamud",
+        "Katsuhiko Yonezaki",
+        "Arifuddin Akil",
+        "Muhammad Syahrir",
+        "Andi Arifuddin Iskandar",
+        "Ramdania Tenreng",
+        "I Putu Artawan",
+        "Andi Muspida",
+        "Ahmad Muhajir",
+        "Arwin Tamimi",
+        "Andi Mangga Barani"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Extraction of Drainage Networks in the Masamba Watershed Using NASADEM",
+        "doi": "10.36777/jag2025.4.2.1",
+        "year": 2025,
+        "venue": "Journal of Asian Geography",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "不同数字高程模型在巴西戈亚斯州Bambuí群岩溶区封闭洼地和落水洞半自动识别中的表现如何？",
+      "hypothesis_or_mechanism": "基于形态测量参数（面积、周长、圆度指数）的半自动GIS方法可以从不同空间分辨率的DEM中有效识别岩溶落水洞特征",
+      "variables_and_data_use": "使用NASADEM、ALOS PALSAR、ASTER GDEM、AW3D30、Copernicus DEM、SRTM和TanDEM-X七种DEM的高程数据，通过Fill工具填充洼地、栅格减法提取封闭洼地深度，计算面积、周长和圆度指数，对比评估AW3D30、NASADEM和TanDEM-X在落水洞边界划定中的表现",
+      "method_paradigm": "地貌形态测量 半自动特征提取",
+      "used_assets": [
+        "NASADEM",
+        "ALOS PALSAR DEM",
+        "ASTER GDEM",
+        "ALOS AW3D30",
+        "Copernicus DEM",
+        "SRTM",
+        "TanDEM-X-90"
+      ],
+      "author_team": [
+        "Natasha Bernardes Sales",
+        "Ana Karolyna Nunes Amaral",
+        "Luís Felipe Soares Cherem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Identificação de depressões fechadas em ambiente cárstico a partir de diferentes Modelos Digitais de Elevação (MDE)",
+        "doi": "10.66205/rbsr.v4i2.109",
+        "year": 2023,
+        "venue": "Revista Brasileira de Sensoriamento Remoto",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 26,
+    "source_paper_count": 26,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

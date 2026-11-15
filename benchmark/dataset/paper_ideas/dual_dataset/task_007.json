@@ -1,0 +1,47 @@
+{
+  "paper_id": "10.12944/cwe.20.3.10",
+  "task_id": "dual_dataset/task_007",
+  "title": "Morphometric Analysis and Drainage Anomaly Assessment  of The Kanchi River Basin, Jharkhand, India: Insights  from DEM and GIS Techniques",
+  "category": "dem_land_cover",
+  "year": 2026,
+  "journal": "Current World Environment",
+  "impact_level": "medium",
+  "datasets": [
+    "SRTM 30 m Digital Elevation Model",
+    "Copernicus Global Land Cover 100 m"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "terrain_context",
+      "dataset": "SRTM 30 m Digital Elevation Model"
+    },
+    {
+      "role": "land_cover_context",
+      "dataset": "Copernicus Global Land Cover 100 m"
+    }
+  ],
+  "idea": {
+    "research_question": "How do terrain and land-cover structure jointly explain spatial environmental or hazard patterns?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:USGS/SRTMGL1_003",
+      "GEE:COPERNICUS/Landcover/100m/Proba-V/Global"
+    ],
+    "required_component_usage": [
+      "terrain_context",
+      "land_cover_context"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves the audited multidataset observation contract.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_007:composite_observation",
+    "task_seed_audit": "independent_combination_seed_audit_20260929.json",
+    "seed_selection_basis": "independent_section_ready_audit",
+    "audited_combination_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\batch_reference_spaces_20260929\\dem_land_cover.json",
+    "selected_candidate_evidence": "section_ready"
+  }
+}

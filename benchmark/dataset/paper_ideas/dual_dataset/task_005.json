@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.1016/j.heliyon.2024.e24481",
+  "task_id": "dual_dataset/task_005",
+  "title": "Analyzing post-2000 groundwater level and rainfall changes in Rajasthan, India, using well observations and GRACE data",
+  "category": "grace_precipitation_groundwater",
+  "year": 2024,
+  "journal": "Heliyon",
+  "impact_level": "medium",
+  "datasets": [
+    "GRACE Monthly Mass Grids Land",
+    "CHIRPS Daily Final Precipitation v2.0"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "satellite_gravimetry_tws_input",
+      "dataset": "GRACE Monthly Mass Grids Land"
+    },
+    {
+      "role": "precipitation_driver_input",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "groundwater wells",
+    "GLDAS or ERA5-Land",
+    "land cover and irrigation",
+    "surface-water observations"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_005:grace_precipitation_groundwater",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from independently selected full-text evidence; empirical results are excluded from idea fields."
+  },
+  "idea": {
+    "research_question": "How do precipitation variability and GRACE terrestrial water-storage anomalies jointly explain groundwater-level change in semi-arid basins?",
+    "hypothesis": "Rainfall controls recharge while GRACE captures basin-scale storage response; combining both with well observations should separate climatic recharge from persistent depletion.",
+    "mechanism": "Monthly precipitation and GRACE anomalies are aligned with well records, then trend, correlation and lag analyses test recharge response and storage decline.",
+    "key_variables": {
+      "target": "Joint observable and task-specific response",
+      "predictors": [
+        "satellite_gravimetry_tws_input",
+        "precipitation_driver_input",
+        "groundwater wells",
+        "GLDAS or ERA5-Land",
+        "land cover and irrigation",
+        "surface-water observations"
+      ]
+    },
+    "data_sources": [
+      "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "GEE:UCSB-CHG/CHIRPS/DAILY"
+    ],
+    "analytical_approach": "Multi-source groundwater trend analysis, lagged correlation and storage-response attribution",
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves all required data roles and adds auxiliary data only for a distinct mechanism, validation or refinement purpose.",
+    "falsification_condition": "The idea fails if it drops a required role, cannot align the required inputs, or does not improve explanatory, predictive or validation performance over the appropriate single-source baseline.",
+    "required_component_usage": [
+      "satellite_gravimetry_tws_input",
+      "precipitation_driver_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently selected full-text multidataset evidence and the composite prompt contract on 2026-09-29."
+}

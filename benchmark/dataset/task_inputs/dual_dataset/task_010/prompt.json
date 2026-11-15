@@ -1,0 +1,200 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Çeşme wildfire environmental observation space",
+  "datasets": [
+    {
+      "role": "sentinel2_vegetation_condition",
+      "data_description": {
+        "dataset_name": "Sentinel-2 MSI Level-2A Surface Reflectance Harmonized",
+        "data_type": "Sentinel-2 MSI surface-reflectance time-series observations for vegetation and burn-condition indices",
+        "data_format": "Google Earth Engine ImageCollection",
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+        "gee_asset": {
+          "id": "COPERNICUS/S2_SR_HARMONIZED",
+          "type": "image_collection"
+        },
+        "spatial_resolution": "10 m / 20 m multispectral surface reflectance",
+        "temporal_unit": "Sentinel-2 acquisition; use pre-fire, active-fire-adjacent and post-fire windows as available",
+        "temporal_coverage": "2017-03-28 to present, subject to catalog holdings at evaluation time",
+        "spatial_coverage": {
+          "region_name": "Çeşme wildfire environmental observation space",
+          "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+        },
+        "analytical_capabilities": [
+          "Compute vegetation and moisture indices such as NDVI, NDMI and NBR",
+          "Compute burn-severity contrasts such as dNBR from pre-fire and post-fire observations",
+          "Align Sentinel-2 vegetation/burn-condition indicators with Sentinel-5P CO observations"
+        ]
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    },
+    {
+      "role": "sentinel5p_co_column",
+      "data_description": {
+        "dataset_name": "Sentinel-5P TROPOMI Offline Carbon Monoxide (CO)",
+        "data_type": "TROPOMI carbon monoxide total-column observations",
+        "data_format": "Google Earth Engine ImageCollection",
+        "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CO",
+        "gee_asset": {
+          "id": "COPERNICUS/S5P/OFFL/L3_CO",
+          "type": "image_collection"
+        },
+        "primary_band": "CO_column_number_density",
+        "unit_of_measurement": "mol/m^2",
+        "spatial_resolution": "0.01 degree Level-3 grid",
+        "temporal_unit": "Daily orbit-derived Level-3 images",
+        "temporal_coverage": "2018-06-28 to present, subject to catalog holdings at evaluation time",
+        "spatial_coverage": {
+          "region_name": "Çeşme wildfire environmental observation space",
+          "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+        },
+        "analytical_capabilities": [
+          "Extract carbon monoxide column density around wildfire events",
+          "Compute pre-fire, active-fire and post-fire CO anomalies",
+          "Align atmospheric CO changes with Sentinel-2 burn and vegetation-condition indicators"
+        ]
+      },
+      "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CO"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Sentinel-2 MSI Level-2A Surface Reflectance Harmonized",
+      "data_type": "Sentinel-2 MSI surface-reflectance time-series observations for vegetation and burn-condition indices",
+      "data_format": "Google Earth Engine ImageCollection",
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "gee_asset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "type": "image_collection"
+      },
+      "spatial_resolution": "10 m / 20 m multispectral surface reflectance",
+      "temporal_unit": "Sentinel-2 acquisition; use pre-fire, active-fire-adjacent and post-fire windows as available",
+      "temporal_coverage": "2017-03-28 to present, subject to catalog holdings at evaluation time",
+      "spatial_coverage": {
+        "region_name": "Çeşme wildfire environmental observation space",
+        "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+      },
+      "analytical_capabilities": [
+        "Compute vegetation and moisture indices such as NDVI, NDMI and NBR",
+        "Compute burn-severity contrasts such as dNBR from pre-fire and post-fire observations",
+        "Align Sentinel-2 vegetation/burn-condition indicators with Sentinel-5P CO observations"
+      ]
+    },
+    {
+      "dataset_name": "Sentinel-5P TROPOMI Offline Carbon Monoxide (CO)",
+      "data_type": "TROPOMI carbon monoxide total-column observations",
+      "data_format": "Google Earth Engine ImageCollection",
+      "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CO",
+      "gee_asset": {
+        "id": "COPERNICUS/S5P/OFFL/L3_CO",
+        "type": "image_collection"
+      },
+      "primary_band": "CO_column_number_density",
+      "unit_of_measurement": "mol/m^2",
+      "spatial_resolution": "0.01 degree Level-3 grid",
+      "temporal_unit": "Daily orbit-derived Level-3 images",
+      "temporal_coverage": "2018-06-28 to present, subject to catalog holdings at evaluation time",
+      "spatial_coverage": {
+        "region_name": "Çeşme wildfire environmental observation space",
+        "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+      },
+      "analytical_capabilities": [
+        "Extract carbon monoxide column density around wildfire events",
+        "Compute pre-fire, active-fire and post-fire CO anomalies",
+        "Align atmospheric CO changes with Sentinel-2 burn and vegetation-condition indicators"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:COPERNICUS/S5P/OFFL/L3_CO"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_010:composite_observation",
+    "type": "composite_observation",
+    "name": "sentinel2_vegetation_sentinel5p_co composite observation",
+    "observable_group": "sentinel2_vegetation_sentinel5p_co_multidataset_observation",
+    "components": [
+      {
+        "role": "sentinel2_vegetation_condition",
+        "data_description": {
+          "dataset_name": "Sentinel-2 MSI Level-2A Surface Reflectance Harmonized",
+          "data_type": "Sentinel-2 MSI surface-reflectance time-series observations for vegetation and burn-condition indices",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "spatial_resolution": "10 m / 20 m multispectral surface reflectance",
+          "temporal_unit": "Sentinel-2 acquisition; use pre-fire, active-fire-adjacent and post-fire windows as available",
+          "temporal_coverage": "2017-03-28 to present, subject to catalog holdings at evaluation time",
+          "spatial_coverage": {
+            "region_name": "Çeşme wildfire environmental observation space",
+            "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+          },
+          "analytical_capabilities": [
+            "Compute vegetation and moisture indices such as NDVI, NDMI and NBR",
+            "Compute burn-severity contrasts such as dNBR from pre-fire and post-fire observations",
+            "Align Sentinel-2 vegetation/burn-condition indicators with Sentinel-5P CO observations"
+          ]
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      },
+      {
+        "role": "sentinel5p_co_column",
+        "data_description": {
+          "dataset_name": "Sentinel-5P TROPOMI Offline Carbon Monoxide (CO)",
+          "data_type": "TROPOMI carbon monoxide total-column observations",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CO",
+          "gee_asset": {
+            "id": "COPERNICUS/S5P/OFFL/L3_CO",
+            "type": "image_collection"
+          },
+          "primary_band": "CO_column_number_density",
+          "unit_of_measurement": "mol/m^2",
+          "spatial_resolution": "0.01 degree Level-3 grid",
+          "temporal_unit": "Daily orbit-derived Level-3 images",
+          "temporal_coverage": "2018-06-28 to present, subject to catalog holdings at evaluation time",
+          "spatial_coverage": {
+            "region_name": "Çeşme wildfire environmental observation space",
+            "coverage": "Declared analysis region within Çeşme wildfire environmental observation space."
+          },
+          "analytical_capabilities": [
+            "Extract carbon monoxide column density around wildfire events",
+            "Compute pre-fire, active-fire and post-fire CO anomalies",
+            "Align atmospheric CO changes with Sentinel-2 burn and vegetation-condition indicators"
+          ]
+        },
+        "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CO"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "sentinel2_vegetation_condition",
+        "sentinel5p_co_column"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_010:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:COPERNICUS/S5P/OFFL/L3_CO"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "sentinel2_vegetation_condition",
+      "sentinel5p_co_column"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

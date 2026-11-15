@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.3390/rs16244769",
+  "task_id": "single_dataset/task_016",
+  "title": "Assessment of Vegetation Evolution Using Multi-Source Satellite Data in Kubuqi Desert",
+  "category": "land_use_land_cover",
+  "year": 2024,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "MODIS MOD13A3 NDVI (1 km, monthly)",
+    "Landsat 8 (30 m)",
+    "CN05.1 gridded meteorology"
+  ],
+  "study_area_verified": {
+    "name": "Kubuqi Desert ecological management area, Inner Mongolia, China",
+    "period": "2001-2020 for the monthly vegetation-index series; 2013-2020 for the 30 m spatial analysis",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "MODIS/061/MOD13A3",
+    "operationally_used": true,
+    "role": "primary vegetation-index series: MOD13A3 monthly 1 km NDVI over 2001-2020, retrieved and preprocessed on Google Earth Engine, cloud cover kept below 10 percent",
+    "evidence": "Data section names the MOD13A3 NDVI product at 1 km spatial and 1 month temporal resolution, with Google Earth Engine used for sourcing and preprocessing.",
+    "companion_datasets": [
+      "Landsat 8 30 m for NDVI spatial-pattern and land-use change analysis over 2013-2020, growing season June-September, cloud cover below 5 percent",
+      "CN05.1 daily meteorology 2001-2020: precipitation, mean/max/min temperature, relative humidity, wind speed, sunshine duration"
+    ],
+    "anchor_history": "Anchor was MODIS/061/MOD13Q1 (250 m, 16-day) until 2026-08-28; repointed to MOD13A3 because the admitted product is the monthly 1 km collection.",
+    "note": "The earlier datasets list recorded a Global Aridity Index that the data section does not use; corrected here.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "2001—2020年水 diversion 前后，气候变化与人类水资源调控如何通过水分供给及其时空传输路径共同影响库布齐沙漠植被NDVI的演化，其相对贡献和空间异质性是否发生变化？",
+    "hypothesis": "水分供给是库布齐沙漠植被生长的首要限制因子；在控制温度、降水等气候因素后，适度引水将通过提高土壤及地表水可利用性、扩大湿地和湖泊面积、改善局地水热条件，推动NDVI持续升高。该促进效应在引水灌溉区、湖泊周边和西南部区域应强于非引水区，并且引水后的植被变化应表现为更稳定的增长而非频繁突变。",
+    "mechanism": "引水工程改变区域水量输入和水体空间分布，增加土壤含水量、地下水可利用性及湖泊湿地面积；水分条件改善进一步提高植被蒸散和光合作用能力，并通过增强局地湿度、降低水分胁迫和调节地表温度促进植被恢复，最终表现为NDVI升高。降水、气温等自然因子通过改变有效水分和蒸散需求影响植被，而灌溉、引水距离及土地利用变化等人为因子则调节水分供给强度。该因果路径可表示为：水 diversion 强度/距引水设施距离 → 地表水与土壤水分条件 → 水分胁迫和局地水热环境 → 植被NDVI；降水和气温通过有效降水与潜在蒸散对上述路径产生调节作用。",
+    "key_variables": {
+      "target": "MODIS植被指数产品获得的年尺度及生长季平均NDVI，必要时结合Landsat 8计算的30 m空间分辨率NDVI进行局地验证",
+      "predictors": [
+        "年降水量及生长季降水量",
+        "年平均气温及生长季平均气温",
+        "潜在蒸散量或实际蒸散量",
+        "干旱指数或标准化降水蒸散指数SPEI",
+        "引水工程运行状态及水 diversion 前后阶段变量",
+        "距灌溉区、河道、湖泊和引水设施的距离",
+        "地表水体或湖泊面积变化",
+        "灌溉区范围及土地利用/土地覆盖类型",
+        "空间位置变量及区域固定效应"
+      ]
+    },
+    "data_sources": [
+      "MODIS Terra植被指数产品，如MOD13Q1或MOD13A1，2001—2020年，250 m或500 m空间分辨率，用于构建连续年度和生长季NDVI序列",
+      "Landsat 8 OLI遥感影像，2013—2020年，30 m空间分辨率，用于高分辨率NDVI计算、灌溉区识别及MODIS结果验证",
+      "逐月或逐日降水和气温数据，2001—2020年，优先采用中国地面气候资料日值数据或ERA5-Land再分析数据，并聚合至年度和生长季尺度",
+      "潜在蒸散量、实际蒸散量或土壤湿度数据，2001—2020年，来自ERA5-Land、MODIS蒸散产品或GLDAS，用于刻画区域水分供需状况",
+      "土地利用/土地覆盖数据，2001—2020年，优先采用MCD12Q1或中国土地覆盖数据，500 m至1 km空间分辨率",
+      "引水工程、灌溉区、河流、湖泊及水 diversion 时间节点的工程资料或水体矢量数据，用于构建处理区、对照区和空间暴露变量",
+      "水体面积数据，可由MODIS和Landsat影像基于NDWI或MNDWI提取，2001—2020年，空间分辨率250 m至30 m"
+    ],
+    "analytical_approach": "首先对MODIS和Landsat影像进行大气校正、云掩膜、质量控制和最大值合成，构建年度及生长季NDVI序列，并利用Mann-Kendall趋势检验、Sen's slope估计和BFAST断点分析识别植被趋势及突变年份。随后以引水前后为阶段划分，结合分区统计和空间自相关分析比较灌溉区、非灌溉区及距水体不同距离梯度上的变化。驱动因素分析采用多元线性回归估计气候和人为因子的边际效应，采用随机森林回归计算变量重要性并利用偏依赖图解释非线性关系，采用支持向量回归SVR刻画小样本和非线性响应，采用深度神经网络DNN进行NDVI预测和交叉验证。模型应使用时间分块交叉验证或滚动窗口验证，报告R²、RMSE、MAE和NSE，并通过置换重要性、SHAP值和部分依赖曲线比较各因子的相对贡献。为识别人类引水的独立效应，可进一步采用引水区与匹配非引水区的双重差分模型或基于距水体距离的空间梯度模型，并控制降水、气温、蒸散、土地利用和区域固定效应。关键参数包括年度/生长季NDVI合成方式、BFAST断点显著性水平α=0.05、随机森林树数约500、SVR的RBF核及通过网格搜索确定的C和gamma、DNN的标准化输入、隐藏层数量和节点数通过交叉验证确定。",
+    "expected_contribution": "建立一个融合MODIS时间序列、Landsat高分辨率影像、气候资料和工程空间信息的库布齐沙漠植被变化研究框架；区分引水调控与自然气候波动对NDVI变化的相对作用；揭示水分供给影响沙漠植被的中间机制及其空间异质性；量化植被对降水、温度、蒸散和引水暴露的线性与非线性响应，为生态引水规模、空间布局和运行间隔的优化提供可检验的依据。",
+    "falsification_condition": "若在控制降水、气温、潜在蒸散、土地利用和空间固定效应后，引水区相对于非引水区的NDVI趋势差异小于0.005 NDVI单位/年，或引水前后双重差分效应的95%置信区间包含0且效应绝对值小于0.02；同时，水分相关变量的随机森林置换重要性低于全部预测因子中位数，且引水距离、地表水体面积和土壤湿度与NDVI的偏依赖关系不呈正向响应，则“水分供给是主要限制因子且适度引水促进植被恢复”的假设不成立。若引水后NDVI突变次数或年际变异系数未降低至少10%，也将否定引水提高植被稳定性的预测。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

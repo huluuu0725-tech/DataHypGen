@@ -1,0 +1,4114 @@
+{
+  "schema_version": "portable-reference-exclusion-v1",
+  "task_id": "dual_dataset/task_019",
+  "evaluation_year": 2026,
+  "seed_exclusion": {
+    "doi": "10.1002/2016ef000485",
+    "year": 2016
+  },
+  "reference_count": 24,
+  "references": [
+    {
+      "doi": "10.1002/2015wr018247"
+    },
+    {
+      "doi": "10.1002/qj.1998"
+    },
+    {
+      "doi": "10.1007/s10584-008-9471-4"
+    },
+    {
+      "doi": "10.1007/s10584-014-1084-5"
+    },
+    {
+      "doi": "10.1029/2012jd017461"
+    },
+    {
+      "doi": "10.1029/2020ef001778"
+    },
+    {
+      "doi": "10.1038/nature03820"
+    },
+    {
+      "doi": "10.1038/nature09762"
+    },
+    {
+      "doi": "10.1038/nclimate2927"
+    },
+    {
+      "doi": "10.1038/nclimate3350"
+    },
+    {
+      "doi": "10.1038/s41467-020-20704-0"
+    },
+    {
+      "doi": "10.1038/s41558-021-01265-6"
+    },
+    {
+      "doi": "10.1038/s41586-024-07145-1"
+    },
+    {
+      "doi": "10.1038/s41598-020-70816-2"
+    },
+    {
+      "doi": "10.1038/s43247-021-00248-x"
+    },
+    {
+      "doi": "10.1038/srep36021"
+    },
+    {
+      "doi": "10.1073/pnas.1222460110"
+    },
+    {
+      "doi": "10.1073/pnas.1222469111"
+    },
+    {
+      "doi": "10.1088/1748-9326/8/4/044019"
+    },
+    {
+      "doi": "10.3390/w12113174"
+    },
+    {
+      "doi": "10.5194/hess-17-325-2013"
+    },
+    {
+      "doi": "10.5194/hess-17-379-2013"
+    },
+    {
+      "doi": "10.5194/hess-18-2343-2014"
+    },
+    {
+      "doi": "10.5194/hess-19-2247-2015"
+    }
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_019:composite_observation",
+    "type": "composite_observation",
+    "name": "flood_precipitation_climate composite observation",
+    "observable_group": "flood_precipitation_climate_multidataset_observation",
+    "components": [
+      {
+        "role": "climate_forcing",
+        "data_description": {
+          "dataset_name": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "data_type": "Climate projection raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "data_path": "GEE:NASA/GDDP-CMIP6",
+          "gee_asset": {
+            "id": "NASA/GDDP-CMIP6",
+            "type": "image_collection"
+          },
+          "spatial_resolution": "0.25 degree",
+          "temporal_unit": "Daily images",
+          "temporal_coverage": "2014-2100 (SSP scenarios)",
+          "data_source": "NASA NEX-GDDP-CMIP6 (NASA Center for Climate Simulation)",
+          "analytical_capabilities": [
+            "Downscaled CMIP6 precipitation and temperature",
+            "Scenario-based climate forcing",
+            "Long-term trend and anomaly analysis"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global river-flood projection space",
+            "coverage": "Catalog coverage intersected with Global river-flood projection space."
+          }
+        },
+        "data_path": "GEE:NASA/GDDP-CMIP6"
+      },
+      {
+        "role": "flood_simulation",
+        "data_description": {
+          "dataset_name": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "data_type": "Modelled river flood inundation depth raster tiles",
+          "data_format": "Local GeoTIFF tile directory with tile_extents.geojson",
+          "data_path": "LOCAL:datasets/rc_flood_hazard/RP100",
+          "local_asset": {
+            "root": "datasets/rc_flood_hazard",
+            "tile_directory": "datasets/rc_flood_hazard/RP100",
+            "tile_index": "datasets/rc_flood_hazard/tile_extents.geojson",
+            "return_period": "RP100",
+            "tile_count": 271
+          },
+          "spatial_resolution": "3 arc seconds (~90 m)",
+          "temporal_unit": "Static return-period hazard scenario",
+          "temporal_coverage": "No event time axis; RP100 flood-depth scenario",
+          "data_source": "European Commission Joint Research Centre / Copernicus Emergency Management Service GloFAS",
+          "analytical_capabilities": [
+            "Modelled river flood inundation depth",
+            "100-year return-period hazard analysis",
+            "Global flood-depth tile aggregation"
+          ],
+          "spatial_coverage": {
+            "region_name": "Global river-flood projection space",
+            "coverage": "Catalog coverage intersected with Global river-flood projection space."
+          }
+        },
+        "data_path": "LOCAL:datasets/rc_flood_hazard/RP100"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "required_roles": [
+    "climate_forcing",
+    "flood_simulation"
+  ],
+  "migration_alignment": {
+    "source_task_id": "dual_dataset/task_019",
+    "target_task_id": "dual_dataset/task_019",
+    "seed_doi": "10.1002/2016ef000485",
+    "reference_count": 24,
+    "original_slots": [
+      {
+        "role": "climate_forcing",
+        "data_path": "External: climate-model precipitation and temperature forcing"
+      },
+      {
+        "role": "flood_simulation",
+        "data_path": "External: global hydrologic flood simulations"
+      }
+    ],
+    "current_slots": [
+      {
+        "role": "climate_forcing",
+        "data_path": "GEE:NASA/GDDP-CMIP6"
+      },
+      {
+        "role": "flood_simulation",
+        "data_path": "LOCAL:datasets/rc_flood_hazard/RP100"
+      }
+    ],
+    "semantic_changes": [
+      "climate_forcing: External: climate-model precipitation and temperature forcing -> GEE:NASA/GDDP-CMIP6",
+      "flood_simulation: External: global hydrologic flood simulations -> LOCAL:datasets/rc_flood_hazard/RP100"
+    ],
+    "semantic_status": "anchor_restored_to_modelled_flood_hazard_local_asset",
+    "asset_verification": {
+      "local_root": "datasets/rc_flood_hazard",
+      "return_period": "RP100",
+      "tile_count": 271,
+      "tile_index": "datasets/rc_flood_hazard/tile_extents.geojson",
+      "source_readme": "datasets/rc_flood_hazard/README.txt"
+    },
+    "source_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\reference_sets\\task_019.json",
+    "source_sha256": "7dd057e6b8dc1f61e2b86815511ab4d4a6eba1b08ee13e6bf40b6c8ef1d5b492",
+    "provenance_file": "reference_sets\\dual_dataset\\deliver_dual_001_019_tby_20261005\\deliver_dual_001_019_tby_20261005\\provenance\\task_019.provenance_20261004.json"
+  },
+  "directions": [
+    {
+      "direction_id": "task_019_ref_01",
+      "source_paper_doi": "10.1002/2015wr018247",
+      "source_paper": {
+        "doi": "10.1002/2015wr018247",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set; 0.58 WATCH Forcing Data ERA-Interim (WFDEI) meteorological data set"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set; 0.58 WATCH Forcing Data ERA-Interim (WFDEI) meteorological data set",
+          "actual_product_in_paper": "0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set; 0.58 WATCH Forcing Data ERA-Interim (WFDEI) meteorological data set",
+          "evidence_quotes": [
+            "we used the 0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set (1979–2005)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "we used the 0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set (1979–2005)",
+        "for the performance comparison of HBV with regionalized parameters versus various state-of-the-art macro-scale models (also described in section 2.6), HBV was driven by precipitation from the WFDEI data set"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究在全球范围内，能否依据集水区气候和地理生理特征相似性，将校准得到的 HBV 水文模型参数从有观测的供体集水区区域化到网格及未观测集水区，并改善径流模拟。研究对象是全球 1787 个小至中型集水区及其日流量。",
+      "hypothesis_or_mechanism": "核心假设是全球尺度上，气候和地理生理特征相似在一定程度上意味着降雨—径流响应相似。因此，将相似供体集水区的校准参数转移至受体网格或集水区，可以改善径流模拟。",
+      "variables_and_data_use": "研究使用 HBV 模型，以日降水、潜在蒸发和气温作为气象输入，并以观测日流量校准和评价模型。集水区尺度校准及参数化评价使用 CPC Unified v1.0 降水数据；与其他宏观尺度模型比较时使用 WFDEI 降水，气温取自 WFDEI，潜在蒸发则按 Penman 公式计算。供体集水区校准所得参数根据气候和地理生理相似性转移至网格，并用独立集水区观测流量评价。",
+      "method_paradigm": "采用 HBV 概念性水文模型逐集水区校准，并依据气候和地理生理相似性进行参数区域化。每个网格使用最相似的 10 个供体集水区参数，平均相应模拟流量，并在独立集水区进行评价。",
+      "study_area": "全球；1787 个面积为 10–10,000 km² 的小至中型集水区。",
+      "study_period": "CPC Unified v1.0 降水数据时段为 1979–2005；各集水区实际校准时段为观测流量与输入数据同时可用的时段，论文节选未给出统一研究时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set",
+          "role_in_study": "用于 HBV 集水区尺度校准以及使用不同参数集时的模型性能评价。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used the 0.58 Climate Prediction Center (CPC) Uniﬁed v1.0 precipitation data set (1979–2005)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "0.58 WATCH Forcing Data ERA-Interim (WFDEI) meteorological data set",
+          "role_in_study": "作为备选气象强迫数据集；其降水用于 HBV 与其他宏观尺度模型的性能比较，气温数据用于研究中的日气温输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "for the performance comparison of HBV with regionalized parameters versus various state-of-the-art macro-scale models (also described in section 2.6), HBV was driven by precipitation from the WFDEI data set",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed daily Q",
+          "role_in_study": "用于各集水区 HBV 校准，并用于供体筛选及独立模型评价。",
+          "usage": "used_as_data",
+          "evidence_quote": "Each catchment was calibrated against observed daily Q",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Hydrologiska Byråns Vattenbalansavdelning (HBV) hydrologic model",
+          "role_in_study": "水文模拟模型；使用气象输入模拟流量，并校准和区域化模型参数。",
+          "usage": "used_as_data",
+          "evidence_quote": "we use an unprecedentedly large, and highly diverse set of 1787 small-to-medium-sized catchments (10–10;000 km2) around the globe in combination with the simple conceptual Hydrologiska Byråns Vattenbalansavdelning (HBV) hydrologic model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "potential evaporation",
+          "role_in_study": "作为 HBV 日尺度模型输入，由 Penman 公式计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "Potential evaporation was calculated using the Penman [1948] formulation as given by Shuttleworth [1993]",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_2015wr018247.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_2015wr018247.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "f0a2d20fa55c5594f3ce16e485701c63a6bfb25f6159ffa8bb47399745175236",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:23",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1002_2015wr018247.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_02",
+      "source_paper_doi": "10.1002/qj.1998",
+      "source_paper": {
+        "doi": "10.1002/qj.1998",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "UKCP09 HADRM3 RCM projections; EU FP6 ENSEMBLES multi-model RCM projections"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "UKCP09 HADRM3 RCM projections; EU FP6 ENSEMBLES multi-model RCM projections",
+          "actual_product_in_paper": "UKCP09 HADRM3 RCM projections; EU FP6 ENSEMBLES multi-model RCM projections",
+          "evidence_quotes": [
+            "In this paper two ensemble sets of RCMs have been considered: a multi-model RCM set provided by the European Union’s FP6 ENSEMBLES project (van der Linden and Mitchell, 2009) and the most recent UK Climate Projections (UKCP09; Murphy et al., 2009)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "In this paper two ensemble sets of RCMs have been considered: a multi-model RCM set provided by the European Union’s FP6 ENSEMBLES project (van der Linden and Mitchell, 2009) and the most recent UK Climate Projections (UKCP09; Murphy et al., 2009)",
+        "The hydrological model used in this study was HBV (Bergström, 1992; Lindström et al., 1997), which is a conceptual rainfall runoff model",
+        "The observed precipitation and temperature data used in this study were from the gridded data on a 5×5 km grid provided by the UK Met Office."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        false,
+        true
+      ],
+      "research_question": "研究英国英格兰中部 Upper Severn 流域的未来洪水风险：不同气候集合方法及对区域气候模式（RCM）降水应用模型输出统计校正，如何影响未来高流量和洪水危险评估？",
+      "hypothesis_or_mechanism": "气候变化导致的降水变化会通过流域水文过程影响河流高流量和洪水阈值超越概率，且这种影响并非简单线性外推。不同气候集合及降水偏差校正方法会造成不同结果；温度升高引起的潜在蒸散变化对洪水的影响预计小于降水变化。",
+      "variables_and_data_use": "研究使用 UK Met Office 的观测降水和温度网格资料、Environment Agency 河流流量观测，以及 UKCP09 和 EU FP6 ENSEMBLES 的 RCM 气候投影；RCM 投影提供 HBV 的气象驱动，并比较直接驱动与 MOS 校正后的结果。HBV（基于 HBV light）使用降水、2 m 温度和潜在蒸散发模拟流量，潜在蒸散发由 McGuinness 模型计算；另以 UK Met Office 的 GCM 扰动物理集合联合概率分布和连续 delta 响应面方法评估气候变化影响。",
+      "method_paradigm": "采用 HBV 概念性降雨—径流模型进行气候影响模拟，结合参数不确定性分析、RCM 直接驱动及双伽马分布误差校正（MOS/DBS）。另构建连续 delta 响应面，将温度与降水扰动映射到洪水警戒流量超越概率，并比较多种气候集合方法。",
+      "study_area": "英国英格兰中部 Upper Severn 流域，重点涉及 Montford 测站及下游 Shrewsbury。",
+      "study_period": "观测流量资料为 1950–2007；观测气候基准期为 1961–2000，HBV 校准期为 1986–2006；气候投影分析包括控制期 1961–2000 和未来期 2001–2100。",
+      "datasets_used": [
+        {
+          "name_in_paper": "UK Met Office gridded observed precipitation and temperature data (5×5 km grid)",
+          "role_in_study": "作为观测降水和温度资料，用于水文模型及气候投影校正、比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "The observed precipitation and temperature data used in this study were from the gridded data on a 5×5 km grid provided by the UK Met Office.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UK Environment Agency observed discharge data",
+          "role_in_study": "用于提供河流流量观测，并支持水文模型校准和洪水分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "The observed discharge data were provided by the UK Environment Agency (EA) Midlands region and cover 1950–2007.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NEXTMap Britain digital elevation model",
+          "role_in_study": "提供 Upper Severn 流域数字高程资料。",
+          "usage": "used_as_data",
+          "evidence_quote": "The digital elevation model of the Upper Severn catchment was obtained from the NEXTMap Britain dataset through the UK NERC Earth Observation Data Centre.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UKCP09 HADRM3 RCM projections",
+          "role_in_study": "作为气候投影集合，为水文影响模拟提供气象驱动并参与与其他集合的比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "the most recent UK Climate Projections (UKCP09; Murphy et al., 2009), which provide an ensemble of HADRM3 RCM projections",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EU FP6 ENSEMBLES multi-model RCM projections",
+          "role_in_study": "作为多模式区域气候投影集合，为水文影响模拟提供气象驱动并参与集合方法比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "a multi-model RCM set provided by the European Union’s FP6 ENSEMBLES project",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA40 reanalysis",
+          "role_in_study": "用于驱动观测时期的 RCM 模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "observed (1961–2000–forced with ERA40 reanalysis",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UK Met Office joint probability distribution (JPD) of future temperature and precipitation changes from GCM perturbed physics ensemble",
+          "role_in_study": "作为扰动物理集合的温度和降水变化概率输入，与响应面结合评估未来影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "The UK Met Office has constructed a joint probability distribution (JPD) of future changes in temperature and precipitation through an extensive experiment using GCMs, downscaling and statistical emulators.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HBV light hydrological model",
+          "role_in_study": "将气象输入转化为河流流量，用于洪水影响模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "the one implemented in this paper is based on HBV light (Seibert, 2003).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "McGuinness model",
+          "role_in_study": "根据 RCM 输出的日均温度计算潜在蒸散发，作为 HBV 的气象输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Evapotranspiration was calculated with the McGuinness model, which requires only the mean daily temperature from the RCM output (McGuinness and Bordne, 1972)",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_qj.1998.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1002_qj.1998.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "ac519894a1022ab872ce06f7ebe62f66ec098720673ef97aeb7d055cc8fcdb11",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:30",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1002_qj.1998.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_03",
+      "source_paper_doi": "10.1007/s10584-008-9471-4",
+      "source_paper": {
+        "doi": "10.1007/s10584-008-9471-4",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The main hydrological model used is the Probability Distributed Model (PDM; Moore 1985, 2007)",
+        "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+        "Here, the current climate conditions are generally those given by the (observed) baseline rainfall and PE data (for the 17-year period 1985-2001; Section 2.2), and the future climate conditions are given by adjusting the baseline data according to various climate change scenarios"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究英国两个示例流域（Beult 河 Stile Bridge 流域和 Duddon 河 Duddon Hall 流域）中，气候变化对洪水频率的影响及其不同不确定性来源的相对重要性。",
+      "hypothesis_or_mechanism": "气候变化影响通过降雨和潜在蒸发变化作用于降雨—径流过程，进而改变洪水频率；不同不确定性来源传播至洪水频率影响后，其幅度可能不同。研究指出，气候模式结构造成的不确定性总体最大，但这一结果受到一个预测冬季降雨大幅增加的 GCM 影响。",
+      "variables_and_data_use": "研究以流域平均降雨和潜在蒸发驱动 Probability Distributed Model（PDM）及另一种水文模型，并使用 1985–2001 年观测基线序列与气候情景比较流量和洪水频率。气候输入包括 UKCIP02 情景、HadCM3、CSIRO-Mk2、CGCM2、ECHAM4、CCSR，以及下尺度情景和 HadRM3H 区域气候模式数据；潜在蒸发依据 Penman–Monteith 方程估算，情景变化通过 delta change 等下尺度方法应用于基线数据。洪水频率由小时流量序列的超阈值峰值拟合广义 Pareto 分布得到。",
+      "method_paradigm": "采用连续降雨—径流模拟与情景扰动相结合的水文影响评估范式，通过 delta change 及其他下尺度方法传播多类气候与水文不确定性。以超阈值峰值（POT）和广义 Pareto 分布估算洪水频率，并比较不同重现期洪水量的变化。",
+      "study_area": "英格兰两个示例流域：Beult 河 Stile Bridge（英格兰东南部）和 Duddon 河 Duddon Hall（英格兰西北部）。",
+      "study_period": "基线观测期为 1985–2001 年；气候变化影响主要评估至 2080 年代。",
+      "datasets_used": [
+        {
+          "name_in_paper": "hourly catchment average rainfall series",
+          "role_in_study": "作为两个流域基线期降雨—径流模拟的降雨输入，由流域内及附近雨量站资料构建。",
+          "usage": "used_as_data",
+          "evidence_quote": "Hourly catchment average rainfall series are available for each catchment, for the period 1985-2001.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MORECS (Meteorological Office Rainfall and Evaporation Calculation System) monthly data",
+          "role_in_study": "提供基线期流域潜在蒸发输入，并用于模型驱动。",
+          "usage": "used_as_data",
+          "evidence_quote": "MORECS (Meteorological Office Rainfall and Evaporation Calculation System) monthly data (Thompson et al. 1982; Hough et al. 1996) are used to provide catchment potential evaporation (PE) inputs.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UKCIP02 scenarios",
+          "role_in_study": "提供气候变化情景中的降雨及计算潜在蒸发所需气候变量变化，用于构建未来水文模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The simple delta change method (Section 2.3) is used here to apply the monthly percentage changes in rainfall and PE, derived from each UKCIP02 scenario, to the baseline hourly data for the catchments.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HadCM3",
+          "role_in_study": "作为全球气候模式，提供气候变化信息并用于情景下尺度及潜在蒸发变化估算。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CSIRO-Mk2",
+          "role_in_study": "作为全球气候模式，提供降雨和潜在蒸发变化情景输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CGCM2",
+          "role_in_study": "作为全球气候模式，提供降雨和潜在蒸发变化情景输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ECHAM4",
+          "role_in_study": "作为全球气候模式，提供降雨和潜在蒸发变化情景输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CCSR",
+          "role_in_study": "作为全球气候模式，提供降雨和潜在蒸发变化情景输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "The 5 GCMs represented here are HadCM3 (UK), CSIRO-Mk2 (Australia), CGCM2 (Canada), ECHAM4 (Germany) and CCSR (Japan).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UKCIP02/HadRM3H",
+          "role_in_study": "作为区域气候模式下尺度情景来源，用于计算应用于基线数据的月降雨变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The first uses GCM (HadCM3) data while the second uses RCM (UKCIP02/HadRM3H) data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HadRM3H",
+          "role_in_study": "区域气候模式，用于 UKCIP02 气候情景的模拟及下尺度不确定性分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "the impact under the other three emissions scenarios and additional time-slices was pattern-scaled from the A2 HadRM3H ensemble mean",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Probability Distributed Model (PDM)",
+          "role_in_study": "主要降雨—径流模型，用于模拟流量并推导洪水频率变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The main hydrological model used is the Probability Distributed Model (PDM; Moore 1985, 2007)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "River Flow Forecasting System",
+          "role_in_study": "论文说明 PDM 属于该系统；未作为独立数据输入使用。",
+          "usage": "mention_only",
+          "evidence_quote": "The model has been widely applied in Britain and forms part of the River Flow Forecasting System (Moore et al. 2005).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National River Flow Archive",
+          "role_in_study": "说明研究流域属于该档案所涵盖的流域；文中未明确将其作为模型输入数据产品。",
+          "usage": "mention_only",
+          "evidence_quote": "The two example catchments, part of the UK National River Flow Archive (www.ceh.ac.uk/data/nrfa/), are catchment 40005",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s10584-008-9471-4.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s10584-008-9471-4.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "384d326cfac0be72776d5479193da7877a5f6daabd3a9edda8141e400ea77571",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:10",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1007_s10584-008-9471-4.json",
+        "quote_gate": {
+          "total": 16,
+          "verified": 16
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_04",
+      "source_paper_doi": "10.1007/s10584-014-1084-5",
+      "source_paper": {
+        "doi": "10.1007/s10584-014-1084-5",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CMIP3 multi-model dataset (21 climate models)",
+        "UN PREVIEW Global Risk Data Platform 5′ flood-prone areas"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CMIP3 multi-model dataset (21 climate models)",
+          "actual_product_in_paper": "CMIP3 multi-model dataset (21 climate models)",
+          "evidence_quotes": [
+            "Both sets of scenarios are constructed by pattern-scaling the output from 21 of the climate models in the CMIP3 multi-model dataset"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "UN PREVIEW Global Risk Data Platform 5′ flood-prone areas",
+          "actual_product_in_paper": "UN PREVIEW Global Risk Data Platform 5′ flood-prone areas",
+          "evidence_quotes": [
+            "Estimates of the numbers of people living in flood-prone areas at a spatial resolution of 0.5×0.5° were derived by combining 5′ flood-prone areas identified on the UN PREVIEW Global Risk Data Platform (preview.grid.unep.ch; Peduzzi et al. 2009), with the CIESIN GRUMP population data set for the year 2000 (CIESIN 2004)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Both sets of scenarios are constructed by pattern-scaling the output from 21 of the climate models in the CMIP3 multi-model dataset",
+        "Estimates of the numbers of people living in flood-prone areas at a spatial resolution of 0.5×0.5° were derived by combining 5′ flood-prone areas identified on the UN PREVIEW Global Risk Data Platform (preview.grid.unep.ch; Peduzzi et al. 2009), with the CIESIN GRUMP population data set for the year 2000 (CIESIN 2004)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "评估气候变化对全球河流洪水频率、风险以及人口和耕地暴露的影响，并考察不同气候模型带来的不确定性。研究对象是全球河流洪水危险及其人类影响，分析覆盖20个世界区域。",
+      "hypothesis_or_mechanism": "气候变化会改变降水、温度等气候变量，进而改变模拟河流流量的洪水频率分布，并影响洪水风险及暴露人口和耕地。影响在不同地区和气候模型之间存在显著差异。",
+      "variables_and_data_use": "使用CMIP3中21个气候模型的气候变化模式，经ClimGen进行模式缩放并叠加CRU TS3.1基准气候，构造未来气候情景；用Mac-PDM.09模拟河流流量并估算洪水频率曲线。人口、耕地和洪泛区数据用于估算暴露，洪水频率曲线与通用损失函数及洪泛区人口结合以计算洪水风险。",
+      "method_paradigm": "采用全球水文模型驱动的情景模拟与洪水频率分析范式：对模拟年最大日流量拟合广义极值分布，并比较当前与未来情景下的洪水频率、暴露和风险指标。气候情景通过对CMIP3模式输出进行模式缩放构造。",
+      "study_area": "全球，汇总为20个世界区域。",
+      "study_period": "基准气候期为1961–1990年；评估未来21世纪影响，文中重点报告2050年结果。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CRU TS3.1 data set",
+          "role_in_study": "表征当前气候并作为未来气候情景的基准气候数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CRU TS3.1 data set (Harris et al. 2013) is used here to characterise current climate",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CMIP3 multi-model dataset (21 climate models)",
+          "role_in_study": "提供气候变化模式，用于构造未来气候情景。",
+          "usage": "used_as_data",
+          "evidence_quote": "Both sets of scenarios are constructed by pattern-scaling the output from 21 of the climate models in the CMIP3 multi-model dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Mac-PDM.09",
+          "role_in_study": "全球水文模型，用于模拟河流流量并估算洪水频率分布。",
+          "usage": "used_as_data",
+          "evidence_quote": "River flows are simulated at a spatial resolution of 0.5×0.5° using Mac-PDM.09 (Gosling et al. 2010; Gosling and Arnell 2011; Arnell and Gosling 2013), a daily water balance model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "IMAGE 2.3 projections for the SRES storylines",
+          "role_in_study": "提供21世纪网格化人口和GDP估计，用于社会经济情景分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Gridded population and GDP estimates through the 21st century at a spatial resolution of 0.5×0.5° were taken from the IMAGE 2.3 projections for the SRES storylines",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UN PREVIEW Global Risk Data Platform 5′ flood-prone areas",
+          "role_in_study": "提供洪泛区范围，用于估算洪泛区人口和耕地暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "Estimates of the numbers of people living in flood-prone areas at a spatial resolution of 0.5×0.5° were derived by combining 5′ flood-prone areas identified on the UN PREVIEW Global Risk Data Platform (preview.grid.unep.ch; Peduzzi et al. 2009), with the CIESIN GRUMP population data set for the year 2000 (CIESIN 2004).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CIESIN GRUMP population data set for the year 2000",
+          "role_in_study": "提供2000年人口数据，与洪泛区范围叠加以估算洪泛区人口。",
+          "usage": "used_as_data",
+          "evidence_quote": "with the CIESIN GRUMP population data set for the year 2000 (CIESIN 2004).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Ramankutty et al.’s (2008) 5′ data set of crop areas in 2000",
+          "role_in_study": "提供耕地范围，用于估算洪泛区耕地及其暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "The extent of cropland within each 0.5×0.5° grid cell is taken from Ramankutty et al.’s (2008) 5′ data set of crop areas in 2000.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1007_s10584-014-1084-5.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "ddf14b4f91b10b8ab9ece13192bb66996ef78c15a5bd800cec382e397d0b7a3a",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1007_s10584-014-1084-5.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_05",
+      "source_paper_doi": "10.1029/2012jd017461",
+      "source_paper": {
+        "doi": "10.1029/2012jd017461",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "12 climate experiments",
+        "LISFLOOD"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "12 climate experiments",
+          "actual_product_in_paper": "12 climate experiments",
+          "evidence_quotes": [
+            "the hydrological simulations driven by the 12 climate experiments listed in Table 1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "LISFLOOD",
+          "actual_product_in_paper": "LISFLOOD",
+          "evidence_quotes": [
+            "bias-corrected and uncorrected climate data were used to drive LISFLOOD in the period 1961–2100"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "bias-corrected and uncorrected climate data were used to drive LISFLOOD in the period 1961–2100 obtaining daily discharges at each river pixel",
+        "the hydrological simulations driven by the 12 climate experiments listed in Table 1"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估欧洲未来气候变化对河流洪水危险的影响，重点考察各河流像元的百年一遇流量变化及其不确定性。",
+      "hypothesis_or_mechanism": "气候变化对洪水危险的影响通过气候模拟中的降水、温度变化传递至水文模型，并反映在极端河流流量及其百年一遇重现水平中。不同气候实验会导致预测结果存在较大差异。",
+      "variables_and_data_use": "研究使用12个气候实验提供的偏差订正和未订正气候数据驱动LISFLOOD，模拟1961—2100年各河流像元的日流量；并以欧洲554个站点的观测流量验证模拟。研究对年最大流量拟合Gumbel分布，以Q100作为未来洪水危险的代理指标。",
+      "method_paradigm": "采用气候模拟驱动分布式水文模型LISFLOOD的气候影响评估范式，并将模拟流量与站点观测比较验证。通过极值分布拟合和最大似然估计计算Q100，并以不同未来时段与控制期比较评估变化。",
+      "study_area": "欧洲",
+      "study_period": "水文模拟期为1961—2100年；验证控制期为1961—1990年；变化评估时段为1981—2010、2011—2040、2041—2070和2071—2100年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "12 climate experiments",
+          "role_in_study": "提供偏差订正和未订正的气候数据，用于驱动LISFLOOD。",
+          "usage": "used_as_data",
+          "evidence_quote": "bias-corrected and uncorrected climate data were used to drive LISFLOOD in the period 1961–2100",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LISFLOOD",
+          "role_in_study": "水文模型；由气候数据驱动，模拟各河流像元的日流量。",
+          "usage": "used_as_data",
+          "evidence_quote": "obtaining daily discharges at each river pixel",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed discharges at 554 stations",
+          "role_in_study": "欧洲554个站点的观测流量，用于验证水文模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "been compared to observed discharges at 554 stations throughout Europe",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2012jd017461.txt"
+        ],
+        "chars": 12057,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "00a303ed0b48fc081ddc85f750639f95a1e620ca116eea3fb608322ef5972332",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:06",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1029_2012jd017461.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_06",
+      "source_paper_doi": "10.1029/2020ef001778",
+      "source_paper": {
+        "doi": "10.1029/2020ef001778",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CESM Large Ensemble Experiment (CESM-LENS), using the fully-coupled Community Earth System Model (CESM 1.0)",
+        "high‐resolution hydrodynamic flood model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CESM Large Ensemble Experiment (CESM-LENS), using the fully-coupled Community Earth System Model (CESM 1.0)",
+          "actual_product_in_paper": "CESM Large Ensemble Experiment (CESM-LENS), using the fully-coupled Community Earth System Model (CESM 1.0)",
+          "evidence_quotes": [
+            "In this study, all precipitation data are drawn from existing climate simulations using the fully‐coupled Community Earth System Model (CESM 1.0) as implemented in the CESM Large Ensemble Experiment (CESM‐LENS, Kay et al., 2015)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "high‐resolution hydrodynamic flood model",
+          "actual_product_in_paper": "high‐resolution hydrodynamic flood model",
+          "evidence_quotes": [
+            "We combine simulations from a climate model large ensemble and a high‐resolution hydrodynamic flood model—allowing us to directly assess changes across a wide range of extreme precipitation magnitudes and accumulation timescales."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We combine simulations from a climate model large ensemble and a high‐resolution hydrodynamic flood model—allowing us to directly assess changes across a wide range of extreme precipitation magnitudes and accumulation timescales.",
+        "In this study, all precipitation data are drawn from existing climate simulations using the fully‐coupled Community Earth System Model (CESM 1.0) as implemented in the CESM Large Ensemble Experiment (CESM‐LENS, Kay et al., 2015)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究美国本土气候变化与人口增长如何共同改变洪水危险及其人口暴露，并量化不同极端降水强度和累积时长下的变化。",
+      "hypothesis_or_mechanism": "人为变暖增强大气持水能力，使极端降水的强度和频率上升；极端降水变化与人口变化共同作用，可能导致洪水人口暴露增加，且最强降水事件的影响呈非线性加速。",
+      "variables_and_data_use": "使用 CESM 1.0 的 CESM Large Ensemble（CESM-LENS）每日降水模拟，计算美国本土不同重现期及累积时长的极端降水强度和频率变化。将气候模拟与高分辨率水动力洪水模型结合，以评估洪水危险及人口暴露变化；所给文本未说明该洪水模型的具体名称或人口数据来源。",
+      "method_paradigm": "基于大集合气候模拟进行经验性极端降水分析，以历史降水阈值的超越次数估计频率变化，并使用自助重采样评估稳健性。随后结合高分辨率水动力洪水模型评估洪水人口暴露变化。",
+      "study_area": "美国本土（contiguous United States, CONUS）",
+      "study_period": "历史期为1950–2005年；未来期为2020–2049年和2050–2079年（RCP8.5情景）。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CESM Large Ensemble Experiment (CESM-LENS), using the fully-coupled Community Earth System Model (CESM 1.0)",
+          "role_in_study": "提供历史期和未来情景的每日降水模拟，用于计算极端降水强度与频率变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, all precipitation data are drawn from existing climate simulations using the fully‐coupled Community Earth System Model (CESM 1.0) as implemented in the CESM Large Ensemble Experiment (CESM‐LENS, Kay et al., 2015).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "high‐resolution hydrodynamic flood model",
+          "role_in_study": "与气候模拟结合，用于评估洪水危险及人口暴露变化；所给文本未提供模型专名。",
+          "usage": "used_as_data",
+          "evidence_quote": "We combine simulations from a climate model large ensemble and a high‐resolution hydrodynamic flood model—allowing us to directly assess changes across a wide range of extreme precipitation magnitudes and accumulation timescales.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TRMM",
+          "role_in_study": "作为既有研究中 CESM1 降水验证所用卫星观测的提及，并非本文分析输入。",
+          "usage": "mention_only",
+          "evidence_quote": "Precipitation simulated by CESM1 has been previously validated against remotely sensed satellite (TRMM) observations in a global context (Norris et al., 2019)",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2020ef001778.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1029_2020ef001778.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "b4caec4cd8c0da387f1cff05251080d84c825a684de872e1e3c995496f75d53d",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:26",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1029_2020ef001778.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_07",
+      "source_paper_doi": "10.1038/nature03820",
+      "source_paper": {
+        "doi": "10.1038/nature03820",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "regional rainfall anomalies for Bangladesh; Brahmaputra river discharge; flood extent in Bangladesh; sea surface temperatures in the Bay of Bengal; El Niño–Southern Oscillation",
+        "flood extent in Bangladesh"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "regional rainfall anomalies for Bangladesh; Brahmaputra river discharge; flood extent in Bangladesh; sea surface temperatures in the Bay of Bengal; El Niño–Southern Oscillation",
+          "actual_product_in_paper": "regional rainfall anomalies for Bangladesh; Brahmaputra river discharge; flood extent in Bangladesh; sea surface temperatures in the Bay of Bengal; El Niño–Southern Oscillation",
+          "evidence_quotes": [
+            "Transmission shows clear interannual variability with a strong correspondence to climate patterns at long periods (over 7 years, for monsoon rains and Brahmaputra river discharge) and at shorter periods (under 7 years, for flood extent in Bangladesh, sea surface temperatures in the Bay of Bengal and the El Niño–Southern Oscillation)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "flood extent in Bangladesh",
+          "actual_product_in_paper": "flood extent in Bangladesh",
+          "evidence_quotes": [
+            "at shorter periods (under 7 years, for flood extent in Bangladesh"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Transmission shows clear interannual variability with a strong correspondence to climate patterns at long periods (over 7 years, for monsoon rains and Brahmaputra river discharge) and at shorter periods (under 7 years, for flood extent in Bangladesh, sea surface temperatures in the Bay of Bengal and the El Niño–Southern Oscillation).",
+        "The comparison of regional rainfall anomalies for Bangladesh between the different ENSO events reveals that 1982–83 exhibited drought conditions that were unique for this period in their intensity and spatial extent."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究孟加拉国 Matlab 地区 1966—2002 年霍乱流行中，气候变率如何影响 El Tor 等菌型的传播，以及临时免疫如何改变气候强迫与疫情规模之间的关系。",
+      "hypothesis_or_mechanism": "核心机制是气候变率改变随时间变化的霍乱传播率，而既往感染形成的临时免疫及易感者补充会产生内禀流行病学反馈。两者相互作用可产生年际周期，并在易感者较少的 refractory periods 中削弱气候强迫与暴发规模之间的对应关系。",
+      "variables_and_data_use": "研究使用 Matlab 的月度霍乱病例与人口规模，通过包含 El Tor 既往感染免疫及 Classical 菌型交叉免疫的非线性种群模型重建传播率和易感者比例。将重建的传播率与季风降雨、Brahmaputra 河流流量、孟加拉国洪水范围、孟加拉湾海表温度及 ENSO 等气候序列比较；文本未给出这些气候数据的具体传感器或产品名称。",
+      "method_paradigm": "采用含免疫反馈的非线性种群模型，以半参数加性模型和回归回填方法估计传播率及免疫参数。对气候与传播率序列进行特征分解、波形分析和相关分析，以检验不同时间尺度上的关联。",
+      "study_area": "孟加拉国 Matlab 农村监测区，位于恒河与 Brahmaputra 河三角洲，距 Dhaka 东南约 40 km。",
+      "study_period": "霍乱病例时间序列为 1966—2002 年；方法部分提及部分数据处理覆盖至 2003 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "monthly symptomatic cases from the rural region of Matlab, Bangladesh",
+          "role_in_study": "作为霍乱病例时间序列输入，用于拟合模型并分析 El Tor 等菌型的流行动态。",
+          "usage": "used_as_data",
+          "evidence_quote": "The temporal cholera data consist of monthly symptomatic cases from the rural region of Matlab, Bangladesh, from 1966 to 2002",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "population size",
+          "role_in_study": "作为模型输入，用于估计易感者比例及拟合传播模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "given only time series of cholera cases and population size.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "regional rainfall anomalies for Bangladesh",
+          "role_in_study": "用于比较 ENSO 事件期间孟加拉国降雨异常，并分析气候与霍乱的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The comparison of regional rainfall anomalies for Bangladesh between the different ENSO events reveals that 1982–83 exhibited drought conditions",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Brahmaputra river discharge",
+          "role_in_study": "作为气候相关水文序列，与重建的霍乱传播率进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "at long periods (over 7 years, for monsoon rains and Brahmaputra river discharge)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "flood extent in Bangladesh",
+          "role_in_study": "作为洪水相关气候变量，与霍乱传播率的年际变化进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "at shorter periods (under 7 years, for flood extent in Bangladesh",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "sea surface temperatures in the Bay of Bengal",
+          "role_in_study": "作为海表温度序列，用于分析其与传播率及区域气候变率的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "at shorter periods (under 7 years, for flood extent in Bangladesh, sea surface temperatures in the Bay of Bengal and the El Niño–Southern Oscillation).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "El Niño–Southern Oscillation",
+          "role_in_study": "作为气候变率指标，与霍乱传播率及降雨异常进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "sea surface temperatures in the Bay of Bengal and the El Niño–Southern Oscillation).",
+          "quote_verified": false
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nature03820.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nature03820.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "34cf4829d6ef9fb33ab678ac5e36ca8159de40bae40891bf9bf14ba8bcee9202",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:39",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_nature03820.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_08",
+      "source_paper_doi": "10.1038/nature09762",
+      "source_paper": {
+        "doi": "10.1038/nature09762",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "we calculate the fraction of attributable risk (FAR) autumn 2000 flooding explicitly modelled in terms of severe daily river runoff using our more rigorous multi-step probabilistic event attribution (PEA) framework of the main text.",
+        "To construct A2000N SSTs we subtracted, from the observed26 A2000 SSTs, estimated twentieth-century warming attributable to greenhouse gas emissions."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究英格兰和威尔士2000年秋季洪水风险中，有多少可归因于人为温室气体排放导致的20世纪变暖，并检验显式概率事件归因结果是否与简单热力学估算一致。",
+      "hypothesis_or_mechanism": "在相对湿度近似不变时，变暖会按克劳修斯–克拉佩龙关系提高大气水汽容量，进而增强极端降水并增加洪水风险。研究还检验洪水风险变化是否主要由小尺度动力过程和热力过程导致，而非关键环流型发生频率变化。",
+      "variables_and_data_use": "研究使用英格兰和威尔士秋季日降水极值，并将1990—2000年观测降水按克劳修斯–克拉佩龙关系及归因的地表增温幅度缩减，以估算热力学框架下的洪水风险变化。显式模拟框架比较A2000与A2000N气候下的日河流径流，并用HadAM3-N144模拟及秋季500-hPa位势高度投影分析环流型影响；A2000海表温度观测用于构造A2000N海表温度。",
+      "method_paradigm": "采用概率事件归因（PEA）框架，比较不同气候情景下严重日河流径流的发生频率并估算归因风险比例（FAR）。另以克劳修斯–克拉佩龙关系缩减观测降水极值，并用蒙特卡洛自助抽样估计不确定性；通过按斯堪的纳维亚环流型投影分组开展稳健性分析。",
+      "study_area": "英格兰和威尔士；环流分析涉及与英国秋季降水相关的斯堪的纳维亚环流型。",
+      "study_period": "重点事件为2000年秋季；热力学估算使用1990—2000年秋季观测，海温模拟时段为2000年4月至2001年3月；归因增温比较20世纪90年代与20世纪初。",
+      "datasets_used": [
+        {
+          "name_in_paper": "observed precipitation",
+          "role_in_study": "用于计算英格兰和威尔士秋季日降水极值，并构建热力学缩减后的降水分布。",
+          "usage": "used_as_data",
+          "evidence_quote": "we assume observed precipitation from autumns 1990-2000 is representative of precipitation under the conditions that obtained in autumn 2000",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HadAM3-N144 model",
+          "role_in_study": "用于气候模拟；其模拟结果用于显式评估径流响应，并匹配观测海温场。",
+          "usage": "used_as_data",
+          "evidence_quote": "We then spatio-temporally interpolate these observations to suit the HadAM3-N144 model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed A2000 SSTs",
+          "role_in_study": "作为A2000海表温度场，并通过扣除归因于温室气体排放的20世纪增温构造A2000N海表温度。",
+          "usage": "used_as_data",
+          "evidence_quote": "To construct A2000N SSTs we subtracted, from the observed26 A2000 SSTs, estimated twentieth-century warming attributable to greenhouse gas emissions.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "gridded weekly-mean observations",
+          "role_in_study": "提供A2000海表温度及海冰相关观测，用于构造模拟海表温度场。",
+          "usage": "used_as_data",
+          "evidence_quote": "These gridded weekly-mean observations are supplied with SSTs in the marginal ice zone generated from sea ice coverage",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nature09762.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nature09762.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "c0587d44ca4a198336e3e40cbc704ed5b5b45cba9a4d6cdd6d195ee957e960a3",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T01:17:24",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_nature09762.json",
+        "quote_gate": {
+          "total": 6,
+          "verified": 6
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_09",
+      "source_paper_doi": "10.1038/nclimate2927",
+      "source_paper": {
+        "doi": "10.1038/nclimate2927",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We use the citizen-science project “weather@home”9 to produce an ensemble of 134,354 simulations of possible weather under current climate and under counterfactual conditions as might have been without human influence on atmospheric composition.",
+        "Modelled precipitation and temperature are fed into the CLASSIC hydrological model of the Thames catchment22, spun up with observed data from January 2010 to early December 2013",
+        "Outputs from CLASSIC are combined with information about the location of properties at risk of flooding in the Thames catchment"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究探讨人为气候影响是否改变了2013/2014年冬季英格兰南部极端降水及环流的风险，以及这种变化如何影响泰晤士河流量和河流洪水风险。",
+      "hypothesis_or_mechanism": "人为变暖既增加大气可容纳的水汽，也可能增加有利于强降水的西风环流出现频率，从而影响极端降水。降水变化通过泰晤士流域水文过程影响洪峰；不同持续时间的降水以及融雪变化会调节洪水影响。",
+      "variables_and_data_use": "研究使用 weather@home 的 HadRM3P 区域气候模式嵌套于 HadAM3P 环流模式的大集合模拟，并以 CMIP5 模式估计自然反事实情景下的海温变化；分析降水、海平面气压及环流型。ERA-Interim 用于比较急流，英国气象局档案中的8个长期观测站用于评估南英格兰降水。模拟降水和温度输入 CLASSIC 泰晤士流域水文模型，模型流量再与房产位置资料结合评估洪水风险。",
+      "method_paradigm": "采用事实与无人为影响反事实气候的大集合归因比较，结合天气环流聚类、极值风险分析及环流加权分解热力和动力影响。再以水文模型模拟河流流量，并结合房产位置和洪水风险制图方法评估影响。",
+      "study_area": "英格兰南部及泰晤士河流域；降水分析区为50°–52°N、6.5°W–2°E的陆地区域。",
+      "study_period": "重点研究2013/2014年冬季，尤其是2014年1月；气候模拟覆盖DJF，站点降水序列为1912–2013年，水文模型以2010年1月至2013年12月初的观测数据预热。",
+      "datasets_used": [
+        {
+          "name_in_paper": "weather@home ensemble using HadRM3P nested in HadAM3P",
+          "role_in_study": "生成当前气候与无人为影响反事实气候的大集合模拟，用于分析降水、气压、环流及风险变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "This project uses spare CPU time on volunteers’ personal computers to run the regional climate model (RCM) HadRM3P nested in the HadAM3P atmospheric general circulation climate model (AGCM)9 driven with prescribed sea surface temperatures (SSTs) and sea ice concentration (SIC).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Coupled Model Intercomparison Project phase 5 (CMIP5) models",
+          "role_in_study": "提供估算无人为影响情景下人为海温变化空间型的模式结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "To account for the uncertainty in our estimates of a world without anthropogenic influence, 11 different patterns are calculated from GCM simulations of the Coupled Model Intercomparison Project phase 5 (CMIP5)10",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-Interim",
+          "role_in_study": "用于比较2014年1月模拟与1986–2011年气候态的北大西洋急流。",
+          "usage": "used_as_data",
+          "evidence_quote": "On average, the Actual Conditions simulations reproduce a stronger jet stream, compared to the 1986-2011 climatology, of January 2014 in the North Atlantic (ERA-Interim11, Fig. 2a-b)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "8 stations in this region with long records in Met Office archives",
+          "role_in_study": "提供英格兰南部长期月冬季降水观测，用于评估极端降水及重现期。",
+          "usage": "used_as_data",
+          "evidence_quote": "we average observations from 8 stations in this region with long records in Met Office archives.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CLASSIC hydrological model of the Thames catchment",
+          "role_in_study": "接收模拟降水和温度，模拟泰晤士流域河流流量及其变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Modelled precipitation and temperature are fed into the CLASSIC hydrological model of the Thames catchment22",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Ordnance Survey property location data",
+          "role_in_study": "提供房产位置资料，与水文模型输出结合估算洪水风险房产数量变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Ordnance Survey, Britain’s official mapping agency, supplied property location data.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nclimate2927.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nclimate2927.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "9f7a49070a864324e900ecc2df6b964d4622944e331a79bae0924c0837300a5e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:25",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_nclimate2927.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_10",
+      "source_paper_doi": "10.1038/nclimate3350",
+      "source_paper": {
+        "doi": "10.1038/nclimate3350",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "daily bias-corrected outputs from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M",
+        "GLOFRIS inundation maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "daily bias-corrected outputs from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M",
+          "actual_product_in_paper": "daily bias-corrected outputs from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M",
+          "evidence_quotes": [
+            "For future climate conditions, the forcing data were daily bias-corrected outputs from the following Global Climate Models (GCMs): HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "GLOFRIS inundation maps",
+          "actual_product_in_paper": "GLOFRIS inundation maps",
+          "evidence_quotes": [
+            "The coarse resolution flood volume maps were then converted into high resolution (30\" x 30\") inundation maps using the inundation downscaling module of GLOFRIS"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "For future climate conditions, the forcing data were daily bias-corrected outputs from the following Global Climate Models (GCMs): HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+        "The coarse resolution flood volume maps were then converted into high resolution (30\" x 30\") inundation maps using the inundation downscaling module of GLOFRIS."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究全球城市地区的河流洪水结构性防护投资是否具有经济效益，以及在不同气候与社会经济情景下应采用何种防护标准。研究对象是全球各次国家单元的城市河流洪水风险及堤防等防护措施的成本与收益。",
+      "hypothesis_or_mechanism": "纳入现有防洪标准并提高结构性防护标准，可以降低预期年度损失；在部分地区，降低的洪灾损失可能超过防护建设和维护成本。气候变化和社会经济发展会改变洪水风险及暴露程度，因此投资效益取决于情景、防护标准和成本等假设。",
+      "variables_and_data_use": "研究使用 GLOFRIS 全球洪水风险模型估算不同重现期洪水的淹没范围和城市损失，并以 FLOPROS 的次国家防护标准表示现有防护。PCR-GLOBWB-DynRout 使用 EU-WATCH 和经偏差订正的全球气候模型气象强迫模拟径流与洪水量，GLOFRIS 再将洪水量下推为高分辨率淹没图；城市暴露数据来自 HYDE、GISMO/IMAGE 及 SSP 数据库。研究比较不同适应目标下的预期年度损失、成本、收益、B:C 比率和净现值。",
+      "method_paradigm": "采用全球洪水风险模型级联与成本—收益分析：先进行水文水力模拟，再用极值统计估计不同重现期洪水量，通过 GLOFRIS 体积扩散算法下推淹没范围并估算损失。对不同气候与社会经济情景、防护标准及经济参数进行敏感性分析，并以局地模型或卫星影像淹没图开展基准比较。",
+      "study_area": "全球城市地区；分析结果汇总至次国家单元。",
+      "study_period": "当前气候模拟为1960—1999年；未来气候模拟为2060—2099年（代表2080年前后的气候条件）；防护投资成本按2020—2100年计算，假设堤防建设于2020年开始、2050年完成。",
+      "datasets_used": [
+        {
+          "name_in_paper": "GLOFRIS",
+          "role_in_study": "全球洪水风险模型，用于模拟淹没、估算城市洪灾损失并评估防护投资。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used the GLOFRIS model",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "FLOPROS",
+          "role_in_study": "提供次国家尺度现有防洪标准，用于设定当前防护水平并开展敏感性分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Assumptions for current protection standards are from FLOPROS",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PCR-GLOBWB-DynRout",
+          "role_in_study": "水文水力模型，用于模拟日尺度径流和洪水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daily gridded discharge and flood volumes were simulated (0.5° x 0.5°) using PCR-GLOBWB-DynRout",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EU-WATCH forcing data",
+          "role_in_study": "当前气候时期的气象强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "For current climate conditions, EU-WATCH forcing data were used for the period 1960-1999.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HadGEM2-ES",
+          "role_in_study": "未来气候情景的全球气候模型输出，作为经偏差订正的气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "IPSL-CM5A-LR",
+          "role_in_study": "未来气候情景的全球气候模型输出，作为经偏差订正的气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MIROC-ESM-CHEM",
+          "role_in_study": "未来气候情景的全球气候模型输出，作为经偏差订正的气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GFDL-ESM2M",
+          "role_in_study": "未来气候情景的全球气候模型输出，作为经偏差订正的气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NorESM1-M",
+          "role_in_study": "未来气候情景的全球气候模型输出，作为经偏差订正的气象强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HYDE database",
+          "role_in_study": "提供当前城市用地网格数据，用于构建城市资产暴露图。",
+          "usage": "used_as_data",
+          "evidence_quote": "Data for current urban area per grid-cell were taken from the HYDE database",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GISMO/IMAGE model",
+          "role_in_study": "提供网格化人口与 GDP 数据，用于计算未来城市密度和资产价值变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "using gridded population and GDP data from the GISMO/IMAGE model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Shared Socioeconomic Pathway (SSP) database",
+          "role_in_study": "提供未来 GDP 与人口情景数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "For the future scenarios of GDP and population, data were used from the Shared Socioeconomic Pathway (SSP) database",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "local models or satellite imagery",
+          "role_in_study": "八个案例研究中的淹没图基准，用于检验 GLOFRIS 淹没模拟表现。",
+          "usage": "used_as_data",
+          "evidence_quote": "we compared GLOFRIS inundation maps with inundation maps from local models or satellite imagery",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Gumbel distribution",
+          "role_in_study": "拟合年最大洪水量序列，以估计不同重现期的洪水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Then, we fit a Gumbel distribution through these time-series",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nclimate3350.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_nclimate3350.methods.txt"
+        ],
+        "chars": 21068,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "da90c6ce5c140293ba1ff9795c6a2aa92ae70aabad27bab8dcf4b4c5feddbc54",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:47",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_nclimate3350.json",
+        "quote_gate": {
+          "total": 18,
+          "verified": 17
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_11",
+      "source_paper_doi": "10.1038/s41467-020-20704-0",
+      "source_paper": {
+        "doi": "10.1038/s41467-020-20704-0",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "ISIMIP2b forcing data from GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR, and MIROC5",
+        "CaMa-Flood simulated flooded area and flooded fraction"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "ISIMIP2b forcing data from GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR, and MIROC5",
+          "actual_product_in_paper": "ISIMIP2b forcing data from GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR, and MIROC5",
+          "evidence_quotes": [
+            "The forcing data consisted of precipitation, temperature, solar radiation (short and long wave downward), wind speed, specific humidity, and surface pressure which were bias corrected 45 and downscaled to a 0.5° by 0.5°-grid resolution."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CaMa-Flood simulated flooded area and flooded fraction",
+          "actual_product_in_paper": "CaMa-Flood simulated flooded area and flooded fraction",
+          "evidence_quotes": [
+            "In this study, three output variables were used: the total discharge exiting a grid-cell (sum of river discharge and floodplain flow), the flooded area, and the flooded fraction of a grid-cell."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "the daily runoff predicted by H08 is used as a forcing input in CaMa-Flood",
+        "To simulate the effects of water regulation due to anthropogenic activities on floodplain dynamics, the H08 and CaMa-Flood models were coupled",
+        "The population dataset, created by the Socioeconomic Data and Applications Center (SEDAC), consists of the Gridded Population of the World (GPW, v4.11) for the year 2010 55 ."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究全球范围内，气候变化情景下水坝如何通过调节河流流量、改变洪泛平原动态，影响未来河流洪水及人口暴露？",
+      "hypothesis_or_mechanism": "水坝调节下泄流量，能够改变洪水的频率、时长和时序，并影响洪泛平原淹没范围；因此，忽略水坝可能高估未来洪水人口暴露。",
+      "variables_and_data_use": "研究使用 ISIMIP2b 中 GFDL-ESM2M、HadGEM2-ES、IPSL-CM5A-LR 和 MIROC5 的偏差订正、降尺度气候强迫，驱动 H08 水文模型；H08 的日径流输入 CaMa-Flood，模拟河流流量、淹没面积和网格淹没比例，并比较考虑与不考虑水坝的情景。水坝的位置、库容和建成年份取自 GRanD，人口暴露评估使用 SEDAC 的 GPW v4.11（2010 年人口）；通过历史百年洪水流量及其重现期变化评估洪水和暴露。",
+      "method_paradigm": "采用 H08 与 CaMa-Flood 耦合的全球水文—河道路由及洪泛平原模拟，并进行有坝/无坝情景比较。以年极端流量拟合 Gumbel 分布估算百年洪水，结合栅格人口数据评估暴露变化。",
+      "study_area": "全球",
+      "study_period": "历史气候强迫：1861–2005；未来情景：2006–2099（RCP2.6、RCP6.0）；洪水频率比较：历史期 1975–2004 与未来期 2070–2099；人口固定为 2010 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR, and MIROC5 (ISIMIP2b forcing data)",
+          "role_in_study": "提供历史及 RCP2.6、RCP6.0 情景下的气候强迫，驱动水文模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "The four general circulation models (GCMs; GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR, and MIROC5) implemented in the ISIMIP2b protocol participated in the Fifth Assessment Report (AR5) of the Intergovernmental Panel on Climate Change (IPCC).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "H08",
+          "role_in_study": "全球水文模型；计算径流和水坝调节后的下泄流量，为 CaMa-Flood 提供日径流强迫。",
+          "usage": "used_as_data",
+          "evidence_quote": "the daily runoff predicted by H08 is used as a forcing input in CaMa-Flood",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CaMa-Flood",
+          "role_in_study": "全球河道路由与洪水模型；模拟河流流量、淹没面积和网格淹没比例。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, three output variables were used: the total discharge exiting a grid-cell (sum of river discharge and floodplain flow), the flooded area, and the flooded fraction of a grid-cell.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HydroSHEDS",
+          "role_in_study": "提供地形和河网地形基础，用于 CaMa-Flood 的洪泛平原动态模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "CaMa-Flood is a new generation of global river routing model that relies on HydroSHEDS 42 topography to simulate floodplain dynamics and backwater effects by explicitly solving the local inertia equation 33 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global reservoirs and Dams database (GRanD)",
+          "role_in_study": "提供水坝位置、库容和建成年份，并用于水坝定位及模型参数设置。",
+          "usage": "used_as_data",
+          "evidence_quote": "Dam specifications (location, storage capacity, and construction year) are provided in GRanD 44 , 46 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Gridded Population of the World (GPW, v4.11)",
+          "role_in_study": "提供 2010 年栅格人口，用于估算洪水人口暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "The population dataset, created by the Socioeconomic Data and Applications Center (SEDAC), consists of the Gridded Population of the World (GPW, v4.11) for the year 2010 55 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "gauge observations",
+          "role_in_study": "用于模型流量模拟的验证与有坝、无坝模拟结果对比。",
+          "usage": "used_as_data",
+          "evidence_quote": "We then compared our dam and no-dam simulations to the relevant observations.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-020-20704-0.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41467-020-20704-0.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "100e37cca2409be49cc783c042799ce6b429a965e454d1d3b807f804b741e8a9",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:58",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_s41467-020-20704-0.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_12",
+      "source_paper_doi": "10.1038/s41558-021-01265-6",
+      "source_paper": {
+        "doi": "10.1038/s41558-021-01265-6",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [
+            "by 2050 under the RCP4.5 scenario"
+          ],
+          "fresh_quote_verified": false,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We use gridded maps of population from the US Environmental Protection Agency (EPA) to calculate the current population exposed to floods, and the EPA's gridded projections of 2050 populations under the SSP2 scenario to analyse the relative contributions of climate change and population growth to future US flood risk"
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "研究美国当前及至2050年的洪水风险如何随气候变化和人口增长而变化，以及这些风险在不同地区和人口群体间如何分布。",
+      "hypothesis_or_mechanism": "气候变暖会通过加剧极端降水、飓风相关风暴潮和海平面上升提高洪水风险；人口增长及向洪泛区开发也会增加暴露。两者叠加会造成复合风险，而风险变化在不同地区和人口群体间并不均衡。",
+      "variables_and_data_use": "研究评估美国洪水风险、年均损失（AAL）及人口年均暴露（AAE），并比较气候变化与人口增长的贡献。文本明确说明使用美国环保署（EPA）的格网人口图计算当前人口洪水暴露，并使用EPA的SSP2情景2050年格网人口预测分析人口增长的贡献；洪水损失和灾害变化以模型估计及气候情景投影进行分析，但所给文本未说明具体气候产品、传感器或洪水模型名称。",
+      "method_paradigm": "采用高分辨率、面向未来的洪水风险估算框架，比较当前与2050年情景，并分解气候变化和人口增长对暴露与损失的贡献。通过模型不确定性分析及人口统计分组，评估结果的空间差异和分布差异。",
+      "study_area": "美国",
+      "study_period": "当前至2050年；文本称风险变化覆盖典型30年期，并以2020—2050年进行比较。",
+      "datasets_used": [
+        {
+          "name_in_paper": "US Environmental Protection Agency (EPA) gridded maps of population",
+          "role_in_study": "计算当前美国人口的洪水暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use gridded maps of population from the US Environmental Protection Agency (EPA) to calculate the current population exposed to floods",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EPA's gridded projections of 2050 populations under the SSP2 scenario",
+          "role_in_study": "分析人口增长对2050年美国洪水风险的贡献。",
+          "usage": "used_as_data",
+          "evidence_quote": "the EPA's gridded projections of 2050 populations under the SSP2 scenario to analyse the relative contributions of climate change and population growth to future US flood risk",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "an ensemble of US average annual flood losses",
+          "role_in_study": "作为模型估算的美国年均洪水损失，用于与历史记录比较及分析风险。",
+          "usage": "used_as_data",
+          "evidence_quote": "an ensemble of US average annual flood losses",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41558-021-01265-6.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41558-021-01265-6.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "b76dc7da5a4ec133429e7d87cbf1bcaad9fc2cdd02c2388855850054dccb7456",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:39",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_s41558-021-01265-6.json",
+        "quote_gate": {
+          "total": 5,
+          "verified": 4
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_13",
+      "source_paper_doi": "10.1038/s41586-024-07145-1",
+      "source_paper": {
+        "doi": "10.1038/s41586-024-07145-1",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "GloFAS version 4 simulation data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "GloFAS version 4 simulation data",
+          "actual_product_in_paper": "GloFAS version 4 simulation data",
+          "evidence_quotes": [
+            "GloFAS simulation data from the Climate Data Store 33 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The full dataset includes model inputs and (streamflow) targets for a total of 152,259 years from 5,680 watersheds.",
+        "Training and test targets came from the Global Runoff Data Center (GRDC) 37 .",
+        "GloFAS simulation data from the Climate Data Store 33 ."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究评估人工智能模型能否利用开放数据，在全球缺乏水文站的流域可靠预测极端河流洪水，并与现有全球洪水预报系统比较其预报提前量和准确性。",
+      "hypothesis_or_mechanism": "基于多流域历史气象与地理属性训练的人工智能流量预报模型，可在未参与训练的流域预测极端洪水；气象预报驱动的编码器—解码器 LSTM 能将预报提前至多五天，同时保持与现有系统相当或更好的可靠性。",
+      "variables_and_data_use": "模型以 ECMWF IFS HRES 的日尺度气象预报、ERA5-Land 再分析、NOAA CPC 和 NASA GPM IMERG 降水估计，以及 HydroATLAS 流域属性作为输入，预测面积归一化流量。GRDC 站点流量用于训练目标和评估；GloFAS 模拟流量作为比较基准。",
+      "method_paradigm": "采用编码器—解码器 LSTM 进行全球流量概率预报，并以时空交叉验证评估未见流域和时段的表现。通过按重现期定义的洪水事件精确率、召回率等指标，将 AI 预报与 GloFAS 比较。",
+      "study_area": "全球 5,680 个流域及其流量站点，重点评估未设站流域的极端河流洪水预报。",
+      "study_period": "交叉验证预测覆盖 1984–2021 年；GloFAS 与模型水文过程指标比较时段为 2014–2021 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "ECMWF Integrated Forecast System (IFS) High Resolution (HRES) atmospheric model",
+          "role_in_study": "提供日尺度气象预报变量，作为 AI 模型预报期输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daily-aggregated single-level forecasts from the ECMWF Integrated Forecast System (IFS) High Resolution (HRES) atmospheric model.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ECMWF ERA5-Land reanalysis",
+          "role_in_study": "提供与 HRES 相同的六项气象变量，作为历史气象输入及缺失值填补来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "The same six variables from the ECMWF ERA5-Land reanalysis.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NOAA Climate Prediction Center (CPC) Global Unified Gauge-Based Analysis of Daily Precipitation",
+          "role_in_study": "提供降水估计，作为 AI 模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Precipitation estimates from the National Oceanic and Atmospheric Administration (NOAA) Climate Prediction Center (CPC) Global Unified Gauge-Based Analysis of Daily Precipitation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NASA Integrated Multi-satellite Retrievals for GPM (IMERG) early run",
+          "role_in_study": "提供降水估计，作为 AI 模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Precipitation estimates from the NASA Integrated Multi-satellite Retrievals for GPM (IMERG) early run.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HydroATLAS database",
+          "role_in_study": "提供流域地质、地球物理和人为属性，作为 AI 模型输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Geological, geophysical and anthropogenic basin attributes from the HydroATLAS database 28 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Runoff Data Center (GRDC)",
+          "role_in_study": "提供训练和测试用的流量目标及观测，用于模型训练和评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "Training and test targets came from the Global Runoff Data Center (GRDC) 37 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GloFAS version 4 simulation data",
+          "role_in_study": "作为全球洪水预报比较基准；使用 Climate Data Store 提供的 GloFAS 模拟数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "GloFAS simulation data from the Climate Data Store 33 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "HydroBASINS repository",
+          "role_in_study": "提供流域边界以核验 GRDC 报告的汇水面积，并用于流域匹配筛选。",
+          "usage": "used_as_data",
+          "evidence_quote": "drainage area calculated using watershed polygons from the HydroBASINS repository",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41586-024-07145-1.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41586-024-07145-1.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "28ef7a284faeee59b444173f9aec4f1254ae2ca280e8e01f5147dc6c86d66e39",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:44",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_s41586-024-07145-1.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_14",
+      "source_paper_doi": "10.1038/s41598-020-70816-2",
+      "source_paper": {
+        "doi": "10.1038/s41598-020-70816-2",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CMIP5 GCM daily precipitation simulations and monthly temperature data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CMIP5 GCM daily precipitation simulations and monthly temperature data",
+          "actual_product_in_paper": "CMIP5 GCM daily precipitation simulations and monthly temperature data",
+          "evidence_quotes": [
+            "Daily precipitation simulations from 24 Coupled Model Intercomparison Project Phase 5 (CMIP5 33 ) GCMs"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Daily precipitation simulations from 24 Coupled Model Intercomparison Project Phase 5 (CMIP5 33 ) GCMs for the historical period 1971–2000 and the future period 2070–2099 forced by Representative Concentration Pathway (RCP) RCP8.5 scenario are utilized:",
+        "Global daily discharge simulations from five impact models (IMs) including three global hydrological models (H08 51 , MATSIRO 52 and WaterGAP2 53 ), one global land surface model (CLM4.5 54 ) and one dynamic global vegetation model (LPJmL 55 ) with 0.5° spatial resolution for the historical period 1971–2000 and the future period 2070–2099 under RCP8.5 scenario are used."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究全球陆地区域中，气候变化导致的极端降水和河流洪水强度变化如何随空间及季节性水可用性而改变？研究对象是全球各气候区的极端降水与河流流量极值。",
+      "hypothesis_or_mechanism": "大气变暖会增强大气含水量及极端降水，但水分可用性会调节这种增强；湿润与干旱环境中的水汽汇聚、蒸发等过程可能造成不同响应。论文检验极端降水和洪水增强幅度是否随水可用性变化，并比较不同极端程度事件的关联强弱。",
+      "variables_and_data_use": "研究使用24个CMIP5全球气候模式的日降水模拟估算极端降水，并用同一批模式的月最高、平均和最低气温进行气候分类及全球变暖估算。洪水分析使用ISIMIP框架下4个CMIP5模式驱动的5个影响模型的日流量模拟；以降水和流量年最大值拟合极值分布，并以潜在蒸散发与降水构成的干旱指数表征水可用性。",
+      "method_paradigm": "全球网格尺度的气候模式集合分析：对年最大值拟合GEV分布，并以POT-GPD作不确定性检验；计算历史与未来30年重现水平变化并按变暖幅度缩放。按干旱指数划分气候区，比较各区变化，并评估信噪比、稳健性及不确定性来源。",
+      "study_area": "全球陆地区域（排除南半球60°S以南区域）。",
+      "study_period": "历史期1971–2000年；未来期2070–2099年，采用RCP8.5情景。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CMIP5 GCM daily precipitation simulations (24 GCMs)",
+          "role_in_study": "用于计算历史期和未来期的极端降水强度及其变化。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daily precipitation simulations from 24 Coupled Model Intercomparison Project Phase 5 (CMIP5 33 ) GCMs for the historical period 1971–2000 and the future period 2070–2099 forced by Representative Concentration Pathway (RCP) RCP8.5 scenario are utilized:",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CMIP5 GCM monthly maximum, mean and minimum temperature data",
+          "role_in_study": "用于气候分类、潜在蒸散发计算及全球变暖幅度估算。",
+          "usage": "used_as_data",
+          "evidence_quote": "Monthly maximum, mean and minimum temperature data for the historical and RCP8.5 simulations from the same GCMs are also used for climate classification and global warming estimation.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CMIP5 GCM simulations downscaled by a trend-preserving method",
+          "role_in_study": "为影响模型提供气候强迫，以模拟日流量。",
+          "usage": "used_as_data",
+          "evidence_quote": "In the Inter-Sectoral Impact Model Intercomparison Project (ISIMIP 34 ) framework, four of the CMIP5 GCMs (GFDL-ESM2M, HadGEM2-ES, IPSL-CM5A-LR and MIROC5) were downscaled by a trend-preserving method 50 and used as the climatic forcing to simulate daily discharge.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "H08",
+          "role_in_study": "全球水文模型，生成日流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "Global daily discharge simulations from five impact models (IMs) including three global hydrological models (H08 51 , MATSIRO 52 and WaterGAP2 53 ),",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MATSIRO",
+          "role_in_study": "全球水文模型，生成日流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "three global hydrological models (H08 51 , MATSIRO 52 and WaterGAP2 53 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WaterGAP2",
+          "role_in_study": "全球水文模型，生成日流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "three global hydrological models (H08 51 , MATSIRO 52 and WaterGAP2 53 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CLM4.5",
+          "role_in_study": "全球陆面模型，生成日流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "one global land surface model (CLM4.5 54 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LPJmL",
+          "role_in_study": "动态全球植被模型，生成日流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "one dynamic global vegetation model (LPJmL 55 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Precipitation (P)",
+          "role_in_study": "作为干旱指数的水分供给项，并用于水可用性分类。",
+          "usage": "used_as_data",
+          "evidence_quote": "AI is calculated as the ratio between potential evapotranspiration (PET; water demand) and precipitation (P; water supply): AI = PET/P.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Potential evapotranspiration (PET) computed by the Hargreaves–Samani method",
+          "role_in_study": "与降水共同计算干旱指数，用于划分气候区。",
+          "usage": "used_as_data",
+          "evidence_quote": "PET is computed by the Hargreaves–Samani method 58 which effectively incorporates solar radiation by its indirect estimation from minimum and maximum temperatures.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-020-70816-2.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s41598-020-70816-2.methods.txt"
+        ],
+        "chars": 14385,
+        "text_mode": "head+methods",
+        "source_sha256": "44badd7152c74fa9289d7514cbd1032e32e7122b431d43e9634810a652c1464b",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:56",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_s41598-020-70816-2.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_15",
+      "source_paper_doi": "10.1038/s43247-021-00248-x",
+      "source_paper": {
+        "doi": "10.1038/s43247-021-00248-x",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "with a 50-member ensemble of high-resolution climate input (spatial: 500×500 m2, temporal: 3h)",
+        "all of which were obtained by driving the hydrological model WaSiM-ETH",
+        "we identify pairs of extreme precipitation (i.e. areal sum over catchment) and corresponding streamflow for two non-overlapping periods of 40 years"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究区为巴伐利亚水文区的78个近自然流量流域，研究极端降水与洪水之间的关系在变暖气候下如何变化，以及是否存在一个极端程度阈值，使降水增加直接转化为洪水风险增加。",
+      "hypothesis_or_mechanism": "研究假设存在流域特定的极端程度（重现期）阈值：阈值以下，变暖导致的土壤湿度变化等陆面过程会调节降水向径流的转化；阈值以上，极端降水使土壤迅速饱和，从而更直接地转化为径流并增加洪水幅度。",
+      "variables_and_data_use": "研究使用由加拿大区域气候模式第五代大集合（CRCM5-LE）驱动 WaSiM-ETH 得到的 hydro-SMILE 模拟，分析日降水、流量、雪水当量（SWE）、土壤湿度及温度。CRCM5-LE 提供 RCP8.5 情景下的气候输入，经偏差订正和降尺度后驱动水文模型；研究将历史期（1961–2000）与未来期（2060–2099）的极端降水—流量事件配对，并评估降水与洪水幅度及水文气象驱动因素的变化。观测流量和 SDCLIREF 气象数据用于模型校准、评估及偏差订正参考。",
+      "method_paradigm": "采用气候大集合驱动分布式水文模型的 hydro-SMILE 模拟范式，并通过事件识别、重现期分位数比较和降水—流量依赖性分析评估变化。进一步使用多元线性模型分析降水、温度、SWE 和土壤湿度异常对洪水幅度的影响。",
+      "study_area": "巴伐利亚水文区（Hydrological Bavaria），包括 Main、Danube 和 Inn 河及其主要支流上的78个近自然流量流域。",
+      "study_period": "水文模拟期为1961–2099年；主要比较历史期1961–2000年与未来期2060–2099年。模型校准期为2004–2010年，参考期为1981–2010年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "CRCM5-LE",
+          "role_in_study": "50成员的区域气候大集合，提供驱动 WaSiM-ETH 的气象模拟输入；数据经偏差订正及降尺度后用于 hydro-SMILE。",
+          "usage": "used_as_data",
+          "evidence_quote": "with meteorological data derived from the fifth generation Canadian Regional Climate Model large ensemble (CRCM5-LE) 50 members",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CanESM2-LE",
+          "role_in_study": "CRCM5-LE 的嵌套全球气候模式大集合来源。",
+          "usage": "used_as_data",
+          "evidence_quote": "a dynamically downscaled version (0.11°, 12 km) of the second generation Canadian Earth System Model large ensemble (CanESM2-LE)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WaSiM-ETH",
+          "role_in_study": "水文模型，将气候输入转换为流量、SWE 和土壤湿度模拟，用于构建 hydro-SMILE。",
+          "usage": "used_as_data",
+          "evidence_quote": "all of which were obtained by driving the hydrological model WaSiM-ETH",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EU-DEM",
+          "role_in_study": "提供高程、坡度和坡向信息，用于水文模型空间参数设定。",
+          "usage": "used_as_data",
+          "evidence_quote": "spatial information on elevation, slope, and exposition derived from a digital elevation model for Europe (EU-DEM)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CORINE land cover dataset",
+          "role_in_study": "提供土地利用信息，用于水文模型参数设定。",
+          "usage": "used_as_data",
+          "evidence_quote": "land-use derived from the CORINE land cover dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European soil database (ESDB v2.0)",
+          "role_in_study": "提供土壤特征信息，用于水文模型参数设定。",
+          "usage": "used_as_data",
+          "evidence_quote": "soil characteristics derived from the European soil database (ESDB v2.0)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Bavarian hydrogeology map",
+          "role_in_study": "提供水文地质（导水率）信息，用于水文模型参数设定。",
+          "usage": "used_as_data",
+          "evidence_quote": "hydro-geology (hydraulic conductivity) derived from the Bavarian hydrogeology map",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "international hydrogeological map of Europe (IHME1500 v1.1.)",
+          "role_in_study": "提供水文地质（导水率）信息，用于水文模型参数设定。",
+          "usage": "used_as_data",
+          "evidence_quote": "and the international hydrogeological map of Europe (IHME1500 v1.1.)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Bayerisches Landesamt für Umwelt (LfU) observed 3h discharge",
+          "role_in_study": "98个流域的观测三小时流量，用于水文模型校准。",
+          "usage": "used_as_data",
+          "evidence_quote": "the observed 3h discharge of the 98 catchments provided by the Bavarian Environment Agency (Bayerisches Landesamt für Umwelt-LfU)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sub-Daily Climatological REFerence dataset (SDCLIREF)",
+          "role_in_study": "提供插值的亚日尺度气象输入，并作为气候模式偏差订正的参考气候场。",
+          "usage": "used_as_data",
+          "evidence_quote": "the SDCLIREF as the reference climatology (1981–2010)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed daily streamflow from the hydrological services of Bavaria and Baden-Württemberg, Austria, and Switzerland",
+          "role_in_study": "用于1981–2010年水文模型评估及洪水特征验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "using observed daily streamflow from the hydrological services of Bavaria and Baden-Württemberg (both in Germany), Austria, and Switzerland",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Canadian Regional Climate Model version 5",
+          "role_in_study": "作为气候模式谱系的描述；实际输入的大集合产品为 CRCM5-LE。",
+          "usage": "mention_only",
+          "evidence_quote": "The climate input consists of an ensemble provided through the Canadian Regional Climate Model version 5",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s43247-021-00248-x.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_s43247-021-00248-x.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "44e955e9e9d5dc259faddec1603f9ab0fc2fbc742b975b5144afaba3b8ec31d7",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:57",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_s43247-021-00248-x.json",
+        "quote_gate": {
+          "total": 15,
+          "verified": 15
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_16",
+      "source_paper_doi": "10.1038/srep36021",
+      "source_paper": {
+        "doi": "10.1038/srep36021",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Catchment-based Macro-scale Floodplain model (CaMa-Flood)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Catchment-based Macro-scale Floodplain model (CaMa-Flood)",
+          "actual_product_in_paper": "Catchment-based Macro-scale Floodplain model (CaMa-Flood)",
+          "evidence_quotes": [
+            "Modelled flood exposure (the number of people or the value of assets potentially affected by flooding) at 5′ × 5′ (approximately 10 km × 10 km at the equator) was calculated using a global river and inundation model, the Catchment-based Macro-scale Floodplain model (CaMa-Flood) 26 from 1960 to 2013."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Modelled flood exposure (the number of people or the value of assets potentially affected by flooding) at 5′ × 5′ (approximately 10 km × 10 km at the equator) was calculated using a global river and inundation model, the Catchment-based Macro-scale Floodplain model (CaMa-Flood) 26 from 1960 to 2013.",
+        "Daily runoff input to CaMa-Flood was obtained from a land surface model, the Minimal Advanced Treatments of Surface Integration and Runoff model, which includes a representation of water table dynamics (MATSIRO-GW) 37 38 at 1.0° × 1.0° resolution"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "论文研究1960—2013年全球各国河流洪水脆弱性的长期变化，并探讨人口空间分布变化对洪水暴露人口及脆弱性的影响。",
+      "hypothesis_or_mechanism": "洪水脆弱性受到经济增长与历史社会经济减灾努力的共同影响，因此部分收入组可能呈倒U形变化。人口在国家内部的空间迁移会改变洪水暴露人口，进而影响估算的洪水脆弱性。",
+      "variables_and_data_use": "研究以CaMa-Flood模拟洪水暴露，使用MATSIRO-GW提供的径流输入，并结合JRA55气象强迫数据及高分辨率DEM对淹没深度进行降尺度。将模拟淹没面积比例与HYDE 3.1人口分布、世界银行人口和GDP数据叠加估算暴露人口与GDP，再用EM-DAT报告的洪水死亡人数和经济损失计算脆弱性。",
+      "method_paradigm": "采用全球河流与洪泛区模型进行洪水暴露模拟，并将模拟暴露与灾害损失记录构成死亡率和损失率指标。通过真实人口分布与固定1960年人口分布的对比，评估人口空间分布变化的影响。",
+      "study_area": "全球（按国家及世界银行收入组和区域分析）",
+      "study_period": "1960—2013年",
+      "datasets_used": [
+        {
+          "name_in_paper": "Catchment-based Macro-scale Floodplain model (CaMa-Flood)",
+          "role_in_study": "模拟洪水水深和淹没面积比例，并用于估算洪水暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "Modelled flood exposure (the number of people or the value of assets potentially affected by flooding) at 5′ × 5′ (approximately 10 km × 10 km at the equator) was calculated using a global river and inundation model, the Catchment-based Macro-scale Floodplain model (CaMa-Flood) 26 from 1960 to 2013.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Minimal Advanced Treatments of Surface Integration and Runoff model (MATSIRO-GW)",
+          "role_in_study": "提供驱动CaMa-Flood的日径流输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Daily runoff input to CaMa-Flood was obtained from a land surface model, the Minimal Advanced Treatments of Surface Integration and Runoff model, which includes a representation of water table dynamics (MATSIRO-GW) 37 38 at 1.0° × 1.0° resolution",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Japanese 55-year Reanalysis (JRA55)",
+          "role_in_study": "提供经观测气候变量校正的气象强迫，驱动MATSIRO-GW。",
+          "usage": "used_as_data",
+          "evidence_quote": "forced by 3-hourly meteorological forcing data based on the Japanese 55-year Reanalysis (JRA55) corrected with observed climate variables (Iizumi et al ., prep).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "high-resolution digital elevation model (DEM)",
+          "role_in_study": "用于将CaMa-Flood年最大洪水水深从15′网格降尺度至5′网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "The CaMa-Flood annual maximum flood water depth at 15′ × 15′ was downscaled to 5′ × 5′ following a method similar to the one used in a previous study 39 using a high-resolution digital elevation model (DEM) 40",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "History Database of the Global Environment (HYDE; ver. 3.1)",
+          "role_in_study": "提供人口空间分布图，用于构建1960—2013年人口分布并分析人口空间迁移影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "Population data for 1960–2013 was created by distributing the by-country population data of the World Bank database ( http://data.worldbank.org/about/country-and-lending-groups ) using a 5′ × 5′ population distribution map from the History Database of the Global Environment (HYDE; ver. 3.1) 27 28 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "World Bank database",
+          "role_in_study": "提供各国人口及名义人均GDP数据，用于构建栅格人口和GDP。",
+          "usage": "used_as_data",
+          "evidence_quote": "Population data for 1960–2013 was created by distributing the by-country population data of the World Bank database ( http://data.worldbank.org/about/country-and-lending-groups )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EM-DAT",
+          "role_in_study": "提供各国洪水报告死亡人数和经济损失，用于计算洪水死亡率和损失率。",
+          "usage": "used_as_data",
+          "evidence_quote": "Reported fatalities and economic losses were obtained from the EM-DAT, provided by the Centre for Research on the Epidemiology of Disasters (CRED) 6 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "satellite observations",
+          "role_in_study": "用于与CaMa-Flood模拟的孟加拉国2007年淹没面积分布作比较验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "The modelled flooded area fraction from CaMa-Flood showed a similar distribution to that derived from satellite observations in 2007 in Bangladesh ( Supplementary Fig. S3 ).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_srep36021.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1038_srep36021.methods.txt"
+        ],
+        "chars": 11780,
+        "text_mode": "head+methods",
+        "source_sha256": "3dd8f55dfb62411d0e8ae383d51577ede783d4e2d2680f726d9ff0e0f164eaea",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:57:56",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1038_srep36021.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_17",
+      "source_paper_doi": "10.1073/pnas.1222460110",
+      "source_paper": {
+        "doi": "10.1073/pnas.1222460110",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CMIP-5 climate projections from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CMIP-5 climate projections from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M",
+          "actual_product_in_paper": "CMIP-5 climate projections from HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M",
+          "evidence_quotes": [
+            "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 )."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+        "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估全球变暖情景下，全球水资源可用量与径流变化将如何影响各国水资源稀缺程度及受影响人口。",
+      "hypothesis_or_mechanism": "气候变化通过改变径流和河流流量影响可用蓝水资源；人口规模与分布则决定人均水资源量及低于水资源稀缺阈值的人口比例。不同水文模型、气候模式和排放情景可能导致结果存在不确定性。",
+      "variables_and_data_use": "研究以 CMIP5 气候投影驱动 11 个全球水文、陆面及动态植被模型，获取径流、流量等水文量，并以偏差订正后的气候变量作为模型强迫。研究结合联合国历史人口与 SSP 人口数据以及 GPWv3 2010 格网人口数据，计算国家尺度人均蓝水资源量和低于 500 或 1,000 立方米/人阈值的人口比例。",
+      "method_paradigm": "采用多模式集合评估范式：将多个全球气候模式、排放情景和水文相关模型的模拟结果组合，并按全球升温幅度对应的 31 年时段进行比较。通过流域径流与流量分配计算蓝水资源和水资源拥挤指数，统计低于既定阈值的人口比例。",
+      "study_area": "全球，按国家及河流流域汇总分析。",
+      "study_period": "基准期为 1980–2010；另按全球升温水平选取对应的 31 年时段进行分析。",
+      "datasets_used": [
+        {
+          "name_in_paper": "HadGEM2-ES",
+          "role_in_study": "CMIP5 全球气候模式，提供水文模型所需的气候强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "IPSL-CM5A-LR",
+          "role_in_study": "CMIP5 全球气候模式，提供水文模型所需的气候强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MIROC-ESM-CHEM",
+          "role_in_study": "CMIP5 全球气候模式，提供水文模型所需的气候强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GFDL-ESM2M",
+          "role_in_study": "CMIP5 全球气候模式，提供水文模型所需的气候强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NorESM1-M",
+          "role_in_study": "CMIP5 全球气候模式，提供水文模型所需的气候强迫数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forcing data were derived from climate projections with the HadGEM2-ES, IPSL-CM5A-LR, MIROC-ESM-CHEM, GFDL-ESM2M, and NorESM1-M GCMs under the RCPs ( 53 ), which were prepared for the CMIP-5 ( 54 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DBH hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "H08 hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Mac-PDM.09 hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MATSIRO hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MPI-HM hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "PCR-GLOBWB hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIC hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WaterGAP hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WBMplus hydrological model",
+          "role_in_study": "模拟水文过程并提供径流等水文量，用于水资源变化和稀缺度评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "The GHMs used in this study are the DBH ( 43 ), H08 ( 44 ), Mac-PDM.09 ( 45 ), MATSIRO ( 46 ), MPI-HM ( 47 ), PCR-GLOBWB ( 36 ), VIC ( 48 ), WaterGAP ( 49 ), and WBMplus ( 50 ) hydrological models",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "JULES land-surface model",
+          "role_in_study": "提供包含植被动态表征的陆面及水文模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "the JULES ( 51 ) land-surface model, and the LPJmL ( 52 ) dynamic global vegetation model; the latter two also represent vegetation dynamics in addition to hydrological processes.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LPJmL dynamic global vegetation model",
+          "role_in_study": "提供包含植被动态表征的水文及动态植被模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "the JULES ( 51 ) land-surface model, and the LPJmL ( 52 ) dynamic global vegetation model; the latter two also represent vegetation dynamics in addition to hydrological processes.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observation-based dataset",
+          "role_in_study": "作为气候变量偏差订正的观测参照数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "All required climate variables have been bias-corrected ( 55 ) toward an observation-based dataset ( 56 ) using a newly developed method ( 21 )",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "United Nations World Population Prospects (historical)",
+          "role_in_study": "提供历史国家尺度人口数据，用于人口相关水资源指标计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "Country-level United Nations World Population Prospects (historical) and SSP (projections) population data at a 5-y time step were obtained from the SSP Database at https://secure.iiasa.ac.at/web-apps/ene/SspDb and linearly interpolated to obtain annual values.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SSP (projections) population data",
+          "role_in_study": "提供未来国家尺度人口投影，用于计算各升温时段的人均水资源与受影响人口。",
+          "usage": "used_as_data",
+          "evidence_quote": "Country-level United Nations World Population Prospects (historical) and SSP (projections) population data at a 5-y time step were obtained from the SSP Database at https://secure.iiasa.ac.at/web-apps/ene/SspDb and linearly interpolated to obtain annual values.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "National Aeronautics and Space Administration GPWv3 y-2010 gridded population dataset",
+          "role_in_study": "提供格网人口分布，并按 SSP 国家人口总量缩放，用于人口空间分布计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "A gridded population dataset was also used in which the National Aeronautics and Space Administration GPWv3 y-2010 gridded population dataset ( http://sedac.ciesin.columbia.edu/data/collection/gpw-v3 ) was scaled up to match the SSP country totals (neglecting changes in population distribution within countries).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1073_pnas.1222460110.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1073_pnas.1222460110.methods.txt"
+        ],
+        "chars": 9322,
+        "text_mode": "head+methods",
+        "source_sha256": "3baa52faac17c375b7cd7d104b13219fc8a21024ecbec52181ad48355ae651f3",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:50",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1073_pnas.1222460110.json",
+        "quote_gate": {
+          "total": 23,
+          "verified": 23
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_18",
+      "source_paper_doi": "10.1073/pnas.1222469111",
+      "source_paper": {
+        "doi": "10.1073/pnas.1222469111",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Coupled Model Intercomparison Project Phase 5 (CMIP5) archive"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Coupled Model Intercomparison Project Phase 5 (CMIP5) archive",
+          "actual_product_in_paper": "Coupled Model Intercomparison Project Phase 5 (CMIP5) archive",
+          "evidence_quotes": [
+            "Steric contributions for the sea-level rise projections are taken from four GCMs from the Coupled Model Intercomparison Project Phase 5 (CMIP5) archive."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Steric contributions for the sea-level rise projections are taken from four GCMs from the Coupled Model Intercomparison Project Phase 5 (CMIP5) archive.",
+        "Flood risks are assessed using the DIVA model ( 8 ) with a refined flooding algorithm (Version 5.0.0)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估全球沿海地区在21世纪海平面上升情景下的沿海洪水损失与适应成本，并量化社会经济发展、海平面上升、地形和人口数据及防护策略带来的不确定性。",
+      "hypothesis_or_mechanism": "海平面上升与沿海人口和资产增长会增加洪水暴露及损失；修建或加高堤防能够降低风险，但会产生建设和维护成本。适应性防护水平受人口密度、人均收入、海平面上升和极端水位等因素影响。",
+      "variables_and_data_use": "研究使用CMIP5气候模型及冰川、格陵兰和南极冰盖情景估算全球与区域海平面变化；结合DEM、空间人口数据、GDP情景和沿海极端水位估算洪水暴露、损害及其变化。使用DIVA模型（Version 5.0.0）及改进的洪水算法，计算沿海洪水风险，并依据防护需求函数模拟堤防适应及其成本；未使用NEX-GDDP-CMIP6或GloFAS河流洪水危险图。",
+      "method_paradigm": "采用全球沿海分段与DIVA模型进行情景驱动的沿海洪水风险和损失评估，并以极端水位概率分布、暴露与深度—损害函数计算期望损失。通过成本—收益框架模拟堤防建设和升级，并开展多源不确定性分析。",
+      "study_area": "全球沿海地区，划分为12,148个沿海分段。",
+      "study_period": "21世纪；基线堤防状况估算为1995年，模型按5年时间步推进。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Coupled Model Intercomparison Project Phase 5 (CMIP5) archive",
+          "role_in_study": "提供海平面上升情景所需的气候模型变量，并用于冰川等贡献的气候驱动估算。",
+          "usage": "used_as_data",
+          "evidence_quote": "Steric contributions for the sea-level rise projections are taken from four GCMs from the Coupled Model Intercomparison Project Phase 5 (CMIP5) archive.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Randolph Glacier Inventory",
+          "role_in_study": "确定纳入模拟的冰川集合，以估算冰川和冰帽对全球平均海平面上升的贡献。",
+          "usage": "used_as_data",
+          "evidence_quote": "They model the past and future mass balance of all glaciers contained in the Randolph Glacier Inventory",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Digital Chart of the World",
+          "role_in_study": "用于建立全球沿海分段。",
+          "usage": "used_as_data",
+          "evidence_quote": "based on the Digital Chart of the World ( 41 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DEM",
+          "role_in_study": "与空间人口数据叠加，构建沿海各分段按高程累计的人口暴露函数。",
+          "usage": "used_as_data",
+          "evidence_quote": "a DEM with a spatial population dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "spatial population dataset",
+          "role_in_study": "与DEM结合估算沿海人口暴露，并参与资产暴露和未来暴露计算。",
+          "usage": "used_as_data",
+          "evidence_quote": "a DEM with a spatial population dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "subnational per capita GDP rates",
+          "role_in_study": "与人口数据及资产:GDP比率结合，估算资产暴露。",
+          "usage": "used_as_data",
+          "evidence_quote": "by applying subnational per capita GDP rates to the population data ( 40 ) multiplied by an empirically estimated assets:GDP ratio of 2.8 ( 42 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "extreme water levels given for different return periods in ref. 40",
+          "role_in_study": "用于推导极端水位概率密度函数，并计算洪水期望损失。",
+          "usage": "used_as_data",
+          "evidence_quote": "Extreme water-level probability density functions are derived based on extreme water levels given for different return periods in ref. 40 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DIVA model (Version 5.0.0)",
+          "role_in_study": "执行全球沿海洪水风险评估，计算人员暴露、资产损害及适应成本。",
+          "usage": "used_as_data",
+          "evidence_quote": "Flood risks are assessed using the DIVA model ( 8 ) with a refined flooding algorithm (Version 5.0.0).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1073_pnas.1222469111.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1073_pnas.1222469111.methods.txt"
+        ],
+        "chars": 14771,
+        "text_mode": "head+methods",
+        "source_sha256": "77e9bdec49d65d3a886cf8d1bf7da18c2fa2d609f76026842aa1a1c5870b72ed",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:13",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1073_pnas.1222469111.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_19",
+      "source_paper_doi": "10.1088/1748-9326/8/4/044019",
+      "source_paper": {
+        "doi": "10.1088/1748-9326/8/4/044019",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "WATCH forcing data (WFD-GPCC); ERA-40 data (CRU-ERA40)",
+        "modelled inundation maps produced by the inundation model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "WATCH forcing data (WFD-GPCC); ERA-40 data (CRU-ERA40)",
+          "actual_product_in_paper": "WATCH forcing data (WFD-GPCC); ERA-40 data (CRU-ERA40)",
+          "evidence_quotes": [
+            "We ran the model cascade for the period 1961–1990 forced firstly with the WATCH forcing data (WFD-GPCC) described previously, and then with ERA-40 data (Uppala et al 2006), bias-corrected based on Sperna Weiland et al (2010)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "modelled inundation maps produced by the inundation model",
+          "actual_product_in_paper": "modelled inundation maps produced by the inundation model",
+          "evidence_quotes": [
+            "used the resulting inundation maps as input to the impacts module."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We ran the model cascade for the period 1961–1990 forced firstly with the WATCH forcing data (WFD-GPCC) described previously, and then with ERA-40 data (Uppala et al 2006), bias-corrected based on Sperna Weiland et al (2010).",
+        "used the resulting inundation maps as input to the impacts module."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究旨在建立并验证全球尺度洪水风险评估模型级联，估算不同重现期洪水的多种影响指标及年均预期影响，并分析结果对气候强迫数据、极值分布和洪水防护标准的敏感性。研究对象是全球大尺度河流洪水及其人口、GDP、农业价值和城市损失等影响。",
+      "hypothesis_or_mechanism": "洪水风险可通过水文与水力模拟、极值统计、淹没模拟和影响评估的模型级联来估算；使用多个重现期的影响结果可进一步得到年均预期影响。估算对洪水防护标准及气候强迫数据可能敏感，而对低频洪水量所用极值分布的敏感性相对较小。",
+      "variables_and_data_use": "研究以PCR-GLOBWB及其动态河道路由扩展DynRout模拟日流量和洪水量，并用WFD-GPCC气候强迫数据开展主要模拟；另用CRU-ERA40强迫数据进行敏感性比较。模型级联将洪水量用于淹没模拟，再将淹没图输入影响模块，评估暴露人口、GDP、农业价值和城市损害等指标。",
+      "method_paradigm": "全球水文—水力—淹没—影响模型级联，结合洪水重现期的极值统计来估算风险和年均预期影响。通过替换气候强迫数据、Gumbel分布置信界限及假设的防护标准开展敏感性分析。",
+      "study_area": "全球",
+      "study_period": "1961–1990",
+      "datasets_used": [
+        {
+          "name_in_paper": "PCR-GLOBWB",
+          "role_in_study": "全球水文模型，用于模拟日流量和洪水量。",
+          "usage": "used_as_data",
+          "evidence_quote": "using the global hydrological model PCR-GLOBWB",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DynRout (PCR-GLOBWB DynRout)",
+          "role_in_study": "PCR-GLOBWB的动态河道路由扩展，用于洪水波传播模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "and its extension for dynamic routing, DynRout (PCR-GLOBWB DynRout).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WATCH forcing data (WFD-GPCC)",
+          "role_in_study": "主要气候强迫数据，用于驱动模型级联。",
+          "usage": "used_as_data",
+          "evidence_quote": "forced firstly with the WATCH forcing data (WFD-GPCC)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA-40 data (CRU-ERA40)",
+          "role_in_study": "经偏差订正的气候强迫数据，用于与WFD-GPCC进行敏感性比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "and then with ERA-40 data (Uppala et al 2006), bias-corrected based on Sperna Weiland et al (2010).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Gumbel distribution",
+          "role_in_study": "用于不同重现期洪水量的极值统计外推；文中作为模型步骤使用。",
+          "usage": "used_as_data",
+          "evidence_quote": "using the Gumbel distribution",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "inundation maps",
+          "role_in_study": "由淹没模型生成并输入影响模块，用于洪水影响评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "used the resulting inundation maps as input to the impacts module.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_8_4_044019.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.1088_1748-9326_8_4_044019.methods.txt"
+        ],
+        "chars": 19077,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "b76f72122bf65dda22dc51ca4866c6061e2965308cd6c332bea49bef815cc8ec",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:11",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.1088_1748-9326_8_4_044019.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_20",
+      "source_paper_doi": "10.3390/w12113174",
+      "source_paper": {
+        "doi": "10.3390/w12113174",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The daily max. and min. temperatures as well as the daily precipitation series were obtained from the Spain02-v5 reanalysis dataset [38].",
+        "The main objective of this paper was to develop a methodology for a better estimation of extreme flooding based on a daily multisite WG and a fully distributed HM supported by a regional extreme precipitation study and non-systematic flood information, validating its results in a case study.",
+        "non-systematic flood information (i.e., historical information and/or palaeoflood records) for the validation of the generated discharges with a fully distributed hydrological model (TETIS)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究旨在提出并验证一种估算极端洪水的方法：在西班牙东部 Rambla de la Viuda 流域，将区域极端降水研究和非系统性洪水信息用于连续合成模拟，以改善极端洪水分位数估计。",
+      "hypothesis_or_mechanism": "区域极端降水信息可改善天气生成器的校准，历史洪水或古洪水等非系统性信息可用于验证水文模型生成的流量；补充这两类极端信息有望提高高重现期洪水分位数估计的准确性并降低其不确定性。",
+      "variables_and_data_use": "研究使用 Spain02-v5 再分析数据中的日最高、最低气温和降水序列，并使用 Júcar River Basin Authority 的 SAIH 站点 5 分钟气温和降水记录。以 GWEX 多站点天气生成器生成天气序列，并输入 TETIS 全分布式水文模型生成流量；区域极端降水研究用于支持天气生成器校准，非系统性洪水信息用于验证生成流量。",
+      "method_paradigm": "采用连续合成模拟范式，将随机天气生成器 GWEX 与全分布式水文模型 TETIS 耦合，并以区域极端降水信息支持天气生成器校准、以非系统性洪水信息验证模拟流量，进而估算洪水分位数。",
+      "study_area": "西班牙东部 Rambla de la Viuda 流域",
+      "study_period": "Spain02-v5 日记录为 1951—2015 年；SAIH 子日记录自 1991 年开始。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Spain02-v5 reanalysis dataset",
+          "role_in_study": "提供流域范围内 20 个网格点的日最高、最低气温及降水序列，作为天气生成器相关气象数据。",
+          "usage": "used_as_data",
+          "evidence_quote": "The daily max. and min. temperatures as well as the daily precipitation series were obtained from the Spain02-v5 reanalysis dataset [38].",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Júcar Automatic Hydrological Information System (SAIH)",
+          "role_in_study": "提供 13 个站点的 5 分钟气温和降水观测记录。",
+          "usage": "used_as_data",
+          "evidence_quote": "Sub-daily temperature and precipitation records (5-min) for 13 stations were obtained from the Júcar River Basin Authority (CHJ) through the Júcar Automatic Hydrological Information System (SAIH), which started recording sub-daily measurements from 1991.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GWEX",
+          "role_in_study": "多站点天气生成器，用于连续合成模拟中的天气生成；区域极端降水研究用于支持其校准。",
+          "usage": "used_as_data",
+          "evidence_quote": "The main objective of this paper was to develop a methodology for a better estimation of extreme flooding based on a daily multisite WG and a fully distributed HM supported by a regional extreme precipitation study and non-systematic flood information, validating its results in a case study.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "TETIS",
+          "role_in_study": "全分布式水文模型，用于模拟流量，并结合非系统性洪水信息进行验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "non-systematic flood information (i.e., historical information and/or palaeoflood records) for the validation of the generated discharges with a fully distributed hydrological model (TETIS).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_w12113174.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.3390_w12113174.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "c7908248aa8b49cd76ed25d50c54007f02931b09af9b6c578ae39170af0747bf",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:10",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.3390_w12113174.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_21",
+      "source_paper_doi": "10.5194/hess-17-325-2013",
+      "source_paper": {
+        "doi": "10.5194/hess-17-325-2013",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "ECHAM5/MPI-OM model; IPSL-CM4 model; CNRM-CM3 model; WATCH-forcing data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "ECHAM5/MPI-OM model; IPSL-CM4 model; CNRM-CM3 model; WATCH-forcing data",
+          "actual_product_in_paper": "ECHAM5/MPI-OM model; IPSL-CM4 model; CNRM-CM3 model; WATCH-forcing data",
+          "evidence_quotes": [
+            "To address uncertainty, bias-corrected climate forcing data of three different global climate models are used to drive WaterGAP3."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "To address uncertainty, bias-corrected climate forcing data of three different global climate models are used to drive WaterGAP3.",
+        "WaterGAP3 was driven with climate data from three different General Circulation Models (GCMs) to provide 30-yr time series of daily discharge data for the 2050s (2041–2070) and the baseline period (1971–2000)"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估欧洲不同气候区的河流流态会如何受到气候变化的影响，重点分析流量大小、极值时序、脉冲频率与持续时间等特征。",
+      "hypothesis_or_mechanism": "气候变化通过改变气温、降水、辐射、积雪及融雪过程，改变河流流量的大小、时序和变率；这些影响因欧洲气候区而异。研究假定，流态特征改变越多，河流生态系统受到的影响越严重。",
+      "variables_and_data_use": "研究使用 WATCH 项目的 ECHAM5/MPI-OM、IPSL-CM4 和 CNRM-CM3 气候驱动数据，包括降水、气温及长短波辐射，驱动 WaterGAP3 模拟基准期与 2050 年代的日流量。WaterGAP3 的模拟流量经 IHA/RVA 指标评估，并以 GRDC 站点年流量用于模型校准；人为取水、水库管理及土地利用变化在模拟中关闭。",
+      "method_paradigm": "采用全球水文模型 WaterGAP3 的情景模拟，并以 IHA/RVA 指标量化未来流态相对基准期的变化。对三个 GCM 的气候驱动进行统计偏差校正，并按气候区比较指标变化及其是否超过阈值。",
+      "study_area": "欧洲，按气候区分析；使用 5′×5′ 欧洲网格。",
+      "study_period": "基准期为 1971–2000 年；未来期为 2041–2070 年（2050 年代）。",
+      "datasets_used": [
+        {
+          "name_in_paper": "ECHAM5/MPI-OM model",
+          "role_in_study": "提供 WATCH 项目的气候驱动数据，经偏差校正后用于驱动 WaterGAP3。",
+          "usage": "used_as_data",
+          "evidence_quote": "ECHAM5/MPI-OM model from the Max-Planck Institute for Meteorology, Germany",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "IPSL-CM4 model",
+          "role_in_study": "提供 WATCH 项目的气候驱动数据，经偏差校正后用于驱动 WaterGAP3。",
+          "usage": "used_as_data",
+          "evidence_quote": "IPSL-CM4 model from the Institute Pierre Simon Laplace, France",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CNRM-CM3 model",
+          "role_in_study": "提供 WATCH 项目的气候驱动数据，经偏差校正后用于驱动 WaterGAP3。",
+          "usage": "used_as_data",
+          "evidence_quote": "CNRM-CM3 model from Centre National de Recherches Meteorologiques, France",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WATCH-forcing data",
+          "role_in_study": "提供基准期观测气候数据，用于 GCM 计算的偏差校正，并用于 WaterGAP3 校准。",
+          "usage": "used_as_data",
+          "evidence_quote": "the WATCH project provided observed climate data for the baseline period (the WATCH-forcing data, Weedon et al. 2011)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "WaterGAP3",
+          "role_in_study": "全球水文模型；在气候驱动下模拟基准期及未来期日流量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Three different model experiments were carried out by the state-of-the-art global hydrology model WaterGAP3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Global Runoff Data Centre (GRDC, 2004)",
+          "role_in_study": "提供欧洲 221 个流量站的观测年流量，用于 WaterGAP3 模型校准。",
+          "usage": "used_as_data",
+          "evidence_quote": "the simulated river discharge is calibrated at 221 gauging stations against observed annual river flow from the Global Runoff Data Centre (GRDC, 2004).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DDM5",
+          "role_in_study": "作为预定义排水方向图，用于将网格流量沿下游方向汇流。",
+          "usage": "used_as_data",
+          "evidence_quote": "which is routed along a predefined drainage direction map (DDM5; Lehner et al., 2008)",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-17-325-2013.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-17-325-2013.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "429d5687a207de0b71ffb6008221a6c9e7dd88ed467e387339f8ebc00979ce2e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:12",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.5194_hess-17-325-2013.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_22",
+      "source_paper_doi": "10.5194/hess-17-379-2013",
+      "source_paper": {
+        "doi": "10.5194/hess-17-379-2013",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Output from Dinamica EGO was used as input",
+        "In the current application we used WRF coupled with Noah land surface model (Noah LSM) (Mitchell, 2005).",
+        "For urban flood modeling, an integrated sewerage-surface flow model (SWMM-Brezo) developed during the period 2007–2010 was used (Delelegn et al., 2011)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "研究越南湄公河三角洲芹苴市的城市化与气候变化如何共同影响未来城市洪涝，尤其评估海平面上升、湄公河上游径流变化、城市不透水面增加和城市热岛相关极端降雨变化的影响。",
+      "hypothesis_or_mechanism": "城市扩张会增加不透水面并改变局地微气候，从而增加城市径流、增强极端降雨；海平面上升及上游来流增加也会抬高河流水位。多种变化叠加时，排水系统超载及地表淹没将加剧。",
+      "variables_and_data_use": "研究以城市土地利用变化、降雨与城市微气候变化、海平面和河流水位变化为情景因素，使用 Dinamica EGO 模拟城市增长，并将其输出用于 WRF 与 Noah LSM 模拟城市化对降雨模式的影响。随后使用 SWMM-Brezo 模拟雨水管网超载和地表淹没；文中还采用越南政府提供的海平面上升情景及外部气候变化影响资料。",
+      "method_paradigm": "采用多模型情景模拟范式：用元胞自动机土地利用模型预测城市增长，以耦合 Noah LSM 的 WRF 进行大气数值模拟，再以 SWMM-Brezo 进行一维排水与二维地表淹没耦合模拟。",
+      "study_area": "越南芹苴市（Can Tho city），湄公河三角洲。",
+      "study_period": "基于历史城市增长模式构建未来情景，预测至2100年；海平面上升情景以1980–1999年为参照。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Dinamica EGO",
+          "role_in_study": "土地利用模拟模型；分析历史城市化模式并模拟未来城市土地利用变化，其输出用于后续大气模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "Output from Dinamica EGO was used as input",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Weather Research and Forecasting (WRF) coupled with Noah land surface model (Noah LSM)",
+          "role_in_study": "大气与陆面耦合模型；模拟城市化对局地微气候及降雨模式的影响。",
+          "usage": "used_as_data",
+          "evidence_quote": "In the current application we used WRF coupled with Noah land surface model (Noah LSM) (Mitchell, 2005).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SWMM-Brezo",
+          "role_in_study": "城市排水—地表洪水耦合模型；模拟雨水管网超载和地表淹没。",
+          "usage": "used_as_data",
+          "evidence_quote": "For urban flood modeling, an integrated sewerage-surface flow model (SWMM-Brezo) developed during the period 2007–2010 was used (Delelegn et al., 2011).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Anticipated sea level rise scenarios by the Vietnamese Government",
+          "role_in_study": "提供相对1980–1999年的海平面上升情景，作为未来洪涝情景因素。",
+          "usage": "used_as_data",
+          "evidence_quote": "Table 1. Anticipated sea level rise (cm) by the Vietnamese Government relative to the period 1980–1999.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-17-379-2013.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-17-379-2013.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "c7dfd7ae71cdf311dcc3a1e228276d64bec51ca85b7f9c74485fa16823304a35",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:12",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.5194_hess-17-379-2013.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_23",
+      "source_paper_doi": "10.5194/hess-18-2343-2014",
+      "source_paper": {
+        "doi": "10.5194/hess-18-2343-2014",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "climate_forcing",
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "For this study, satellite-derived soil moisture from ASCAT (Advanced SCATterometer), AMSR-E (Advanced Microwave Scanning Radiometer - Earth Observing System) and SMOS (Soil Moisture and Ocean Salinity) is assimilated into the LISFLOOD model for the Upper Danube Basin and results are compared to assimilation of discharge observations only.",
+        "To assimilate soil moisture and discharge data into the hydrological model, an ensemble Kalman filter (EnKF) is used."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究评估在欧洲上多瑙河流域的 EFAS 业务洪水预报中，同化多传感器遥感土壤湿度能否相较于仅同化流量观测改善洪峰时刻与高度、低流量预报及洪水预警表现。",
+      "hypothesis_or_mechanism": "暴雨前土壤湿度决定非饱和带的蓄水空间及产生地表径流所需的降水量，因此改进初始土壤湿度状态有望提升洪水预报。将遥感土壤湿度与流量观测共同同化，可补充大流域流量观测的空间信息并改善模型状态估计。",
+      "variables_and_data_use": "研究将 ASCAT、AMSR-E 和 SMOS 微波传感器反演的土壤湿度同化至 LISFLOOD 水文模型，并与流量观测单独同化的结果比较。流量观测用于模型状态同化、率定及独立验证；同化采用集合卡尔曼滤波（EnKF），并考虑卫星产品误差的空间相关性。",
+      "method_paradigm": "采用 EFAS 的分布式 LISFLOOD 水文模拟与集合卡尔曼滤波数据同化，比较多传感器土壤湿度和流量观测的不同同化方案。通过拆分样本将未用于同化的流量观测作为独立验证数据，评估预报不确定性、偏差、洪峰时刻及虚警。",
+      "study_area": "布拉迪斯拉发上游的上多瑙河流域（Upper Danube catchment upstream of Bratislava）。",
+      "study_period": "文本未说明研究所用数据或模拟的具体时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "ASCAT (Advanced SCATterometer)",
+          "role_in_study": "卫星遥感土壤湿度输入，用于同化至 LISFLOOD 模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "Satellite data from three microwave sensors (ASCAT, AMSR-E and SMOS) is used in the assimilation framework",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "AMSR-E (Advanced Microwave Scanning Radiometer - Earth Observing System)",
+          "role_in_study": "卫星遥感土壤湿度输入，用于同化至 LISFLOOD 模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, satellite-derived soil moisture from ASCAT (Advanced SCATterometer), AMSR-E (Advanced Microwave Scanning Radiometer - Earth Observing System) and SMOS (Soil Moisture and Ocean Salinity) is assimilated into the LISFLOOD model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SMOS (Soil Moisture and Ocean Salinity)",
+          "role_in_study": "卫星遥感土壤湿度输入，用于同化至 LISFLOOD 模型。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, satellite-derived soil moisture from ASCAT (Advanced SCATterometer), AMSR-E (Advanced Microwave Scanning Radiometer - Earth Observing System) and SMOS (Soil Moisture and Ocean Salinity) is assimilated into the LISFLOOD model",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "LISFLOOD",
+          "role_in_study": "EFAS 所用的分布式水文模型；接收土壤湿度和流量数据同化并生成洪水预报。",
+          "usage": "used_as_data",
+          "evidence_quote": "EFAS is an operational flood forecasting system for Europe and uses a distributed hydrological model (LISFLOOD) for flood predictions with lead times of up to 10 days.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "discharge observations for 23 locations",
+          "role_in_study": "流量观测用于数据同化、率定和独立验证；文中说明这些观测通过 Global Runoff Data Centre 提供。",
+          "usage": "used_as_data",
+          "evidence_quote": "In the catchment, daily discharge observations for 23 locations are available through the Global Runoff Data Centre (GRDC) which enable validation and assimilation (Fig.1).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-18-2343-2014.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-18-2343-2014.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "860559727935785fb449264d2a4656929981803116d6a5cec5f7164457f67a9f",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:22",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.5194_hess-18-2343-2014.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    },
+    {
+      "direction_id": "task_019_ref_24",
+      "source_paper_doi": "10.5194/hess-19-2247-2015",
+      "source_paper": {
+        "doi": "10.5194/hess-19-2247-2015",
+        "title": "",
+        "year": null,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": null,
+      "admission_basis": null,
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "EURO-CORDEX historical climate scenarios and future projections with RCP8.5"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "climate_forcing",
+          "anchor_product": "NEX-GDDP-CMIP6 Downscaled Climate Projections",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "EURO-CORDEX historical climate scenarios and future projections with RCP8.5",
+          "actual_product_in_paper": "EURO-CORDEX historical climate scenarios and future projections with RCP8.5",
+          "evidence_quotes": [
+            "Daily historical simulations from 1970 to 2005 and climate projections with RCP8.5 from 2006 to 2100 at 0.11◦ horizontal resolution (∼ 12 km) were extracted for seven EURO￾CORDEX scenarios."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        },
+        {
+          "member_id": "flood_simulation",
+          "anchor_product": "JRC CEMS-GLOFAS Global River Flood Hazard Maps v2.1.2",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {}
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "flood_simulation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The Lisflood model is used in this work to perform hydrological simulations using gridded meteorological variables extracted from the climate scenarios.",
+        "The hydrological model Lisflood is then run for the period 1970–2005 and for the future climate scenarios 2006–2100 forced by RCP8.5, using daily precipitation, average temperature and potential evapotranspiration maps generated by Lisvap."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究欧洲在高排放气候情景下，至本世纪末河流洪水危险度将如何变化，尤其是极端流量的大小与发生频率如何改变。",
+      "hypothesis_or_mechanism": "全球变暖可能改变降水与径流模式，从而改变河流极端流量及洪水发生频率。研究以气候情景驱动分布式水文模型，评估这些变化对欧洲洪水危险度的影响。",
+      "variables_and_data_use": "研究使用七个 EURO-CORDEX 历史与 RCP8.5 气候情景中的气象变量，驱动 Lisflood 模拟欧洲河流流量；气象输入包括降水、气温及计算潜在蒸散所需变量。研究分析年降水量、年最大日降水量、平均流量、年最大日流量及百年一遇日峰值流量，并用 Gumbel 分布拟合和峰值超阈值法评估极端流量及其频率。",
+      "method_paradigm": "采用 EURO-CORDEX 集合气候情景驱动分布式半物理降雨—径流及河道演算模型 Lisflood，并以 Lisvap 的 Penman–Monteith 方法计算潜在蒸散。通过 Gumbel 极值分布拟合、峰值超阈值分析、集合相对变化及统计检验评估洪水变化。",
+      "study_area": "欧洲（按水文分水岭界定）",
+      "study_period": "气候与水文模拟覆盖 1970–2100 年；统计基准期为 1976–2005 年，未来时段为 2006–2035、2036–2065 和 2066–2095 年。",
+      "datasets_used": [
+        {
+          "name_in_paper": "EURO-CORDEX historical climate scenarios and future projections with RCP8.5",
+          "role_in_study": "七个历史及 RCP8.5 气候情景提供气象驱动变量，用于 Lisflood 河流流量模拟。",
+          "usage": "used_as_data",
+          "evidence_quote": "EURO-CORDEX historical climate scenarios and future projections with RCP8.5 were used in this study to produce river streamflow simulations in Europe over the period 1970–2100 under a high-end global warming scenario.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Lisflood model",
+          "role_in_study": "分布式水文模型，使用气候情景气象变量模拟河流流量。",
+          "usage": "used_as_data",
+          "evidence_quote": "The Lisflood model is used in this work to perform hydrological simulations using gridded meteorological variables extracted from the climate scenarios.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Lisvap",
+          "role_in_study": "根据气象变量计算潜在蒸散，为 Lisflood 提供输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "For each time step, potential evapotranspiration maps are computed with the module Lisvap (Burek et al., 2013a), using the Penman–Monteith formulation with minimum temperature, maximum temperature, incoming solar radiation, actual vapour pressure and wind speed as input.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EFAS-Meteo data set",
+          "role_in_study": "Lisflood 校准期间使用的气象输入数据集。",
+          "usage": "used_as_data",
+          "evidence_quote": "The model calibration is based on up to 8 years of daily data using the EFAS-Meteo data set (Ntegeka et al., 2013) as meteorological input data and a network of observed discharge time series at the calibrated stations.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "observed discharge time series",
+          "role_in_study": "用于 Lisflood 在校准站点的模型校准。",
+          "usage": "used_as_data",
+          "evidence_quote": "The model calibration is based on up to 8 years of daily data using the EFAS-Meteo data set (Ntegeka et al., 2013) as meteorological input data and a network of observed discharge time series at the calibrated stations.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "monthly maps of water use from the SCENES project",
+          "role_in_study": "水资源使用输入，在本研究中假设整个本世纪保持不变。",
+          "usage": "used_as_data",
+          "evidence_quote": "The latest developments on the European setup include the simulation of 182 lakes and 34 large reservoirs, and the implementation of monthly maps of water use from the SCENES project (Kamari et al., 2008), which for this work are assumed constant throughout the current century.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-19-2247-2015.txt",
+          "external:G:\\论文\\deliver_dual_001_019_corpus_text_20261006\\corpus_text\\10.5194_hess-19-2247-2015.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "5c9c5d5d0405bd136557276a67abba6d8405e769bcd52b2cb9148f364bcc9601",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-11T00:58:43",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_019/10.5194_hess-19-2247-2015.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 0.0
+      },
+      "research_instance_status": "extracted"
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010",
+  "quality": {
+    "paper_count": 24,
+    "semantic_directions_extracted": true,
+    "direction_count": 24,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 24,
+    "complete_member_combination_count": 7,
+    "disputed_complete_pending_recheck_count": 0,
+    "partial_set_support_count": 17,
+    "component_support_count": 9,
+    "zero_member_support_count": 8,
+    "member_conflict_count": 0,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  }
+}

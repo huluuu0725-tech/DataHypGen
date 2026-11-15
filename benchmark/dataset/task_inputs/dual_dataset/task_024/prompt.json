@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global watershed observation space",
+  "datasets": [
+    {
+      "role": "climate_forcing",
+      "data_description": {
+        "dataset_name": "Climate forcing",
+        "data_type": "Climate forcing raster or time-series data",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "spatial_coverage": {
+          "region_name": "Global watershed observation space",
+          "coverage": "Declared analysis region within Global watershed observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR"
+    },
+    {
+      "role": "land_cover",
+      "data_description": {
+        "dataset_name": "Land-cover data",
+        "data_type": "Land-cover raster or categorical spatial data",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MCD12Q1",
+        "spatial_coverage": {
+          "region_name": "Global watershed observation space",
+          "coverage": "Declared analysis region within Global watershed observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MCD12Q1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Climate forcing",
+      "data_type": "Climate forcing raster or time-series data",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "spatial_coverage": {
+        "region_name": "Global watershed observation space",
+        "coverage": "Declared analysis region within Global watershed observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Land-cover data",
+      "data_type": "Land-cover raster or categorical spatial data",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MCD12Q1",
+      "spatial_coverage": {
+        "region_name": "Global watershed observation space",
+        "coverage": "Declared analysis region within Global watershed observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+    "GEE:MODIS/061/MCD12Q1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_024:composite_observation",
+    "type": "composite_observation",
+    "name": "climate_land_cover composite observation",
+    "observable_group": "climate_land_cover_multidataset_observation",
+    "components": [
+      {
+        "role": "climate_forcing",
+        "data_description": {
+          "dataset_name": "Climate forcing",
+          "data_type": "Climate forcing raster or time-series data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+          "spatial_coverage": {
+            "region_name": "Global watershed observation space",
+            "coverage": "Declared analysis region within Global watershed observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR"
+      },
+      {
+        "role": "land_cover",
+        "data_description": {
+          "dataset_name": "Land-cover data",
+          "data_type": "Land-cover raster or categorical spatial data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MCD12Q1",
+          "spatial_coverage": {
+            "region_name": "Global watershed observation space",
+            "coverage": "Declared analysis region within Global watershed observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MCD12Q1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "climate_forcing",
+        "land_cover"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_024:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+    "GEE:MODIS/061/MCD12Q1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "climate_forcing",
+      "land_cover"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

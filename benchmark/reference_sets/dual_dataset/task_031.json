@@ -1,0 +1,2435 @@
+{
+  "schema_version": "2.1-current-task-paired-reference-pool",
+  "task_id": "dual_dataset/task_031",
+  "reference_coverage": "user_confirmed_historical_reference_pairing",
+  "evaluation_year": 2026,
+  "seed_paper": {
+    "title": "Comparative Analysis Between Landsat and MODIS Data for Urban Heat Island Mapping in Kuala Lumpur",
+    "doi": "10.15282/construction.v5i2.12436",
+    "year": 2025,
+    "venue": "Construction",
+    "datasets": [
+      "Landsat land-surface-temperature observations",
+      "MODIS land-surface-temperature observations"
+    ],
+    "dataset_roles": [
+      {
+        "role": "landsat_land_surface_temperature",
+        "dataset": "Landsat land-surface-temperature observations"
+      },
+      {
+        "role": "modis_land_surface_temperature",
+        "dataset": "MODIS land-surface-temperature observations"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:dual_dataset/task_031:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_031:composite_observation",
+    "type": "composite_observation",
+    "name": "landsat_modis_urban_heat composite observation",
+    "observable_group": "landsat_modis_urban_heat_multidataset_observation",
+    "components": [
+      {
+        "role": "landsat_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "Landsat land-surface-temperature observations",
+          "data_type": "Landsat 8/9 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "modis_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "MODIS land-surface-temperature observations",
+          "data_type": "MODIS MOD11A1 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MOD11A1",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD11A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "landsat_land_surface_temperature",
+        "modis_land_surface_temperature"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "current_task_binding": {
+    "datasets": [
+      {
+        "role": "landsat_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "Landsat land-surface-temperature observations",
+          "data_type": "Landsat 8/9 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "modis_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "MODIS land-surface-temperature observations",
+          "data_type": "MODIS MOD11A1 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MOD11A1",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD11A1"
+      }
+    ]
+  },
+  "required_roles": [
+    "landsat_land_surface_temperature",
+    "modis_land_surface_temperature"
+  ],
+  "reference_count": 10,
+  "admitted_count": 10,
+  "independent_reference_count": 10,
+  "references": [
+    {
+      "doi": "10.1007/s00271-022-00799-7",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2022,
+      "title": "Improving the spatiotemporal resolution of remotely sensed ET information for water management through Landsat, Sentinel-2, ECOSTRESS and VIIRS data fusion",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2022,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.1016/j.envres.2020.109244",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2020,
+      "title": "A multi-resolution air temperature model for France from MODIS and Landsat thermal data",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2020,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.1038/s41558-023-01812-3",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2023,
+      "title": "Soil heat extremes can outpace air temperature extremes",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2023,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.1038/s41598-020-66168-6",
+      "rounds": [
+        "round1",
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2020,
+      "title": "Spatial relationship between land-use/land-cover change and land surface temperature in the Dongting Lake area, China",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2020,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.1038/s41598-023-50757-2",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2024,
+      "title": "Climatic comparison of surface urban heat island using satellite remote sensing in Tehran and suburbs",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2024,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.1109/jstars.2021.3051422",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2021,
+      "title": "Downscaling MODIS Land Surface Temperature Product Using an Adaptive Random Forest Regression Method and Google Earth Engine for a 19-Years Spatiotemporal Trend Analysis Over Iran",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2021,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/rs11202369",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2019,
+      "title": "An Assessment of the Accuracy of MODIS Land Surface Temperature over Egypt Using Ground-Based Measurements",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2019,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/rs14215573",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2022,
+      "title": "Assessment of Intra-Urban Heat Island in a Densely Populated City Using Remote Sensing: A Case Study for Manila City",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2022,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/rs9121243",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2017,
+      "title": "Improved DisTrad for Downscaling Thermal MODIS Imagery over Urban Areas",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2017,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    },
+    {
+      "doi": "10.5194/bg-19-2805-2022",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "expanded_set_reference",
+      "paper_year": 2022,
+      "title": "Technical note: A view from space on global flux towers by MODIS and Landsat: the FluxnetEO data set",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_038",
+      "target_task_id": "dual_dataset/task_031",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2022,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json"
+    }
+  ],
+  "pairing_status": "direct_inclusion_unchanged_observations",
+  "pairing_provenance": {
+    "source_task_id": "dual_dataset/task_038",
+    "historical_pool_sha256": "158a586781d775903af45d13b95814cfa29b476b00198f9553cc6ccb047a1b43",
+    "paired_pool_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_031_direct_pairings.json",
+    "paired_pool_sha256": "d679af979bca77e9fc5412cb301d1e62b173864f1a22d0a96baaf5861d571f62",
+    "current_prompt_sha256": "22379ea400f8603457f07a15673d51844fd65dc148bfd03587fe46c7d7039d8b",
+    "user_confirmed_observations": null
+  },
+  "audit_note": "Historical admission reused under user decisions; actual product identities and original coverage tiers retained. No new fulltext or eligibility adjudication and no assertion of exact current-product equivalence. This is a paper pool, not a newly extracted semantic direction space.",
+  "quality": {
+    "paper_count": 10,
+    "semantic_directions_extracted": true,
+    "direction_count": 10,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 2,
+    "expanded_set_reference_count": 8,
+    "complete_member_combination_count": 7,
+    "disputed_complete_pending_recheck_count": 0,
+    "partial_set_support_count": 3,
+    "component_support_count": 3,
+    "zero_member_support_count": 0,
+    "member_conflict_count": 2,
+    "shared_product_dedup_count": 2,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  },
+  "directions": [
+    {
+      "direction_id": "task_031_ref_01",
+      "source_paper_doi": "10.1007/s00271-022-00799-7",
+      "source_paper": {
+        "doi": "10.1007/s00271-022-00799-7",
+        "title": "Improving the spatiotemporal resolution of remotely sensed ET information for water management through Landsat, Sentinel-2, ECOSTRESS and VIIRS data fusion",
+        "year": 2022,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band)",
+        "MODIS-like LST (i.e., MODIS and VIIRS M-bands)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band)",
+          "actual_product_in_paper": "Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band)",
+          "evidence_quotes": [
+            "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+            "To achieve resolution consistency between bands and platforms, the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+            "For Landsat disaggregation (DisALEXI-Landsat), Landsat 7 was not used in this study due to gap stripes resulting from the failure of the scan-line corrector. Instead, Landsat 8 SR and TIR data from HLS dataset (L30) were used to generate 30-m ET retrievals at Landsat overpass dates. TIR data were atmospherically corrected using MODTRAN (Cook et al. 2014 ) and then sharpened using DMS from 100 to 30 m for consistency with the SR data.",
+            "Landsat 8 SR and TIR data from HLS dataset (L30) were used to generate 30-m ET retrievals at Landsat overpass dates.",
+            "TIR data were atmospherically corrected using MODTRAN (Cook et al. 2014 ) and then sharpened using DMS from 100 to 30 m for consistency with the SR data."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 8 SR and TIR data from HLS dataset (L30); atmospherically corrected TIR data sharpened from 100 to 30 m",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 8 TIR data (HLS L30)",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS-like LST (i.e., MODIS and VIIRS M-bands)",
+          "actual_product_in_paper": "MODIS-like LST (i.e., MODIS and VIIRS M-bands)",
+          "evidence_quotes": [
+            "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+            "MODIS ET estimates at 500-m resolution were generated with DisALEXI (DisALEXI-MODIS) by disaggregating ALEXI 4-km ET using MODIS LST and VSWIR products. Three products from Collection 6 were used: LST (MOD11_L2; (Wan et al. 2015 )), LAI (MCD15A3H; (Myneni et al. 2015 )) and albedo (MCD43A3; (Wang et al. 2018 )). The LAI and albedo products are at 500-m resolution, and the LST product provided at 1-km resolution was sharpened to 500 m using the DMS approach described in “ Thermal data sharpening ”.",
+            "Both the near-daily DisALEXI-MODIS and DisALEXI-VIIRS M ET retrievals were gap-filled and smoothed to generate daily 500-m ET datacubes (Sun et al. 2017 ).",
+            "MODIS ET estimates at 500-m resolution were generated with DisALEXI (DisALEXI-MODIS) by disaggregating ALEXI 4-km ET using MODIS LST and VSWIR products.",
+            "Three products from Collection 6 were used: LST (MOD11_L2; (Wan et al. 2015 ))..."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Collection 6 LST product MOD11_L2, sharpened from 1 km to 500 m and used in DisALEXI-MODIS",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS LST (Collection 6 MOD11_L2)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+        "One is high-spatial low-temporal resolution (30 m; periodic) Landsat-like ET including Landsat, ECOSTRESS and VIIRS I /S2. The other is low-spatial high-temporal resolution (500 m; ~ daily) MODIS-like ET including MODIS and VIIRS M .",
+        "In addition, for the first scenario, we also fused Landsat ET estimates with 500-m MODIS ET, which was used as a benchmark to evaluate the performance of 500-m VIIRS M ET as the new post-MODIS era fusion backbone."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究在美国加利福尼亚中央谷地及相关葡萄园/灌溉农田中，如何融合 Landsat、Sentinel-2、ECOSTRESS、VIIRS 等多源遥感信息生成高时空分辨率 ET 产品，以服务农业水管理。研究对象是灌溉葡萄园、苜蓿和玉米等作物系统的蒸散发及水分胁迫信息。",
+      "hypothesis_or_mechanism": "核心机制是利用热红外 LST 对冠层胁迫和地表水分状态的诊断能力，并通过 DMS 将不同传感器热数据锐化到一致空间尺度，再用 DisALEXI 反演 ET、STARFM 融合高空间低时间与低空间高时间 ET 序列。其假设是增加 ECOSTRESS 与 VIIRS 等热红外采样可弥补 Landsat 重访不足，从而更好捕捉日尺度 ET 变化和作物水分胁迫。",
+      "variables_and_data_use": "论文使用 Landsat、ECOSTRESS 和 VIIRS 的 TIR/LST 数据，经 Harmonized Landsat-Sentinel 表面反射率数据辅助锐化后，作为 DisALEXI 模型输入生成 30 m 周期性 Landsat-like ET。VIIRS M 与 MODIS-like ET 提供约日尺度、500 m 的时间骨架，并通过 STARFM 与 30 m ET 融合生成日尺度 30 m ET 数据立方体。通量塔涡度协方差和气象观测用于评价模型性能、作物生物量变化建模和水分胁迫检测。",
+      "method_paradigm": "方法范式为多源遥感热红外数据锐化、能量平衡 ET 模型反演与时空数据融合。具体采用 DMS 机器学习锐化 LST，ALEXI/DisALEXI/TSEB 多尺度 ET 建模，以及 dual-pair STARFM 生成 30 m 日尺度 ET 时间序列。",
+      "study_area": "California, USA；Cloverdale、Lodi、Madera 三个葡萄种植区，以及 Bouldin Island 的 irrigated alfalfa 和 corn flux sites；主要涉及 Central Valley 和 Sonoma Valley area。",
+      "study_period": "2018 to 2020",
+      "datasets_used": [
+        {
+          "name_in_paper": "Landsat TIR data",
+          "role_in_study": "作为约 100 m 原始热红外/LST 信息来源，锐化到 30 m 后用于 DisALEXI 生成周期性 30 m Landsat-like ET，并参与融合方案。",
+          "usage": "used_as_data",
+          "evidence_quote": "TIR data from Landsat and ECOSTRESS (both at ~ 100-m native resolution), and VIIRS (375-m native) are sharpened to a common 30-m grid using surface reflectance data from the Harmonized Landsat-Sentinel dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ECOSTRESS TIR data",
+          "role_in_study": "作为约 100 m 原始热红外/LST 信息来源，增加 Landsat-like 过境采样，锐化到 30 m 后用于 ET 反演与融合。",
+          "usage": "used_as_data",
+          "evidence_quote": "TIR data from Landsat and ECOSTRESS (both at ~ 100-m native resolution), and VIIRS (375-m native) are sharpened to a common 30-m grid using surface reflectance data from the Harmonized Landsat-Sentinel dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS I–5 band",
+          "role_in_study": "作为 Landsat-like LST 影像来源之一，从 375 m 锐化到 30 m，用于生成 VIIRS I/S2 ET 并增加高空间 ET 采样。",
+          "usage": "used_as_data",
+          "evidence_quote": "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS-like LST",
+          "role_in_study": "作为低空间高时间 MODIS-like LST/ET 数据类别的一部分，锐化到 500 m，用于生成日尺度 ET 融合骨架或基准。",
+          "usage": "used_as_data",
+          "evidence_quote": "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "VIIRS M-bands",
+          "role_in_study": "作为 MODIS-like LST 数据来源之一，从 750 m 锐化到 500 m，并用于生成约日尺度 VIIRS M ET 融合骨架。",
+          "usage": "used_as_data",
+          "evidence_quote": "the DMS (Gao et al. 2012b ; Xue et al. 2020 ) approach was used in this study to sharpen Landsat-like LST imagery (i.e., Landsat, ECOSTRESS and VIIRS I–5 band) from native resolution (i.e., 100, ~ 70 and 375 m, respectively) to 30 m and MODIS-like LST (i.e., MODIS and VIIRS M-bands) from 1 km and 750 m, respectively, to 500 m.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Harmonized Landsat-Sentinel dataset",
+          "role_in_study": "提供表面反射率数据，用于将 Landsat、ECOSTRESS 和 VIIRS 热红外数据锐化到共同的 30 m 网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "TIR data from Landsat and ECOSTRESS (both at ~ 100-m native resolution), and VIIRS (375-m native) are sharpened to a common 30-m grid using surface reflectance data from the Harmonized Landsat-Sentinel dataset.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-like ET including Landsat, ECOSTRESS and VIIRS I /S2",
+          "role_in_study": "由 DisALEXI 直接反演的高空间、低时间分辨率 30 m 周期性 ET 数据，用于与低空间高时间 ET 融合。",
+          "usage": "used_as_data",
+          "evidence_quote": "One is high-spatial low-temporal resolution (30 m; periodic) Landsat-like ET including Landsat, ECOSTRESS and VIIRS I /S2.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS-like ET including MODIS and VIIRS M",
+          "role_in_study": "由 DisALEXI 直接反演的低空间、高时间分辨率 500 m 约日尺度 ET 数据，用于 STARFM 融合。",
+          "usage": "used_as_data",
+          "evidence_quote": "The other is low-spatial high-temporal resolution (500 m; ~ daily) MODIS-like ET including MODIS and VIIRS M .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "500-m VIIRS M daily ET",
+          "role_in_study": "作为主要日尺度融合骨架，与 30 m Landsat 或 Landsat+ECOSTRESS+VIIRS I/S2 ET 融合生成日尺度 30 m ET 数据立方体。",
+          "usage": "used_as_data",
+          "evidence_quote": "We tested two fusion scenarios: (1) 30-m Landsat ET retrievals with 500-m VIIRS M daily ET; (2) 30-m Landsat + ECOSTRESS + VIIRS I /S2 ET retrievals with 500-m VIIRS M daily ET.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "500-m MODIS ET",
+          "role_in_study": "作为第一种融合方案中的基准融合骨架，用于评价 500 m VIIRS M ET 作为后 MODIS 时代融合骨架的表现。",
+          "usage": "used_as_data",
+          "evidence_quote": "In addition, for the first scenario, we also fused Landsat ET estimates with 500-m MODIS ET, which was used as a benchmark to evaluate the performance of 500-m VIIRS M ET as the new post-MODIS era fusion backbone.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "flux tower observations",
+          "role_in_study": "作为地面观测真值，用于检验 ET 制图方法精度并比较融合数据立方体表现。",
+          "usage": "used_as_data",
+          "evidence_quote": "The accuracy of this mapping method is tested over several irrigated cropping systems in the Central Valley of California in comparison with flux tower observations, including measurements over irrigated vineyards collected in the GRAPEX campaign.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "eddy covariance (EC) and meteorological sensors",
+          "role_in_study": "提供地表通量和微气象观测，用于模型性能评价、作物生物量变化建模和胁迫检测。",
+          "usage": "used_as_data",
+          "evidence_quote": "Each study domain discussed in “ Study area ” contains one or more flux towers equipped with eddy covariance (EC) and meteorological sensors measuring surface fluxes and micrometeorological data.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ALEXI daily fluxes",
+          "role_in_study": "作为 DisALEXI 空间降尺度的区域尺度日通量约束，使不同传感器反演的 DisALEXI 通量保持一致。",
+          "usage": "used_as_data",
+          "evidence_quote": "The DisALEXI component of the framework spatially disaggregates ALEXI daily fluxes by applying TSEB to finer-resolution thermal data from polar orbiting satellites.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1007_s00271-022-00799-7.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1007_s00271-022-00799-7.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "e4ea80d23fb2ed93839b2ea836764a91686c6da62cbd4adf6a5b1bb62288698e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:13:45",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1007_s00271-022-00799-7.json",
+        "quote_gate": {
+          "total": 18,
+          "verified": 18
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1007_s00271-022-00799-7.json",
+        "sha256": "eb618cbf213307093c90eac904516f2ec8900f5fe7afe209d51cc63dfb3bc75d",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_02",
+      "source_paper_doi": "10.1016/j.envres.2020.109244",
+      "source_paper": {
+        "doi": "10.1016/j.envres.2020.109244",
+        "title": "A multi-resolution air temperature model for France from MODIS and Landsat thermal data",
+        "year": 2020,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites; USGS Landsat Collection 1 Level-2 surface reflectance products",
+        "MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively), version 6"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites; USGS Landsat Collection 1 Level-2 surface reflectance products",
+          "actual_product_in_paper": "30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites; USGS Landsat Collection 1 Level-2 surface reflectance products",
+          "evidence_quotes": [
+            "A global Landsat LST product is under development but not yet available ( Malakar et al., 2018 ), so for this study we use T b from the USGS Landsat Collection 1 Level-2 surface reflectance products ( USGS, 2018a , 2018b ).",
+            "For large urban areas, we composite 30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites ( Table 1 ).",
+            "Finally, for each calendar month we composite all T b retrievals during the entire study period (e.g. every January in 2000 2016). This yields 12 gap-free T b datasets representing the 17-year mean T b of each pixel in each calendar month."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "analogous_product",
+              "usage": "used_as_data",
+              "matched_product": "30 m top-of-atmosphere brightness temperature (Tb) from the Landsat 5, 7, and 8 satellites / USGS Landsat Collection 1 Level-2 surface reflectance products",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 5/7/8 Collection 1 Level-2 TOA brightness temperature (Tb)",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively), version 6",
+          "actual_product_in_paper": "MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively), version 6",
+          "evidence_quotes": [
+            "We use version 6 of the widely-used MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively) ( Table 1 ).",
+            "We use the quality assessment band to exclude pixels with LST error > 2 K.",
+            "For the 1 km model, we create a grid covering continental France by making a 1 km square buffer around the centroid of each MODIS 1 km LST pixel in the ETRS89-LAEA Europe (EPSG:3035) equal-area projection."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS version 6 daily 1 km land surface temperature and emissivity product from Terra and Aqua satellites (MOD11A1 and MYD11A1)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS MOD11A1/MYD11A1 v6 1km LST",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "We start by using linear mixed models to calibrate daily T a observations from weather stations with remotely sensed MODIS land surface temperature (LST) and other spatial predictors (e.g. NDVI, elevation) on a 1 km 2 grid.",
+        "In this stage we replace MODIS LST and NDVI with composited top-of-atmosphere brightness temperature and NDVI from the Landsat 5, 7, and 8 satellites.",
+        "Our model will reduce bias in epidemiological studies in France by improving T a exposure assessment in both urban and rural areas, and our methodology demonstrates that MODIS and Landsat thermal data can be used to generate gap-free timeseries of daily minimum, maximum, and mean T a at a 200 200 m 2 spatial resolution."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究面向法国本土，回答如何在2000—2016年为每日近地面空气温度（最低、平均、最高）生成兼顾全国1 km和大型城市200 m分辨率的无缺口时空预测。研究对象是环境健康暴露评估所需的日尺度空气温度。",
+      "hypothesis_or_mechanism": "核心机制是遥感热红外观测的地表温度或亮温、植被指数、地形、土地覆盖和人口等空间因子与气象站空气温度存在可建模关系，并且这种关系会随日期、气候区和位置变化。在城市高分辨率阶段，1 km空气温度预测的残差可由Landsat亮温、NDVI及城市空间协变量进一步解释。",
+      "variables_and_data_use": "论文使用Météo France日气象站观测作为空气温度校准目标，使用MODIS Terra/Aqua MOD11A1和MYD11A1日1 km LST与emissivity以及MOD13A3和MYD13A3月NDVI来建立全国1 km空气温度模型。大型城市200 m阶段用Landsat 5、7、8 Collection 1 Level-2 surface reflectance products合成的30 m top-of-atmosphere brightness temperature和NDVI替代MODIS LST与NDVI，用于预测1 km模型残差。还使用EU-DEM、INSEE 200 m人口、Corine Land Cover和Joly等人的气候区作为空间协变量。",
+      "method_paradigm": "四阶段统计/机器学习建模：先用线性混合模型以MODIS LST等变量校准气象站空气温度，再用基于IDW站点温度的线性混合模型填补LST缺失；随后用随机森林和极端梯度提升预测200 m残差，并用广义加性模型集成。",
+      "study_area": "continental France, comprising all French territory in Europe except Corsica",
+      "study_period": "January 1, 2000 through December 31, 2016",
+      "datasets_used": [
+        {
+          "name_in_paper": "daily weather station observations from M t o France",
+          "role_in_study": "作为日空气温度观测目标，用于校准和验证空气温度模型，并计算200 m残差。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use daily weather station observations from M t o France, the French national meteorological service.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively)",
+          "role_in_study": "作为1 km阶段的日地表温度和发射率输入，用于与气象站空气温度建立校准关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use version 6 of the widely-used MODIS daily 1 km land surface temperature and emissivity product from the Terra and Aqua satellites (MOD11A1 and MYD11A1, respectively) ( Table 1 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites",
+          "role_in_study": "为大型城市合成30 m月尺度亮温，并在200 m阶段作为预测1 km空气温度残差的热红外变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "For large urban areas, we composite 30 m top-of-atmosphere brightness temperature (T b ) from the Landsat 5, 7, and 8 satellites ( Table 1 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "USGS Landsat Collection 1 Level-2 surface reflectance products",
+          "role_in_study": "作为Landsat亮温来源，用于城市高分辨率建模。",
+          "usage": "used_as_data",
+          "evidence_quote": "A global Landsat LST product is under development but not yet available ( Malakar et al., 2018 ), so for this study we use T b from the USGS Landsat Collection 1 Level-2 surface reflectance products ( USGS, 2018a , 2018b ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS monthly composite 1 km NDVI product from the Terra and Aqua satellites (MOD13A3 and MYD13A3, respectively)",
+          "role_in_study": "作为全国1 km模型中的月合成植被指数输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use version 6 of the MODIS monthly composite 1 km NDVI product from the Terra and Aqua satellites (MOD13A3 and MYD13A3, respectively).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "30 m NDVI from the Landsat 5, 7, and 8 Collection 1 Level-2 surface reflectance products",
+          "role_in_study": "作为大型城市200 m阶段的高分辨率植被指数输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "For large urban areas we also composite 30 m NDVI from the Landsat 5, 7, and 8 Collection 1 Level-2 surface reflectance products.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "European Digital Elevation Model (EU-DEM)",
+          "role_in_study": "提供高程协变量，用于1 km和200 m模型网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use version 1.1 of the European Digital Elevation Model (EU-DEM) from the Copernicus Land Monitoring Service.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "200 m gridded 2010 population from INSEE",
+          "role_in_study": "提供人口协变量，并用于定义大型城市区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "We also use 200 m gridded 2010 population from INSEE, the French national statistics agency ( INSEE, 2017 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "100 m Corine Land Cover (CLC) inventory for 2000, 2006, and 2012",
+          "role_in_study": "提供土地覆盖协变量，并用于筛选城市网格。",
+          "usage": "used_as_data",
+          "evidence_quote": "We use the 100 m Corine Land Cover (CLC) inventory for 2000, 2006, and 2012.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "eight climatic regions of Joly et al. (2010)",
+          "role_in_study": "作为气候区变量，用于允许温度关系按气候区变化，并作为200 m残差模型协变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "Finally, we use the eight climatic regions of Joly et al. (2010) , which are based on temperature and precipitation patterns ( Fig. 1 ).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1016_j.envres.2020.109244.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1016_j.envres.2020.109244.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "1d1915fc31d34630ab83909c5cc98c1dcb35d67fcae61b02bec6bf2a944da6ff",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:13:26",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1016_j.envres.2020.109244.json",
+        "quote_gate": {
+          "total": 15,
+          "verified": 15
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1016_j.envres.2020.109244.json",
+        "sha256": "99fc1dba580a6f3efd94eb59a8c2c5cb5146e7f1177f39d2b292c10b96075d00",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_03",
+      "source_paper_doi": "10.1038/s41558-023-01812-3",
+      "source_paper": {
+        "doi": "10.1038/s41558-023-01812-3",
+        "title": "Soil heat extremes can outpace air temperature extremes",
+        "year": 2023,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+          "actual_product_in_paper": "CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+          "evidence_quotes": [
+            "We obtained instantaneous land surface skin temperatures for the period 1991–2015 from the CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          },
+          "shared_product_note": "same product also matched other member(s); credited here only"
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "shared_product_credited_to_other_member",
+          "actual_dataset": "",
+          "actual_product_in_paper": "CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+          "evidence_quotes": [
+            "We obtained instantaneous land surface skin temperatures for the period 1991–2015 from the CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "duplicate_actual_product_credited_to_landsat_land_surface_temperature",
+            "identity_tie"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "modis_land_surface_temperature"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "Extreme indices are estimated on the basis of maximum air and soil temperatures from different data sources.",
+        "We obtained instantaneous land surface skin temperatures for the period 1991–2015 from the CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+        "From the hourly product of the ERA5Land re-analysis 22 , we used air temperatures defined at 2 m of height and soil temperatures and moisture at the first soil layer (0–7 cm) from 1996 to 2021."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究欧洲（尤其是中欧）近地表土壤热极端相对于空气热极端的变化速度，并评估这种差异对水文和生物地球化学相关过程的意义。研究对象包括空气最高温度、浅层土壤温度、地表皮肤温度、土壤湿度和地表通量。",
+      "hypothesis_or_mechanism": "核心机制是土壤湿度—温度反馈：干暖条件下，土壤吸收的能量更多用于升高土壤温度，增强感热通量并提高近地面空气温度；更高的空气温度又提高大气需水量和土壤蒸发，进一步使土壤变干变暖。",
+      "variables_and_data_use": "论文使用FLUXNET2015、ICOS、ARPAV、DWD和Météo France站点的浅层土壤温度和空气温度来计算热极端指数；使用CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1的瞬时地表皮肤温度与E-OBS的日最高空气温度进行格点观测分析。论文还使用ERA5Land再分析的2米气温、0–7 cm土壤温度和土壤湿度，以及CMIP6-ESGF中MIROC-ES2L、MIROC6、MPI-ESM2-LR、MPI-ESM2-MR和EC-Earth3的历史与SSP5-8.5模拟输出，用于分析未来变暖水平下土壤温度对热日的贡献。",
+      "method_paradigm": "方法范式为基于日最高温度构建热极端指数TX7d和TX90p，并用Mann–Kendall趋势检验与Sen’s slope估计趋势显著性和幅度。未来分析采用CMIP6多模式输出，在不同全球变暖水平下比较热日中土壤最高温度与空气最高温度。",
+      "study_area": "Europe；重点结果为Central Europe，站点空间平均主要受Germany, France and Italy影响",
+      "study_period": "主要趋势分析为1996–2021；CM SAF地表皮肤温度为1991–2015；ERA5Land另有1970–2021敏感性分析；未来分析使用historical and SSP5-8.5 simulations",
+      "datasets_used": [
+        {
+          "name_in_paper": "FLUXNET2015 dataset",
+          "role_in_study": "提供30分钟或1小时分辨率的浅层土壤温度和空气温度站点观测，用于估算热极端指数及趋势。",
+          "usage": "used_as_data",
+          "evidence_quote": "Subdaily air and soil temperatures at depths shallower than 10 cm were obtained from the FLUXNET2015 dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ICOS",
+          "role_in_study": "提供浅层土壤温度和空气温度站点观测，并用于地表通量和大气条件趋势分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Other variables from the ICOS dataset were employed for the analysis of trends in surface fluxes and conditions during air hot extremes",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ARPAV",
+          "role_in_study": "提供每小时空气和浅层土壤温度站点观测，用于热极端指数趋势分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Subdaily air and soil temperatures at depths shallower than 10 cm were obtained from the FLUXNET2015 dataset 16 , the ICOS 30 – 40 , the ARPAV 18 , DWD 19 and Météo France 20 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "DWD",
+          "role_in_study": "提供每小时空气和浅层土壤温度站点观测，用于热极端指数趋势分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Fluxnet and ICOS stations provide measurements every 30 min or 1 h, DWD and ARPAV stations provide data every hour and Météo France stations provide data every 6 h.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Météo France",
+          "role_in_study": "提供每6小时空气和浅层土壤温度站点观测，用于热极端指数趋势分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Fluxnet and ICOS stations provide measurements every 30 min or 1 h, DWD and ARPAV stations provide data every hour and Météo France stations provide data every 6 h.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+          "role_in_study": "提供1991–2015年的瞬时地表皮肤温度，用于格点地表温度热极端分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "We obtained instantaneous land surface skin temperatures for the period 1991–2015 from the CM SAF Land Surface Temperature dataset from Meteosat First and Second Generation Edition 1",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "E-OBS daily gridded land-only observational dataset",
+          "role_in_study": "提供日最高空气温度格点观测，用于与地表/土壤热极端趋势对比。",
+          "usage": "used_as_data",
+          "evidence_quote": "maximum air temperatures from the E-OBS daily gridded land-only observational dataset",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ERA5Land re-analysis",
+          "role_in_study": "提供小时尺度2米气温、第一土层土壤温度和土壤湿度，用于1996–2021热极端与土壤湿度—温度反馈分析，并做1970–2021敏感性分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "From the hourly product of the ERA5Land re-analysis 22 , we used air temperatures defined at 2 m of height and soil temperatures and moisture at the first soil layer (0–7 cm) from 1996 to 2021.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "CMIP6-ESGF archive",
+          "role_in_study": "提供未来气候模式输出的日最高2米气温和6小时5 cm土壤温度，用于历史和SSP5-8.5情景下不同变暖水平的热日分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Outputs of daily maximum air temperature (2 m) and 6 h soil temperature at 5 cm were obtained from the CMIP6-ESGF archive.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MIROC-ES2L",
+          "role_in_study": "作为CMIP6模式之一，提供历史与SSP5-8.5模拟中的空气温度和土壤温度输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "MIROC-ES2L (ref. 41 ), MIROC6 (ref. 42 ), MPI-ESM2-LR (ref. 43 ), MPI-ESM2-MR (ref. 44 ) and EC-Earth3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MIROC6",
+          "role_in_study": "作为CMIP6模式之一，提供历史与SSP5-8.5模拟中的空气温度和土壤温度输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "MIROC-ES2L (ref. 41 ), MIROC6 (ref. 42 ), MPI-ESM2-LR (ref. 43 ), MPI-ESM2-MR (ref. 44 ) and EC-Earth3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MPI-ESM2-LR",
+          "role_in_study": "作为CMIP6模式之一，提供历史与SSP5-8.5模拟中的空气温度和土壤温度输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "MIROC-ES2L (ref. 41 ), MIROC6 (ref. 42 ), MPI-ESM2-LR (ref. 43 ), MPI-ESM2-MR (ref. 44 ) and EC-Earth3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MPI-ESM2-MR",
+          "role_in_study": "作为CMIP6模式之一，提供历史与SSP5-8.5模拟中的空气温度和土壤温度输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "MIROC-ES2L (ref. 41 ), MIROC6 (ref. 42 ), MPI-ESM2-LR (ref. 43 ), MPI-ESM2-MR (ref. 44 ) and EC-Earth3",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "EC-Earth3",
+          "role_in_study": "作为CMIP6模式之一，提供历史与SSP5-8.5模拟中的空气温度和土壤温度输出。",
+          "usage": "used_as_data",
+          "evidence_quote": "MIROC-ES2L (ref. 41 ), MIROC6 (ref. 42 ), MPI-ESM2-LR (ref. 43 ), MPI-ESM2-MR (ref. 44 ) and EC-Earth3",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41558-023-01812-3.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41558-023-01812-3.methods.txt"
+        ],
+        "chars": 12903,
+        "text_mode": "head+methods",
+        "source_sha256": "4cc9502e86c25ec4e42240afee36bffe7becbda1363cdd7d8e9657c35e62598e",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:13:32",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1038_s41558-023-01812-3.json",
+        "quote_gate": {
+          "total": 19,
+          "verified": 19
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1038_s41558-023-01812-3.json",
+        "sha256": "dffb640dea1b00428ecc29674bb2e9c4c8f172f47852a836bffc372f0b0ca6e0",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "uncertain"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_04",
+      "source_paper_doi": "10.1038/s41598-020-66168-6",
+      "source_paper": {
+        "doi": "10.1038/s41598-020-66168-6",
+        "title": "Spatial relationship between land-use/land-cover change and land surface temperature in the Dongting Lake area, China",
+        "year": 2020,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "U.S. Geological Survey Landsat TM/ETM + data",
+        "Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "U.S. Geological Survey Landsat TM/ETM + data",
+          "actual_product_in_paper": "U.S. Geological Survey Landsat TM/ETM + data",
+          "evidence_quotes": [
+            "we used U.S. Geological Survey Landsat TM/ETM + data to obtain LULC change and winter LST information for the Dongting Lake area in this study.",
+            "To analyse the change in land use/land cover and its impact on LST in the Donting Lake area before and after Three Gorges impoundment of the Yangtze River, we selected 16 remote sensing images from the winters of 1995, 2001, 2004 and 2013 as the main data sources (Table  1 ).",
+            "We obtained LULC change data using visible light bands (spatial resolution of 30 m, with cloudiness of 0%) and obtained the LST using the thermal infrared band (spatial resolution of 120 m or 60 m, with cloudiness of 0%).",
+            "The images of 1995, 2001, and 2004 are TM images, with a spatial resolution of 120 m for band 6, while the spatial resolution of the 2013 ETM + data for band 6 is 60 m.",
+            "The single-window algorithm is derived by Qin et al. 29 based on the surface thermal radiation conduction equation, which uses Landsat TM/ETM + data to invert LST.",
+            "The images of 1995, 2001, and 2004 are TM images, with a spatial resolution of 120 m for band 6, while the spatial resolution of the 2013 ETM + data for band 6 is 60 m.",
+            "The single-window algorithm is derived by Qin et al. 29 based on the surface thermal radiation conduction equation, which uses Landsat TM/ETM + data to invert LST."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat TM/ETM+ thermal infrared band / Landsat TM/ETM+ data used to retrieve LST",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat TM/ETM+ 热红外波段数据",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products",
+          "actual_product_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products",
+          "evidence_quotes": [
+            "We compared the retrieval results of 2001, 2004, and 2013 with the MODIS temperature products from the same time, and the results indicated a relative error of 2% or less.",
+            "Based on the digital elevation model (DEM) data of 30 m spatial resolution, the administrative division data for the second land survey period, the Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products and meteorological data, and the 2004 ENVI® software (Harris Geospatial Solutions, Broomfield, CO) data, we conducted pre-treatment tasks of radiation calibration, atmospheric correction, geometric correction, cutting, and multisource dataset establishment on the 1995, 2001, and 2013 images.",
+            "Based on the digital elevation model (DEM) data of 30 m spatial resolution, the administrative division data for the second land survey period, the Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products and meteorological data, and the 2004 ENVI® software (Harris Geospatial Solutions, Broomfield, CO) data, we conducted pre-treatment tasks..."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MODIS temperature products",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS temperature products",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "To analyse the change in land use/land cover and its impact on LST in the Donting Lake area before and after Three Gorges impoundment of the Yangtze River, we selected 16 remote sensing images from the winters of 1995, 2001, 2004 and 2013 as the main data sources (Table  1 ).",
+        "We obtained LULC change data using visible light bands (spatial resolution of 30 m, with cloudiness of 0%) and obtained the LST using the thermal infrared band (spatial resolution of 120 m or 60 m, with cloudiness of 0%).",
+        "We compared the retrieval results of 2001, 2004, and 2013 with the MODIS temperature products from the same time, and the results indicated a relative error of 2% or less."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究中国洞庭湖区土地利用/土地覆盖变化与冬季地表温度之间的空间关系，评估不同LULC类型及其变化对LST的影响。研究还关注三峡水库蓄水前后洞庭湖区水体、农田等变化与地表热环境变化的联系。",
+      "hypothesis_or_mechanism": "核心机制是LULC变化会改变地表物理特征、植被组成以及辐射、热量和水汽交换，从而影响地表能量平衡并改变LST。水体、湿地等类型具有降低LST和缓解地面热效应的调节作用，而建设用地等类型通常对应较高LST。",
+      "variables_and_data_use": "论文使用U.S. Geological Survey Landsat TM/ETM+数据的可见光波段提取LULC，使用热红外波段通过单窗算法反演冬季LST。MODIS temperature products被用于与2001、2004和2013年的LST反演结果进行对比验证；30 m DEM用于地形变量和相关分析。论文还利用NDVI、NDMI、距水体距离、DEM分级与LST进行相关分析，并用Google Earth高分辨率影像和野外调查确定训练样本。",
+      "method_paradigm": "方法范式包括基于CART的决策树LULC分类、Landsat TM/ETM+热红外单窗算法LST反演、标准差温度分级、GIS叠置分析与相关分析。",
+      "study_area": "Dongting Lake area, China，位于长江中下游，28°30′N–30°20′N, 111°40′E–113°10′E",
+      "study_period": "winters of 1995, 2001, 2004 and 2013",
+      "datasets_used": [
+        {
+          "name_in_paper": "U.S. Geological Survey Landsat TM/ETM + data",
+          "role_in_study": "作为主要遥感数据源，用于获取LULC变化信息和冬季LST信息；可见光波段用于LULC分类，热红外波段用于LST反演。",
+          "usage": "used_as_data",
+          "evidence_quote": "we used U.S. Geological Survey Landsat TM/ETM + data to obtain LULC change and winter LST information for the Dongting Lake area in this study.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 7 data",
+          "role_in_study": "用于反演地表温度。",
+          "usage": "used_as_data",
+          "evidence_quote": "we retrieved the Land surface temperature (LST) from the Landsat 7 data and explored its relationship with the LULC types.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products",
+          "role_in_study": "用于与Landsat反演的LST结果进行同期对比验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "We compared the retrieval results of 2001, 2004, and 2013 with the MODIS temperature products from the same time, and the results indicated a relative error of 2% or less.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "digital elevation model (DEM) data of 30 m spatial resolution",
+          "role_in_study": "作为地形数据，用于多源数据集建立，并与LST进行分级和相关分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Based on the digital elevation model (DEM) data of 30 m spatial resolution, the administrative division data for the second land survey period, the Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products and meteorological data, and the 2004 ENVI® software (Harris Geospatial Solutions, Broomfield, CO) data, we conducted pre-treatment tasks of radiation calibration, atmospheric correction, geometric correction, cutting, and multisource dataset establishment on the 1995, 2001, and 2013 images.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "administrative division data for the second land survey period",
+          "role_in_study": "作为辅助数据参与预处理和多源数据集建立。",
+          "usage": "used_as_data",
+          "evidence_quote": "Based on the digital elevation model (DEM) data of 30 m spatial resolution, the administrative division data for the second land survey period, the Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products and meteorological data, and the 2004 ENVI® software (Harris Geospatial Solutions, Broomfield, CO) data, we conducted pre-treatment tasks of radiation calibration, atmospheric correction, geometric correction, cutting, and multisource dataset establishment on the 1995, 2001, and 2013 images.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "meteorological data",
+          "role_in_study": "作为辅助数据参与预处理和多源数据集建立，并支持LST反演相关处理。",
+          "usage": "used_as_data",
+          "evidence_quote": "Based on the digital elevation model (DEM) data of 30 m spatial resolution, the administrative division data for the second land survey period, the Moderate Resolution Imaging Spectroradiometer (MODIS) temperature products and meteorological data, and the 2004 ENVI® software (Harris Geospatial Solutions, Broomfield, CO) data, we conducted pre-treatment tasks of radiation calibration, atmospheric correction, geometric correction, cutting, and multisource dataset establishment on the 1995, 2001, and 2013 images.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "high-resolution Google Earth images",
+          "role_in_study": "用于识别LULC分类训练样本。",
+          "usage": "used_as_data",
+          "evidence_quote": "According to the high-resolution Google Earth images and field survey, we identified training samples to classified the LULC using the decision tree methodology which is based on the classification and regression tree (CART) algorithm",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "field survey",
+          "role_in_study": "用于识别LULC分类训练样本。",
+          "usage": "used_as_data",
+          "evidence_quote": "According to the high-resolution Google Earth images and field survey, we identified training samples to classified the LULC using the decision tree methodology which is based on the classification and regression tree (CART) algorithm",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41598-020-66168-6.txt"
+        ],
+        "chars": 19023,
+        "text_mode": "head+methods",
+        "source_sha256": "0f976e206a5903a4ae3b48ff0bdd929fb72d0c8c9db1191e18a2fa40bb2c46a0",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:13:53",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1038_s41598-020-66168-6.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1038_s41598-020-66168-6.json",
+        "sha256": "63532edeb612d35e48f7b3076663bbc874f1fe62e5161cc0c3b37c53cb373e55",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_05",
+      "source_paper_doi": "10.1038/s41598-023-50757-2",
+      "source_paper": {
+        "doi": "10.1038/s41598-023-50757-2",
+        "title": "Climatic comparison of surface urban heat island using satellite remote sensing in Tehran and suburbs",
+        "year": 2024,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat 8 Collection-1 Level-1 data products",
+        "MODIS Aqua MYD11A1"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 8 Collection-1 Level-1 data products",
+          "actual_product_in_paper": "Landsat 8 Collection-1 Level-1 data products",
+          "evidence_quotes": [
+            "For this study, Landsat 8 Collection-1 Level-1 data products were utilized to estimate LST (Table 5 ).",
+            "In this study, the high-resolution satellite sensors data from MODIS Aqua, Sentinel-3, and Landsat 8 (Table 1 ) were utilized due to the lack of observational data.",
+            "Therefore, a high-resolution Land Surface Temperature (LST) data for the selected day was obtained from three different satellites, with detailed descriptions for each satellite provided separately in Table 2 .",
+            "Landsat 8 is equipped with a thermal infrared sensor (TIRS) that is used to calculate LST.",
+            "For this study, Landsat 8 Collection-1 Level-1 data products were utilized to estimate LST (Table 5 ). The process involved analyzing the thermal bands 10 and 11 within the spectral range, with a spatial resolution of 100 meters 65 ."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 8 Collection-1 Level-1 data products; thermal bands 10 and 11 used to estimate LST",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 8 Collection-1 Level-1",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS Aqua MYD11A1",
+          "actual_product_in_paper": "MODIS Aqua MYD11A1",
+          "evidence_quotes": [
+            "Thus, for the analysis of the MODIS Aqua, MYD11A1 and MYD13A3 products were used (Table 3 ).",
+            "In this study, the high-resolution satellite sensors data from MODIS Aqua, Sentinel-3, and Landsat 8 (Table 1 ) were utilized due to the lack of observational data.",
+            "In this regard, data from two databases, Earth data and Google Earth Engine (GEE), were used for MODIS Aqua.",
+            "This study utilizes MODIS Aqua data with a 1 km spatial resolution, collected during both day and night.",
+            "The MODIS Aqua version 6.1 includes a set of LST and Emissivity (E) products, which are used in this research with the MYD11 algorithm.",
+            "This involved a series of steps such as Project Raster, scaling, and converting Kelvin to Celsius for the MYD11A1 Aqua satellite product for both night and day layers in the ArcGIS environment (Eq.  1 ).",
+            "The MODIS and Sentinel-3 corrected LST data have a horizontal resolution of 1 km for both day and night hours."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 7,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Aqua version 6.1 MYD11A1 LST product",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Aqua MYD11A1",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "In this study, the high-resolution satellite sensors data from MODIS Aqua, Sentinel-3, and Landsat 8 (Table 1 ) were utilized due to the lack of observational data.",
+        "Therefore, a high-resolution Land Surface Temperature (LST) data for the selected day was obtained from three different satellites, with detailed descriptions for each satellite provided separately in Table 2 .",
+        "First, the corrected LST image in “ Calculate LST in three satellites ” section was separately analyzed for each satellite for the selected day, June 22, 2020, to extract the minimum and maximum temperatures."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文比较德黑兰及其郊区地表城市热岛（SUHI）的气候条件，重点分析昼夜地表温度、热岛强度及其空间分布差异。研究还考察德黑兰城市区与不同方向郊区之间的LST/UHI差异及其与海拔、植被状况的关系。",
+      "hypothesis_or_mechanism": "核心机制是城市建成区和低植被覆盖区域具有更强的吸热和蓄热效应，导致夜间德黑兰城区及部分郊区LST/UHI更高。论文还认为海拔和NDVI等地表条件会影响LST/UHI的空间差异。",
+      "variables_and_data_use": "论文使用MODIS Aqua MYD11A1、Sentinel-3 SLSTR level-2 SL_2_SLT和Landsat 8 Collection-1 Level-1数据获取或估算LST，并由LST计算SUHI指数。MODIS Aqua MYD13A3用于NDVI，以分析绿地/植被与热环境的关系；DEM和Esri Land Cover/Land Use用于研究区地形和土地覆盖/土地利用制图。MODIS Aqua还被用于2020年LST/SUHI空间分布、Moran’s I、Getis-Ord Gi*热点/冷点以及季节和年度分析。",
+      "method_paradigm": "方法范式为多源卫星遥感LST反演/产品比较、SUHI指数归一化计算，以及空间自相关和热点分析。具体包括MODIS与Sentinel-3 LST产品处理、Landsat 8单通道算法估算LST、Moran’s I、Getis-Ord Gi*和IDW插值。",
+      "study_area": "Tehran and its suburbs, Iran",
+      "study_period": "June 22, 2020；并对MODIS Aqua的2020年季节和年度LST/UHI进行分析",
+      "datasets_used": [
+        {
+          "name_in_paper": "MODIS Aqua MYD11A1",
+          "role_in_study": "用于昼夜LST数据处理、LST/SUHI计算，以及后续空间分布、Moran’s I和Getis-Ord Gi*分析的主要MODIS LST产品。",
+          "usage": "used_as_data",
+          "evidence_quote": "Thus, for the analysis of the MODIS Aqua, MYD11A1 and MYD13A3 products were used (Table 3 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MODIS Aqua MYD13A3",
+          "role_in_study": "用于派生NDVI，分析德黑兰绿地/植被状况与LST变化、城市扩张热环境之间的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "In this study, NDVI is derived from MODIS Aqua (MYD13A3) monthly product by using high-resolution (1 km) remote sensing imagery of the summer nighttime in ArcGIS.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-3 SLSTR level-2 product, SL_2_SLT",
+          "role_in_study": "用于获取Sentinel-3地表温度数据，并与MODIS Aqua和Landsat 8共同比较德黑兰及郊区昼夜LST/SUHI。",
+          "usage": "used_as_data",
+          "evidence_quote": "The SLSTR level-2 product, SL_2_SLT, represents LST in this satellite 60 .",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 Collection-1 Level-1 data products",
+          "role_in_study": "用于通过TIRS热红外波段和单通道算法估算研究区LST；由于无夜间数据，仅用于非夜间LST/SUHI制图比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "For this study, Landsat 8 Collection-1 Level-1 data products were utilized to estimate LST (Table 5 ).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "digital elevation model (DEM)",
+          "role_in_study": "用于研究区位置图和地形/海拔背景，并支持分析LST/UHI与海拔的关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The data first were prepared using digital elevation model (DEM). URL link: https://data.nextgis.com/en/region/IR/dem and then by Esri Land Cover/Land Use.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Esri Land Cover/Land Use",
+          "role_in_study": "用于研究区土地覆盖/土地利用制图，作为城市与郊区地表背景信息。",
+          "usage": "used_as_data",
+          "evidence_quote": "The data first were prepared using digital elevation model (DEM). URL link: https://data.nextgis.com/en/region/IR/dem and then by Esri Land Cover/Land Use.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41598-023-50757-2.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1038_s41598-023-50757-2.methods.txt"
+        ],
+        "chars": 18782,
+        "text_mode": "head+methods",
+        "source_sha256": "d5a6476485a60c59d111a21cde948202a2aa63806663e5ebabde4af436cfc456",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T15:14:04",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1038_s41598-023-50757-2.json",
+        "quote_gate": {
+          "total": 11,
+          "verified": 11
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1038_s41598-023-50757-2.json",
+        "sha256": "65f16502fb853441ea9aa82bcccdcf19910178d8fa34d29cfc104c6f702b7e0f",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_06",
+      "source_paper_doi": "10.1109/jstars.2021.3051422",
+      "source_paper": {
+        "doi": "10.1109/jstars.2021.3051422",
+        "title": "Downscaling MODIS Land Surface Temperature Product Using an Adaptive Random Forest Regression Method and Google Earth Engine for a 19-Years Spatiotemporal Trend Analysis Over Iran",
+        "year": 2021,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat-8 LST data",
+        "MODIS land-surface-temperature observations"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat-8 LST data",
+          "actual_product_in_paper": "Landsat-8 LST data",
+          "evidence_quotes": [
+            "TheperformanceofARFRwasassessedbycomparingtheresultsofthe\ndownscaledLSTswiththeLandsat-8LSTdataondifferentdates\nofsixconsecutiveyears(20142019)overtendifferentsub-areas\ninIran.",
+            "The performanceofARFRwasassessedbycomparingtheresultsofthe\ndownscaledLSTswiththeLandsat-8LSTdataondifferentdates\nofsixconsecutiveyears(20142019)overtendifferentsub-areas\ninIran.",
+            "The performanceofARFRwasassessedbycomparingtheresultsofthe downscaledLSTswiththeLandsat-8LSTdataondifferentdatesofsixconsecutiveyears(20142019)overtendifferentsub-areasinIran."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 2,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat-8 LST data",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Landsat-8 LST data",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS land-surface-temperature observations",
+          "actual_product_in_paper": "MODIS daily LST product (MOD11A1)",
+          "evidence_quotes": [
+            "ThisarticleusedMODISdailyLSTproduct(MOD11A1)",
+            "Abstract\nMODISlandsurfacetemperature(LST)product\n(MOD11A1)hasbeenwidelyusedinanalysingspatiotemporal\ntrendsofLST.",
+            "Thisstudyalsoprovidedaframeworktoshiftfromdownscalingsingle-timeimagesetstoextensive\ntime-seriesofMOD11A1LSTimagesinanoperationalapproach\n(i.e.,a19-yearsspatiotemporalLSTtrendanalysisoverIran)using\ntheGoogleEarthEngine(GEE)cloudcomputingplatform.",
+            "MODIS landsurfacetemperature(LST)product (MOD11A1)hasbeenwidelyusedinanalysingspatiotemporal trendsofLST.",
+            "Thisstudyalsoprovidedaframeworktoshiftfromdownscalingsingle-timeimagesetstoextensive time-seriesofMOD11A1LSTimagesinanoperationalapproach(i.e.,a19-yearsspatiotemporalLSTtrendanalysisoverIran)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS land surface temperature product (MOD11A1)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS MOD11A1 LST product",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "TheperformanceofARFRwasassessedbycomparingtheresultsofthe\ndownscaledLSTswiththeLandsat-8LSTdataondifferentdates\nofsixconsecutiveyears(20142019)overtendifferentsub-areas\ninIran.",
+        "ThisarticleusedMODISdailyLSTproduct(MOD11A1)",
+        "Finally,atotalof3509MOD11A1imageswereaccessedand\nconsequentlydownscaledwithintheGEEplatformforthe\nperiodof2001Ð2019."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "本研究回答了如何在伊朗全国尺度将1 km的MODIS地表温度产品降尺度到更细空间分辨率，并据此分析2001–2019年伊朗地表温度时空趋势的问题。研究对象是伊朗的陆表温度及其长期时空变化。",
+      "hypothesis_or_mechanism": "论文的核心机制是利用较高空间分辨率的辅助变量解释MODIS LST的空间差异，从而通过随机森林回归建立粗分辨率LST与红光、近红外、NDVI、土地覆盖和海拔等预测变量之间的关系。其依据是LST的时空变化受地理位置、地形、土壤水分、太阳几何、大气条件和土地覆盖等因素影响。",
+      "variables_and_data_use": "论文使用MODIS daily LST product (MOD11A1)作为因变量和被降尺度的LST数据，并在GEE中对2001–2019年的3509幅MOD11A1影像进行降尺度和趋势分析。MOD09GQ提供红光和近红外波段并计算NDVI，MCD12/MCD12Q1提供土地覆盖变量，SRTM提供30 m海拔变量，均作为ARFR降尺度的预测变量。Landsat-8 LST data用于与降尺度后的LST结果进行比较，以评估2014–2019年不同日期和十个子区域上的精度。",
+      "method_paradigm": "方法范式为基于Adaptive random forest regression的机器学习回归降尺度，并结合GEE进行大规模时间序列处理。随后对降尺度后的MODIS LST时间序列开展时空趋势分析。",
+      "study_area": "Iran",
+      "study_period": "2001–2019；精度评估使用2014–2019年Landsat-8 LST data",
+      "datasets_used": [
+        {
+          "name_in_paper": "MODIS daily LST product (MOD11A1)",
+          "role_in_study": "作为因变量、被降尺度的1 km日尺度地表温度产品，并用于2001–2019年伊朗LST趋势分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "ThisarticleusedMODISdailyLSTproduct(MOD11A1)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat-8 LST data",
+          "role_in_study": "作为精度评估数据，与降尺度后的LST结果在2014–2019年不同日期和十个伊朗子区域进行比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheperformanceofARFRwasassessedbycomparingtheresultsofthe\ndownscaledLSTswiththeLandsat-8LSTdataondifferentdates\nofsixconsecutiveyears(20142019)overtendifferentsub-areas\ninIran.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MOD09GQ",
+          "role_in_study": "提供红光和近红外波段，并用于构建NDVI等预测变量以降尺度MOD11A1。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheMOD09GQprovidestheredand\nnearinfrared(NIR)spectralbands.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MCD12",
+          "role_in_study": "提供17类全球土地覆盖数据，作为降尺度的土地覆盖预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheMCD12whichprovides\ngloballandcoverdatain17classeswasaccessedwithinGEE.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MCD12Q1",
+          "role_in_study": "提供国际地圈-生物圈计划分类体系下的土地覆盖变量，用作预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheMCD12Q1(\ntheinternational\ngeosphere-biosphereprogramclassiÞcationscheme\n)atthe",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SRTM data",
+          "role_in_study": "提供30 m空间分辨率海拔信息，作为ARFR降尺度中的地形预测变量。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheSRTMdatawith30-mspatialresolutionwasalsoretrieved\nfromGEE.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-2 images",
+          "role_in_study": "作为研究区和十个子区域图示的RGB背景影像。",
+          "usage": "used_as_data",
+          "evidence_quote": "backgroundimagesareRGBcolorcompositeofSenti\nnel-2\nimages",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1109_jstars.2021.3051422.txt"
+        ],
+        "chars": 19082,
+        "text_mode": "section_windows_scrambled_pdf",
+        "source_sha256": "1fd1c53186af7a4b97b45f50968e27bb589585f34ea9e75ab86b27824292bd9d",
+        "model": "gpt-5.5",
+        "attempts": 2,
+        "extracted_at": "2026-10-10T15:16:39",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.1109_jstars.2021.3051422.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.1109_jstars.2021.3051422.json",
+        "sha256": "c7ccbe18c632314528acd95213ae27e13eb4b1327efbac2681290798b731d0cf",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_07",
+      "source_paper_doi": "10.3390/rs11202369",
+      "source_paper": {
+        "doi": "10.3390/rs11202369",
+        "title": "An Assessment of the Accuracy of MODIS Land Surface Temperature over Egypt Using Ground-Based Measurements",
+        "year": 2019,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Aqua LST 8-day composite product (MYD11A2 V.6)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "mention_only",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Landsat",
+          "evidence_quotes": [
+            "Withtheavailabilityofseveralspace-basedproducts(e.g.,NOAA-AVHRR,Landsat,Sentinel,\nSEVIRI,MVIRI,andVIIRS),ourpreferencewastotesttheperformanceoftheMODISproduct"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "not_used",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "not_matched",
+              "usage": "mention_only",
+              "matched_product": "",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "mention_only",
+              "matched_product": "",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Aqua LST 8-day composite product (MYD11A2 V.6)",
+          "actual_product_in_paper": "Aqua LST 8-day composite product (MYD11A2 V.6)",
+          "evidence_quotes": [
+            "fromtheAquaLST8-daycompositeproduct(MYD11A2V.6)fortheEgyptianterritoryfortheperiod\nfromJuly2002toJune2015",
+            "fromtheAquaLST8-daycompositeproduct(MYD11A2V.6)fortheEgyptianterritoryfortheperiod\nfromJuly2002toJune2015.ThedataweredownloadedfromtheLandProcessesDistributedActive\nArchiveCenterofNASA(https://lpdaac.usgs.gov/).",
+            "Herein,itisnoteworthythatalthoughMODISAquadataareavailableatadailyscalefortheproduct\nMYD11A1,wedecidedtodeploythe8-daycompositeproduct(MYD11A2).",
+            "Overall,priortoprocessingLSTdata,8-daycompositesofdaytime/nighttimewereacquiredforthe\nthreetilesspanningthestudydomain.Then,thebrightnessvalue(in16bits)correspondingtotheLST\nwasconvertedfromtheKelvinscaletotheCelsiusscaleforallimagesandtiles.",
+            "In this work, we employed the MODIS Aqua 8-day composite product (MYD11A2 V.6) for the Egyptian territory for the period from July 2002 to June 2015.",
+            "Overall, prior to processing LST data, 8-day composites of daytime/nighttime were acquired for the three tiles spanning the study domain."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Aqua LST 8-day composite product (MYD11A2 V.6)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Aqua 8-day composite product (MYD11A2 V.6)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "landsat_land_surface_temperature"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "fromtheAquaLST8-daycompositeproduct(MYD11A2V.6)fortheEgyptianterritoryfortheperiod\nfromJuly2002toJune2015",
+        "theagreement\nbetweendaytime/nighttimeLSTretrievedfromMODISAquaandobservationalmaximum/minimum\nairtemperature(hereafter,Tmax/Tmin)gaugedat34meteorologicalobservatorieswastested",
+        "the8-daycompositesofdaytime/nighttimeLSTwereaggregatedtomonthly,seasonal,andannual\nscalesusingasimplearithmeticaverage"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "本研究评估埃及范围内MODIS Aqua地表温度（LST）在表征近地面最高/最低气温方面的准确性，特别是其作为地面气象观测替代或补充资料的可用性。研究对象是日间/夜间LST与34个气象站观测的季节和年尺度最高/最低气温。",
+      "hypothesis_or_mechanism": "论文的核心机制是地表温度与近地面气温之间存在可验证的一致性，但其误差会随季节、岩性和土地利用变化。作者认为地表—大气相互作用及感热/潜热通量差异、不同岩石反照率等因素会影响MODIS LST对气温的估计表现。",
+      "variables_and_data_use": "研究使用MODIS Aqua的Aqua LST 8-day composite product (MYD11A2 V.6)提取日间和夜间LST，并将其聚合到月、季节和年尺度。地面验证数据为埃及34个气象观测站的daily maximum and minimum air temperatures，用于与MODIS LST进行点到网格对比。论文还提到MYD11A1日尺度Aqua产品可用，但实际选择MYD11A2以减少气溶胶污染和数据空缺影响。",
+      "method_paradigm": "方法范式为遥感产品精度验证与点到网格统计比较。作者将MODIS Aqua LST与站点观测最高/最低气温在季节和年尺度上比较，并使用bias、nRMSE、Spearman's rho和Yule–Kendall skewness等指标评估误差、相关性和分布特征。",
+      "study_area": "Egypt",
+      "study_period": "July 2002 to June 2015；地面观测记录为July 2002 to December 2015",
+      "datasets_used": [
+        {
+          "name_in_paper": "daily maximum and minimum air temperatures from 34 meteorological observatories",
+          "role_in_study": "作为地面实测最高/最低气温，用于验证MODIS日间/夜间LST。",
+          "usage": "used_as_data",
+          "evidence_quote": "Thisworkemployedacompleteregisterofdailymaximumandminimumairtemperatures\nfrom34meteorologicalobservatoriesspanningtheperiodfromJuly2002toDecember2015",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Aqua LST 8-day composite product (MYD11A2 V.6)",
+          "role_in_study": "作为MODIS Aqua地表温度数据源，提取埃及研究区日间和夜间LST并进行聚合与验证。",
+          "usage": "used_as_data",
+          "evidence_quote": "fromtheAquaLST8-daycompositeproduct(MYD11A2V.6)fortheEgyptianterritoryfortheperiod\nfromJuly2002toJune2015",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MYD11A1",
+          "role_in_study": "作为MODIS Aqua日尺度LST产品被提及，但作者说明未采用，转而使用8日合成MYD11A2。",
+          "usage": "mention_only",
+          "evidence_quote": "althoughMODISAquadataareavailableatadailyscalefortheproduct\nMYD11A1,wedecidedtodeploythe8-daycompositeproduct(MYD11A2)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NOAA-AVHRR,Landsat,Sentinel,\nSEVIRI,MVIRI,andVIIRS",
+          "role_in_study": "作为可用空间遥感产品的背景性列举，未作为本文输入数据使用。",
+          "usage": "mention_only",
+          "evidence_quote": "Withtheavailabilityofseveralspace-basedproducts(e.g.,NOAA-AVHRR,Landsat,Sentinel,\nSEVIRI,MVIRI,andVIIRS),ourpreferencewastotesttheperformanceoftheMODISproduct",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs11202369.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs11202369.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "a6aa1431764765dd5d4d5d78e8cbd2449a0bebfeae5a82e310cc0ce28809eb12",
+        "model": "gpt-5.5",
+        "attempts": 2,
+        "extracted_at": "2026-10-10T15:15:20",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.3390_rs11202369.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.3390_rs11202369.json",
+        "sha256": "8f5a357f6e027464a6bbfa5079408a254d14baf9f56df77a71dd87062c6e68ee",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "partial",
+          "qwen": "partial"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_08",
+      "source_paper_doi": "10.3390/rs14215573",
+      "source_paper": {
+        "doi": "10.3390/rs14215573",
+        "title": "Assessment of Intra-Urban Heat Island in a Densely Populated City Using Remote Sensing: A Case Study for Manila City",
+        "year": 2022,
+        "venue": ""
+      },
+      "reference_tier": "direct_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat 8 top-of-atmosphere (TOA) reflectance products / Landsat 8 Land Surface Temperature",
+        "Collection-6 MODIS Land Surface Temperature product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 8 top-of-atmosphere (TOA) reflectance products / Landsat 8 Land Surface Temperature",
+          "actual_product_in_paper": "Landsat 8 top-of-atmosphere (TOA) reflectance products / Landsat 8 Land Surface Temperature",
+          "evidence_quotes": [
+            "Forthisstudy,weusedtop-of-atmosphere(TOA)reﬂectanceproductstoobtainthelandsurfacetemperature(LST)andsurfacereﬂectance(SR)productsforspectralindicessuchasNormalizedDifferenceVegetationIndex(NDVI),NormalizedDifferenceWaterIndex(NDWI)andNormalizedDifferenceBuilt-upIndex(NDBI).",
+            "Satellite-derived remote sensing data in the study were taken from MODIS and Landsat 8 satellite data products.",
+            "Consequently, spatial yearly data raster for land surface temperature and spectral indices were downloaded from Landsat 8.",
+            "Raster data of land surface temperature data were taken from 2013 to 2022 on a yearly interval."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 8 land-surface-temperature observations",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "Collection-6 MODIS Land Surface Temperature product",
+          "actual_product_in_paper": "Collection-6 MODIS Land Surface Temperature product",
+          "evidence_quotes": [
+            "LandSurfaceTemperaturedatawerederivedfromtheCollection-6MODISLandSurfaceTemperatureproducttocomplementtheavailablemeteorologicaldataathand.",
+            "Daily land surface temperatures (day and night) were obtained from MODIS between 2014 to 2018 as complementary data for the meteorological data mentioned above.",
+            "Land Surface Temperature data were derived from the Collection-6 MODIS Land Surface Temperature product to complement the available meteorological data at hand."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS Collection-6 land-surface-temperature observations",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "Satellite-derivedremotesensingdatainthestudyweretakenfromMODISandLandsat8satellitedataproducts.",
+        "Dailylandsurfacetemperatures(dayandnight)wereobtainedfromMODISbetween2014to2018ascomplementarydataforthemeteorologicaldatamentionedabove.",
+        "Consequently,spatialyearlydatarasterforlandsurfacetemperatureandspectralindicesweredownloadedfromLandsat8."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究菲律宾马尼拉市这一高人口密度城市的城市内部热岛（IUHI）时空格局及其与土地覆盖指标、气象条件和受影响人口的关系。目标是利用遥感与气象数据识别热/冷点、生成IUHI分区图，并提出区域化缓解策略。",
+      "hypothesis_or_mechanism": "核心机制是城市化和不透水建成表面扩张会改变地表热特性，提高地表温度并形成城市热岛；植被、水体等土地覆盖条件则与较低温度相关。论文通过NDVI、NDWI、NDBI与LST的比较和相关分析来检验这种土地覆盖—热环境关系。",
+      "variables_and_data_use": "论文使用MODIS Collection-6 Land Surface Temperature产品获取2014至2018年的昼夜日尺度LST，用于补充Port Area气象站的气象资料并进行温度关系分析。论文使用Landsat 8数据产品，通过Climate Engine和Google Earth Engine获取年度LST、NDVI、NDWI以及用于计算NDBI的NIR/SWIR1波段，进行土地覆盖指标与LST的聚类、相关和时空热点分析。还使用菲律宾气象站点数据、Data for Good Meta 30 m人口密度数据和马尼拉行政边界数据，用于热舒适评估、受影响人口估计和空间裁剪/制图。",
+      "method_paradigm": "方法范式包括气象时间序列与LST关系分析、RayMan/PET热舒适评估、基于k-means的多变量聚类、LULC指标与LST相关分析、LST时空热点/冷点空间统计分析，以及用于生成IUHI行动等级图的适宜性分析模型。",
+      "study_area": "Manila City, Philippines",
+      "study_period": "卫星遥感数据为2013–2022年；MODIS LST和气象数据在方法中为2014–2018年，摘要中概述为meteorological data 2014–2020。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Manila City Administrative Boundary shapefiles",
+          "role_in_study": "用于限定研究区，并在城市、区和barangay尺度进行空间裁剪、统计和制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "weneedtheshapeﬁlesforManilaCityatthecity,district,andbarangaylevels.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "In-Situ Meteorological Data",
+          "role_in_study": "作为Port Area, Manila气象站点观测，用于分析气温时间变化、与MODIS昼夜LST的关系以及热舒适评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "Meteorologicalrawdatatakendailyfrom2014to2018wereprovidedbytheweatherbureauofthePhilippines.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Data for Good Meta population density demographic data",
+          "role_in_study": "使用2018年30 m网格人口密度数据估计IUHI影响人口和聚居/非聚居区域。",
+          "usage": "used_as_data",
+          "evidence_quote": "Inthisstudy,thepopulationdensitydemographicdatafortheyear2018wasusedtogiveaninsightintothedistributionofpeopleaffectedbytheintra-urbanheatislandinManilaCity.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Collection-6 MODIS Land Surface Temperature product",
+          "role_in_study": "提供2014–2018年昼夜日尺度地表温度，补充气象数据并用于气象参数与LST关系分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "LandSurfaceTemperaturedatawerederivedfromtheCollection-6MODISLandSurfaceTemperatureproducttocomplementtheavailablemeteorologicaldataathand.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 Data Product",
+          "role_in_study": "提供年度LST、Landsat波段和光谱指数数据，用于LST空间分析、热/冷点识别、NDVI/NDWI/NDBI与LST比较和相关分析，以及IUHI制图。",
+          "usage": "used_as_data",
+          "evidence_quote": "Consequently,spatialyearlydatarasterforlandsurfacetemperatureandspectralindicesweredownloadedfromLandsat8.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 8 top-of-atmosphere (TOA) reflectance products",
+          "role_in_study": "用于获得LST和表面反射率相关光谱指数，包括NDVI、NDWI和NDBI。",
+          "usage": "used_as_data",
+          "evidence_quote": "Forthisstudy,weusedtop-of-atmosphere(TOA)reﬂectanceproductstoobtainthelandsurfacetemperature(LST)andsurfacereﬂectance(SR)productsforspectralindicessuchasNormalizedDifferenceVegetationIndex(NDVI),NormalizedDifferenceWaterIndex(NDWI),andNormalizedDifferenceBuilt-upIndex(NDBI).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "RayMan Model",
+          "role_in_study": "利用气温、相对湿度和风速等输入计算Tmrt和PET热指数，用于Port Area热舒适评估。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheRayManModelwasproposedbyMatzarakis,amicro-scalemodeldevelopedtocalculateradiationﬂuxesinsimpleandcomplexenvironments",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs14215573.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs14215573.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "5e907e125aea1efa40a688785bab4ff6c15907e336576dfa23a356f5e369d621",
+        "model": "gpt-5.5",
+        "attempts": 3,
+        "extracted_at": "2026-10-10T16:36:31",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.3390_rs14215573.json",
+        "quote_gate": {
+          "total": 12,
+          "verified": 12
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.3390_rs14215573.json",
+        "sha256": "79c8dee61413ed2b984c5f301a62137f68f3b090b78ca3ff9da36fb2c23e14f8",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_09",
+      "source_paper_doi": "10.3390/rs9121243",
+      "source_paper": {
+        "doi": "10.3390/rs9121243",
+        "title": "Improved DisTrad for Downscaling Thermal MODIS Imagery over Urban Areas",
+        "year": 2017,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Landsat 7 ETM+ thermal image",
+        "MODIS land-surface-temperature observations"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Landsat 7 ETM+ thermal image",
+          "actual_product_in_paper": "Landsat 7 ETM+ thermal image",
+          "evidence_quotes": [
+            "with a time-coincident Landsat 7 ETM+ thermal image",
+            "TakingMay28,2015andDecember23,2004asexamples,Landsatwastheimagescorrespondingtothedate,and",
+            "TheLSWTwhichobtainedfromLandsatimageinversionand\ndownscaledbyDisTradwereusedtoachievea250mÐ\n>\n50\nmspatialdownscalingbySRCNN.",
+            "TheLSWTwhichobtainedfromLandsatimageinversionand downscaledbyDisTradwereusedtoachievea250mÐ>50mspatialdownscalingbySRCNN."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 3,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "abstract",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Landsat image inversion LSWT",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Landsat",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "MODIS land-surface-temperature observations",
+          "actual_product_in_paper": "MODIS/Terra land surface temperature image product MOD11A1",
+          "evidence_quotes": [
+            "the three originally low spatial resolution (960 m) Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image products (MOD11_L2, MOD11A1 and MOD11A2)",
+            "MOD11A1/A2andMOD13Q1weretheimageswithinthe\nspeciÞeddateinterval.",
+            "Basedonthedata\nofMOD11A2andMOD13Q1,thespatialdownscalingof\n1kmÐ\n>\n250mwasachievedbytheDisTradmethod,and\ntheresultsshowedthespatialdistributioncharacteristicsbasicallyconsistentwithMOD11A1",
+            "The\nin-situ\nmeasureddataofDianchiLakefrom2001to2015wereused\ntoverifytheimagesbeforeandafterdownscaling.TheresultsshowedthatthebiasofDisTradÐSRCNNwassmaller\nthanthatofMOD11A2(MAE\nMOD-day\n=\n1.43\n±\n0.31,\nRMSE\nMOD-day\n=\n1.82\n±\n0.35,MAE\nMOD-night\n=\n1.69\n±\n0.21,\nRMSE\nMOD-night\n=\n2.08\n±\n0.21)",
+            "MOD11A1/A2andMOD13Q1weretheimageswithinthe specifieddateinterval.",
+            "BasedonthedataofMOD11A2andMOD13Q1,thespatialdownscalingof 1kmÐ>250mwasachievedbytheDisTradmethod,andtheresultsshowedthespatialdistributioncharacteristicsbasicallyconsistentwithMOD11A1"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "abstract",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "MOD11A1/A2",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MOD11A1/A2",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "the three originally low spatial resolution (960 m) Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image products (MOD11_L2, MOD11A1 and MOD11A2)",
+        "Validation of the improved DisTrad, the original DisTrad, and the uniformly disaggregated MODIS land surface temperature images (UniTrad) are performed by comparative analysis with a time-coincident Landsat 7 ETM+ thermal image."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true
+      ],
+      "research_question": "研究区未在所给论文文本中明确说明。论文研究如何将城市区域的MODIS/Terra陆表温度影像从原始960 m空间分辨率降尺度到60、90、120、240和480 m，并评估改进DisTrad方法的效果。",
+      "hypothesis_or_mechanism": "改进DisTrad通过更好地参数化城市区域中的原始DisTrad残差，利用温度估计残差与不透水率指数之间的回归关系改进降尺度结果。其核心假设是城市温度残差与不透水率指数存在可用于空间细化的回归关系。",
+      "variables_and_data_use": "研究使用MODIS/Terra的MOD11_L2、MOD11A1和MOD11A2陆表温度产品作为待降尺度数据，目标分辨率为60、90、120、240和480 m。改进DisTrad利用温度估计残差和不透水率指数建立回归关系，并与原始DisTrad及UniTrad结果比较。使用时间一致的Landsat 7 ETM+热红外影像对降尺度温度进行验证。",
+      "method_paradigm": "这是基于残差参数化和回归关系的热红外陆表温度空间降尺度方法比较范式，比较改进DisTrad、原始DisTrad和UniTrad。验证采用与Landsat 7 ETM+热红外影像的时间一致性对比及统计误差分析。",
+      "study_area": "城市区域；所给论文文本未明确具体研究区名称。",
+      "study_period": "所给论文文本未说明研究时段。",
+      "datasets_used": [
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image product MOD11_L2",
+          "role_in_study": "作为待降尺度的低空间分辨率MODIS/Terra陆表温度产品之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "the three originally low spatial resolution (960 m) Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image products (MOD11_L2, MOD11A1 and MOD11A2)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image product MOD11A1",
+          "role_in_study": "作为待降尺度的低空间分辨率MODIS/Terra陆表温度产品之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "the three originally low spatial resolution (960 m) Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image products (MOD11_L2, MOD11A1 and MOD11A2)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image product MOD11A2",
+          "role_in_study": "作为待降尺度的低空间分辨率MODIS/Terra陆表温度产品之一。",
+          "usage": "used_as_data",
+          "evidence_quote": "the three originally low spatial resolution (960 m) Moderate Resolution Imaging Spectroradiometer (MODIS/Terra) land surface temperature image products (MOD11_L2, MOD11A1 and MOD11A2)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat 7 ETM+ thermal image",
+          "role_in_study": "作为时间一致的高空间分辨率热红外观测，用于验证改进DisTrad、原始DisTrad和UniTrad生成的降尺度陆表温度。",
+          "usage": "used_as_data",
+          "evidence_quote": "Validation of the improved DisTrad, the original DisTrad, and the uniformly disaggregated MODIS land surface temperature images (UniTrad) are performed by comparative analysis with a time-coincident Landsat 7 ETM+ thermal image.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "sources": [
+          "crossref:10.3390/rs9121243"
+        ],
+        "chars": 1570,
+        "fulltext_mismatch_fallback": "model_reported_text_mismatch: 给出的文本内容是关于滇池湖面水温（LSWT）及Landsat、MODIS降尺度的论文，正文元数据显示Digital Object Identifier为10.1109/JSTARS.2021.3079357、稿件接收于2021年；与所给标题Improved DisTrad for Downscaling Thermal MODIS Imagery over Urban Areas及DOI 10.3",
+        "source_sha256": "11321f00f147b9cc1ea279773ccff4858e3c84543d73dc1717fdd4a5a7cb881a",
+        "model": "gpt-5.5",
+        "attempts": 2,
+        "extracted_at": "2026-10-10T18:34:08",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.3390_rs9121243.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 8
+        },
+        "title_overlap_ratio": 0.875
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.3390_rs9121243.json",
+        "sha256": "383a4e32ce5976816cd3aa82ab8318454cf9edbc7feec9c97ce5ada103fdb425",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_031_ref_10",
+      "source_paper_doi": "10.5194/bg-19-2805-2022",
+      "source_paper": {
+        "doi": "10.5194/bg-19-2805-2022",
+        "title": "Technical note: A view from space on global flux towers by MODIS and Landsat: the FluxnetEO data set",
+        "year": 2022,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "expanded_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "MxD11A1 products"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "landsat_land_surface_temperature",
+          "anchor_product": "Landsat land-surface-temperature observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "shared_product_credited_to_other_member",
+          "actual_dataset": "",
+          "actual_product_in_paper": "MxD11A1 products",
+          "evidence_quotes": [
+            "We found that the flags provided in the MxD11A1 products are insufficient to achieve this.",
+            "Reflectance-based Landsat time series comprise the entire multi-temporal collection 1 of the Landsat 4, 5, 7, and 8 archives ( https://landsat.gsfc.nasa.gov/data , last access: 3 May 2022) covering the period 1984–2017 at 30 m spatial pixel size.",
+            "The seven spectral bands of the Landsat product were collected: blue, green, red, near infrared (NIR), shortwave infrared 1 and 2 (SWIR1, SWIR2), and thermal infrared (TIR) ( https://landsat.usgs.gov/what-are-band-designations-landsat-satellites , last access: 3 May 2022).",
+            "The services by GEE provided cutouts of the above-mentioned products at the EC sites.",
+            "In the Landsat data, the flag pixel_qa provided quality attributes\n (CFMask,  Foga et al. ,  2017 ) and removed pixels that contained snow/ice, water, cloud, and/or cloud shadow using a binary flag of presence."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "duplicate_actual_product_credited_to_modis_land_surface_temperature"
+          ],
+          "prior_basis": "dual_020_038_single_model_used",
+          "prior_basis_strength": "weak",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "parent_scope",
+              "usage": "used_as_data",
+              "matched_product": "Landsat 4, 5, 7, and 8 archives including thermal infrared (TIR) band",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "not_matched",
+              "usage": "uncertain",
+              "matched_product": "",
+              "dataset_name": "Landsat land-surface-temperature observations"
+            }
+          }
+        },
+        {
+          "member_id": "modis_land_surface_temperature",
+          "anchor_product": "MODIS land-surface-temperature observations",
+          "verdict": "used_compatible",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "actual_dataset": "MxD11A1 products",
+          "actual_product_in_paper": "MxD11A1 products",
+          "evidence_quotes": [
+            "We found that the flags provided in the MxD11A1 products are insufficient to achieve this.",
+            "The MODIS MOD11A1 (Terra, starting in 2000) and MYD11A1 (Aqua, starting in 2002) products (hereafter jointly referred to as MxD11A1, Wan et al. ,  2015 a , b ) provide daily LST and emissivity estimates aligned with quality and view angle information at 1 km spatial pixel sizes.",
+            "The processing of the LST follows this order:",
+            "The quality control of the MODIS LST focused on removing outlier values.",
+            "The following sequence of steps filled the four MODIS LST data streams (for technical details refer to Appendix  B ).",
+            "The MODIS MOD11A1 (Terra, starting in 2000) and MYD11A1 (Aqua, starting in 2002) products (hereafter jointly referred to as MxD11A1, Wan et al , 2015 a , b ) provide daily LST and emissivity estimates aligned with quality and view angle information at 1 km spatial pixel sizes.",
+            "Quality control of the MODIS LST focused on removing outlier values. Negative outlier values in LST might represent residual cloud contamination, whereas unusually high values might originate from undetected saturation in the level 1 data."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS MOD11A1 and MYD11A1, jointly MxD11A1",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "MODIS MOD11A1/MYD11A1 (MxD11A1)",
+              "dataset_name": "MODIS land-surface-temperature observations"
+            }
+          },
+          "shared_product_note": "same product also matched other member(s); credited here only"
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "landsat_land_surface_temperature"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "quality control for effects of snow, water, bad inversion per spectral band, and individual pixel in a cutout (henceforth subpixel) using the MODIS/Landsat quality flags;",
+        "Fill short non-snow-related gaps ( ≤  5 d or ≤  1 month for MODIS and Landsat, respectively) with a median across valid values in moving windows of 16 d (3 months for Landsat).",
+        "The following sequence of steps filled the four MODIS LST data streams"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文面向全球通量塔站点，回答如何用 MODIS 和 Landsat 遥感观测为通量塔周边陆表变量构建质量控制、空间汇总和时间缺口填补的数据集。对象包括反射率型植被/光谱指标以及 MODIS 陆表温度时间序列。",
+      "hypothesis_or_mechanism": "核心机制是通过质量标志剔除雪、水、云、云影和反演质量差的观测，并仅用时间维度操作对缺口进行填补，从而保留真实高质量观测并估计缺测值。对于 MODIS LST，论文还利用四个昼夜/卫星数据流之间的关系和 LST 的短时间自相关来互相填补缺口，并可用几何校正处理观测方向性影响。",
+      "variables_and_data_use": "论文使用 MODIS MCD43A2 的 BRDF/Albedo 质量标志对反射率型指标进行质量控制，并据此计算一系列光谱植被指数。论文使用 Landsat 数据中的 pixel_qa/CFMask 质量属性去除 snow/ice、water、cloud 和 cloud shadow 像元，再计算 Landsat 光谱植被指数。论文还使用 MODIS MxD11A1 陆表温度产品的四个 LST 数据流，进行异常值过滤、可选几何校正、空间聚合和时间缺口填补。",
+      "method_paradigm": "方法范式是遥感时间序列质量控制、经验异常值过滤、时序缺口填补和可选空间聚合/几何校正。缺口填补主要采用移动中位数、雪期基线填补、基于中位季节循环的线性缩放、不同 MODIS LST 数据流互补填补以及三次多项式或最近邻插值。",
+      "study_area": "global flux towers",
+      "study_period": "给定文本未明确完整研究时段；文中提到 MODIS in the years 2000–2002",
+      "datasets_used": [
+        {
+          "name_in_paper": "MCD43A2 product",
+          "role_in_study": "用于 MODIS 反射率型植被指数的质量控制，使用 BRDF/Albedo 波段质量、雪和陆水类型等标志筛选样本。",
+          "usage": "used_as_data",
+          "evidence_quote": "Quality control of the MODIS reflectance-based vegetation indices focused on three aspects: good inversion quality of the bidirectional reflectance distribution function as indicated by the BRDF_Albedo_Band_Quality_Bandx flags in the MCD43A2 product, snow-free conditions according to the Snow_BRDF_Albedo flag, and the omission of reflectance values that are affected by the presence of water in the field of view using the BRDF_Albedo_LandWaterType flag.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Landsat data",
+          "role_in_study": "用于质量控制并计算 Landsat 光谱植被指数，pixel_qa/CFMask 标志用于剔除雪冰、水、云和云影像元。",
+          "usage": "used_as_data",
+          "evidence_quote": "In the Landsat data, the flag pixel_qa provided quality attributes\n (CFMask,  Foga et al. ,  2017 ) and removed pixels that contained snow/ice, water, cloud, and/or cloud shadow using a binary flag of presence.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "MxD11A1 products",
+          "role_in_study": "作为 MODIS 陆表温度数据来源；论文处理四个 MODIS LST 数据流，进行质量检查、可选几何校正、空间聚合和缺口填补。",
+          "usage": "used_as_data",
+          "evidence_quote": "We found that the flags provided in the MxD11A1 products are insufficient to achieve this.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "four MODIS LST data streams",
+          "role_in_study": "用于 MODIS LST 的联合缺口填补，其中一个数据流作为 reference 来填补另一个 imputed 数据流。",
+          "usage": "used_as_data",
+          "evidence_quote": "The following sequence of steps filled the four MODIS LST data streams",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "geometrical model",
+          "role_in_study": "用于 MODIS LST 几何校正，估计如同从天底或 40 度观测角观测到的 LST。",
+          "usage": "used_as_data",
+          "evidence_quote": "A parametric model estimates the magnitude of LST as if constantly observed from nadir or an angle of 40 ∘ between the sensor and the zenith above a given site.",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "dataset_or_software_paper",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.5194_bg-19-2805-2022.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.5194_bg-19-2805-2022.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "e5b0e84b6c9a18cf6cedb7275a41bef0f7746aefd5a056a333b0a67c00ee93e8",
+        "model": "gpt-5.5",
+        "attempts": 2,
+        "extracted_at": "2026-10-10T15:16:24",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_031/10.5194_bg-19-2805-2022.json",
+        "quote_gate": {
+          "total": 10,
+          "verified": 10
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_038/10.5194_bg-19-2805-2022.json",
+        "sha256": "9f71e76c7bae10cd36915b0b14c4fb34fe2a26315488e84e7ffd727ef3580058",
+        "source_task_id": "dual_dataset/task_038",
+        "model_verdicts": {
+          "gpt": "uncertain",
+          "qwen": "uncertain"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010"
+}

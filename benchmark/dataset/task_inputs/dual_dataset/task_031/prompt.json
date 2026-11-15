@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Kuala Lumpur urban-heat observation space",
+  "datasets": [
+    {
+      "role": "landsat_land_surface_temperature",
+      "data_description": {
+        "dataset_name": "Landsat land-surface-temperature observations",
+        "data_type": "Landsat 8/9 land-surface-temperature observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "spatial_coverage": {
+          "region_name": "Kuala Lumpur urban-heat observation space",
+          "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+    },
+    {
+      "role": "modis_land_surface_temperature",
+      "data_description": {
+        "dataset_name": "MODIS land-surface-temperature observations",
+        "data_type": "MODIS MOD11A1 land-surface-temperature observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MOD11A1",
+        "spatial_coverage": {
+          "region_name": "Kuala Lumpur urban-heat observation space",
+          "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MOD11A1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Landsat land-surface-temperature observations",
+      "data_type": "Landsat 8/9 land-surface-temperature observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "spatial_coverage": {
+        "region_name": "Kuala Lumpur urban-heat observation space",
+        "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "MODIS land-surface-temperature observations",
+      "data_type": "MODIS MOD11A1 land-surface-temperature observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MOD11A1",
+      "spatial_coverage": {
+        "region_name": "Kuala Lumpur urban-heat observation space",
+        "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:MODIS/061/MOD11A1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_031:composite_observation",
+    "type": "composite_observation",
+    "name": "landsat_modis_urban_heat composite observation",
+    "observable_group": "landsat_modis_urban_heat_multidataset_observation",
+    "components": [
+      {
+        "role": "landsat_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "Landsat land-surface-temperature observations",
+          "data_type": "Landsat 8/9 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "modis_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "MODIS land-surface-temperature observations",
+          "data_type": "MODIS MOD11A1 land-surface-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MOD11A1",
+          "spatial_coverage": {
+            "region_name": "Kuala Lumpur urban-heat observation space",
+            "coverage": "Declared analysis region within Kuala Lumpur urban-heat observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD11A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "landsat_land_surface_temperature",
+        "modis_land_surface_temperature"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_031:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "GEE:MODIS/061/MOD11A1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "landsat_land_surface_temperature",
+      "modis_land_surface_temperature"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

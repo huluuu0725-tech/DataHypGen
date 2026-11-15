@@ -1,0 +1,64 @@
+{
+  "paper_id": "10.1007/s10668-020-00652-x",
+  "task_id": "single_dataset/task_011",
+  "title": "Determination of sensitivity of drainage morphometry towards hydrological response interactions for various datasets",
+  "category": "geomorphology_analysis",
+  "year": 2020,
+  "journal": "Environment, Development and Sustainability",
+  "impact_level": "medium",
+  "datasets": [
+    "SRTM",
+    "ASTER DEM",
+    "AW3D30",
+    "CartoDEM"
+  ],
+  "study_area_verified": {
+    "name": "Verakadi watershed, lower Tapi basin, Gujarat, India",
+    "area_km2": 440,
+    "bbox": "73°03'-73°30'E, 21°14'-21°30'N",
+    "elevation_m": "12 to 333",
+    "source": "seed full text (10.1007/s10668-020-00652-x) study area section",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "anchor": "USGS/SRTMGL1_003",
+    "operationally_used": true,
+    "role": "one of four open-source DEMs evaluated for vertical accuracy and morphometric sensitivity, not the sole product",
+    "evidence": "Table 1 lists SRTM-GL1 (1 arc second, ~30 m, WGS 1984 / EGM 96) alongside AW3D30, ASTER GDEM-V2 and CartoDEM-V3.1",
+    "comparators": [
+      "AW3D30",
+      "ASTER GDEM-V2",
+      "CartoDEM-V3.1"
+    ],
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "不同DEM数据集提取的流域地貌形态参数如何影响对水文响应敏感性的判定与预测？",
+    "hypothesis": "由于SRTM与ASTER DEM在空间分辨率、垂直精度和地形表达方式上存在差异，基于两类数据集提取的流域形态参数会对水文响应预测产生系统性差异。",
+    "mechanism": "DEM数据集通过影响河网提取、坡度计算、流域边界划分和地貌形态参数估算，进而改变对汇流过程、径流产生潜势和流域水文响应强度的表征；因此，数据源误差和地形表达差异会沿着“DEM特征差异—地貌参数差异—水文响应预测差异”的路径传递。",
+    "key_variables": {
+      "target": "流域水文响应敏感性或水文响应预测能力",
+      "predictors": [
+        "DEM数据源类型",
+        "流域面积",
+        "流域周长",
+        "河网长度",
+        "河流级序",
+        "排水密度",
+        "河流频率",
+        "分叉比",
+        "形状因子",
+        "圆度比",
+        "伸长比",
+        "坡度相关形态参数"
+      ]
+    },
+    "data_sources": [
+      "SRTM DEM",
+      "ASTER DEM"
+    ],
+    "analytical_approach": "基于SRTM和ASTER DEM分别提取流域边界、河网和地貌形态参数，并对不同数据源所得参数进行对比分析；进一步评估这些形态参数在表征或预测水文响应方面的敏感性差异。",
+    "expected_contribution": "为DEM数据源选择对流域地貌分析和水文响应预测的影响提供方法学依据，明确不同DEM数据集在排水形态参数提取中的适用性和潜在不确定性，从而改进基于地形数据的流域水文评价设计。",
+    "falsification_condition": "如果SRTM与ASTER DEM提取的关键流域形态参数不存在有意义差异，或这些差异不会导致水文响应预测敏感性的变化，则该假设将被推翻。"
+  }
+}

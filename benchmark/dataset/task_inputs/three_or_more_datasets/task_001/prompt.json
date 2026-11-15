@@ -1,0 +1,346 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrain-supported phase-preserving SAR observation space",
+  "datasets": [
+    {
+      "role": "phase_preserving_sar_input_1a",
+      "data_description": {
+        "dataset_name": "Sentinel-1A single-look complex (SLC) SAR imagery",
+        "data_type": "Phase-preserving SAR image collection",
+        "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+        "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+        "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+        "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+        "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+        "source_metadata": {
+          "source": "NASA_CMR",
+          "id": "SENTINEL-1A_SLC",
+          "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1214470488-ASF.html",
+          "provider": "NASA ASF DAAC; ESA Copernicus",
+          "thematic_group": "Radar / Interferometric SAR"
+        },
+        "data_path": "NASA_CMR:SENTINEL-1A_SLC",
+        "analytical_capabilities": [
+          "Preserve complex amplitude and phase for interferogram formation",
+          "Estimate coherence, wrapped phase and displacement time series",
+          "Support repeat-pass deformation and landslide change detection"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Complex SAR amplitude and phase",
+          "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+        },
+        "spatial_coverage": {
+          "region_name": "Global terrain-supported phase-preserving SAR observation space",
+          "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+        }
+      },
+      "data_path": "NASA_CMR:SENTINEL-1A_SLC"
+    },
+    {
+      "role": "phase_preserving_sar_input_1b",
+      "data_description": {
+        "dataset_name": "Sentinel-1B single-look complex (SLC) SAR imagery",
+        "data_type": "Phase-preserving SAR image collection",
+        "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+        "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+        "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+        "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+        "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+        "source_metadata": {
+          "source": "NASA_CMR",
+          "id": "SENTINEL-1B_SLC",
+          "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1327985661-ASF.html",
+          "provider": "NASA ASF DAAC; ESA Copernicus",
+          "thematic_group": "Radar / Interferometric SAR"
+        },
+        "data_path": "NASA_CMR:SENTINEL-1B_SLC",
+        "analytical_capabilities": [
+          "Preserve complex amplitude and phase for interferogram formation",
+          "Estimate coherence, wrapped phase and displacement time series",
+          "Support repeat-pass deformation and landslide change detection"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Complex SAR amplitude and phase",
+          "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+        },
+        "spatial_coverage": {
+          "region_name": "Global terrain-supported phase-preserving SAR observation space",
+          "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+        }
+      },
+      "data_path": "NASA_CMR:SENTINEL-1B_SLC"
+    },
+    {
+      "role": "topographic_geometry_input",
+      "data_description": {
+        "dataset_name": "SRTM Digital Elevation Data 30 m",
+        "data_type": "Raster image",
+        "data_format": "Google Earth Engine Image",
+        "spatial_resolution": "1 arc-second, approximately 30 m",
+        "temporal_unit": "Static elevation composite",
+        "temporal_coverage": "2000 source acquisitions",
+        "data_source": "NASA Shuttle Radar Topography Mission",
+        "gee_asset": {
+          "id": "USGS/SRTMGL1_003",
+          "type": "image"
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003",
+        "analytical_capabilities": [
+          "Support SLC co-registration and topographic-phase removal",
+          "Derive elevation, slope and aspect for terrain correction",
+          "Provide geometry for geocoding and interferometric sensitivity analysis"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Elevation in metres above the EGM96 geoid",
+          "runtime_hint": "Retain the original elevation and declare the scale used for terrain derivatives."
+        },
+        "spatial_coverage": {
+          "region_name": "Global terrain-supported phase-preserving SAR observation space",
+          "coverage": "SRTM elevation coverage intersected with the declared study area."
+        }
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Sentinel-1A single-look complex (SLC) SAR imagery",
+      "data_type": "Phase-preserving SAR image collection",
+      "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+      "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+      "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+      "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+      "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+      "source_metadata": {
+        "source": "NASA_CMR",
+        "id": "SENTINEL-1A_SLC",
+        "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1214470488-ASF.html",
+        "provider": "NASA ASF DAAC; ESA Copernicus",
+        "thematic_group": "Radar / Interferometric SAR"
+      },
+      "data_path": "NASA_CMR:SENTINEL-1A_SLC",
+      "analytical_capabilities": [
+        "Preserve complex amplitude and phase for interferogram formation",
+        "Estimate coherence, wrapped phase and displacement time series",
+        "Support repeat-pass deformation and landslide change detection"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Complex SAR amplitude and phase",
+        "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+      },
+      "spatial_coverage": {
+        "region_name": "Global terrain-supported phase-preserving SAR observation space",
+        "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+      }
+    },
+    {
+      "dataset_name": "Sentinel-1B single-look complex (SLC) SAR imagery",
+      "data_type": "Phase-preserving SAR image collection",
+      "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+      "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+      "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+      "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+      "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+      "source_metadata": {
+        "source": "NASA_CMR",
+        "id": "SENTINEL-1B_SLC",
+        "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1327985661-ASF.html",
+        "provider": "NASA ASF DAAC; ESA Copernicus",
+        "thematic_group": "Radar / Interferometric SAR"
+      },
+      "data_path": "NASA_CMR:SENTINEL-1B_SLC",
+      "analytical_capabilities": [
+        "Preserve complex amplitude and phase for interferogram formation",
+        "Estimate coherence, wrapped phase and displacement time series",
+        "Support repeat-pass deformation and landslide change detection"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Complex SAR amplitude and phase",
+        "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+      },
+      "spatial_coverage": {
+        "region_name": "Global terrain-supported phase-preserving SAR observation space",
+        "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+      }
+    },
+    {
+      "dataset_name": "SRTM Digital Elevation Data 30 m",
+      "data_type": "Raster image",
+      "data_format": "Google Earth Engine Image",
+      "spatial_resolution": "1 arc-second, approximately 30 m",
+      "temporal_unit": "Static elevation composite",
+      "temporal_coverage": "2000 source acquisitions",
+      "data_source": "NASA Shuttle Radar Topography Mission",
+      "gee_asset": {
+        "id": "USGS/SRTMGL1_003",
+        "type": "image"
+      },
+      "data_path": "GEE:USGS/SRTMGL1_003",
+      "analytical_capabilities": [
+        "Support SLC co-registration and topographic-phase removal",
+        "Derive elevation, slope and aspect for terrain correction",
+        "Provide geometry for geocoding and interferometric sensitivity analysis"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Elevation in metres above the EGM96 geoid",
+        "runtime_hint": "Retain the original elevation and declare the scale used for terrain derivatives."
+      },
+      "spatial_coverage": {
+        "region_name": "Global terrain-supported phase-preserving SAR observation space",
+        "coverage": "SRTM elevation coverage intersected with the declared study area."
+      }
+    }
+  ],
+  "data_paths": [
+    "NASA_CMR:SENTINEL-1A_SLC",
+    "NASA_CMR:SENTINEL-1B_SLC",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "Phase-preserving SAR with terrain geometry composite observation",
+    "observable_group": "slc_insar_phase_plus_dem_terrain_support",
+    "data_description": {
+      "dataset_name": "Phase-preserving SAR with terrain geometry composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled SLC SAR and DEM bundle",
+      "spatial_coverage": {
+        "region_name": "Global terrain-supported phase-preserving SAR observation space"
+      },
+      "analytical_capabilities": [
+        "Joint interferometric processing across the independent SLC and DEM inputs",
+        "Topographic-phase removal, terrain correction and deformation analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "phase_preserving_sar_input_1a",
+        "data_description": {
+          "dataset_name": "Sentinel-1A single-look complex (SLC) SAR imagery",
+          "data_type": "Phase-preserving SAR image collection",
+          "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+          "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+          "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+          "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+          "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+          "source_metadata": {
+            "source": "NASA_CMR",
+            "id": "SENTINEL-1A_SLC",
+            "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1214470488-ASF.html",
+            "provider": "NASA ASF DAAC; ESA Copernicus",
+            "thematic_group": "Radar / Interferometric SAR"
+          },
+          "data_path": "NASA_CMR:SENTINEL-1A_SLC",
+          "analytical_capabilities": [
+            "Preserve complex amplitude and phase for interferogram formation",
+            "Estimate coherence, wrapped phase and displacement time series",
+            "Support repeat-pass deformation and landslide change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Complex SAR amplitude and phase",
+            "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+          },
+          "spatial_coverage": {
+            "region_name": "Global terrain-supported phase-preserving SAR observation space",
+            "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+          }
+        },
+        "data_path": "NASA_CMR:SENTINEL-1A_SLC"
+      },
+      {
+        "role": "phase_preserving_sar_input_1b",
+        "data_description": {
+          "dataset_name": "Sentinel-1B single-look complex (SLC) SAR imagery",
+          "data_type": "Phase-preserving SAR image collection",
+          "data_format": "Sentinel-1 Level-1 SLC scenes or equivalent phase-preserving SAR products",
+          "spatial_resolution": "Mission-dependent SLC sampling, typically IW mode burst geometry",
+          "temporal_unit": "Repeat-pass acquisition pairs or interferometric stacks",
+          "temporal_coverage": "2014-present for Sentinel-1 SLC-compatible observations",
+          "data_source": "NASA Alaska Satellite Facility DAAC / ESA Copernicus",
+          "source_metadata": {
+            "source": "NASA_CMR",
+            "id": "SENTINEL-1B_SLC",
+            "doc_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1327985661-ASF.html",
+            "provider": "NASA ASF DAAC; ESA Copernicus",
+            "thematic_group": "Radar / Interferometric SAR"
+          },
+          "data_path": "NASA_CMR:SENTINEL-1B_SLC",
+          "analytical_capabilities": [
+            "Preserve complex amplitude and phase for interferogram formation",
+            "Estimate coherence, wrapped phase and displacement time series",
+            "Support repeat-pass deformation and landslide change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Complex SAR amplitude and phase",
+            "runtime_hint": "Keep complex phase through co-registration and interferogram formation; GRD backscatter is not an SLC substitute."
+          },
+          "spatial_coverage": {
+            "region_name": "Global terrain-supported phase-preserving SAR observation space",
+            "coverage": "Sentinel-1 SLC scenes intersected with the declared study area."
+          }
+        },
+        "data_path": "NASA_CMR:SENTINEL-1B_SLC"
+      },
+      {
+        "role": "topographic_geometry_input",
+        "data_description": {
+          "dataset_name": "SRTM Digital Elevation Data 30 m",
+          "data_type": "Raster image",
+          "data_format": "Google Earth Engine Image",
+          "spatial_resolution": "1 arc-second, approximately 30 m",
+          "temporal_unit": "Static elevation composite",
+          "temporal_coverage": "2000 source acquisitions",
+          "data_source": "NASA Shuttle Radar Topography Mission",
+          "gee_asset": {
+            "id": "USGS/SRTMGL1_003",
+            "type": "image"
+          },
+          "data_path": "GEE:USGS/SRTMGL1_003",
+          "analytical_capabilities": [
+            "Support SLC co-registration and topographic-phase removal",
+            "Derive elevation, slope and aspect for terrain correction",
+            "Provide geometry for geocoding and interferometric sensitivity analysis"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Elevation in metres above the EGM96 geoid",
+            "runtime_hint": "Retain the original elevation and declare the scale used for terrain derivatives."
+          },
+          "spatial_coverage": {
+            "region_name": "Global terrain-supported phase-preserving SAR observation space",
+            "coverage": "SRTM elevation coverage intersected with the declared study area."
+          }
+        },
+        "data_path": "GEE:USGS/SRTMGL1_003"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Interferometric phase and coherence interpreted with DEM-supported terrain geometry.",
+      "alignment": "Sentinel-1A and Sentinel-1B SLC repeat-pass observations and the static DEM are co-registered to the declared study area and analysis window.",
+      "required_roles": [
+        "phase_preserving_sar_input_1a",
+        "phase_preserving_sar_input_1b",
+        "topographic_geometry_input"
+      ],
+      "component_count": 3
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "NASA_CMR:SENTINEL-1A_SLC",
+    "NASA_CMR:SENTINEL-1B_SLC",
+    "GEE:USGS/SRTMGL1_003"
+  ],
+  "schema_version": "2.0-composite-anchor",
+  "hard_constraints": {
+    "required_roles": [
+      "phase_preserving_sar_input_1a",
+      "phase_preserving_sar_input_1b",
+      "topographic_geometry_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

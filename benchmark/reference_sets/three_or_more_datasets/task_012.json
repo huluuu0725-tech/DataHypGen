@@ -1,0 +1,1850 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_012",
+  "reference_coverage": "provisional_adequate",
+  "evaluation_year": 2026,
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_012:composite_observation",
+    "type": "composite_observation",
+    "name": "elderly_healthcare_accessibility composite observation",
+    "observable_group": "elderly_healthcare_accessibility_multidataset_observation",
+    "components": [
+      {
+        "role": "human_activity_intensity_input",
+        "data_description": {
+          "dataset_name": "VIIRS Black Marble nighttime radiance",
+          "data_type": "Daily corrected nighttime-radiance raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA Black Marble VNP46A2",
+          "data_path": "NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Mainland China",
+            "coverage": "Declared analysis region within Mainland China."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "ecological_constraint_input",
+        "data_description": {
+          "dataset_name": "MODIS Terra Vegetation Indices",
+          "data_type": "16-day vegetation-index raster collection",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA MODIS MOD13A1",
+          "data_path": "MODIS/061/MOD13A1",
+          "spatial_coverage": {
+            "region_name": "Mainland China",
+            "coverage": "Declared analysis region within Mainland China."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "MODIS/061/MOD13A1"
+      },
+      {
+        "role": "elderly_demand_context_input",
+        "data_description": {
+          "dataset_name": "China 100 m age-specific population grid",
+          "data_type": "Age-specific gridded population raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "China Seventh National Population Census derived product",
+          "data_path": "GEE:WorldPop/GP/100m/pop_age_sex",
+          "spatial_coverage": {
+            "region_name": "Mainland China",
+            "coverage": "Declared analysis region within Mainland China."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "GEE:WorldPop/GP/100m/pop_age_sex"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "human_activity_intensity_input",
+        "ecological_constraint_input",
+        "elderly_demand_context_input"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after declared spatial and temporal alignment.",
+      "supplement_policy": "Supplementary data may be added only with a distinct mechanism, validation or context role; no supplement may replace a required role."
+    }
+  },
+  "seed_exclusion": {
+    "doi": "10.3390/land15040611",
+    "exclusion_reason": "seed paper excluded from the reference space"
+  },
+  "construction": {
+    "channels": [
+      "multidataset_anchor_asset_lineages",
+      "bclass_slice_presence_batch_20261005"
+    ],
+    "time_window": "paper_year <= evaluation_year; seed DOI excluded",
+    "required_methods_evidence": "A reference must operationally use the anchor members; this batch admits on model member findings plus corpus slice presence under the user ruling of 2026-10-05 (weaker basis, admission_basis recorded per paper)."
+  },
+  "quality": {
+    "ref_count": 11,
+    "source_paper_count": 11,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 11,
+    "partial_set_support_count": 1,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": true,
+    "manual_admission_count": 11
+  },
+  "reference_papers": [
+    {
+      "doi": "10.1038/s41586-023-06723-z",
+      "title": "Integrated global assessment of the natural forest carbon potential",
+      "year": 2023,
+      "venue": "Nature",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "usedtorelatetheglas-basedestimatesofabovegroundbiomasstosatelliteimagerybythemoderateresolutionimagingspectroradiometer(modis),ultimatelyallowingtogeneratespatiallyexplicitestimatesofglobalabovegroundbiomassdensityataresolutionofapproximately500m.themapwasaggregatedfrom500-mto1-km2spatialresolutiontomatchtheresolutionofthecovariatesandcamewithanuncertaintyla"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "MODIS imagery",
+            "qwen": "Moderate Resolution Imaging Spectroradiometer (MODIS)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "uncertain",
+        "gpt_coverage_tier": "uncertain",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.1111/1745-5871.12535",
+      "title": "Wildland urban interface of the City of Cape Town 1990–2019",
+      "year": 2022,
+      "venue": "Geographical Research",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ftheclassificationseeappendixa.4.2|burnedareadatatwotypesofburnedareadatawereused:differencenormalisedburnratio(dnbr)andmodisburnedareaproductcollection6(mcd64a1)(giglioetal.,2015).dnbrwasextractedfromlandsat5(1990to2007)andfigure2locationofthecityofcapetownsituatedinthewesterncapeinsouthafrica.source:cityofcapetown,20164christetal.landsat7(2008to2010)annual"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "rejected",
+        "gpt_coverage_tier": "rejected",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.3390/f12010005",
+      "title": "Forest Fire Probability Mapping in Eastern Serbia: Logistic Regression versus Random Forest Method",
+      "year": 2020,
+      "venue": "Forests",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ngitudes20.90–23.01◦e)withthelayerofforestfirehotspotsobtainedbynasa’sfireinformationforresourcemanagementsystem(firms)(modisfirehotspot)fortheperiodof2001–2018.2.2.datapreparation2.2.1.dependentvariabledataregardingthefirelocationwereobtainedfromnasa’sfireinformationforresourcemanagementsystem(firms),whichdistributesnearreal-timefireproductsfrommoderatereso"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Population Density PopD N/km2 CIESIN 1.147",
+            "Population data were obtained from a raster dataset available for download in GeoTIFF format at the Center for International Earth Science Information Network (CIESIN), Columbia University (http://dx.doi.org/10.7927/H4639MPP).",
+            "The sum of the number of people per polygon grid was also calculated by a zonal statistic tool."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "rejected",
+        "gpt_coverage_tier": "rejected",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.3390/ijgi14100372",
+      "title": "Mobilities in the Heat: Identifying Travel-Related Urban Heat Exposure and Its Built Environment Drivers Using Remote Sensing and Mobility Data in Chengdu, China",
+      "year": 2025,
+      "venue": "ISPRS International Journal of Geo-Information",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "cusesonthecentralurbandistrictsofchengdu,oneofthelargestmegacitiesinchina.itsynthesizesride-hailingtrajectoriesfromdidi,modissatelliteremotesensingdataandspatialnetwork/poidatafromgaodemapsacross11,525urbangrids.theremainderofthispaperisorganizedasfollows:chapter2outlinesthetheoreticalfoundationandmethodologicalframework,includingtheiconstruction,lisaanalysi"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "MODIS MOD11A1",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Consideringdataavailability,thisstudyincludespopulationdensity(sourcedfromtheWorldPop2021dataset),averagebuildingage,andhousingprices(obtainedthroughwebscrapingfromAnjuke,arealestateplatform)asindicators."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "WorldPop 2021 dataset",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "rejected",
+        "gpt_coverage_tier": "rejected",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.3390/rs14235965",
+      "title": "Spatiotemporal Assessment of Forest Fire Vulnerability in China Using Automated Machine Learning",
+      "year": 2022,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Thesevariableswerecollected\nfrommultiplesources,includingsatelliteimagesandreanalysisproducts.Datacollection\nandprocessingwerecompletedontheGoogleEarthEnginecloudplatform.Pleasesee\nAppendixAforspeci\u0002cinformationonexplanatoryvariableextractionandprocessing."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ngandclimateregulation.forestdistributionandtypes(figure1)inchinawereobtainedbyintegratingtheforestcoverdatafromtheterramodisvegetationcontinuousfields(vcf)product[45withthe1:1,000,000vegetationtypemapfromthedatacenterforresourcesandenvironmentalsciences,chineseacademyofsciences(resdc,http://www.resdc.cn,accessedon6november2021).weextractedtheareaswithtreeco"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "PopulationdensityPDYearly",
+            "Weextractedtheexplanatoryvariablesforeachofthe\u0002rerecordstotrainthevulnerabilitymodels.Speci\u0002cally,theexplanatoryvariableswerespatiallyaveragedaccordingto\neach\u0002re-burnedforestarea.",
+            "Spatialdistributionmapsofallexplanatoryvariableswereobtainedandconvertedtoraster\nwith1000mresolutionforthe\u0002revulnerabilitypredictioninChina.",
+            "Pleasesee\nAppendixAforspeci\u0002cinformationonexplanatoryvariableextractionandprocessing."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "uncertain",
+        "gpt_coverage_tier": "uncertain",
+        "gpt_matched_member_count": 0,
+        "gpt_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "rejected",
+        "qwen_matched_member_count": 0,
+        "qwen_missing_member_ids": [
+          "human_activity_intensity_input",
+          "ecological_constraint_input",
+          "elderly_demand_context_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.1016/j.rse.2021.112834",
+      "title": "Modeling the direction and magnitude of angular effects in nighttime light remote sensing",
+      "year": 2021,
+      "venue": "Remote Sensing of Environment",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['elderly_demand_context_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "verdict": "used_exact",
+          "evidence": "All Black Marble daily level-3 products ... NTL images taken in 2014 were used"
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "verdict": "used_analogous",
+          "evidence": "vegetation information from MODIS products; NDVI used as a proxy"
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "elderly_demand_context_input"
+      ]
+    },
+    {
+      "doi": "10.1098/rsif.2015.0073",
+      "title": "Bayesian hierarchical spatio-temporal mapping of the under-five population in Nigeria at 1 km resolution",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2015,
+      "venue": "Journal of The Royal Society Interface"
+    },
+    {
+      "doi": "10.1038/sdata.2015.45",
+      "title": "High-resolution gridded population mapping with VIIRS and MODIS covariates for Brazil",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2015,
+      "venue": "Scientific Data"
+    },
+    {
+      "doi": "10.3390/rs11212502",
+      "title": "Dasymetric population mapping with POI, VIIRS night-time lights and demographic data",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2019,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+      "title": "Random Forest evaluation of population estimation technologies under limited data availability",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2026,
+      "venue": "ISPRS annals of the photogrammetry, remote sensing and spatial information sciences"
+    },
+    {
+      "doi": "10.1038/s44220-024-00318-x",
+      "title": "The UrbanSat dataset: eleven urban-condition indicators for participant geocoding",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2024,
+      "venue": "Nature Mental Health"
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "manual_admitted_complete_set_reference_002",
+      "source_paper_doi": "10.1038/s41586-023-06723-z",
+      "title": "Integrated global assessment of the natural forest carbon potential",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "usedtorelatetheglas-basedestimatesofabovegroundbiomasstosatelliteimagerybythemoderateresolutionimagingspectroradiometer(modis),ultimatelyallowingtogeneratespatiallyexplicitestimatesofglobalabovegroundbiomassdensityataresolutionofapproximately500m.themapwasaggregatedfrom500-mto1-km2spatialresolutiontomatchtheresolutionofthecovariatesandcamewithanuncertaintyla"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "MODIS imagery",
+            "qwen": "Moderate Resolution Imaging Spectroradiometer (MODIS)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文旨在估算在假设没有人类扰动的情况下，全球可由树木支持区域的潜在树木碳和生态系统碳储量，并量化当前碳储量与潜在碳储量之间的差异。研究还区分这种差异中由森林退化贡献的保护潜力和由森林砍伐、冠层覆盖下降贡献的恢复潜力。",
+      "hypothesis_or_mechanism": "核心机制是：人类扰动会降低当前树木碳密度和冠层覆盖，因此将人类扰动变量设为零，并用潜在冠层覆盖替代当前冠层覆盖，可预测无人工扰动条件下的树木碳潜力。当前与潜在碳储量的差异进一步被归因于现有冠层内碳密度降低的森林退化，以及自然可支持树木但当前冠层减少的土地利用变化。",
+      "variables_and_data_use": "研究使用地面来源数据和卫星反演碳图作为当前树木/木本碳输入，包括 ESA-CCI、Walker et al. 基于 GLAS 与 MODIS 的约500 m全球地上生物量图、GlobBiomass102 及其 harmonized woody carbon map；这些数据被聚合到约1 km²并用于训练卫星数据模型。预测变量包括40个环境协变量、当前冠层覆盖、潜在冠层覆盖、人类扰动变量，以及保护区、intact forest landscapes 和 human modification <1% 用于筛选低人类扰动样本；还使用 root mass fractions 估算根碳，用森林类型死木和凋落物比例扩展到生态系统碳，并用土壤潜力图估算0–2 m土壤有机碳潜力。",
+      "method_paradigm": "方法范式为全球栅格化地理空间数据驱动建模，包含地面数据模型和卫星数据模型两类，并通过随机森林、参数网格搜索、十折交叉验证和100次 bootstrap 空间抽样生成潜在碳预测。研究还用 Moran’s I 和带缓冲的留一交叉验证检验空间自相关影响，并通过不确定性传播、碳潜力分解和文献荟萃分析综合评估结果。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s41586-023-06723-z.methods.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:03:28",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_003",
+      "source_paper_doi": "10.1111/1745-5871.12535",
+      "title": "Wildland urban interface of the City of Cape Town 1990–2019",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ftheclassificationseeappendixa.4.2|burnedareadatatwotypesofburnedareadatawereused:differencenormalisedburnratio(dnbr)andmodisburnedareaproductcollection6(mcd64a1)(giglioetal.,2015).dnbrwasextractedfromlandsat5(1990to2007)andfigure2locationofthecityofcapetownsituatedinthewesterncapeinsouthafrica.source:cityofcapetown,20164christetal.landsat7(2008to2010)annual"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文研究开普敦市1990—2019年由火依赖型荒野与正式、非正式城市区域组成的WUI社会—生态系统如何变化。具体关注WUI、城市区域和烧毁区域的空间范围如何随时间变化，政策变化可能如何关联这些空间趋势，以及这些趋势对荒野健康和城市可持续发展的含义。",
+      "hypothesis_or_mechanism": "核心机制是：城市扩张和人类活动会增加WUI火源，而火依赖型fynbos需要适度火周期；若火频率过高或长期排除火，都会导致荒野退化。以灭火为主的管理可能形成适应不良反馈，即大火后更强的灭火压力会增加燃料积累，并提高未来大型不可控野火风险。",
+      "variables_and_data_use": "研究使用Landsat 5和Landsat 8影像分类1990、2001、2011和2019年的土地覆盖，变量包括农地、正式城市、非正式城市、荒野和水体；用Landsat 5/7提取dNBR，并用MODIS Burned Area Product Collection 6（MCD64A1）识别2001—2019年烧毁区域及火季/非火季燃烧。还使用NOAA/NCEI的Cape Town International Airport日平均气温数据汇总火季平均和最高温度，并结合1996、2001年人口普查、2016年社区调查及政策/法律文献解释治理和人口背景。",
+      "method_paradigm": "方法范式是描述性案例研究与社会—生态系统框架结合的多源空间—政策分析。土地覆盖采用基于OpenCV Random Forest的遥感分类，WUI按荒野与城市接触带两侧各100米缓冲区划定，并叠加烧毁区、气候、人口和政策资料分析30年变化。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1111_1745-5871.12535.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:22"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_004",
+      "source_paper_doi": "10.3390/f12010005",
+      "title": "Forest Fire Probability Mapping in Eastern Serbia: Logistic Regression versus Random Forest Method",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ngitudes20.90–23.01◦e)withthelayerofforestfirehotspotsobtainedbynasa’sfireinformationforresourcemanagementsystem(firms)(modisfirehotspot)fortheperiodof2001–2018.2.2.datapreparation2.2.1.dependentvariabledataregardingthefirelocationwereobtainedfromnasa’sfireinformationforresourcemanagementsystem(firms),whichdistributesnearreal-timefireproductsfrommoderatereso"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Population Density PopD N/km2 CIESIN 1.147",
+            "Population data were obtained from a raster dataset available for download in GeoTIFF format at the Center for International Earth Science Information Network (CIESIN), Columbia University (http://dx.doi.org/10.7927/H4639MPP).",
+            "The sum of the number of people per polygon grid was also calculated by a zonal statistic tool."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文旨在回答东塞尔维亚森林火灾发生概率如何被地形、植被、人为因素和气候变量解释与预测，以及逻辑回归和随机森林模型在预测森林火灾发生方面的表现差异。研究还评估不同变量对火灾发生概率模型的重要性。",
+      "hypothesis_or_mechanism": "研究假定森林火灾发生与土地覆盖/植被类型、干旱程度、地形条件以及道路、居民点、农业用地等人为可达性因素有关；这些因素通过改变可燃物、干旱胁迫和人为点火可能性来影响火灾发生。为降低火灾与非火灾样本在环境条件上的混杂影响，论文使用倾向得分匹配选择与火灾网格可比的非火灾网格。",
+      "variables_and_data_use": "因变量为NASA FIRMS发布的Terra/Aqua MODIS 1 km主动火点产品，选取2001—2018年置信度高于80%的火点，并将1×1 km网格中至少出现一次历史火灾的单元编码为火灾单元。自变量包括CORINE 2012土地覆盖中的阔叶林、针叶林、混交林、天然草地、过渡林地-灌丛、稀疏植被区及农业/耕地距离，USGS DEM派生的海拔、坡度、坡向，OpenStreetMap道路、铁路、居民点、水体距离，CIESIN人口密度栅格，以及塞尔维亚共和国水文气象局的干旱代码DC；DC经普通克里金插值后按网格计算均值。",
+      "method_paradigm": "方法范式为基于1×1 km网格的二分类火灾发生概率建模，并结合倾向得分匹配构造火灾/非火灾配对样本。具体使用逻辑回归和随机森林分类模型，先以VIF和Spearman相关检验处理多重共线性，再用ROC/AUC、总体精度、Kappa、10折交叉验证和敏感性等于特异性的最优阈值进行模型验证与比较。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_f12010005.methods.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:04:03",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_005",
+      "source_paper_doi": "10.3390/ijgi14100372",
+      "title": "Mobilities in the Heat: Identifying Travel-Related Urban Heat Exposure and Its Built Environment Drivers Using Remote Sensing and Mobility Data in Chengdu, China",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "cusesonthecentralurbandistrictsofchengdu,oneofthelargestmegacitiesinchina.itsynthesizesride-hailingtrajectoriesfromdidi,modissatelliteremotesensingdataandspatialnetwork/poidatafromgaodemapsacross11,525urbangrids.theremainderofthispaperisorganizedasfollows:chapter2outlinesthetheoreticalfoundationandmethodologicalframework,includingtheiconstruction,lisaanalysi"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "MODIS MOD11A1",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Consideringdataavailability,thisstudyincludespopulationdensity(sourcedfromtheWorldPop2021dataset),averagebuildingage,andhousingprices(obtainedthroughwebscrapingfromAnjuke,arealestateplatform)asindicators."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "WorldPop 2021 dataset",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文旨在回答：如何将居民出行行为纳入城市热暴露评估，以识别成都中心城区的出行相关高热暴露空间格局及高风险区域。进一步考察建成环境因素如何以非线性方式影响全域和高暴露风险区的出行相关热暴露。",
+      "hypothesis_or_mechanism": "核心机制是“热危害强度 × 暴露机会/频率”：居民实际热暴露不仅由地表温度决定，还受出行强度和活动路径影响。建成环境通过交通可达性、城市形态、人口社会经济条件和植被覆盖等因素影响人群移动与热环境接触，从而改变热暴露风险。",
+      "variables_and_data_use": "研究用DiDi GAIA开放数据中的2021年7月网约车订单/轨迹数据表征出行强度或暴露频率，用NASA Terra卫星MODIS MOD11A1日尺度地表温度产品计算2021年7月平均LST并重采样到600 m网格，用二者构建THEI。还使用高德地图的空间网络/POI数据及人口密度、房价、路网密度、交叉口密度、容积率、NDVI等建成环境变量解释THEI及HERZ中的差异。",
+      "method_paradigm": "方法范式包括基于600 m网格的复合暴露指数构建、Local Moran’s I/LISA空间聚类识别High–High高暴露风险区，以及XGBoost非线性回归建模。模型解释采用SHAP、PDP和二维PDP，用于识别变量重要性、阈值效应和变量交互作用。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_ijgi14100372.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:03:44",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_008",
+      "source_paper_doi": "10.3390/rs14235965",
+      "title": "Spatiotemporal Assessment of Forest Fire Vulnerability in China Using Automated Machine Learning",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices",
+        "China 100 m age-specific population grid"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "human_activity_intensity_input",
+          "role": "human_activity_intensity_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Thesevariableswerecollected\nfrommultiplesources,includingsatelliteimagesandreanalysisproducts.Datacollection\nandprocessingwerecompletedontheGoogleEarthEnginecloudplatform.Pleasesee\nAppendixAforspeci\u0002cinformationonexplanatoryvariableextractionandprocessing."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "ecological_constraint_input",
+          "role": "ecological_constraint_input",
+          "anchor_product": "MODIS Terra Vegetation Indices",
+          "actual_dataset": "MODIS Terra Vegetation Indices",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ngandclimateregulation.forestdistributionandtypes(figure1)inchinawereobtainedbyintegratingtheforestcoverdatafromtheterramodisvegetationcontinuousfields(vcf)product[45withthe1:1,000,000vegetationtypemapfromthedatacenterforresourcesandenvironmentalsciences,chineseacademyofsciences(resdc,http://www.resdc.cn,accessedon6november2021).weextractedtheareaswithtreeco"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "elderly_demand_context_input",
+          "role": "elderly_demand_context_input",
+          "anchor_product": "China 100 m age-specific population grid",
+          "actual_dataset": "China 100 m age-specific population grid",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "PopulationdensityPDYearly",
+            "Weextractedtheexplanatoryvariablesforeachofthe\u0002rerecordstotrainthevulnerabilitymodels.Speci\u0002cally,theexplanatoryvariableswerespatiallyaveragedaccordingto\neach\u0002re-burnedforestarea.",
+            "Spatialdistributionmapsofallexplanatoryvariableswereobtainedandconvertedtoraster\nwith1000mresolutionforthe\u0002revulnerabilitypredictioninChina.",
+            "Pleasesee\nAppendixAforspeci\u0002cinformationonexplanatoryvariableextractionandprocessing."
+          ],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "uncertain",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "uncertain"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=0, qwen verdict=uncertain matched=0. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: ecological_constraint_input<-['modis']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_intensity_input; elderly_demand_context_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文旨在回答2001—2020年中国森林火灾脆弱性的时空格局如何、哪些区域是对火干扰高度敏感的热点，以及哪些因素驱动森林火灾脆弱性。研究还试图构建一种利用多源数据和自动化机器学习的大尺度森林火灾脆弱性评估框架。",
+      "hypothesis_or_mechanism": "论文将森林火灾脆弱性定义为发生给定火干扰后森林地上生物量的相对损失，认为脆弱性受森林植被特征、气候条件和景观特征共同控制。其机制是假定火灾前后AGB变化可表征火干扰造成的潜在损失，并用多变量预测这些损失。",
+      "variables_and_data_use": "因变量为火灾事件后的相对地上生物量损失AGBLrel，基于ESA Data User Element GlobBiomass 2010年100 m AGB产品和Terra MODIS Vegetation Continuous Fields（VCF）年森林覆盖数据重建2001—2020年AGB；火灾数据来自GWIS并使用MODIS MCD64A1 burned area产品提取2001—2019年森林火烧斑块。自变量包括AGB、滞后AGB、LAI、FAPAR、叶性状、降水、温度、短波辐射、PDSI、土壤湿度、湿润指数、景观指数、海拔和人口密度等，并结合RESDC的1:1,000,000植被类型图与中国植被区划图进行森林类型和区域分析。",
+      "method_paradigm": "方法范式为基于多源遥感/再分析数据的自动化机器学习回归评估：先用VIF剔除共线性变量，再用H2O AutoML在训练集上自动训练和调参24个候选模型，并选择最优模型预测潜在相对AGB损失。随后生成1000 m分辨率的年度森林火灾脆弱性图，并分析时空格局、热点区域和关键驱动因子。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs14235965.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:32"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.1016/j.rse.2021.112834",
+      "title": "Modeling the direction and magnitude of angular effects in nighttime light remote sensing",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "VIIRS Black Marble nighttime radiance",
+        "MODIS Terra Vegetation Indices"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "elderly_demand_context_input"
+      ],
+      "research_question": "论文旨在回答夜间灯光遥感中卫星观测角度如何影响同一区域每日NTL辐亮度，以及这种角度效应在城市内部呈现何种空间模式。研究进一步询问城市三维景观因素如何驱动角度效应的方向（类型）和幅度。",
+      "hypothesis_or_mechanism": "核心机制是假设城市三维景观会塑造人工光观测的各向异性特征：建筑高度等因素决定不同卫星观测天顶角下人工光被遮挡或可见的部分。论文认为，在Black Marble已减弱大气、月光和季节植被等影响后，人工光角度效应主要由本地城市地表形态和景观结构决定。",
+      "variables_and_data_use": "研究使用2014年VIIRS/Suomi NPP Black Marble日尺度产品：VNP46A2的Lunar BRDF校正夜间灯光及质量层用于降低云、大气、月光、杂散光和季节植被干扰，VNP46A1的卫星天顶角层用于刻画观测角度。景观变量来自五城3D城市模型的建筑足迹和高度、OpenStreetMap道路数据、MODIS/Terra MOD13Q1 NDVI植被指数，以及Globeland30 2020 30米土地覆盖数据用于限制分析区域。",
+      "method_paradigm": "方法范式为概念模型构建结合统计建模：先提出城市景观形成NTL角度效应的概念模型，并在五个北美城市量化角度效应空间类型，包括负向、U形和正向。随后使用多项逻辑回归量化景观因素对角度效应方向/类型的贡献，并使用中介分析评估景观因素对角度效应幅度的直接作用及其通过NTL亮度产生的间接作用。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.rse.2021.112834.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:41:30"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_001",
+      "research_question": "如何在尼日利亚缺少近期人口普查时，利用地理定位家庭调查预测 1 km 网格五岁以下人口比例，并改善健康干预覆盖测量。",
+      "hypothesis_or_mechanism": "假定夜光、植被、土地覆盖和到主要定居点时间等空间协变量可解释年龄构成异质性；比采用统一五岁以下比例更细致的估计会改变蚊帐/疫苗覆盖指标。",
+      "variables_and_data_use": "使用全国代表性家庭调查及调查簇坐标，结合土地覆盖、到主要定居点出行时间、夜间灯光和植被指数预测五岁以下人口比例，并连接健康干预指标。",
+      "method_paradigm": "采用贝叶斯分层时空模型预测 1 km 年龄比例，再分析年龄分布精细化对蚊帐与疫苗覆盖估计的影响。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "Focusing on Nigeria, we use nation-\nally representative household surveys and their cluster locations to predict the\nproportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch-\nical spatio-temporal model.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1098_rsif.2015.0073.txt",
+        "doi": "10.1098/rsif.2015.0073",
+        "locator": "text lines 35–38"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Results showed that land cover, travel time to major\nsettlements, night-time lights and vegetation index were good predictors and\nthat accounting for fine-scale variation, rather than assuming a uniform pro-\nportion of under 5 year olds can result in significant differences in health\nmetrics.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1098_rsif.2015.0073.txt",
+        "doi": "10.1098/rsif.2015.0073",
+        "locator": "text lines 38–42"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "Focusing on Nigeria, we use nation-\nally representative household surveys and their cluster locations to predict the\nproportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch-\nical spatio-temporal model.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1098_rsif.2015.0073.txt",
+        "doi": "10.1098/rsif.2015.0073",
+        "locator": "text lines 35–38"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "using a Bayesian hierarch-\nical spatio-temporal model.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1098_rsif.2015.0073.txt",
+        "doi": "10.1098/rsif.2015.0073",
+        "locator": "text lines 37–38"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "Data on the proportion of the population that is under 5 years of\nage were obtained from three nationally representative household\nsurveys of Nigeria, namely the 2008 DHS [28], the 2010 MIS [26]\nand the 2010 LSMS-ISA panel [29].",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1098_rsif.2015.0073.txt",
+        "doi": "10.1098/rsif.2015.0073",
+        "locator": "text lines 137–140"
+       }
+      ],
+      "source_paper_doi": "10.1098/rsif.2015.0073",
+      "title": "Bayesian hierarchical spatio-temporal mapping of the under-five population in Nigeria at 1 km resolution",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "actual_datasets": [
+        "NASA VIIRS VNP46A2 nighttime radiance",
+        "MODIS MOD13A1 vegetation index",
+        "Age-specific population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "viirs_nightlight",
+          "role": "viirs_nightlight",
+          "anchor_product": "NASA VIIRS VNP46A2 nighttime radiance",
+          "actual_dataset": "Night-time lights as a predictive covariate for subnational age-specific population",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "r locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year olds can result in significant differences in health metrics. The largest gaps in estimated bednet and vaccination coverage were in Kano, Katsina and Jigawa. Geolocated house"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "vegetation_index",
+          "role": "vegetation_index",
+          "anchor_product": "MODIS MOD13A1 vegetation index",
+          "actual_dataset": "Vegetation index as a predictive covariate alongside night-time lights",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "r locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year olds can result in significant differences in health metrics. The largest gaps in estimated bednet and vaccination coverage were in Kano, Katsina and Jigawa. Geolocated house"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "age_population",
+          "role": "age_population",
+          "anchor_product": "Age-specific population grid",
+          "actual_dataset": "Under-five population proportion at 1x1 km as the age-specific population target",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "often be unreliable, outdated and of coarse resolution for resource-poor settings. Focusing on Nigeria, we use nation- ally representative household surveys and their cluster locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year o"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "r locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year olds can result in significant differences in health metrics. The largest gaps in estimated bednet and vaccination coverage were in Kano, Katsina and Jigawa. Geolocated house",
+        "r locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year olds can result in significant differences in health metrics. The largest gaps in estimated bednet and vaccination coverage were in Kano, Katsina and Jigawa. Geolocated house",
+        "often be unreliable, outdated and of coarse resolution for resource-poor settings. Focusing on Nigeria, we use nation- ally representative household surveys and their cluster locations to predict the proportion of the under-five population in 1 \u0002 1 km using a Bayesian hierarch- ical spatio-temporal model. Results showed that land cover, travel time to major settlements, night-time lights and vegetation index were good predictors and that accounting for fine-scale variation, rather than assuming a uniform pro- portion of under 5 year o"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_pending_20261007",
+        "verify": "task_012_pending_20261007",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_002",
+      "research_question": "如何为拉丁美洲和加勒比 28 国建立可比较、开放的约 100 m 住宅人口网格，覆盖普查年份及 2010/2015/2020。",
+      "hypothesis_or_mechanism": "普查人口可依据与人口分布相关的环境和地理协变量细分，随机森林学习空间异质性后构造权重；本文为数据产品生产，非城市化因果分析。",
+      "variables_and_data_use": "使用最新官方人口计数及 VIIRS 夜光、MODIS NPP、WorldClim 气候、HydroSHEDS/SRTM 高程坡度、GlobCover/城市范围及其他地理协变量。",
+      "method_paradigm": "采用随机森林驱动的密度估计与人口细分，生产各国 3 角秒人口网格并进行技术验证。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "an open access archive of high-resolution gridded population datasets was created through disaggregation of the most recent official population count data available for 28 countries located in the region.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1038_sdata.2015.45.txt",
+        "doi": "10.1038/sdata.2015.45",
+        "locator": "text lines 25–25"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "F.R.S. developed the Random Forests-based dasymetric mapping approach and the multi-stage Random Forests estimation technique used for producing the datasets.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1038_sdata.2015.45.txt",
+        "doi": "10.1038/sdata.2015.45",
+        "locator": "text lines 20–20"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "such as night-light intensity and plant energy productivity, was measured using the NOAA Suomi National Polar-orbiting Partnership Visible Infrared Imaging Radiometer Suite (VIIRS) 46 , 47  and the NASA TERRA/Moderate Resolution Imaging Spectroradiometer (MODIS) Net Primary Productivity (NPP) 48 , 49  raster dataset, respectively.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1038_sdata.2015.45.txt",
+        "doi": "10.1038/sdata.2015.45",
+        "locator": "text lines 76–76"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "For each country, population distribution datasets, having a resolution of 3 arc seconds (approximately 100 m at the equator), were produced for the population count year, as well as for 2010, 2015, and 2020.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.1038_sdata.2015.45.txt",
+        "doi": "10.1038/sdata.2015.45",
+        "locator": "text lines 25–25"
+       }
+      ],
+      "source_paper_doi": "10.1038/sdata.2015.45",
+      "title": "High-resolution gridded population mapping with VIIRS and MODIS covariates for Brazil",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "actual_datasets": [
+        "NASA VIIRS VNP46A2 nighttime radiance",
+        "MODIS MOD13A1 vegetation index",
+        "Age-specific population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "viirs_nightlight",
+          "role": "viirs_nightlight",
+          "anchor_product": "NASA VIIRS VNP46A2 nighttime radiance",
+          "actual_dataset": "VIIRS nighttime lights as a population-density covariate",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            ", collected, assembled, and processed into a set of default covariates ( Table 2 ) used for model fitting and prediction. The spatial variation of factors related to population distribution, such as night-light intensity and plant energy productivity, was measured using the NOAA Suomi National Polar-orbiting Partnership Visible Infrared Imaging Radiometer Suite (VIIRS) 46 , 47 and the NASA TERRA/Moderate Resolution Imaging Spectroradiometer (MODIS) Net Primary Productivity (NPP) 48 , 49 raster dataset, respectively. The spatial var"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "vegetation_index",
+          "role": "vegetation_index",
+          "anchor_product": "MODIS MOD13A1 vegetation index",
+          "actual_dataset": "MODIS plant energy productivity as a population covariate",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            ") used for model fitting and prediction. The spatial variation of factors related to population distribution, such as night-light intensity and plant energy productivity, was measured using the NOAA Suomi National Polar-orbiting Partnership Visible Infrared Imaging Radiometer Suite (VIIRS) 46 , 47 and the NASA TERRA/Moderate Resolution Imaging Spectroradiometer (MODIS) Net Primary Productivity (NPP) 48 , 49 raster dataset, respectively. The spatial variation of climatic factors affecting population distribution was considered by in"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "age_population",
+          "role": "age_population",
+          "anchor_product": "Age-specific population grid",
+          "actual_dataset": "Census input population counts disaggregated to fine spatial units",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "33 and GADM 34 , respectively) or contributed by National Statistical Offices such as the Instituto Brasileiro de Geografia e Estatística (IBGE). Table 1 also provides summary information about the input population count data and administrative unit datasets used to produce the WorldPop Americas datasets. It is well known that human population density is highly correlated with environmental and physical factors 35 that can plausibly impact the spatial distribution of population and/or be related to it. These may include continuous"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        ", collected, assembled, and processed into a set of default covariates ( Table 2 ) used for model fitting and prediction. The spatial variation of factors related to population distribution, such as night-light intensity and plant energy productivity, was measured using the NOAA Suomi National Polar-orbiting Partnership Visible Infrared Imaging Radiometer Suite (VIIRS) 46 , 47 and the NASA TERRA/Moderate Resolution Imaging Spectroradiometer (MODIS) Net Primary Productivity (NPP) 48 , 49 raster dataset, respectively. The spatial var",
+        ") used for model fitting and prediction. The spatial variation of factors related to population distribution, such as night-light intensity and plant energy productivity, was measured using the NOAA Suomi National Polar-orbiting Partnership Visible Infrared Imaging Radiometer Suite (VIIRS) 46 , 47 and the NASA TERRA/Moderate Resolution Imaging Spectroradiometer (MODIS) Net Primary Productivity (NPP) 48 , 49 raster dataset, respectively. The spatial variation of climatic factors affecting population distribution was considered by in",
+        "33 and GADM 34 , respectively) or contributed by National Statistical Offices such as the Instituto Brasileiro de Geografia e Estatística (IBGE). Table 1 also provides summary information about the input population count data and administrative unit datasets used to produce the WorldPop Americas datasets. It is well known that human population density is highly correlated with environmental and physical factors 35 that can plausibly impact the spatial distribution of population and/or be related to it. These may include continuous"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_pending_20261007",
+        "verify": "task_012_pending_20261007",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_003",
+      "research_question": "按 POI 与人口的空间关联选择人口敏感 POI，是否可提高京津冀细网格人口制图精度。",
+      "hypothesis_or_mechanism": "POI 对人口预测的贡献取决于空间关联而非仅非空间数量关系；筛选高空间相关类别可提高随机森林人口细分模型的精度。",
+      "variables_and_data_use": "结合 2017 年县级人口、2018 年 NavInfo POI、2019 年腾讯 Easygo 热图、OSM 路河网络、VIIRS 夜光、MODIS 覆被、SRTM 高程坡度，并与 WorldPop/LandScan 对照。",
+      "method_paradigm": "以空间关联识别 population-sensitive POIs，建立和比较不同 POI 输入的随机森林人口细分模型，以更细行政单元人口及现有人口网格验证。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "The ability of\npopulation-sensitive POIs to improve the fine-grained population mapping accuracy was explored",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.3390_rs11212502.txt",
+        "doi": "10.3390/rs11212502",
+        "locator": "text lines 31–32"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "the spatial association between the\nPOIs and population distribution was considered to identify the POIs with a strong spatial\ncorrelation with the population distribution, i.e., population-sensitive POIs.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.3390_rs11212502.txt",
+        "doi": "10.3390/rs11212502",
+        "locator": "text lines 29–31"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "Covariates for dasymetric\nmodel\nPOI 2018 NavInfo\nDemographic data 2017\nNational Bureau of Statistics of\nChina\nRoad/river network 2017 OpenStreetMap\nWater body 2017 OpenStreetMap\nVIIRS night-time lights 2017\nNational Oceanic and\nAtmospheric Administration\nLand use/land cover 2017 MODIS land cover product\nDEM\nShuttle Radar Topography\nMission\nSupplementary data for\nidentification of PSP\nEasygo population heat\nmap\n2019 Tencent",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.3390_rs11212502.txt",
+        "doi": "10.3390/rs11212502",
+        "locator": "text lines 152–171"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "by comparing the results of random forest dasymetric models driven by population-sensitive POIs,",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_batches/threeplus_all_20260930/corpus/text/10.3390_rs11212502.txt",
+        "doi": "10.3390/rs11212502",
+        "locator": "text lines 33–33"
+       }
+      ],
+      "source_paper_doi": "10.3390/rs11212502",
+      "title": "Dasymetric population mapping with POI, VIIRS night-time lights and demographic data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "actual_datasets": [
+        "NASA VIIRS VNP46A2 nighttime radiance",
+        "MODIS MOD13A1 vegetation index",
+        "Age-specific population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "viirs_nightlight",
+          "role": "viirs_nightlight",
+          "anchor_product": "NASA VIIRS VNP46A2 nighttime radiance",
+          "actual_dataset": "VIIRS night-time lights 2017 as a dasymetric covariate",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "e Dataset Year Source Covariates for dasymetric model POI 2018 NavInfo Demographic data 2017 National Bureau of Statistics of China Road/river network 2017 OpenStreetMap Water body 2017 OpenStreetMap VIIRS night-time lights 2017 National Oceanic and Atmospheric Administration Land use/land cover 2017 MODIS land cover product DEM Shuttle Radar Topography Mission Supplementary data for identification of PSP Easygo population heat map 2019 Tencent Comparison data for accuracy evaluation WorldPop global per country dataset 2017 WorldPop L"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "vegetation_index",
+          "role": "vegetation_index",
+          "anchor_product": "MODIS MOD13A1 vegetation index",
+          "actual_dataset": "Land-use and water-body layers from OpenStreetMap completing the covariate set",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "effective in generating more accurate accuracy of the population estimates depends grea products and geospatial big data are the most commonly used covariates in dasymetric mapping products, such as land use/land cover (LULC) data and nighttime light (NTL) data, could show the actual surface conditions that reflect the physical factors that affect the population distribution. However, these data often lack semantic information. Semantic information can be used to describe the relationship between geographic attributes and geographic"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "age_population",
+          "role": "age_population",
+          "anchor_product": "Age-specific population grid",
+          "actual_dataset": "China National Bureau of Statistics 2017 demographic data gridded by POI",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "yers with a consistent resolution of 100-m and used as covariates in the dasymetric model. Table 1. Datasets used in this study. Covariate Dataset Year Source Covariates for dasymetric model POI 2018 NavInfo Demographic data 2017 National Bureau of Statistics of China Road/river network 2017 OpenStreetMap Water body 2017 OpenStreetMap VIIRS night-time lights 2017 National Oceanic and Atmospheric Administration Land use/land cover 2017 MODIS land cover product DEM Shuttle Radar Topography Mission Supplementary data for identification o"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "e Dataset Year Source Covariates for dasymetric model POI 2018 NavInfo Demographic data 2017 National Bureau of Statistics of China Road/river network 2017 OpenStreetMap Water body 2017 OpenStreetMap VIIRS night-time lights 2017 National Oceanic and Atmospheric Administration Land use/land cover 2017 MODIS land cover product DEM Shuttle Radar Topography Mission Supplementary data for identification of PSP Easygo population heat map 2019 Tencent Comparison data for accuracy evaluation WorldPop global per country dataset 2017 WorldPop L",
+        "effective in generating more accurate accuracy of the population estimates depends grea products and geospatial big data are the most commonly used covariates in dasymetric mapping products, such as land use/land cover (LULC) data and nighttime light (NTL) data, could show the actual surface conditions that reflect the physical factors that affect the population distribution. However, these data often lack semantic information. Semantic information can be used to describe the relationship between geographic attributes and geographic",
+        "yers with a consistent resolution of 100-m and used as covariates in the dasymetric model. Table 1. Datasets used in this study. Covariate Dataset Year Source Covariates for dasymetric model POI 2018 NavInfo Demographic data 2017 National Bureau of Statistics of China Road/river network 2017 OpenStreetMap Water body 2017 OpenStreetMap VIIRS night-time lights 2017 National Oceanic and Atmospheric Administration Land use/land cover 2017 MODIS land cover product DEM Shuttle Radar Topography Mission Supplementary data for identification o"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_pending_20261007",
+        "verify": "task_012_pending_20261007",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_004",
+      "research_question": "在北巴西历史时期类似的数据稀缺条件下，简化随机森林人口估计能否接近普查与 WorldPop 且降低计算负担。",
+      "hypothesis_or_mechanism": "人口与土地利用、建成区、植被/建筑指数和地形存在可用于细分的关联；简化协变量与限制复杂度能在资料有限时取得可用估计，未识别人类定居因果。",
+      "variables_and_data_use": "使用巴西人口普查及 WorldPop 对照，结合 MapBiomas 覆被、GHSL 建成区、Landsat-8 NDVI/NDBI、SRTM 海拔/坡度等，重采样至 100 m。",
+      "method_paradigm": "实现随机森林人口细分模型，在有限数据情景下对照 2022 巴西普查及 WorldPop，比较精度与计算资源需求。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "Thus,thisstudyaimstoassesstheperformanceofthesetechnologiesunder\nlimiteddataavailabilityinscenariossimilartothoseinthelatedecadesofthetwentiethcentury.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_isprs-annals-x-3-w4-2025-157-2026.txt",
+        "doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+        "locator": "text lines 80–81"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "Theresultsindicate\nthatthemethodologyproposedhereisaviablesolutionindata-scarcecontexts,yieldingestimatescomparabletoof\u0002cialcensus\n\u0002guresandtomorecomplexproductslikeWorldPop,whiledemandingsigni\u0002cantlylesscomputationaleffort.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_isprs-annals-x-3-w4-2025-157-2026.txt",
+        "doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+        "locator": "text lines 82–84"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "derived\nfromLandsat-8/OLIimagery(NDVI:NormalizedDifference\nVegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar\nTopographyMission(SRTM).Exceptfortheproximityimages,\nallcovariatesweresourcedviaGoogleEarthEngine(GEE)",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_isprs-annals-x-3-w4-2025-157-2026.txt",
+        "doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+        "locator": "text lines 211–215"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "Tothisend,aRandomForest\nmodelwasimplementedandevaluatedagainstboththe2022BraziliancensusdataandtheWorldPopdataset.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.5194_isprs-annals-x-3-w4-2025-157-2026.txt",
+        "doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+        "locator": "text lines 81–82"
+       }
+      ],
+      "source_paper_doi": "10.5194/isprs-annals-x-3-w4-2025-157-2026",
+      "title": "Random Forest evaluation of population estimation technologies under limited data availability",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "actual_datasets": [
+        "NASA VIIRS VNP46A2 nighttime radiance",
+        "MODIS MOD13A1 vegetation index",
+        "Age-specific population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "viirs_nightlight",
+          "role": "viirs_nightlight",
+          "anchor_product": "NASA VIIRS VNP46A2 nighttime radiance",
+          "actual_dataset": "Spectral indices from optical imagery as covariates for settlement population estimation",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "onofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedviaGoogleEarthEngine(GEE)and processedusingpythonandJupyterNotebookinGoogleColab. MapB"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "vegetation_index",
+          "role": "vegetation_index",
+          "anchor_product": "MODIS MOD13A1 vegetation index",
+          "actual_dataset": "Spectral indices derived from the imagery stack",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "onofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedviaGoogleEarthEngine(GEE)and processedusingpythonandJupyterNotebookinGoogleColab. MapB"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "age_population",
+          "role": "age_population",
+          "anchor_product": "Age-specific population grid",
+          "actual_dataset": "GHSL residential/non-residential built-up areas plus census covariates",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "xample,wereexcludedduetodataunavailabilityortheneed formanualediting(e.g.,vectorizationofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedv"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "onofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedviaGoogleEarthEngine(GEE)and processedusingpythonandJupyterNotebookinGoogleColab. MapB",
+        "onofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedviaGoogleEarthEngine(GEE)and processedusingpythonandJupyterNotebookinGoogleColab. MapB",
+        "xample,wereexcludedduetodataunavailabilityortheneed formanualediting(e.g.,vectorizationofanalogmaps). Thecovariatesweusedinclude:(a)Proximityimagesderived fromMapBiomaslanduseandcoverclasses(LUCC),(b)Residentialandnon-residentialbuilt-upareasfromtheGlobalHumanSettlementLayer(GHSL),(c)Spectralindicesderived fromLandsat-8/OLIimagery(NDVI:NormalizedDifference VegetationIndex;NDBI:NormalizedDifferenceBuilt-upIndex),and(d)elevationandslopedatafromtheShuttleRadar TopographyMission(SRTM).Exceptfortheproximityimages, allcovariatesweresourcedv"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_pending_20261007",
+        "verify": "task_012_pending_20261007",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_005",
+      "research_question": "如何将 UrbanSat 的宏观环境指标连接 ABCD 儿童地址、认知/行为与神经影像资料，支持环境暴露关联研究。",
+      "hypothesis_or_mechanism": "卫星环境指标与儿童行为、认知及脑影像的关系以观察性统计关联评估；多指标之间存在较强相关，需要区别共同变化与独立环境效应。",
+      "variables_and_data_use": "将多源数据统一到美国本土约 1 km 网格；2017 VIIRS VNL2 夜光、WorldPop 100 m 人口和 Sentinel-2 Level-1C NDVI/NDWI/NDBI 等连接 ABCD 地址，提取环境暴露。",
+      "method_paradigm": "使用 Python Geopandas/Rasterio 聚合对齐环境栅格，按地址连接 ABCD，计算指标相关性并评估基线认知/行为等与暴露的关联；证据来自该 DOI 官方补充材料。",
+      "four_dimension_evidence": [
+       {
+        "field": "research_question",
+        "quote": "W\ne\nselected one variable for each category from the full comprehensive assessments available in\nthe\nABCD\nS\ntudy\nfrom the\n\nbaseline\n\nvisit when the children were 9\n-\n10 years\n\nold\n\nand tested their associations\nwith UrbanSat\nexposures",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s44220-024-00318-x.txt",
+        "doi": "10.1038/s44220-024-00318-x",
+        "locator": "text lines 646–665"
+       },
+       {
+        "field": "hypothesis_or_mechanism",
+        "quote": "For instance, forest land use is most significantly negatively\nrelated to built\n-\nup land use, and most significantly positively related to NDVI, both sharing more than 50%\nof variance.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s44220-024-00318-x.txt",
+        "doi": "10.1038/s44220-024-00318-x",
+        "locator": "text lines 604–608"
+       },
+       {
+        "field": "variables_and_data_use",
+        "quote": "The VNL 2 d\nata are based on VIIRS satellite observations and\ninclude filtering for clouds, removal of fires, and background isolation. Our aggregated nighttime light\nproduct provides the sum of annual nighttime light radiance values within each 1 km output pixel",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s44220-024-00318-x.txt",
+        "doi": "10.1038/s44220-024-00318-x",
+        "locator": "text lines 411–414"
+       },
+       {
+        "field": "method_paradigm",
+        "quote": "To unify the various data sources of the Urban\n-\nSatellite variables, we aggregate each input source into\nnew raster files with identical extent, pixel size, and pixel locations. The aggregated rasters are built with a\n\n3\n\ncustom Python script employing the Geopandas and Rasterio libraries.",
+        "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/corpus/text/10.1038_s44220-024-00318-x.txt",
+        "doi": "10.1038/s44220-024-00318-x",
+        "locator": "text lines 304–311"
+       }
+      ],
+      "source_paper_doi": "10.1038/s44220-024-00318-x",
+      "title": "The UrbanSat dataset: eleven urban-condition indicators for participant geocoding",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261007",
+      "actual_datasets": [
+        "NASA VIIRS VNP46A2 nighttime radiance",
+        "MODIS MOD13A1 vegetation index",
+        "Age-specific population grid"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "viirs_nightlight",
+          "role": "viirs_nightlight",
+          "anchor_product": "NASA VIIRS VNP46A2 nighttime radiance",
+          "actual_dataset": "Nighttime lights as one of the eleven UrbanSat urban-condition indicators",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "rly visible . For instance, forest land use is most significantly negatively related to built - up land use, and most significantly positively related to NDVI, both sharing more than 50% of variance. It also relates to NDBI, nighttime lights, and population with strong co rrelations (absolute r>0.4). In contrast, NDWI relates to other indicators with moderate effect sizes except for permanent inland water. Supplemental Figure 1: Histogram of 11 UrbanSat indicators. The UrbanSat dataset consists of 11 variables from a total of 11 , 2"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "vegetation_index",
+          "role": "vegetation_index",
+          "anchor_product": "MODIS MOD13A1 vegetation index",
+          "actual_dataset": "NDVI as one of the eleven UrbanSat urban-condition indicators",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "gical and climatological properties, land use and land cover characteristics (vegetation, bodies of water and water content, burnt areas etc.) and urban extent . Vegetation Indices (VI) such as the Normalized Difference Vegetation Index (NDVI) are used for evaluation of vegetation cover and growth based on the assumption that reflectance from vegetation depends on its chemical and morphological characteristics , hence allowing to assess vegetation conditions . Land Surface Temperature (LST) i s used in disease predictions and pu"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        },
+        {
+          "member_id": "age_population",
+          "role": "age_population",
+          "anchor_product": "Age-specific population grid",
+          "actual_dataset": "The eleven UrbanSat indicator variables collected at ABCD baseline",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "a cells within our spectral indices produ cts. 4.3. UrbanSat characterization and association with behavioral, cognition and brain function in the ABCD Study The UrbanSat data in ABCD release 5.0 include 11 variables for 3 addresses collected at baseline: Address 1 (primary address) for 11226 participants, Address 2 for 1617 participants and Adress 3 for 472 participants. Each variable indicate s different aspects of regional environment profiles. Through the histogram plots of these indicators associated with the primary addres"
+          ],
+          "quote_source": "machine_located_window_20261007"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "rly visible . For instance, forest land use is most significantly negatively related to built - up land use, and most significantly positively related to NDVI, both sharing more than 50% of variance. It also relates to NDBI, nighttime lights, and population with strong co rrelations (absolute r>0.4). In contrast, NDWI relates to other indicators with moderate effect sizes except for permanent inland water. Supplemental Figure 1: Histogram of 11 UrbanSat indicators. The UrbanSat dataset consists of 11 variables from a total of 11 , 2",
+        "gical and climatological properties, land use and land cover characteristics (vegetation, bodies of water and water content, burnt areas etc.) and urban extent . Vegetation Indices (VI) such as the Normalized Difference Vegetation Index (NDVI) are used for evaluation of vegetation cover and growth based on the assumption that reflectance from vegetation depends on its chemical and morphological characteristics , hence allowing to assess vegetation conditions . Land Surface Temperature (LST) i s used in disease predictions and pu",
+        "a cells within our spectral indices produ cts. 4.3. UrbanSat characterization and association with behavioral, cognition and brain function in the ABCD Study The UrbanSat data in ABCD release 5.0 include 11 variables for 3 addresses collected at baseline: Address 1 (primary address) for 11226 participants, Address 2 for 1617 participants and Adress 3 for 472 participants. Each variable indicate s different aspects of regional environment profiles. Through the histogram plots of these indicators associated with the primary addres"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "broad_recall_pending_20261007",
+        "verify": "task_012_pending_20261007",
+        "quote_verification": "passed",
+        "user_ruling": "user_ruling_20261006: 数据集观测一致即准入；不要求同领域/地区/事件一致；同类词/替换词/父级词按 analogous_product 如实标注"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）"
+    }
+  ],
+  "coverage": {
+    "formal_reference_count": 11,
+    "minimum_target": 20,
+    "minimum_met": false,
+    "latest_manual_audit": "reference_sets/audit/broad_recall_pending_20261007/"
+  },
+  "reference_count": 11
+}

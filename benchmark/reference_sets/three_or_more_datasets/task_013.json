@@ -1,0 +1,2208 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_013",
+  "reference_coverage": "partial_audited_complete_set_reference_space",
+  "evaluation_year": 2026,
+  "source": "independent_pdf_methods_audit_20260929",
+  "seed_paper": {
+    "title": "Remote Sensing Derived Built-Up Area and Population Density to Quantify Global Exposure to Five Natural Hazards over Time",
+    "doi": "10.3390/rs10091378",
+    "year": 2018,
+    "venue": "Remote Sensing",
+    "datasets": [
+      "Global built-up area layer",
+      "Global population-density layer",
+      "Global natural-hazard layer"
+    ],
+    "dataset_roles": [
+      {
+        "role": "built_up_area",
+        "dataset": "Global built-up area layer"
+      },
+      {
+        "role": "population_density",
+        "dataset": "Global population-density layer"
+      },
+      {
+        "role": "hazard_layer",
+        "dataset": "Global natural-hazard layer"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_013:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_013:composite_observation",
+    "type": "composite_observation",
+    "components": [
+      {
+        "member_id": "built_up_area",
+        "role": "built_up_area",
+        "actual_anchor_product": "Global built-up area layer",
+        "data_path": "GEE:JRC/GHSL/P2023A/GHS_BUILT_S"
+      },
+      {
+        "member_id": "population_density",
+        "role": "population_density",
+        "actual_anchor_product": "Global population-density layer",
+        "data_path": "GEE:JRC/GHSL/P2023A/GHS_POP"
+      },
+      {
+        "member_id": "hazard_layer",
+        "role": "hazard_layer",
+        "actual_anchor_product": "Global natural-hazard layer",
+        "data_path": "GEE:GLOBAL_FLOOD_DB/MODIS_EVENTS/V1"
+      }
+    ],
+    "combination_contract": {
+      "required_roles": [
+        "built_up_area",
+        "population_density",
+        "hazard_layer"
+      ],
+      "component_count": 3,
+      "joint_use_requirement": "All three members must be used as data in one research instance, with Methods/Data evidence showing their joint processing, comparison, calibration, validation or inference use."
+    }
+  },
+  "zenodo_excluded": true,
+  "seed_exclusion": {
+    "doi": "10.3390/rs10091378",
+    "year": 2018,
+    "excluded_from_directions": true
+  },
+  "reference_papers": [
+    {
+      "doi": "10.1371/journal.pone.0118571",
+      "title": "Future Coastal Population Growth and Exposure to Sea-Level Rise and Coastal Flooding - A Global Assessment",
+      "year": 2015,
+      "venue": "PLoS ONE",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "expansion_reason": "built_up_area: analogous_product -> MODIS 500-m Map of Global Urban Extent; population_density: analogous_product -> Population Count Grid, GRUMP, Alpha Version; hazard_layer: analogous_product -> DIVA 1-in-100-Year Surge Heights",
+      "admission_basis": "dual_model_admitted_both_quotes_verified_manual_distinct_member_check",
+      "actual_datasets": [
+        "MODIS 500-m Map of Global Urban Extent",
+        "Population Count Grid, GRUMP, Alpha Version",
+        "DIVA 1-in-100-Year Surge Heights"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "Global built-up area layer",
+          "actual_dataset": "MODIS 500-m Map of Global Urban Extent",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "To differentiate between urban and non-urban population we used the MODIS 500-mMap of Global Urban Extent [42] as proxy for urban areas.",
+            "For our work we opted for the MODIS 500-m urban map because it provides a more recent and more detailed approximation of urban, built-up and settled areas [42, 43]",
+            "MODIS 500-m Map of Global Urban Extent [42, 43], 15 arc sec resolution; population year 2009."
+          ],
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "analogous_product"
+          }
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "Global population-density layer",
+          "actual_dataset": "Population Count Grid, GRUMP, Alpha Version",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The MODIS urban extent grid captures most areas of high population density from the GRUMP population data set [44] which we utilised to estimate the baseline population in the LECZ (see Table 2).",
+            "Population Count Grid, GRUMP, Alpha Version [44], 30 arc sec, re-sampled to 15 arc sec for analysis of urban/non-urban to match the MODIS data resolution (see below): population year 2000"
+          ],
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "analogous_product"
+          }
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "Global natural-hazard layer",
+          "actual_dataset": "DIVA 1-in-100-Year Surge Heights",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "First, we retrieved estimates of the 1-in-100-year extreme water levels from the Dynamic and Interactive Vulnerability Assessment (DIVA) database [56, 57] (Table 2).",
+            "From these we computed the average 1-in-100-year surge height per level-1 administrative unit (3,366 units in total).",
+            "DIVA 1-in-100-Year Surge Heights [56, 57]"
+          ],
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "analogous_product"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "We use spatially explicit methods and publicly available global data sets to assess (i) the land area and population distribution in the LECZ and (ii) people living in the 100-year flood plain for three points in time: For a baseline year (2000) and for the years 2030 and 2060.",
+        "For estimating land and population in the LECZ for the year 2000, we employed the methods of McGranahan et al. [5] and Lichter et al. [6], using an eight-sided connectivity rule to identify the inundation areas that are hydrologically connected to the ocean from the SRTM30 Enhanced Global Map data (Table 2).",
+        "The number of people living in the 100-year flood plain was assessed through a slightly modified approach.",
+        "First, we retrieved estimates of the 1-in-100-year extreme water levels from the Dynamic and Interactive Vulnerability Assessment (DIVA) database [56, 57] (Table 2).",
+        "We calculated the population in the flood plain based on the distribution of coastal population per 1 m elevation increment (Table 2) assuming that all land below the computed surge heights belongs to the 100-year flood plain."
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/threeplus_fulltext_reaudit_gpt_qwen_20261001/task_013/10.1371_journal.pone.0118571.json"
+    },
+    {
+      "doi": "10.21203/rs.3.rs-6396722/v1",
+      "title": "LandScan HD: A High-Resolution Gridded Ambient Population Methodology for the World",
+      "year": 2025,
+      "venue": "Springer Science and Business Media LLC",
+      "record_type": "posted-content",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHS-BUILT-S 10m 用于识别无数据区",
+        "LandScan HD 全球环境人口网格",
+        "菲律宾政府 1:10,000 洪水灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT-S 10m 用于识别无数据区",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "anlackcoverageinareasoftheworldwherehumansettlementsareknowntoexistweidentifysuchareasusingtheglobalhumansettlementlayerghslbuilts10mrasterwhichprovidescontinuousglobalmeasurementofbuiltupsurfaceareapesaresipolitis2023areascontainingnonzerovaluesinbuiltsbutlackingcoverageinthebfemicrosoftandgoogledatasetsareconvertedtoapolygonalnodatamaskusingthenodatamaskwesubstitutevectorizedbuiltscellsasafailsa",
+            "tdataheterogeneityinproceedingsofthe3rdacmsigspatialinternationalworkshopongeospatialhumanitiespp16pesaresimpolitisp2023ghsbuiltsr2023aghsbuiltupsurfacegridderivedfromsentinel2compositeandlandsatmultitemporal19752030datasethttpdataeuropaeu89h9f06f36f4b1147ecabb04f8b7b1d72eadoi1029059f06f36f4b1147ecabb04f8b7b1d72eaprtnerhorobertsdcadamshadelekaniadlercadrianralduncepaliearabegumrbednarfriedlb2022te"
+          ],
+          "evidence_summary": "GHS-BUILT-S 10m 用于识别无数据区",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "LandScan HD 全球环境人口网格",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "fthegloballandscanhdbaselinedatasetwecontrasttheambientpopulationwithagriddedpopulationrepresentingresidentialactivitiesworldpopby1exploringapracticalapplicationforfloodriskassessmentand2evaluatingcongruencewithoutcomesofcollectivehumanactivitiessubnationalco2emissionsfinallywediscussconfrontingcurrentlandscanhdlimitationsthroughdatamodelinganduncertaintyquantificationimprovementsandprovideoutlook",
+            "pmentofthesetopdownmethodshasfocusedonrefinementofbothspatialresolutionandmodelconstraintsthegriddedpopulationoftheworldgpwproducedbythecenterforinternationalearthscienceinformationnetworkformsthebasisformanytopdowngriddedpopulationproductsgpwischaracterizedasaminimallymodeledproductthatdistributesadministrativepopulationcountstogridcellsv15arcminutes85kmv2325arcminutes5kmv430arcseconds1kmbasedona"
+          ],
+          "evidence_summary": "LandScan HD 全球环境人口网格（产品本体）+ WorldPop 对照",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "菲律宾政府 1:10,000 洪水灾害图",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hoonriskbagsitetal2014subadeetal2014thisscenarioisidealforshowcasingtheutilityofthelandscanhddatasetinthisdemonstrationafloodhazarddatasetobtainedfromthephilippinegovernmentviathecountrysgeoportalgeoportalphilippines2024encompassesnearlytheentiremunicipalitythisdatasetdelineatesthefloodhazardsscaledat110000intothreesusceptibilitycategorieslowmoderateandhighforthisanalysisweusetheextentofthefloodha",
+            "rerskaufmanjmortonathakurgpiburnjmoehlj2016abayesianmachinelearningmodelforestimatingbuildingoccupancyfromopensourcedatanaturalhazards81319291956httpsdoiorg101007s1106901621649stipekchausertadamsdeptingjbrelsfordcmoehljstewartr2024inferringbuildingheightfromfootprintmorphologydatascientificreports141straussmesmithgt2009constructvalidityadvancesintheoryandmethodologyannualreviewofclinicalpsychology"
+          ],
+          "evidence_summary": "菲律宾政府 1:10,000 洪水灾害图（Fani 气旋风险演示）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.1016/j.envsci.2018.10.001",
+      "title": "Built-up area and population density: Two Essential Societal Variables to address climate hazard impact",
+      "year": 2018,
+      "venue": "Environmental Science &amp; Policy",
+      "record_type": "journal-article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHS built-up 多时相层生产+使用",
+        "GHS-POP",
+        "GAR 2015 全球灾害图层"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS built-up 多时相层生产+使用",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "neratedfromearthobservationimagearchivesandfromnationalpopulationcensusdataintheframeworkoftheglobalhumansettlementlayerghslprojectthelayersareproducedwithfinegranularityforfourepochs197519902000and2015andwillbeupdatedonaregularbasiswithopensatelliteimagerythepaperdiscussestherelevanceofglobalbuiltupareaandpopulationdensityforanumberofpolicyareasinparticulartounderstandregionalandglobalurbanizatio",
+            "itleelseviersponsoreddocumentspmc7729828pmc772982817729828772982833343228101016jenvsci201810001s14629011173056951articlebuiltupareaandpopulationdensitytwoessentialsocietalvariablestoaddressclimatehazardimpactehrlichddanieleehrlicheceuropaeukempertpesaresimcorbanecjointresearchcentreeuropeancommissionviaenricofermi2749i21027ispraitalycorrespondingauthordanieleehrlicheceuropaeu1220189036780373821620"
+          ],
+          "evidence_summary": "GHS built-up 多时相层生产+使用",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "nginthesamethreeelevationclassesrightfig6theworkprovidesamorepreciseinsightoverpopulationinlowcoastalareaslessthan1oftheworldpopulationlivesbelowsealevelthatpercentagehasonlyslightlyincreasedovertimethetotalpopulationbelowsealevelaccountsinabsolutetermsto74million2015andhasincreasedfrom38millionin1975thetotalpopulationinareasbelow10maccountsinabsolutetermsto455millionin1975879millionin2015approxim",
+            "ducedfromacombinationofbuiltupareaandpopulationdataavailableatadministrativeboundariesfromthegriddedpopulationoftheworldgpwprojectcenterforinternationalearthscienceinformationnetworkciesincolumbiauniversity2017thegpwprojectassemblesfromanumberofdataprovidersaglobalpopulationdatabasethatcombinesspatiallyexplicitadministrativeboundaryandcorrespondingpopulationestimatesforuseinpopulationdisaggregatio"
+          ],
+          "evidence_summary": "GHS-POP（GPW 派生）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "GAR 2015 全球灾害图层",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "litusesawidevarietyofindicatorsincludingthoserelatedtonaturalhazardsanddisasterstheindicatorsarebasedontheintersectionofhazardmapsandpopulationdensitiessomeofthehazardindicatorsusedininformincludechangesinexposureasdescribedbelowexposureandtheincreaseinexposuretonaturalhazardsaremajorriskdriversfig5showschangesinbuiltupareaandpopulationfrom197519902000and2015forfloodingcyclonewindsandsealevelsurge",
+            "ocessesandforuseinoperationalcrisismanagementandriskassessmentthepaperalsoprovidesexamplesofglobalstatisticsonexposuretonaturalhazardsbasedonthetwoesvsandtheiruseinpolicymakingfinallythepaperdiscussesthepotentialofusingpopulationandbuiltupareafordevelopingindicatorstomonitortheprogressinagenda2030includingthesustainabledevelopmentgoalssdgskeywordshumansettlementsbuiltuppopulationdensityessentialso"
+          ],
+          "evidence_summary": "GAR 2015 全球灾害图层 + 洪水/气旋曝光统计",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.3990/1.9789036549998",
+      "title": "Modeling of population distribution in space and time to support disaster risk management",
+      "year": 2020,
+      "venue": "ITC Dissertation, University of Twente",
+      "record_type": "dissertation",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHS-BUILT 用于人口离散化",
+        "GPW/GHS-POP",
+        "火山(GVP)+地震灾害图与人口层叠加"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT 用于人口离散化",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "11potentialglobalpopulationexposuretovolcanichazardnarrowingdatagaps112612thecontributionoftheglobalhumansettlementlayerghsltodrm11362materialsandmethods115vii621data115622assessingglobalpopulationdistributionandvolcanism11763resultsanddiscussion118631globalpopulationdistributionfrom1975to2015inrelationtovolcanism118632populationdistributionfrom1975to2015inrelationtovolcanisminsoutheastasiaandcent",
+            "flowchartofthesplitandmergeapproach97figure22examplesofdetecteddiscrepanciespatcheslargerthan1km2betweengpwv4bluelineandghsbuilt2014orangealongthecoastsofajapanjpnbtunisiatuncchinachnanddromaniarou99figure23globaldistributionofcensusunitswithoutpopulationingpwv410dataandthoseflaggedbasedontheautomatedproceduredevelopedusanotconsiderednotethatexistenceofunpopulatedunitsismerelyafeatureofcensusdesig"
+          ],
+          "evidence_summary": "GHS-BUILT 用于人口离散化",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GPW/GHS-POP",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "modelinggeographicvariablesinordertoobtainanappropriateproxylayerorprobabilitysurfacetosupportpopulationdisaggregationegworldpop25indevelopingmoredetailedmultitemporalglobalpopulationgridsthisthesischapter5hasfocusedinsteadonaspects1and2mentionedabove1241globalpopulationgridsatgloballevelstartinginthe1990stheincreasedavailabilityofdigitalspatialdatacombinedwithimprovedcapabilitiesofgeographicinfor",
+            "deling85figure21flowchartofthesplitandmergeapproach97figure22examplesofdetecteddiscrepanciespatcheslargerthan1km2betweengpwv4bluelineandghsbuilt2014orangealongthecoastsofajapanjpnbtunisiatuncchinachnanddromaniarou99figure23globaldistributionofcensusunitswithoutpopulationingpwv410dataandthoseflaggedbasedontheautomatedproceduredevelopedusanotconsiderednotethatexistenceofunpopulatedunitsismerelyafeat"
+          ],
+          "evidence_summary": "GPW/GHS-POP",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "火山(GVP)+地震灾害图与人口层叠加",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "rguablyweknowevenlessaboutthelocationofpeopleandassetsandtheimpactofhazardsonthemthanwedoaboutthefrequencyandnatureofthefloodhazardeventssmithetal2019p2alsountilnotlongagotheavailabilityandintegrationofsocioeconomicvariablesintogeospatialriskmodelsimplementedwithinageographicinformationsystemgisremainedachallengeec2010perhapsthesmalleramountofattentiondevotedtotheimportancegapsandchallengesinmodel",
+            "alscalesandresolutionsiiapplyingthosedatatorealdisasterriskscenariosbycombininggeospatialpopulationlayerswithgeophysicalhazardmapsiiiusingspatialanalysisforquantitativelyandqualitativelyassessinghumanexposuretospecifichazardsandlevelsandforcartographicrepresentationsandvisualizationandivdiscussingthefindingstheirimpactsaswellascontributionstodrmwhilethefocusisonthespatiotemporaldynamicsofhumanexpo"
+          ],
+          "evidence_summary": "火山(GVP)+地震灾害图与人口层叠加",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.1088/1748-9326/ac9197",
+      "title": "Urbanizing the floodplain: global changes of imperviousness in flood-prone areas",
+      "year": 2022,
+      "venue": "Environmental Research Letters",
+      "record_type": "journal-article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GAUDIS",
+        "GPW/WorldPop/LandScan",
+        "全球洪水概率/灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GAUDIS",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "e19852015periodgaudisderivedfromlandsatimageryat30mresolutionbyfusingfourglobalurbanizationdatasetsglobalhumansettlementghsllayerglobalurbanfootprintglobalurbanlandandtheglobalartificialimperviousareaandthenapplyingthenormalizedurbanareascompositeindexnuacitoidentifyyearsofurbanizationorgreenrecoverythefusionalgorithmkepttheurbanareasthatwereconsistentamongtheotherproductsandusedalocallyadaptivecl",
+            "dtotripleits2000extentby203050thelinkbetweenurbanizationandpotentialincreaseinfloodriskstemsfromhydrologicalterationfromimpervioussurfaceareas5152effectsonlocalclimate53orchangesinexposureegpopulationdistributionchanges54recentstudiesfoundthaturbanizationcansignificantlyexacerbatefloodriskforexampleduringhurricaneharveytheprobabilityoffloodingwaselevatedby21timesduetourbanization55thereforeourresu"
+          ],
+          "evidence_summary": "GAUDIS（GHSL 融合派生）建成区扩张",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GPW/WorldPop/LandScan",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "tionduring19902000and201542theglobalruralurbanmappingprojectthathas30arcsecond1kmresolutionandrepresents1990and200043theworldpopdatasetthatprovidesannualdatafrom2000to2020onglobalpopulationata3arcsecondspatialresolution44thegriddedpopulationoftheworlddatasetthatrepresentspopulationat30arcsecondsresolutionevery5yearssince200045andlandscantmthatprovidesannualpopulationdatasince2000at30arcsecondsreso",
+            "iorg106084m9figshare11513178v2thepopulationdatasetsusedinthisstudyareavailableathttpsedacciesincolumbiaedudatacollectiongpwv4gpwhttpghsljrceceuropaeughspopphpghslhttpsedacciesincolumbiaedudatacollectiongrumpv1grumphttpswebornlgovscilandscanlandscanandwwwworldpoporgworldpopthedatasetoffloodplainencroachmentunderlyingtheresultspresentedinthisstudyisavailableathttpstinyurlcom3can5prwcodeavailabilityt"
+          ],
+          "evidence_summary": "GPW/WorldPop/LandScan",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "全球洪水概率/灾害图",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "assessthemagnitudeoffloodplainencroachmentgloballyandhowithaschangedinbothspaceandtimehighlyresolvedglobaldatasetsofbothfloodhazardandchangesinurbanareafrom1985to2015arenowavailableenablingthereconstructionofthehistoryoffloodplainencroachmentathighspatialresolutionshereweshowthattheurbanizedareainfloodplainsthathaveanaverageprobabilityoffloodingof1100yearshasalmostdoubledsince1985furthertherateofu"
+          ],
+          "evidence_summary": "全球洪水概率/灾害图（1/100 年）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.3390/ijgi8080341",
+      "title": "An Improved Global Analysis of Population Distribution in Proximity to Active Volcanoes, 1975–2015",
+      "year": 2019,
+      "venue": "ISPRS International Journal of Geo-Information",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHS-BUILT 作离散化代理",
+        "GHS-POP/GPW",
+        "GVP 全新世火山目录+喷发致死记录"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT 作离散化代理",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ordspopulationdistributionpopulationexposurespatiotemporalanalysisglobaldisasterriskvolcanoesvolcanismsignicanteruptionsghslsoutheastasiacentralamerica1introductionvolcaniceruptionsareamongthemostpowerfulanddestructivenaturalhazardsonearthcapableofcausingwidespreadhumansufferingandextensiveeconomiclossesbothfromdirectimpactsandthroughthedisturbancestolivelihoodsarisingfromindirectorcascadingeffect",
+            "emergenceofanewgenerationofgeospatialdataderivedfromremotesensingledbytheglobalhumansettlementlayerghsl30globalmappingofbuiltupareasandsettlementswithunprecedentedspatiotemporaldetailandaccuracy303233otherusesthesenewdatasetsareprovidinganeectivecontributiontopopulationdisaggregationandotherpopulationdistributionmodelingeortsespeciallyduetoacombinationofsemanticrobustnessandinteroperabilitycurrenc"
+          ],
+          "evidence_summary": "GHS-BUILT 作离散化代理",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP/GPW",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "pennorfreesmallandnaumann8andhistoricallyactivevolcanoesfor1990butunderlinedthatthespatialresolutionofpopulationdatausedgpwv2imposeslimitationsontheanalysisandisnotadequatefordetailedassessmentofisprsintjgeoinf201983413of19potentialvolcanicriskewertandharpel19objectiveestimatesandcomparisonsofthenumberofpeopleatriskfromvolcanichazardswithinagivenradiusofavolcanicventtheindexquantiesonecomponentofr",
+            "esonecomponentofriskpopulationfromonevolcanotoanothertheauthorshavenotedthatthe1kilometergridsizeofthepopulationgridusedlandscanwastheprincipallimitingfactorinmakingpreciseestimatesofpopulationatrisk19thepopulationexposureindexpei24riskitisbasedonthepopulationwithin1030and100kmofavolcanowhichisthenweightedaccordingtoevidenceonhistoricaldistributionsoffatalitieswithinagivendistancefromvolcanoesthep"
+          ],
+          "evidence_summary": "GHS-POP/GPW",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "GVP 全新世火山目录+喷发致死记录",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "nismsignicanteruptionsghslsoutheastasiacentralamerica1introductionvolcaniceruptionsareamongthemostpowerfulanddestructivenaturalhazardsonearthcapableofcausingwidespreadhumansufferingandextensiveeconomiclossesbothfromdirectimpactsandthroughthedisturbancestolivelihoodsarisingfromindirectorcascadingeffectsegviadisruptionsofairtransportthroughoriginatingtsunamisetc1modifyingweatherpatternsdisruptingcli",
+            "tionandpopulationgrowth26719assessmentattheglobalscaleisnotasadvancedasforotherhazardssuchasoodingearthquakesandtropicalcyclones520theirconsistencyanddetailsimilarlytoearthquakesvolcaniceruptionsarediculttomitigatetechnologically21expectedlossesmaybelowerthanthosefromotherhazardsataglobalscaleinaectedregionstheycanbeverysignicantsince1950anaverageof31volcanoeshaveeruptedeachyear1anyonetimeatleast2"
+          ],
+          "evidence_summary": "GVP 全新世火山目录+喷发致死记录（点状灾害源）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.1007/s13753-019-00242-0",
+      "title": "Changes of Population, Built-up Land, and Cropland Exposure to Natural Hazards in China from 1995 to 2015",
+      "year": 2019,
+      "venue": "International Journal of Disaster Risk Science",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "中国土地利用建成区数据",
+        "中国人口分布网格",
+        "风暴潮/干旱/地震/洪水/滑坡灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "中国土地利用建成区数据",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "alcapitalandcommunitypreparationforurbanoodinginchinaappliedgeography64111maqcheandjwu2016behindtherapidexpansionofurbanimpervioussurfacesinchinamajorinuencingfactorsrevealedbyahierarchicalmultiscaleanalysislandusepolicy59434445masutomiyyinuiktakahashiandymatsuoka2009developmentofhighlyaccurateglobalpolygonaldrainagebasindatahydrologicalprocessesaninternationaljournal572584miaocjtengjwangandpzhou2",
+            "tihazardareascovered43and26ofchinasterritoryrespectivelypopulationgrewfasterinthehazardproneareasthaninthenonhazardareasbuiltupareaexpandedmorerapidlyintheareaspronetoearthquakesandlandslidescroplandchangedrapidlyinmanyhazardproneareasthehazardproneareasaffectedbyoodsfeaturedthehighestcroplandlossrateswhiletheareaspronetogrowthrateswedetectedareaswithsignicantexposurechangesbyusinghotspotanalysisi"
+          ],
+          "evidence_summary": "中国土地利用建成区数据",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "中国人口分布网格",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "topotentialdroughtforwinterwheatunderthercp85scenariointhehuanghuaihaiplainagricultureecosystemsenvironment209125131liangpwxuymaxzhaoandlqin2017increaseofelderlypopulationintherainstormhazardareasofchinainternationaljournalofenvironmentalresearchandpublichealth149article963lintxliujsonggzhangyjiaztuzzhengandcliu2018urbanwaterloggingriskassessmentbasedoninternetopendataacasestudyinchinahabitatinter"
+          ],
+          "evidence_summary": "中国人口分布网格",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "风暴潮/干旱/地震/洪水/滑坡灾害图",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "articlechangesofpopulationbuiltuplandandcroplandexposuretonaturalhazardsinchinafrom1995to2015yiminchen12weixie12xiaocongxu12publishedonline16december2019theauthors2019abstractbyusingthelatestchinapopulationgridandlandusedataweassessthechangingexposureofchinaspopulationandlandusestothehazardsofstormsurgesdroughtsearthquakesoodsandlandsli",
+            "l2018astheworldslargestdevelopingcountrywithamiddlelevelincomechinaisheavilyexposedtoawiderangeofnaturalhazardsincludingcyclonesearthquakeslandslidesoodsanddroughtsneumannetal2015yangetal2015hanetal2016summarizedtheoccurrenceofnaturalhazardsinchinafor19852014andfoundthatstormsandoodswerethemostfrequenthazardsfollowedbylandslidesandardsthanmostothercountriesintheworldloetal2015riverineoodsforexampl"
+          ],
+          "evidence_summary": "风暴潮/干旱/地震/洪水/滑坡灾害图",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (targeted-search recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06. Evidence quotes sliced from the corpus around anchor terms; whitespace stripping applied by the corpus extraction, not a verbatim PDF match."
+      }
+    },
+    {
+      "doi": "10.5194/nhess-25-287-2025",
+      "title": "Spatial identification of regions exposed to  multi-hazards at the pan-European level",
+      "year": 2025,
+      "venue": "Natural Hazards and Earth System Sciences",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "adjudication_note": "Online-recall admission via the parent/lineage family queries (multi-hazard exposure; user prompts 2026-10-06 corrected the recall design to dataset-feature-bound terms). All three anchor members used_as_data in the same pan-European multi-hazard exposure analysis: GHSL residential built-up assets, GHSL/GPW-lineage population grid, and multiple pre-existing pan-European hazard datasets as input layers. Sub-global hazard scope recorded as the weakest matched level (analogous_product). No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHSL residential built-up layer",
+        "GHSL/GPW-lineage residential population grid",
+        "pan-European multi-hazard datasets"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL residential built-up layer",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "untrybtheabbreviationsforcountriesshownintheguresfollowtheiso31661alpha2standardiso2020czyketal2019andresidentialpopulationfromtheglobalhumansettlementlayerghslfreireetal2015thesearetwomaingroupsofassetsthatarecurrentlypresentacrossalltypesofanalysiswithinthedrmkcriskdatahubtheresidentialbuiltupcategoryisrepresentedasbuiltupareakm2whilethepopulationisexpressedasthenumberofpeoplewithina100m100mgridcelltodiscriminatebetweenthere",
+            "ountriesshownintheguresfollowtheiso31661alpha2standardiso2020czyketal2019andresidentialpopulationfromtheglobalhumansettlementlayerghslfreireetal2015thesearetwomaingroupsofassetsthatarecurrentlypresentacrossalltypesofanalysiswithinthedrmkcriskdatahubtheresidentialbuiltupcategoryisrepresentedasbuiltupareakm2whilethepopulationisexpressedasthenumberofpeoplewithina100m100mgridcelltodiscriminatebetweentheresidentialtypologyforbothbu"
+          ],
+          "evidence_summary": "GHSL residential built-up layer (built-up area km2 asset layer)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHSL/GPW-lineage residential population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ingaround87millionpeople188oftheeuropeanpopulationfurthermorenearlyhalfthispopulationisexposedtomorethanthreehazardswendthatbeyondpopulationdensitytheincomeleveliehighmediumlowistheprimarydriverthatinuencesriskstatusatthelocallevelwithinbothruralandurbanareasonaveragewendhighermultihazardexposureforpeoplelivinginhighincomeurbanareasorlowincomeruralareaswefurthervalidateourresultsbycomparingthemwithempiricaldataonfatalitiesandd",
+            "lunitprobleminmultivariatestatisticalanalysisenvironplanna23102510441991freireskempertpesaresimflorczykaandsyrrisvcombiningghslandgpwtoimproveglobalpopulationmappingin2015ieeeinternationalgeoscienceandremotesensingsymposiumigarssmilanitaly25412543hhttpsdoiorg101109igarss201573263292015fuchssandthalertedsvulnerabilityandresiliencetonaturalhazardscambridgeuniversitypresshttpsdoiorg10101797813166511432018gaillardjcandmercerjfromk"
+          ],
+          "evidence_summary": "GHSL/GPW-lineage residential population grid (100m cells)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "pan-European multi-hazard datasets",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "tegiesbasedoncostefcientmeasureswhiletheabsoluteschemasupportsriskmanagementstrategiesthatprioritizethemostaffectedareasandpeopleihazardlayersthehazardlayersconsideredinthisstudyrepresentarealextensionratherthanintensityweusenotaprobabilisticassessmentbutratheradeterministicapproachselectinghazardswithaveragetemporalfrequencyofoccurrenceandspatialprobabilitysusceptibilitythehazarddatasetsusedhereandtheircharacteristicsareprese",
+            "smentbutratheradeterministicapproachselectinghazardswithaveragetemporalfrequencyofoccurrenceandspatialprobabilitysusceptibilitythehazarddatasetsusedhereandtheircharacteristicsarepresentedintable1themotivationsfortheirselectionalongwiththeirusageindisasterriskassessmentsaredetailedinthesectionsdedicatedtoindividualhazardsinthesupplementsects1hazardlayersandtheirdenitionsiiassetlayersasassetlayersweusetheresidentialbuiltupareasf"
+          ],
+          "evidence_summary": "pan-European multi-hazard datasets (landslide/coastal+river flooding/earthquake/wildfire/subsidence); sub-global scope",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (online recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    },
+    {
+      "doi": "10.5775/fg.2025.3746.d",
+      "title": "Flood exposure and settlement vulnerability in the Moldavian Plateau, Eastern Romania",
+      "year": 2025,
+      "venue": "Forum geografic",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "adjudication_note": "Online-recall round-8 admission (no-OA-restriction expanded query matrix; user rule: observables consistent with anchor member definitions and at least one member term is the originally-set observable; user ratified 2026-10-06). All three members used_as_data in the same research instance. No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "built-up limits + building footprints",
+        "census data",
+        "official centennial flood hazard bands"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "built-up limits + building footprints",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "xposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmultiplescalesbyriverbasinssiret",
+            "hanceofoccurrenceinanygivenyearequivalenttoabout26overa30yearhorizonatimeframerelevanttoresidentialinvestmentcyclesexposuredenotesbuiltupareaandassetshouseholdsinfrastructureandpublicservicesintersectingthisbandwhilevulnerabilityreflectstheirsusceptibilitytodamagegivenconstructiontypologyelevationrelativetothechannelbankproximityandaccessconstraintstateetal2021pathaketal2020diaconu2022fischeretal2024themotivationforthisworklie"
+          ],
+          "evidence_summary": "built-up limits + building footprints (OSM urban fabric layer)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "census data",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "anksestimatesexceed1200householdsand3000residentspotentiallyexposedfigure4settlementsandroadsexposedincotugrosuluisucetisector2021censusdataindicate2700peoplecouldbestrandedordirectlyexposedintheabsenceofsafealternativesthecoexposureofdn15ddn2dn11aandlargesectionsofa7lot2increasesthelogisticalvulnerabilityoftheareaaccessforemergencyservicessupplychainsandevacuationsgiscapturesshowalignmentofexposedzoneswithurbaninfrastructuren",
+            "ithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmultiplescalesbyriverbasinssiretjijiaincludingbuhaimiletinbahluibahluebrladandprutchinejaandurbancasestudiesiaibacuvasluithesiretbasinconcentratesthehighestsys"
+          ],
+          "evidence_summary": "census data (household counts, national average persons/household)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "official centennial flood hazard bands",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "thispaperquantifiessettlementlevelexposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereporte",
+            "aperquantifiessettlementlevelexposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmu"
+          ],
+          "evidence_summary": "official centennial flood hazard bands (national flood hazard mapping; sub-global scope)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (online recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    },
+    {
+      "doi": "10.1029/2025ef006132",
+      "title": "High‐Resolution Modeling of Future Urban Area and Population Exposure to Floods and Landslides",
+      "year": 2026,
+      "venue": "Earth's Future",
+      "record_type": "journal-article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "adjudication_note": "User-batch admission (user downloaded the TODO-list PDFs to reference_sets/audit/fulltext_corpus/pdf/; texts extracted and reviewed on 2026-10-06; user ratified with '可以'). All three members used_as_data in the same research instance; observables consistent with the anchor member definitions. No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHSL built-up area 30m",
+        "GHSL/GPW4 population grid 250m + SSP population scenarios",
+        "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL built-up area 30m",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ndslideexposureearthsfuture129e2024ef004830httpsdoiorg1010292024ef004830florczykajcorbanecehrlichdfreireskempertmaffeniniletal2019ghsldatapackage2019eur29788enpublicationsofficeoftheeuropeanunionfragkiasmsetokc2007modelingurbangrowthindatasparseenvironmentsanewapproachenvironmentandplanningbplanninganddesign345858883httpsdoiorg101068b32132froudemjpetleydn2018globalfatallandslideoccurrencefrom2004to2016naturalhazardsandearthsys",
+            "nt21capturingthecurrentsituationtodescribecurrenturbanandpopulationpatternsweusethe2019globalhumansettlementghsdatapackagethatmapsbuiltupareaandpopulationdistributionatveryhighresolutionsof30and250mrespectivelyflorczyketal2019thisdatasetusesremotesensingtomapbuiltupareasanddisaggregatescoarserlevelpopulationdatatothelocalgridcellsusingamongstotherstheremotesensingbasedbuiltupareafractionsoitdoesnotfollownationallandusedatathat"
+          ],
+          "evidence_summary": "GHSL built-up area 30m (2019 GHS data package)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHSL/GPW4 population grid 250m + SSP population scenarios",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "aweapplyinthisassessment21capturingthecurrentsituationtodescribecurrenturbanandpopulationpatternsweusethe2019globalhumansettlementghsdatapackagethatmapsbuiltupareaandpopulationdistributionatveryhighresolutionsof30and250mrespectivelyflorczyketal2019thisdatasetusesremotesensingtomapbuiltupareasanddisaggregatescoarserlevelpopulationdatatothelocalgridcellsusingamongstotherstheremotesensingbasedbuiltupareafractionsoitdoesnotfollown",
+            "researcharticle1010292025ef006132keypointsmodeloutcomesshowfutureexposureofurbanareaandpopulationtonaturalhazardsforseveralsharedsocioeconomicpathwaysglobalexposuretoriverinefloodsandlandslidesprojectedtoincreasebutdevelopmentsdifferstronglyperpathwayafter2050rapidurbanizationdisproportionatelyincreasespopulationgrowthinhazardpronezonesparticularlyinsubsaharanafricaandsouthasiacorresp"
+          ],
+          "evidence_summary": "GHSL/GPW4 population grid 250m + SSP population scenarios",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "likelytooccurmorethanonceevery100yearspersquarekilometerworldbank2021p35soreferringtothesameannualprobabilityasselectedfortheriverfloodhazardthequalitativeclassificationsignificantinthearupterminologyshouldbeunderstoodasrepresentingalandslidecoveringatleast1000m2worldbank2021p52focusingontheserelativefrequentandlargelandslidesmeansweconcentrateourassessmentontheareaswherehumanpresenceisleastpreferredbutalsoimpliesthatwepresent",
+            "oreurbanareaandmorepeoplewillbeaffectedthanwecurrentlyestimatetheriverfloodexposuredataarederivedfromtheglobalfloodawarenesssystemglofasthatdescribesfloodinundationareasforseveralreturnperiodsbasedonhydrologicalmodelsimulationsdottorietal2016thedatadescribethespatialextentandlikelydepthoffloodedareasandaremadeavailablebythejointresearchcenter5of232328427720261downloadedfromhttpsagupubsonlinelibrarywileycomdoi1010292025ef006132"
+          ],
+          "evidence_summary": "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard (global)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (user-batch recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    },
+    {
+      "doi": "10.5194/nhess-21-2921-2021",
+      "title": "Global riverine flood risk – how do hydrogeomorphic  floodplain maps compare to flood hazard maps?",
+      "year": 2021,
+      "venue": "Natural Hazards and Earth System Sciences",
+      "record_type": "journal-article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "adjudication_note": "Online-recall admission via the Copernicus direct channel (OpenAlex had no pdf_url; fetched from nhess.copernicus.org). Cross-comparison of three global flood-hazard products (JRC, GAR2015, GFPLAIN250m) and three global population grids (GHS-POP, HRSL, WorldPop), with GHSL built-up / GHS-SMOD urban extent as analysis variables — all three members used_as_data in the same exposure analysis. Human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "GHSL built-up area",
+        "GHS-POP / HRSL / WorldPop global population grids",
+        "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL built-up area",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hydrogeomorphicoodplainresultsmimickedoodhazardmapsandpredominantlyfoundconsistenciesinoodplainareasunalteredbyhumansinthisstudywebuildupontheexistingliteraturecomparingoutputsofglobaloodmodelsbyexamininghowtheglobaloodplainmapgfplainnardietal2019comparestotwocommonlyusedglobaloodhazardmapswhenestimatingriverineoodexposurethefloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentredottorietal2016aandtheoodhazardmapsp",
+            "amwatershedrespectivelysquarekilometreurbanextentcombiningthelowdensityclustersclass2andhighpercentcoverdensityclustersclass3inthesettlementmodelgridghssettlementmodelgridfortheyear2015spatialextentgdpsum2015thegdptotalfortheyear2015withinthebasinandupusdollarssumstreamwatershedrespectivelysourcehydrobasinslehner2014lehnerandgrill2013freshwaterecoregionsoftheworldabelletal2008hydrobasinslehnerandgrill2013watergapv22dlletal2003"
+          ],
+          "evidence_summary": "GHSL built-up area (GHS-BUILT, Landsat-derived) + GHS-SMOD urban extent grids",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP / HRSL / WorldPop global population grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ghresolutionglobaloodhazardmodelwaterresourres5173587381httpsdoiorg1010022015wr0169542015schiavinamfreiresandmacmanuskghspopr2019aghspopulationgridmultitemporal1975199020002015europeancommissionjointresearchcentrejrcdatasethttpsdoiorg1029050c6b9751a71f4062830b43c9f432370f2019schumanngbatespdhorrittmsmatgenpandpappenbergerfprogressinintegrationofremotesensingderivedoodextentandstagedataandhydraulicmodelsrevgeophys47rg4001httpsd",
+            "semapswiththreehumanpopulationmapsglobalhumansettlementpopulationgridhereinafterghshighresolutionsettlementlayerhereinafterhrslandworldpopthendingsofthisstudyindicatethathydrogeomorphicoodplainmapscanbeavaluablewayofproducinghighresolutionmapsofoodpronezonestosupportriverineoodriskstudiesbutcautionshouldbetakeninregionsthataredrysteepveryatornearthecoast1introductionflooddisastersareamajorcauseoflossthroughouttheglobeclaimingt"
+          ],
+          "evidence_summary": "GHS-POP / HRSL / WorldPop global population grids (intersected with floodplain maps)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "iveandcompareriverineoodexposurefromthreeglobalproductsahydrogeomorphicoodplainmapgfplain250mhereinaftergfplainandtwooodhazardmapsfloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentrehereinafterjrcandtheoodhazardmapsproducedfortheglobalassessmentreportondisasterriskreduction2015hereinaftergarwendanaveragespatialagreementbetweenthesemapsofaround30attheriverbasinlevelonaglobalscalethisagreementishighlyvariableacros",
+            "nmapgfplain250mhereinaftergfplainandtwooodhazardmapsfloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentrehereinafterjrcandtheoodhazardmapsproducedfortheglobalassessmentreportondisasterriskreduction2015hereinaftergarwendanaveragespatialagreementbetweenthesemapsofaround30attheriverbasinlevelonaglobalscalethisagreementishighlyvariableacrossmodelcombinationsandgeographicconditionsinuencedbyclimatichumidityrivervolume"
+          ],
+          "evidence_summary": "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map (three global products)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    },
+    {
+      "doi": "10.1038/s43247-025-02585-7",
+      "title": "Global South shows higher urban flood exposures than the Global North under current and future scenarios",
+      "year": 2025,
+      "venue": "Communications Earth &amp; Environment",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "citation_network_expansion_manual_review_user_ruled_20261006",
+      "adjudication_note": "Citation-network-expansion admission (referenced-works / cites: intersection over the population-built-up data-layer family and the hazard data-layer family). All three anchor members used_as_data in the same exposure analysis: urban built-up extent (Global Urban Boundary <- Global Annual Impervious Area 30 m), population (GHS-POP 1 km) and hazard (EC/JRC global 1 km river flood hazard maps) are intersected to derive urban flood exposure. No model worksheet exists; the original-text manual review is the sole adjudication. Review: reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Global Urban Boundary",
+        "Global Human Settlement Layer population grid",
+        "EC/JRC global 1 km river flood hazard maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "Global Urban Boundary",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hilethisapproachsupportsuniformlargescalemodelingitmayleadtoconservativeestimatesoffloodexposureinareaswithstrongprotectionsystemsthehistoricalurbanareadataarefromtheglobalurbanboundarydataset30whichwasdevelopedbasedonthe30mresolutionglobalannualimperviousareadataset50coveringtheperiodfrom2000to2020in5yearintervalsfutureurbanexpansiondataarederivedfromglobalurbanlandexpansionprojectionsunderthessps50withaspatialresolutionof1km",
+            "ithstrongprotectionsystemsthehistoricalurbanareadataarefromtheglobalurbanboundarydataset30whichwasdevelopedbasedonthe30mresolutionglobalannualimperviousareadataset50coveringtheperiodfrom2000to2020in5yearintervalsfutureurbanexpansiondataarederivedfromglobalurbanlandexpansionprojectionsunderthessps50withaspatialresolutionof1kmandcovering20302100in10yearintervalsbothdatasetsfocusonmappingbuiltupurbanareaswithhighpopulationandecon"
+          ],
+          "evidence_summary": "Global Urban Boundary (derived from the 30 m Global Annual Impervious Area dataset) as the historical urban built-up extent",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "Global Human Settlement Layer population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "undarydatasetthislimitationcouldresultinanunderestimationoffloodexposureinsuchareasespeciallyinlowincomeorrapidlyurbanizingregionsurbanpopulationdatafor20002020arefromtheglobalhumansettlementlayerdataset51withaspatialresolutionof1kmavailableat5yearintervalsfutureurbanpopulationdatafor20302100arefromthe1kmgridpopulationdistributiondatasetundersspswithaspatialresolutionof1kmandupdatedat10yearintervals52urbaneconomicdataarederive",
+            "anunderestimationoffloodexposureinsuchareasespeciallyinlowincomeorrapidlyurbanizingregionsurbanpopulationdatafor20002020arefromtheglobalhumansettlementlayerdataset51withaspatialresolutionof1kmavailableat5yearintervalsfutureurbanpopulationdatafor20302100arefromthe1kmgridpopulationdistributiondatasetundersspswithaspatialresolutionof1kmandupdatedat10yearintervals52urbaneconomicdataarederivedfromtheglobalgriddedgdpdatasetconsisten"
+          ],
+          "evidence_summary": "Global Human Settlement Layer population grid (GHS-POP), 1 km, 2000-2020",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "EC/JRC global 1 km river flood hazard maps",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "yfigs448datathedatausedinthisstudyprimarilyconsistofglobalriverfloodhazardmapsurbanareadataurbanpopulationdataandurbaneconomicdatatheglobal1kmresolutionriverfloodhazardmapswitha1in100yearreturnperiodusedinthisresearchweredevelopedbytheeuropeancommission45andhavebeenwidelyutilizedinfloodexposureanalysis101549itshouldbenotedthatthisdatasetdoesnotaccountforflooddefenseinfrastructuresuchasleveesorfloodwallsthisisprimarilyduetothec",
+            "developmentwecategorizetheworldintoglobalsouthandglobalnorthsupplementaryfigs448datathedatausedinthisstudyprimarilyconsistofglobalriverfloodhazardmapsurbanareadataurbanpopulationdataandurbaneconomicdatatheglobal1kmresolutionriverfloodhazardmapswitha1in100yearreturnperiodusedinthisresearchweredevelopedbytheeuropeancommission45andhavebeenwidelyutilizedinfloodexposureanalysis101549itshouldbenotedthatthisdatasetdoesnotaccountforfl"
+          ],
+          "evidence_summary": "EC/JRC global 1 km river flood hazard maps (1-in-100-year return period)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (citation-network recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    },
+    {
+      "doi": "10.3390/ijgi13100357",
+      "title": "Comprehensive Assessment of Large-Scale Regional Fluvial Flood Exposure Using Public Datasets: A Case Study from China",
+      "year": 2024,
+      "venue": "ISPRS International Journal of Geo-Information",
+      "record_type": "journal-article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "citation_network_expansion_manual_review_user_ruled_20261006",
+      "adjudication_note": "Citation-network-expansion admission (papers citing the task_013 pool). All three anchor members used_as_data in one exposure analysis: four 1-km indicators (WorldPop population, ESRI Land Cover built-up area, road length, GDP) are aggregated and intersected with the JRC/EU Data Centre global fluvial flood hazard maps (RP10/50/100/500). No model worksheet exists; the original-text manual review is the sole adjudication. Review: reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "ESRI Land Cover Building class",
+        "WorldPop 1 km gridded population, 2000-2020",
+        "JRC / EU Data Centre global fluvial flood hazard maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "ESRI Land Cover Building class",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "sourceresolutionyearresultperkm2referencespopulationworldpophttpshubworldpoporgaccessedon1stapril20241km20002020population30394142esrilandcoverbuildinghttpslivingatlasarcgiscomlandcoverexploreraccessedon1stapril202410m20172021builtuparea394142openstreetmaproadhttpswwwopenstreetmaporgaccessedon1stapril20142024roadlength2139422024realgdpeconomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp919432",
+            "atatheintegrationofpublicdatasetsoffersapotentialsolutiontothesechallengesinthisstudyweobtainedfourkeyexposureindicatorspopulationbuiltupareabaroadlengthrlandaveragegrossdomesticproductgdpandconductedaninnovativeanalysisoftheircorrelationsbothoverallandlocallyutilisingtheseindicatorswedevelopedacomprehensiveexposureindexemployingentropyweightingandkmeansclusteringmethodsandassessedfluvialfloodexposureacrossmultiplereturnperiod"
+          ],
+          "evidence_summary": "ESRI Land Cover Building class (10 m, 2017-2021) reclassified to built-up area (BA)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "WorldPop 1 km gridded population, 2000-2020",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ndeconomyisprsintjgeoinf2024133575of21table1allofwhichareremotesensingderiveddataexceptfortheroadsdatathepopulationdatasourcedfromworldpopunderwentprocessingthroughanunconstrainedtopdowndecompositionmethodutilisingacomprehensiveglobaldatabasecomprisingcensusandprojectioncountsofadministrativeunits2137thesewerefurtherrefinedwithdetailedgeospatialdatasetsandalignedwiththeunitednationsnationalpopulationestimatesthebuildinginforma",
+            "erdatafacilitatedbuildingextractiontable1differentdatasetsusedtoreflectexposureindicatorsourceresolutionyearresultperkm2referencespopulationworldpophttpshubworldpoporgaccessedon1stapril20241km20002020population30394142esrilandcoverbuildinghttpslivingatlasarcgiscomlandcoverexploreraccessedon1stapril202410m20172021builtuparea394142openstreetmaproadhttpswwwopenstreetmaporgaccessedon1stapril20142024roadlength2139422024realgdpecono"
+          ],
+          "evidence_summary": "WorldPop 1 km gridded population, 2000-2020",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC / EU Data Centre global fluvial flood hazard maps",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "gdpeconomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp91943222floodinundationdatasetweutilisedglobalfluvialfloodhazardmapssourcedfromtheeudatacentreforouranalysishttpsdatajrceceuropaeucollectionid0054accessedon1stapril2024thisrasterdatasetoffersspatialresolutionupto90m3arcsecondsandleveragestheopensourcehydrodynamicmodellisflood44itfirsttakeslongtermriverflowdatafromtheglofasmodelandscalesit",
+            "nomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp91943222floodinundationdatasetweutilisedglobalfluvialfloodhazardmapssourcedfromtheeudatacentreforouranalysishttpsdatajrceceuropaeucollectionid0054accessedon1stapril2024thisrasterdatasetoffersspatialresolutionupto90m3arcsecondsandleveragestheopensourcehydrodynamicmodellisflood44itfirsttakeslongtermriverflowdatafromtheglofasmodelandscalesittoahig"
+          ],
+          "evidence_summary": "JRC / EU Data Centre global fluvial flood hazard maps (RP10/50/100/500)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "machine_state_at_admission": {
+        "worksheet": null,
+        "note": "No model worksheet (citation-network recall outside the v8 queue). Admitted on original-text manual review only, user-ruled 2026-10-06."
+      }
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "audited_complete_set_reference_001",
+      "source_paper_doi": "10.1371/journal.pone.0118571",
+      "reference_tier": "expanded_set_reference",
+      "actual_datasets": [
+        "MODIS 500-m Map of Global Urban Extent",
+        "Population Count Grid, GRUMP, Alpha Version",
+        "DIVA 1-in-100-Year Surge Heights"
+      ],
+      "joint_use_evidence_quotes": [
+        "We use spatially explicit methods and publicly available global data sets to assess (i) the land area and population distribution in the LECZ and (ii) people living in the 100-year flood plain for three points in time: For a baseline year (2000) and for the years 2030 and 2060.",
+        "For estimating land and population in the LECZ for the year 2000, we employed the methods of McGranahan et al. [5] and Lichter et al. [6], using an eight-sided connectivity rule to identify the inundation areas that are hydrologically connected to the ocean from the SRTM30 Enhanced Global Map data (Table 2).",
+        "The number of people living in the 100-year flood plain was assessed through a slightly modified approach.",
+        "First, we retrieved estimates of the 1-in-100-year extreme water levels from the Dynamic and Interactive Vulnerability Assessment (DIVA) database [56, 57] (Table 2).",
+        "We calculated the population in the flood plain based on the distribution of coastal population per 1 m elevation increment (Table 2) assuming that all land below the computed surge heights belongs to the 100-year flood plain."
+      ],
+      "admission_basis": "dual_model_admitted_both_quotes_verified_manual_distinct_member_check",
+      "research_question": "论文旨在评估全球187个沿海国家在低海拔沿海区（LECZ）及100年一遇沿海洪泛区中的当前人口分布，并预测2030年和2060年不同情景下的未来沿海人口增长与暴露风险。",
+      "hypothesis_or_mechanism": "核心机制是沿海迁移会使沿海地区相对于内陆腹地具有更高的人口增长，且沿海城市人口与非城市人口增长路径不同。研究还假定沿海城市增长具有扩张性，即城市区域会向原先非城市空间扩展。",
+      "variables_and_data_use": "研究使用SRTM30 Enhanced Global Map和GTOPO30全球高程数据识别LECZ及1米高程分带，用GRUMP Population Count Grid估算2000年基准人口，并用MODIS 500-m Map of Global Urban Extent区分城市与非城市人口。未来预测结合Foresight情景叙事、UN World Population Prospects 2010、UN World Urbanization Prospects 2009，并使用DIVA 1-in-100-Year Surge Heights和海平面上升情景估算100年一遇洪泛区暴露人口。",
+      "method_paradigm": "方法范式为空间叠加的全球暴露评估与情景人口投影。具体包括基于DEM和八邻域连通规则划定与海洋水文连通的LECZ，叠加人口与城市范围栅格获得基准人口，并用指数增长函数、国家尺度UN人口约束和沿海增长校正因子推算2030与2060年人口。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1371_journal.pone.0118571.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:11"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_002",
+      "source_paper_doi": "10.21203/rs.3.rs-6396722/v1",
+      "title": "LandScan HD: A High-Resolution Gridded Ambient Population Methodology for the World",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHS-BUILT-S 10m 用于识别无数据区",
+        "LandScan HD 全球环境人口网格",
+        "菲律宾政府 1:10,000 洪水灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT-S 10m 用于识别无数据区",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "anlackcoverageinareasoftheworldwherehumansettlementsareknowntoexistweidentifysuchareasusingtheglobalhumansettlementlayerghslbuilts10mrasterwhichprovidescontinuousglobalmeasurementofbuiltupsurfaceareapesaresipolitis2023areascontainingnonzerovaluesinbuiltsbutlackingcoverageinthebfemicrosoftandgoogledatasetsareconvertedtoapolygonalnodatamaskusingthenodatamaskwesubstitutevectorizedbuiltscellsasafailsa",
+            "tdataheterogeneityinproceedingsofthe3rdacmsigspatialinternationalworkshopongeospatialhumanitiespp16pesaresimpolitisp2023ghsbuiltsr2023aghsbuiltupsurfacegridderivedfromsentinel2compositeandlandsatmultitemporal19752030datasethttpdataeuropaeu89h9f06f36f4b1147ecabb04f8b7b1d72eadoi1029059f06f36f4b1147ecabb04f8b7b1d72eaprtnerhorobertsdcadamshadelekaniadlercadrianralduncepaliearabegumrbednarfriedlb2022te"
+          ],
+          "evidence_summary": "GHS-BUILT-S 10m 用于识别无数据区",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "LandScan HD 全球环境人口网格",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "fthegloballandscanhdbaselinedatasetwecontrasttheambientpopulationwithagriddedpopulationrepresentingresidentialactivitiesworldpopby1exploringapracticalapplicationforfloodriskassessmentand2evaluatingcongruencewithoutcomesofcollectivehumanactivitiessubnationalco2emissionsfinallywediscussconfrontingcurrentlandscanhdlimitationsthroughdatamodelinganduncertaintyquantificationimprovementsandprovideoutlook",
+            "pmentofthesetopdownmethodshasfocusedonrefinementofbothspatialresolutionandmodelconstraintsthegriddedpopulationoftheworldgpwproducedbythecenterforinternationalearthscienceinformationnetworkformsthebasisformanytopdowngriddedpopulationproductsgpwischaracterizedasaminimallymodeledproductthatdistributesadministrativepopulationcountstogridcellsv15arcminutes85kmv2325arcminutes5kmv430arcseconds1kmbasedona"
+          ],
+          "evidence_summary": "LandScan HD 全球环境人口网格（产品本体）+ WorldPop 对照",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "菲律宾政府 1:10,000 洪水灾害图",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hoonriskbagsitetal2014subadeetal2014thisscenarioisidealforshowcasingtheutilityofthelandscanhddatasetinthisdemonstrationafloodhazarddatasetobtainedfromthephilippinegovernmentviathecountrysgeoportalgeoportalphilippines2024encompassesnearlytheentiremunicipalitythisdatasetdelineatesthefloodhazardsscaledat110000intothreesusceptibilitycategorieslowmoderateandhighforthisanalysisweusetheextentofthefloodha",
+            "rerskaufmanjmortonathakurgpiburnjmoehlj2016abayesianmachinelearningmodelforestimatingbuildingoccupancyfromopensourcedatanaturalhazards81319291956httpsdoiorg101007s1106901621649stipekchausertadamsdeptingjbrelsfordcmoehljstewartr2024inferringbuildingheightfromfootprintmorphologydatascientificreports141straussmesmithgt2009constructvalidityadvancesintheoryandmethodologyannualreviewofclinicalpsychology"
+          ],
+          "evidence_summary": "菲律宾政府 1:10,000 洪水灾害图（Fani 气旋风险演示）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "如何整合建筑物、设施用途、占用密度和行政区人口统计等多源数据，在全球范围内生成高分辨率的昼夜及24小时环境人口分布估计？",
+      "hypothesis_or_mechanism": "人口主要分布在建成区，其建筑面积、楼层数和设施用途所对应的昼夜占用密度能够用于构建建筑层面的自下而上人口权重。将这些权重归一化后与Adm1行政区权威人口总量相乘，可在保持行政区人口总量一致的同时，将人口分配到建筑物及网格单元。",
+      "variables_and_data_use": "使用ORNL Building Feature Extraction（BFE）建筑物轮廓，缺失处以Microsoft和Google建筑物轮廓及GHSL Built-S 10 m栅格补充；使用OpenStreetMap（OSM）、Urban Tactical Planner（UTP）和Multinational Geospatial Co-production Program（MGCP）获取土地利用、设施类型、建筑高度和楼层数。使用PDT的昼间和夜间设施占用密度（人/1000平方英尺）结合建筑足迹面积与楼层数计算底层人口权重，并以美国人口普查局International Database及各国Adm1人口统计进行校准，最后汇总到3弧秒全球网格。",
+      "method_paradigm": "多源地理数据矢量整合与MOLECULE空间单元构建；基于建筑体量和PDT占用密度的自下而上人口加权，并通过Adm1人口总量进行面积加权/权重归一化重分配，随后进行昼夜人口平均和规则网格聚合。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.21203_rs.3.rs-6396722_v1.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:15"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_003",
+      "source_paper_doi": "10.1016/j.envsci.2018.10.001",
+      "title": "Built-up area and population density: Two Essential Societal Variables to address climate hazard impact",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHS built-up 多时相层生产+使用",
+        "GHS-POP",
+        "GAR 2015 全球灾害图层"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS built-up 多时相层生产+使用",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "neratedfromearthobservationimagearchivesandfromnationalpopulationcensusdataintheframeworkoftheglobalhumansettlementlayerghslprojectthelayersareproducedwithfinegranularityforfourepochs197519902000and2015andwillbeupdatedonaregularbasiswithopensatelliteimagerythepaperdiscussestherelevanceofglobalbuiltupareaandpopulationdensityforanumberofpolicyareasinparticulartounderstandregionalandglobalurbanizatio",
+            "itleelseviersponsoreddocumentspmc7729828pmc772982817729828772982833343228101016jenvsci201810001s14629011173056951articlebuiltupareaandpopulationdensitytwoessentialsocietalvariablestoaddressclimatehazardimpactehrlichddanieleehrlicheceuropaeukempertpesaresimcorbanecjointresearchcentreeuropeancommissionviaenricofermi2749i21027ispraitalycorrespondingauthordanieleehrlicheceuropaeu1220189036780373821620"
+          ],
+          "evidence_summary": "GHS built-up 多时相层生产+使用",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "nginthesamethreeelevationclassesrightfig6theworkprovidesamorepreciseinsightoverpopulationinlowcoastalareaslessthan1oftheworldpopulationlivesbelowsealevelthatpercentagehasonlyslightlyincreasedovertimethetotalpopulationbelowsealevelaccountsinabsolutetermsto74million2015andhasincreasedfrom38millionin1975thetotalpopulationinareasbelow10maccountsinabsolutetermsto455millionin1975879millionin2015approxim",
+            "ducedfromacombinationofbuiltupareaandpopulationdataavailableatadministrativeboundariesfromthegriddedpopulationoftheworldgpwprojectcenterforinternationalearthscienceinformationnetworkciesincolumbiauniversity2017thegpwprojectassemblesfromanumberofdataprovidersaglobalpopulationdatabasethatcombinesspatiallyexplicitadministrativeboundaryandcorrespondingpopulationestimatesforuseinpopulationdisaggregatio"
+          ],
+          "evidence_summary": "GHS-POP（GPW 派生）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "GAR 2015 全球灾害图层",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "litusesawidevarietyofindicatorsincludingthoserelatedtonaturalhazardsanddisasterstheindicatorsarebasedontheintersectionofhazardmapsandpopulationdensitiessomeofthehazardindicatorsusedininformincludechangesinexposureasdescribedbelowexposureandtheincreaseinexposuretonaturalhazardsaremajorriskdriversfig5showschangesinbuiltupareaandpopulationfrom197519902000and2015forfloodingcyclonewindsandsealevelsurge",
+            "ocessesandforuseinoperationalcrisismanagementandriskassessmentthepaperalsoprovidesexamplesofglobalstatisticsonexposuretonaturalhazardsbasedonthetwoesvsandtheiruseinpolicymakingfinallythepaperdiscussesthepotentialofusingpopulationandbuiltupareafordevelopingindicatorstomonitortheprogressinagenda2030includingthesustainabledevelopmentgoalssdgskeywordshumansettlementsbuiltuppopulationdensityessentialso"
+          ],
+          "evidence_summary": "GAR 2015 全球灾害图层 + 洪水/气旋曝光统计",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文回答的科学问题是：全球建成区和人口密度能否作为“基本社会变量”来量化人类存在，并与基本气候变量结合，用于评估气候相关快速发生灾害对社会的影响。文章重点讨论这些变量在城市化理解、危机管理、风险评估和2030议程指标监测中的作用。",
+      "hypothesis_or_mechanism": "核心机制是：建成区和人口密度刻画了需要被保护的人类住区及其居民，因此与气旋、强风、洪水、风暴潮等灾害图层叠加后，可以量化暴露度并支持灾害风险和影响建模。建成区还为人类活动提供空间锚点，可作为整合脆弱性、排放、能源使用等附加信息的地理参照。",
+      "variables_and_data_use": "使用的主要变量是全球建成区和全球人口密度，数据来自Global Human Settlement Layer（GHSL）项目生成的全球建成区与人口密度图层，基于Earth observation image archives、开放卫星影像和national population census data制作，覆盖1975、1990、2000和2015四个时期。论文还将这两个ESV与Global Assessment Report（UNISDR, 2015a）提供的全球灾害数据集结合，用于统计人口和建成区对自然灾害的暴露，并服务于GDACS、Copernicus-EMS、INFORM等风险和危机管理应用。",
+      "method_paradigm": "方法范式是全球栅格化社会变量构建与灾害暴露叠加分析：先从遥感影像档案和人口普查数据生产细粒度、多时期的建成区和人口密度层，再与全球灾害图层交叉以估算暴露。文章还采用科学—政策连续体框架，说明这些变量如何进入灾害风险模型、影响评估和指标体系。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.envsci.2018.10.001.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:14"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_004",
+      "source_paper_doi": "10.3990/1.9789036549998",
+      "title": "Modeling of population distribution in space and time to support disaster risk management",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHS-BUILT 用于人口离散化",
+        "GPW/GHS-POP",
+        "火山(GVP)+地震灾害图与人口层叠加"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT 用于人口离散化",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "11potentialglobalpopulationexposuretovolcanichazardnarrowingdatagaps112612thecontributionoftheglobalhumansettlementlayerghsltodrm11362materialsandmethods115vii621data115622assessingglobalpopulationdistributionandvolcanism11763resultsanddiscussion118631globalpopulationdistributionfrom1975to2015inrelationtovolcanism118632populationdistributionfrom1975to2015inrelationtovolcanisminsoutheastasiaandcent",
+            "flowchartofthesplitandmergeapproach97figure22examplesofdetecteddiscrepanciespatcheslargerthan1km2betweengpwv4bluelineandghsbuilt2014orangealongthecoastsofajapanjpnbtunisiatuncchinachnanddromaniarou99figure23globaldistributionofcensusunitswithoutpopulationingpwv410dataandthoseflaggedbasedontheautomatedproceduredevelopedusanotconsiderednotethatexistenceofunpopulatedunitsismerelyafeatureofcensusdesig"
+          ],
+          "evidence_summary": "GHS-BUILT 用于人口离散化",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GPW/GHS-POP",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "modelinggeographicvariablesinordertoobtainanappropriateproxylayerorprobabilitysurfacetosupportpopulationdisaggregationegworldpop25indevelopingmoredetailedmultitemporalglobalpopulationgridsthisthesischapter5hasfocusedinsteadonaspects1and2mentionedabove1241globalpopulationgridsatgloballevelstartinginthe1990stheincreasedavailabilityofdigitalspatialdatacombinedwithimprovedcapabilitiesofgeographicinfor",
+            "deling85figure21flowchartofthesplitandmergeapproach97figure22examplesofdetecteddiscrepanciespatcheslargerthan1km2betweengpwv4bluelineandghsbuilt2014orangealongthecoastsofajapanjpnbtunisiatuncchinachnanddromaniarou99figure23globaldistributionofcensusunitswithoutpopulationingpwv410dataandthoseflaggedbasedontheautomatedproceduredevelopedusanotconsiderednotethatexistenceofunpopulatedunitsismerelyafeat"
+          ],
+          "evidence_summary": "GPW/GHS-POP",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "火山(GVP)+地震灾害图与人口层叠加",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "rguablyweknowevenlessaboutthelocationofpeopleandassetsandtheimpactofhazardsonthemthanwedoaboutthefrequencyandnatureofthefloodhazardeventssmithetal2019p2alsountilnotlongagotheavailabilityandintegrationofsocioeconomicvariablesintogeospatialriskmodelsimplementedwithinageographicinformationsystemgisremainedachallengeec2010perhapsthesmalleramountofattentiondevotedtotheimportancegapsandchallengesinmodel",
+            "alscalesandresolutionsiiapplyingthosedatatorealdisasterriskscenariosbycombininggeospatialpopulationlayerswithgeophysicalhazardmapsiiiusingspatialanalysisforquantitativelyandqualitativelyassessinghumanexposuretospecifichazardsandlevelsandforcartographicrepresentationsandvisualizationandivdiscussingthefindingstheirimpactsaswellascontributionstodrmwhilethefocusisonthespatiotemporaldynamicsofhumanexpo"
+          ],
+          "evidence_summary": "火山(GVP)+地震灾害图与人口层叠加",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文关注如何在全球或大陆尺度上生成更高空间与时间分辨率、可比较且可复现的人口网格，特别是如何将普查区人口统计量分解到目标栅格单元。其科学问题还包括：遥感提取的建成区/聚落信息能否作为人口存在的代理层，用于改进多时相人口分布与暴露评估。",
+      "hypothesis_or_mechanism": "核心机制是：建筑物及其聚集体是地表上人类存在和活动的主要可见表现，因此建成区分布与密度可作为人口位置和密度的代理变量。通过将最小普查单元的人口总量按建成区代理层进行 dasymetric mapping 分配，可在保持人口总量约束的同时提高人口网格的空间细节和时序一致性。",
+      "variables_and_data_use": "使用 CIESIN GPWv4 提供的最小普查单元居民人口数量作为源区人口统计量，并使用 GHSL/GHS-BUILT 从 Landsat 影像集合提取的1975、1990、2000、2014/2015时期建成区分布与密度作为目标代理层，生成 GHS-POP 250 m 人口数量与密度栅格。文中还提到 WorldPop 将建成区与其他空间协变量结合建模，GUF 使用 TerraSAR-X 和 TanDEM-X 雷达数据生成2012年全球城市足迹，ESM 使用多传感器甚高分辨率光学影像并结合 PANTEX、形态学影像特征和符号机器学习分类器制图，HRSL 使用 Facebook Connectivity Lab 从0.5 m 卫星影像经 CNN 提取聚落范围后生成约30 m 人口网格。",
+      "method_paradigm": "方法范式主要是基于遥感建成区代理层的 dasymetric mapping 人口空间分解，即从源普查区向目标栅格单元重分配人口。相关方法还包括机器学习/符号机器学习的建成区分类、卷积神经网络提取聚落范围，以及结合土地利用/土地覆盖与建成区密度的两级人口再分配模型。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.3990_1.9789036549998.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:13"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_005",
+      "source_paper_doi": "10.1088/1748-9326/ac9197",
+      "title": "Urbanizing the floodplain: global changes of imperviousness in flood-prone areas",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GAUDIS",
+        "GPW/WorldPop/LandScan",
+        "全球洪水概率/灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GAUDIS",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "e19852015periodgaudisderivedfromlandsatimageryat30mresolutionbyfusingfourglobalurbanizationdatasetsglobalhumansettlementghsllayerglobalurbanfootprintglobalurbanlandandtheglobalartificialimperviousareaandthenapplyingthenormalizedurbanareascompositeindexnuacitoidentifyyearsofurbanizationorgreenrecoverythefusionalgorithmkepttheurbanareasthatwereconsistentamongtheotherproductsandusedalocallyadaptivecl",
+            "dtotripleits2000extentby203050thelinkbetweenurbanizationandpotentialincreaseinfloodriskstemsfromhydrologicalterationfromimpervioussurfaceareas5152effectsonlocalclimate53orchangesinexposureegpopulationdistributionchanges54recentstudiesfoundthaturbanizationcansignificantlyexacerbatefloodriskforexampleduringhurricaneharveytheprobabilityoffloodingwaselevatedby21timesduetourbanization55thereforeourresu"
+          ],
+          "evidence_summary": "GAUDIS（GHSL 融合派生）建成区扩张",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GPW/WorldPop/LandScan",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "tionduring19902000and201542theglobalruralurbanmappingprojectthathas30arcsecond1kmresolutionandrepresents1990and200043theworldpopdatasetthatprovidesannualdatafrom2000to2020onglobalpopulationata3arcsecondspatialresolution44thegriddedpopulationoftheworlddatasetthatrepresentspopulationat30arcsecondsresolutionevery5yearssince200045andlandscantmthatprovidesannualpopulationdatasince2000at30arcsecondsreso",
+            "iorg106084m9figshare11513178v2thepopulationdatasetsusedinthisstudyareavailableathttpsedacciesincolumbiaedudatacollectiongpwv4gpwhttpghsljrceceuropaeughspopphpghslhttpsedacciesincolumbiaedudatacollectiongrumpv1grumphttpswebornlgovscilandscanlandscanandwwwworldpoporgworldpopthedatasetoffloodplainencroachmentunderlyingtheresultspresentedinthisstudyisavailableathttpstinyurlcom3can5prwcodeavailabilityt"
+          ],
+          "evidence_summary": "GPW/WorldPop/LandScan",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "全球洪水概率/灾害图",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "assessthemagnitudeoffloodplainencroachmentgloballyandhowithaschangedinbothspaceandtimehighlyresolvedglobaldatasetsofbothfloodhazardandchangesinurbanareafrom1985to2015arenowavailableenablingthereconstructionofthehistoryoffloodplainencroachmentathighspatialresolutionshereweshowthattheurbanizedareainfloodplainsthathaveanaverageprobabilityoffloodingof1100yearshasalmostdoubledsince1985furthertherateofu"
+          ],
+          "evidence_summary": "全球洪水概率/灾害图（1/100 年）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "全球范围内洪泛区城市侵占的规模、空间分布及其自1985年至2015年的时间变化轨迹是什么？城市扩张是否更多发生在洪水危险性最高的洪泛区？",
+      "hypothesis_or_mechanism": "气候和人口变化以及城市向洪泛区扩张会加剧人类的洪水暴露。洪泛区城市化，尤其是向高危险区域扩张，伴随人口增长和城市人口密度上升，从而扩大洪水风险暴露。",
+      "variables_and_data_use": "使用全球高分辨率洪水灾害数据集识别平均百年一遇洪水概率的洪泛区，并结合1985—2015年城市区域变化数据集重建洪泛区城市侵占历史；分析城市化面积、城市扩张速率、洪水危险性、人口增长及人口密度的空间和时间变化。",
+      "method_paradigm": "基于多源全球栅格数据的空间叠加与时序重建，按洪水危险等级识别洪泛区城市化，并比较1985年以来城市扩张速率及人口变化。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.1088/1748-9326/ac9197",
+        "chars": 1373,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:12"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_006",
+      "source_paper_doi": "10.3390/ijgi8080341",
+      "title": "An Improved Global Analysis of Population Distribution in Proximity to Active Volcanoes, 1975–2015",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHS-BUILT 作离散化代理",
+        "GHS-POP/GPW",
+        "GVP 全新世火山目录+喷发致死记录"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHS-BUILT 作离散化代理",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ordspopulationdistributionpopulationexposurespatiotemporalanalysisglobaldisasterriskvolcanoesvolcanismsignicanteruptionsghslsoutheastasiacentralamerica1introductionvolcaniceruptionsareamongthemostpowerfulanddestructivenaturalhazardsonearthcapableofcausingwidespreadhumansufferingandextensiveeconomiclossesbothfromdirectimpactsandthroughthedisturbancestolivelihoodsarisingfromindirectorcascadingeffect",
+            "emergenceofanewgenerationofgeospatialdataderivedfromremotesensingledbytheglobalhumansettlementlayerghsl30globalmappingofbuiltupareasandsettlementswithunprecedentedspatiotemporaldetailandaccuracy303233otherusesthesenewdatasetsareprovidinganeectivecontributiontopopulationdisaggregationandotherpopulationdistributionmodelingeortsespeciallyduetoacombinationofsemanticrobustnessandinteroperabilitycurrenc"
+          ],
+          "evidence_summary": "GHS-BUILT 作离散化代理",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP/GPW",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "pennorfreesmallandnaumann8andhistoricallyactivevolcanoesfor1990butunderlinedthatthespatialresolutionofpopulationdatausedgpwv2imposeslimitationsontheanalysisandisnotadequatefordetailedassessmentofisprsintjgeoinf201983413of19potentialvolcanicriskewertandharpel19objectiveestimatesandcomparisonsofthenumberofpeopleatriskfromvolcanichazardswithinagivenradiusofavolcanicventtheindexquantiesonecomponentofr",
+            "esonecomponentofriskpopulationfromonevolcanotoanothertheauthorshavenotedthatthe1kilometergridsizeofthepopulationgridusedlandscanwastheprincipallimitingfactorinmakingpreciseestimatesofpopulationatrisk19thepopulationexposureindexpei24riskitisbasedonthepopulationwithin1030and100kmofavolcanowhichisthenweightedaccordingtoevidenceonhistoricaldistributionsoffatalitieswithinagivendistancefromvolcanoesthep"
+          ],
+          "evidence_summary": "GHS-POP/GPW",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "GVP 全新世火山目录+喷发致死记录",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "nismsignicanteruptionsghslsoutheastasiacentralamerica1introductionvolcaniceruptionsareamongthemostpowerfulanddestructivenaturalhazardsonearthcapableofcausingwidespreadhumansufferingandextensiveeconomiclossesbothfromdirectimpactsandthroughthedisturbancestolivelihoodsarisingfromindirectorcascadingeffectsegviadisruptionsofairtransportthroughoriginatingtsunamisetc1modifyingweatherpatternsdisruptingcli",
+            "tionandpopulationgrowth26719assessmentattheglobalscaleisnotasadvancedasforotherhazardssuchasoodingearthquakesandtropicalcyclones520theirconsistencyanddetailsimilarlytoearthquakesvolcaniceruptionsarediculttomitigatetechnologically21expectedlossesmaybelowerthanthosefromotherhazardsataglobalscaleinaectedregionstheycanbeverysignicantsince1950anaverageof31volcanoeshaveeruptedeachyear1anyonetimeatleast2"
+          ],
+          "evidence_summary": "GVP 全新世火山目录+喷发致死记录（点状灾害源）",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文回答的问题是：1975—2015年全球人口在近期火山活动相关空间范围内如何分布和变化，以及这种分布对灾害暴露和风险评估意味着什么。研究还比较了东南亚和中美洲两个火山热点区的人口—火山距离关系及其时间变化。",
+      "hypothesis_or_mechanism": "核心机制是，人口暴露于火山灾害的程度取决于人口密度与火山距离的空间关系及其随时间的变化。论文关注人口增长是否在火山附近更快发生，并发现人口密度随火山距离变化并非单调，10—20 km范围内人口集中度较高。",
+      "variables_and_data_use": "研究使用1975—2015年全球人口网格数据来表征人口分布、人口密度和人口增长，并与最新火山数据进行空间叠加分析。火山变量包括全新世火山和有至少一次显著喷发证据的火山，并按距火山不同距离带，特别是100 km、10 km、10—20 km和50 km以外等范围统计人口暴露。",
+      "method_paradigm": "方法范式是全球尺度的栅格人口—火山空间叠加与距离缓冲区统计分析，并结合1975—2015年时间序列比较人口变化。论文还采用区域对比分析，对东南亚和中美洲火山热点区的人口增长率与火山距离关系进行比较。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/ijgi8080341",
+        "chars": 1527,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:03"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_007",
+      "source_paper_doi": "10.1007/s13753-019-00242-0",
+      "title": "Changes of Population, Built-up Land, and Cropland Exposure to Natural Hazards in China from 1995 to 2015",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "targeted_search_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "中国土地利用建成区数据",
+        "中国人口分布网格",
+        "风暴潮/干旱/地震/洪水/滑坡灾害图"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "中国土地利用建成区数据",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "alcapitalandcommunitypreparationforurbanoodinginchinaappliedgeography64111maqcheandjwu2016behindtherapidexpansionofurbanimpervioussurfacesinchinamajorinuencingfactorsrevealedbyahierarchicalmultiscaleanalysislandusepolicy59434445masutomiyyinuiktakahashiandymatsuoka2009developmentofhighlyaccurateglobalpolygonaldrainagebasindatahydrologicalprocessesaninternationaljournal572584miaocjtengjwangandpzhou2",
+            "tihazardareascovered43and26ofchinasterritoryrespectivelypopulationgrewfasterinthehazardproneareasthaninthenonhazardareasbuiltupareaexpandedmorerapidlyintheareaspronetoearthquakesandlandslidescroplandchangedrapidlyinmanyhazardproneareasthehazardproneareasaffectedbyoodsfeaturedthehighestcroplandlossrateswhiletheareaspronetogrowthrateswedetectedareaswithsignicantexposurechangesbyusinghotspotanalysisi"
+          ],
+          "evidence_summary": "中国土地利用建成区数据",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "中国人口分布网格",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "topotentialdroughtforwinterwheatunderthercp85scenariointhehuanghuaihaiplainagricultureecosystemsenvironment209125131liangpwxuymaxzhaoandlqin2017increaseofelderlypopulationintherainstormhazardareasofchinainternationaljournalofenvironmentalresearchandpublichealth149article963lintxliujsonggzhangyjiaztuzzhengandcliu2018urbanwaterloggingriskassessmentbasedoninternetopendataacasestudyinchinahabitatinter"
+          ],
+          "evidence_summary": "中国人口分布网格",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "风暴潮/干旱/地震/洪水/滑坡灾害图",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "articlechangesofpopulationbuiltuplandandcroplandexposuretonaturalhazardsinchinafrom1995to2015yiminchen12weixie12xiaocongxu12publishedonline16december2019theauthors2019abstractbyusingthelatestchinapopulationgridandlandusedataweassessthechangingexposureofchinaspopulationandlandusestothehazardsofstormsurgesdroughtsearthquakesoodsandlandsli",
+            "l2018astheworldslargestdevelopingcountrywithamiddlelevelincomechinaisheavilyexposedtoawiderangeofnaturalhazardsincludingcyclonesearthquakeslandslidesoodsanddroughtsneumannetal2015yangetal2015hanetal2016summarizedtheoccurrenceofnaturalhazardsinchinafor19852014andfoundthatstormsandoodswerethemostfrequenthazardsfollowedbylandslidesandardsthanmostothercountriesintheworldloetal2015riverineoodsforexampl"
+          ],
+          "evidence_summary": "风暴潮/干旱/地震/洪水/滑坡灾害图",
+          "identity_basis": "targeted_search_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Targeted-search admission (user instruction 2026-10-06). Candidate found by the fulltext-inventory co-occurrence screen over the 2026-10-06 master inventory (6931 slugs), then admitted by evidence-window original-text manual review: all anchor members used_as_data in the same research instance. No model worksheet exists for this record (the v8 queue never covered this recall); the human verdict is the sole adjudication, per-member evidence summaries preserved. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文旨在回答1995—2015年间中国人口、建设用地和耕地对风暴潮、干旱、地震、洪水和滑坡等多种自然灾害的暴露如何变化，以及这些要素是否在灾害易发区变化更快。研究还识别哪些子流域出现了显著增加或减少的多灾种暴露。",
+      "hypothesis_or_mechanism": "核心机制是人口增长、城市化和土地利用变化会改变暴露格局：若人口和建设用地在灾害频率较高区域扩张更快，则自然灾害暴露随之增加。暴露被定义为人口或土地面积与相应灾害发生频率的乘积，因此灾害频率越高或人口/土地规模越大，暴露越高。",
+      "variables_and_data_use": "变量包括1995、2005、2015年人口栅格、建设用地和耕地面积，以及风暴潮、干旱、地震、洪水、滑坡频率；人口和土地利用数据来自中国科学院资源环境科学数据中心RESDC，人口分辨率为1 km，土地利用为30 m并提取建设用地和耕地。灾害频率数据来自Global Risk Data Platform，包括1 km风暴潮、地震、洪水、滑坡频率和10 km干旱频率；流域/子流域矢量数据来自Center for Global Environmental Research，用于汇总子流域尺度暴露变化。",
+      "method_paradigm": "方法范式为基于栅格叠加的多灾种暴露评估与子流域尺度空间热点分析。研究先按灾害频率将区域划分为非灾害区、低频灾害区和高频灾害区，计算人口和土地利用变化率，再用人口或土地面积乘以灾害频率估算暴露，并采用ArcMap中的Getis-Ord Gi*热点分析识别显著增加或减少的暴露区域。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1007_s13753-019-00242-0.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:04"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_008",
+      "source_paper_doi": "10.5194/nhess-25-287-2025",
+      "title": "Spatial identification of regions exposed to  multi-hazards at the pan-European level",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHSL residential built-up layer",
+        "GHSL/GPW-lineage residential population grid",
+        "pan-European multi-hazard datasets"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL residential built-up layer",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "untrybtheabbreviationsforcountriesshownintheguresfollowtheiso31661alpha2standardiso2020czyketal2019andresidentialpopulationfromtheglobalhumansettlementlayerghslfreireetal2015thesearetwomaingroupsofassetsthatarecurrentlypresentacrossalltypesofanalysiswithinthedrmkcriskdatahubtheresidentialbuiltupcategoryisrepresentedasbuiltupareakm2whilethepopulationisexpressedasthenumberofpeoplewithina100m100mgridcelltodiscriminatebetweenthere",
+            "ountriesshownintheguresfollowtheiso31661alpha2standardiso2020czyketal2019andresidentialpopulationfromtheglobalhumansettlementlayerghslfreireetal2015thesearetwomaingroupsofassetsthatarecurrentlypresentacrossalltypesofanalysiswithinthedrmkcriskdatahubtheresidentialbuiltupcategoryisrepresentedasbuiltupareakm2whilethepopulationisexpressedasthenumberofpeoplewithina100m100mgridcelltodiscriminatebetweentheresidentialtypologyforbothbu"
+          ],
+          "evidence_summary": "GHSL residential built-up layer (built-up area km2 asset layer)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHSL/GPW-lineage residential population grid",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ingaround87millionpeople188oftheeuropeanpopulationfurthermorenearlyhalfthispopulationisexposedtomorethanthreehazardswendthatbeyondpopulationdensitytheincomeleveliehighmediumlowistheprimarydriverthatinuencesriskstatusatthelocallevelwithinbothruralandurbanareasonaveragewendhighermultihazardexposureforpeoplelivinginhighincomeurbanareasorlowincomeruralareaswefurthervalidateourresultsbycomparingthemwithempiricaldataonfatalitiesandd",
+            "lunitprobleminmultivariatestatisticalanalysisenvironplanna23102510441991freireskempertpesaresimflorczykaandsyrrisvcombiningghslandgpwtoimproveglobalpopulationmappingin2015ieeeinternationalgeoscienceandremotesensingsymposiumigarssmilanitaly25412543hhttpsdoiorg101109igarss201573263292015fuchssandthalertedsvulnerabilityandresiliencetonaturalhazardscambridgeuniversitypresshttpsdoiorg10101797813166511432018gaillardjcandmercerjfromk"
+          ],
+          "evidence_summary": "GHSL/GPW-lineage residential population grid (100m cells)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "pan-European multi-hazard datasets",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "tegiesbasedoncostefcientmeasureswhiletheabsoluteschemasupportsriskmanagementstrategiesthatprioritizethemostaffectedareasandpeopleihazardlayersthehazardlayersconsideredinthisstudyrepresentarealextensionratherthanintensityweusenotaprobabilisticassessmentbutratheradeterministicapproachselectinghazardswithaveragetemporalfrequencyofoccurrenceandspatialprobabilitysusceptibilitythehazarddatasetsusedhereandtheircharacteristicsareprese",
+            "smentbutratheradeterministicapproachselectinghazardswithaveragetemporalfrequencyofoccurrenceandspatialprobabilitysusceptibilitythehazarddatasetsusedhereandtheircharacteristicsarepresentedintable1themotivationsfortheirselectionalongwiththeirusageindisasterriskassessmentsaredetailedinthesectionsdedicatedtoindividualhazardsinthesupplementsects1hazardlayersandtheirdenitionsiiassetlayersasassetlayersweusetheresidentialbuiltupareasf"
+          ],
+          "evidence_summary": "pan-European multi-hazard datasets (landslide/coastal+river flooding/earthquake/wildfire/subsidence); sub-global scope",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Online-recall admission via the parent/lineage family queries (multi-hazard exposure; user prompts 2026-10-06 corrected the recall design to dataset-feature-bound terms). All three anchor members used_as_data in the same pan-European multi-hazard exposure analysis: GHSL residential built-up assets, GHSL/GPW-lineage population grid, and multiple pre-existing pan-European hazard datasets as input layers. Sub-global hazard scope recorded as the weakest matched level (analogous_product). No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文回答的是如何在泛欧洲尺度（EU27+UK）识别地方行政单元（LAUs）层面的多灾种暴露区域，并评估其对人口和灾害风险管理决策的意义。研究还关注哪些地方社会经济因素与多灾种风险状态相关。",
+      "hypothesis_or_mechanism": "核心机制是：将单一自然灾害暴露热点进行统计聚合，可以客观识别多灾种暴露热点。论文还指出，除人口密度外，收入水平（高、中、低）是影响地方风险状态的主要驱动因素，高收入城市地区和低收入农村地区的人群平均具有更高的多灾种暴露。",
+      "variables_and_data_use": "研究使用欧盟委员会DRMKC的Risk Data Hub（RDH）数据，提取并聚合各类单一自然灾害暴露热点，在地方行政单元（LAUs）尺度识别多灾种暴露区域。变量包括LAU层面的灾害暴露热点、人口暴露数量、人口密度、收入水平、高/中/低收入类别、城乡类型，并用经验性的死亡人数和灾害事件数据对结果进行验证。",
+      "method_paradigm": "方法范式是基于元分析的多灾种暴露热点聚合与空间统计评估。研究在LAU尺度汇总单灾种暴露热点，识别统计显著的多灾种热点，并通过与死亡人数和灾害事件经验数据的相关性比较进行验证。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/nhess-25-287-2025",
+        "chars": 1841,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:06"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_009",
+      "source_paper_doi": "10.5775/fg.2025.3746.d",
+      "title": "Flood exposure and settlement vulnerability in the Moldavian Plateau, Eastern Romania",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "built-up limits + building footprints",
+        "census data",
+        "official centennial flood hazard bands"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "built-up limits + building footprints",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "xposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmultiplescalesbyriverbasinssiret",
+            "hanceofoccurrenceinanygivenyearequivalenttoabout26overa30yearhorizonatimeframerelevanttoresidentialinvestmentcyclesexposuredenotesbuiltupareaandassetshouseholdsinfrastructureandpublicservicesintersectingthisbandwhilevulnerabilityreflectstheirsusceptibilitytodamagegivenconstructiontypologyelevationrelativetothechannelbankproximityandaccessconstraintstateetal2021pathaketal2020diaconu2022fischeretal2024themotivationforthisworklie"
+          ],
+          "evidence_summary": "built-up limits + building footprints (OSM urban fabric layer)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "census data",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "anksestimatesexceed1200householdsand3000residentspotentiallyexposedfigure4settlementsandroadsexposedincotugrosuluisucetisector2021censusdataindicate2700peoplecouldbestrandedordirectlyexposedintheabsenceofsafealternativesthecoexposureofdn15ddn2dn11aandlargesectionsofa7lot2increasesthelogisticalvulnerabilityoftheareaaccessforemergencyservicessupplychainsandevacuationsgiscapturesshowalignmentofexposedzoneswithurbaninfrastructuren",
+            "ithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmultiplescalesbyriverbasinssiretjijiaincludingbuhaimiletinbahluibahluebrladandprutchinejaandurbancasestudiesiaibacuvasluithesiretbasinconcentratesthehighestsys"
+          ],
+          "evidence_summary": "census data (household counts, national average persons/household)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "official centennial flood hazard bands",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "thispaperquantifiessettlementlevelexposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereporte",
+            "aperquantifiessettlementlevelexposuretocentennialfloodacrossthemoldavianplateauneromaniausingareproduciblegisworkflowofficialfloodhazardbandswereintersectedwithbuiltuplimitsandbuildingfootprintsruralhousingwascompletedbymanualdigitizationwhileurbanfabricreliedonopenstreetmaplayerexposedpopulationwasestimatedfromhouseholdcountsusingthenationalaverageof26personshouseholdwithadditionalrulesforapartmentblocksresultsarereportedatmu"
+          ],
+          "evidence_summary": "official centennial flood hazard bands (national flood hazard mapping; sub-global scope)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Online-recall round-8 admission (no-OA-restriction expanded query matrix; user rule: observables consistent with anchor member definitions and at least one member term is the originally-set observable; user ratified 2026-10-06). All three members used_as_data in the same research instance. No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "量化罗马尼亚东北部摩尔达维亚高原在百年一遇洪水情景下的聚落暴露程度，并比较不同河流流域及城市的暴露格局与风险重点。",
+      "hypothesis_or_mechanism": "洪水暴露由官方洪水危险带与建成区、建筑物及关键基础设施的空间重叠决定，因此在不同流域和城市会形成差异化的暴露热点与脆弱性类型。",
+      "variables_and_data_use": "使用官方洪水危险带、建成区边界和建筑物轮廓进行空间叠加；农村住房通过人工数字化补充，城市建成环境使用OpenStreetMap图层。基于住户数量并按全国平均每户2.6人估算暴露人口，同时识别道路、铁路及社会经济资产等暴露对象。",
+      "method_paradigm": "基于GIS的洪水暴露空间叠加与多尺度制图范式：将洪水危险带与聚落、建筑物和基础设施图层相交，并按河流流域和城市案例汇总暴露人口及空间热点。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.5775_fg.2025.3746.d.txt",
+        "chars": 5213,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:29:28"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_010",
+      "source_paper_doi": "10.1029/2025ef006132",
+      "title": "High‐Resolution Modeling of Future Urban Area and Population Exposure to Floods and Landslides",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHSL built-up area 30m",
+        "GHSL/GPW4 population grid 250m + SSP population scenarios",
+        "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL built-up area 30m",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ndslideexposureearthsfuture129e2024ef004830httpsdoiorg1010292024ef004830florczykajcorbanecehrlichdfreireskempertmaffeniniletal2019ghsldatapackage2019eur29788enpublicationsofficeoftheeuropeanunionfragkiasmsetokc2007modelingurbangrowthindatasparseenvironmentsanewapproachenvironmentandplanningbplanninganddesign345858883httpsdoiorg101068b32132froudemjpetleydn2018globalfatallandslideoccurrencefrom2004to2016naturalhazardsandearthsys",
+            "nt21capturingthecurrentsituationtodescribecurrenturbanandpopulationpatternsweusethe2019globalhumansettlementghsdatapackagethatmapsbuiltupareaandpopulationdistributionatveryhighresolutionsof30and250mrespectivelyflorczyketal2019thisdatasetusesremotesensingtomapbuiltupareasanddisaggregatescoarserlevelpopulationdatatothelocalgridcellsusingamongstotherstheremotesensingbasedbuiltupareafractionsoitdoesnotfollownationallandusedatathat"
+          ],
+          "evidence_summary": "GHSL built-up area 30m (2019 GHS data package)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHSL/GPW4 population grid 250m + SSP population scenarios",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "aweapplyinthisassessment21capturingthecurrentsituationtodescribecurrenturbanandpopulationpatternsweusethe2019globalhumansettlementghsdatapackagethatmapsbuiltupareaandpopulationdistributionatveryhighresolutionsof30and250mrespectivelyflorczyketal2019thisdatasetusesremotesensingtomapbuiltupareasanddisaggregatescoarserlevelpopulationdatatothelocalgridcellsusingamongstotherstheremotesensingbasedbuiltupareafractionsoitdoesnotfollown",
+            "researcharticle1010292025ef006132keypointsmodeloutcomesshowfutureexposureofurbanareaandpopulationtonaturalhazardsforseveralsharedsocioeconomicpathwaysglobalexposuretoriverinefloodsandlandslidesprojectedtoincreasebutdevelopmentsdifferstronglyperpathwayafter2050rapidurbanizationdisproportionatelyincreasespopulationgrowthinhazardpronezonesparticularlyinsubsaharanafricaandsouthasiacorresp"
+          ],
+          "evidence_summary": "GHSL/GPW4 population grid 250m + SSP population scenarios",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "likelytooccurmorethanonceevery100yearspersquarekilometerworldbank2021p35soreferringtothesameannualprobabilityasselectedfortheriverfloodhazardthequalitativeclassificationsignificantinthearupterminologyshouldbeunderstoodasrepresentingalandslidecoveringatleast1000m2worldbank2021p52focusingontheserelativefrequentandlargelandslidesmeansweconcentrateourassessmentontheareaswherehumanpresenceisleastpreferredbutalsoimpliesthatwepresent",
+            "oreurbanareaandmorepeoplewillbeaffectedthanwecurrentlyestimatetheriverfloodexposuredataarederivedfromtheglobalfloodawarenesssystemglofasthatdescribesfloodinundationareasforseveralreturnperiodsbasedonhydrologicalmodelsimulationsdottorietal2016thedatadescribethespatialextentandlikelydepthoffloodedareasandaremadeavailablebythejointresearchcenter5of232328427720261downloadedfromhttpsagupubsonlinelibrarywileycomdoi1010292025ef006132"
+          ],
+          "evidence_summary": "JRC GLOFAS 100-year flood hazard map + World Bank landslide hazard (global)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "User-batch admission (user downloaded the TODO-list PDFs to reference_sets/audit/fulltext_corpus/pdf/; texts extracted and reviewed on 2026-10-06; user ratified with '可以'). All three members used_as_data in the same research instance; observables consistent with the anchor member definitions. No model worksheet (recall outside the v8 queue); human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文回答的问题是：在未来城市群人口增长与自然灾害区重叠的背景下，全球尺度上人口和城市用地暴露于河流洪水与滑坡危险区的风险将如何变化。研究特别关注高风险区与非高风险区之间人口增长差异，以及撒哈拉以南非洲、南亚等区域的暴露变化。",
+      "hypothesis_or_mechanism": "核心机制是快速城市化会使人口增长不成比例地集中到灾害易发区，因为城市扩张和人口再分布会进入河流洪水与滑坡危险范围。与此同时，在部分国家中，尽管城市用地继续扩展到高风险地区，总人口中暴露于这些灾害的比例可能在2050年后趋于稳定或下降。",
+      "variables_and_data_use": "研究使用2UP模型将国家尺度、情景化人口预测降尺度到30角秒网格，并同时模拟至2100年的城市扩张以及城市和农村人口分布。随后将这些2UP高分辨率人口与城市用地预测结果，与同等精细的河流洪水危险数据和滑坡危险数据进行空间叠加，用于估算不同地区、不同危险区内的暴露城市土地和暴露人口。",
+      "method_paradigm": "方法范式是高分辨率人口空间降尺度与城市扩张模拟，并结合灾害图层空间叠加分析。具体而言，2UP模型生成网格化未来人口和城市/农村分布，再与河流洪水和滑坡危险区进行全球尺度暴露评估。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.1029/2025ef006132",
+        "chars": 1673,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:15"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_011",
+      "source_paper_doi": "10.5194/nhess-21-2921-2021",
+      "title": "Global riverine flood risk – how do hydrogeomorphic  floodplain maps compare to flood hazard maps?",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "online_recall_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "GHSL built-up area",
+        "GHS-POP / HRSL / WorldPop global population grids",
+        "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "GHSL built-up area",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hydrogeomorphicoodplainresultsmimickedoodhazardmapsandpredominantlyfoundconsistenciesinoodplainareasunalteredbyhumansinthisstudywebuildupontheexistingliteraturecomparingoutputsofglobaloodmodelsbyexamininghowtheglobaloodplainmapgfplainnardietal2019comparestotwocommonlyusedglobaloodhazardmapswhenestimatingriverineoodexposurethefloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentredottorietal2016aandtheoodhazardmapsp",
+            "amwatershedrespectivelysquarekilometreurbanextentcombiningthelowdensityclustersclass2andhighpercentcoverdensityclustersclass3inthesettlementmodelgridghssettlementmodelgridfortheyear2015spatialextentgdpsum2015thegdptotalfortheyear2015withinthebasinandupusdollarssumstreamwatershedrespectivelysourcehydrobasinslehner2014lehnerandgrill2013freshwaterecoregionsoftheworldabelletal2008hydrobasinslehnerandgrill2013watergapv22dlletal2003"
+          ],
+          "evidence_summary": "GHSL built-up area (GHS-BUILT, Landsat-derived) + GHS-SMOD urban extent grids",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "compatible_lineage",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "GHS-POP / HRSL / WorldPop global population grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ghresolutionglobaloodhazardmodelwaterresourres5173587381httpsdoiorg1010022015wr0169542015schiavinamfreiresandmacmanuskghspopr2019aghspopulationgridmultitemporal1975199020002015europeancommissionjointresearchcentrejrcdatasethttpsdoiorg1029050c6b9751a71f4062830b43c9f432370f2019schumanngbatespdhorrittmsmatgenpandpappenbergerfprogressinintegrationofremotesensingderivedoodextentandstagedataandhydraulicmodelsrevgeophys47rg4001httpsd",
+            "semapswiththreehumanpopulationmapsglobalhumansettlementpopulationgridhereinafterghshighresolutionsettlementlayerhereinafterhrslandworldpopthendingsofthisstudyindicatethathydrogeomorphicoodplainmapscanbeavaluablewayofproducinghighresolutionmapsofoodpronezonestosupportriverineoodriskstudiesbutcautionshouldbetakeninregionsthataredrysteepveryatornearthecoast1introductionflooddisastersareamajorcauseoflossthroughouttheglobeclaimingt"
+          ],
+          "evidence_summary": "GHS-POP / HRSL / WorldPop global population grids (intersected with floodplain maps)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "iveandcompareriverineoodexposurefromthreeglobalproductsahydrogeomorphicoodplainmapgfplain250mhereinaftergfplainandtwooodhazardmapsfloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentrehereinafterjrcandtheoodhazardmapsproducedfortheglobalassessmentreportondisasterriskreduction2015hereinaftergarwendanaveragespatialagreementbetweenthesemapsofaround30attheriverbasinlevelonaglobalscalethisagreementishighlyvariableacros",
+            "nmapgfplain250mhereinaftergfplainandtwooodhazardmapsfloodhazardmapoftheworldbytheeuropeancommissionsjointresearchcentrehereinafterjrcandtheoodhazardmapsproducedfortheglobalassessmentreportondisasterriskreduction2015hereinaftergarwendanaveragespatialagreementbetweenthesemapsofaround30attheriverbasinlevelonaglobalscalethisagreementishighlyvariableacrossmodelcombinationsandgeographicconditionsinuencedbyclimatichumidityrivervolume"
+          ],
+          "evidence_summary": "JRC global flood hazard map + GAR2015 flood hazard maps + GFPLAIN250m floodplain map (three global products)",
+          "identity_basis": "online_recall_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "adjudication_note": "Online-recall admission via the Copernicus direct channel (OpenAlex had no pdf_url; fetched from nhess.copernicus.org). Cross-comparison of three global flood-hazard products (JRC, GAR2015, GFPLAIN250m) and three global population grids (GHS-POP, HRSL, WorldPop), with GHSL built-up / GHS-SMOD urban extent as analysis variables — all three members used_as_data in the same exposure analysis. Human verdict is the sole adjudication. Review: reference_sets/audit/fulltext_inventory_master_20261006/targeted_search_task022_task023_20261006/MANUAL_REVIEW_targeted_20261006.md",
+      "research_question": "论文回答的问题是：基于水文推导的洪水危险图与基于地形的水文地貌洪泛平原图在全球尺度上识别河流洪水暴露区域时有多一致，以及这些差异如何影响全球南方国家的人口洪水暴露制图。",
+      "hypothesis_or_mechanism": "核心机制是不同洪水制图产品因建模基础不同而产生空间差异：洪水危险图依赖水文洪水过程，水文地貌洪泛平原图依赖地形特征。其空间一致性受气候湿润程度、河流流量、地形和距海岸距离等地理条件影响。",
+      "variables_and_data_use": "研究使用三个全球洪水相关产品：GFPLAIN250m（GFPLAIN）水文地貌洪泛平原图、欧洲委员会联合研究中心的 Flood Hazard Map of the World（JRC）、以及 Global Assessment Report on Disaster Risk Reduction 2015 的洪水危险图（GAR），用于比较河流洪水易发区的空间一致性。还将这些洪水图与三个人口产品 Global Human Settlement population grid（GHS）、High Resolution Settlement Layer（HRSL）和 WorldPop 相交，用于绘制全球南方26个国家的河流洪水人口暴露。",
+      "method_paradigm": "方法范式是多源全球洪水制图产品的空间叠置比较与暴露评估。研究在流域尺度计算不同洪水图之间的空间一致性，并通过与人口栅格相交估算河流洪水暴露人口。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/nhess-21-2921-2021",
+        "chars": 1623,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:14"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_012",
+      "source_paper_doi": "10.1038/s43247-025-02585-7",
+      "title": "Global South shows higher urban flood exposures than the Global North under current and future scenarios",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "citation_network_expansion_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "Global Urban Boundary",
+        "Global Human Settlement Layer population grid",
+        "EC/JRC global 1 km river flood hazard maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "Global Urban Boundary",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "hilethisapproachsupportsuniformlargescalemodelingitmayleadtoconservativeestimatesoffloodexposureinareaswithstrongprotectionsystemsthehistoricalurbanareadataarefromtheglobalurbanboundarydataset30whichwasdevelopedbasedonthe30mresolutionglobalannualimperviousareadataset50coveringtheperiodfrom2000to2020in5yearintervalsfutureurbanexpansiondataarederivedfromglobalurbanlandexpansionprojectionsunderthessps50withaspatialresolutionof1km",
+            "ithstrongprotectionsystemsthehistoricalurbanareadataarefromtheglobalurbanboundarydataset30whichwasdevelopedbasedonthe30mresolutionglobalannualimperviousareadataset50coveringtheperiodfrom2000to2020in5yearintervalsfutureurbanexpansiondataarederivedfromglobalurbanlandexpansionprojectionsunderthessps50withaspatialresolutionof1kmandcovering20302100in10yearintervalsbothdatasetsfocusonmappingbuiltupurbanareaswithhighpopulationandecon"
+          ],
+          "evidence_summary": "Global Urban Boundary (derived from the 30 m Global Annual Impervious Area dataset) as the historical urban built-up extent",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "Global Human Settlement Layer population grid",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "undarydatasetthislimitationcouldresultinanunderestimationoffloodexposureinsuchareasespeciallyinlowincomeorrapidlyurbanizingregionsurbanpopulationdatafor20002020arefromtheglobalhumansettlementlayerdataset51withaspatialresolutionof1kmavailableat5yearintervalsfutureurbanpopulationdatafor20302100arefromthe1kmgridpopulationdistributiondatasetundersspswithaspatialresolutionof1kmandupdatedat10yearintervals52urbaneconomicdataarederive",
+            "anunderestimationoffloodexposureinsuchareasespeciallyinlowincomeorrapidlyurbanizingregionsurbanpopulationdatafor20002020arefromtheglobalhumansettlementlayerdataset51withaspatialresolutionof1kmavailableat5yearintervalsfutureurbanpopulationdatafor20302100arefromthe1kmgridpopulationdistributiondatasetundersspswithaspatialresolutionof1kmandupdatedat10yearintervals52urbaneconomicdataarederivedfromtheglobalgriddedgdpdatasetconsisten"
+          ],
+          "evidence_summary": "Global Human Settlement Layer population grid (GHS-POP), 1 km, 2000-2020",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "EC/JRC global 1 km river flood hazard maps",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "yfigs448datathedatausedinthisstudyprimarilyconsistofglobalriverfloodhazardmapsurbanareadataurbanpopulationdataandurbaneconomicdatatheglobal1kmresolutionriverfloodhazardmapswitha1in100yearreturnperiodusedinthisresearchweredevelopedbytheeuropeancommission45andhavebeenwidelyutilizedinfloodexposureanalysis101549itshouldbenotedthatthisdatasetdoesnotaccountforflooddefenseinfrastructuresuchasleveesorfloodwallsthisisprimarilyduetothec",
+            "developmentwecategorizetheworldintoglobalsouthandglobalnorthsupplementaryfigs448datathedatausedinthisstudyprimarilyconsistofglobalriverfloodhazardmapsurbanareadataurbanpopulationdataandurbaneconomicdatatheglobal1kmresolutionriverfloodhazardmapswitha1in100yearreturnperiodusedinthisresearchweredevelopedbytheeuropeancommission45andhavebeenwidelyutilizedinfloodexposureanalysis101549itshouldbenotedthatthisdatasetdoesnotaccountforfl"
+          ],
+          "evidence_summary": "EC/JRC global 1 km river flood hazard maps (1-in-100-year return period)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "adjudication_note": "Citation-network-expansion admission (referenced-works / cites: intersection over the population-built-up data-layer family and the hazard data-layer family). All three anchor members used_as_data in the same exposure analysis: urban built-up extent (Global Urban Boundary <- Global Annual Impervious Area 30 m), population (GHS-POP 1 km) and hazard (EC/JRC global 1 km river flood hazard maps) are intersected to derive urban flood exposure. No model worksheet exists; the original-text manual review is the sole adjudication. Review: reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "research_question": "论文旨在回答全球尺度上城市洪水暴露的空间格局、时间变化及其在国家、次国家、21个次大陆区域以及全球南方/北方之间的不平等程度如何。研究同时评估城市建成区、城市人口和城市经济活动在百年一遇河流洪水淹没范围内的暴露差异。",
+      "hypothesis_or_mechanism": "核心机制是将百年一遇河流洪水危险图定义的洪泛区与城市扩张、人口和GDP空间分布叠加，认为位于洪泛区内的城市建成区、人口和经济产出即构成洪水暴露。研究假定洪泛区在研究期内保持静态，以保证长期暴露评估的区域可比性，但承认未纳入堤防等防洪基础设施可能导致暴露估计偏保守。",
+      "variables_and_data_use": "使用欧洲委员会开发的1 km分辨率、百年一遇全球河流洪水危险图定义洪泛区；用Global Urban Boundary数据集和基于SSPs的全球城市土地扩张投影提取历史与未来受洪水影响的城市建成区，并计算UEF和PUEF。人口暴露使用Global Human Settlement Layer 2000–2020年1 km城市人口数据及SSPs下1 km未来人口分布数据计算PEF和PPEF；经济暴露使用与SSPs一致的全球网格GDP数据计算EEF和PEEF，并用GADM 4.1行政边界进行空间汇总。",
+      "method_paradigm": "方法范式为空间叠加暴露评估结合空间统计不平等分析：将洪水危险区与城市边界、人口和GDP网格相交，计算城市面积、人口和经济的洪水暴露及其比例指标。随后采用Getis-Ord Gi*热点/冷点分析识别显著高值或低值暴露集聚区，并用洛伦兹曲线基础上的Gini系数量化城市洪水暴露不平等。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1038_s43247-025-02585-7.methods.txt",
+        "chars": 8450,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:18"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_013",
+      "source_paper_doi": "10.3390/ijgi13100357",
+      "title": "Comprehensive Assessment of Large-Scale Regional Fluvial Flood Exposure Using Public Datasets: A Case Study from China",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "citation_network_expansion_manual_review_user_ruled_20261006",
+      "actual_datasets": [
+        "ESRI Land Cover Building class",
+        "WorldPop 1 km gridded population, 2000-2020",
+        "JRC / EU Data Centre global fluvial flood hazard maps"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "built_up_area",
+          "role": "built_up_area",
+          "anchor_product": "built_up_area",
+          "actual_dataset": "ESRI Land Cover Building class",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "sourceresolutionyearresultperkm2referencespopulationworldpophttpshubworldpoporgaccessedon1stapril20241km20002020population30394142esrilandcoverbuildinghttpslivingatlasarcgiscomlandcoverexploreraccessedon1stapril202410m20172021builtuparea394142openstreetmaproadhttpswwwopenstreetmaporgaccessedon1stapril20142024roadlength2139422024realgdpeconomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp919432",
+            "atatheintegrationofpublicdatasetsoffersapotentialsolutiontothesechallengesinthisstudyweobtainedfourkeyexposureindicatorspopulationbuiltupareabaroadlengthrlandaveragegrossdomesticproductgdpandconductedaninnovativeanalysisoftheircorrelationsbothoverallandlocallyutilisingtheseindicatorswedevelopedacomprehensiveexposureindexemployingentropyweightingandkmeansclusteringmethodsandassessedfluvialfloodexposureacrossmultiplereturnperiod"
+          ],
+          "evidence_summary": "ESRI Land Cover Building class (10 m, 2017-2021) reclassified to built-up area (BA)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "population_density",
+          "role": "population_density",
+          "anchor_product": "population_density",
+          "actual_dataset": "WorldPop 1 km gridded population, 2000-2020",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ndeconomyisprsintjgeoinf2024133575of21table1allofwhichareremotesensingderiveddataexceptfortheroadsdatathepopulationdatasourcedfromworldpopunderwentprocessingthroughanunconstrainedtopdowndecompositionmethodutilisingacomprehensiveglobaldatabasecomprisingcensusandprojectioncountsofadministrativeunits2137thesewerefurtherrefinedwithdetailedgeospatialdatasetsandalignedwiththeunitednationsnationalpopulationestimatesthebuildinginforma",
+            "erdatafacilitatedbuildingextractiontable1differentdatasetsusedtoreflectexposureindicatorsourceresolutionyearresultperkm2referencespopulationworldpophttpshubworldpoporgaccessedon1stapril20241km20002020population30394142esrilandcoverbuildinghttpslivingatlasarcgiscomlandcoverexploreraccessedon1stapril202410m20172021builtuparea394142openstreetmaproadhttpswwwopenstreetmaporgaccessedon1stapril20142024roadlength2139422024realgdpecono"
+          ],
+          "evidence_summary": "WorldPop 1 km gridded population, 2000-2020",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        },
+        {
+          "member_id": "hazard_layer",
+          "role": "hazard_layer",
+          "anchor_product": "hazard_layer",
+          "actual_dataset": "JRC / EU Data Centre global fluvial flood hazard maps",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "gdpeconomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp91943222floodinundationdatasetweutilisedglobalfluvialfloodhazardmapssourcedfromtheeudatacentreforouranalysishttpsdatajrceceuropaeucollectionid0054accessedon1stapril2024thisrasterdatasetoffersspatialresolutionupto90m3arcsecondsandleveragestheopensourcehydrodynamicmodellisflood44itfirsttakeslongtermriverflowdatafromtheglofasmodelandscalesit",
+            "nomyhttpsdoiorg106084m9figshare17004523v1accessedon1stapril20241km19922019averagegdp91943222floodinundationdatasetweutilisedglobalfluvialfloodhazardmapssourcedfromtheeudatacentreforouranalysishttpsdatajrceceuropaeucollectionid0054accessedon1stapril2024thisrasterdatasetoffersspatialresolutionupto90m3arcsecondsandleveragestheopensourcehydrodynamicmodellisflood44itfirsttakeslongtermriverflowdatafromtheglofasmodelandscalesittoahig"
+          ],
+          "evidence_summary": "JRC / EU Data Centre global fluvial flood hazard maps (RP10/50/100/500)",
+          "identity_basis": "citation_expansion_original_text_manual_review",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {},
+          "model_products": {},
+          "model_usage": {}
+        }
+      ],
+      "joint_use_evidence_quotes": [],
+      "adjudication_evidence_file": "reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "adjudication_note": "Citation-network-expansion admission (papers citing the task_013 pool). All three anchor members used_as_data in one exposure analysis: four 1-km indicators (WorldPop population, ESRI Land Cover built-up area, road length, GDP) are aggregated and intersected with the JRC/EU Data Centre global fluvial flood hazard maps (RP10/50/100/500). No model worksheet exists; the original-text manual review is the sole adjudication. Review: reference_sets/audit/citation_expansion_task022_20261006/MANUAL_REVIEW_citation_expansion_20261006.md",
+      "research_question": "论文探讨如何整合多源公开数据，对中国不同重现期河流洪水暴露进行综合评估，并分析人口、建成区、道路和GDP等暴露指标在整体与局地尺度上的相关性及空间差异。",
+      "hypothesis_or_mechanism": "各暴露指标在全球和局地尺度上的相关性较弱，因此单一指标不足以全面刻画洪水暴露；随着洪水重现期延长，洪水深度超过1米的区域扩大，从而加剧不同暴露水平地区的洪水风险。",
+      "variables_and_data_use": "使用人口、建成区面积（BA）、道路长度（RL）和平均GDP构建暴露指标，并利用河流洪水图评估10至500年重现期下的洪水暴露；这些指标数据和洪水图主要来自遥感产品，但原文未具体列明产品名称或传感器。",
+      "method_paradigm": "相关性分析结合熵权法与K-means聚类构建综合暴露指数，并将其与多重现期河流洪水图叠加，用于区域洪水暴露和风险评估。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/ijgi13100357",
+        "chars": 1946,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:48:26"
+      }
+    }
+  ],
+  "construction": {
+    "adjudication_contract_version": "multidataset_set_identity_v4_consensus_quote_gate",
+    "active_adjudication_contract_version": "multidataset_set_identity_v5_strict_dual_quote_distinct_binding",
+    "admission_rule": "A non-seed DOI requires GPT and Qwen admitted verdicts, quote_verified evidence on both sides, three distinct member-specific product bindings, complete coverage, and same-research-instance joint-use evidence.",
+    "source_adjudication_directories": [
+      "reference_sets/audit/threeplus_fulltext_reaudit_gpt_qwen_20261001"
+    ]
+  },
+  "quality": {
+    "ref_count": 13,
+    "source_paper_count": 13,
+    "direct_set_reference_count": 4,
+    "expanded_set_reference_count": 9,
+    "partial_set_support_count": 0,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": true,
+    "manual_admission_count": 0,
+    "reference_space_status": {
+      "status": "reference_space_collapsed_candidate",
+      "recorded": "2026-10-07",
+      "basis": "structural_template_analysis",
+      "structural_evidence": {
+        "n_references": 13,
+        "same_template_share": "10/13",
+        "template": "built-up/settlement layer x gridded population layer x existing hazard layer -> exposure overlay (+ change over time)",
+        "residual_variation": "region, epoch, hazard family only",
+        "same_team_overlap": [
+          "10.3390/rs10091378 (seed: Ehrlich, Melchiorri, Florczyk, Pesaresi, Kemper, Corbane, JRC)",
+          "10.1016/j.envsci.2018.10.001 (pool: Ehrlich, Kemper, Pesaresi, Corbane, JRC - same team, same year, same assets)"
+        ],
+        "report": "reference_sets/audit/citation_expansion_task022_20261006/HOMOGENEITY_ANALYSIS_task022_20261007.md"
+      },
+      "canonical_metric": {
+        "name": "internal_alignment_distribution",
+        "definition": "pairwise four-dimensional Alignment over all C(13,2)=78 reference pairs, min-symmetric, gpt-5.5",
+        "status": "partially_computed_deferred",
+        "threshold_for_same_direction": 36.5,
+        "threshold_source": "alignment_calibration_20261006 (SEPARABLE, T_align=36.5, gpt-5.5)",
+        "n_pairs_planned": 78,
+        "n_pairs_completed": 28,
+        "sample_bias": "the completed subset covers pairings of references #1/#2/#3 only; the exposure-template cluster's internal pairs are not in the sample",
+        "partial_stats": {
+          "mean": 24.3,
+          "median": 21.5,
+          "min": 10,
+          "max": 45,
+          "share_above_threshold": "5/28 (18%)",
+          "pairs_above_threshold": [
+            "01-05=38",
+            "01-10=42",
+            "03-04=45",
+            "03-05=45",
+            "03-07=42"
+          ]
+        },
+        "observed_structure": "Clustered, not uniformly collapsed. The exposure-template core scores at/above the same-direction threshold (03-05=45, 03-04=45, 03-07=42, 03-08=36), while reference #2 (LandScan HD, a population-grid methodology paper) scores 10-35 against everything and pulls the sample mean down. The sample mean therefore understates the core's alignment and must not be quoted as the space's average.",
+        "queue": "reference_sets/audit/citation_expansion_task022_20261006/task022_internal_alignment_queue_20261007.json",
+        "output_dir": "reference_sets/audit/citation_expansion_task022_20261006/task022_internal_alignment_20261007",
+        "resume_command": "python scripts/calibrate_alignment_threshold_20261006.py --queue reference_sets/audit/citation_expansion_task022_20261006/task022_internal_alignment_queue_20261007.json --output-dir reference_sets/audit/citation_expansion_task022_20261006/task022_internal_alignment_20261007",
+        "note": "Resume is idempotent: completed pair files are skipped."
+      },
+      "reporting_rule": "Excluded from direction-space coverage / re-discovery statistics; reported separately in the collapsed-reference-space subset (Benchmark-v3 2.7).",
+      "decision": "Option A baseline, user-ruled 2026-10-07. Root-cause fix tracked as Option B (anchor redesign).",
+      "closed_out": true,
+      "closed_out_date": "2026-10-07",
+      "closed_out_note": "User ruling 2026-10-07: mark and then stop working on this task. The structural basis is complete; the 2.7 canonical metric is deferred."
+    },
+    "not_used_for_coverage_statistics": true,
+    "reference_space_status_note": "Marked and closed out 2026-10-07 (user ruling). Option A baseline: the 13 references are kept, the space is reported as saturated/homogeneous and excluded from direction-space coverage and re-discovery statistics. Option B (anchor redesign) is tracked in reference_sets/audit/citation_expansion_task022_20261006/ANCHOR_REDESIGN_PROPOSAL_task022_20261007.md and is out of scope for now."
+  }
+}

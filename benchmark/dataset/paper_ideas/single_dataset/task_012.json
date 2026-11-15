@@ -1,0 +1,77 @@
+{
+  "paper_id": "10.3390/rs15010169",
+  "task_id": "single_dataset/task_012",
+  "title": "Influence of DEM Resolution on the Hydrological Responses of a Terraced Catchment: An Exploratory Modelling Approach",
+  "category": "geomorphology_analysis",
+  "year": 2022,
+  "publication_date_basis": "Published online 2022-12-28; the journal volume is Remote Sensing 2023, 15, 169. The benchmark freezes the first public publication year for the hard time window.",
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "UAV airborne-lidar point cloud and 0.1 m, 0.25 m, 0.5 m and 1 m bare-earth DEMs",
+    "photogrammetric 1 m and 10 m DEMs",
+    "soil map",
+    "land-use and land-cover map",
+    "meteorological observations",
+    "streamflow observations"
+  ],
+  "study_area_verified": {
+    "name": "Braçal experimental catchment, Silva Escura, Sever do Vouga municipality, central Portugal",
+    "land_cover": "eucalyptus-dominated forest catchment with bench terraces",
+    "lidar_acquisition": "UAV lidar collected in November 2021 using a DJI Matrice 300 and YellowScan Mapper",
+    "point_density": "approximately 320 points per square metre",
+    "source": "replacement seed full text, Materials and Methods sections 2.1-2.4",
+    "review_date": "2026-09-25"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "USGS/3DEP/1m",
+    "operationally_used": true,
+    "role": "airborne-lidar ground returns are filtered into bare-earth DEMs at 0.1 m, 0.25 m, 0.5 m and 1 m and then used for drainage extraction, terrain representation and SWAT hydrological modelling",
+    "evidence": "The Methods state that the iterative ground filtering produced 0.1 m, 0.25 m, 0.5 m and 1 m bare earth DEMs and that the four very-high-resolution DEMs were based on a LiDAR survey.",
+    "catalog_relation": "USGS/3DEP/1m is a catalog analogue for the same one-metre airborne-lidar bare-earth elevation observation. It is not the Portuguese project dataset and does not cover the seed study area.",
+    "companion_datasets": [
+      "photogrammetric DEMs",
+      "soil map",
+      "land-use and land-cover map",
+      "meteorological observations",
+      "streamflow observations",
+      "UAV orthophotography"
+    ],
+    "review_date": "2026-09-25"
+  },
+  "runtime_region_transfer": {
+    "status": "explicit_catalog_coverage_transfer",
+    "seed_region": "Braçal experimental catchment, Portugal",
+    "runtime_region": "Huron Creek watershed, Michigan, United States",
+    "reason": "The ready catalog Anchor is US-only. The prior Huron Creek region is retained to keep the benchmark input executable; no claim is made that USGS 3DEP covers the Portuguese seed site."
+  },
+  "idea": {
+    "research_question": "How does the spatial resolution and acquisition lineage of fine bare-earth elevation alter drainage representation and hydrological response in a terraced catchment?",
+    "hypothesis": "One-metre-or-finer airborne-lidar bare-earth DEMs preserve terrace geometry and drainage connectivity better than coarser or photogrammetric surfaces, producing measurably different watershed boundaries, stream networks and simulated streamflow responses.",
+    "mechanism": "Airborne-lidar ground filtering resolves terrace risers, channels and local flow barriers. Aggregation progressively removes these features, changing slope, flow direction, contributing area and stream topology; those terrain changes propagate into SWAT hydrologic response units and simulated runoff timing and magnitude.",
+    "key_variables": {
+      "target": "terrain-representation accuracy, drainage-network agreement and hydrological-model performance across DEM resolutions",
+      "predictors": [
+        "bare-earth DEM resolution and acquisition lineage",
+        "slope and local relief",
+        "drainage density, sinuosity and bifurcation ratio",
+        "soil and land-cover classes",
+        "meteorological forcing",
+        "observed and simulated streamflow"
+      ]
+    },
+    "data_sources": [
+      "UAV airborne-lidar point clouds and derived bare-earth DEMs",
+      "photogrammetric DEMs",
+      "soil and land-cover maps",
+      "meteorological observations",
+      "catchment-outlet streamflow observations"
+    ],
+    "analytical_approach": "Construct or aggregate terrain grids from a qualifying one-metre airborne-lidar source, derive terrain and drainage metrics consistently at each resolution, run matched hydrological-model configurations, and attribute changes in simulated response to resolution-driven changes in terrain representation while holding non-terrain inputs fixed.",
+    "expected_contribution": "A reproducible assessment of when metre-scale airborne-lidar terrain materially changes hydrological inference and which terrain structures are lost under aggregation.",
+    "falsification_condition": "The hypothesis is rejected if lidar resolution produces no reproducible improvement in terrain or drainage representation and no material, independently validated change in hydrological performance after non-terrain inputs and calibration are held constant."
+  },
+  "enriched": true,
+  "enrichment_source": "saved_fulltext_revalidation_20260925",
+  "pdf_text_path": "reference_sets/audit/fulltext_pdf_reextract/extracted/10.3390_rs15010169.txt"
+}

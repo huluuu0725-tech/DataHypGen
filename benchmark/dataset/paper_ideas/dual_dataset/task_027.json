@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.18805/ag.df-797",
+  "task_id": "dual_dataset/task_027",
+  "title": "Integrating Sentinel-1 SAR and Landsat 8 Optical Data for Crop Type Discrimination and Vegetation Monitoring in Arid Zones of Algeria",
+  "category": "sentinel1_sar_landsat8_crop_monitoring",
+  "year": 2025,
+  "journal": "Agricultural Science Digest",
+  "impact_level": "medium",
+  "datasets": [
+    "Sentinel-1 SAR backscatter observations",
+    "Landsat 8 optical observations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "sentinel1_sar_backscatter",
+      "dataset": "Sentinel-1 SAR backscatter observations"
+    },
+    {
+      "role": "landsat8_optical",
+      "dataset": "Landsat 8 optical observations"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial or temporal associations are present between Sentinel-1 SAR backscatter observations and Landsat 8 optical observations?",
+    "hypothesis": "The required components contain a joint signal not represented by either component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:COPERNICUS/S1_GRD",
+      "GEE:LANDSAT/LC08/C02/T1_L2"
+    ],
+    "required_component_usage": [
+      "sentinel1_sar_backscatter",
+      "landsat8_optical"
+    ],
+    "expected_contribution": "A benchmark task that requires both components of a composite observation.",
+    "falsification_condition": "Reject an idea if either required component is absent, background-only, or not operationally used with the other required component."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_027:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"
+  }
+}

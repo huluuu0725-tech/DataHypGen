@@ -1,0 +1,2744 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_016",
+  "reference_coverage": "manual_independent_read_admitted_20261006",
+  "evaluation_year": 2026,
+  "source": "machine_annotations_batch_qwen_20260929",
+  "source_batch": "batch_grace_precipitation_sm_data",
+  "zenodo_excluded": true,
+  "reference_count": 32,
+  "exact_admitted_count": 14,
+  "variant_admitted_count": 18,
+  "references": [],
+  "directions": [
+    {
+      "direction_id": "manual_admitted_direct_set_001",
+      "source_paper_doi": "10.1109/access.2021.3130306",
+      "title": "PredictingChangesinSpatiotemporalGroundwaterStorageThroughtheIntegrationofMulti-SatelliteDataandDeepLearningModels",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthisstudy,\nTWSAwasextractedfromCSRRL06M(RL06Mascon),"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TheTRMMprovidesmultiplesatelliteprecipitationproducts(TMPA)since1988.TMPA3B43V7isoneofthe"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ofeachlayer(0.02.0m;fourlayers)wereextractedfrom\ntheGLDASNoahmodelatmonthlyintervalswithaspatial"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Inthisstudy,\nTWSAwasextractedfromCSRRL06M(RL06Mascon),",
+        "TheTRMMprovidesmultiplesatelliteprecipitationproducts(TMPA)since1988.TMPA3B43V7isoneofthe",
+        "ofeachlayer(0.02.0m;fourlayers)wereextractedfrom\ntheGLDASNoahmodelatmonthlyintervalswithaspatial"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文回答的问题是：如何利用多源卫星遥感数据和深度学习模型，预测韩国2003—2019年地下水储量变化（GWSC）的时空分布，并生成长期空间地下水储量变化图。研究还比较了LSTM与CNN-LSTM在GWSC预测中的表现，并考察地下水储量变化与土地覆盖变化的关系。",
+      "hypothesis_or_mechanism": "核心机制是地下水储量变化受气象因子、陆表覆盖变化和水文因子的共同影响，包括降水、温度、植被/水体覆盖、土壤水分和陆地水储量异常。论文认为深度学习，尤其加入卷积层的CNN-LSTM，能够捕捉这些变量与GWSC之间复杂、非线性的时空关系。",
+      "variables_and_data_use": "输出变量为由韩国国家地下水监测网166个监测站月尺度地下水位估算的GWSC，并用于训练和验证模型；输入变量包括TRMM降水、GLDAS平均温度和土壤水分、Landsat 5/8的NDVI和MNDWI、GRACE与GRACE-FO的TWSA。NDVI和MNDWI用于表征土地覆盖中的植被和水体变化，TWSA用于表征水文储量变化，并与累计GWSC趋势进行比较。",
+      "method_paradigm": "方法范式是基于多源卫星时空数据的深度学习回归预测，具体比较LSTM和CNN-LSTM模型。研究通过贝叶斯优化进行超参数优化，使用不同输入特征组合训练模型，并用RMSE、相关系数r和IOA等指标评估预测精度。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1109_access.2021.3130306.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:01"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_002",
+      "source_paper_doi": "10.3389/feart.2022.937402",
+      "title": "IntegratedGeophysicalAssessmentofGroundwaterPotentialinSouthwesternSaudiArabia",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "twoversionsofGRACE/FOmasconsolutions,areusedtocalculate\ntheTWSthatareavailablefromapril2002toJune2017for\nGARCEandfromJune2018toDecember2021forGRCE/FO."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ThemonthlyTRMMdata,coveringtheJanuary\n2002-December2019periodwithaspatialresolutionof0.25掳"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Forsoilmoisturestorage\n(SMS),outputsofGLDAS(Rodelletal.,2004;https://disc.\ngsfc.nasa.gov/datasets)areemployed.Inthiswork,the\naveragingofthreeGLDASversions(CLSM,VICandNOAH)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "twoversionsofGRACE/FOmasconsolutions,areusedtocalculate\ntheTWSthatareavailablefromapril2002toJune2017for\nGARCEandfromJune2018toDecember2021forGRCE/FO.",
+        "ThemonthlyTRMMdata,coveringtheJanuary\n2002-December2019periodwithaspatialresolutionof0.25掳",
+        "Forsoilmoisturestorage\n(SMS),outputsofGLDAS(Rodelletal.,2004;https://disc.\ngsfc.nasa.gov/datasets)areemployed.Inthiswork,the\naveragingofthreeGLDASversions(CLSM,VICandNOAH)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在回答沙特阿拉伯西南部研究区地下水储量如何随时间变化，以及哪些地表和地下构造控制地下水资源的赋存与潜力。研究还评估综合地球物理方法能否为干旱、半干旱区地下水潜力评价提供可重复模型。",
+      "hypothesis_or_mechanism": "核心机制是地下水潜力受降雨补给、地下水储量变化以及断裂/构造趋势、沉积盖层厚度和基底岩石破碎程度共同控制。磁性异常揭示的构造线和基底深度、以及电阻率识别的含水层，可共同指示地下水富集位置。",
+      "variables_and_data_use": "使用GRACE与GRACE-FO陆地水储量异常估算2002年4月至2021年12月地下水储量波动，并结合GLDAS等陆面模型思想区分水储量组成；使用TRMM降雨数据计算2002—2019年平均年降雨量。使用航空磁测数据的RTP图、倾斜导数、总水平导数和增强水平梯度等识别NS、NNW、NNE构造趋势并估算沉积盖层/基底深度；使用垂向电测深（VES）电阻率数据划分第四纪松散沉积层、饱和砂含水层和高度破碎基底岩层。",
+      "method_paradigm": "方法范式为多源综合地球物理评价：将卫星重力水储量时序分析、降雨遥感统计、航空磁异常边界/构造解释和垂向电测深反演联合用于地下水潜力判定。具体包括GRACE/GRACE-FO时序趋势估计、磁法边缘检测与深度解释、以及VES一维电阻率分层解释。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3389_feart.2022.937402.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:06"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_003",
+      "source_paper_doi": "10.1038/s41598-025-99342-9",
+      "title": "Assessing groundwater drought in Iran using GRACE data and machine learning",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Thus, the latest version of this data (RL06.1Mv03) was used in this study"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this study, the \"IMERG-GIS\" dataset was used to use monthly cumulative precipitation data on a scale of 0.1° for a desired period of 255 months"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this study, some GLDAS variables including Snow water equivalent (SWE), soil moisture storage (SMS), canopy water storage (CWS), surface runoff (Qs), temperature (T), and evapotranspiration (ET) in the scale of 0.25° was used for the study period of 255 months"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Thus, the latest version of this data (RL06.1Mv03) was used in this study",
+        "In this study, the \"IMERG-GIS\" dataset was used to use monthly cumulative precipitation data on a scale of 0.1° for a desired period of 255 months",
+        "In this study, some GLDAS variables including Snow water equivalent (SWE), soil moisture storage (SMS), canopy water storage (CWS), surface runoff (Qs), temperature (T), and evapotranspiration (ET) in the scale of 0.25° was used for the study period of 255 months"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "伊朗六大流域 2002–2023 年地下水储量异常与地下水干旱的时空状态如何，能否用卫星重力与机器学习可靠监测并预报至 2030 年？",
+      "hypothesis_or_mechanism": "XGBoost 可将 GRACE/GRACE-FO TWSA 降尺度至 0.25°（R=0.99、RMSE 22 mm），经水量平衡扣除 GLDAS 分量得到 GWSA；SARIMA 补缺后结合 CanESM5 SSP2-4.5 情景可预报趋势；GGDI 较 SPI 呈 8 个月干旱传播滞后。",
+      "variables_and_data_use": "GRACE/GRACE-FO JPL Mascon TWSA + GLDAS-2.1 Noah（SWE/SMS/CWS/ET）+ IMERG 月降水 + SRTM DEM + 遥相关指数（NINO3.4/SOI/AO/MEI/PDO）+ CanESM5 SSP2-4.5 变量；约 4 万口观测井水位验证。",
+      "method_paradigm": "XGBoost 降尺度 + 水量平衡分解 + SARIMA 时序补缺与预测 + 干旱指数（GGDI/SPI）对比",
+      "four_dim_provenance": {
+        "method": "manual_curation_from_nature_page",
+        "source": "nature.com/articles/s41598-025-99342-9",
+        "curated_at": "2026-10-06T18:55:00",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_004",
+      "source_paper_doi": "10.1016/j.ejrh.2022.101124",
+      "title": "Impact of meteorological conditions on water resources in the Upper East Region of Ghana using remotely-sensed and modelled hydrological data",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We used the mass concentration (mascon) solutions release 6 version 2 from the Jet Propulsion Laboratory (JPL) and the Center for \nSpace Research (CSR) at the University of Texas"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We used the satellite-only IMERG Final Precipitation L3 version 6 product, which has spatial and temporal resolutions of \n0.1◦ and 1 month."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We calculated total water content (TWC) from GLDAS-Noah (Rui et al., 2018) \nas the sum of canopy water storage (CWS) and soil moisture storage (SMS)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "We used the mass concentration (mascon) solutions release 6 version 2 from the Jet Propulsion Laboratory (JPL) and the Center for \nSpace Research (CSR) at the University of Texas",
+        "We used the satellite-only IMERG Final Precipitation L3 version 6 product, which has spatial and temporal resolutions of \n0.1◦ and 1 month.",
+        "We calculated total water content (TWC) from GLDAS-Noah (Rui et al., 2018) \nas the sum of canopy water storage (CWS) and soil moisture storage (SMS)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在评估研究区陆地水储量变化与降水、蒸散发及气象因子之间的关系，并检验不同水储量、降水和蒸散发数据产品在该区域水量平衡分析中的一致性与不确定性。研究还关注GLDAS-Noah未建模储量组分对水储量分析的影响。",
+      "hypothesis_or_mechanism": "核心机制基于陆地水量平衡：降水输入、蒸散发和径流输出共同决定总水储量的月际变化。作者假定不同遥感、再分析和模型产品可通过水量平衡、时间序列分解、交叉相关和多元相关来相互验证并揭示变量间的滞后关系与解释力。",
+      "variables_and_data_use": "水储量使用GRACE CSR Mascon RL06v02、JPL Mascon RL06v02和CSR TELLUS land grids估算TWSA，并用GLDAS-Noah v2.1的冠层水储量和土壤水分储量求和得到TWCA；降水使用GPM IMERG Final Precipitation L3 v6、CPC和CHIRPS v2.0。蒸散发使用GLDAS-Noah、MODIS MOD16A2和ERA5-Land，并使用CRU TS v4.04 PET与降水计算干旱指数；温度、湿度、风速、气压和净短波辐射等气象预测变量来自GLDAS-Noah。",
+      "method_paradigm": "方法范式包括区域面积加权平均提取时间序列、基于谐波项和线性趋势的多元线性回归时间序列分解、陆地水量平衡验证、三角帽法不确定性估计、交叉相关滞后分析和多元相关分析。所有数据被重采样到0.25°网格，GRACE缺失月份用三次样条插值，降水和蒸散发还使用300 km半宽高斯滤波以匹配GRACE尺度。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.ejrh.2022.101124.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:15"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_005",
+      "source_paper_doi": "10.5194/hess-24-5379-2020",
+      "title": "Suitability of 17 gridded rainfall and temperature datasets for large-scale hydrological modelling in West Africa",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "the GRACE-derived terrestrial water storage ( S t ) anomaly data\nrelease RL05 (Landerer and Swenson, 2012; Swenson, 2012) is used."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study evaluates 17 rainfall products composed of 10 satellite-based\nproducts (TAMSAT, CHIRPS, ARC, RFE, MSWEP, GSMaP, PERSIANN-CDR, CMORPH-CRT,\nTRMM 3B42 and TRMM 3B42RT) and 7 reanalysis products (JRA-55, EWEMBI,"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The surface soil moisture ( S u ) \ndata representing the first soil layer (i.e. 2–5 cm depth) are obtained from\nESA CCI (Dorigo et al., 2017) using the combination of both active and\npassive microwave products"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "the GRACE-derived terrestrial water storage ( S t ) anomaly data\nrelease RL05 (Landerer and Swenson, 2012; Swenson, 2012) is used.",
+        "This study evaluates 17 rainfall products composed of 10 satellite-based\nproducts (TAMSAT, CHIRPS, ARC, RFE, MSWEP, GSMaP, PERSIANN-CDR, CMORPH-CRT,\nTRMM 3B42 and TRMM 3B42RT) and 7 reanalysis products (JRA-55, EWEMBI,",
+        "The surface soil moisture ( S u ) \ndata representing the first soil layer (i.e. 2–5 cm depth) are obtained from\nESA CCI (Dorigo et al., 2017) using the combination of both active and\npassive microwave products"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "本研究评估不同网格降雨数据集在西非半干旱为主的沃尔特河流域大尺度水文建模中，能否合理表征径流、实际蒸发、土壤湿度和陆地水储量等水文过程的时空格局。研究还比较了降雨与温度强迫组合对模型模拟结果的影响。",
+      "hypothesis_or_mechanism": "核心机制是不同降雨和温度气象强迫会影响水文模型中降雨向蒸发和径流的分配，从而改变多个水文过程的时空模拟表现。研究结果表明，没有单一降雨或温度数据集能在所有水文过程的时空变异模拟中始终最优，且空间格局的不确定性大于时间动态。",
+      "variables_and_data_use": "降雨输入使用17种产品，包括TAMSAT、CHIRPS、ARC、RFE、MSWEP、GSMaP、PERSIANN-CDR、CMORPH-CRT、TRMM 3B42、TRMM 3B42RT、ERA5、PGF、EWEMBI、WFDEI-GPCC、WFDEI-CRU、MERRA-2和JRA-55；温度强迫使用6种再分析数据，与降雨数据组成102种降雨—温度组合。模型结果用实测径流数据以及GLEAM实际蒸发、ESA CCI土壤湿度和GRACE陆地水储量遥感数据进行评价。",
+      "method_paradigm": "方法范式为过程型分布式水文模型对比评估：将不同降雨—温度强迫输入完全分布式中尺度水文模型mHM，并对102种输入组合分别重新率定。随后使用实测与遥感水文变量进行多过程评价，并采用对偏差不敏感的指标评估气象强迫对水文过程空间格局模拟的影响。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/hess-24-5379-2020",
+        "chars": 2721,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:10"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_006",
+      "source_paper_doi": "10.1007/s12040-020-01465-2",
+      "title": "Use of GRACE time-series data for estimating groundwater storage at small scale",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The release-5 of GRACE EWH grids from CSR (GRACE-RL 05) data of 0.5° resolution is used for this study and its unit is in cm."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TRMM 3B43 gridded estimate at calendar month temporal resolution and 0.25° and by 0.25° spatial resolution from 2002 March to 2016 December is used in this study."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Soil moisture, ET, and runoff data used in this study are from GLDAS NOAH 10 model."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The release-5 of GRACE EWH grids from CSR (GRACE-RL 05) data of 0.5° resolution is used for this study and its unit is in cm.",
+        "TRMM 3B43 gridded estimate at calendar month temporal resolution and 0.25° and by 0.25° spatial resolution from 2002 March to 2016 December is used in this study.",
+        "Soil moisture, ET, and runoff data used in this study are from GLDAS NOAH 10 model."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在回答印度泰米尔纳德邦东北部研究区在2002年3月至2016年12月期间陆地水储量及其组成部分，特别是地下水储量如何变化，并评估GRACE卫星数据能否用于反演区域地下水储量变化。研究还通过与TNPWD井点实测地下水数据对比来验证GRACE反演结果。",
+      "hypothesis_or_mechanism": "核心机制是GRACE观测到的总陆地水储量变化包含地下水、土壤水和地表水等组成部分，因此可用简单水量平衡从GRACE ΔTWS中扣除土壤水和地表水变化来估算地下水储量变化。降雨季节性会驱动土壤水、地表水和地下水的季节循环，而长期趋势可反映水储量的增减。",
+      "variables_and_data_use": "研究使用CSR GRACE RL05 0.5°等效水高数据估算ΔTWS，并用GLDAS NOAH 10模型0.25°月尺度土壤水分、蒸散发和径流数据，其中土壤水分用于从ΔTWS中扣除以反演ΔGWGRACE。TRMM 3B43 0.25°月降雨数据被转换为cm/grid并计算累积降雨距平；TNPWD提供15个湖泊日地表水位数据和246口井月地下水位数据，分别用于计算ΔSW和ΔGWINSITU并格网化到GRACE尺度进行比较验证。",
+      "method_paradigm": "方法范式为多源遥感、陆面模式与原位观测融合的水量平衡反演和时间序列趋势分析。具体包括数据预处理与尺度转换、GRACE-TWS分解得到地下水储量、与井点实测地下水的归一化回归/比较验证，以及对TWS、地下水、土壤水、地表水、降雨、蒸散发和径流进行月尺度时间序列分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1007_s12040-020-01465-2.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:19"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_001",
+      "source_paper_doi": "10.3390/atmos17010094",
+      "title": "BayesianModelAveragingMethodforMergingMultiplePrecipitationProductsovertheAridRegionofNorthwestChina",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "areavailablefromthreeprocessingcenters:theCenterforSpaceResearch(CSR)atthe\nUniversityofTexas,NASA'sGoddardSpaceFlightCenter(GSFC),andtheJetPropulsion\nLaboratory(JPL).Tominimizeproductuncertainty,ensemblemeanvaluesfromthesethree\ncenters[25,70"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "precipitationsubstantiallyreducesRRMSEatmoststations,withIMERGshowingthe"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "areavailablefromthreeprocessingcenters:theCenterforSpaceResearch(CSR)atthe\nUniversityofTexas,NASA'sGoddardSpaceFlightCenter(GSFC),andtheJetPropulsion\nLaboratory(JPL).Tominimizeproductuncertainty,ensemblemeanvaluesfromthesethree\ncenters[25,70",
+        "precipitationsubstantiallyreducesRRMSEatmoststations,withIMERGshowingthe"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文回答在中国西北干旱区复杂地形和气象站稀疏条件下，常用格网降水产品在气象站尺度和子流域尺度的精度表现如何，以及多源降水融合能否提高估计可靠性的问题。",
+      "hypothesis_or_mechanism": "核心机制是不同降水数据集在空间上存在显著异质性且性能差异明显，而贝叶斯模型平均（BMA）可通过融合多源降水估计降低单一产品不确定性，从而提升精度和稳健性。",
+      "variables_and_data_use": "研究使用降水量作为核心变量，对九种常用降水产品与气象站观测在站点尺度和子流域尺度进行评估；文中点名使用了全球降水测量任务的 Integrated Multi-Satellite Retrievals for GPM（IMERG）和 Famine Early Warning Systems Network Land Data Assimilation System（FLDAS）等产品。BMA 融合后的降水数据还用于估算2000—2024年中国西北干旱区年平均降水量及其趋势和空间分布。",
+      "method_paradigm": "方法范式为多源格网降水产品精度评估与贝叶斯模型平均融合；评价在气象站尺度和子流域尺度进行，并用决定系数、一致性指数、相对平均绝对误差和相对均方根误差等指标比较单一产品与融合产品。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/atmos17010094",
+        "chars": 1878,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:08"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_001",
+      "source_paper_doi": "10.3390/w14040621",
+      "title": "Assessing Performances of Multivariate Data Assimilation Algorithms with SMOS, SMAP, and GRACE Observations for Improved Soil Moisture and Groundw",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study uses GRACE mascons Release 6 Version 2 provided by the Center for\nSpaceResearch(CSR)attheUniversityofTexasAustin[35]."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GLDASprecipitationis\nreplaced by data from the Integrated Multi-satellite Retrievals for Global Precipitation\nMeasurementMission(IMERG[25])toimprovetheaccuracyofTWSestimates[26]."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The daily satellite SM retrievals are obtained from Soil Moisture and Ocean Salinity\n(SMOS [28]) and Soil Moisture Active Passive (SMAP [29])."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study uses GRACE mascons Release 6 Version 2 provided by the Center for\nSpaceResearch(CSR)attheUniversityofTexasAustin[35].",
+        "GLDASprecipitationis\nreplaced by data from the Integrated Multi-satellite Retrievals for Global Precipitation\nMeasurementMission(IMERG[25])toimprovetheaccuracyofTWSestimates[26].",
+        "The daily satellite SM retrievals are obtained from Soil Moisture and Ocean Salinity\n(SMOS [28]) and Soil Moisture Active Passive (SMAP [29])."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在评估四种多变量数据同化方法在改进土壤水分和地下水储量模拟中的表现。具体问题是在将 SMOS、SMAP 和 GRACE 卫星观测同化到 CABLE 陆面模型后，EnKS、PS、EnGPS 和 EvS 哪种方法对区域水文分析改进效果最好。",
+      "hypothesis_or_mechanism": "以往集合卡尔曼方法假设模型和观测误差服从高斯分布，但当该假设不满足时，土壤水分和地下水储量估计可能不是最优。粒子平滑、集合高斯粒子平滑和进化平滑不依赖高斯误差假设，因此可能更适合非高斯误差系统。",
+      "variables_and_data_use": "研究同化 Soil Moisture and Ocean Salinity（SMOS）和 Soil Moisture Active Passive（SMAP）的卫星土壤水分观测，以及 Gravity Recovery And Climate Experiment（GRACE）的陆地水储量观测。它们被输入 Community Atmosphere and Biosphere Land Exchange（CABLE）陆面模型，用于改进土壤水分和地下水储量估计，并在澳大利亚 Goulburn River 流域用原位土壤水分和地下水数据进行验证。",
+      "method_paradigm": "方法范式是多源卫星水文观测的多变量数据同化与模型模拟对比验证。论文比较了集合卡尔曼平滑器（EnKS）、粒子平滑器（PS）、集合高斯粒子平滑器（EnGPS）和进化平滑器（EvS）四种数据同化算法。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.3390_w14040621.txt",
+        "chars": 3407,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:11"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_007",
+      "source_paper_doi": "10.3390/rs14010173",
+      "title": "WaterBudgetClosureintheUpperChaoPhrayaRiverBasin,ThailandUsingMultisourceData",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TWSAtimeseriesfromMay2002toJune2017(GRACE)\nandJune2018toApril2020(GRACE-FO)wereusedforcalibrationandvalidation,respectively."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "SummaryofprecipitationandevapotranspirationdatasetsspanningMay2002toApril2020\n(exceptforTRMMdatawhichisforMay2002toDecember2019)."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "storagecomponents(soilmoisturestorage,surfacerunoff,TWSfromGLDAS)weretested\naspredictorsduringmodelcalibration"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "TWSAtimeseriesfromMay2002toJune2017(GRACE)\nandJune2018toApril2020(GRACE-FO)wereusedforcalibrationandvalidation,respectively.",
+        "SummaryofprecipitationandevapotranspirationdatasetsspanningMay2002toApril2020\n(exceptforTRMMdatawhichisforMay2002toDecember2019).",
+        "storagecomponents(soilmoisturestorage,surfacerunoff,TWSfromGLDAS)weretested\naspredictorsduringmodelcalibration"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在回答如何利用遥感、实测与再分析多源数据，定量刻画2002年5月至2020年4月上湄南河流域陆地水量平衡及其各组成部分不确定性。",
+      "hypothesis_or_mechanism": "核心机制是通过水量平衡闭合约束，将独立来源的降水、蒸散发、径流和陆地水储量变化记录合并，从而估计残差误差及变量偏差方向。残差误差的上升趋势可能部分与人类活动增加以及其他水量平衡变量偏差的相对再分配有关。",
+      "variables_and_data_use": "使用降水、蒸散发、径流和陆地水储量异常等水量平衡变量；数据来自遥感、原位观测和再分析记录。具体使用GRACE和GRACE-FO陆地水储量异常数据，并用人工神经网络填补GRACE与GRACE-FO之间及其内部的数据缺口。",
+      "method_paradigm": "方法范式为多源水量平衡集合闭合与概率实现构建，应用三种闭合技术生成最多72个逐月水量预算概率实现。同时采用人工神经网络回归模型对GRACE/GRACE-FO陆地水储量异常进行缺口填补，并评估水量平衡残差误差趋势。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/rs14010173",
+        "chars": 1578,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:14"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_002",
+      "source_paper_doi": "10.1016/j.ejrh.2023.101346",
+      "title": "Identifying impacts of global climate teleconnection patterns on land water storage using machine learning",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study used the GRACE mascon (mass concentration) solution assessed from the Center for Space Research (CSR) at the\nUniversity of Texas through (http://www.csr.utexas.edu/grace/RL05_mascons.html)"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "1 Precipitation HF 0.10 × 0.10 1 month NASA-GSFC a* Huffman et al. (2015)"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "7 Soil moisture HF 0.50 × 0.50 1 month Terraclimate c* Abatzoglou et al. (2018)"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study used the GRACE mascon (mass concentration) solution assessed from the Center for Space Research (CSR) at the\nUniversity of Texas through (http://www.csr.utexas.edu/grace/RL05_mascons.html)",
+        "1 Precipitation HF 0.10 × 0.10 1 month NASA-GSFC a* Huffman et al. (2015)",
+        "7 Soil moisture HF 0.50 × 0.50 1 month Terraclimate c* Abatzoglou et al. (2018)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文试图回答全球气候遥相关型及其相关海表温度变化如何影响赞比西河流域的陆地水储量（TWS）和地表水文过程。研究还关注能否用高斯过程回归在2002年4月至2017年6月期间预测并追踪GRACE观测到的TWS变化。",
+      "hypothesis_or_mechanism": "核心机制是全球气候变化和海洋遥相关信号通过非线性气候—水文相互作用驱动流域TWS的大幅波动。作者认为邻近海洋的海表温度和ENSO、PDO、IOD等全球遥相关型的强变化，是赞比西流域陆地水储量变化的重要原因。",
+      "variables_and_data_use": "因变量为GRACE卫星任务观测的陆地水储量（GRACE-TWS），时间范围为2002年4月至2017年6月；自变量包括23个独立气候变量，并使用海表温度、全球气候遥相关指数、河流流量和地表水估计作为预测或验证信息。文中明确将GRACE-TWS作为模型预测目标，用非线性气候数据训练GPR，并用独立河流流量估计验证模型鲁棒性。",
+      "method_paradigm": "方法范式是基于贝叶斯概率监督学习的高斯过程回归（GPR）机器学习回归框架。研究比较了具有统一特征长度尺度的一阶核函数，以及通过自动相关确定（ARD）为每个预测变量设置独立长度尺度的高阶核函数，并结合多变量统计指标评估水文—气候相似性和可预测性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.ejrh.2023.101346.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:23"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_002",
+      "source_paper_doi": "10.3389/frsen.2024.1280712",
+      "title": "Detecting groundwater dependence and woody vegetation restoration with NDVI and moisture trend analyses in an Indonesian karst savanna",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "assimilationofGRACEandSMOSforimprovedestimationofroot-zonesoilmoisture"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "RainfalldatafromtheClimateHazardsGroupInfraredRainfallwith\nStation(CHIRPS)daily0.05°"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "derivedvaluesforsurfacesoilmoistureandrootzonesoil\nmoisturefromthegridded0.1°\n×0.1\n°\nsoilmoisturetimefromthe\nSatellite-GuidedRoot-zonemoistureAnalysisandForecasting\nSystem(S-GRAFS)(Tianetal.,2023"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "RainfalldatafromtheClimateHazardsGroupInfraredRainfallwith\nStation(CHIRPS)daily0.05°",
+        "derivedvaluesforsurfacesoilmoistureandrootzonesoil\nmoisturefromthegridded0.1°\n×0.1\n°\nsoilmoisturetimefromthe\nSatellite-GuidedRoot-zonemoistureAnalysisandForecasting\nSystem(S-GRAFS)(Tianetal.,2023"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "grace_storage_input"
+      ],
+      "research_question": "论文旨在回答印度尼西亚东努沙登加拉喀斯特稀树草原植被恢复地中，可用水分输入与植被状况之间的关系，以及降雨和土壤湿度变化后 NDVI 响应存在多长滞后。研究还关注这些关系能否用于识别地下水依赖型植被斑块并监测植被恢复效果。",
+      "hypothesis_or_mechanism": "核心机制是植被 NDVI 会对前期降雨和土壤湿度产生滞后响应，但浅层地下水地点对降雨的依赖较弱。极干旱时期会降低所有地点的 NDVI，而湿年通常提高 NDVI，但年降雨量超过 1200 mm 的极湿年份响应较低。",
+      "variables_and_data_use": "研究使用 Landsat 7 NDVI 的均值时间序列表征植被状况，并使用降雨时间序列和土壤湿度时间序列表征水分输入；原文未说明降雨和土壤湿度的具体数据产品或传感器。NDVI、降雨和土壤湿度用于计算窗口化互相关以估计滞后关系，并对 NDVI 与降雨序列进行趋势检验。",
+      "method_paradigm": "方法范式包括窗口化互相关分析，用于比较降雨、土壤湿度与 NDVI 的滞后相关关系；同时采用 Mann–Kendall 趋势分析检验 NDVI 和降雨时间序列的增减趋势。研究还使用 Pearson 相关评估降雨依赖地点与 NDVI 的相关强度。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3389/frsen.2024.1280712",
+        "chars": 1686,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:17"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_008",
+      "source_paper_doi": "10.3390/rs15030560",
+      "title": "GeophysicalandRemoteSensingAssessmentofChadsGroundwaterResources",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Thecurrentinvestigationutilizedthreemonthlytimevaryinggravitymasconsolu\ntionsfromGRACEprocessingcenters.ThedatasetsareCSRRL06M,JPLRL06M,and\nGSFCRL06M,whichareprovidedbyCSR,JPL,andNASAGoddardSpaceFlightCenter\n(GSFC),respectively."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "onratescaused by climaticeffectsand/oranthropogenicactivitiesintheRepublicofChad.Wealsoinvesti gatedhowtheTRMMderivedrainfallrateaffectsthevariationsingroundwaterstorage andthegroundwaterflow. 2.StudyArea AttheconfluenceofNorthandCentralAfrica,thelandlockedrepublicofChadis located.Tothe north,itsharesborderswithLibya;Sudan,fromtheeast;CentralAfric"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ThreeGLDASversions(NOAH,\nVIC,andwereutilizedinthecurrentinvestigation.Thedatawasgatheredatthe\nsametimeasGRACEdataeverymonth,butwitha1°spatialresolution."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Thecurrentinvestigationutilizedthreemonthlytimevaryinggravitymasconsolu\ntionsfromGRACEprocessingcenters.ThedatasetsareCSRRL06M,JPLRL06M,and\nGSFCRL06M,whichareprovidedbyCSR,JPL,andNASAGoddardSpaceFlightCenter\n(GSFC),respectively.",
+        "onratescaused by climaticeffectsand/oranthropogenicactivitiesintheRepublicofChad.Wealsoinvesti gatedhowtheTRMMderivedrainfallrateaffectsthevariationsingroundwaterstorage andthegroundwaterflow. 2.StudyArea AttheconfluenceofNorthandCentralAfrica,thelandlockedrepublicofChadis located.Tothe north,itsharesborderswithLibya;Sudan,fromtheeast;CentralAfric",
+        "ThreeGLDASversions(NOAH,\nVIC,andwereutilizedinthecurrentinvestigation.Thedatawasgatheredatthe\nsametimeasGRACEdataeverymonth,butwitha1°spatialresolution."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed_after_patch"
+      },
+      "research_question": "论文旨在评估乍得地下水资源的时空变化，回答GRACE重力观测能否用于监测乍得大范围地下水储量变化及补给/亏损率。研究还考察TRMM降水率如何影响地下水储量变化和地下水流动格局。",
+      "hypothesis_or_mechanism": "核心机制是GRACE观测到的陆地水储量变化包含地下水、土壤水、湖泊/地表水等分量；通过扣除GLDAS土壤水和Lake Chad水位趋势等非地下水分量，可估算地下水储量变化。降水、南部和山地来水、湖泊及河网可能为乍得不同区域提供地下水补给，并可能存在从Kufra盆地向Dakhla盆地的优先地下水流路径。",
+      "variables_and_data_use": "使用CSR RL06M、JPL RL06M和GSFC RL06M三种GRACE mascon月度时变重力产品估算陆地水储量变化（TWS），并进一步推算地下水储量异常、补给或亏损率。使用GLDAS气候/陆面模型输出扣除土壤湿度储量（SMS）等分量，使用TRMM降水数据分析降水率及其对地下水储量变化的影响，并结合Lake Chad水位趋势进行地下水分量分离。",
+      "method_paradigm": "方法范式为多源遥感与水文模型融合的重力水文学反演：由GRACE mascon时序估算TWS，再扣除GLDAS土壤水和湖泊水位等非地下水项得到GWS。随后进行时空趋势分析，并按整体时期、Period I和Period II分段比较降水、TWS、GWS及补给率变化。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs15030560.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:05:32",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_009",
+      "source_paper_doi": "10.1007/s40808-025-02312-3",
+      "title": "Groundwater depletion andannual groundwater recharge estimation inNineveh Plain, Northern Iraq using GRACE, GLDAS, andeld data",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study utilized TWSA data from the Goddard Space\nFlight Center's (GSFC) Mascon solutions. These solutions oer superior spatial resolution (0.5° × 0.5°) compared to traditional harmonic solutions, making them ideal\nfor regional studies (Xu and Beekman 2019)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "map of total precipitation for 2000–2019, derived from the\nTropical Rainfall Measuring Mission (TRMM) data with a"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study\nutilized four soil moisture layers (0–10cm, 10–40cm,\n40–100cm, and 100–200cm) from the NOAH model within\nGLDAS."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study utilized TWSA data from the Goddard Space\nFlight Center's (GSFC) Mascon solutions. These solutions oer superior spatial resolution (0.5° × 0.5°) compared to traditional harmonic solutions, making them ideal\nfor regional studies (Xu and Beekman 2019).",
+        "map of total precipitation for 2000–2019, derived from the\nTropical Rainfall Measuring Mission (TRMM) data with a",
+        "This study\nutilized four soil moisture layers (0–10cm, 10–40cm,\n40–100cm, and 100–200cm) from the NOAH model within\nGLDAS."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在回答伊拉克北部尼尼微平原地下水储量异常及其补给量如何随时间变化，并评估该区地下水补给的空间与时间特征。研究还关注在半干旱—地中海气候、低渗透水文土壤组占主导的背景下，遥感重力与陆面数据能否用于区域地下水补给估算。",
+      "hypothesis_or_mechanism": "核心机制是GRACE观测到的总水储量异常可在扣除土壤水分异常和主要地表水体影响后，用来近似地下水储量异常；地下水储量上升代表补给，下降阶段主要反映自然排泄或抽水等消耗。研究还依据水文土壤组C和D占优势、雨季降水超过潜在蒸散等事实，认为该区补给主要发生在湿季且总体径流生成较强、入渗补给受限。",
+      "variables_and_data_use": "研究使用NASA GSFC GRACE Mascon总水储量异常（TWSA，0.5°×0.5°，2002–2022）提取研究区内外5个格点，并用NASA GLDAS-NOAH四层土壤水分（0–10、10–40、40–100、100–200 cm）计算土壤水分异常（SMA），再扣除Hydroweb测高资料中的主要地表水体影响以获得地下水储量异常（GWSA）。此外使用ESRI 10 m LULC 2021（基于Sentinel-2与AI分类）、Ross等的全球水文土壤组数据（约250 m，源于SoilGrids250m）、Mosul气象站水量平衡数据、2022年地下水埋深以及12口井抽水试验得到的导水系数和给水度来表征区域条件和支撑补给计算。",
+      "method_paradigm": "方法范式为遥感重力水储量分解结合水位/储量波动法估算地下水补给：先由GRACE TWSA减去GLDAS土壤水分异常和地表水影响得到GWSA，再以GWSA变化替代水位变化并结合给水度计算补给。时间趋势分析采用非参数Mann-Kendall检验和Sen斜率估计，补给估算还提到可用水量平衡法与水储量波动法，并在本文中采用水储量波动法。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1007_s40808-025-02312-3.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:25"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_003",
+      "source_paper_doi": "10.3846/gac.2024.17872",
+      "title": "VARIABILITY OF EQUIVALENT WATER HEIGHT (EWH) IN INDONESIA DURING 14 YEARS OF GRACE GRAVITY SATELLITE MISSION",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The data used in this study are GRACE level 2 satellite data\nin the form of a spherical harmonic which can be down￾loaded at The NASA PO.DAAC (The Physical Oceanography\nDistributed Active Archive Center) website (https://podaac.\njpl.nasa.gov) with a time span from 2002 until 2016"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In addition, the data that used in this study is Mascon\ndata in grid form which can be downloaded at (https://po￾daac.jpl.nasa.gov) and TRMM 3B43 satellite data which is al￾ready in the form of monthly rainfall. This data is used as a\ncomparison of EWH values obtained from processing results."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "The method used\nin this study is the analysis of Water Structure Variations\n(WSV) using GRACE and GLDAS data."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The data used in this study are GRACE level 2 satellite data\nin the form of a spherical harmonic which can be down￾loaded at The NASA PO.DAAC (The Physical Oceanography\nDistributed Active Archive Center) website (https://podaac.\njpl.nasa.gov) with a time span from 2002 until 2016",
+        "In addition, the data that used in this study is Mascon\ndata in grid form which can be downloaded at (https://po￾daac.jpl.nasa.gov) and TRMM 3B43 satellite data which is al￾ready in the form of monthly rainfall. This data is used as a\ncomparison of EWH values obtained from processing results."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文旨在回答：2002—2016年印度尼西亚尤其苏门答腊岛的水质量变化（以等效水高 EWH 表示）具有怎样的时空变化趋势，并与降雨变化有何对应关系。",
+      "hypothesis_or_mechanism": "核心机制是 GRACE 对质量变化敏感，尤其能捕捉水体质量重新分布产生的重力信号，因此可用球谐系数反演等效水高来表征水储量变化。论文还将降雨作为可能影响 EWH 变率的水文因素进行对比。",
+      "variables_and_data_use": "使用 GRACE 卫星球谐系数数据反演等效水高（EWH），分析印度尼西亚区域水质量变化及趋势；使用 GRACE Mascon 数据确定高斯滤波半径。使用 TRMM 卫星降雨数据观测降雨，并与 GRACE 得到的 EWH 变率进行比较。",
+      "method_paradigm": "方法范式为卫星重力水储量反演与时序趋势分析，并结合 Mascon 辅助确定滤波参数。随后采用 GRACE EWH 与 TRMM 降雨序列的对比分析来解释水文变化特征。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3846/gac.2024.17872",
+        "chars": 992,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:23"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_010",
+      "source_paper_doi": "10.1109/access.2020.2984794",
+      "title": "SpatialandTemporalVariationsofTerrestrialWaterStorageinUpperIndusBasinUsingGRACEandAltimetryData",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthisstudy,twoGRACEsolutions,namely,sphericalharmonics(SH)andmascon(MSC),areutilizedwiththe\nGlobalLandDataAssimilationSystem(GLDAS)modeltoestimatethespatialandtemporalvariations\nofTWSintheUpperIndusBasin(UIB)forthestudyperiodofJanuary2003toDecember2016."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "lconditionsandclimateresearch.Thesatellite providesprecipitationdatagloballybetween50 \u000e Nand50 \u000e S. Thelevel3monthlygriddeddataproduct(TRMM-3B43), witha0.25 \u000e \u00020:25 \u000e degreespatialresolution,wasusedin thisstudy. E.ENSOANDPDOINDEXDATA ToinvestigatethevariationsofTWSintheUIBandhow theyareaffectedbylow-frequencyclimatevariability,theclimateindicesdataofSouthernOscil"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthisstudy,thedatafromfourLSMsofGLDAS-1,witha\nspatialresolutionof1\n1\ngridrelatedtohydrologicaluxes\n(evapotranspirationandrunoff)andstorages(e.g.,SWE,SM,\nCWS),wereusedfromJanuary2003toDecember2016."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Inthisstudy,twoGRACEsolutions,namely,sphericalharmonics(SH)andmascon(MSC),areutilizedwiththe\nGlobalLandDataAssimilationSystem(GLDAS)modeltoestimatethespatialandtemporalvariations\nofTWSintheUpperIndusBasin(UIB)forthestudyperiodofJanuary2003toDecember2016.",
+        "lconditionsandclimateresearch.Thesatellite providesprecipitationdatagloballybetween50 \u000e Nand50 \u000e S. Thelevel3monthlygriddeddataproduct(TRMM-3B43), witha0.25 \u000e \u00020:25 \u000e degreespatialresolution,wasusedin thisstudy. E.ENSOANDPDOINDEXDATA ToinvestigatethevariationsofTWSintheUIBandhow theyareaffectedbylow-frequencyclimatevariability,theclimateindicesdataofSouthernOscil",
+        "Inthisstudy,thedatafromfourLSMsofGLDAS-1,witha\nspatialresolutionof1\n1\ngridrelatedtohydrologicaluxes\n(evapotranspirationandrunoff)andstorages(e.g.,SWE,SM,\nCWS),wereusedfromJanuary2003toDecember2016."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed_after_patch"
+      },
+      "research_question": "论文旨在回答上印度河流域（UIB）2003年1月至2016年12月陆地水储量（TWS）的时空变化特征是什么，以及GRACE是否可作为该区水资源管理的替代研究工具。研究还关注TWS与降水、温度、ENSO/PDO等气候因子以及小型高山湖泊水位变化之间的关系。",
+      "hypothesis_or_mechanism": "核心机制是区域气候变化会驱动TWS变化：降水增加时TWS增加，降水减少时TWS降低，而升温和降水下降可能导致TWS下降。文中还认为UIB的GRACE TWS信号很大程度上受雪水当量（SWE）影响，地下水储量相对稳定，因此TWS变化可能主要来自雪水变化。",
+      "variables_and_data_use": "研究使用GRACE卫星TWS的球谐解（SH，取CSR、JPL、GFZ平均）和mascon解（MSC）来估计UIB的月尺度TWS变化，并用GLDAS模型数据进行对比；同时使用实测降水和温度数据分析气候关系。还使用GLDAS中的土壤水分（SM）、雪水当量（SWE）和冠层水（CW）评估各分量对TWS的贡献，并使用CryoSat-2 SARIn雷达测高数据提取Hunza河流域高山小湖湖水位，另用ENSO和PDO指数分析与GRACE TWS的遥相关。",
+      "method_paradigm": "方法范式为多源卫星重力与水文模型的时间序列趋势分析和相关分析，比较GRACE SH、GRACE MSC与GLDAS的TWS残差月变化、季节变化和长期趋势。湖泊水位部分采用卫星雷达测高波形筛选与水位反演方法，并用Sigma0后向散射系数识别和剔除噪声波形。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1109_access.2020.2984794.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:23"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_003",
+      "source_paper_doi": "10.5194/essd-15-4571-2023",
+      "title": "ET-WB: water-balance-based estimations of terrestrial evaporation over global land and major global basins",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Seven global terrestrial water storage datasets are used to derive Δ S and input the water balance equation. Six of these TWS datasets are GRACE solutions and one is from the WGHM."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Six remote-sensing products have been collected to enrich our study, namely the Integrated Multi-Satellite Retrievals (IMERG) for Global Precipitation Measurement (GPM), Global Precipitation Climatology Project (GPCP), Precipitation Estimation from Remotely Sensed Information using Artificial Neural Network-Climate Data Record (PERSIANN-CDR), Tropical Rainfall Measuring Mission with 3B43 algorithm (TRMM 3B43), Global Satellite Mapping of Precipitation (GSMaP), and Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS在本文中仅作为23个降水(P)强迫数据集之一被使用（GLDAS v1/v2降水强迫），未使用GLDAS Noah土壤湿度字段；GLDAS VIC/Noah仅在讨论中作为对比LSM提及；无ESA CCI SM。",
+          "identity_match": "no_match",
+          "usage": "not_used"
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Seven global terrestrial water storage datasets are used to derive Δ S and input the water balance equation. Six of these TWS datasets are GRACE solutions and one is from the WGHM.",
+        "Six remote-sensing products have been collected to enrich our study, namely the Integrated Multi-Satellite Retrievals (IMERG) for Global Precipitation Measurement (GPM), Global Precipitation Climatology Project (GPCP), Precipitation Estimation from Remotely Sensed Information using Artificial Neural Network-Climate Data Record (PERSIANN-CDR), Tropical Rainfall Measuring Mission with 3B43 algorithm (TRMM 3B43), Global Satellite Mapping of Precipitation (GSMaP), and Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答如何利用独立的质量守恒/水量平衡方法，在全球陆地和168个主要流域尺度上准确量化蒸散发（ET），并评估其季节变化、年际变化、长期均值、趋势及不确定性。",
+      "hypothesis_or_mechanism": "核心机制是基于水量平衡的质量守恒：蒸散发可由降水、径流和水储量变化等水循环分量共同约束。研究认为ET-WB集合的不确定性主要来自不同输入数据组合，而全球ET变化尤其是2010年后的下降主要归因于降水变化。",
+      "variables_and_data_use": "变量包括降水、径流、水储量变化和由此反演的蒸散发ET；研究使用23个降水数据集、29个径流数据集和7个储量变化数据集，来源包括卫星产品、原位观测、再分析和水文模拟。具体生成的数据产品为水量平衡蒸散发数据集ET-WB（Xiong et al., 2023，Zenodo DOI: 10.5281/zenodo.8339655），并与4个辅助全球ET数据集比较；摘要未列出这些辅助ET产品或具体卫星传感器名称。",
+      "method_paradigm": "方法范式是基于质量守恒的水量平衡反演与多源数据概率集合建模。研究构建4669种降水—径流—储量变化的唯一组合来生成ET-WB集合，并通过与辅助ET产品和区域研究对比、统计指标评估及不确定性分析来验证结果。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/essd-15-4571-2023",
+        "chars": 2504,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:26"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_011",
+      "source_paper_doi": "10.5194/hess-26-4169-2022",
+      "title": "Evaluating downscaling methods of GRACE (Gravity Recovery and Climate Experiment) data: a case study over a fractured crystalline aquifer in southern India",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GRACE TWS data are downscaled at 0.5 ∘ ( ≃50  km) resolution with a data-driven method based on random forest."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We use ancillary variables from three different datasets to predict GRACE TWS: the monthly rainfall from the TRMM mission at a 0.25 ∘ resolution, the normalized difference vegetation index (NDVI) from MODIS at 1 km and the remotely sensed surface soil moisture data from the ESA CCI product (combining passive microwave-derived soil moisture products) at 0.25 ∘ ."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The predictors considered herein are precipitation  (TRMM), surface  SM  (CCI), NDVI  (MODIS) as an indicator of crop fraction, and the monthly variation of NDVI  ( Δ NDVI)."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "GRACE TWS data are downscaled at 0.5 ∘ ( ≃50  km) resolution with a data-driven method based on random forest.",
+        "We use ancillary variables from three different datasets to predict GRACE TWS: the monthly rainfall from the TRMM mission at a 0.25 ∘ resolution, the normalized difference vegetation index (NDVI) from MODIS at 1 km and the remotely sensed surface soil moisture data from the ESA CCI product (combining passive microwave-derived soil moisture products) at 0.25 ∘ .",
+        "The predictors considered herein are precipitation  (TRMM), surface  SM  (CCI), NDVI  (MODIS) as an indicator of crop fraction, and the monthly variation of NDVI  ( Δ NDVI)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文回答的问题是：如何评估GRACE地下水储量降尺度结果相对于未降尺度结果的动态性能，尤其是这种性能是否随季节和水文过程变化而变化。研究在印度南部一个113000 km²的裂隙花岗岩含水层上检验该问题。",
+      "hypothesis_or_mechanism": "核心机制是，地下水储量降尺度方法的表现不是静态的，而会随季节中主导水文过程的变化而改变。因此，相比只做时间维度上的经典验证，需要用新的降尺度增益指标来刻画降尺度产品相对于未降尺度GRACE结果的时空改进。",
+      "variables_and_data_use": "研究使用GRACE及GRACE Follow-On提供的月尺度总水储量异常（TWS）数据，并通过随机森林方法将其降尺度到0.5°（约50 km）分辨率以估计地下水储量（GWS）。降尺度后的GWS与38个0.5°像元内的实地地下水储量观测进行比较，并与未降尺度GWS情形对照；评价变量包括时间Pearson相关系数R、均方根误差RMSE和新定义的降尺度增益。",
+      "method_paradigm": "方法范式是数据驱动的随机森林回归降尺度，并结合经典验证与新提出的动态降尺度增益验证框架。具体做法是比较降尺度GWS、未降尺度GWS与实地GWS观测之间的时序一致性，并按月份分析降尺度增益的季节变化。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/hess-26-4169-2022",
+        "chars": 2479,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:45"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_004",
+      "source_paper_doi": "10.1038/s41598-026-51961-6",
+      "title": "Overcoming single model bias through GRACE and multi model data reveals Iran water storage depletion drivers",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study employed the Release 06 (RL06) mascon solutions from the Center for Space Research (CSR) at the University of Texas at Austin, and from the National Aeronautics and Space Administration’s (NASA) Jet Propulsion Laboratory (JPL) and Goddard Space Flight Center (GSFC)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "the Global Precipitation Measurement (GPM) mission data were incorporated to provide more reliable precipitation inputs. GPM significantly improves global precipitation retrieval accuracy through its core observatory’s Dual-frequency Precipitation Radar (DPR) 28 and GPM Microwave Imager (GMI) 29 , utilizing multi-source data fusion algorithms. The specific product used herein is the Level-3 monthly mean dataset"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS v2.1 Noah/VIC/CLSM确被使用，但仅提取降水、蒸散与径流通量字段；文中无GLDAS Noah土壤湿度字段的使用，亦无ESA CCI SM。",
+          "identity_match": "no_match",
+          "usage": "not_used",
+          "evidence_quotes": [
+            "Data for precipitation, evapotranspiration, surface runoff, and subsurface runoff were uniformly extracted from these models."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study employed the Release 06 (RL06) mascon solutions from the Center for Space Research (CSR) at the University of Texas at Austin, and from the National Aeronautics and Space Administration’s (NASA) Jet Propulsion Laboratory (JPL) and Goddard Space Flight Center (GSFC).",
+        "the Global Precipitation Measurement (GPM) mission data were incorporated to provide more reliable precipitation inputs. GPM significantly improves global precipitation retrieval accuracy through its core observatory’s Dual-frequency Precipitation Radar (DPR) 28 and GPM Microwave Imager (GMI) 29 , utilizing multi-source data fusion algorithms. The specific product used herein is the Level-3 monthly mean dataset"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "评估不同水文模型及其数据组合模拟伊朗陆地水储量异常（TWSA）的能力，并基于最优组合分析伊朗水储量变化趋势及其组成和人为影响。",
+      "hypothesis_or_mechanism": "TWSA可由降水（P）、蒸散发（ET）和径流（RUNOFF）的水量平衡变化表征；在忽略难以量化且缺乏明确时空规律的人为影响项后，不同水文模型组合与GRACE Mascon观测之间的一致性可用于筛选最优模拟方案，并进一步反演人为影响信号。",
+      "variables_and_data_use": "将GPM降水、GLDAS-Noah、GLDAS-VIC和GLDAS-CLSM水文模型中的P、ET、RUNOFF用于计算128组TWSA时间序列；将CSR Mascon、JPL和GSFC三种Mascon产品处理后求平均，作为TWSA基准，并用RMSE、Pearson相关系数和NSE进行比较。最优模型与Mascon数据进一步分解为线性趋势、年周期和半年周期，并利用WGHM模拟的人为影响分量进行验证。",
+      "method_paradigm": "多源遥感与水文模型数据的空间分辨率协调—水量平衡组合—Mascon基准一致性评价—PCA综合筛选最优模型—最小二乘趋势与周期分解—考虑自相关的修正Mann-Kendall趋势检验。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1038_s41598-026-51961-6.methods.txt",
+        "chars": 8956,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:49"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_005",
+      "source_paper_doi": "10.1016/j.advwatres.2019.103477",
+      "title": "Multivariate data assimilation of GRACE, SMOS, SMAP measurements for improved regional soil moisture and groundwater storage estimates",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The GRACE data release 05 (RL05), provided by the Center for Space\nesearch (CSR), the University of Texas Austin ( Bettadpur, 2012 ), is ob-\nained between January 2010 and December 2015."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "ological input from the Global Land Data Assimilation System (GLDAS;\nodell et al., 2004 ). Following the sensitivity study of Tangdamrongsub\n t al. (2018a) , GLDAS precipitation is replaced by data from the Tropical\nainfall Measuring Mission (TRMM; Huffman et al., 2007 ) to improve\nhe performance of the CABLE model."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "土壤湿度来自CABLE模型同化的SMOS/SMAP观测；GLDAS仅用作气象强迫，TRMM仅替换其降水；无ESA CCI SM或GLDAS Noah SM产品使用。",
+          "identity_match": "no_match",
+          "usage": "not_used",
+          "evidence_quotes": [
+            "The daily satellite soil moisture retrievals derived from the Soil Mois-\nture and Ocean Salinity (SMOS, Kerr et al., 2012 ) and the Soil Mois-\nture Active Passive (SMAP, Entekhabi et al., 2010 ) missions are used"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The GRACE data release 05 (RL05), provided by the Center for Space\nesearch (CSR), the University of Texas Austin ( Bettadpur, 2012 ), is ob-\nained between January 2010 and December 2015.",
+        "ological input from the Global Land Data Assimilation System (GLDAS;\nodell et al., 2004 ). Following the sensitivity study of Tangdamrongsub\n t al. (2018a) , GLDAS precipitation is replaced by data from the Tropical\nainfall Measuring Mission (TRMM; Huffman et al., 2007 ) to improve\nhe performance of the CABLE model."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "本文回答的问题是：将GRACE、SMOS和SMAP遥感观测联合同化进CABLE陆面模型，是否能在区域尺度同时提高土壤水分和地下水储量估计精度。研究在澳大利亚东南部Goulburn River流域开展，并比较SM-only、GRACE-only和两者联合同化三种情景。",
+      "hypothesis_or_mechanism": "核心机制是不同卫星观测对不同水储量分量有互补约束：SMOS/SMAP的L波段土壤湿度主要改进表层土壤水分，而GRACE的陆地水储量变化主要约束深层储量、尤其地下水。因而联合同化GRACE与SMOS/SMAP预期可结合二者优势，同时改进土壤水分和地下水储量。",
+      "variables_and_data_use": "研究使用CABLE模拟的日尺度体积土壤水分和地下水储量，并同化SMOS、SMAP约0–5 cm表层土壤湿度产品以及GRACE月尺度陆地水储量变化（∆TWS）产品。CABLE气象强迫来自GLDAS，且用TRMM降水替换GLDAS降水；结果用Goulburn流域的原位土壤水分和地下水位数据验证。",
+      "method_paradigm": "方法范式是基于集合卡尔曼平滑器（EnKS）的多变量数据同化，将不同观测组合并入CABLE陆面模型。研究设置集合开环模拟（EnOL）作为无同化基准，并分别评估SM-only DA、GRACE-only DA和GRACE+SMOS/SMAP多变量DA对表层/根区土壤水分与地下水储量的改进。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.advwatres.2019.103477.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:28"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.13168/agg.2023.0011",
+      "title": "Monitoring terrestrial water storage changes and drought in Jiangxi Province using GRACE and GRACE Follow-on data.",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The GRACE and GRACE Follow\n-\non (GRACE\n-\nFO) Mascon RL06 version products which are\nreleased by three research centers including the Center\nfor Space Research at University of Texas (CSR),\nNASA Jet Propulsion Laboratory (JPL) and Goddard\nSpace Flight Center (G\nSFC)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Time spannin\ng of GLDAS Noah\ndata is from April 2002 to December 2022. The\nprecipitation data which we adopted are Global\nPrecipitation Measurement (GPM) products."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS Noah数据确被使用（与Mascon对比、runoff/ET分析），但正文未明示是否使用其土壤湿度字段；无法确认土壤湿度成员性质。",
+          "identity_match": "no_match",
+          "usage": "not_textually_confirmed",
+          "evidence_quotes": [
+            "The hydrological model adopted in this study is\nthe GLDAS Noah model which is in\nspatial\nresolution and can be obtained from the website\n(\nhttps://daac.gsfc.nasa.gov/datasets?keywords=Noah\n."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The GRACE and GRACE Follow\n-\non (GRACE\n-\nFO) Mascon RL06 version products which are\nreleased by three research centers including the Center\nfor Space Research at University of Texas (CSR),\nNASA Jet Propulsion Laboratory (JPL) and Goddard\nSpace Flight Center (G\nSFC).",
+        "Time spannin\ng of GLDAS Noah\ndata is from April 2002 to December 2022. The\nprecipitation data which we adopted are Global\nPrecipitation Measurement (GPM) products."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文旨在回答如何利用 GRACE/GRACE-FO 反演的陆地水储量变化监测江西省 2002 年 4 月至 2022 年 12 月的干旱事件，并重点刻画鄱阳湖 2022 年干旱见底事件的时空演变特征。研究还检验 WSDI 在江西省干旱监测中的可靠性及其与降水等水文气象因子的关系。",
+      "hypothesis_or_mechanism": "核心机制是陆地水储量异常能够综合反映地表水、土壤水和地下水变化，其相对于多年同月均值的亏缺可用于识别持续性干旱或洪涝事件。论文认为降水是影响江西省 TWSA 的重要因素，同时蒸散发和径流也会影响 TWSA 变化；2022 年干旱从东北部开始向西南扩展，并在 10—11 月覆盖全省、导致鄱阳湖见底。",
+      "variables_and_data_use": "主要变量包括 GRACE/GRACE-FO Mascon RL06 产品反演的 TWSA，并据此计算 WSD、WSDI；使用 CSR、JPL、GSFC 三个中心的 Mascon 数据，并取三类 Mascon 的均值以降低不确定性。论文还使用 GLDAS Noah 模型数据中的径流、蒸散发等水文变量，GPM 降水产品分析降水与 TWSA 的关系，并用 scPDSI 与 SPEI 干旱指数对 WSDI 结果进行对比验证。",
+      "method_paradigm": "方法范式为基于卫星重力反演陆地水储量的干旱指数构建与时序事件识别：先计算每月 TWSA 相对多年同月均值的水储量亏缺 WSD，再通过零均值标准化得到 WSDI，并以连续三个月以上正负异常识别洪涝或干旱事件。随后采用多源指数对比、相关分析和空间时序演变分析来验证 WSDI 并刻画 2022 年鄱阳湖干旱事件。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.13168_agg.2023.0011.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:30"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_012",
+      "source_paper_doi": "10.1007/s11069-021-05022-y",
+      "title": "The applicability ofusing NARX neural network toforecastGRACE terrestrial water storage anomalies",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GRACE TWSA we used ranges from January 2003\nto June 2017 while GRACE-FO TWSA from June 2018 to December 2019, with temporal\nresolution of 1month and spatial resolution of 0.5 degrees."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Precipitation data we used is obtained from NASA Global Precipitation Measurement (GPM, a global successor to Tropical Rainfall Measuring Mission (TRMM). https://\ndisc. gsfc. nasa. gov/ datas ets) with the temporal聳spatial resolution of 1month and 0.1 degrees,\nrespectively."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The Noah TWSA composed of SM, snow water equivalent\n(SWE), and plant canopy water storage (CWS) is used in our study, since some previous studies reported its superiority over other LSMs (Billah et al. 2015). Meanwhile, the ET and SM\nderived from Noah are also utilized in our study."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "GRACE TWSA we used ranges from January 2003\nto June 2017 while GRACE-FO TWSA from June 2018 to December 2019, with temporal\nresolution of 1month and spatial resolution of 0.5 degrees.",
+        "Precipitation data we used is obtained from NASA Global Precipitation Measurement (GPM, a global successor to Tropical Rainfall Measuring Mission (TRMM). https://\ndisc. gsfc. nasa. gov/ datas ets) with the temporal聳spatial resolution of 1month and 0.1 degrees,\nrespectively.",
+        "The Noah TWSA composed of SM, snow water equivalent\n(SWE), and plant canopy water storage (CWS) is used in our study, since some previous studies reported its superiority over other LSMs (Billah et al. 2015). Meanwhile, the ET and SM\nderived from Noah are also utilized in our study."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "NARX神经网络能否预测11个大流域的GRACE陆地水储量异常，并如何选择外生输入、时间延迟和隐层规模以衔接GRACE与GRACE-FO缺口？",
+      "hypothesis_or_mechanism": "TWS异常可由历史储量及水文气候外生变量的非线性动态关系预测；降水直接触发水储量变化，温度产生间接影响，模型结构和输入组合需按流域优化。",
+      "variables_and_data_use": "JPL CRI mascon GRACE/GRACE-FO为月度TWS异常目标；GPM降水、GHCN_CAMS气温、GLDAS Noah蒸散/土壤水/TWS及MODIS Terra/Aqua NDVI为候选外生输入。",
+      "method_paradigm": "枚举六项外生变量的组合，并搜索3–10隐层神经元与1–24时间延迟的NARX模型；按训练、验证、测试及GRACE-FO观测评价各流域预测。",
+      "four_dimension_evidence": [
+        {
+          "field": "research_question",
+          "quote": "Although NARX neural network is commonly used in time series modeling and performs well at multistep-ahead neural network prediction, three challenges remain unresolved when applying NARX neural network to predict GRACE TWSA: (a) how many\nexternal inputs the network receives could lead to optimal performance? (b) when exogenous inputs are found properly, the number of acceptable time delays and the number of\nhidden neurons are required to be determined; (c) how many di\u001berences can we expect\nwhen NARX neural network is employed for the prediction of GRACE TWSA over di\u001berent basins? In other words, it is indistinct whether the NARX models applied to di\u001berent\nwatersheds possess similar structures.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 140-144",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "hypothesis_or_mechanism",
+          "quote": "Missing month data except\nfrom July 2017 to May 2018 is \u001clled using linear interpolation using the mean values\ndetermined in the months before and after a missing month.\n2.2 Precipitation and\u001ftemperature\nOn the basis of the drainage basin water balance equation, precipitation is a vital trigger for\nTWS change.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 204-209",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "Moreover, the NDVI obtained from Climate Modeling Grid at the Moderate Resolution Imaging\nSpectroradiometer web (https:// modis. gsfc. nasa. gov) can allow insight into changes in the\nEarths environmental parameters. The NDVI data were generated from averaged level-3\nMODIS Terra (MOD13C2) and MODIS Aqua (MYD13C2) products with temporal resolution of 1\u001dmonth and spatial resolution of 0.05°, respectively (Didan et\u001dal.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 250-253",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "Speci\u001ccally, we iteratively train the NARX models with an increasing number of hidden neurons from 3 to 10 and time delays from 1 to 24 for every combination.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 175-175",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "2001\nNatural Hazards (2022) 110:19972016\n2 Datasets\n2.1 GRACE and\u001fGRACE-FO data\nThe gridded monthly global water storage/height anomalies rather than global spherical\nharmonic coe\u001fcients is used in our study. This dataset is processed at Jet Propulsion Laboratory (JPL) using the Coastline Resolution Improvement (CRI) \u001cltered Mascon approach\n(https:// podaac.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 190-196",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "Missing month data except\nfrom July 2017 to May 2018 is \u001clled using linear interpolation using the mean values\ndetermined in the months before and after a missing month.\n2.2 Precipitation and\u001ftemperature\nOn the basis of the drainage basin water balance equation, precipitation is a vital trigger for\nTWS change. Precipitation data we used is obtained from NASA Global Precipitation Measurement (GPM, a global successor to Tropical Rainfall Measuring Mission (TRMM).",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 204-209",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "The temperature data\nprovided by Global Historical Climatology Network and the Climate Anomaly Monitoring\nTable 1 Detailed information of\n11 basins chosen in this study\nIDBasinArea (km\n2\nContinent\n1Amazon5,853,804South America\n2Amur1,754,681Asia\n3Ganges1,628,404Asia\n4Lena2,441,815Asia\n5Mississippi3,202,958North America\n6Nelson1,139,778North America\n7Nile3,826,122Africa\n8Ob3,025,923Asia\n9Parana2,664,048South America\n10Yangtze1,794,242Asia\n11Yenisey2,578,730Asia\n\n2002\nNatural Hazards (2022) 110:19972016\nSystem (GHCN_CAMS) is a high resolution (0.5°) analyzed global land surface temperatures from 1948 to the near present (https:// www.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 214-235",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "variables_and_data_use",
+          "quote": "Both the time coverage of temperature and precipitation we used are from January\n2003 to December 2019.\n2.3 GLDAS data\nGLDAS drives four LSMs (https:// ldas. gsfc. nasa. gov/ gldas): Noah, Catchment, the Community Land Model (CLM), and the Variable In\u001cltration Capacity (VIC), with the goal of\ningesting satellite- and ground-based observational data products, using advanced land surface\nmodeling and data assimilation techniques to generate optimal \u001celds of land surface states\nand \u001euxes (Rodell et\u001dal. 2004). The Noah TWSA composed of SM, snow water equivalent\n(SWE), and plant canopy water storage (CWS) is used in our study, since some previous studies reported its superiority over other LSMs (Billah et\u001dal.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 239-246",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        },
+        {
+          "field": "method_paradigm",
+          "quote": "The NDVI\ndata are considered as a possible external input in our study because vegetation growth exhibits spatial and temporal variability associated with the varying trends in TWS and temperature\n(Aa et\u001dal. 2011\n3 Methods\n3.1 NARX model\nThe NARX model is a recurrent dynamic network based on the linear ARX model, with feedback connections enclosing several layers of the network (Guzman et\u001dal. 2017). The model\nrelates the current value of a time series to both the past values of the same series and current\nand past values of the exogenous series, that is, of the externally determined series that in\u001euences the series of interest.",
+          "source_path": "experiments/paper_experiments/benchmark/reference_sets/audit/fulltext_corpus_l2_global_pool_20260916/text/10.1007_s11069-021-05022-y.txt",
+          "doi": "10.1007/s11069-021-05022-y",
+          "locator": "UTF-8 text lines 253-260",
+          "source_sha256": "1602f5bf4aa777c7b23d794382b541aee02a5d8cb628ef964d17e6fbef15b477"
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "status": "verified_fulltext_backfill",
+        "audit": "reference_sets/audit/four_dim_backfill_20261011/group_a.json",
+        "method": "manual_fulltext_reading_with_verbatim_field_evidence",
+        "verified_at": "2026-10-11"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_007",
+      "source_paper_doi": "10.1016/j.ejrh.2023.101545",
+      "title": "Evaluation of runoff estimation from GRACE coupled with different meteorological gridded products over the Upper Blue Nile Basin",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The latest dataset release of GRACE RL06 from CSR, GFZ, JPL, and JPL mascon are used."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Tropical Rainfall \nMeasuring Mission (TRMM) Multi-satellite Precipitation Analysis TRMM 3B43 V7 (Huffman et al., 2019; Kummerow et al., 1998); the \nGlobal Precipitation Measurement (GPM) Integrated Multi-satellite Retrievals for GPM Final Run (IMERGv6) (Hou et al., 2014)"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS-NOAH仅在GRACE SH尺度因子/泄漏恢复后处理中使用（非土壤湿度状态产品）；SM2RAIN-CCI是由CCI SM反演的降水产品，属降水角色，非土壤湿度成员。",
+          "identity_match": "no_match",
+          "usage": "not_used",
+          "evidence_quotes": [
+            "The Global \nLand Data Assimilation System-NOAH is incorporated to quantitively estimate errors (Rodell et al., 2004b). The scale factor is derived \nbased on the root mean square difference between the unfiltered and filtered TWS."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The latest dataset release of GRACE RL06 from CSR, GFZ, JPL, and JPL mascon are used.",
+        "Tropical Rainfall \nMeasuring Mission (TRMM) Multi-satellite Precipitation Analysis TRMM 3B43 V7 (Huffman et al., 2019; Kummerow et al., 1998); the \nGlobal Precipitation Measurement (GPM) Integrated Multi-satellite Retrievals for GPM Final Run (IMERGv6) (Hou et al., 2014)"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文旨在评估上青尼罗河流域的水量平衡闭合情况，并利用多源遥感/再分析降水、实际蒸散发和GRACE陆地水储量变化来估算水量平衡组成。文本特别指出既有研究认为遥感降水产品高估会导致水量平衡闭合误差，因此本文比较多种产品组合的不确定性。",
+      "hypothesis_or_mechanism": "核心机制是流域水量平衡：降水输入、实际蒸散发输出与陆地水储量变化共同决定水量收支闭合。GRACE月尺度TWS的一阶差分被用来表示储量通量，降水产品的偏差尤其可能造成水量平衡不闭合。",
+      "variables_and_data_use": "陆地水储量使用GRACE RL06产品，包括CSR、GFZ、JPL球谐解的平均值以及JPL mascon RL06 Version 02，并由月TWS计算相邻月份差分ds/dt；缺测月份按GRACE手册线性插值。降水使用CHIRPSv2、CRU TS4.06、ERA5、TRMM 3B43 V7、GPM-IMERGv6、CFSR和SM2RAIN-CCI七种产品评估水量平衡闭合；实际蒸散发使用GLEAMv3.6a、MOD16（MODIS）和PMLv2产品。",
+      "method_paradigm": "方法范式是基于遥感与再分析产品集合的流域水量平衡闭合评估。具体包括GRACE TWS后处理与尺度因子/泄漏校正说明、月尺度储量通量差分计算，以及多降水产品和多ETa产品的对比组合分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.ejrh.2023.101545.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:28"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_008",
+      "source_paper_doi": "10.3390/rs11151769",
+      "title": "ForecastingGRACEDataovertheAfricanWatershedsUsingArtificialNeuralNetworks",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The Coastline Resolution Improvement (CRI)\nversion, used in this study, were generated using the spherical caps (native resolution of GRACE\nmission, 3° the Equator, total: 4551 grids) approach and represented on 0.5°×0.5° monthly TWSGRACE\ngirds."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "RainfalldatawasextractedfromthemonthlyTropicalRainfallMeasuringMission(TRMM)\ndataset(availableat:http://mirador.gsfc.nasa.gov/cgibin/mirador/presentNavigation.pl?project=\nTRMM&tree=project)."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS土壤湿度仅在引言描述他人研究[56]时提及；本文NARX输入为TRMM降水、FLUXNET-MTE ET、ERA-Interim温度与MODIS NDVI，无GLDAS/CCI SM数据使用。",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "theTWS\nGRACE\noveralargekarstplateauinSouthwestChinausinginsituprecipitation,monthlymean\ntemperature,andGLDASsoilmoisture[56"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "The Coastline Resolution Improvement (CRI)\nversion, used in this study, were generated using the spherical caps (native resolution of GRACE\nmission, 3° the Equator, total: 4551 grids) approach and represented on 0.5°×0.5° monthly TWSGRACE\ngirds.",
+        "RainfalldatawasextractedfromthemonthlyTropicalRainfallMeasuringMission(TRMM)\ndataset(availableat:http://mirador.gsfc.nasa.gov/cgibin/mirador/presentNavigation.pl?project=\nTRMM&tree=project)."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文要回答的问题是：能否利用易获取的降雨、蒸散、温度和NDVI等变量，预测非洲10个主要流域的GRACE陆地水储量（TWS_GRACE）时间序列，并用预测结果识别干旱事件。研究还旨在生成连续、不间断的TWS_GRACE记录，以弥合GRACE与GRACE-FO任务之间的数据空缺。",
+      "hypothesis_or_mechanism": "核心机制基于水量平衡：TWS_GRACE的时间变化受降雨、蒸散和径流控制；由于多数非洲流域缺乏径流资料，研究用温度和NDVI作为相关替代输入。文中假定土壤水分增加会提高NDVI和TWS，而温度升高会增强蒸发并降低TWS，NARX神经网络可学习这些非线性和滞后关系。",
+      "variables_and_data_use": "目标变量为各流域平均的TWS_GRACE，来自JPL GRACE Release 06 mascon解的Coastline Resolution Improvement版本，表示为0.5°×0.5°月尺度网格，并在流域内求平均和重尺度处理。输入变量包括降雨P（TRMM月降雨数据）、蒸散ET、温度T和归一化植被指数NDVI；这些月尺度数据在2002年4月至2015年9月期间按10个非洲流域求平均，并归一化到0—1后输入模型。",
+      "method_paradigm": "方法范式为带外生输入的非线性自回归人工神经网络（NARX）时序预测模型。研究分别以10个非洲流域为测试区，建立TWS_GRACE与P、ET、T、NDVI之间的非线性时滞关系，并用Nash–Sutcliffe效率系数和缩放均方根误差评估预测性能。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs11151769.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:42:58"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_004",
+      "source_paper_doi": "10.1007/s40899-020-00399-3",
+      "title": "Satellite-derived GRACE groundwater storage variation incomplex aquifer system inIndia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this research, we used satellite-derived Gravity Recovery\nand Climate Experiment (GRACE) level 3 derived terrestrial water storage (TWS) released-5 from the Jet Propulsion\nLaboratory (JPL) with spatial resolution of one degree and\ntemporal resolution one month March/April (premonsoon)\nand October/November (postmonsoon) month from 2002\nto 2016"
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The terrestrial water storage was calculated from GRACE in\neach pixel for premonsoon and postmonsoon, and TRMM\n3B42 product has been used to calculate rainfall in particular\npixel."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GLDAS drives the Community\nLand Model (CLM) Land Surface Model L4 Monthly, spatial resolution 1 × 1 V001 used for the analysis"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "In this research, we used satellite-derived Gravity Recovery\nand Climate Experiment (GRACE) level 3 derived terrestrial water storage (TWS) released-5 from the Jet Propulsion\nLaboratory (JPL) with spatial resolution of one degree and\ntemporal resolution one month March/April (premonsoon)\nand October/November (postmonsoon) month from 2002\nto 2016",
+        "The terrestrial water storage was calculated from GRACE in\neach pixel for premonsoon and postmonsoon, and TRMM\n3B42 product has been used to calculate rainfall in particular\npixel.",
+        "GLDAS drives the Community\nLand Model (CLM) Land Surface Model L4 Monthly, spatial resolution 1 × 1 V001 used for the analysis"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答GRACE地下水储量变化在不同含水层系统和季节中的表现如何，以及GRACE数据是否适用于估算区域地下水储量。研究区域为Weinganga–Wardha子流域（S1）和Mahanadi流域（S2），并比较GRACE–GLDAS估算结果与井点实测地下水异常的一致性。",
+      "hypothesis_or_mechanism": "核心机制是地下水储量异常可由GRACE观测的陆地水储量异常扣除GLDAS土壤湿度异常得到，而不同含水层类型及其比给水度会影响GRACE估算值与实测地下水储量的相关性。降雨变化与GRACE导出的陆地水储量变化相关，并通过季风前、季风后差异反映地下水补给和消耗。",
+      "variables_and_data_use": "使用GRACE数据计算各像元陆地水储量异常（TWSA），使用GLDAS产品估算土壤湿度异常（SMA），并由TWSA减去SMA得到GRACE–GLDAS地下水储量异常（GWSA）。使用WRIS地下水监测井的地下水位资料，将地下水埋深换算为水头，并乘以CGWB提供的各含水层比给水度得到实测地下水储量异常；使用TRMM 3B42降雨产品计算像元降雨并与TWS变化比较。",
+      "method_paradigm": "方法范式包括基于GRACE–GLDAS的水量平衡反演、按含水层组合选择像元的季节尺度对比分析，以及实测井数据验证。趋势检验采用Mann–Kendall显著性检验和Theil–Sen斜率估计，精度评价采用GRACE GWSA与实测GWSA的相关/拟合优度分析。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1007_s40899-020-00399-3.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:31"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_005",
+      "source_paper_doi": "10.4995/raet.2021.15211",
+      "title": "Monitoreo de la variación del almacenamiento de agua en la cuenca del Medio y Bajo Paraná a partir de datos GRACE, GRACE FO, TRMM y GLDAS",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "En este trabajo se utilizaron las mallas mensuales \nde TWS JPL RL06-V02 Mascons derivadas a partir de las soluciones GRACE y GRACE FO \n(Watkins et al., 2015; NASA/JPL, 2019), provistas \npor el JPL de la NASA."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "En particular, \nse trabajó con el producto TRMM3B43-v7, el cual \nconsiste en una combinación de observaciones \nsatelitales mensuales de lluvia con una resolución \nespacial de 0,25°."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Finalmente, se obtuvieron las series temporales \npromedio de almacenamiento total de agua, \nalmacenamiento de agua subterránea y humedad \nde suelo, del sistema GLDAS (denominadas \npor sus siglas en inglés TWS, GWS, y SM, \nrespectivamente) y se analizó la matriz de \ncorrelación entre dichas variables."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "En este trabajo se utilizaron las mallas mensuales \nde TWS JPL RL06-V02 Mascons derivadas a partir de las soluciones GRACE y GRACE FO \n(Watkins et al., 2015; NASA/JPL, 2019), provistas \npor el JPL de la NASA.",
+        "En particular, \nse trabajó con el producto TRMM3B43-v7, el cual \nconsiste en una combinación de observaciones \nsatelitales mensuales de lluvia con una resolución \nespacial de 0,25°.",
+        "Finalmente, se obtuvieron las series temporales \npromedio de almacenamiento total de agua, \nalmacenamiento de agua subterránea y humedad \nde suelo, del sistema GLDAS (denominadas \npor sus siglas en inglés TWS, GWS, y SM, \nrespectivamente) y se analizó la matriz de \ncorrelación entre dichas variables."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文回答的是：2002年以来中低巴拉那河流域水质量/陆地水储量如何变化，以及这些变化与降水异常和厄尔尼诺、拉尼娜事件之间有何联系。研究还检验GRACE/GRACE-FO观测到的水储量变化能否与区域水量平衡和地下水、土壤水等分量相互印证。",
+      "hypothesis_or_mechanism": "核心机制是GRACE观测到的重力场月变化在扣除海潮、固体地球、非潮汐海洋和大气贡献后，可反映流域水质量再分布。降水异常及ENSO事件驱动流域水储量的亏缺或盈余，例如2008-2009年拉尼娜对应2009年水亏缺，2016和2019年的水储量过剩与厄尔尼诺相连。",
+      "variables_and_data_use": "使用GRACE（2002-2017）和GRACE-FO（2018年以来）数据生成月尺度水质量/水储量变化图，用TRMM全球降雨任务的月降水数据解释质量异常与降水、ENSO事件的关系。还将GRACE反演的月水储量变化与不同水文模型的水量平衡独立分量比较，并用GLDAS分析地下水以及土壤部分，包括地表水和土壤湿度的时间变化。",
+      "method_paradigm": "方法范式为卫星重力反演的月尺度陆地水储量异常分析，并结合降水遥感和水文模型进行区域对比验证。具体包括月度空间制图、事件归因分析、GRACE水储量变化与水量平衡分量及GLDAS变量的相关性比较，报告变量间相关性约达到r=0.80。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.4995/raet.2021.15211",
+        "chars": 1900,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:32"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_009",
+      "source_paper_doi": "10.1016/j.jhydrol.2016.05.068",
+      "title": "Spatio-temporal variability of droughts and terrestrial water storage over Lake Chad Basin using independent component analysis",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "tstatistics,todecomposestandardisedprecipitation15 index(SPI),standardisedsoilmoistureindex(SSI),andterrestrialwaterstorage(TWS)de-16 rivedfromGravityRecoveryandClimateExperiment(GRACE)intospatialandtemporal17 patternsovertheLCB.Inaddition,thisstudyusessatellitealtimetrydatatoestimatevari-18 ationsintheLakeChadwaterlevels,andfurtheremploysrelevantclimateteleconnection19 indic"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "cularlyimportantfortheregionalisationprocess,266 10  whichrequirescontinuousspatio-temporaldata.267 3.1.2.TropicalRainfallMeasuringMission(TRMM)Data268 RainfallobservationsfromTRMM3B43(Hu\u000bmanetal.,2007;Kummerowetal.,2000)269 providegoodestimatesofrainfallmagnitudenotdetectedbyothersatelliteprecipitation270 products.InWestAfricaforexample,Nicholson(2013)hadreportedth"
+          ],
+          "quote_source": "machine_located_window_20261006"
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS Noah SM 层仅用于求 GRACE 尺度因子（TWSC），非独立土壤湿度状态输入；与 essd/s41598-026 同款裁定一致性，角色不成立",
+          "identity_match": "no_match",
+          "usage": "not_used",
+          "evidence_quotes": [
+            "aussian\flterleadstoattenuationof254 thesignalamplitude(e.g.,WoutersandSchrama,2007;Bauretal.,2009),ascalingfactor255 obtainedfromGlobalLandDataAssimilationSystem(GLDAS,Rodelletal.,2004)derived256 terrestrialwaterstoragecontent(seedetailsinSection3.1.7)wascomputedinamanner257 similartoLandererandSwenson(2012).ThisscalingfactorwasappliedtotheGRA"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "tstatistics,todecomposestandardisedprecipitation15 index(SPI),standardisedsoilmoistureindex(SSI),andterrestrialwaterstorage(TWS)de-16 rivedfromGravityRecoveryandClimateExperiment(GRACE)intospatialandtemporal17 patternsovertheLCB.Inaddition,thisstudyusessatellitealtimetrydatatoestimatevari-18 ationsintheLakeChadwaterlevels,andfurtheremploysrelevantclimateteleconnection19 indic",
+        "cularlyimportantfortheregionalisationprocess,266 10  whichrequirescontinuousspatio-temporaldata.267 3.1.2.TropicalRainfallMeasuringMission(TRMM)Data268 RainfallobservationsfromTRMM3B43(Hu\u000bmanetal.,2007;Kummerowetal.,2000)269 providegoodestimatesofrainfallmagnitudenotdetectedbyothersatelliteprecipitation270 products.InWestAfricaforexample,Nicholson(2013)hadreportedth"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed_after_patch"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文旨在回答乍得湖流域干旱与陆地水储量变化的时空格局如何演变，以及近年来降雨恢复是否反映在湖泊水位和流域水储量变化中。研究还考察 ENSO、AMO 和 AMM 等气候遥相关指数与流域干旱时间变化之间的联系。",
+      "hypothesis_or_mechanism": "研究基于这样的机制判断：乍得湖流域降雨空间变异强，且人类活动和极端气候可能加剧干旱，因此需要用时空方法分离局地干旱信号。论文还假定降雨、土壤湿度、陆地水储量和湖泊水位的变化可共同反映流域水文状况，并可能受海温相关气候模态影响。",
+      "variables_and_data_use": "研究使用降雨和土壤湿度构建标准化降水指数 SPI、标准化土壤湿度指数 SSI 及多变量标准化干旱指数 MSDI，用于刻画气象、农业和水文干旱；使用 GRACE（Gravity Recovery and Climate Experiment）卫星重力数据反演陆地水储量 TWS，并分析其空间变化和趋势。研究还使用卫星雷达测高数据估计乍得湖水位变化，并使用 ENSO、AMO、AMM 气候遥相关指数与干旱时间模态进行相关分析；文中背景还提到 Landsat 影像用于展示湖面面积变化。",
+      "method_paradigm": "方法范式为基于独立成分分析 ICA 的时空信号分解，采用四阶累积量统计将 SPI、SSI 和 GRACE TWS 分解为空间型与时间演化模态。研究同时结合多时间尺度干旱指数分析、趋势估计和相关分析来评估湖泊水位、TWS 变化及气候模态联系。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1016_j.jhydrol.2016.05.068.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:36"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_013",
+      "source_paper_doi": "10.1109/access.2024.3368423",
+      "title": "AnalysisandPredictionofTemporalandSpatialEvolutionofGWS",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthispaper,\nweusetheRL06_MasconsproductreleasedbytheCenterfor\nSpaceResearch(CSR)oftheUniversityofTexas,USA,with\naspatialresolutionof0.25\n, andatotalof216periodsofdata\nfromApril2002toDecember2022incm,changesintotal\nTWSexpressedasequivalentwaterheights."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthispaper,TRMM_3B43datawereselectedwitha\nspatialresolutionof0.25\n0.25\n,withatemporaldistributionfromJanuary2002toDecember2019,totaling\n18yearsand216months."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Inthispaper,\ntheNOAHversionisselected,andthespatialandtemporalresolutionisconsistentwiththeGRACEdata,witha\ntotalof249periodsofdata."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Inthispaper,\nweusetheRL06_MasconsproductreleasedbytheCenterfor\nSpaceResearch(CSR)oftheUniversityofTexas,USA,with\naspatialresolutionof0.25\n, andatotalof216periodsofdata\nfromApril2002toDecember2022incm,changesintotal\nTWSexpressedasequivalentwaterheights.",
+        "Inthispaper,TRMM_3B43datawereselectedwitha\nspatialresolutionof0.25\n0.25\n,withatemporaldistributionfromJanuary2002toDecember2019,totaling\n18yearsand216months.",
+        "Inthispaper,\ntheNOAHversionisselected,andthespatialandtemporalresolutionisconsistentwiththeGRACEdata,witha\ntotalof249periodsofdata."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文以山西省为例，回答如何利用GRACE卫星重力数据监测2002—2022年地下水储量变化，并分析其与降水、地表形变的关系。研究还提出并检验一种面向GRACE地下水储量时间序列的多源预测模型，用于短期预测未来GWS变化。",
+      "hypothesis_or_mechanism": "论文的核心机制是：GRACE反演的陆地水储量结合GLDAS水文分量可分离得到地下水储量，而降水变化会影响GWS，GWS变化又可能与地表沉降或抬升存在耦合关系。对于预测，作者认为复杂GWS时间序列可通过信号分解拆为具有一定物理意义的分量，再分别用合适神经网络预测并重构，从而优于单一神经网络。",
+      "variables_and_data_use": "使用CSR发布的GRACE/GRACE-FO RL06 Mascons产品反演TWS，并用SSAN填补缺测月份；结合GLDAS NOAH模型中的土壤水分、植被冠层水、雪水当量等分量扣除后反演GWS。使用TRMM降水数据分析GWS与降水的时空关系，并结合Sentinel-1雷达数据通过SBAS-InSAR提取严重GWS变化区的地表形变，研究地表—地下水耦合关系。",
+      "method_paradigm": "方法范式包括GRACE-GLDAS水量平衡反演、SSAN时间序列缺测插补、SBAS-InSAR地表形变反演与地表—地下水耦合分析。预测部分采用基于VMD-SSA信号分解与算法优化的多源神经网络回归，将趋势、周期和残差等分量分别预测后求和重构GWS，并用于12个月以内短期预测。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1109_access.2024.3368423.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:36"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_direct_set_014",
+      "source_paper_doi": "10.3390/s20030922",
+      "title": "Spatio-Temporal Variations in Groundwater Revealed by GRACE and Its Driving Factors in the Huang-Huai-Hai Plain, China",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Considering these reasons, GRACE mascon solution from Jet Propulsion Laboratory (JPL) was adopted in this study. We used the latest JPL mascon RL06 datasets with a 0.5-degree spatial resolution."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this study, the Tropical Rainfall Measuring Mission (TRMM) 3B43V7 precipitation product was used to obtain monthly precipitation in the 3H Plain."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We used the average SMSA and SWESA from four versions of LSMs provided by GLDAS, i.e., National Centers for Environmental Prediction/Oregon State University/Air Force/Hydrologic Research Lab (Noah) [ 30 ], Common Land Model (CLM) [ 31 ], MOSAIC [ 32 ], and Variable Infiltration Capacity (VIC) [ 33 ]"
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Considering these reasons, GRACE mascon solution from Jet Propulsion Laboratory (JPL) was adopted in this study. We used the latest JPL mascon RL06 datasets with a 0.5-degree spatial resolution.",
+        "In this study, the Tropical Rainfall Measuring Mission (TRMM) 3B43V7 precipitation product was used to obtain monthly precipitation in the 3H Plain.",
+        "We used the average SMSA and SWESA from four versions of LSMs provided by GLDAS, i.e., National Centers for Environmental Prediction/Oregon State University/Air Force/Hydrologic Research Lab (Noah) [ 30 ], Common Land Model (CLM) [ 31 ], MOSAIC [ 32 ], and Variable Infiltration Capacity (VIC) [ 33 ]"
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "research_question": "论文旨在回答黄淮海平原2003—2015年地下水储量的时空变化特征是什么，以及这些变化由哪些因素驱动。重点关注长期灌溉开采背景下地下水亏损的速率、季节性和空间差异。",
+      "hypothesis_or_mechanism": "核心机制是降水减少和农业灌溉导致的地下水抽取共同造成地下水储量下降；在干旱年份，地表水不足会促使更多地下水被开采，从而加速GWS下降。春季因农业灌溉活动增强，地下水负异常达到最大。",
+      "variables_and_data_use": "研究使用GRACE卫星重力数据结合水文模型估算地下水储量变化（GWS）的时空格局，并分析2003—2015年的变化速率和异常。还使用降水、地下水抽取及小麦蓝水足迹（WFblue）等变量，用于解释GWS下降及其南北空间差异。",
+      "method_paradigm": "方法范式为基于GRACE重力卫星与水文模型联合反演的地下水储量时空变化估算，并结合驱动因子对比分析。研究通过时间趋势、季节异常和空间梯度分析讨论GWS变化与降水、灌溉抽水及蓝水足迹之间的关系。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.3390/s20030922",
+        "chars": 1305,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:34"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_010",
+      "source_paper_doi": "10.5194/hess-26-5933-2022",
+      "title": "Monitoring the extreme flood events in the Yangtze River basin based on GRACE and GRACE-FO satellite data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this\nstudy, the average of three types of GRACE and GRACE-FO solutions is\nestimated in order to characterize the variations of TWSA in the YRB and its\nindividual subbasins during the period of 2003–2020, all of which are the\nlatest versions of Release Number 06 (RL06)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM 仅出现在文献汇总表（Table 1）的缩写说明中；本文降水数据为 CMA 站点观测",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "GRACE: Gravity\nRecovery and Climate Experiment mission. GRACE-FO: Gravity\nRecovery and Climate Experiment Follow-On mission. GLDAS: Global Land Data Assimilation system. TRMM: Tropical Rainfall Measuring Mission."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Therefore, in this study we adopt the SMS (kg m −2 ) with a spatial\nresolution of 0.25 ∘   ×  0.25 ∘ from the Global\nLand Data Assimilation System version 2.1 (GLDAS 2.1) Noah land surface\nmodel to estimate their correlations with regional TWSA derived from the\nGRACE and GRACE-FO satellite data."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "In this\nstudy, the average of three types of GRACE and GRACE-FO solutions is\nestimated in order to characterize the variations of TWSA in the YRB and its\nindividual subbasins during the period of 2003–2020, all of which are the\nlatest versions of Release Number 06 (RL06).",
+        "Therefore, in this study we adopt the SMS (kg m −2 ) with a spatial\nresolution of 0.25 ∘   ×  0.25 ∘ from the Global\nLand Data Assimilation System version 2.1 (GLDAS 2.1) Noah land surface\nmodel to estimate their correlations with regional TWSA derived from the\nGRACE and GRACE-FO satellite data."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver"
+      ],
+      "research_question": "如何利用GRACE和GRACE-FO卫星提供的月尺度陆地水储量异常（TWSA）重建并下推至日尺度，以在长江流域及其子流域的月内尺度监测严重洪水事件？这种方法能否比传统河川径流观测更早识别洪水？",
+      "hypothesis_or_mechanism": "通过学习模型将月尺度TWSA重建并时间下推至日尺度，再结合日平均降水异常构建归一化日洪水潜势指数（NDFPI），可以表征月内洪水信号并实现对严重洪水事件的稳健监测。该指数有望较传统流量观测更早反映洪水发生。",
+      "variables_and_data_use": "使用GRACE和GRACE-FO卫星的月尺度陆地水储量异常（TWSA）估计，并以多层感知机（MLP）、长短期记忆网络（LSTM）和多元线性回归（MLR）进行月尺度TWSA重建及日尺度时间下推；同时结合日平均降水异常构建NDFPI，并与传统河川径流观测比较洪水监测时效。",
+      "method_paradigm": "基于机器学习的时序重建与时间下推范式，包括MLP、LSTM和MLR模型；进一步采用TWSA与降水异常融合的复合指数构建方法，对月内洪水事件进行监测。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.5194/hess-26-5933-2022",
+        "chars": 1802,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:43"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_006",
+      "source_paper_doi": "10.32604/cmc.2022.020495",
+      "title": "DeepLearningBasedModelingofGroundwaterStorageChange",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "GRACErelease06(RL06)V2.0globalmassconcentrationblocksormasconproductswereused\ninthepresentinvestigation,whichwereacquiredfromJetPropulsionLaboratories(JPL)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "TheTropicalRainfallMeasuringMission\n(TRMM)datawasprocuredfromJanuary2009untilDecember2014,andGlobalPrecipitation\nMeasurement(GPM)datawasprocuredfromJanuary2015toNovember2020fromNASAs\nPrecipitationProcessingSystem"
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Informationrelatedtosoilmoisturewasobtainedusingthe\nGlobalLandDataAssimilationSystem(GLDAS)[44,45\nto1\n\ntomaketheresolutionsidenticaltoGLDAS-modeleddatabasedontheapproachof[46]."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "GRACErelease06(RL06)V2.0globalmassconcentrationblocksormasconproductswereused\ninthepresentinvestigation,whichwereacquiredfromJetPropulsionLaboratories(JPL).",
+        "TheTropicalRainfallMeasuringMission\n(TRMM)datawasprocuredfromJanuary2009untilDecember2014,andGlobalPrecipitation\nMeasurement(GPM)datawasprocuredfromJanuary2015toNovember2020fromNASAs\nPrecipitationProcessingSystem",
+        "Informationrelatedtosoilmoisturewasobtainedusingthe\nGlobalLandDataAssimilationSystem(GLDAS)[44,45\nto1\n\ntomaketheresolutionsidenticaltoGLDAS-modeleddatabasedontheapproachof[46]."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答沙特阿拉伯全境及五个流域在2003—2020年间陆地水储量变化（TWSC）和地下水储量变化（GWSC）如何变化，并预测2020—2025年未来变化趋势。研究还考察GWSC、TWSC与卫星降雨及气象站降雨之间的关系，并估算基于GWSC和降雨的地下水净预算。",
+      "hypothesis_or_mechanism": "论文的核心机制是：GRACE观测到的陆地水储量变化包含地下水、土壤水等组成部分，在沙特干旱/半干旱区地表水和冠层水贡献较小，因此从TWSC中扣除土壤湿度变化即可估算GWSC。地下水 depletion 被认为主要受降雨、气候条件以及市政、农业和工业用水需求上升影响，LSTM可从历史月尺度时间序列中学习并外推未来TWSC和GWSC。",
+      "variables_and_data_use": "使用GRACE/GRACE-FO JPL RL06 V2.0 mascon产品获取2003年1月至2020年6月0.5°月尺度TWS，并用GLDAS三个陆面模型的土壤湿度数据计算SMCC，从TWSC中扣除SMCC得到GWSC；还使用TRMM（2009—2014）和GPM（2015—2020）降雨数据作为SatRain，26个气象站降雨数据作为METRain。研究另下载SRTM GL3 DEM制作沙特地形底图，并将TWSC、GWSC、SatRain和METRain用于趋势、相关性、净预算及LSTM预测分析。",
+      "method_paradigm": "方法范式为GRACE遥感水储量反演结合时间序列深度学习预测：先进行TWSC/GWSC估算、不确定性评估、Mann-Kendall趋势检验和Sen斜率估计，再做变量相关分析。预测部分采用Keras/TensorFlow实现的两层LSTM网络，进行差分/滞后、监督学习转换和归一化预处理，并通过节点数、epoch、优化器和学习率调参；同时使用自回归AR模型与LSTM预测性能作比较。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.32604_cmc.2022.020495.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:42"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_011",
+      "source_paper_doi": "10.1175/jcli-d-20-0332.1",
+      "title": "Drought and Flood Characterization and Connection to Climate Variability in the Pearl River Basin in Southern China Using Long-Term GRACE and Reanalysis Data",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates"
+      ],
+      "covered_member_count": 2,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "This study uses three level-3 mascon (mass concentration)\nsolutions from GRACE and its Follow-On mission, including\nthe Release 06 mascons from Center for Space Research\n(CSR) at The University of Texas at Austin and Jet Propulsion\nLaboratory (JPL), and the mascon from the Goddard Space\nFlight Center (GSFC)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "The CMA\nprecipitation data during September 2018–December\n2019 are unavailable, and TRMM data are used as a surro-\ngate."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "GLDAS 仅在评述他人工作（Han et al. 2019）时提及，本文未使用 GLDAS/ESA CCI SM 数据",
+          "identity_match": "no_match",
+          "usage": "mention_only",
+          "evidence_quotes": [
+            "However, they\nused the output from the Global Land Data Assimilation\nSystem (GLDAS) for the isolation of groundwater storage\ncomponents from TWSA."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "This study uses three level-3 mascon (mass concentration)\nsolutions from GRACE and its Follow-On mission, including\nthe Release 06 mascons from Center for Space Research\n(CSR) at The University of Texas at Austin and Jet Propulsion\nLaboratory (JPL), and the mascon from the Goddard Space\nFlight Center (GSFC).",
+        "The CMA\nprecipitation data during September 2018–December\n2019 are unavailable, and TRMM data are used as a surro-\ngate."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "soil_moisture_state"
+      ],
+      "research_question": "论文旨在回答珠江流域在1980—2019年间干旱与洪水如何演变，以及GRACE卫星mascon陆地水储量异常数据和再分析数据对这些事件的刻画有何差异。研究还关注降水、ENSO和大型水库蓄水变化对干旱洪水识别与强度评估的影响。",
+      "hypothesis_or_mechanism": "核心机制是干旱和洪水潜势受陆地水储量异常与降水变化共同控制，洪水潜势同时受当月和前期月份降水影响。ENSO通过影响降水和TWSA调制珠江流域水文异常，且TWSA对ENSO响应存在1—3个月滞后；大型水库蓄水若不剔除会系统性扭曲干旱持续时间、严重程度和洪水潜势估计。",
+      "variables_and_data_use": "使用GRACE卫星测量的mascon陆地水储量异常（TWSA）产品刻画2002—2019年干旱和洪水事件，并使用1980—2019年再分析数据进行长期水储量与干旱洪水表征。变量包括TWSA、降水、洪水潜势指数、ENSO指标以及大型水库蓄水变化；降水用于解释负TWSA偏差、洪水空间格局和月尺度及子流域尺度洪水潜势。",
+      "method_paradigm": "方法范式为基于长时间序列TWSA异常的干旱与洪水事件识别和强度评估，并对GRACE mascon解与再分析资料进行对比验证。研究结合月尺度和子流域尺度的降水—洪水潜势分析、ENSO滞后响应分析，以及剔除大型水库蓄水变化的情景校正来评估人为调控影响。",
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "source": "crossref:10.1175/jcli-d-20-0332.1",
+        "chars": 1873,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:43:43"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_expanded_set_007",
+      "source_paper_doi": "10.1038/s41598-025-12635-x",
+      "title": "Spatiotemporal variability of terrestrial water storage over the Tibetan Plateau from the joint inversion of GNSS and GRACE observations",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "GRACE/GRACE-FO terrestrial water-storage mass grids",
+        "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+        "ESA CCI SM or GLDAS (Noah) soil-moisture product"
+      ],
+      "covered_member_count": 3,
+      "member_adjudications": [
+        {
+          "member_id": "grace_storage_input",
+          "role": "grace_storage_input",
+          "anchor_product": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "actual_dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "In this research, we utilize three available GRACE mascon solutions to quantify TWS variations in the TP 49 – 51 specifically from the Center for Space Research (CSR) at the University of Texas, the Goddard Space Flight Center (GSFC), and the Jet Propulsion Laboratory (JPL)."
+          ]
+        },
+        {
+          "member_id": "precipitation_driver",
+          "role": "precipitation_driver",
+          "anchor_product": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "actual_dataset": "TRMM (TMPA) / IMERG / GPM precipitation estimates",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "we use the fifth-generation European Centre for Medium-Range Weather Forecasts (ECMWF) global climate atmospheric reanalysis dataset (hereinafter referred to as ERA5), published by the ECMWF 58 along with the Global Precipitation Measurement (GPM) model dataset provided by NASA 59 to identify precipitation."
+          ]
+        },
+        {
+          "member_id": "soil_moisture_state",
+          "role": "soil_moisture_state",
+          "anchor_product": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "actual_dataset": "ESA CCI SM or GLDAS (Noah) soil-moisture product",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "We compare the monthly EWH products from GLDAS (i.e., the sum of snow water, soil moisture in the 0–200 mm layer, and canopy water) with the results of our joint inversion. These GLDAS estimates are also used as input signals for synthetic testing."
+          ]
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "In this research, we utilize three available GRACE mascon solutions to quantify TWS variations in the TP 49 – 51 specifically from the Center for Space Research (CSR) at the University of Texas, the Goddard Space Flight Center (GSFC), and the Jet Propulsion Laboratory (JPL).",
+        "we use the fifth-generation European Centre for Medium-Range Weather Forecasts (ECMWF) global climate atmospheric reanalysis dataset (hereinafter referred to as ERA5), published by the ECMWF 58 along with the Global Precipitation Measurement (GPM) model dataset provided by NASA 59 to identify precipitation.",
+        "We compare the monthly EWH products from GLDAS (i.e., the sum of snow water, soil moisture in the 0–200 mm layer, and canopy water) with the results of our joint inversion. These GLDAS estimates are also used as input signals for synthetic testing."
+      ],
+      "machine_state_at_admission": {
+        "source_batch": "targeted_recall_zeropool_20261006",
+        "verify": "t016_verify_20261006 (three-agent independent read + verbatim quote check)",
+        "quote_verification": "passed"
+      },
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "research_question": "论文旨在回答如何结合青藏高原及周边GNSS垂向位移与GRACE mascon观测，以更高空间分辨率估计青藏高原陆地水储量（TWS）时空变化。研究还关注TWS变化与降水、ENSO等气候事件之间的关系。",
+      "hypothesis_or_mechanism": "核心机制是地表水文质量变化会引起固体地球弹性形变，GNSS垂向位移对近场短波长负荷敏感，而GRACE对大尺度长波长质量变化敏感；二者联合可互补约束TWS反演。研究假定通过Green函数、Love数和Laplace平滑等约束，可由清理后的GNSS位移和GRACE mascon信号反演等效水高变化。",
+      "variables_and_data_use": "使用CMONOC、Nevada Geodetic Laboratory和MIBB网络的144个GNSS站垂向位移，经GipsyX、TSAnalyzer和GMIS处理，并扣除GFZ ESMGFZ的NTAL/NTOL负荷效应后，作为水文负荷反演观测。使用GRACE/GRACE-FO的CSR、GSFC、JPL mascon产品估计和约束TWS/EWH变化，其中JPL mascon用于联合反演约束；GLDAS月EWH产品用于与联合反演结果比较并作为合成测试输入。还使用ERA5和GPM降水数据识别降水，ERA5地表温度评估热弹性形变，MEI指数分析ENSO相关的气候响应。",
+      "method_paradigm": "方法范式为GNSS—GRACE联合水文负荷反演：先用弹性负荷Green函数将0.5°×0.5°网格EWH与GNSS垂向位移联系起来，再用JPL GRACE mascon的3°等面积球冠平均约束空间尺度。反演中加入Laplace平滑和观测权重，并用ABIC准则选择最优权重因子和光滑因子；同时通过棋盘模型和基于GLDAS年振幅的合成实验检验分辨率、敏感性和鲁棒性。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\fulltext_corpus\\text\\10.1038_s41598-025-12635-x.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-07T00:28:40"
+      }
+    }
+  ],
+  "reference_papers": [
+    {
+      "doi": "10.1109/access.2021.3130306",
+      "title": "PredictingChangesinSpatiotemporalGroundwaterStorageThroughtheIntegrationofMulti-SatelliteDataandDeepLearningModels",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2021,
+      "venue": "IEEE Access"
+    },
+    {
+      "doi": "10.3389/feart.2022.937402",
+      "title": "IntegratedGeophysicalAssessmentofGroundwaterPotentialinSouthwesternSaudiArabia",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Frontiers in Earth Science"
+    },
+    {
+      "doi": "10.1038/s41598-025-99342-9",
+      "title": "Assessing groundwater drought in Iran using GRACE data and machine learning",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025,
+      "venue": "Scientific Reports"
+    },
+    {
+      "doi": "10.1016/j.ejrh.2022.101124",
+      "title": "Impact of meteorological conditions on water resources in the Upper East Region of Ghana using remotely-sensed and modelled hydrological data",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Journal of Hydrology Regional Studies"
+    },
+    {
+      "doi": "10.5194/hess-24-5379-2020",
+      "title": "Suitability of 17 gridded rainfall and temperature datasets for large-scale hydrological modelling in West Africa",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Hydrology and earth system sciences"
+    },
+    {
+      "doi": "10.1007/s12040-020-01465-2",
+      "title": "Use of GRACE time-series data for estimating groundwater storage at small scale",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Journal of Earth System Science"
+    },
+    {
+      "doi": "10.3390/atmos17010094",
+      "title": "BayesianModelAveragingMethodforMergingMultiplePrecipitationProductsovertheAridRegionofNorthwestChina",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Atmosphere"
+    },
+    {
+      "doi": "10.3390/w14040621",
+      "title": "Assessing Performances of Multivariate Data Assimilation Algorithms with SMOS, SMAP, and GRACE Observations for Improved Soil Moisture and Groundw",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2022,
+      "venue": "Water"
+    },
+    {
+      "doi": "10.3390/rs14010173",
+      "title": "WaterBudgetClosureintheUpperChaoPhrayaRiverBasin,ThailandUsingMultisourceData",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2021,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1016/j.ejrh.2023.101346",
+      "title": "Identifying impacts of global climate teleconnection patterns on land water storage using machine learning",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2023,
+      "venue": "Journal of Hydrology Regional Studies"
+    },
+    {
+      "doi": "10.3389/frsen.2024.1280712",
+      "title": "Detecting groundwater dependence and woody vegetation restoration with NDVI and moisture trend analyses in an Indonesian karst savanna",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024,
+      "venue": "Frontiers in Remote Sensing"
+    },
+    {
+      "doi": "10.3390/rs15030560",
+      "title": "GeophysicalandRemoteSensingAssessmentofChadsGroundwaterResources",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1007/s40808-025-02312-3",
+      "title": "Groundwater depletion andannual groundwater recharge estimation inNineveh Plain, Northern Iraq using GRACE, GLDAS, andeld data",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2025,
+      "venue": "Modeling Earth Systems and Environment"
+    },
+    {
+      "doi": "10.3846/gac.2024.17872",
+      "title": "VARIABILITY OF EQUIVALENT WATER HEIGHT (EWH) IN INDONESIA DURING 14 YEARS OF GRACE GRAVITY SATELLITE MISSION",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024,
+      "venue": "Geodesy and Cartography"
+    },
+    {
+      "doi": "10.1109/access.2020.2984794",
+      "title": "SpatialandTemporalVariationsofTerrestrialWaterStorageinUpperIndusBasinUsingGRACEandAltimetryData",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "IEEE Access"
+    },
+    {
+      "doi": "10.5194/essd-15-4571-2023",
+      "title": "ET-WB: water-balance-based estimations of terrestrial evaporation over global land and major global basins",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2023,
+      "venue": "Earth system science data"
+    },
+    {
+      "doi": "10.5194/hess-26-4169-2022",
+      "title": "Evaluating downscaling methods of GRACE (Gravity Recovery and Climate Experiment) data: a case study over a fractured crystalline aquifer in southern India",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022
+    },
+    {
+      "doi": "10.1038/s41598-026-51961-6",
+      "title": "Overcoming single model bias through GRACE and multi model data reveals Iran water storage depletion drivers",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2026,
+      "venue": "Scientific Reports"
+    },
+    {
+      "doi": "10.1016/j.advwatres.2019.103477",
+      "title": "Multivariate data assimilation of GRACE, SMOS, SMAP measurements for improved regional soil moisture and groundwater storage estimates",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2019,
+      "venue": "Advances in Water Resources"
+    },
+    {
+      "doi": "10.13168/agg.2023.0011",
+      "title": "Monitoring terrestrial water storage changes and drought in Jiangxi Province using GRACE and GRACE Follow-on data.",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023,
+      "venue": "Acta Geodynamica et Geomaterialia"
+    },
+    {
+      "doi": "10.1007/s11069-021-05022-y",
+      "title": "The applicability ofusing NARX neural network toforecastGRACE terrestrial water storage anomalies",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2021,
+      "venue": "Natural Hazards"
+    },
+    {
+      "doi": "10.1016/j.ejrh.2023.101545",
+      "title": "Evaluation of runoff estimation from GRACE coupled with different meteorological gridded products over the Upper Blue Nile Basin",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2023,
+      "venue": "Journal of Hydrology Regional Studies"
+    },
+    {
+      "doi": "10.3390/rs11151769",
+      "title": "ForecastingGRACEDataovertheAfricanWatershedsUsingArtificialNeuralNetworks",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2019,
+      "venue": "Remote Sensing"
+    },
+    {
+      "doi": "10.1007/s40899-020-00399-3",
+      "title": "Satellite-derived GRACE groundwater storage variation incomplex aquifer system inIndia",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2020,
+      "venue": "Sustainable Water Resources Management"
+    },
+    {
+      "doi": "10.4995/raet.2021.15211",
+      "title": "Monitoreo de la variación del almacenamiento de agua en la cuenca del Medio y Bajo Paraná a partir de datos GRACE, GRACE FO, TRMM y GLDAS",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2021,
+      "venue": "Revista de teledetección: Revista de la Asociación Española de Teledetección"
+    },
+    {
+      "doi": "10.1016/j.jhydrol.2016.05.068",
+      "title": "Spatio-temporal variability of droughts and terrestrial water storage over Lake Chad Basin using independent component analysis",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2016,
+      "venue": "Journal of Hydrology"
+    },
+    {
+      "doi": "10.1109/access.2024.3368423",
+      "title": "AnalysisandPredictionofTemporalandSpatialEvolutionofGWS",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2024,
+      "venue": "IEEE Access"
+    },
+    {
+      "doi": "10.3390/s20030922",
+      "title": "Spatio-Temporal Variations in Groundwater Revealed by GRACE and Its Driving Factors in the Huang-Huai-Hai Plain, China",
+      "record_type": "article",
+      "reference_tier": "direct_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Sensors"
+    },
+    {
+      "doi": "10.5194/hess-26-5933-2022",
+      "title": "Monitoring the extreme flood events in the Yangtze River basin based on GRACE and GRACE-FO satellite data",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2022,
+      "venue": "Hydrology and earth system sciences"
+    },
+    {
+      "doi": "10.32604/cmc.2022.020495",
+      "title": "DeepLearningBasedModelingofGroundwaterStorageChange",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2021,
+      "venue": "Computers, materials & continua/Computers, materials & continua (Print)"
+    },
+    {
+      "doi": "10.1175/jcli-d-20-0332.1",
+      "title": "Drought and Flood Characterization and Connection to Climate Variability in the Pearl River Basin in Southern China Using Long-Term GRACE and Reanalysis Data",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "year": 2020,
+      "venue": "Journal of Climate"
+    },
+    {
+      "doi": "10.1038/s41598-025-12635-x",
+      "title": "Spatiotemporal variability of terrestrial water storage over the Tibetan Plateau from the joint inversion of GNSS and GRACE observations",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "expansion_reason": "含 compatible_lineage 或 analogous 成员（见 member_adjudications）",
+      "year": 2025,
+      "venue": "Scientific Reports"
+    }
+  ],
+  "quality": {
+    "ref_count": 32,
+    "source_paper_count": 32,
+    "direct_set_reference_count": 14,
+    "expanded_set_reference_count": 18,
+    "partial_set_support_count": 11,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": false,
+    "manual_admission_count": 32
+  },
+  "coverage": {
+    "formal_reference_count": 32,
+    "minimum_target": 20,
+    "minimum_met": true,
+    "complete_set_admissions_added": 21,
+    "latest_manual_audit": "reference_sets/audit/targeted_recall_zeropool_20261006/t016_verify/T016_VERIFY_REPORT_20261006.md"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_016:composite_observation",
+    "type": "composite_observation",
+    "name": "grace_precipitation_sm_data composite observation",
+    "observable_group": "grace_precipitation_sm_data_multidataset_observation",
+    "components": [
+      {
+        "role": "grace_storage_input",
+        "data_description": {
+          "dataset_name": "GRACE/GRACE-FO terrestrial water-storage mass grids",
+          "data_type": "Monthly satellite-gravimetry raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+      },
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "TRMM/IMERG precipitation estimates",
+          "data_type": "Gridded precipitation time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/GPM_L3/IMERG_V07",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/GPM_L3/IMERG_V07"
+      },
+      {
+        "role": "soil_moisture_state",
+        "data_description": {
+          "dataset_name": "ESA CCI or GLDAS soil-moisture product",
+          "data_type": "Soil-moisture raster time series",
+          "data_format": "Role-labeled raster or time-series data",
+          "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+          "spatial_coverage": {
+            "region_name": "Hydroclimatic basins",
+            "coverage": "Declared analysis region within Hydroclimatic basins."
+          },
+          "analytical_capabilities": [
+            "Spatial-temporal alignment",
+            "Role-specific feature construction",
+            "Mechanism or validation analysis"
+          ]
+        },
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "grace_storage_input",
+        "precipitation_driver",
+        "soil_moisture_state"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  }
+}

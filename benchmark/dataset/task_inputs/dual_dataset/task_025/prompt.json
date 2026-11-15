@@ -1,0 +1,152 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Major urbanized-area observation space",
+  "datasets": [
+    {
+      "role": "population_characteristics",
+      "data_description": {
+        "dataset_name": "Population characteristics",
+        "data_type": "Population or demographic spatial data",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+        "spatial_coverage": {
+          "region_name": "Major urbanized-area observation space",
+          "coverage": "Declared analysis region within Major urbanized-area observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density"
+    },
+    {
+      "role": "urban_heat_intensity",
+      "data_description": {
+        "dataset_name": "Urban heat-island intensity",
+        "data_type": "Urban heat-intensity raster or spatial observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MOD11A1",
+        "spatial_coverage": {
+          "region_name": "Major urbanized-area observation space",
+          "coverage": "Declared analysis region within Major urbanized-area observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MOD11A1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Population characteristics",
+      "data_type": "Population or demographic spatial data",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+      "spatial_coverage": {
+        "region_name": "Major urbanized-area observation space",
+        "coverage": "Declared analysis region within Major urbanized-area observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    },
+    {
+      "dataset_name": "Urban heat-island intensity",
+      "data_type": "Urban heat-intensity raster or spatial observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MOD11A1",
+      "spatial_coverage": {
+        "region_name": "Major urbanized-area observation space",
+        "coverage": "Declared analysis region within Major urbanized-area observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:CIESIN/GPWv411/GPW_Population_Density",
+    "GEE:MODIS/061/MOD11A1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_025:composite_observation",
+    "type": "composite_observation",
+    "name": "population_urban_heat composite observation",
+    "observable_group": "population_urban_heat_multidataset_observation",
+    "components": [
+      {
+        "role": "population_characteristics",
+        "data_description": {
+          "dataset_name": "Population characteristics",
+          "data_type": "Population or demographic spatial data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density",
+          "spatial_coverage": {
+            "region_name": "Major urbanized-area observation space",
+            "coverage": "Declared analysis region within Major urbanized-area observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:CIESIN/GPWv411/GPW_Population_Density"
+      },
+      {
+        "role": "urban_heat_intensity",
+        "data_description": {
+          "dataset_name": "Urban heat-island intensity",
+          "data_type": "Urban heat-intensity raster or spatial observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MOD11A1",
+          "spatial_coverage": {
+            "region_name": "Major urbanized-area observation space",
+            "coverage": "Declared analysis region within Major urbanized-area observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MOD11A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by associated dataset components",
+      "required_roles": [
+        "population_characteristics",
+        "urban_heat_intensity"
+      ],
+      "component_count": 2,
+      "alignment": "Both required roles must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Additional data may be added only as optional context or validation and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_025:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:CIESIN/GPWv411/GPW_Population_Density",
+    "GEE:MODIS/061/MOD11A1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "population_characteristics",
+      "urban_heat_intensity"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

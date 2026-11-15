@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global atmosphere and land-ocean surface",
+  "data_description": {
+    "dataset_name": "ECMWF ERA5 Hourly Single-Level Reanalysis",
+    "spatial_coverage": {
+      "region_name": "Global atmosphere and land-ocean surface",
+      "coverage": "Global hourly reanalysis fields on a regular grid, representing spatially complete model-data assimilation estimates rather than direct measurements at every cell."
+    },
+    "temporal_coverage": "January 1940-present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "Approximately 0.25 degrees, about 28 km",
+    "temporal_unit": "Hourly",
+    "analytical_capabilities": [
+      "Characterizing hourly temperature, dew point, pressure, precipitation, and near-surface wind fields",
+      "Deriving wind speed, humidity-related quantities, thermal anomalies, and compound weather states",
+      "Estimating seasonal cycles, persistence, ramp rates, spatial correlation, and co-occurring regional extremes",
+      "Comparing multidecadal weather variability among regions and climate regimes",
+      "Auditing accumulated versus instantaneous variables, time-zone aggregation, grid dependence, and reanalysis uncertainty"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "SI units by band, including kelvin, pascals, metres of accumulated precipitation, and metres per second",
+      "runtime_hint": "Derive 10 m wind speed from the u and v components, convert temperature and pressure units explicitly, difference accumulated fields where required, and preserve hourly chronology when calculating persistence or ramp statistics."
+    },
+    "data_source": "European Centre for Medium-Range Weather Forecasts Copernicus Climate Change Service",
+    "gee_asset": {
+      "id": "ECMWF/ERA5/HOURLY",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:ECMWF/ERA5/HOURLY"
+}

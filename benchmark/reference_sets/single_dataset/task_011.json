@@ -1,0 +1,2142 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_011",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "SRTM Digital Elevation Data 30m",
+    "spatial_coverage": {
+      "region_name": "Verakadi watershed, lower Tapi basin, Gujarat, India",
+      "coverage": "Verakadi watershed of roughly 440 km2 between 73°03'-73°30'E and 21°14'-21°30'N, a lower tributary catchment of the Tapi river on the Indian Deccan plateau, with elevation from 12 m to 333 m."
+    },
+    "temporal_coverage": "February 2000 (single acquisition)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Single acquisition / static elevation surface",
+    "analytical_capabilities": [
+      "Digital elevation and terrain surface mapping",
+      "Slope, aspect, relief, and curvature calculation",
+      "Drainage network extraction and watershed delineation",
+      "Terrain morphometry and geomorphic parameter analysis",
+      "Elevation-based spatial pattern and topographic variability analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Elevation in meters above the EGM96 geoid",
+      "runtime_hint": "Use the elevation band for terrain derivatives, hydrological conditioning, watershed analysis, and spatial aggregation; account for masked or missing values when analyzing regional statistics."
+    },
+    "data_source": "NASA and U.S. Geological Survey Shuttle Radar Topography Mission",
+    "gee_asset": {
+      "id": "USGS/SRTMGL1_003",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "seed full text (10.1007/s10668-020-00652-x) study area section: Verakadi watershed, 440 km2, 73°03'-73°30'E / 21°14'-21°30'N, lower part of the Tapi basin; Verakadi creek joins the Tapi near Mandvi, 40 km upstream of Surat"
+  },
+  "current_data_path": "GEE:USGS/SRTMGL1_003",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_011.json",
+    "source_sha256": "8f97d8a43d051b47b547f7ca2647b6c370f54fea8ba644c76fab6e9dfe49f977",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_011/prompt.json",
+    "current_prompt_sha256": "8eaf1adff9968b6b9e15f57416046c06625f71d5541f2cfad70a5d7d58c2902a",
+    "original_anchor_asset": {
+      "id": "USGS/SRTMGL1_003",
+      "observable_group": "srtm_1_arc_second_elevation",
+      "observation_identity_contract": {
+        "physical_object": "land-surface terrain elevation",
+        "source_lineage": "NASA/USGS SRTM C-band interferometric elevation mission lineage",
+        "core_measurement_semantics": "SRTM terrain elevation",
+        "non_material_variations": "USGS/NASA/GEE distribution, void filling, reprojection, resampling or aggregation including a coarser grid derived from SRTM",
+        "material_mismatches": "elevation from a different DEM mission or a non-SRTM national or lidar product"
+      },
+      "asset_alias_policy": "SRTM 1 arc-second global elevation distributed by USGS/NASA or hosted by Earth Engine is admitted; other DEMs are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other elevation products. A multi-DEM comparison is admissible as long as the admitted SRTM 1 arc-second product is itself operationally processed; the seed of single_dataset/task_011 is exactly such a study."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "Where can solar, wind, and hydropower resources be jointly developed in Southeast Asia? Task transfer scope: assess the same question for DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "hypothesis_or_mechanism": "Terrain controls slope, drainage, and accessibility and is combined with resource fields and exclusions to determine spatial suitability. Task mechanism condition: interpret the mechanism under DEM-derived basin morphometry and sensitivity of hydrologic-response prediction, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "SRTM elevation-derived terrain is integrated with solar, wind, hydrological, land-cover, and infrastructure layers. Task operationalization: use the anchor asset and task-specific covariates needed to represent DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "method_paradigm": "GIS multi-criteria renewable-resource potential integration. Task evaluation frame: stratify, compare, or validate results against the constraints of DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "used_assets": [
+        "SRTM 30 m DEM",
+        "renewable resource fields",
+        "land and infrastructure constraints"
+      ],
+      "author_team": [
+        "Anjar Dimara Sakti",
+        "Pitri Rohayani",
+        "Nurusshobah Ainul Izzah",
+        "Nur Afrizal Toya",
+        "Pradita Octoviandiningrum Hadi",
+        "Thanti Octavianti",
+        "Wendi Harjupa",
+        "Rezzy Eko Caraka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Spatial integration framework of solar, wind, and hydropower energy potential in Southeast Asia",
+        "doi": "10.1038/s41598-022-25570-y",
+        "year": 2023,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "DEM-derived basin morphometry and sensitivity of hydrologic-response prediction",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "How can terrain and archaeological evidence guide the search for ancient pre-Roman imperial roads? Task transfer scope: assess the same question for DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "hypothesis_or_mechanism": "Slope-derived movement cost constrains plausible corridors, while historical and archaeological observations distinguish feasible paths from surviving route hypotheses. Task mechanism condition: interpret the mechanism under DEM-derived basin morphometry and sensitivity of hydrologic-response prediction, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "SRTM terrain is transformed into slope and cost surfaces and combined with known sites, route evidence, and historical geography. Task operationalization: use the anchor asset and task-specific covariates needed to represent DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "method_paradigm": "Archaeological least-cost corridor analysis with source-critical validation. Task evaluation frame: stratify, compare, or validate results against the constraints of DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "used_assets": [
+        "SRTM 30 m DEM",
+        "archaeological sites",
+        "historical route evidence"
+      ],
+      "author_team": [
+        "Michał Marciak",
+        "Bartłomiej Szypuła",
+        "Daniel Sobczyński"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "In search of ancient pre-Roman imperial roads: state of research and some methodological recommendations",
+        "doi": "10.1007/s12520-023-01820-6",
+        "year": 2023,
+        "venue": "Archaeological and Anthropological Sciences",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "DEM-derived basin morphometry and sensitivity of hydrologic-response prediction",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "How can an urban sensor network be spatially optimized for efficient temperature monitoring and prediction? Task transfer scope: assess the same question for DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "hypothesis_or_mechanism": "Elevation and urban spatial covariates explain temperature heterogeneity and guide placement where new sensors add the most information. Task mechanism condition: interpret the mechanism under DEM-derived basin morphometry and sensitivity of hydrologic-response prediction, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "SRTM terrain and urban predictors are combined with observed air temperatures and candidate monitoring locations. Task operationalization: use the anchor asset and task-specific covariates needed to represent DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "method_paradigm": "Spatial prediction and sensor-network optimization. Task evaluation frame: stratify, compare, or validate results against the constraints of DEM-derived basin morphometry and sensitivity of hydrologic-response prediction.",
+      "used_assets": [
+        "SRTM 30 m DEM",
+        "urban covariates",
+        "temperature sensors"
+      ],
+      "author_team": [
+        "Lidia Lazarova Vitanova",
+        "Radomir Peev",
+        "Dessislava Petrova‐Antonova",
+        "Tereza К. Trendafilova",
+        "Dumitru Roman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Spatially optimised sensor networks for efficient urban temperature monitoring and prediction",
+        "doi": "10.1007/s44327-026-00308-x",
+        "year": 2026,
+        "venue": "Discover Cities",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "DEM-derived basin morphometry and sensitivity of hydrologic-response prediction",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究如何利用遥感与地形数据开展流域形态参数提取和排水网络分析。",
+      "hypothesis_or_mechanism": "SRTM-DEM 提供的高程信息可支持自动提取流域边界、排水网络和地形起伏特征，从而量化流域形态结构。",
+      "variables_and_data_use": "论文使用 SRTM-DEM、multispectral satellite data 和 SOI topographical sheets 建立地理数据库；其中 SRTM-DEM 从 USGS EarthExplorer 获取并镶嵌，用于 Arc Hydro/Arc GIS 中提取河流流域、排水网络以及线性、面状和起伏形态参数。",
+      "method_paradigm": "流域形态分析",
+      "used_assets": [
+        "SRTM-DEM",
+        "SRTM (Shuttle Radar Topographic Mission)",
+        "Digital Elevation Model",
+        "multispectral satellite data",
+        "SOI topographical sheets"
+      ],
+      "author_team": [
+        "Tarun Kumar Thakur",
+        "Digvesh Kumar Patel",
+        "Shankar Karuppannan",
+        "Abhinav Sao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Prioritization of sub-watersheds based on quantitative morphometric analysis of the Narmada River, India, using SRTM-DEM and GIS techniques",
+        "doi": "10.15406/bij.2024.07.00208",
+        "year": 2024,
+        "venue": "Biodiversity International Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文研究如何计算 Burdur Gölü Havzası 的形态计量参数，并分析这些参数与流域侵蚀状况之间的关系。",
+      "hypothesis_or_mechanism": "流域的高程、坡度、坡向、河网结构等地形形态特征会影响径流汇集和侵蚀过程，因此可通过 DEM 派生的形态计量指标解释侵蚀敏感性。",
+      "variables_and_data_use": "论文使用 SRTM (Shuttle Radar Topography Mission) 遥感数据生成 SYM（数字高程模型），并在 ArcGIS 10.2 与 ArcHydro 中基于该 DEM 提取流域边界、排水网络、河流等级、河流长度以及线性、面积和 relief 形态计量参数。",
+      "method_paradigm": "GIS 形态计量分析",
+      "used_assets": [
+        "SRTM (Shuttle Radar Topography Mission)",
+        "SYM (Sayısal Yükseklik Modeli)"
+      ],
+      "author_team": [
+        "İbrahim DURSUN",
+        "Ahmet Alper BABALIK"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Burdur Gölü Havzasındaki morfometrik parametrelerin ve erozyon durumunun değerlendirilmesi",
+        "doi": "10.18182/tjf.1205157",
+        "year": 2023,
+        "venue": "Turkish Journal of Forestry | Türkiye Ormancılık Dergisi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该论文研究多种公开 DEM 与地面 DGPS/MobileGPS 高程观测相比的垂直精度、校正效果和重采样方法影响。",
+      "hypothesis_or_mechanism": "不同 DEM 产品、重采样方法和线性拟合校正会改变高程误差统计，DGPS 可作为参考数据评估和改进 DEM 垂直精度。",
+      "variables_and_data_use": "论文使用 ASTER GDEM version 3、SRTM version 3 30 m、CartoDEM version v3R1、SRTM version 4.1 90 m、MERIT、TanDEM-X DEM 的高程值，在 145 个 GCP 处用 nearest neighbour、bilinear、bicubic 提取高程，并与 DGPS 高程计算 RMSE、MBE、MAE、SD 等指标及线性校正。",
+      "method_paradigm": "DEM 精度验证",
+      "used_assets": [
+        "ASTER GDEM version 3 (Ast30)",
+        "SRTM version 3 (Srt30)",
+        "CartoDEM version v3R1 (Crt30)",
+        "SRTM version 4.1 (Srt90)",
+        "MERIT (MRT90)",
+        "TanDEM-X DEM (TDX90)",
+        "DGPS",
+        "MobileGPS"
+      ],
+      "author_team": [
+        "Kumari Preety",
+        "Anup K. Prasad",
+        "Atul K. Varma",
+        "Hesham El-Askary"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Accuracy Assessment, Comparative Performance, and Enhancement of Public Domain Digital Elevation Models (ASTER 30 m, SRTM 30 m, CARTOSAT 30 m, SRTM 90 m, MERIT 90 m, and TanDEM-X 90 m) Using DGPS",
+        "doi": "10.3390/rs14061334",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "该论文研究如何利用 SRTM DEM 与 GIS 技术提取并表征 Karangan 流域的形态计量参数。",
+      "hypothesis_or_mechanism": "DEM SRTM 的高程信息可通过水文地形处理提取流域边界、河网和地形起伏，从而支持线性、面积和地貌起伏参数的定量分析。",
+      "variables_and_data_use": "论文实际使用 DEM SRTM resolusi spasial 30 m 作为输入数据，在 Arc Map 10.8 中进行 Fill、Flow Direction、Flow Accumulation、Watershed Delineation、河网提取和形态计量参数估算。",
+      "method_paradigm": "DEM-GIS 形态计量",
+      "used_assets": [
+        "DEM SRTM resolusi spasial 30 m",
+        "https://earthexplorer.usgs.gov"
+      ],
+      "author_team": [
+        "Joko Suryanto",
+        "Amrpin Amprin",
+        "Joko Krisbiyantoro",
+        "Anisum Anisum"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric Analysis of Karangan Watershed East Kutai Regency, Using Remote Sensing Data and GIS Techniques",
+        "doi": "10.70124/at.v17i1.1306",
+        "year": 2024,
+        "venue": "Jurnal Agritechno",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "研究旨在确定影响埃塞俄比亚阿巴亚湖流域滑坡发生的关键因素，并绘制滑坡易感性分布图。",
+      "hypothesis_or_mechanism": "坡度、坡向、曲率、 elevation、岩性、土地利用/土地覆盖以及距河流距离等地形和环境因素会改变滑坡发生的空间概率。",
+      "variables_and_data_use": "研究使用 USGS 网站获取的 Shuttle Radar Topographic Mapping (SRTM - DEM) 提取坡度、坡向、曲率和 elevation；结合 Sentinel-2 satellite imagery 制作土地利用/土地覆盖图，并使用 Google Earth imagery、野外调查、岩性资料和河网数据构建滑坡清单及其他致灾因子图层，随后通过频率比模型和加权线性组合生成滑坡易感性指数。",
+      "method_paradigm": "GIS频率比易感性制图",
+      "used_assets": [
+        "Shuttle Radar Topographic Mapping (SRTM - DEM)",
+        "Sentinel-2 satellite imagery",
+        "Google Earth imagery",
+        "topographic map with a scale of 1:50,000"
+      ],
+      "author_team": [
+        "Yonas Oyda",
+        "Muralitharan Jothimani",
+        "Hailu Regasa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Assessing landslide susceptibility in Lake Abya catchment, Rift Valley, Ethiopia: A GIS-based frequency ratio analysis",
+        "doi": "10.15243/jdmlm.2024.113.5885",
+        "year": 2024,
+        "venue": "Journal of Degraded and Mining Lands Management",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究比较多种数字高程模型在地形表达、地形子产品生成和高程精度方面的表现。",
+      "hypothesis_or_mechanism": "不同数字高程模型的空间分辨率、数据获取方式和雷达几何效应会导致高程、地形形态及水文提取结果产生差异。",
+      "variables_and_data_use": "研究使用 SRTM（包括 SRTM 1 arcsec 和 SRTM 3 arcsec）、NASADEM、ASTER GDEM2、ALOS PALSAR、TopoData、TERRASAR-X 和 COPERNICUS DEM 的高程栅格，生成坡度、坡向、阴影、等高线和流域等子产品，并通过 IBGE 等高线插值形成的控制点对高程进行采样、相关性比较、ANOVA 和 Student T 检验。",
+      "method_paradigm": "多源DEM精度验证",
+      "used_assets": [
+        "SRTM",
+        "SRTM (1-arcsec)",
+        "SRTM 3 (3-arcsec)",
+        "COPERNICUS DEM",
+        "ALOS PALSAR",
+        "TopoData",
+        "NASADEM",
+        "TERRASAR-X",
+        "ASTER GDEM2"
+      ],
+      "author_team": [
+        "Fernando Yogi",
+        "Fábio Noel Stanganini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparação e Avaliação de Modelos Digitais de Elevação dos sensores SRTM, ASTER, TANDEM/TERRASAR –X, NASADEM, COPERNICUS DEM e ALOS PALSAR para análise digital de terreno para aplicações no saneamento básico",
+        "doi": "10.33448/rsd-v12i1.39350",
+        "year": 2023,
+        "venue": "Research, Society and Development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何综合地下水位、GRACE水储量、DInSAR形变和GPS观测，识别并解释地下水耗减相关的地面沉降及建筑物损伤？",
+      "hypothesis_or_mechanism": "长期过量抽取地下水导致含水层材料压密和差异沉降，进而产生可由DInSAR与GPS探测的地表形变，并诱发建筑物张裂、压裂或剪切裂缝。",
+      "variables_and_data_use": "以Sentinal-1 C-band SAR data pairs进行DInSAR处理并估计地表形变，以Shuttle Radar Topography Mission (SRTM) 1 arc-second提供地形高程输入；利用JPL-Mascons Tellus-based monthly mass gridded GRACE gravity data推导总水储量变化，结合Global Land Data Assimilation System (GLDAS)-based soil moisture change (SMC)和井点地下水位数据分析地下水耗减，并使用GPS data验证垂直沉降速率。",
+      "method_paradigm": "多源过程归因",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM) 1 arc-second",
+        "Sentinal-1 C-band SAR data pairs",
+        "JPL-Mascons Tellus-based monthly mass gridded GRACE gravity data",
+        "Global Land Data Assimilation System (GLDAS)-based soil moisture change (SMC)",
+        "bore-well/tube-well and dug-well data",
+        "GPS data"
+      ],
+      "author_team": [
+        "Pranshu Pranjal",
+        "Neha Kadiyan",
+        "R. S. Chatterjee",
+        "Dheeraj Kumar",
+        "Madhu Sudan Sati"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Interpreting land subsidence impacts due to groundwater depletion using remote sensing-based GRACE gravity anomaly and DInSAR technique: a study on north-western parts of India",
+        "doi": "10.1007/s12665-021-09905-y",
+        "year": 2021,
+        "venue": "Environmental Earth Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何利用集成机器学习和多源卫星及地面变量，将GRACE/GRACE-FO地下水储量异常降尺度，以刻画数据稀缺流域的长期时空变化和局地枯竭热点？",
+      "hypothesis_or_mechanism": "地形、降水、地表温度、蒸散发和植被状态共同调节地下水补给与消耗，因此将这些变量输入堆叠集成模型可恢复粗分辨率GRACE观测未能解析的局地地下水变化。",
+      "variables_and_data_use": "研究以GRACE/GRACE-FO terrestrial water storage anomalies (TWSA)和GLDAS components推导GWSA，并将MODIS LST、ET、NDVI、CHIRPS precipitation和SRTM elevation作为空间降尺度预测变量，同时结合in-situ groundwater observations，对2002—2023年的地下水储量变化、2020年结构突变及其后枯竭趋势进行分析。",
+      "method_paradigm": "集成学习状态重建",
+      "used_assets": [
+        "GRACE/GRACE-FO terrestrial water storage anomalies (TWSA)",
+        "GLDAS components",
+        "MODIS LST",
+        "ET",
+        "NDVI",
+        "CHIRPS precipitation",
+        "SRTM elevation",
+        "in-situ groundwater observations"
+      ],
+      "author_team": [
+        "S. Karunarathna",
+        "B. C. Dissanayake",
+        "L. Gunawardhana",
+        "L. Rajapakse"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "High-Resolution Downscaling of GRACE-Derived Groundwater Storage Anomalies using Stacking Ensemble Machine Learning in the Data-Scarce Tropical Catchments",
+        "doi": "10.1007/s41748-026-01022-9",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用SRTM地形、土地覆盖、土壤、降雨和观测径流数据校准HEC-HMS，并通过区域化与参数移置估算无资料Rana流域在不同时期的日径流？",
+      "hypothesis_or_mechanism": "土地覆盖和水文气候条件的时序变化会通过改变曲线数、滞后时间和河道蓄泄参数影响径流响应，而从地貌和水文条件相似的已测流域迁移参数能够支持无资料流域径流模拟。",
+      "variables_and_data_use": "以Shuttle Radar Topography Mission (SRTM) 1 Arc-Second Global提取高程、坡度、流域边界、最长流路和河网；以Landsat satellite imagery生成多时相LULC；以FAO土壤分类栅格确定水文土壤组；以日降水驱动HEC-HMS，并以Brutang日径流校准和验证模型，随后通过区域化和移置方法向Rana流域迁移CN、Lag Time和K参数。",
+      "method_paradigm": "水文建模与参数迁移",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM) 1 Arc-Second Global",
+        "USGS Earth Explorer",
+        "Landsat satellite imagery",
+        "global soil classification raster (TIFF format)",
+        "daily precipitation data",
+        "Daily runoff data for Brutang watershed",
+        "ArcGIS",
+        "Arc Hydro",
+        "HEC-GeoHMS",
+        "HEC-HMS"
+      ],
+      "author_team": [
+        "Chanchala",
+        "Jyotiprakash Padhi",
+        "Bitanjaya Das"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Runoff simulation in the Rana ungauged watershed of Mahanadi river basin using regionalization and transposition techniques in HEC-HMS model",
+        "doi": "10.1007/s43621-026-03750-4",
+        "year": 2026,
+        "venue": "Discover Sustainability",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何利用30米SRTM DEM完成Dhansiri River watershed的流域划分、河网提取和综合形态测量分析？",
+      "hypothesis_or_mechanism": "经投影、拼接、洼地填充和河道burn-in处理的SRTM地形高程能够通过地形控制的流向与汇流机制重建流域边界和排水网络，并支持可靠的流域形态参数计算。",
+      "variables_and_data_use": "研究以SRTM DEM-1Arc second version 3的地形高程为基础，计算坡度、流向、汇流量、河网、流域及子流域边界，并进一步计算河流级序、河长、分汊比、排水密度、河流频率、纹理比、地表径流长度、圆度比、伸长比和紧凑度等参数；HydroSHEDS data和通过Google Earth Pro v7.3.6数字化的河道用于空间验证，Central Pollution Control Board提供的既有流域面积用于误差比较。",
+      "method_paradigm": "DEM 流域形态分析",
+      "used_assets": [
+        "SRTM DEM-1Arc second version 3",
+        "SRTM1N25E093V3",
+        "HydroSHEDS data",
+        "Google Earth Pro v7.3.6",
+        "existing watershed area data obtained from Central Pollution Control Board"
+      ],
+      "author_team": [
+        "Sungrongti Mongro",
+        "Eliza Khwairakpam"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Watershed delineation and morphometric analysis of Dhansiri River using SRTM DEM and ArcSWAT",
+        "doi": "10.1007/s43832-025-00317-8",
+        "year": 2025,
+        "venue": "Discover Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "如何利用SRTM地形高程、Landsat-8影像及GIS形态测量方法刻画Seonath River Basin各子流域的排水与地貌差异，并据此确定洪水和土壤侵蚀管理优先级？",
+      "hypothesis_or_mechanism": "地形起伏、坡度、岩性及排水结构共同控制径流集中、侵蚀强度和地下水补给潜力，因此不同子流域的形态测量指标组合可揭示其相对水文脆弱性。",
+      "variables_and_data_use": "使用30 m SRTM Digital Elevation Model (DEM)进行填洼、D8流向和汇流累积计算，划分流域与子流域，提取排水网络、坡度、高程和起伏参数；使用Landsat-8 OLI/TIRS (30 m resolution)验证并修正河道，同时解释地貌、土地利用/土地覆盖和岩性；使用NASA POWER / IMD降雨与温度数据描述气候背景，并通过排水密度、河流频率、分汊比、伸长率、圆度比和起伏指标等进行子流域综合排序。",
+      "method_paradigm": "GIS形态决策支持",
+      "used_assets": [
+        "30 m SRTM Digital Elevation Model (DEM)",
+        "Landsat-8 OLI/TIRS (30 m resolution)",
+        "NASA POWER / IMD",
+        "Survey of India"
+      ],
+      "author_team": [
+        "Teena Kuhade",
+        "Divyanshu Singh",
+        "Vishwajeet Kumar",
+        "Jitendra Rajput"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "GIS-based morphometric analysis for sub-watershed prioritization of the Seonath River Basin in Rajnandgaon District, Chhattisgarh, India",
+        "doi": "10.1007/s44288-026-00558-7",
+        "year": 2026,
+        "venue": "Discover Geoscience",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "在洪水清单有限的条件下，概率型集成机器学习与基于 Google Earth Engine 的确定性规则评分方法中，哪一种能够更可靠地识别洪水易发区域？",
+      "hypothesis_or_mechanism": "地形高程、降雨、土地覆盖、排水条件、土壤、地表湿润度及距永久水体距离共同控制洪水积聚，而采用重复验证和加权集成可降低小样本过拟合并提高易发性预测的稳定性。",
+      "variables_and_data_use": "研究使用 SRTM (Shuttle Radar Topography Mission) 高程生成高程、坡度和 TPI 等地形变量；使用 GSW JRC/GSW1_4/GlobalSurfaceWater 识别永久水体并计算水体距离；使用 ee.ImageCollection(“LANDSAT/LC08/C02/T1_L2”) 计算 NDVI 和 NDWI；使用 WorldClim version 2.1 climate data for 1970–2000 表示降雨，使用 FAO soil portal 表示土壤条件，并以实地 flood points (GPS) data 作为模型训练和验证所需的洪水发生数据。",
+      "method_paradigm": "集成建模与规则评分",
+      "used_assets": [
+        "SRTM (Shuttle Radar Topography Mission)",
+        "Shuttle Radar Topography Mission (SRTM) digital elevation model",
+        "GSW JRC/GSW1_4/GlobalSurfaceWater",
+        "ee.ImageCollection(“LANDSAT/LC08/C02/T1_L2”)",
+        "WorldClim version 2.1 climate data for 1970–2000",
+        "FAO soil portal",
+        "flood points (GPS) data"
+      ],
+      "author_team": [
+        "Nilotpal Kalita",
+        "Manash Jyoti Nath",
+        "Satyendra Hazarika"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Comparative assessment of ensemble machine learning and Google Earth Engine for flood susceptibility mapping in the Dipota River Basin, Assam, India",
+        "doi": "10.1007/s44288-026-00638-8",
+        "year": 2026,
+        "venue": "Discover Geoscience",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "如何融合 Sentinel-1 洪水观测、SRTM 地形因素及其他环境变量，绘制湿季洪水范围、量化农地暴露并建立洪水易感性分区？",
+      "hypothesis_or_mechanism": "低高程、缓坡、邻近河流、强湿季降雨、低渗透性土壤及特定土地覆盖会促进径流汇集和积水，因此这些条件的加权组合应与 Sentinel-1 观测到的洪水范围具有较高空间一致性。",
+      "variables_and_data_use": "使用 COPERNICUS/S1_GRD 的 VH 后向散射建立旱季基线和湿季洪水合成并检测淹没范围；使用 30 m Shuttle Radar Topography Mission (SRTM) DEM 提取高程、坡度并进行陡坡掩膜和地形校正；使用 MERIT Hydro dataset 的 HAND 约束水文连通性；使用 CHIRPS precipitation data、OpenLandMap global soil datasets、Sentinel-2 MultiSpectral Instrument (MSI) Level-2A imagery 派生的 LULC 以及河流距离共同建立 AHP 洪水易感性模型；使用 Sentinel-2 MNDWI 验证洪水范围，并使用 JRC Global Surface Water dataset 移除永久水体。",
+      "method_paradigm": "遥感变化检测与多准则决策",
+      "used_assets": [
+        "COPERNICUS/S1_GRD",
+        "30 m Shuttle Radar Topography Mission (SRTM) DEM",
+        "SRTM DEM",
+        "MERIT Hydro dataset",
+        "CHIRPS precipitation data",
+        "OpenLandMap global soil datasets",
+        "Sentinel-2 MultiSpectral Instrument (MSI) Level-2A imagery",
+        "Sentinel-2 SR (Surface Reflectance) imagery",
+        "GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED",
+        "JRC Global Surface Water dataset"
+      ],
+      "author_team": [
+        "Kebede Bekele Atlaw",
+        "Estifanos Lemma",
+        "Gebeyehu Abebe",
+        "Esubalew Ayimere Awoke",
+        "Sebsibeh Gizachew Mengiste"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integrating sentinel-1 SAR and AHP for flood susceptibility and agricultural impact assessment in the Awash River Basin, Ethiopia",
+        "doi": "10.1038/s41598-026-63431-0",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "如何结合形态测量分析、主成分分析和测高分析，对河流流域内各子流域的土壤侵蚀、径流和洪峰风险进行优先级排序？",
+      "hypothesis_or_mechanism": "由SRTM地形高程派生的线性、形状、起伏和测高指标能够表征排水结构与地形侵蚀阶段，从而识别需要优先实施水土保持措施的子流域。",
+      "variables_and_data_use": "使用SRTM 1 arc-second (30 m)提取流域边界、河网、最大和最小高程、地形起伏以及测高积分，并计算15项形态测量参数；使用Sentinel-2 10-Meter Land Use/Land Cover描述土地利用和土地覆盖，使用Soil Map of the World识别土壤类型；随后通过形态测量排序、主成分分析和测高分析综合确定子流域优先级。",
+      "method_paradigm": "多方法决策排序",
+      "used_assets": [
+        "SRTM 1 arc-second (30 m)",
+        "Sentinel-2 10-Meter Land Use/Land Cover",
+        "Soil Map of the World"
+      ],
+      "author_team": [
+        "Padala Raja Shekar",
+        "Aneesh Mathew"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Watershed prioritization of drainage basins based on geomorphometric parameters, Neyyar watershed, India",
+        "doi": "10.14746/quageo-2023-0022",
+        "year": 2023,
+        "venue": "Quaestiones Geographicae",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "2020—2025 年 Rajasthan 的 NDVI 均值与异常在各行政区如何变化，以及这些模式与植被类型、土壤、降雨和地形背景存在何种关系？",
+      "hypothesis_or_mechanism": "降雨变化以及不同植被、土壤和地形条件会共同调节区域植被活力，从而形成具有空间差异的 NDVI 异常。",
+      "variables_and_data_use": "使用 MOD13Q1 NDVI (250m, 16-day composite) 计算多年平均 NDVI、最新 NDVI 和异常并进行区级聚合；使用 ESA WorldCover 2020 Land Use Classification 和 ISRIC SoilGrids 解释植被及土壤差异；使用 CHIRPS 与 IMD (India Meteorological Department) 降雨数据分析气候相关性；使用 SRTM DEM 提供地形背景；使用 FAO GAUL boundaries 进行行政区统计，并以 Sentinel-2 imagery 验证植被分类。",
+      "method_paradigm": "时空相关分析",
+      "used_assets": [
+        "MOD13Q1 NDVI (250m, 16-day composite)",
+        "ESA WorldCover 2020 Land Use Classification",
+        "FAO GAUL boundaries",
+        "ISRIC SoilGrids (global gridded soil database)",
+        "SRTM DEM",
+        "CHIRPS",
+        "IMD (India Meteorological Department)",
+        "Sentinel-2 imagery"
+      ],
+      "author_team": [
+        "Shrijit Chatterjee"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatio-Temporal Analysis of Vegetation Health and Soil Characteristics across Rajasthan using NDVI Anomalies",
+        "doi": "10.22214/ijraset.2025.69944",
+        "year": 2025,
+        "venue": "International Journal for Research in Applied Science and Engineering Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "在相同约 30 米空间分辨率下，DEM SRTM 与 ASTER GDEM 对河流分布和地貌的识别精度有何差异？",
+      "hypothesis_or_mechanism": "不同传感器和高程生产谱系造成的地形表达差异，会使 DEM SRTM 与 ASTER GDEM 在河流及地貌识别中的空间准确性不同。",
+      "variables_and_data_use": "使用 DEM SRTM 和 ASTER GDEM 的地形高程信息提取或识别河流与地貌，并利用 Regional Coordinate Point River flows 和 Geomorphologic Coordinate Points 进行空间准确性检查，同时使用 Shapefile of Administrative Boundary 支持范围界定与制图。",
+      "method_paradigm": "测量精度比较",
+      "used_assets": [
+        "ASTER GDEM",
+        "DEM SRTM",
+        "Shapefile of Administrative Boundary",
+        "Regional Coordinate Point River flows",
+        "Geomorphologic Coordinate Points"
+      ],
+      "author_team": [
+        "Naf’an Arifian",
+        "Kemal Rahman Denis",
+        "Sri Kandi Putri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "COMPARISON OF ASTER GDEM IMAGES AND SRTM IMAGES FOR RIVER WATERSHED AND GEOMORPHOLOGY STUDY",
+        "doi": "10.24036/irsaj.v3i2.38",
+        "year": 2023,
+        "venue": "International Remote Sensing Applied Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "如何利用SRTM DEM和GIS形态计量方法刻画Porsuk Stream Basin的线性、面积与地形起伏特征，并据此评估其水文、洪水和侵蚀特性？",
+      "hypothesis_or_mechanism": "流域高程、坡度、河网结构、排水密度、分汊比、形状因子和高程积分等地形形态特征共同控制地表径流汇集、入渗、洪峰形成、泥沙输移及侵蚀风险。",
+      "variables_and_data_use": "研究将USGS门户下载的30 m SRTM数据镶嵌、投影并填洼，构建水文校正DEM；由此提取高程、坡度、坡向、D8流向、流域边界和河网，并计算河流级序、河长、分汊比、排水密度、河流频率、流域起伏度、崎岖度、高程曲线和高程积分等参数。CORINE data用于土地利用/土地覆盖分析，1/100.000 scale topographic maps用于核查流域边界。",
+      "method_paradigm": "GIS流域形态计量",
+      "used_assets": [
+        "SRTM (Shuttle Radar Topography Mission) data with a resolution of 30 m",
+        "European Environment Agency (EEA) Coordination of Environmental Information (CORINE) data",
+        "1/100.000 scale topographic maps"
+      ],
+      "author_team": [
+        "Cansu Yurteri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Morphometric Analysis of Drainage Basin with Geographic Information Systems (GIS): A Case Study of Porsuk Stream Basin Eskisehir, Western Anatolia, Türkiye",
+        "doi": "10.29329/mdag.2024.1095.1",
+        "year": 2024,
+        "venue": "Geography with Multidisciplinary Approaches",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "如何整合土地覆盖、降雨和地形水文因子，绘制北Lambro River流域的洪水灾害易感性空间分布并识别高风险城市区域？",
+      "hypothesis_or_mechanism": "城市不透水地表与高降雨、低海拔、缓坡及邻近河网等条件发生空间叠加时，会促进地表径流汇集并提高洪水易感性。",
+      "variables_and_data_use": "研究使用Shuttle Radar Topography Mission (SRTM) Global dataset的30米高程，并使用或派生坡度、坡向、曲率、排水密度、河流距离和SPI；使用Esri,Sentinel-2 Land Cover Explorer的10米LULC数据表示城市、农业、森林和裸地；使用ARPA Lombardia气象数据生成年平均降雨图层。各图层统一至30米分辨率，经分类和赋值后进入AHP加权叠加模型，生成五级洪水灾害易感性地图。",
+      "method_paradigm": "AHP空间决策支持",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM) Global dataset",
+        "Esri,Sentinel-2 Land Cover Explorer",
+        "Regional Agency for Environmental Protection of Lombardy (Agenzia Regionale per la Protezione dell'Ambiente della Lombardia) (ARPA Lombardia)"
+      ],
+      "author_team": [
+        "Antonio Ashi",
+        "Jihene Nouairi",
+        "Hany M. Hassan",
+        "Mounir Ghribi",
+        "Hossein Bonakdari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "A multi-criteria spatial model for flood hazard susceptibility in the North Lambro River basin, Italy",
+        "doi": "10.30493/das.2026.011406",
+        "year": 2026,
+        "venue": "DYSONA – Applied Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "如何利用 SRTM 地形形态参数与 AHP 对 Al-Ghamqa River Basin 的十四个子流域进行洪水和土壤侵蚀风险优先级排序？",
+      "hypothesis_or_mechanism": "排水密度、河流频率及地形起伏等流域形态特征会影响径流汇集、入渗和侵蚀过程，因而可用于识别洪水与土壤侵蚀高风险子流域。",
+      "variables_and_data_use": "以 SRTM 30m digital elevation model data 划分十四个子流域、提取排水网络，并计算线性、面积和地势起伏方面的十三项形态参数；再通过专家成对比较和 AHP 确定参数权重，以简单加权方式计算子流域优先分数，并用历史洪水卫星影像信息和 ROC–AUC 评估结果。",
+      "method_paradigm": "GIS-AHP 决策支持",
+      "used_assets": [
+        "SRTM 30m digital elevation model data"
+      ],
+      "author_team": [
+        "Amer Qousai Aldarwish",
+        "Tamadour Jaber Alibraheem",
+        "Abdullah Ansari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric-based flood hazard mapping of Al-Ghamqa River Basin using AHP and GIS",
+        "doi": "10.30493/das.2026.011701",
+        "year": 2026,
+        "venue": "DYSONA – Applied Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "如何整合SRTM地形、长期降雨、土地覆盖、土壤和植被等条件因子，构建并验证Najran Basin的洪水易感性空间分区？",
+      "hypothesis_or_mechanism": "排水密度、坡度和高程通过控制径流汇集、输移速度和低地积水倾向而主导洪水易感性，降雨、土地覆盖、土壤和植被条件则进一步调节产流与入渗。",
+      "variables_and_data_use": "研究以SRTM DEM (30 m)提供高程并派生坡度、河网、排水密度和TWI，以CHIRPS v2.0 daily precipitation构建2000–2024年平均年降雨面，以Sentinel-2 imagery派生LULC，以FAO soil database提供土壤类型，以Landsat 8红光和近红外波段计算NDVI；各因子标准化后通过FAHP加权叠加形成连续洪水易感性指数，并使用official municipal reports中的35个洪水易发地点计算成功率曲线和AUC。",
+      "method_paradigm": "GIS-FAHP决策支持",
+      "used_assets": [
+        "SRTM DEM (30 m)",
+        "CHIRPS v2.0 daily precipitation",
+        "MEWA gauges",
+        "Sentinel-2 imagery",
+        "FAO soil database",
+        "Landsat 8",
+        "official municipal reports"
+      ],
+      "author_team": [
+        "Fawaz Alzabari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Flood susceptibility mapping in a data-scarce arid catchment of Southwestern Saudi Arabia",
+        "doi": "10.3389/feart.2026.1905637",
+        "year": 2026,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "如何结合DInSAR地表形变与地震活动数据，识别并约束2019年8月火山喷发期间造成地表位移的火山源及活动结构？",
+      "hypothesis_or_mechanism": "观测到的复杂形变场由主火山口下方和东南侧翼多个火山源的共同作用产生，地震空间分布可进一步约束这些源及相关结构。",
+      "variables_and_data_use": "使用Sentinel-1A升轨和降轨影像生成干涉图与LOS位移，并组合得到垂直和东西向位移；使用1 arcsec Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)表示实际地表并进行地形校正；使用OVPF记录的地震震级、震中和震源深度分析活动结构，随后对DInSAR位移进行多源联合反演。",
+      "method_paradigm": "DInSAR联合反演",
+      "used_assets": [
+        "Sentinel-1A",
+        "1 arcsec Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)",
+        "OVPF",
+        "SARscape® modeling module"
+      ],
+      "author_team": [
+        "Emanuela Valerio",
+        "Claudio De Luca",
+        "Riccardo Lanari",
+        "Mariarosaria Manzo",
+        "Maurizio Battaglia"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The August 2019 Piton de la Fournaise (La Réunion Island) Eruption: Analysis of the Multi-Source Deformation Pattern Detected through Sentinel-1 DInSAR Measurements",
+        "doi": "10.3390/rs14071762",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "不同土地覆盖、地形、滑坡材料和观测几何条件下，快速滑坡在 Sentinel-1 SAR 后向散射强度变化影像中呈现哪些时空模式，哪些因素控制其可见性和增减方向？",
+      "hypothesis_or_mechanism": "滑坡造成的植被移除、表面粗糙度改变、侵蚀与堆积以及坡面几何变化会改变 C 波段散射机制，从而产生受土地覆盖、地形和观测轨道控制的后向散射增强或减弱。",
+      "variables_and_data_use": "研究使用 Sentinel-1 Level-1 Ground Range Detected (GRD) 的 VV、VH、升轨和降轨后向散射系数构建事件前后中值合成、差值影像和五年时间序列；使用 Sentinel-2 (Level2A) 光学影像和 NDVI 验证变化并数字化滑坡；使用 SRTM DEM 或地方 DEM 进行地形校正并辅助土地覆盖分类；同时使用地质、气候、降水和土地覆盖数据刻画控制条件。",
+      "method_paradigm": "多时相变化检测",
+      "used_assets": [
+        "30 m resolution Shuttle Radar Topography Mission (SRTM) digital elevation model (DEM) available within GEE",
+        "Sentinel-1 Level-1 Ground Range Detected (GRD)",
+        "Sentinel-2 (Level2A)",
+        "Copernicus Global Land Cover",
+        "CORINE",
+        "Dynamic World",
+        "Generalised Geology of the World, WMS V1.3.0",
+        "World Map of the Köppen-Geiger climate classification",
+        "WorldClim BIO Variables V1",
+        "https://gee-community-catalog.org/projects/iceland_dem/",
+        "https://www.kartverket.no/api-og-data/terrengdata"
+      ],
+      "author_team": [
+        "Erin Lindsay",
+        "Alexandra Jarna Ganerød",
+        "Graziella Devoli",
+        "Johannes Reiche",
+        "Steinar Nordal",
+        "Regula Frauenfelder"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Understanding Landslide Expression in SAR Backscatter Data: Global Study and Disaster Response Application",
+        "doi": "10.3390/rs17193313",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "如何利用SRTM DEM和GIS形态测量方法刻画Dhasan流域的地形与排水特征，并为流域开发及人工补给设施规划提供依据？",
+      "hypothesis_or_mechanism": "流域高程、坡度和地势起伏控制地表径流、入渗与河网发育，因此由SRTM DEM提取的形态参数能够支持人工补给结构的规划。",
+      "variables_and_data_use": "使用SRTM DEM (30 m)表示地形高程，并通过Arc GIS 10.2.2水文工具派生坡度、地势起伏、河流长度、河流频率、河流级序、流域面积和周长等变量，用于流域形态分析与规划支持。",
+      "method_paradigm": "GIS地形分析",
+      "used_assets": [
+        "SRTM DEM (30 m)"
+      ],
+      "author_team": [
+        "Kaushar Ali",
+        "Gyanendra Pratap Singh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric Analysis of Dhasan River Basin, Madhya Pradesh, India, Using Remote Sensing and Arc GIS Techniques",
+        "doi": "10.48048/tis.2022.4182",
+        "year": 2022,
+        "venue": "Trends in Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "如何利用地形、植被、地表温度、土地覆盖和地理位置等环境变量，将 GPM IMERG V06 年降水从约 10 千米空间分辨率降尺度至 1 千米？",
+      "hypothesis_or_mechanism": "细尺度降水空间格局与 SRTM 高程、NDVI、地表温度、土地覆盖及经纬度之间存在可由机器学习和神经模糊模型学习的非线性关系。",
+      "variables_and_data_use": "以 GPM IMERG V06 Final Run 的 PrecipitationCal 为目标变量，以 DEM/SRTM 90 meters 高程及其派生经纬度、MOD13A2 NDVI、MOD11A1 version 6 地表温度和 MCD12Q1 土地覆盖为预测变量；将辅助变量构建为 10 千米和 1 千米尺度，训练并比较 Random Forest、SVR、Decision Tree、Multiple Linear Regression 和 ANFIS，再利用残差插值校正生成 1 千米降水结果。",
+      "method_paradigm": "机器学习空间降尺度",
+      "used_assets": [
+        "GPM IMERG V06",
+        "Final Run IMERG",
+        "PrecipitationCal",
+        "MOD13A2",
+        "MCD12Q1",
+        "MOD11A1 version 6",
+        "DEM/SRTM 90 meters"
+      ],
+      "author_team": [
+        "M. Sathianarayanan",
+        "P.-H. Hsu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "SPATIAL DOWNSCALING OF GPM IMERG V06 GRIDDED PRECIPITATION USING MACHINE LEARNING ALGORITHMS",
+        "doi": "10.5194/isprs-archives-xlviii-4-w6-2022-327-2023",
+        "year": 2023,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "研究不同气象强迫数据及其多源组合如何影响山地积雪水当量模拟、数据同化结果和不确定性表征。",
+      "hypothesis_or_mechanism": "不同气象强迫的系统偏差和随机误差会通过降雪、温度和融雪过程传播到积雪水当量估计，而多强迫集合与近峰值雪深同化能够抵消部分误差并改善估计。",
+      "variables_and_data_use": "使用SRTM DEM地形高程计算粗分辨率强迫网格与150米模型网格之间的高程差，并据此下推气温、露点温度、气压、湿度和辐射；使用ERA5、MERRA2和NLDAS2的降水、气温、湿度、气压及短波和长波辐射驱动雪模型；使用ASO雪深进行近峰值积雪数据同化，并用ASO相关积雪水当量估计评价结果；AVHRR landcover和GLCF forest cover作为静态陆面模型输入。",
+      "method_paradigm": "集合建模与数据同化",
+      "used_assets": [
+        "SRTM DEM",
+        "ERA5",
+        "MERRA2",
+        "NLDAS2",
+        "Airborne Snow Observatory (ASO)",
+        "AVHRR landcover",
+        "GLCF forest cover"
+      ],
+      "author_team": [
+        "Haorui Sun",
+        "Steven A. Margulis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Assessing the impact of meteorological forcing and its uncertainty on snow modeling and reanalysis",
+        "doi": "10.5194/tc-20-3345-2026",
+        "year": 2026,
+        "venue": "The Cryosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "如何构建一个可复现、可扩展的Sentinel-5P/TROPOMI大气污染监测数据管线，以实现多污染物数据的自动获取、处理、分析和验证？",
+      "hypothesis_or_mechanism": "通过自动化数据发现与下载、质量筛选、气象和地形辅助数据整合以及统计分析，可以提高全球大气污染监测的效率、可重复性和空间解释能力。",
+      "variables_and_data_use": "使用Sentinel-5P Level-2产品中的二氧化氮对流层柱浓度、二氧化硫总垂直柱浓度、一氧化碳总柱浓度和臭氧总垂直柱浓度作为主要大气观测变量；使用ERA5的PBLH和地表气象数据进行气象背景匹配，使用SRTM Digital Elevation Model (30m)提供地形背景，使用Copernicus Global Land Cover进行源分类，并使用WorldPop density grids (100m)支持暴露评估；对卫星像元实施质量筛选、空间和时间聚合、趋势分析、热点检测及地面验证。",
+      "method_paradigm": "自动化遥感数据管线",
+      "used_assets": [
+        "Sentinel-5P",
+        "TROPOMI",
+        "OFFL_L2__NO2___",
+        "OFFL_L2__SO2___",
+        "OFFL_L2__CO____",
+        "OFFL_L2__O3____",
+        "ERA5 atmospheric reanalysis",
+        "SRTM Digital Elevation Model (30m)",
+        "Copernicus Global Land Cover (100m)",
+        "WorldPop density grids (100m)"
+      ],
+      "author_team": [
+        "Sayali Shripad Mahulkar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Sentinel-5P Data Pipeline: Acquisition, Processing, and Analysis for Global Atmospheric Monitoring",
+        "doi": "10.53022/oarjst.2026.16.1.0007",
+        "year": 2026,
+        "venue": "Open Access Research Journal of Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何利用数字高程模型、遥感和 GIS 定量分析 Gandak River Basin 的流域形态特征、水文条件及其资源管理意义？",
+      "hypothesis_or_mechanism": "流域高程、坡度和地形起伏通过控制径流速度、侵蚀、入渗和河网组织，形成可由线性、面积和起伏形态参数表征的水文响应。",
+      "variables_and_data_use": "使用 SRTM-DEM 派生坡度、地形起伏、河流级序和排水密度；使用 ASTER elevation data 生成 DEM、划定流域边界并支持形态分析；使用 scale 1:50,000 Survey of India toposheets 进行地理配准和底图支持，随后在 ArcGIS 10.5 与 Arc Hydro 中计算河流长度、分汊比、流域面积、排水密度、形状因子等形态参数。",
+      "method_paradigm": "GIS 流域形态分析",
+      "used_assets": [
+        "SRTM-DEM",
+        "SRTM DEM",
+        "ASTER (Advanced Spaceborne Thermal Emission and Reflection Radiometer) elevation data",
+        "scale 1:50,000 Survey of India toposheets",
+        "SOI Topographical map (1:50,000)",
+        "Ground truth"
+      ],
+      "author_team": [
+        "Arushi Jha",
+        "Naresh Chandra Gupta",
+        "Bratati Dey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric Analysis of Gandak River Drainage Basin Using Geographic Information System (GIS) And SRTM-DEM",
+        "doi": "10.56294/saludcyt2022189",
+        "year": 2022,
+        "venue": "Salud, Ciencia y Tecnología",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "如何利用 SRTM DEM 提取河网和流域边界，并通过线性、面积及地形起伏指标刻画 Orsang River basin 的地貌与水文特征？",
+      "hypothesis_or_mechanism": "由 SRTM 地形高程控制的坡面汇流和河网结构会在排水密度、分汊比、流域形状及地形起伏等指标中反映流域的渗透能力、径流响应、侵蚀潜力和地貌成熟度。",
+      "variables_and_data_use": "使用 SRTM DEM 的高程像元进行瓦片拼接和填洼，进而计算流向与汇流累积、设定河流起始阈值、矢量化河网并划分流域；随后计算河流级序、河段数量与长度、排水密度、河流频率、流域形状、高程差、地形起伏和崎岖度等变量，并使用 Google Earth 与 SoI toposheets 验证流域边界和河网。",
+      "method_paradigm": "地形水文重建",
+      "used_assets": [
+        "SRTM DEM (Shuttle Radar Topography Mission Digital Elevation Model) at 30m spatial resolution",
+        "Google Earth",
+        "SoI toposheets"
+      ],
+      "author_team": [
+        "Mukesh Lodhavi",
+        "Adil Ansari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Exploring The Morphometric Characteristics Of The Orsang River Basin Using Geospatial Techniques.",
+        "doi": "10.56975/ijrar.v13i1.330884",
+        "year": 2026,
+        "venue": "International Journal of Research and Analytical Reviews",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "该研究考察马来西亚半岛主要港口及其周边区域的NO2污染水平，并分析其与地形和人口因素的关系。",
+      "hypothesis_or_mechanism": "港口船舶活动产生的排放提高周边NO2浓度，而地形和人口水平可能影响NO2的空间分布及其变化。",
+      "variables_and_data_use": "研究使用Sentinel-5P/TROPOMI对流层NO2柱浓度作为主要污染变量，使用DOE地面NO2监测数据进行卫星观测验证，使用SRTM 1 Arc-Second Global DEM提取各州高程，使用人口数据作为辅助解释变量，并通过空间裁剪、月均值计算、IDW插值、缓冲区分析和点位栅格值提取进行比较与相关性分析。",
+      "method_paradigm": "空间相关与观测验证",
+      "used_assets": [
+        "Sentinel 5P",
+        "TROPOMI",
+        "offline Level 2 NO2 (S5P L2 NO2) tropospheric column data",
+        "Ground NO2 data",
+        "Shuttle Radar Topography Mission (SRTM) 1 Arc-Second Global data",
+        "DIVA-GIS",
+        "population data of Peninsular Malaysia"
+      ],
+      "author_team": [
+        "Izzuddin Razab",
+        "Mohd Azhafiz Abdullah",
+        "Lai Chuah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analyzing Nitrogen Dioxide at Peninsular Malaysia Ports and Its Exclusive Economic Zone (EEZ) in 2023 Using Sentinel-5P Satellite",
+        "doi": "10.58915/aset.v5i1.3211",
+        "year": 2026,
+        "venue": "Advanced and Sustainable Technologies  (ASET)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "如何整合SRTM派生地形与水文因子、植被和土地覆盖、地质、土壤、降雨及滑坡清单，绘制研究区的滑坡易发性分布？",
+      "hypothesis_or_mechanism": "陡峭和破碎的地形、汇流与湿润条件、软弱地质和土壤条件、降雨以及人类活动共同提高坡体失稳和滑坡发生的可能性。",
+      "variables_and_data_use": "以SRTM (USGS EarthExplorer) DEM派生坡度、坡向、曲率、排水密度、距河流距离、相对高差、Stream Power Index和Topographic Wetness Index等因子，并结合NDVI、ESRI Land Cover、Geological Survey of India岩性与地貌、FAO土壤、Indian Meteorological Department降雨和NASA Global Landslide Catalog滑坡清单进行统一投影、栅格化、重分类、重采样和叠加分析。",
+      "method_paradigm": "GIS多因子决策支持",
+      "used_assets": [
+        "SRTM (USGS EarthExplorer)",
+        "Geological Survey of India",
+        "FAO",
+        "NDVI",
+        "Google Earth Engine",
+        "ESRI Land Cover",
+        "Indian Meteorological Department",
+        "NASA Global Landslide Catalog"
+      ],
+      "author_team": [
+        "Kankona Maity",
+        "Sangita Hazra"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "GIS and AHP-Based Landslide Susceptibility Mapping of the Teesta River Basin, Eastern Darjeeling-Kalimpong Himalaya, India",
+        "doi": "10.66132/ngce20260205",
+        "year": 2026,
+        "venue": "NG Civil Engineering",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "该论文研究如何结合降雨径流模拟、河流水力模拟和地形空间分析评估洪水范围、水位及受淹聚落。",
+      "hypothesis_or_mechanism": "强降雨通过增加河道流量触发洪水，而地表地形控制洪水的传播路径、淹没范围和局地水位。",
+      "variables_and_data_use": "论文使用SRTM地形高程作为空间地形输入，结合最大降雨量、观测与模拟流量、土地利用数据以及HEC-HMS和HEC-RAS输出，计算洪水面积、洪水水位和受淹村庄数量。",
+      "method_paradigm": "水文水力模拟",
+      "used_assets": [
+        "SRTM"
+      ],
+      "author_team": [
+        "Vanhthone PHONNASANE"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Flood Inundation Analysis for Huay Sompoy Sub-basin in Kaisone Phomvihane City Savannakhet Province",
+        "doi": "10.69692/sujmrd1203130",
+        "year": 2026,
+        "venue": "Souphanouvong University Journal Multidisciplinary Research and Development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "如何利用SRTM地形高程和历史地形图开展微流域形态测量，并据此确定各微流域的水土保持优先级？",
+      "hypothesis_or_mechanism": "流域的排水密度、河网分叉、盆地几何形态和地形起伏共同控制径流汇集与侵蚀敏感性，因此综合形态指标能够识别更需要优先治理的微流域。",
+      "variables_and_data_use": "研究使用30m Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)提取高程、水流方向、汇流量、河网、流域边界及相对起伏等变量，并结合Survey of India (SOI) Toposheets中的水系、分水岭和等高线信息；随后计算线性、面积和起伏形态参数，并通过Composite Priority Index (CPI)进行微流域优先级划分。",
+      "method_paradigm": "GIS形态测量决策支持",
+      "used_assets": [
+        "30m Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)",
+        "SRTM DEM tiles",
+        "Survey of India (SOI) Toposheets"
+      ],
+      "author_team": [
+        "Amit Kumar Jana"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "DEM &amp; Morphometric Based Watershed Prioritization &amp; Analysis in Foothill Catchments Area of the Eastern Himalaya: Mountainous Landscapes Promoting for Sustainability",
+        "doi": "10.70558/cosmos.2026.v3.i2.25459",
+        "year": 2026,
+        "venue": "Cosmos: A Journal of Geography",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "如何利用 SRTM 地形高程和 GIS 量化 Sakharpa 流域的线性、面积及地形起伏特征，并据此支持流域优先级划分？",
+      "hypothesis_or_mechanism": "由 SRTM DEM 派生的排水网络、高程与地形起伏指标能够刻画流域形态及水流组织特征，从而为流域规划和优先级判断提供依据。",
+      "variables_and_data_use": "研究使用 SRTM DEM 的地形高程，在 QGIS 3.18.3 中划分流域、提取排水网络，并计算流域面积、周长、长度、最大和最小高程、排水密度、河流级序、分汊比、起伏度及崎岖度等形态测量变量。",
+      "method_paradigm": "GIS形态测量分析",
+      "used_assets": [
+        "digital elevation model (DEM) of shuttle radar topographic mission (SRTM) with 30 m resolution",
+        "SRTM DEM having 90 m resolution"
+      ],
+      "author_team": [
+        "P. K. Keskar",
+        "S. M. Bhagwat"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric Analysis of Kajali River Basin Using Geospatial Techniques",
+        "doi": "10.9734/ijecc/2024/v14i124650",
+        "year": 2024,
+        "venue": "International Journal of Environment and Climate Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "如何综合地形、水文、土地覆盖动态和人为干扰因素，评估并制图表示流域尺度的洪水易感性？",
+      "hypothesis_or_mechanism": "高程、坡度、河网与降雨条件、土地覆盖和植被水分状态以及道路和聚落邻近性共同影响地表汇流与径流，从而形成不同等级的洪水易感性。",
+      "variables_and_data_use": "使用 Shuttle Radar Topography Mission (SRTM) DEM 提取高程和坡度并支持地形相关指标计算，使用 IMD gridded data 构建降雨因子，使用 Landsat 8 制作 LU/LC、NDVI、SAVI 和 NDWI，使用 Open Street Map 计算距道路和聚落距离；各因子经 AHP 赋权和加权线性组合生成洪水易感性图，再以 Sentinel-1 C-band Synthetic Aperture Radar (SAR) Ground Range collection 提取的洪水淹没图进行验证。",
+      "method_paradigm": "GIS-AHP 决策支持",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM) DEM",
+        "Landsat 8",
+        "GEE",
+        "USGS Earth Explorer",
+        "Open Street Map",
+        "IMD gridded data",
+        "Sentinel-1 C-band Synthetic Aperture Radar (SAR) Ground Range collection"
+      ],
+      "author_team": [
+        "K V Murali",
+        "K Srinivasan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "GIS and AHP Based Flood Susceptibility Mapping: A Case Study of Chalakudy River Basin, Kerala, India",
+        "doi": "10.9734/ijecc/2025/v15i94992",
+        "year": 2025,
+        "venue": "International Journal of Environment and Climate Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "不同全球 DEM 产品在研究区的高程、垂直误差和坡度表达精度有何差异？",
+      "hypothesis_or_mechanism": "基于雷达干涉测量的 DEM 在裸露、地形复杂的研究区可能比基于光学立体观测的 DEM 提供更可靠的地形高程信息。",
+      "variables_and_data_use": "研究使用 SRTM3、NASADEM、ASTER GDEM3、AW3D30 (v3.1)、ALOS PALSAR、TanDEM-X90 和 TanDEM-X12 的高程变量；以 TanDEM-X12 作为参考，通过高程差、相关系数、DEM 差分图、RMSE、标准差、平均误差及坡度指标评估各 DEM 的精度。",
+      "method_paradigm": "DEM精度比较与误差验证",
+      "used_assets": [
+        "SRTM3",
+        "NASADEM",
+        "ASTER GDEM3",
+        "AW3D30 (v3.1)",
+        "ALOS PALSAR",
+        "TanDEM-X12",
+        "TanDEM-X90"
+      ],
+      "author_team": [
+        "Zakaria Adiri",
+        "Rachid Lhissou",
+        "Lhou Maacha",
+        "Abdelhakim Jilali",
+        "El Hassan Talbi",
+        "Amine Jellouli",
+        "Mohcine Chakouri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison of ASTER GDEM3, SRTM3, NASADEM, TanDEM-X90, AW3D30, and ALOS PALSAR data with TanDEM-X12: a case study of Tagragra of Akka inlier, Moroccan Anti-Atlas",
+        "doi": "10.1007/s12517-022-10885-x",
+        "year": 2022,
+        "venue": "Arabian Journal of Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "Cryosat-2 雷达测高能否在平坦农业区可靠探测地面沉降，并得到与 Sentinel-1A InSAR 和 GPS 相近的垂直位移率？",
+      "hypothesis_or_mechanism": "经地球物理修正和重复轨道处理的 Cryosat-2 高程变化能够表征地面沉降，其结果应与 Sentinel-1A 和 GPS 一致，而沉降增强可能与地下水储量下降及降水减少引起的地下水开采增加有关。",
+      "variables_and_data_use": "使用 Cryosat-2 SGDR_L2 地表高度估算时变高程和垂直位移率；使用 S1A SAR images 通过 SBAS InSAR 推导视线向及垂直位移率；使用 90-m SRTM DEM 进行地形相位校正；使用 EGM2008 将椭球高转换为正高；使用 NGL GPS 三维位移进行验证和水平运动校正；使用 CSR RL06 solution with DDK5 filtering applied 的等效水高以及 GPCP version 2.3 降水进行机制性描述比较。",
+      "method_paradigm": "多源遥感验证",
+      "used_assets": [
+        "Level 2 (L2) dataset of Sensor Geophysical Data Records (SGDR_L2) of Cryosat-2",
+        "S1A SAR images",
+        "Earth Gravitational Model 2008 (EGM2008)",
+        "90-m digital elevation model (DEM) from the Shuttle Radar Topography Mission (SRTM)",
+        "3-dimensional coordinate changes at 12 GPS stations from the Nevada Geodetic Laboratory (NGL)",
+        "CSR RL06 solution with DDK5 filtering applied",
+        "Global Precipitation Climatology Project (GPCP); version 2.3"
+      ],
+      "author_team": [
+        "Shiang-Hung Wei",
+        "Cheinway Hwang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Land subsidence near Hanford and Corcoran, California, from Cryosat-2 altimetry and Sentinel-1A SAR imagery",
+        "doi": "10.1007/s44195-025-00087-9",
+        "year": 2025,
+        "venue": "Terrestrial, Atmospheric and Oceanic Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "如何利用 SRTM 地形高程派生的流域形态与局地地形指标评估十三个流域的山洪易发性并定位高风险像元？",
+      "hypothesis_or_mechanism": "流域起伏、坡度、排水密度、河网结构及局地汇水地形共同控制降雨径流的汇集速度、峰值流量和积水概率，因而能够解释流域间及流域内部的山洪易发性差异。",
+      "variables_and_data_use": "研究使用 SRTM digital elevation model (30m) 划分流域和提取河网，计算面积、周长、流域长度、河流级序、河流数量、河流长度、河流频率、排水密度、纹理比、分汊比、流域起伏、起伏比、崎岖度、汇流时间、入渗数和形状因子，并进一步计算 TWI 与 TPI；各指标经过分级、累计评分和加权叠加，生成 30m 像元尺度的山洪易发性图。",
+      "method_paradigm": "GIS形态计量建模",
+      "used_assets": [
+        "SRTM digital elevation model (30m)",
+        "30m SRTM DEM"
+      ],
+      "author_team": [
+        "Akhtar Alam",
+        "Bayes Ahmed",
+        "Peter Sammonds"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Flash flood susceptibility assessment using the parameters of drainage basin morphometry in SE Bangladesh",
+        "doi": "10.1016/j.quaint.2020.04.047",
+        "year": 2021,
+        "venue": "Quaternary International",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_41",
+      "research_question": "该研究检验GRACE及GLDAS数据能否在小尺度干旱区可靠重建地下水储量变化和补给量，并识别地下水管理政策变化对应的长期趋势。",
+      "hypothesis_or_mechanism": "从GRACE陆地水储量中扣除GLDAS土壤水分后得到的地下水储量异常应与监测井变化一致，而降雨入渗、灌溉回归流、跨境地下水通量及农业政策共同控制其时空变化。",
+      "variables_and_data_use": "研究使用SRTM 30 m高程划定集水区、补给区、排泄区和分水岭；使用GRCTellus Land RL06和JPL MASCON Release 06 Version 02获取陆地水储量异常；使用GLDAS CLM、Noah和VIC土壤水分从陆地水储量中分离地下水储量异常；再以监测井水位和比出水量进行验证，并结合雨量、含水层参数、灌溉回归流及地下水通量估算补给量和解释变化趋势。",
+      "method_paradigm": "多源数据验证",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM)",
+        "GRCTellus Land RL06",
+        "JPL MASCON Release 06 Version 02",
+        "CLM (version 2.1)",
+        "Noah (version 2.1)",
+        "VIC (version 2.1)",
+        "Telemetry groundwater level data",
+        "Rainfall data from 30 gauge stations"
+      ],
+      "author_team": [
+        "Khaled Alghafli",
+        "Xiaogang Shi",
+        "William Sloan",
+        "Mohammad Shamsudduha",
+        "Qiuhong Tang",
+        "Ahmed Sefelnasr",
+        "Abdel Azim Ebraheem"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Groundwater recharge estimation using in-situ and GRACE observations in the eastern region of the United Arab Emirates",
+        "doi": "10.1016/j.scitotenv.2023.161489",
+        "year": 2023,
+        "venue": "Science of The Total Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_42",
+      "research_question": "如何联合卫星重力、InSAR形变与水文模型观测，量化地下水损失及其引起的弹性地表抬升和含水层压实沉降？",
+      "hypothesis_or_mechanism": "地下水质量减少会通过弹性卸载产生长波地表抬升，同时局地承压含水层的孔隙压力下降会造成压实和显著沉降。",
+      "variables_and_data_use": "研究使用GRACE和GRACE-FO的TWS变化、GLDAS Noah的土壤水分储量变化来估算地下水储量变化；使用599景Sentinel-1影像构建InSAR形变时间序列；使用1角秒SRTM Digital Elevation Model估计并移除地形相位和平地效应；使用GNSS垂直位移验证InSAR结果，并结合弹性负载模型及一维孔弹性模型反演地下水质量和体积变化。",
+      "method_paradigm": "多源反演与归因",
+      "used_assets": [
+        "Shuttle Radar Topography Mission (SRTM) Digital Elevation Model of 1-arcsecond",
+        "Sentinel-1",
+        "GRACE",
+        "GRACE-FO",
+        "Level-3 GRACE solutions from the NASA Jet Propulsion Laboratory (JPL)",
+        "GLDAS Noah",
+        "GNSS stations"
+      ],
+      "author_team": [
+        "Mohammad Khorrami",
+        "Manoochehr Shirzaei",
+        "Khosro Ghobadi‐Far",
+        "Susanna Werth",
+        "Grace Carlson",
+        "Guang Zhai"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Groundwater Volume Loss in Mexico City Constrained by InSAR and GRACE Observations and Mechanical Models",
+        "doi": "10.1029/2022gl101962",
+        "year": 2023,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_43",
+      "research_question": "环境、地形、植被和人为干扰变量能否支持不同机器学习模型准确识别亚热带Chir Pine森林的火灾易感性及其空间异质性？",
+      "hypothesis_or_mechanism": "地形条件、燃料和植被状态、近地表热力与风场以及人类可达性共同调节火灾发生概率，而能够刻画非线性交互的集成学习模型预计具有更高预测性能。",
+      "variables_and_data_use": "以FIRMS主动火灾探测构建火灾出现和未出现标签，并用MCD64A1 Version 6进行一致性验证；从SRTM Digital Elevation Model (DEM) dataset获得Elevation并计算Slope、Aspect、Hill shade和TWI；利用ERA5 climate reanalysis dataset提取Skin temperature、Wind speed和Precipitation，利用WorldCover提供土地覆盖，利用WorldPop dataset和OpenStreetMap data构建人口及邻近度变量，并从MODIS/061/MOD13Q1提取NDVI等植被指数，最终将各层对齐至1 × 1 km网格用于模型训练和测试。",
+      "method_paradigm": "机器学习空间预测",
+      "used_assets": [
+        "SRTM Digital Elevation Model (DEM) dataset",
+        "MODIS fire product from the Fire Information for Resource Management System (FIRMS)",
+        "MCD64A1 Version 6 burned area product",
+        "WorldCover project of the European Space Agency (ESA)",
+        "ERA5 climate reanalysis dataset",
+        "WorldPop dataset",
+        "OpenStreetMap data",
+        "MODIS/061/MOD13Q1"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning-based forest fire vulnerability assessment in subtropical chir pine forests of Pakistan",
+        "doi": "10.1186/s42408-025-00408-w",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_44",
+      "research_question": "MERIT Hydro 排水网络相对于直接处理 90 米 SRTM DEM 得到的排水网络，是否能更准确地表示参考河流的位置和长度？",
+      "hypothesis_or_mechanism": "通过 stream-burning 和多源河流、水体信息进行水文校正的 MERIT Hydro，应能减少未校正 SRTM DEM 在河道位置表达上的误差，从而获得更高的排水网络精度。",
+      "variables_and_data_use": "论文以 SRTM DEM 的地形高程计算流向和累积排水面积并提取排水网络，以 MERIT Hydro 作为水文校正后的对比网络，以人工数字化的参考排水网络作为验证基准，并通过河流长度相对误差、缓冲区内百分比和平均距离评价两类网络。",
+      "method_paradigm": "产品精度对比验证",
+      "used_assets": [
+        "MDE de 90 metros fornecido pelo SRTM",
+        "MERIT Hydro",
+        "rede de drenagem de referência"
+      ],
+      "author_team": [
+        "Dário Macedo Lima",
+        "Adriano Rolim da Paz",
+        "Aricson Garcia Lopes",
+        "Thiago de Sá Sena",
+        "Cinthia Maria de Abreu Claudino"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Avaliação da Qualidade da Rede de Drenagem Fornecida pelo MERIT Hydro: uma Base de Dados com a Rede Hidrográfica Disponibilizada em Escala Global",
+        "doi": "10.14393/rbcv74n2-63736",
+        "year": 2022,
+        "venue": "Revista Brasileira de Cartografia",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_45",
+      "research_question": "如何利用 SRTM 地形高程和 GIS 方法量化 Panjhara River basin 的线性、面积、起伏及高程积分特征，并判断其地貌侵蚀阶段？",
+      "hypothesis_or_mechanism": "流域地形高程及其控制的河网几何结构能够通过形态计量参数和高程积分曲线反映流域形状、地形起伏与侵蚀演化阶段。",
+      "variables_and_data_use": "使用 SRTM-DEM(30meter) 获取地形高程、流域边界、等高线、坡度、最大和最小高程及河网，并在 ArcGIS 10.8 中计算河流级序、河流数量与长度、分汊比、排水密度、河流频率、流域起伏度、崎岖度和高程积分等指标；Survey of India toposheet 作为辅助地形资料参与处理。",
+      "method_paradigm": "地形形态计量分析",
+      "used_assets": [
+        "SRTM-DEM(30meter)",
+        "Survey of India toposheet"
+      ],
+      "author_team": [
+        "Ketan A Salunke",
+        "Abhaykumar S Wayal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Morphometric Analysis of Panjhara River Basin With Use of GIS for Development of Watershed Plan",
+        "doi": "10.17485/ijst/v16i12.2202",
+        "year": 2023,
+        "venue": "Indian Journal Of Science And Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_47",
+      "research_question": "如何综合坡度、土地覆盖、地质、土壤和降水参数识别并绘制Meninting子流域的滑坡易发区？",
+      "hypothesis_or_mechanism": "坡度越陡、土壤和岩性越易失稳、降水越高且土地覆盖越不利于坡体稳定，综合滑坡易发性评分就越高。",
+      "variables_and_data_use": "研究由Data DEM SRTM派生坡度，利用Citra Landsat 8 OLI tahun 2021生成土地覆盖，利用Peta Geologi Pulau Lombok和Peta Jenis Tanah表示地质与土壤条件，并使用Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)计算降水等级；随后对各变量分类评分、赋权并进行GIS叠加，生成低、中、高三级滑坡易发性分区。",
+      "method_paradigm": "GIS加权叠加",
+      "used_assets": [
+        "Data DEM SRTM",
+        "Citra Landsat 8 OLI tahun 2021",
+        "Peta Geologi Pulau Lombok",
+        "Peta Jenis Tanah",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)"
+      ],
+      "author_team": [
+        "Arben Virgota",
+        "Baiq Farista"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Identification and Mapping of Landslide-Prone Areas in the Meninting Watershed Area, West of Lombok",
+        "doi": "10.29303/jbt.v23i1.4493",
+        "year": 2023,
+        "venue": "Jurnal Biologi Tropis",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_48",
+      "research_question": "不同30米开放DEM在地形高程精度和河流流域、子流域划分结果方面有何差异，哪一种DEM更适合该研究的水文地形建模？",
+      "hypothesis_or_mechanism": "不同DEM的传感器与生产谱系会产生不同的系统和随机高程误差，而这些误差会通过填洼、流向和汇流累积计算影响流域边界的提取结果。",
+      "variables_and_data_use": "使用ASTER GDEM (Version 3, 2019)、ALOS World 3D (Version 3.2, 2021)、Copernicus DEM (Version 3, 2021)和SRTM DEM (Version 3, 2013)的高程像元值，与topographic map with a scale of 1:100,000中的参考高程进行空间匹配，计算系统误差、均方根误差、平均绝对误差等指标；随后将DEM输入ArcGIS的Fill、Flow Direction、Flow Accumulation、Stream Link、Stream Order和Basin流程以划分流域与子流域。",
+      "method_paradigm": "测量验证与水文建模",
+      "used_assets": [
+        "ASTER GDEM (Version 3, 2019)",
+        "ALOS World 3D (Version 3.2, 2021)",
+        "Copernicus DEM (Version 3, 2021)",
+        "SRTM DEM (Version 3, 2013)",
+        "topographic map with a scale of 1:100,000"
+      ],
+      "author_team": [
+        "Vladimir Tabunshchik",
+        "Roman Gorbunov",
+        "Tatiana Gorbunova",
+        "Cam Nhung Pham",
+        "Aleksandra Klyuchkina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Identification of river basins within northwestern slope of Crimean Mountains using various digital elevation models (ASTER GDEM, ALOS World 3D, Copernicus DEM, and SRTM DEM)",
+        "doi": "10.3389/feart.2023.1218823",
+        "year": 2023,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_49",
+      "research_question": "如何利用多源遥感环境变量和 Random Forest 将粗分辨率 GRACE 总水储量数据降尺度至 1 km，并通过多种验证方法评估其可靠性？",
+      "hypothesis_or_mechanism": "降水、植被、地表温度、蒸散发、SRTM 地形高程和积雪指数与 GRACE TWS 之间存在可由 Random Forest 学习的非线性关系，结合粗尺度残差校正可在保持原始 GRACE 质量变化特征的同时恢复局地水储量空间差异。",
+      "variables_and_data_use": "以 CSR Monthly GRACE Level-3 Surface Water Density Equivalent Mass-Anomaly Dataset version 6.0 的 TWS 异常为目标变量；以 GPM_3IMERGM_06 降水、MODIS_006_MOD13A2 NDVI、MODIS_006_MOD11A2 LST、MODIS_061_MOD16A2 ET、USGS_SRTMGL1_003 地形高程和 MODIS_061_MOD10A1 NDSI 为预测变量。各变量先聚合到 1°训练 Random Forest，再以细尺度变量生成 1 km TWS，并叠加插值后的 GRACE 残差；最终使用原始 GRACE、139 口井的地下水位以及已知含水层动态进行验证。",
+      "method_paradigm": "机器学习空间降尺度",
+      "used_assets": [
+        "CSR Monthly GRACE Level-3 Surface Water Density Equivalent Mass-Anomaly Dataset version 6.0",
+        "TELLUS_GRAC_L3_CSR_RL06_LND_v03",
+        "GPM_3IMERGM_06",
+        "MODIS_006_MOD13A2",
+        "MODIS_006_MOD11A2",
+        "MODIS_061_MOD16A2",
+        "SRTM V3 (SRTM Plus)",
+        "USGS_SRTMGL1_003",
+        "MODIS_061_MOD10A1",
+        "in situ groundwater level data"
+      ],
+      "author_team": [
+        "Youssef Hamou-Ali",
+        "Nourlhouda Karmouda",
+        "Ismail Mohsine",
+        "Tarik Bouramtane",
+        "Ilias Kacimi",
+        "Sarah Tweed",
+        "Mounia Tahiri",
+        "Nadia Kassou",
+        "Ali El Bilali",
+        "Omar Chafki",
+        "Mohamed Abdellah Ezzaouini",
+        "Siham Laraichi",
+        "Abdelaaziz Zerouali",
+        "Marc Leblanc"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE total water storage data using random forest: a three-round validation approach under drought conditions",
+        "doi": "10.3389/frwa.2025.1545821",
+        "year": 2025,
+        "venue": "Frontiers in Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_50",
+      "research_question": "CMORPH、IMERG和MSWEP在2001—2020年逐日及逐月降水估计中的性能如何，以及这些性能是否随季节、降水强度、海拔、地形复杂度和雨量计密度而变化？",
+      "hypothesis_or_mechanism": "较高海拔和更复杂的地形会通过影响卫星降水反演与空间代表性而降低降水产品的检测和定量估算性能，并增强漏报或低估误差。",
+      "variables_and_data_use": "以AEMET逐日雨量计降水作为参考，验证CMORPH V1.0 daily、IMERG Final Run V07A和MSWEP Past的降水量与降水事件；使用NASA Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)提供平均海拔并计算TRI，再按海拔和地形复杂度区间汇总命中率、检出概率、虚警率、相关系数、相对绝对误差和误差分量。",
+      "method_paradigm": "多产品性能验证",
+      "used_assets": [
+        "Agencia Estatal de Meteorología (AEMET) Ground Gauge Data",
+        "CMORPH V1.0 daily",
+        "IMERG Final Run V07A",
+        "MSWEP Past",
+        "NASA Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM)"
+      ],
+      "author_team": [
+        "Alejandro García-Ten",
+        "Raquel Niclòs",
+        "Enric Valor",
+        "Vicente Caselles",
+        "María José Estrela",
+        "Juan Javier Miró",
+        "Yolanda Luna",
+        "Fernando Belda"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of CMORPH V1.0, IMERG V07A and MSWEP V2.8 Satellite Precipitation Products over Peninsular Spain and the Balearic Islands",
+        "doi": "10.3390/rs17213562",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_51",
+      "research_question": "不同来源和空间分辨率的 DEM 在高程精度及流域形态参数计算结果上存在何种差异？",
+      "hypothesis_or_mechanism": "DEM 的来源、空间分辨率和高程误差会影响河网提取、主河道测量以及流域形态参数的计算，而 SRTM 1 arc-second 预计与地面参考高程更一致。",
+      "variables_and_data_use": "研究使用 ALOS PALSAR (ASF12.5)、SRTM 1 arc-second、ASTER-GDEM 1arc-second、SRTM 3arc-second 和 GMTED-7.5 arc-second 的高程变量，在 ArcGIS 中投影并提取流域和河网，计算主河道长度、流域高程、地形起伏、排水密度等形态参数，同时以 133 个现场 GPS 和 1:20000 地形图参考高程点进行精度验证。",
+      "method_paradigm": "测量验证与产品比较",
+      "used_assets": [
+        "ALOS PALSAR (ASF12.5)",
+        "SRTM 1 arc-second",
+        "ASTER-GDEM 1arc-second",
+        "SRTM 3arc-second",
+        "GMTED-7.5 arc-second",
+        "GPS",
+        "toposheet 1:20000"
+      ],
+      "author_team": [
+        "Ayad A. Faris Beg",
+        "Mohamed B. Thamer",
+        "Mohad A. Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of Basin Morphometric Measurements Accuracy Based on Different DEM Data, Chai Dakuk Basin a Case Study, Iraq",
+        "doi": "10.46717/igj.56.1b.18ms-2023-2-26",
+        "year": 2023,
+        "venue": "The Iraqi Geological Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_52",
+      "research_question": "如何利用 2019—2024 年 Sentinel-1 SAR 时间序列并结合 SRTM 地形信息，识别 Federal Capital Territory 内洪水与积水的范围、频率、持续性和空间热点？",
+      "hypothesis_or_mechanism": "受淹表面因镜面反射通常呈现较低的 Sentinel-1 雷达后向散射，而自适应阈值、永久水体掩膜和 SRTM 地形过滤可减少地形效应及常年水体造成的误分类，从而揭示反复受淹区域。",
+      "variables_and_data_use": "使用 Sentinel-1 SAR GRD images 的 VV、VH 后向散射时间序列进行预处理和自适应 Otsu 阈值分类，生成逐期洪水图并计算像元洪水频率；使用 Shuttle Radar Topography Mission (SRTM) DEM 实施地形过滤和地形校正；使用 Administrative boundaries of the FCT 裁剪和汇总结果，并利用 Rainfall data、High-resolution photography、Reference datasets 和 Historical flood records 辅助解释或验证洪水地图。",
+      "method_paradigm": "多时相洪水制图",
+      "used_assets": [
+        "Sentinel-1 SAR GRD images",
+        "Shuttle Radar Topography Mission (SRTM) DEM",
+        "Administrative boundaries of the FCT",
+        "Rainfall data",
+        "High-resolution photography",
+        "Reference datasets",
+        "Historical flood records"
+      ],
+      "author_team": [
+        "Ochimana Ebiojo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "SAR-Based Flood and Waterlogging Extent Mapping Using Sentinel – 1 Time Series Backscatter Analysis: A Case Study of the FCT",
+        "doi": "10.51244/ijrsi.2026.1307000401",
+        "year": 2026,
+        "venue": "International Journal of Research and Scientific Innovation",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_53",
+      "research_question": "在地面雨量资料有限的条件下，CHIRPS和GPM_IMERG降水产品驱动HEC-HMS模拟Shabelle流域径流的表现与地面雨量驱动结果相比如何？",
+      "hypothesis_or_mechanism": "卫星降水产品能够弥补稀疏雨量站的时空观测缺口，其中GPM_IMERG可能通过更有效地表征降水分布而产生更接近实测流量的模拟结果。",
+      "variables_and_data_use": "使用SRTM 30米高程数据划分流域并提取地形和子流域参数；使用CHIRPS precipitation data、GPM_IMERG version 6及地面日降雨作为HEC-HMS降水输入；使用Beletwayne站实测流量进行模型校准和验证，并以NSE、R2、RMSE和PBIAS评价模拟性能。",
+      "method_paradigm": "降水产品验证",
+      "used_assets": [
+        "SRTM (Shuttle Radar Topography Model) with 30m spatial resolution",
+        "CHIRPS precipitation data",
+        "GPM_IMERG version 6",
+        "Ethiopian Meteorological Agency",
+        "SWALIM Somali Water and Land Information Management",
+        "stream gauge data for Beletwayne station"
+      ],
+      "author_team": [
+        "Abdinour Abshir Hussein",
+        "Ahmet Baylar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Hydrological Model Evaluation of Ground, GPM IMERG, and CHIRPS precipitation data for Shabelle Basin in Ethiopia",
+        "doi": "10.55529/jecnam.31.41.60",
+        "year": 2023,
+        "venue": "Journal of Electronics,Computer Networking and Applied Mathematics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_54",
+      "research_question": "如何利用SRTM地形高程、辅助卫星影像和地形图分析Kanchi River sub-basin的形态测量特征、面积—高程发育状况及其水文行为？",
+      "hypothesis_or_mechanism": "硬岩地体的地形起伏、河网几何结构及岩性构造约束共同影响地表径流组织、地下水补给和流域水文响应。",
+      "variables_and_data_use": "使用SRTM DEM划分河网并提取流域面积、周长、流域长度、河流长度、河流级序和流域起伏等变量，再计算排水密度、河流频率、纹理比、延伸率、圆度比和坡面流长度等指标；使用IRS - P6 LISS III和SOI toposheets更新与核验河网。",
+      "method_paradigm": "遥感GIS形态分析",
+      "used_assets": [
+        "SRTM DEM",
+        "IRS - P6 LISS III",
+        "SOI toposheets number 73E/4, 73E/8, 73E/12 and 73E/16"
+      ],
+      "author_team": [
+        "Mable M. Toppo",
+        "Jayant Sinha",
+        "Puja Priya"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Drainage Morphometric Analysis of Kanchi River Sub-Basin, Khunti and Ranchi Districts, Jharkhand Using Remote Sensing and GIS.",
+        "doi": "10.56293/ijasr.2024.5917",
+        "year": 2024,
+        "venue": "International Journal of Applied Science and Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_55",
+      "research_question": "如何利用 SRTM 地形高程和辅助地学资料量化 Kandar 流域的线性、面积和地形起伏形态特征，并解释其水文响应？",
+      "hypothesis_or_mechanism": "流域地形和排水网络结构通过控制流向、汇流累积与河流级序，形成相互关联的形态参数并影响流域水文响应。",
+      "variables_and_data_use": "使用 SRTM (Shuttle Radar Topography Mission) Digital Elevation Model 的高程生成流域边界、河网、流向、汇流累积量、河流级序、坡度、坡向和阴影地形，并结合 SOI topographical maps、US Army 1:2500000 map from Google、FAO soil map 和 lithology map 提供空间定位及土壤、岩性背景，最后对形态参数进行相关分析。",
+      "method_paradigm": "地形形态关系分析",
+      "used_assets": [
+        "SRTM (Shuttle Radar Topography Mission) Digital Elevation Model",
+        "SOI topographical maps",
+        "US Army 1:2500000 map from Google",
+        "FAO soil map",
+        "lithology map"
+      ],
+      "author_team": [
+        "CHAITALI PAL",
+        "Sagarika Kumari Shaw",
+        "Pranab Bishal",
+        "Dr. Tuhin Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "INTEGRATED MORPHOMETRIC AND CORRELATIONBASED ASSESSMENT OF THE KANDAR RIVER BASIN USING GEOSPATIAL TECHNIQUES: A SMALL TRIBUTARY OF RIVER AJAY, WEST BENGAL.",
+        "doi": "10.56975/ijnrd.v11i3.322645",
+        "year": 2026,
+        "venue": "International Journal of Novel Research and Development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_56",
+      "research_question": "如何结合地形、水系、遥感、降雨和洪水资料评估Devganga河流域的形态特征与洪水脆弱性？",
+      "hypothesis_or_mechanism": "流域高程、坡度、河网形态、土地覆盖、植被与水体状况及降雨共同控制径流汇集过程，从而形成空间差异化的洪水脆弱性。",
+      "variables_and_data_use": "使用SRTM DEM提取高程、坡度、河流级序和排水密度，使用Landsate Satellite 8 Data生成NDVI、NDWI和LULC，结合Rainfall Data与Flood Inventory Map构建洪水影响因子，并使用Flood Hazard Data的GPS地面实况点验证模型。",
+      "method_paradigm": "多准则决策支持",
+      "used_assets": [
+        "SRTM DEM",
+        "Landsate Satellite 8 Data",
+        "Rainfall Data",
+        "Flood Inventory Map",
+        "Flood Hazard Data"
+      ],
+      "author_team": [
+        "Mohan Vasave",
+        "Sandip Garud"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "“Investigation of Morphometric and Flood Vulnerability of the Devganga River in Satpura Mountain Ranges Using Remote Sensing Techniques”",
+        "doi": "10.58825/jog.2024.18.1.128",
+        "year": 2024,
+        "venue": "Journal of Geomatics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_57",
+      "research_question": "如何整合 SRTM 派生地形指标、降雨、土壤、土地利用和洪水清单，利用 MaxEnt 识别洪水易感区及其主要控制因素？",
+      "hypothesis_or_mechanism": "相对排水网络位置较低、降雨较强且坡度较缓的区域更容易汇流和积水，从而表现出更高的洪水易感性。",
+      "variables_and_data_use": "以实地调查获得的 677 个 flood inventory 位置作为出现样本，以 SRTM DEM 派生的坡度、TWI、上坡曲率和下坡曲率，以及 VDCN、降雨、距河流距离、土壤质地、LU/LC 和地貌作为预测变量，按 70% 和 30% 划分训练与验证数据，使用 ROC–AUC 评价模型。",
+      "method_paradigm": "空间易感性建模",
+      "used_assets": [
+        "SRTM DEM",
+        "Geological Survey of India website",
+        "Survey of India topographic sheets",
+        "Kerala State Land Use Board",
+        "Kerala State Soil Survey Organisation",
+        "India Meteorological Department",
+        "flood inventory"
+      ],
+      "author_team": [
+        "N. Anjali",
+        "Girish Gopinath"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning modelling of flood susceptibility in a tropical river basin of South India",
+        "doi": "10.64866/j.ijdscr.2026.10023",
+        "year": 2026,
+        "venue": "International Journal of Disaster Studies and Climate Resilience",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_58",
+      "research_question": "如何融合SRTM地形高程与地形图河网开展Dudhnai流域形态计量分析，并据此确定各子流域的土壤侵蚀治理优先级？",
+      "hypothesis_or_mechanism": "利用地形图河网对SRTM DEM进行水文重整可改善低平地区的河网和流域划分，而反映排水结构与地形起伏的形态参数能够表征子流域的侵蚀易感性。",
+      "variables_and_data_use": "研究使用 The Shuttle Radar Topographic Mission (SRTM) DEM Version 3 with a spatial resolution of 30 m 获取高程、流向、流域边界、河网、盆地起伏和崎岖度等变量，并使用 toposheet number 78K/9, 78K/10, 78K/13 and 78K/14 数字化河网、烧入DEM及校正水文网络；随后计算线性、面积和起伏形态参数并加权排序七个子流域。",
+      "method_paradigm": "GIS形态计量与决策排序",
+      "used_assets": [
+        "The Shuttle Radar Topographic Mission (SRTM) DEM Version 3 with a spatial resolution of 30 m",
+        "toposheet number 78K/9, 78K/10, 78K/13 and 78K/14"
+      ],
+      "author_team": [
+        "W. R. Singh",
+        "S. Barman",
+        "G. Tirkey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometric analysis and watershed prioritization in relation to soil erosion in Dudhnai Watershed",
+        "doi": "10.1007/s13201-021-01483-5",
+        "year": 2021,
+        "venue": "Applied Water Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_59",
+      "research_question": "如何利用30米SRTM DEM提取Jajmau流域的排水形态参数，并据此确定四个子流域的土壤侵蚀管理优先级？",
+      "hypothesis_or_mechanism": "线性参数和地形起伏参数越高、部分面状参数越低，通常意味着更强的径流汇集和土壤侵蚀易感性，因此可通过参数排序及复合值识别优先治理子流域。",
+      "variables_and_data_use": "使用SRTM DEM (30 m)提取流域边界、河网、河流级序、流向、汇流累积、坡度、坡向、出口高程、最高高程和总起伏，并计算线性、面状及起伏形态参数；使用1:50000 scale toposheets (63B/7, 63B/8)进行空间配准和排水网络交叉核验，最终以参数排名和复合值确定子流域管理优先级。",
+      "method_paradigm": "GIS形态计量决策支持",
+      "used_assets": [
+        "Shuttle Radar Topographic Mission (STRM) digital elevation model DEM (30 m resolution)",
+        "SRTM DEM (30 m)",
+        "1:50000 scale toposheets (63B/7, 63B/8)"
+      ],
+      "author_team": [
+        "Sahu Nisha",
+        "J K Saha",
+        "Mishra Rahul",
+        "Kumar Sinha Nishant",
+        "Kancheti Mrunalini",
+        "H Biswas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Prioritization of subwatersheds in the Jajmau basin, Kanpur, via drainage morphometry",
+        "doi": "10.14719/pst.7725",
+        "year": 2025,
+        "venue": "Plant Science Today",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_60",
+      "research_question": "如何利用洪水事件前后的Sentinel-1A后向散射变化识别Palembang City的洪水淹没范围？",
+      "hypothesis_or_mechanism": "洪水造成的地表积水会改变VH和VV后向散射强度，因而洪水前后影像差分能够揭示淹没区域，而持续强降雨及Musi River回水会加剧并延长积水。",
+      "variables_and_data_use": "研究使用Sentinel-1A Level-1 GRDH in IW mode的VH和VV后向散射强度，经轨道文件应用、热噪声去除、辐射定标、Lee滤波和基于SRTM 1 arc-second DEM的地形校正后，对洪水前后影像进行镶嵌与差分；同时使用气象站降雨、Sako's rain gauge station降雨以及Boom Baru Port和Sei Lais Port水位记录描述洪水触发与回水背景。",
+      "method_paradigm": "雷达变化检测",
+      "used_assets": [
+        "SRTM 1 arc-second DEM",
+        "Sentinel-1A",
+        "Level-1 GRDH in IW mode",
+        "meteorological station at Palembang City",
+        "Sako's rain gauge station",
+        "Boom Baru Port and Sei Lais Port"
+      ],
+      "author_team": [
+        "Sumi Amariena Hamim",
+        "Hendry Natanael Gumano",
+        "Virgus Ari Sondang",
+        "Fathoni Usman",
+        "Raden Ayu. Sylvia Marlina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Inventory of River Basin Flood Events for Drainage System Examination Using Multi-Temporal Composite Remote Sensing Data",
+        "doi": "10.18421/tem122-49",
+        "year": 2023,
+        "venue": "TEM Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_61",
+      "research_question": "如何利用SRTM地形高程派生的流域形态参数识别并确定Sankarani流域各子流域的治理优先级？",
+      "hypothesis_or_mechanism": "子流域的线性、形状与地形起伏指标能够反映排水结构和侵蚀敏感性，其综合排序可识别更需要水土保持与水资源保护的区域。",
+      "variables_and_data_use": "研究使用2012 SRTM Digital Elevation Model (DEM)的30米地形高程提取流域边界和水系，划分河流级序，并计算面积、周长、流域长度、河流频率、纹理比、排水密度、伸长率、形状因子、平均高程、坡度比及高程曲线；随后综合各指标对子流域进行优先级排序。",
+      "method_paradigm": "地形形态综合排序",
+      "used_assets": [
+        "2012 SRTM Digital Elevation Model (DEM)"
+      ],
+      "author_team": [
+        "Souleymane Bengaly",
+        "Aboubakar Bengaly",
+        "Youssouf Cissé",
+        "Boogaard Floris",
+        "Oumar Coulibaly",
+        "Djakanibé Désiré Traoré"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Prioritization of sub watersheds based on hydro morphometric analysis in the Sankarani watershed, upstream tributary of the Niger River",
+        "doi": "10.22161/ijeab.71.25",
+        "year": 2022,
+        "venue": "International Journal of Environment, Agriculture and Biotechnology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_62",
+      "research_question": "不同来源的30米DEM在小型城市化流域中推导流域形态参数时，其结果与地形图构建的参考DEM相比具有多大一致性和误差？",
+      "hypothesis_or_mechanism": "不同DEM的生产方法和垂直精度会影响水文校正、河网提取及流域边界划分，进而造成线性、面积和地势形态参数的系统差异。",
+      "variables_and_data_use": "使用SRTM DEM V3、NASA DEM、ASTER DEM和ALOS DEM的地形高程执行重投影、填洼、河道刻蚀、流向和汇流累积分析，计算流域面积、周长、河流级序、排水密度、分汊比、流域高差等十四项参数；以TOPO DEM (30 m)为参考，并通过MAPE比较各DEM的总体表现。",
+      "method_paradigm": "多产品测量验证",
+      "used_assets": [
+        "SRTM DEM V3",
+        "ASTER DEM (30 m)",
+        "ALOS DEM (30 m)",
+        "NASA DEM (30 m)",
+        "TOPO DEM (30 m)"
+      ],
+      "author_team": [
+        "Batuhan Kılıç",
+        "Fatih Gülgen",
+        "Meltem Çelen",
+        "Mehmet Öncel",
+        "Halil Oruç",
+        "Sinem Vural"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Morphometric Analysis of Saz-Çayırova Drainage Basin using Geographic Information Systems and Different Digital Elevation Models",
+        "doi": "10.30897/ijegeo.1079851",
+        "year": 2022,
+        "venue": "International Journal of Environment and Geoinformatics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 61,
+    "source_paper_count": 61,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

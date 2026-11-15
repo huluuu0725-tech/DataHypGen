@@ -1,0 +1,901 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_040",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "DMSP-OLS Nighttime Lights Version 4",
+    "spatial_coverage": {
+      "region_name": "Global land areas with valid annual nighttime observations",
+      "coverage": "Near-global annual nighttime visible-light observations between 65°S and 75°N, with oceans and locations lacking valid coverage masked or separable by coverage bands."
+    },
+    "temporal_coverage": "1992-2013 (annual composites from multiple DMSP satellites)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 arc-seconds (approximately 1 km at the equator)",
+    "temporal_unit": "Annual",
+    "analytical_capabilities": [
+      "Mapping the annual spatial distribution and intensity of persistent nighttime visible lights",
+      "Quantifying interannual changes in illuminated extent and digital-number intensity",
+      "Comparing brightness distributions, gradients, clusters, and spatial concentration across regions",
+      "Separating persistent lights from ephemeral detections using stable-light and cloud-free coverage bands",
+      "Auditing saturation, inter-satellite overlap, and coverage-related uncertainty in long time series"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Stable-light digital number from 0 to 63, with separate average-visible and cloud-free coverage bands",
+      "runtime_hint": "Use stable_lights for persistent annual light intensity and cf_cvg to enforce a minimum observation count. Treat the value 63 as potentially saturated, avoid interpreting raw values as calibrated radiance, and harmonize overlapping satellites before temporal comparison."
+    },
+    "data_source": "NOAA National Centers for Environmental Information, Earth Observation Group",
+    "gee_asset": {
+      "id": "NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_040.json",
+    "source_sha256": "93559ff18f77ee1003e514e22e6a404c9fd29495b088b6fbb6b8c29019c1a10b",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_040/prompt.json",
+    "current_prompt_sha256": "af40f195fef1eec7b5a4382bf210503ea4974174d41e61f5f71525fa28277710",
+    "original_anchor_asset": {
+      "id": "NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "observable_group": "annual_stable_nighttime_visible_light",
+      "asset_alias_policy": "DMSP-OLS Version 4 stable-lights products and their Earth Engine-hosted copy are the same product family; VIIRS is not treated as the same asset for reference admission.",
+      "observation_identity_contract": {
+        "physical_object": "DMSP-OLS Nighttime Lights Version 4, representing annual stable nighttime visible light.",
+        "source_lineage": "Task Prompt source: NOAA National Centers for Environmental Information, Earth Observation Group. Current task anchor: NOAA/DMSP-OLS/NIGHTTIME_LIGHTS (annual_stable_nighttime_visible_light). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "Stable-light digital number from 0 to 63, with separate average-visible and cloud-free coverage bands; spatial resolution: 30 arc-seconds (approximately 1 km at the equator); temporal structure: Annual",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: DMSP-OLS Version 4 stable-lights products and their Earth Engine-hosted copy are the same product family; VIIRS is not treated as the same asset for reference admission."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ntl_ref_01",
+      "research_question": "When national accounts and household surveys disagree about income growth and poverty, which source is closer to the latent truth?",
+      "hypothesis_or_mechanism": "Nighttime light is a third noisy measure whose error is assumed to be independent of the errors in accounts and surveys; covariance with lights identifies optimal weights for the competing income measures.",
+      "variables_and_data_use": "DMSP-OLS light growth is compared with GDP-per-capita growth, household-survey means, poverty estimates, and non-income development outcomes.",
+      "method_paradigm": "Latent-variable measurement-error triangulation with specification checks on alternative income weights.",
+      "used_assets": [
+        "NOAA DMSP-OLS stable nighttime lights"
+      ],
+      "source_paper": {
+        "title": "Lights, Camera ... Income! Illuminating the National Accounts-Household Surveys Debate",
+        "doi": "10.1093/qje/qjw003",
+        "year": 2016,
+        "venue": "The Quarterly Journal of Economics",
+        "authors": [
+          "Maxim Pinkovskiy",
+          "Xavier Sala-i-Martin"
+        ],
+        "author_metadata": {
+          "source": "Crossref works API",
+          "source_url": "https://api.crossref.org/works/10.1093/qje/qjw003",
+          "retrieved_date": "2026-08-27",
+          "doi": "10.1093/qje/qjw003",
+          "team_independence_basis": "author-list non-overlap within this task; affiliation metadata is not used"
+        },
+        "pool_source": "original_existing"
+      },
+      "extraction_confidence": "medium",
+      "evidence_granularity": "abstract plus publicly described empirical design",
+      "idea_type": "state_reconstruction",
+      "author_team": [
+        "Maxim Pinkovskiy",
+        "Xavier Sala-i-Martin"
+      ],
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ntl_ref_02",
+      "research_question": "What dimensions of local human development are captured by nighttime lights where disaggregated official statistics are unavailable?",
+      "hypothesis_or_mechanism": "Persistent light summarizes electricity access, built activity, and local material intensity and should covary with household wealth, education, and health without being identical to any one outcome.",
+      "variables_and_data_use": "DMSP-OLS lights are aggregated around georeferenced DHS clusters and approximately 50 km grid cells and related to household wealth, education, and health indicators in 29 African countries.",
+      "method_paradigm": "Multiscale proxy validation with georeferenced household surveys and country-aware regression.",
+      "used_assets": [
+        "NOAA DMSP-OLS stable nighttime lights",
+        "Demographic and Health Surveys"
+      ],
+      "source_paper": {
+        "title": "Nighttime lights as a proxy for human development at the local level",
+        "doi": "10.1371/journal.pone.0202231",
+        "year": 2018,
+        "venue": "PLOS ONE",
+        "authors": [
+          "Anna Bruederle",
+          "Roland Hodler"
+        ],
+        "author_metadata": {
+          "source": "Crossref works API",
+          "source_url": "https://api.crossref.org/works/10.1371/journal.pone.0202231",
+          "retrieved_date": "2026-08-27",
+          "doi": "10.1371/journal.pone.0202231",
+          "team_independence_basis": "author-list non-overlap within this task; affiliation metadata is not used"
+        },
+        "pool_source": "original_existing"
+      },
+      "extraction_confidence": "high",
+      "evidence_granularity": "open full text Methods",
+      "idea_type": "relationship_mechanism",
+      "author_team": [
+        "Anna Bruederle",
+        "Roland Hodler"
+      ],
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ntl_ref_03",
+      "research_question": "How strongly do inter-city transport costs constrain the growth of inland African cities?",
+      "hypothesis_or_mechanism": "World oil-price increases raise overland transport costs more for cities farther from ports; if lights proxy city activity, the distance-by-oil-price shock identifies the elasticity of urban growth to transport costs.",
+      "variables_and_data_use": "Annual DMSP-OLS city lights provide the outcome; distance to the largest port, road paving, and global oil prices provide treatment intensity and heterogeneity.",
+      "method_paradigm": "Panel difference-in-differences or continuous-treatment quasi-experiment using global oil-price shocks interacted with predetermined geography.",
+      "used_assets": [
+        "NOAA DMSP-OLS stable nighttime lights",
+        "road network and port distance",
+        "global oil prices"
+      ],
+      "source_paper": {
+        "title": "Farther on down the Road: Transport Costs, Trade and Urban Growth in Sub-Saharan Africa",
+        "doi": "10.1093/restud/rdw020",
+        "year": 2016,
+        "venue": "The Review of Economic Studies",
+        "authors": [
+          "Adam Storeygard"
+        ],
+        "author_metadata": {
+          "source": "Crossref works API",
+          "source_url": "https://api.crossref.org/works/10.1093/restud/rdw020",
+          "retrieved_date": "2026-08-27",
+          "doi": "10.1093/restud/rdw020",
+          "team_independence_basis": "author-list non-overlap within this task; affiliation metadata is not used"
+        },
+        "pool_source": "original_existing"
+      },
+      "extraction_confidence": "medium",
+      "evidence_granularity": "abstract plus author-manuscript empirical design",
+      "idea_type": "impact_assessment",
+      "author_team": [
+        "Adam Storeygard"
+      ],
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ntl_ref_04",
+      "research_question": "Does inequality between ethnic homelands within the same country reflect unequal spatial development rather than only national income differences?",
+      "hypothesis_or_mechanism": "Nighttime light permits a common spatial proxy of economic activity to be aggregated within historical ethnic homelands, exposing within-country inequality that conventional national accounts cannot observe.",
+      "variables_and_data_use": "DMSP-OLS luminosity per population is aggregated to ethnic homelands and related to historical political centralization, geographic endowments, and national institutions.",
+      "method_paradigm": "Spatial inequality decomposition and historical-institution regression with country fixed effects.",
+      "used_assets": [
+        "NOAA DMSP-OLS stable nighttime lights",
+        "ethnolinguistic homeland maps",
+        "population and historical institutions"
+      ],
+      "source_paper": {
+        "title": "Ethnic Inequality",
+        "doi": "10.1086/685300",
+        "year": 2016,
+        "venue": "Journal of Political Economy",
+        "authors": [
+          "Alberto Alesina",
+          "Stelios Michalopoulos",
+          "Elias Papaioannou"
+        ],
+        "author_metadata": {
+          "source": "Crossref works API",
+          "source_url": "https://api.crossref.org/works/10.1086/685300",
+          "retrieved_date": "2026-08-27",
+          "doi": "10.1086/685300",
+          "team_independence_basis": "author-list non-overlap within this task; affiliation metadata is not used"
+        },
+        "pool_source": "original_existing"
+      },
+      "extraction_confidence": "medium",
+      "evidence_granularity": "public working-paper Methods",
+      "idea_type": "relationship_mechanism",
+      "author_team": [
+        "Alberto Alesina",
+        "Stelios Michalopoulos",
+        "Elias Papaioannou"
+      ],
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ntl_ref_05",
+      "research_question": "论文研究夜间卫星灯光数据如何用于衡量发展中国家的电力状况及其与选举和投票的关系。",
+      "hypothesis_or_mechanism": "夜间灯光强度可以作为电力供给或经济活动的空间观测指标，并用于分析电力与政治参与之间的关系。",
+      "variables_and_data_use": "文本只明确提到DMSP-OLS夜间卫星图像，未说明具体产品版本、灯光变量、时间聚合方式或其在实证分析中的具体使用方式。",
+      "method_paradigm": "空间计量与关系机制分析",
+      "used_assets": [
+        "DMSP-OLS"
+      ],
+      "author_team": [
+        "Brian Min"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Measuring Electricity from Space",
+        "doi": "10.1017/cbo9781316272121.004",
+        "year": 2015,
+        "venue": "Cambridge University Press eBooks",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_06",
+      "research_question": "所提供文本不足以确定该论文的研究问题。",
+      "hypothesis_or_mechanism": "所提供文本不足以确定该论文的假设或作用机制。",
+      "variables_and_data_use": "所提供文本未说明论文使用的产品、变量及其数据用途。",
+      "method_paradigm": "无法判定",
+      "used_assets": [],
+      "author_team": [
+        "Xiaotian Yuan",
+        "Jia Li",
+        "Massimo Menenti",
+        "Min Jiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Consistent nighttime light time series in 1992–2020 in Northern Africa by combining DMSP-OLS and NPP-VIIRS data",
+        "doi": "10.1080/20964471.2022.2031542",
+        "year": 2022,
+        "venue": "Big Earth Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_07",
+      "research_question": "海啸相关损害如何影响受灾社区的经济活动，以及夜间灯光能否反映这种变化？",
+      "hypothesis_or_mechanism": "海啸造成的地表和基础设施损害会降低社区经济活动，并表现为夜间灯光亮度下降。",
+      "variables_and_data_use": "使用 DMSP-OLS F16 年度稳定夜间灯光数字值衡量社区经济活动和年度变化，使用 MODIS 影像构造海啸损害指标，并将 STAR 调查中的家庭人均支出、公共事业支出和食品支出作为经济结果变量。",
+      "method_paradigm": "纵向比较与回归分析",
+      "used_assets": [
+        "DMSP-OLS F16 satellite",
+        "stable night light images",
+        "National Aeronautics and Space Administration s Moderate Resolution Imaging Spectroradiometer (MODIS) sensor",
+        "Study of the Tsunami Aftermath and Recovery (STAR) survey"
+      ],
+      "author_team": [
+        "Thomas Welch Gillespie",
+        "Elizabeth Frankenberg",
+        "Kai-fung Chum",
+        "Duncan Thomas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Night-time lights time series of tsunami damage, recovery, and economic metrics in Sumatra, Indonesia",
+        "doi": "10.1080/2150704x.2014.900205",
+        "year": 2014,
+        "venue": "Remote Sensing Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_08",
+      "research_question": "哪一种回归模型最适合对DMSP-OLS夜间灯光影像进行辐射互校准？",
+      "hypothesis_or_mechanism": "不同回归模型对跨卫星、跨年份夜间灯光辐射差异的拟合能力不同，其中幂回归模型能够获得更高的校准精度。",
+      "variables_and_data_use": "使用DMSP影像中的亮度值和控制DN值，在六个区域提取样本进行模型拟合与交叉验证，并以RMSE、调整RMSE、相对误差、运行速度及总夜间灯光强度评价校准效果。",
+      "method_paradigm": "辐射定标方法比较",
+      "used_assets": [
+        "DMSP imagedata",
+        "DMSP-OLS NTL imagery",
+        "DMSP datasets"
+      ],
+      "author_team": [
+        "Chang Li",
+        "Xi Li",
+        "Tian Li",
+        "Meng Qi",
+        "Wenjie Yu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "LMedS-Based Power Regression: An Optimal and Automatic Method of Radiometric Intercalibration for DMSP-OLS NTL Imagery",
+        "doi": "10.1109/jstars.2021.3051800",
+        "year": 2021,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_09",
+      "research_question": "如何利用夜间灯光强度分布识别中国大型城市群中的城市区域和建成区边界，并刻画城市规模层级？",
+      "hypothesis_or_mechanism": "夜间灯光强度及其空间聚集能够反映人类聚居和活动集中程度，灯光强度分布的分段拐点可以区分城市与乡村区域。",
+      "variables_and_data_use": "使用 DMSP-OLS 2013 夜间灯光 DN 强度计算不同强度等级的光斑面积和总灯光量，并通过分段对数模型确定城市区域边界；使用 NPP-VIIRS 2016 夜间灯光以相同方法识别建成区边界。",
+      "method_paradigm": "空间阈值识别与分段回归",
+      "used_assets": [
+        "DMSP-OLS 2013",
+        "NPP-VIIRS 2016"
+      ],
+      "author_team": [
+        "Blanca Arellano",
+        "Josep Roca Cladera"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Nighttime imagery: Can Zipf's Law identify urban systems?",
+        "doi": "10.1117/12.2675637",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_10",
+      "research_question": "如何利用夜间灯光和人口分布数据将国家尺度化石燃料CO2排放空间分配到全球细网格中？",
+      "hypothesis_or_mechanism": "夜间灯光亮度可以表征有照明区域的经济活动和排放强度，而人口数量可以补充无灯光区域的排放分配。",
+      "variables_and_data_use": "使用DMSP-OLS稳定灯光像元值识别有灯光区域并按亮度分配排放，使用NPP-VIIRS夜间灯光进行影像分析和噪声处理，使用RCP-DMSP-OLS进行比较；使用LandScan population grid分配无灯光区域排放，使用CDIAC提供国家排放总量，并用CARMA估计和扣除电厂排放。",
+      "method_paradigm": "空间排放分配建模",
+      "used_assets": [
+        "NPP-VIIRS nighttime light data",
+        "DMSP-OLS stable light data",
+        "SLP-DMSP-OLS",
+        "RCP-DMSP-OLS",
+        "CDIAC",
+        "CARMA",
+        "LandScan population grid"
+      ],
+      "author_team": [
+        "Jinpei Ou",
+        "Xiaoping Liu",
+        "Xia Li",
+        "Meifang Li",
+        "Wenkai Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Evaluation of NPP-VIIRS Nighttime Light Data for Mapping Global Fossil Fuel Combustion CO2 Emissions: A Comparison with DMSP-OLS Nighttime Light Data",
+        "doi": "10.1371/journal.pone.0138310",
+        "year": 2015,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_11",
+      "research_question": "研究1992年至2013年北京市建成区扩张、空间形态、城市发展重心转移及区际发展均衡的时空变化特征。",
+      "hypothesis_or_mechanism": "持续灯光范围和强度的变化能够反映城市建成区扩张及区域发展水平差异，灯光增长会伴随城市空间重心和内部发展均衡的变化。",
+      "variables_and_data_use": "使用DMSP-OLS夜间稳定灯光数字值提取不同时期建成区，计算扩张速度、扩张强度、扩张类型、重心转移、紧凑度以及各行政区灯光总量和发展均衡指标；使用Beijing Statistical Yearbook确定建成区提取阈值并开展统计比较，使用RCNL进行灯光数据互校准，使用行政边界进行裁剪和分区统计。",
+      "method_paradigm": "夜间灯光变化检测与空间统计",
+      "used_assets": [
+        "version 4 DMSP-OLS nighttime light time data",
+        "DMSP-OLS nighttime stable light (NSL) data",
+        "global radiance calibrated nighttime light (RCNL) dataset",
+        "Beijing Statistical Yearbook",
+        "administrative boundaries of Beijing"
+      ],
+      "author_team": [
+        "Yang Yu-li",
+        "Mingguo Ma",
+        "Xiaobo Zhu",
+        "Wei Ge"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Research on spatial characteristics of metropolis development using nighttime light data: NTL based spatial characteristics of Beijing",
+        "doi": "10.1371/journal.pone.0242663",
+        "year": 2020,
+        "venue": "PLoS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_12",
+      "research_question": "夜间灯光变化与罗马尼亚国家及次国家尺度的经济空间差异之间存在何种关系？",
+      "hypothesis_or_mechanism": "夜间灯光强度越高的区域经济发展水平越高，夜间灯光值与GDP之间存在较强的线性相关关系。",
+      "variables_and_data_use": "使用DMSP-OLS夜间灯光数据的区域灯光强度及其年度均值，分析2000至2013年的时间变化，并将其与官方GDP数据进行统计相关比较；同时根据灯光强度划分亮区和非亮区。",
+      "method_paradigm": "相关分析与空间差异测度",
+      "used_assets": [
+        "DMSP-OLS night-time lights data",
+        "GDP"
+      ],
+      "author_team": [
+        "József Benedek",
+        "Kinga Ivan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "REMOTE SENSING BASED ASSESSMENT OF VARIATION OF SPATIAL DISPARITIES",
+        "doi": "10.21163/gt_2018.131.01",
+        "year": 2018,
+        "venue": "Geographia Technica",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_13",
+      "research_question": "夜间灯光强度与撒哈拉以南非洲国家经济增长之间是否存在长期协整关系和时频动态关系？",
+      "hypothesis_or_mechanism": "经济活动增长会带来夜间灯光增强，而冲突、数据质量和产业结构等因素可能影响两者关系的强度和方向。",
+      "variables_and_data_use": "使用WorldBankDevelopment(\u000b\u0018)indicators中的经济增长指标作为一组时间序列，使用DMSP夜间灯光年度平均强度及其年度增长率作为另一组时间序列，并在国家或第二级行政区层面进行面板协整、误差修正和小波相干分析。",
+      "method_paradigm": "面板协整与小波相干分析",
+      "used_assets": [
+        "\u0018\u0006'-\u0003\u0004",
+        "https://ngdc.noaa.gov/eog/dmsp/downloadV\u0012composites.html",
+        "WorldBankDevelopment(\u000b\u0018)indicators"
+      ],
+      "author_team": [
+        "Nicolene Hamman",
+        "Andrew Phiri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Using Nighttime Luminosity as a Proxy for Economic Growth in Africa: Is It a Bright Idea?",
+        "doi": "10.26493/1854-6935.20.139-165",
+        "year": 2022,
+        "venue": "Managing Global Transitions",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_14",
+      "research_question": "如何利用LSTM模型填补DMSP-OLS夜间灯光时间序列中的缺失值，并预测更早历史时期的夜间灯光？",
+      "hypothesis_or_mechanism": "LSTM能够学习夜间灯光时间序列中的长期非线性依赖关系，从而有效重建缺失年份并预测历史夜间灯光。",
+      "variables_and_data_use": "使用DMSP-OLS夜间灯光DN时间序列作为主要输入，针对1992至2013年的缺失值进行填补，并预测1985至1991年的历史夜间灯光；使用人口、Gross Domestic Product (GDP)和Electric Power Consumption per capita (EPC)数据对重建结果进行外部验证。",
+      "method_paradigm": "深度学习时间序列重建",
+      "used_assets": [
+        "DMSP-OLS",
+        "NTL data",
+        "historic population",
+        "Gross Domestic Product (GDP)",
+        "Electric Power Consumption per capita (EPC)"
+      ],
+      "author_team": [
+        "Nalin Sharma",
+        "Prasun Kumar Gupta",
+        "Prabhakar Alok Verma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Temporal Gap Filling of Nighttime Light Composites",
+        "doi": "10.58825/jog.2025.19.1.152",
+        "year": 2025,
+        "venue": "Journal of Geomatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_15",
+      "research_question": "该论文研究如何利用 DMSP-OLS 与 NPP-VIIRS 夜间灯光数据重建中国县域长期碳排放并分析其时空格局和影响因素。",
+      "hypothesis_or_mechanism": "夜间灯光强度能够反映人类活动和能源消费强度，通过跨传感器一致性校正后可支持长期县域碳排放估算，并可进一步揭示经济社会因素对碳排放的空间作用机制。",
+      "variables_and_data_use": "论文使用 version 4 DMSP-OLS stable light images 的年度稳定灯光 DN、global radiance calibrated nighttime light images、NPP-VIIRS monthly 和 annual nighttime light images，通过 MLP 进行一致性校正并反演县域碳排放；同时使用县级行政区划、能源消费数据以及人口密度、碳强度、产业结构、政府支出和人均 GDP 等统计变量进行空间相关和 STIRPAT 分析。",
+      "method_paradigm": "深度学习空间计量",
+      "used_assets": [
+        "DMSP-OLS nighttime light data",
+        "version 4 DMSP-OLS nighttime light images",
+        "stable light images",
+        "global radiance calibrated nighttime light images",
+        "NPP-VIIRS nighttime light image",
+        "China's county-level administrative regions",
+        "China Energy Statistical Yearbook",
+        "China City Statistical Yearbook"
+      ],
+      "author_team": [
+        "Nina Zhu",
+        "Xue Li",
+        "Sibo Yang",
+        "Yi Ding",
+        "Gang Zeng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatio-temporal dynamics and influencing factors of carbon emissions (1997–2019) at county level in mainland China based on DMSP-OLS and NPP-VIIRS Nighttime Light Datasets",
+        "doi": "10.1016/j.heliyon.2024.e37245",
+        "year": 2024,
+        "venue": "Heliyon",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_16",
+      "research_question": "该论文研究诊断前长期夜间人工照明暴露是否与女性乳腺癌发生风险相关。",
+      "hypothesis_or_mechanism": "假设较高的夜间光照暴露会干扰昼夜节律和相关内分泌过程，从而增加乳腺癌风险。",
+      "variables_and_data_use": "论文使用 DMSP-OLS Nighttime Light Time Series satellite images / Version 4 Defense Meteorological Satellite Program-Operational Linescan System (DMSP-OLS) Nighttime Lights Time Series archive data set 的 1992–2007 年稳定夜间灯光栅格值，将居住地点匹配到年度 LAN 强度，并按诊断前年份平均后分为低、中、高暴露；同时使用 Georgia Comprehensive Cancer Registry 的病例和地址数据，以及人口、吸烟等协变量进行调整。",
+      "method_paradigm": "病例-参照空间暴露评估",
+      "used_assets": [
+        "Georgia Comprehensive Cancer Registry",
+        "DMSP-OLS Nighttime Light Time Series satellite images",
+        "Version 4 Defense Meteorological Satellite Program-Operational Linescan System (DMSP-OLS) Nighttime Lights Time Series archive data set",
+        "American FactFinder data portal",
+        "Behavioral Risk Factor Surveillance System"
+      ],
+      "author_team": [
+        "Sarah E. Bauer",
+        "Sara E. Wagner",
+        "Jim Burch",
+        "Rana A. Bayakly",
+        "John E. Vena"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "A case-referent study: light at night and breast cancer risk in Georgia",
+        "doi": "10.1186/1476-072x-12-23",
+        "year": 2013,
+        "venue": "International Journal of Health Geographics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_17",
+      "research_question": "该论文研究黄河流域 2012–2021 年城市碳排放的时空演变特征及其影响因素。",
+      "hypothesis_or_mechanism": "夜间灯光 DN 与能源消费碳排放存在线性相关关系，因此可用校正后的夜间灯光序列重建城市尺度碳排放，并进一步分析数字经济、技术创新、产业结构和城镇化等因素的影响。",
+      "variables_and_data_use": "论文使用 DMSP-OLS nighttime stable light data 的 0–63 DN 稳定灯光观测作为 2012–2013 年夜间灯光输入，经重投影、重采样、裁剪和校准后，与 NPP-VIIRS nighttime light remote sensing data 建立回归融合关系，构建 2012–2021 年可比夜间灯光序列；再结合能源统计和城市统计年鉴数据估算并验证碳排放，使用社会经济统计变量开展面板分位数回归。",
+      "method_paradigm": "时空重建与面板回归",
+      "used_assets": [
+        "non-radiometrically calibrated DMSP-OLS nighttime stable light data",
+        "DMSP-OLS nighttime light remote sensing data",
+        "NPP-VIIRS nighttime light remote sensing data",
+        "city (state) urban statistical yearbooks",
+        "city (state) national economic and social development statistical bulletins",
+        "China Energy Statistical Yearbook",
+        "China City Statistical Yearbook"
+      ],
+      "author_team": [
+        "Jianhua Liu",
+        "Tianle Shi",
+        "Zhengmeng Hou",
+        "Liangchao Huang",
+        "Lingyu Pu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of spatiotemporal patterns and determinants of energy-related carbon emissions in the Yellow River basin using remote sensing data",
+        "doi": "10.3389/fenrg.2023.1231322",
+        "year": 2023,
+        "venue": "Frontiers in Energy Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_18",
+      "research_question": "该论文研究如何结合遥感 EVI 与社会感知 POI、道路网络数据改进 DMSP-OLS 夜间灯光数据的饱和校正。",
+      "hypothesis_or_mechanism": "城市内部植被、兴趣点和道路网络信息能够补充 DMSP-OLS 饱和区缺失的空间细节，从而提高夜间灯光 DN 与 VIIRS 及社会经济统计量的一致性。",
+      "variables_and_data_use": "论文以 DMSP-OLS NTL 时间序列和原始 DN 为核心观测，构建 EANTLI、VDANTLI 和 PREANTLI 等去饱和指数；使用 NPP/VIIRSdata、Landsat8images、GDP 和 EPC 进行定性或定量验证，并用 EVI、POIs、roadnetwork 作为校正辅助变量。",
+      "method_paradigm": "饱和校正验证",
+      "used_assets": [
+        "DMSP-OLS annual cloudless nighttime light images",
+        "NTL dataset",
+        "NPP/VIIRSdata",
+        "Landsat8images",
+        "EVI",
+        "POIs",
+        "roadnetwork",
+        "GDP",
+        "EPC"
+      ],
+      "author_team": [
+        "Xiaolei Huang",
+        "Kaifang Shi",
+        "Yuanzheng Cui",
+        "Yuanqing Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Saturated Light Correction Method for DMSP-OLS Nighttime Stable Light Data by Remote and Social Sensing Data",
+        "doi": "10.1109/jstars.2021.3049829",
+        "year": 2021,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_19",
+      "research_question": "该论文研究如何改进 DMSP-OLS 夜间灯光影像的 blooming effect 校正，以提升城市区域提取效果。",
+      "hypothesis_or_mechanism": "若在像元亮度交互模型中加入饱和校正并考虑 blooming distance 的空间异质性，则校正后的夜间灯光强度和城市边界会更接近参考数据。",
+      "variables_and_data_use": "论文使用 DMSP-OLS nighttime light images 的灯光强度进行 SEAM、iSEAM 和 Wiener filter 校正，并用校正后的影像提取城市区域；使用 NPP-VIIRS 与 SC_DMSP 的平均灯光强度差异评估校正合理性；使用 GlobalLand30 作为城市区域参考数据计算 F1 score。",
+      "method_paradigm": "影像校正与验证",
+      "used_assets": [
+        "DMSP-OLS",
+        "DMSP-OLS nighttime light images",
+        "SC_DMSP",
+        "NPP-VIIRS",
+        "GlobalLand30"
+      ],
+      "author_team": [
+        "Li Zhuo",
+        "Chenyang Zhang",
+        "Xiaolin Zhu",
+        "Tianhao Huang",
+        "Yang Hu",
+        "Haiyan Tao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "iSEAM: Improving the Blooming Effect Adjustment for DMSP-OLS Nighttime Light Images by Considering Spatial Heterogeneity of Blooming Distance",
+        "doi": "10.1109/jstars.2021.3065399",
+        "year": 2021,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_20",
+      "research_question": "在控制人口特征、社会经济、医疗资源、居住环境和地理气候等混杂因素后，美国县级夜间光照暴露与人口健康指标（预期寿命、年龄和原因特异性死亡率）之间是否存在显著关联",
+      "hypothesis_or_mechanism": "假设在充分调整混杂效应后，夜间光照与人口健康之间不存在显著关联，先前研究的关联可能源于混杂因素控制不足",
+      "variables_and_data_use": "使用DMSP-OLS 1992-2013年稳定光DN值计算县级年平均夜间光照强度作为暴露变量，与2014年县级健康指标（预期寿命、年龄和原因特异性死亡率）及1995-2014年预期寿命变化进行关联分析，并通过逐步回归和变化估计方法识别重要混杂因素",
+      "method_paradigm": "生态学研究 多变量线性回归 混杂因素评估",
+      "used_assets": [
+        "DMSP-OLS Nighttime Lights Time Series (1992-2013)",
+        "IHME county-level health data",
+        "Database of Global Administrative Areas",
+        "US national census and socioeconomic data"
+      ],
+      "author_team": [
+        "Yixi Zhang",
+        "Qiaochu Xu",
+        "Rong Rong",
+        "Bingjie Qu",
+        "Xiang Shi",
+        "Kelvin P. Jordan",
+        "Ying Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Associating nighttime lights with population health, with consideration of environmental and socio-economic confounders",
+        "doi": "10.1186/s12982-025-00972-1",
+        "year": 2025,
+        "venue": "Discover Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_21",
+      "research_question": "该论文研究 2005 至 2020 年新疆能源消费碳排放的时空分布、变化频率、空间集聚及其与经济增长的关系。",
+      "hypothesis_or_mechanism": "夜间灯光总亮度和人口规模能够反映城市能源消费强度，因此可用于估算并解释区域能源碳排放的空间差异和时间变化。",
+      "variables_and_data_use": "论文使用 DMSP/OLS 数据的像元 DN 和总亮度值，并将 NPP/VIIRS nighttime light data 通过年度合成和拟合转换为与 DMSP/OLS 可比的长时间序列；同时使用人口数据和统计碳排放数据建立无截距线性回归模型，再用行政边界汇总和制图分析碳排放空间格局。",
+      "method_paradigm": "遥感回归估算",
+      "used_assets": [
+        "DMSP/OLS data",
+        "NPP/VIIRS data",
+        "NPP/VIIRS nighttime light data",
+        "carbon emissions data",
+        "population data",
+        "administrative vector data"
+      ],
+      "author_team": [
+        "Jie Song",
+        "Xin He",
+        "Fei Zhang",
+        "Weiwei Wang",
+        "Ngai Weng Chan",
+        "Jingchao Shi",
+        "Mou Leong Tan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatio-temporal variations of energy carbon emissions in Xinjiang based on DMSP-OLS and NPP-VIIRS nighttime light remote sensing data",
+        "doi": "10.1371/journal.pone.0312388",
+        "year": 2024,
+        "venue": "PLOS ONE",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_22",
+      "research_question": "研究区1992至2013年的城市建成区空间范围和空间格局如何演变？",
+      "hypothesis_or_mechanism": "夜间稳定灯光灰度值能够有效表征城市建成区，并可通过辅助土地利用和统计数据确定适合不同年份的提取阈值。",
+      "variables_and_data_use": "使用DMSP-OLS年度夜间稳定灯光灰度值提取城市建成区，并使用Landsat series satellite synchronization data进行校正，使用土地利用/覆盖栅格数据和统计年鉴数据确定阈值及验证结果，随后计算景观格局指标和标准差椭圆指标。",
+      "method_paradigm": "阈值提取与空间格局分析",
+      "used_assets": [
+        "DMSP-OLS non-radiation-calibrated night-time stable lighting dataset",
+        "F101992",
+        "F141999",
+        "F162006",
+        "F182013",
+        "Landsat series satellite synchronization data",
+        "land use/coverage grid dataset with a spatial resolution of 1 km in China",
+        "China Urban Statistical Yearbook",
+        "Jiangxi Statistical Yearbook",
+        "statistical yearbooks from other counties and cities within the study area"
+      ],
+      "author_team": [
+        "Yang Zhong",
+        "Aiwen Lin",
+        "Zhigao Zhou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Evolution of the Pattern of Spatial Expansion of Urban Land Use in the Poyang Lake Ecological Economic Zone",
+        "doi": "10.3390/ijerph16010117",
+        "year": 2019,
+        "venue": "International Journal of Environmental Research and Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_23",
+      "research_question": "研究DMSP/OLS与转换后的NPP/VIIRS夜间灯光数据能否有效识别和刻画沈阳市城乡结合部的空间分布及扩张变化。",
+      "hypothesis_or_mechanism": "夜间灯光强度及其局部波动从城市中心向外围呈现规律性变化，将二者结合能够比单一灯光强度更准确地识别城乡结合部。",
+      "variables_and_data_use": "使用2013年的DMSP/OLS数据和2020年的NPP/VIIRS数据；以夜间灯光DN表示灯光强度，以3×3邻域内DN最大值与最小值之差计算灯光波动指数，并通过校准、降噪、幂函数平滑和高斯低通滤波实现两类数据比较，最后采用人口统计、POI和影像资料进行验证。",
+      "method_paradigm": "遥感分类与变化检测",
+      "used_assets": [
+        "DMSP/OLS data",
+        "NPP/VIIRS data",
+        "calibrated DMSP",
+        "simulated VIIRS",
+        "China County Statistical Yearbook—County and City Volume",
+        "China County Statistical Yearbook—Township Volume",
+        "POI",
+        "Google Earth images"
+      ],
+      "author_team": [
+        "Tianyi Zeng",
+        "Hong Jin",
+        "Zhifei Geng",
+        "Zihang Kang",
+        "Zichen Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Urban–Rural Fringe Long-Term Sequence Monitoring Based on a Comparative Study on DMSP-OLS and NPP-VIIRS Nighttime Light Data: A Case Study of Shenyang, China",
+        "doi": "10.3390/ijerph191811835",
+        "year": 2022,
+        "venue": "International Journal of Environmental Research and Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ntl_ref_24",
+      "research_question": "如何改进DMSP-OLS和VIIRS夜间灯光数据的处理模型，以更准确地利用夜间灯光估计斯里兰卡GDP？",
+      "hypothesis_or_mechanism": "经过针对斯里兰卡情境的校准、去噪、年内和年际校正以及DMSP-OLS与VIIRS协调处理后，夜间灯光指标与GDP之间的关系能够得到更准确的估计。",
+      "variables_and_data_use": "使用DMSP-OLS稳定灯光数字量化值、总亮像元数和数字量化值总和，并使用VIIRS月度夜间辐射数据生成年度合成和DMSP-like数据；以官方或公开发布的年度名义GDP作为目标变量，比较线性和非线性回归关系。",
+      "method_paradigm": "遥感数据校正与回归建模",
+      "used_assets": [
+        "DMSP-OLS NTL",
+        "DMSP-OLS nighttime light imagery",
+        "stable lights dataset",
+        "Visible Infrared Imaging Radiometer Suite (VIIRS) image data",
+        "published nominal GDP data from CountryEconomy.com (2024)"
+      ],
+      "author_team": [
+        "E. H. G. C. Pathmasiri",
+        "B. M. Sumanaratne"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Predicting Gross Domestic Product of Sri Lanka Using Nighttime Light Data",
+        "doi": "10.4038/sljer.v12i2.239",
+        "year": 2025,
+        "venue": "Sri Lanka Journal of Economic Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 24,
+    "source_paper_count": 24,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

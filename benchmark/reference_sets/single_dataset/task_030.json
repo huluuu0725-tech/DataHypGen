@@ -1,0 +1,1973 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_030",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Landsat Collection 2 Tier 1 Level 2 Annual NDVI Composite",
+    "spatial_coverage": {
+      "region_name": "Greater Khingan Mountains, China",
+      "coverage": "Global land coverage at 30 m, including the boreal forest, wetland and cold-temperate terrain of the Greater Khingan Mountains in northeastern China"
+    },
+    "temporal_coverage": "1984 to 2026, one image per year",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Annual composite",
+    "analytical_capabilities": [
+      "Vegetation greenness monitoring at the scale of individual forest stands and land parcels",
+      "Multi-decadal interannual vegetation trend analysis on a fixed annual step",
+      "Vegetation disturbance and recovery detection at 30 m",
+      "Stratification of vegetation state by elevation belt, slope class, aspect, or land-cover type",
+      "Association analysis against coarser gridded climate variables after resampling"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI as a dimensionless index ranging from -1.0 to 1.0",
+      "runtime_hint": "Use the single `NDVI` band directly; values are already physical and carry no scale factor. Each image composites every scene acquired in that calendar year, keeping the most recent valid pixel, so a year with sparse cloud-free coverage may be represented by observations from an unrepresentative season. Check per-year image availability over the area of interest before building trend series, and note that the annual step means within-year phenology is not recoverable."
+    },
+    "data_source": "USGS, derived from Landsat Collection 2 Tier 1 Level 2 surface reflectance",
+    "gee_asset": {
+      "id": "LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_030.json",
+    "source_sha256": "7426e29f680a6c2dc893c9258d84d612e4ddbb4c165bf2191bfbbf9c0f3e9503",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_030/prompt.json",
+    "current_prompt_sha256": "bf7b4b35fc05f7f94003ec3a01f62f0adee0d38242cae0b3f3c5fe45ff1f634c",
+    "original_anchor_asset": {
+      "id": "LANDSAT/COMPOSITES/C02/T1_L2_ANNUAL_NDVI",
+      "observable_group": "landsat_30m_annual_ndvi_composite",
+      "observation_identity_contract": {
+        "physical_object": "spectral vegetation greenness",
+        "source_lineage": "Landsat multispectral surface-reflectance observation lineage",
+        "core_measurement_semantics": "NDVI computed from Landsat red and near-infrared surface-reflectance observations",
+        "non_material_variations": "Landsat sensor generation, annual composition method, archive, reprojection, grid or temporal aggregation retaining Landsat-derived NDVI",
+        "material_mismatches": "MODIS/AVHRR/other-sensor NDVI or Landsat analyses that do not operationally derive or use NDVI"
+      },
+      "asset_alias_policy": "Landsat Collection 2 Tier 1 Level 2 annual 30 m NDVI composites are admitted, as are annual 30 m NDVI series computed directly from Landsat Collection 2 surface reflectance; MODIS MOD13/MYD13 tiers, GIMMS, SPOT VEGETATION and PROBA-V vegetation indices are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other vegetation-index products. A study comparing sensors is admissible as long as an annual 30 m Landsat NDVI surface is itself operationally processed.",
+      "substituted_for": {
+        "paper_used": "Annual 30 m NDVI over 2001-2020 from the National Ecosystem Science Data Center of the Chinese National Science and Technology Infrastructure",
+        "reason": "The Earth Engine catalog publishes no Chinese national NDVI collection. The NESDC 30 m annual product is distributed only through its own portal.",
+        "why_this_substitute": "The Landsat Collection 2 annual NDVI composite matches the source on all three defining properties at once: 30 m pixel size, annual time step, and a record spanning 2001-2020. Both series are ultimately Landsat-derived at the same resolution, so the observable identity is preserved.",
+        "rejected_alternatives": {
+          "MODIS/061/MOD13Q1": "the former anchor: 250 m and 16-day, matching neither the resolution nor the annual step, and far too coarse for the 30 m terrain stratification the source performs",
+          "NASA/GIMMS/3GV0": "9.3 km, three orders of magnitude coarser than the source grid",
+          "LANDSAT/COMPOSITES/C02/T1_L2_32DAY_NDVI": "30 m but 32-day; the source works on annual values, so an annual composite is the closer construction",
+          "LANDSAT/LC08/C02/T1_L2": "surface reflectance rather than a published NDVI series, and Landsat 8 alone starts in 2013, so 2001-2012 would need separate Landsat 5 and 7 handling"
+        },
+        "residual_gap": "The catalog composite takes the most recent valid pixel of each year, whereas the source product is a national annual NDVI dataset whose compositing rule is defined by its own producer. Annual values are therefore not numerically interchangeable, only comparable in resolution and time step.",
+        "review_date": "2026-08-28"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "Where are subtropical chir-pine forests most vulnerable to wildfire? Task transfer scope: assess the same question for Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "hypothesis_or_mechanism": "Vegetation condition interacts with terrain, climate, and human access to shape ignition and fire-spread susceptibility. Task mechanism condition: interpret the mechanism under Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are combined with terrain, climate, infrastructure, and fire observations. Task operationalization: use the anchor asset and task-specific covariates needed to represent Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "method_paradigm": "Machine-learning fire-vulnerability mapping with predictor importance and validation. Task evaluation frame: stratify, compare, or validate results against the constraints of Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "terrain and climate",
+        "human-access and fire data"
+      ],
+      "author_team": [
+        "Sultan Muhammad",
+        "Syed Moazzam Nizami",
+        "Qunou Jiang",
+        "Kaleem Mehmood",
+        "M. Hussain",
+        "Shoaib Ahmad Anees",
+        "Fahad Shahzad",
+        "Waseem Razzaq Khan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning-based forest fire vulnerability assessment in subtropical chir pine forests of Pakistan",
+        "doi": "10.1186/s42408-025-00408-w",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "Where is land productivity declining along the Great Green Wall, and how much change is attributable to human restoration or degradation? Task transfer scope: assess the same question for Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "hypothesis_or_mechanism": "Climate-adjusted vegetation productivity residuals separate human-associated departures from environmentally expected trends. Task mechanism condition: interpret the mechanism under Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation time series are analyzed with climate, land-cover, and restoration information. Task operationalization: use the anchor asset and task-specific covariates needed to represent Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "method_paradigm": "Land-productivity trend assessment with human-versus-climate attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate",
+        "land management and land cover"
+      ],
+      "author_team": [
+        "Yubo Zhi",
+        "Xiaosong Li",
+        "Tong Shen",
+        "Graciela Metternicht",
+        "Anne Grainger",
+        "Yude Pan",
+        "Qi Lu",
+        "Amos T. Kabo–bah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Land productivity declines in the GGW while human contributions to restoration far outweighing degradation",
+        "doi": "10.1038/s41598-025-18963-2",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "How does vegetation respond to interacting climate factors after removing long-term and temporal confounding? Task transfer scope: assess the same question for Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "hypothesis_or_mechanism": "Climate-trend and residual-trend decomposition distinguishes direct climatic response from persistent residual vegetation change. Task mechanism condition: interpret the mechanism under Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are analyzed with four climate factors using CTSS-RESTREND. Task operationalization: use the anchor asset and task-specific covariates needed to represent Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "method_paradigm": "Climate time-series decomposition and residual trend attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate variables"
+      ],
+      "author_team": [
+        "Baihui Hao",
+        "Songlin Ding",
+        "Zhengfang Wu",
+        "Z. Ruan",
+        "Li Mai",
+        "Yaning Kuang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of vegetation response to four climate factors based on the CTSS-RESTREND method",
+        "doi": "10.1007/s13762-025-06527-w",
+        "year": 2025,
+        "venue": "International Journal of Environmental Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "Greater Khingan cold-region NDVI variation under terrain, climate, and land-use controls",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究如何结合 PALSAR-2 与 Landsat 年度时序 NDVI 等信息生成 2015–2017 年年度森林和常绿森林地图，并与现有森林产品及清查数据比较。",
+      "hypothesis_or_mechanism": "Landsat 光学植被指数可识别绿色植被并减少 PALSAR-2 森林识别中的岩石、建筑等误分，而 PALSAR-2 后向散射可补充森林结构信息，因此二者结合能提升森林制图能力。",
+      "variables_and_data_use": "论文使用 Landsat-7 ETM+ 和 Landsat-8 OLI surface reflectance images 计算 NDVI、EVI、LSWI，并生成年度 maximum NDVI layers，用 NDVImax>0.7 掩膜提取绿色植被，再与 PALSAR-2 阈值分类得到的森林图叠加生成年度 PL-Forest maps；同时使用 LSWI 和 EVI 的年度时序特征提取常绿森林。",
+      "method_paradigm": "多源遥感分类",
+      "used_assets": [
+        "Landsat-7 Enhanced Thematic Mapper (ETM+) surface reflectance (SR) images",
+        "Landsat-8 Operational Land Imager (OLI) surface reflectance (SR) images",
+        "Landsat time series Normalized Difference Vegetation Index (NDVI) data",
+        "PALSAR-2 data",
+        "PL-Forest maps"
+      ],
+      "author_team": [
+        "Jie Wang",
+        "Xiangming Xiao",
+        "Yuanwei Qin",
+        "Jinwei Dong",
+        "Geli Zhang",
+        "Xuebin Yang",
+        "Xiaocui Wu",
+        "Chandrashekhar Biradar",
+        "Yang Hu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Annual maps of forest and evergreen forest in the contiguous United States during 2015–2017 from analyses of PALSAR-2 and Landsat images",
+        "doi": "10.5194/essd-16-4619-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "如何通过机器学习方法将AVHRR NDVI与MODIS NDVI进行校准与融合，以构建澳大利亚地区高质量、无间断的长时序植被监测数据集？",
+      "hypothesis_or_mechanism": "利用梯度提升决策树结合气候与几何协变量，可以有效校正AVHRR传感器的系统偏差，使其在辐射计量和时空变率上与MODIS NDVI保持一致。",
+      "variables_and_data_use": "使用Landsat地表反射率计算NDVI作为独立验证基准；以NOAA AVHRR NDVI为输入，MODIS MCD43A4 NDVI为目标变量，结合太阳天顶角、降雨、温度等气候特征训练GBM模型进行校准、谐波对齐与缺失值插补。",
+      "method_paradigm": "机器学习校准与数据融合",
+      "used_assets": [
+        "DEA Landsat NBAR",
+        "NOAA NDVI CDR",
+        "MODIS MCD43A4",
+        "AusENDVI-clim",
+        "AusENDVI-noclim"
+      ],
+      "author_team": [
+        "Chad A. Burton",
+        "Sami W. Rifai",
+        "Luigi J. Renzullo",
+        "Albert I. J. M. Van Dijk"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Dual-model initial admission; final uncertainty caused by quote-guard downgrade",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing long-term vegetation monitoring in Australia: a new approach for harmonising the Advanced Very High Resolution Radiometer normalised-difference vegetation index (NDVI) with MODIS NDVI",
+        "doi": "10.5194/essd-16-4389-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究比较集成机器学习模型与基于 Google Earth Engine 的规则型方法在数据稀缺条件下进行洪水易感性制图的表现和适用性。",
+      "hypothesis_or_mechanism": "洪水易感性由地形、降雨、土地覆盖、土壤、排水和植被湿度等环境条件共同控制，结合多源环境变量的集成模型能够识别非线性关系并提高预测稳定性。",
+      "variables_and_data_use": "研究使用 Landsat 8 地表反射率计算 NDVI 和 NDWI，并将 NDVI 用于植被活力及洪水易感性分级；使用 SRTM 派生高程、坡度和地形位置指数，使用 Global Surface Water 生成永久水体掩膜及距离水体变量，使用 WorldClim 降雨、FAO soil portal 土壤、土地覆盖和排水密度等变量进行洪水易感性建模与规则评分。",
+      "method_paradigm": "机器学习与规则型决策支持",
+      "used_assets": [
+        "ee.ImageCollection(“LANDSAT/LC08/C02/T1_L2”",
+        "Landsat 8",
+        "SRTM (Shuttle Radar Topography Mission)",
+        "FAO soil portal",
+        "Worldclim.org",
+        "GSW JRC/GSW1_4/GlobalSurfaceWater",
+        "GPS"
+      ],
+      "author_team": [
+        "Nilotpal Kalita",
+        "Manash Jyoti Nath",
+        "Satyendra Hazarika"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Comparative assessment of ensemble machine learning and Google Earth Engine for flood susceptibility mapping in the Dipota River Basin, Assam, India",
+        "doi": "10.1007/s44288-026-00638-8",
+        "year": 2026,
+        "venue": "Discover Geoscience",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "研究如何利用 Landsat 光谱时间序列和国家森林清查样地数据，在 30 m 分辨率上对加拿大植被结构和组成属性进行空间化制图并评估其精度。",
+      "hypothesis_or_mechanism": "Landsat 地表反射率及其 NDVI 等光谱指数能够捕捉植被冠层和土地覆盖的空间差异，并结合局部 kNN-RF 模型提高森林属性空间插补的准确性与区域一致性。",
+      "variables_and_data_use": "研究使用 Landsat 1985-2020 年年度夏季镶嵌影像及由其计算的 NDVI、NBR 和 Tasseled Cap 等指数作为主要预测变量，同时加入冬季 Landsat 镶嵌、MOD10A1 积雪变量、气候、地形、扰动和土地利用变量；以 NFI photo-plots 及其冠层闭合度、树种组成、生物量、树高等属性作为训练目标，并用 GEDI、机载 LiDAR 和地面样地进行验证。",
+      "method_paradigm": "空间化机器学习制图",
+      "used_assets": [
+        "Landsat time series",
+        "Collection 1, Tier 1 Landsat 5, 7 and 8 surface reflectance images",
+        "Normalized Difference Vegetation Index (NDVI)",
+        "Normalized Burn Ratio (NBR)",
+        "Tasseled Cap (TC) indices",
+        "MOD10A1 MODIS product",
+        "McKenney et al. (2011)",
+        "Aster elevation measurements",
+        "CanLaD",
+        "Agriculture and Agri-Food Canada (AAFC) land use time series map",
+        "NFI T1 2x2km photo-plots",
+        "Global Forest Change Product",
+        "Global Ecosystems Dynamic Investigation (GEDI)",
+        "Quebec airborne LiDAR coverage",
+        "NFI ground plot dataset",
+        "permanent sample plot dataset of the Quebec Ministry of Forest, Fauna and Parks (MFFP)",
+        "European Space Agency’s Biomass Climate Change Initiative (ESA CCI)"
+      ],
+      "author_team": [
+        "Luc Guindon",
+        "Francis Manka",
+        "David L.P. Correia",
+        "Philippe Villemaire",
+        "Byron Smiley",
+        "Pierre Bernier",
+        "Sylvie Gauthier",
+        "André Beaudoin",
+        "Jonathan Boucher",
+        "Yan Boulanger"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A new approach for spatializing the Canadian National Forest Inventory (SCANFI) using Landsat dense time series",
+        "doi": "10.1139/cjfr-2023-0118",
+        "year": 2024,
+        "venue": "Canadian Journal of Forest Research",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "研究问题是频率比和逻辑回归模型在 Khudi Watershed 滑坡易感性制图中的表现及主要影响因子是什么。",
+      "hypothesis_or_mechanism": "地形、地质、土壤、降雨、土地覆盖和 Landsat-derived NDVI 等环境因子共同影响滑坡发生，其中逻辑回归能够比频率比更有效地整合这些因子并预测滑坡易感性。",
+      "variables_and_data_use": "研究使用 ALOS PALSAR DEM 派生高程、坡度、坡向、曲率、TWI、SPI 和距河流距离，使用 Landsat-9 image (11 Nov 2021) 的红光和近红外地表反射率计算 NDVI，使用 ICIMOD Regional Database System (RDS) 土地覆盖、地质图、土壤图、道路网络和地面降雨数据构建其他预测因子，并以滑坡清单作为响应和验证数据。",
+      "method_paradigm": "滑坡易感性决策支持",
+      "used_assets": [
+        "ALOS PALSAR DEM (12.5 m resolution, 2008)",
+        "Google Earth Pro",
+        "Landsat 8 (2013–2019)",
+        "Landsat 9 (2020)",
+        "Sentinel-2",
+        "Landsat-9 image (11 Nov 2021)",
+        "30 m national dataset (2019)",
+        "ICIMOD Regional Database System (RDS)",
+        "Geological Map of the Gandaki Province (2020)",
+        "geological map of central Nepal",
+        "Soil and Terrain Database (SOTER)",
+        "Nepal Agricultural Research Council (NARC)",
+        "Department of Hydrology and Meteorology (DHM)",
+        "Open Street Map",
+        "Department of Survey, Government of Nepal (1992)"
+      ],
+      "author_team": [
+        "Shudarshan Hamal",
+        "Susmita Dhakal",
+        "Binita Shahi",
+        "Padam Bahadur Budha",
+        "Wafa Saleh Alkhuraiji",
+        "Mohamed Zhran"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Assessing landslide susceptibility using frequency ratio and logistic regression models in the Khudi Watershed",
+        "doi": "10.1186/s40562-026-00467-0",
+        "year": 2026,
+        "venue": "Geoscience Letters",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究火灾后不同火灾严重程度区域的生态环境损失及其恢复状况如何变化。",
+      "hypothesis_or_mechanism": "火灾通过破坏植被、改变地表湿度、增加地表热量和裸地程度降低RSEI，而受损生态系统会在随后数年表现出不同程度和速率的恢复。",
+      "variables_and_data_use": "使用Landsat 8 OLI Collection 2 Level 2地表反射率计算NDVI、WET和NDBSI，并使用同一数据源的地表温度构建LST；将四项指标经归一化和主成分分析合成为RSEI，再结合火灾前后RSEI差异和四年平均年化恢复率评价生态损失与恢复。使用DEM和土地利用数据提供空间背景，并使用Sentinel-2 imagery进行烧毁区域分类验证。",
+      "method_paradigm": "遥感指数综合与变化评估",
+      "used_assets": [
+        "land use datasets",
+        "DEM",
+        "Landsat 8 OLI",
+        "Landsat 8 OLI Collection 2 Level 2 datasets",
+        "Sentinel-2 imagery",
+        "Normalized Difference Vegetation Index (NDVI)",
+        "Remote Sensing Ecological Index (RSEI)"
+      ],
+      "author_team": [
+        "Chuan Luo",
+        "Xin Su",
+        "Haitao Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Forest fire burned area extraction and evaluation of post-fire ecological restoration based on remote sensing technology",
+        "doi": "10.3389/fenvs.2026.1882685",
+        "year": 2026,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "研究 2000—2024 年间多尺度干旱及其滞后效应如何影响 Jebel Marra 地区的植被绿度、植被变化趋势和植被突变。",
+      "hypothesis_or_mechanism": "短期水分亏缺对植被绿度的影响更强，并可能因植被对水分胁迫的滞后响应而在数月后达到最大，同时持续干旱可能触发植被状态突变。",
+      "variables_and_data_use": "使用 Landsat Collection 2 地表反射率计算月度 NDVI，并构建 NDVI 异常、平滑序列和长期趋势；使用 CHIRPS 降水与 ERA5-Land 潜在蒸散发计算 SPEI-3、SPEI-6 和 SPEI-12，再通过相关分析、滞后相关、干旱分级比较和 BFAST 检验植被对干旱的响应及 regime shifts。",
+      "method_paradigm": "遥感时间序列关系机制分析",
+      "used_assets": [
+        "Landsat Collection 2 Surface Reflectance products",
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 7 Enhanced Thematic Mapper Plus (ETM+)",
+        "Landsat 8 Operational Land Imager (OLI)",
+        "CHIRPS",
+        "ERA5-Land Monthly Aggregated reanalysis product"
+      ],
+      "author_team": [
+        "Abdalrahman Ahmed",
+        "Kornel Czimber"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Multi-scale drought-vegetation relationships in the Jebel Marra Highlands, Sudan: evidence from Landsat NDVI time series, SPEI, and BFAST analysis",
+        "doi": "10.3389/ffgc.2026.1879552",
+        "year": 2026,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "论文研究新疆荒漠地区不同植被指数驱动的像元二分模型能否准确反演并揭示2016—2025年春季植被覆盖度的时空变化。",
+      "hypothesis_or_mechanism": "在稀疏植被和高反射率裸土背景下，利用年度Landsat地表反射率计算的NDVI、MSAVI和EVI并结合动态端元能够改善植被覆盖度反演，其中MSAVI和EVI可能减弱土壤背景干扰或NDVI饱和效应。",
+      "variables_and_data_use": "使用Landsat 8 OLI地表反射率影像，经过云和云影掩膜及每年5月至6月中位数合成后计算NDVI、MSAVI和EVI；以各年度植被指数的5%和95%分位数确定裸土和植被端元，反演FVC并分析其趋势、变异性和与2025年地面测量FVC的吻合程度；另使用National Cryosphere Desert Data Center的沙漠分布数据界定研究背景，并使用无人机和样地调查获得验证数据。",
+      "method_paradigm": "遥感反演与变化检测",
+      "used_assets": [
+        "Landsat 8 OLI surface reflectance data",
+        "National Cryosphere Desert Data Center",
+        "Google Earth Engine (GEE)",
+        "field-measured FVC data"
+      ],
+      "author_team": [
+        "Huihui Xin",
+        "Aierken Dawuti",
+        "Yifulayin Yusufu",
+        "Jibing Yu",
+        "Didaer Dawulietibieke",
+        "Lingyu Song",
+        "Yuehan Liu",
+        "Yunling Zhang",
+        "Songmei Ma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Multi-index assessment and spatiotemporal dynamics of vegetation cover in desert regions of Xinjiang based on pixel binary models",
+        "doi": "10.3389/frsen.2026.1840277",
+        "year": 2026,
+        "venue": "Frontiers in Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "铁路基础设施对哈萨克斯坦北部沿线景观结构与植被覆盖产生了何种人为影响？",
+      "hypothesis_or_mechanism": "铁路建设及其缓冲区内的土地利用变化会显著改变局部植被分布格局，且受温度、降水和高程等自然因子的共同驱动。",
+      "variables_and_data_use": "使用Landsat C2 L2地表反射率数据计算NDVI作为植被状态指标，结合WorldClim温湿度降水数据和DEM高程数据作为回归分析的自变量。",
+      "method_paradigm": "遥感时序分析与空间缓冲回归",
+      "used_assets": [
+        "Landsat 4-5 TM C2L2",
+        "Landsat 8-9 OLI/TIRS C2L2",
+        "NDVI",
+        "WorldClim",
+        "DEM"
+      ],
+      "author_team": [
+        "Balgyn Ashimova",
+        "Raikhan Beisenova",
+        "Ignacio Menéndez-Pidal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessing Long-Term Land-Cover Dynamics Along the Presnogorkovskaya–Zhanaesil Railway Corridor (1985–2024), Kazakhstan: A Landsat NDVI Buffer-Gradient Approach for Sustainable Rail Infrastructure",
+        "doi": "10.3390/su17209278",
+        "year": 2025,
+        "venue": "Sustainability",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究Ardahan和Kars地区长期植被覆盖变化及其与干旱和湖泊面积变化之间的关系。",
+      "hypothesis_or_mechanism": "降水减少、气候变暖和干旱会导致植被覆盖下降，并可能与湖泊面积及水文变化共同反映区域水文气候变化。",
+      "variables_and_data_use": "使用Landsat 7、Landsat 8 Collection 2 Level-2 (30 m)和Sentinel-2影像计算NDVI与NDWI，分别表征植被状况和水体状况；对云影进行掩膜并筛选低云量月份，形成年度序列，再与湖泊面积进行相关、趋势和滞后交叉相关分析。",
+      "method_paradigm": "遥感时序与统计关系分析",
+      "used_assets": [
+        "Landsat 7",
+        "Landsat 8 Collection 2 Level-2 (30 m)",
+        "Sentinel-2"
+      ],
+      "author_team": [
+        "Cansu Bozkurt",
+        "Burak Çırağ"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Assessment of Long Term Surface Water and Vegetation Changes in Lake Çıldır Using NDVI and NDWI Time Series",
+        "doi": "10.46810/tdfd.1918929",
+        "year": 2026,
+        "venue": "Türk Doğa ve Fen Dergisi",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "Nazinon watershed 在 2006、2015 和 2025 年之间的植被覆盖和植被密度如何变化？",
+      "hypothesis_or_mechanism": "不同年份 Landsat NDVI 的空间和数值差异能够反映研究区植被覆盖与植被活力的时空变化。",
+      "variables_and_data_use": "使用 Landsat Collection 2 Surface Reflectance products 的红光和近红外波段计算 NDVI，并将各年份 NDVI 图叠加、分类为无植被或水体、裸地或城市、稀疏、中等和茂密植被等级；DEM 用于划定流域空间范围。",
+      "method_paradigm": "时序变化检测",
+      "used_assets": [
+        "Landsat scenes",
+        "Collection 2 Surface Reflectance products",
+        "Landsat 5 TM",
+        "Landsat 7 ETM+",
+        "Landsat 8/9 OLI",
+        "Digital Elevation Model (DEM)"
+      ],
+      "author_team": [
+        "KAFANDO Halidou",
+        "KOUETA T. Roland",
+        "SAWADOGO Abdoulaye"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "SPATIOTEMPORAL DYNAMICS OF VEGETATION COVER IN THE NAZINON WATERSHED: EVIDENCE FROM LANDSAT NDVI MULTIDATE ANALYSIS (2006, 2015 AND 2025)",
+        "doi": "10.51193/ijaer.2026.12316",
+        "year": 2026,
+        "venue": "International Journal of Agriculture and Environmental Research",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "2015 至 2023 年间 Yobe State 大绿墙区域的植被和木本植被覆盖如何变化？",
+      "hypothesis_or_mechanism": "气候变化、过度放牧、土地开垦和水资源短缺等因素会造成大绿墙区域植被覆盖的时期间波动和退化。",
+      "variables_and_data_use": "研究使用 Landsat 8 (OLI) 的红光和近红外表面反射率波段计算 NDVI，将影像拼接并裁剪至研究区，再依据 NDVI 阈值提取植被和木本植被区域，并比较 2015、2017、2019、2021 和 2023 年的覆盖面积变化。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Landsat 8 (OLI)",
+        "USGS Earth Explorer",
+        "LC08_L2SP_186051_20150409_20200909_02_T1_SR_B4.TIF",
+        "LC08_L2SP_188051_20150423_20200909_02_T1_SR_B5.TIF",
+        "LC08_L2SP_186051_20170430_20200904_02_T1_SR_B4.TIF",
+        "LC08_L2SP_186051_20170430_20200904_02_T1_SR_B5.TIF",
+        "LC08_L2SP_186051_20190404_20200829_02_T1_SR_B4.TIF",
+        "LC08_L2SP_186051_20190404_20200829_02_T1_SR_B5.TIF",
+        "LC08_L2SP_186051_20210527_20210607_02_T1_SR_B4.TIF",
+        "LC08_L2SP_186051_20210527_20210607_02_T1_SR_B5.TIF",
+        "LC08_L2SP_188051_20230413_20230421_02_T1_SR_B4.TIF",
+        "LC08_L2SP_188051_20230413_20230421_02_T1_SR_B5.TIF"
+      ],
+      "author_team": [
+        "Isa Zumo Muhammad",
+        "Babagana Boso"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "manual single_dataset/task_030 Landsat C2/L2 or surface-reflectance NDVI admission after non-quote downgrade review; original machine files unchanged",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Evaluating the Dynamics of Vegetation Cover Along the Great Green Wall in Yobe State, Nigeria Using NDVI Analysis",
+        "doi": "10.56919/usci.2541.026",
+        "year": 2025,
+        "venue": "UMYU Scientifica",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_task031_landsat_other_downgrade_review",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "西班牙国家公园网络中不同自然植被系统的长期植被绿度趋势如何变化，并且这种变化是否随地形、季节和生物气候分区而异？",
+      "hypothesis_or_mechanism": "地形、太阳辐射暴露、海拔和局地气候条件会调节不同植被系统的长期绿化趋势及其季节差异。",
+      "variables_and_data_use": "论文使用 Landsat 5、Landsat 7 和 Landsat 8 的地表反射率影像，经过云和阴影掩膜、跨传感器协调、BRDF 校正、地形校正和 30 m 月度 medoid 合成后，计算 NDVI、SAVI、kNDVI 和 NDMI，并对其进行缺失值填补和趋势分析；同时使用 MDT25 推导高程、坡度和坡向，用于校正及地形分组分析。",
+      "method_paradigm": "遥感时间序列变化检测",
+      "used_assets": [
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat 8",
+        "Landsat Surface Reflectance Level 2, Tier 1, Collection 2",
+        "Spain’s 25-m resolution Digital Terrain Model (MDT25)"
+      ],
+      "author_team": [
+        "Magí Franquesa",
+        "Maria Adell-Michavila",
+        "Sergio M. Vicente-Serrano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Long-term vegetation dynamics in Spain’s National Park Network: insights from remote sensing data",
+        "doi": "10.1007/s10661-025-14233-w",
+        "year": 2025,
+        "venue": "Environmental Monitoring and Assessment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究探讨大阪城市形态和植被指标如何影响地表温度，以及这些指标能否用于预测城市区域的地表温度空间分布。",
+      "hypothesis_or_mechanism": "较高的植被绿度和植被覆盖比例通过增强城市绿化冷却作用降低地表温度，而建筑密度可能增强热量蓄积和城市热环境效应。",
+      "variables_and_data_use": "研究使用 Landsat 9 Collection 2 Level-2 的 Band 4 和 Band 5 地表反射率计算 NDVI_mean，并依据 NDVI 阈值计算 VegFrac；同时从 ST_B10 获取地表温度，并结合 OpenStreetMap 建筑足迹计算 BCR 和 BADR，之后将变量聚合到 100 m 网格并用于相关分析、线性回归和机器学习预测。",
+      "method_paradigm": "空间关系分析与机器学习预测",
+      "used_assets": [
+        "Landsat 9 Collection 2 Level-2",
+        "OpenStreetMap",
+        "Geofabrik"
+      ],
+      "author_team": [
+        "Xiong Xiao",
+        "Yasuhiro Shimazaki",
+        "Marko Bizjak",
+        "Zhichao Jiao",
+        "Jiale Chai",
+        "Xiangfei Kong",
+        "Yafeng Gao",
+        "Gangyi Tan",
+        "Yan Ding",
+        "Zhe Tian",
+        "Da Yan",
+        "Jihui Yuan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Machine learning modeling of vegetation and limited two dimensional urban morphology effects on land surface temperature in Osaka using open data",
+        "doi": "10.1038/s41598-026-49813-4",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究Landsat派生NDVI能否用于估算森林种植群落的地上植物量，并识别1991年至2020年植被状况的变化。",
+      "hypothesis_or_mechanism": "NDVI与地上植物量存在稳定关系，因此可以通过指数方程依据NDVI估算地上植物量并检测其长期下降区域。",
+      "variables_and_data_use": "使用经处理的Landsat-5和Landsat-8影像计算1991年和2020年的NDVI，将NDVI作为估算地上植物量的解释变量；使用现场调查的地上植物量作为验证和建模数据，并据此制作地上植物量专题图。",
+      "method_paradigm": "遥感估算与变化检测",
+      "used_assets": [
+        "processed Landsat-5 images",
+        "Landsat-8 images",
+        "phytomass data obtained by the onsite surveying method"
+      ],
+      "author_team": [
+        "Maria Martynova",
+        "Aydar Gabdelkhakov",
+        "Georgy Odintsov",
+        "Zagir Rakhmatullin",
+        "Aisuak Khismatullin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Estimation of the above-ground phytomass dynamics in small-leaved linden plantations using multi-time Landsat images (forest case study from the Republic of Bashkortostan)",
+        "doi": "10.1051/e3sconf/202453901031",
+        "year": 2024,
+        "venue": "E3S Web of Conferences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "如何利用 FOSS GIS 软件和 Landsat、MODIS NDVI 数据融合方法生成具有较高时间分辨率的 Landsat 空间分辨率 NDVI？",
+      "hypothesis_or_mechanism": "如果将具有细空间分辨率的 Landsat NDVI 与具有高时间分辨率的 MODIS NDVI 通过 STARFM 融合，则可以生成兼具 Landsat 空间细节和较高时间分辨率的合成 NDVI。",
+      "variables_and_data_use": "研究使用 Landsat 8 OLI 30 m 影像的红光 Band 4 和近红外 Band 5 计算 Landsat NDVI，并使用 MODIS NDVI ver.006 16 天 250 m 合成影像作为高时间分辨率预测变量；Landsat NDVI 和 MODIS NDVI 被输入 STARFM 生成合成 Landsat NDVI，并与实际 Landsat NDVI 比较计算 RMSE 和 Pearson 相关系数。",
+      "method_paradigm": "时空数据融合",
+      "used_assets": [
+        "Landsat 8 OLI 30m spatial resolution",
+        "MODIS NDVI ver.006 16 days composite image 250m spatial resolution (MOD/MYD13Q1)",
+        "Landsat 8 OLI NDVI",
+        "MODIS NDVI"
+      ],
+      "author_team": [
+        "A. Rustanto",
+        "M.J. Booij",
+        "N.S. Rahatiningtyas"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "An integrated method to develop high temporal Landsat NDVI using free and open-source software (FOSS) GIS application",
+        "doi": "10.1088/1755-1315/1291/1/012014",
+        "year": 2024,
+        "venue": "IOP Conference Series: Earth and Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "1990至2024年间植被覆盖如何发生时空变化，以及这些变化与降雨趋势存在何种关系？",
+      "hypothesis_or_mechanism": "植被覆盖和归一化植被指数较低的区域具有较低的平均降雨量，长期降雨变化可能解释部分植被覆盖变化。",
+      "variables_and_data_use": "使用Landsat 5TM、Landsat 8 OLI和Landsat collection two level two的30米红光与近红外观测计算归一化植被指数、划分植被覆盖并进行跨年份变化检测；使用Climate Hazards Group Infrared Rainfall with Stations (CHIRPS)月度降雨序列开展趋势与相关分析；使用Google Earth points进行分类精度验证。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "Landsat 5TM",
+        "Landsat 8 OLI",
+        "Landsat collection two level two",
+        "Climate Hazards Group Infrared Rainfall with Stations (CHIRPS)",
+        "Google Earth points"
+      ],
+      "author_team": [
+        "Wendimnew Alemu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Evaluation of the Changes of Vegetation Cover Impact on Rainfall Using Remote Sensing in Wag Hemra Zone, Amhara Region, Ethiopia",
+        "doi": "10.11648/j.ajrs.20251302.12",
+        "year": 2025,
+        "venue": "American Journal of Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "研究 Thomas Fire 研究地点火灾发生前的植被绿度和植被水分状况如何变化及其空间表现。",
+      "hypothesis_or_mechanism": "火灾前植被胁迫会通过降低基于红光和近红外反射率计算的 NDVI，并改变基于近红外和短波红外反射率计算的 NDWI 得到反映。",
+      "variables_and_data_use": "使用 Landsat 8 OLI/TIRS 场景级地表反射率数据，利用波段 4 和 5 计算 NDVI，利用波段 5 和 6 计算 NDWI，并对研究地点周围 6 个像元的指数值进行平均；同时使用 land cover data 描述研究地点的土地覆盖类型。",
+      "method_paradigm": "遥感时序分析",
+      "used_assets": [
+        "Landsat 8 OLI and TIRS Level -1 GeoTIFF data",
+        "Landsat 8 OLI and TIRS surface reflectance data",
+        "land cover data"
+      ],
+      "author_team": [
+        "Indumathi Jeyachandran"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "A Look at the Time Series of NDVI and NDWI at a Wildfire Site in California, USA",
+        "doi": "10.12962/geoid.v20i2.1917",
+        "year": 2025,
+        "venue": "Geoid",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究Landsat影像反演的雅加达城市地表温度与地面最高气温、NDVI和NDBI之间的关系。",
+      "hypothesis_or_mechanism": "城市建成环境和植被状况会影响地表热状况，使LST与地面气温、NDVI及NDBI呈现可测量的相关关系。",
+      "variables_and_data_use": "使用Landsat 8和Landsat 9 Level-2影像的热红外Band 10反演LST，使用Band 5近红外和Band 4红光地表反射率计算NDVI，并使用Band 6短波红外和Band 5近红外计算NDBI；同时使用BMKG地面日最高气温和过境时段气温进行相关性及误差验证。",
+      "method_paradigm": "遥感反演与相关验证",
+      "used_assets": [
+        "Landsat 8 and Landsat 9 Level-2 imagery data",
+        "Daily maximum air temperature data",
+        "Indonesian Agency for Meteorology, Climatology, and Geophysics (BMKG)"
+      ],
+      "author_team": [
+        "Dana Purwoko",
+        "Eko Yuli Handoko",
+        "Ardhasena Sopaheluwakan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Comparative Analysis Of Landsat 8 And Landsat 9 Satellite Image Data In Surface Temperature Estimation, NDVI and NDBI Using Goggle Earth Engine",
+        "doi": "10.12962/geoid.v20i2.8016",
+        "year": 2025,
+        "venue": "Geoid",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究比较 NDVI 和 SAVI 在表征 Mandalika 特别经济区植被状况及其与地表温度关系方面的有效性。",
+      "hypothesis_or_mechanism": "植被覆盖越高，地表温度通常越低，而 SAVI 通过减弱裸土背景影响，可能比 NDVI 更能解释半干旱和混合土地覆盖区域中的地表温度变化。",
+      "variables_and_data_use": "论文使用 Landsat 8 Collection 2 Level 2 products 的红光和近红外地表反射率计算 NDVI 与 SAVI，使用 ST_B10 热数据推导地表温度，并通过 Spearman 秩相关和简单线性回归分析 NDVI、SAVI 与地表温度之间的关系。",
+      "method_paradigm": "关系机制分析",
+      "used_assets": [
+        "Landsat 8 satellite imagery",
+        "Landsat 8 Collection 2 Level 2 products",
+        "ST_B10"
+      ],
+      "author_team": [
+        "David Sampelan",
+        "Anggitya Pratiwi",
+        "Anas Baihaqi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Comparative Analysis of SAVI and NDVI Correlations with Land Surface Temperature in Mandalika Special Economic Zone Using Landsat 8 Imagery",
+        "doi": "10.12962/inderaja.v19i1.4442",
+        "year": 2025,
+        "venue": "Jurnal Penginderaan Jauh dan Pengolahan Data Citra Digital",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "论文研究 1993、1997、2014 和 2020 年 Rizal Province 的土地利用土地覆盖变化及其地表温度变化特征。",
+      "hypothesis_or_mechanism": "土地覆盖变化，尤其是建成区扩张和植被变化，会通过改变植被比例、地表发射率和热辐射特征影响地表温度。",
+      "variables_and_data_use": "论文使用 Landsat 5 TM 和 Landsat 8 OLI/TIRS 影像，通过反射率波段计算 NDVI 和 NDBI，利用 NDVI 估算植被比例和地表发射率，并结合热红外波段反演地表温度；同时使用 DIVA-GIS 行政边界数据裁剪研究区。",
+      "method_paradigm": "遥感变化检测与地表温度反演",
+      "used_assets": [
+        "Landsat Collection 1-Level 1",
+        "Landsat 4-5 ™ C1-Level 1",
+        "Landsat 8 OLI/TIRS C1 Level 1",
+        "LT05_L1TP_116050_19930504_20170119_01_T1",
+        "LT05_L1TP_116050_19971022_20161229_01_T1",
+        "LC08_L1TP_116050_20140207_20170426_01_T1",
+        "LC08_L1TP_116050_20201224_20210310_01_T1",
+        "Administrative Boundary dataset from the DIVA-GIS database"
+      ],
+      "author_team": [
+        "Pauline Angela Pauline Angela Sobremonte-Maglipon",
+        "Anne Olfato-Parojinog",
+        "King Joshua Almadrones-Reyes",
+        "James Eduard Limbo-Dizon",
+        "Nikki Heherson A Dagamac"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Tracking the Temporal Changes in Land Surface Temperature, Vegetation, and Built-up Patterns in Rizal Province, Philippines using Landsat Imagery",
+        "doi": "10.14710/geoplanning.11.1.71-84",
+        "year": 2024,
+        "venue": "Geoplanning: Journal of Geomatics and Planning",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "河岸植被 NDVI 的长期变化与城市河流有机污染指标 BOD5 的变化之间存在何种关系，以及热异常是否会影响河岸植被的自净缓冲功能？",
+      "hypothesis_or_mechanism": "河岸植被 NDVI 的增加与 BOD5 的下降相关，而热岛等热异常可能抑制植被缓冲功能并削弱水体自净作用。",
+      "variables_and_data_use": "研究使用 Landsat 5、Landsat 7、Landsat 8 和 Landsat 9 的红光与近红外波段计算年度 NDVI，并在流域掩膜内分析其趋势；使用 Landsat TIRS B10 计算地表亮温，使用 ERA5 年平均气温，并将这些变量与环境监测报告中的 BOD5 时间序列进行趋势、相关和回归分析。",
+      "method_paradigm": "遥感时序分析与相关回归",
+      "used_assets": [
+        "Landsat 8",
+        "Landsat 9",
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat TIRS B10",
+        "ERA5",
+        "ежегодные отчёты Комитета природных ресурсов, лесного хозяйства и экологии Волгоградской области"
+      ],
+      "author_team": [
+        "Denis S. Novikov",
+        "Natalia I. Latyshevskaya"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "The indicator role of riparian vegetation in assessing watercourse quality in urban agglomerations of subarid regions of Russia: a case study of the Volgograd agglomeration",
+        "doi": "10.17816/humeco702516",
+        "year": 2026,
+        "venue": "Ekologiya cheloveka (Human Ecology)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "火灾季节性和距上次火灾的时间如何影响亚马逊稀树草原植被在火灾后的恢复过程？",
+      "hypothesis_or_mechanism": "火灾会导致植被光谱指数和地上细燃料负荷下降，随后植被恢复速度受火灾季节性、火灾返回间隔和燃料累积过程影响。",
+      "variables_and_data_use": "研究使用 Landsat 7 和 Landsat 8 Collection 2 以及 Sentinel-2A/B 光谱反射率影像，经大气、BRDF、地形和光谱 harmonization 后计算 NDVI 和 NBR2 时间序列；使用 CHIRPS 降水数据表示季节性，使用 Copernicus DEM 进行地形校正，并将卫星指数与地面细燃料负荷、火灾处理和火灾后恢复时间进行比较。",
+      "method_paradigm": "火灾影响评估与时间序列分析",
+      "used_assets": [
+        "Collection 2 calibrated top-of-atmosphere (TOA) reflectance derived from the Landsat 7 and Landsat 8 satellites sensors (Enhanced Thematic Mapper Plus - ETM+, and Operational Land Imager - OLI, respectively)",
+        "Level-1C orthorectified TOA reflectance from the Sentinel-2A and Sentinel-2B (both equipped with a MultiSpectral Instrument-MSI sensor)",
+        "Copernicus Global 30 meters Digital Elevation Model (DEM)",
+        "Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS)"
+      ],
+      "author_team": [
+        "Daniel Borini Alves",
+        "Antonio Laffayete Pires da Silveira",
+        "Bruno Contursi Cambraia",
+        "José Falcão Sobrinho",
+        "Thiago Sanna Freire Silva",
+        "Fernando Pérez-Cabello"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Postfire Vegetation Recovery And Spectral Separability Over Amazonian Savanna Ecosystems Using Remote Sensing Time Series And Fuel Loads Measurements",
+        "doi": "10.18172/cig.6889",
+        "year": 2025,
+        "venue": "Cuadernos de Investigación Geográfica",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "不同森林退化程度的样区在树种组成、林分密度以及2020年至2022年的NDVI和EVI绿度水平上有何差异？",
+      "hypothesis_or_mechanism": "森林退化和土地转用会降低树木密度及冠层覆盖，从而使基于Landsat反射率计算的NDVI和EVI下降。",
+      "variables_and_data_use": "研究使用Landsat 8 imagery的近红外、红光和蓝光反射率计算NDVI与EVI，并提取各样方的指数值；同时使用10×10平方米样方中的树种和株数数据比较三个不同退化程度区域的林分状况。",
+      "method_paradigm": "遥感与样地比较",
+      "used_assets": [
+        "Landsat 8 imagery data from the period 2020 to 2022",
+        "tree species and their numbers within 10 x 10 m2 plots"
+      ],
+      "author_team": [
+        "Budi Putra Mulyadi",
+        "Hari Sulistiyowati",
+        "Retno Wimbaningrum"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Degraded Forest Evaluation Using Vegetation Indices at Bandealit Resort, Meru Betiri National Park",
+        "doi": "10.19184/jid.v26i1.34773",
+        "year": 2024,
+        "venue": "Jurnal ILMU DASAR",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "研究 BSD City 在 2002 至 2023 年间的土地覆盖变化和城市扩张格局。",
+      "hypothesis_or_mechanism": "城市扩张通过植被向裸地再向建成区的连续转化推动土地覆盖变化，并表现出由东向西的发展方向。",
+      "variables_and_data_use": "论文使用 2002 年 Landsat 5 TM 以及 2013 年和 2023 年 Landsat 8 OLI 地表反射率影像，计算 NDVI、MNDWI 和 NDBI；NDVI 用于识别茂密和稀疏植被，MNDWI 用于识别水体，NDBI 用于区分建成区和裸地，并结合阈值和 Jenks 优化完成土地覆盖分类。Google Earth 高分辨率影像用于精度验证。",
+      "method_paradigm": "多时相变化检测与规则分类",
+      "used_assets": [
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 8 Operational Land Imager (OLI)",
+        "surface reflectance products available via GEE",
+        "Google Earth",
+        "NDVI",
+        "MNDWI",
+        "NDBI"
+      ],
+      "author_team": [
+        "Tri Wandi Januar",
+        "Arifa'i Achmad Muhyidin",
+        "Hildayati Juli",
+        "Filya Rizky Lestari",
+        "Della Ayu Lestari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Semi-Unsupervised Threshold-Based and Jenks Optimization Classification for Analyzing Urban Expansion in BSD City Using Multi-Temporal Landsat Data",
+        "doi": "10.21009/spatial.251.003",
+        "year": 2025,
+        "venue": "Jurnal Spatial Wahana Komunikasi dan Informasi Geografi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "研究 1985 至 2023 年间砂地面积及其植被恢复或退化动态如何变化，以及造林活动如何影响这种变化。",
+      "hypothesis_or_mechanism": "造林活动通过增加植被覆盖和提高 NDVI，促使部分砂地面积逐步收缩，而缺乏植被覆盖的区域可能持续扩张。",
+      "variables_and_data_use": "使用 Landsat 5 和 Landsat 8 Collection 2 Level 2 场景的红光与近红外波段计算 NDVI，以 0.02 至 0.12 的 NDVI 范围识别砂地，并量化三个砂地样区在各年份的面积；随后对面积时间序列进行线性回归。",
+      "method_paradigm": "变化检测与趋势分析",
+      "used_assets": [
+        "LT05_L2SP_224081_19850502_20200918_02_T1",
+        "LT05_L2SP_224081_19900601_20200916_02_T1",
+        "LT05_L2SP_224081_19960516_20200911_02_T1",
+        "LT05_L2SP_224081_20000527_20200907_02_T1",
+        "LT05_L2SP_224081_20050712_20200902_02_T1",
+        "LT05_L2SP_224081_20090402_20200828_02_T1",
+        "LC08_L2SP_224081_20150505_20200909_02_T1",
+        "LC08_L2SP_224081_20200416_20200822_02_T1",
+        "LC08_L2SP_224081_20230612_20230615_02_T1"
+      ],
+      "author_team": [
+        "Mauricio Oliveira Righi da Silva",
+        "Marciano Carneiro",
+        "Silvia Beatriz Alves Rolim"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Análise da dinâmica entre a arenização e silvicultura em Alegrete-RS, a partir do NDVI",
+        "doi": "10.22456/1807-9806.147585",
+        "year": 2026,
+        "venue": "Pesquisas em Geociências",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究比较 Global Mapper 和 ArcGIS 使用 Landsat 9 OLI-2 NDVI 提取和分类城市植被绿度时的结果及准确性差异。",
+      "hypothesis_or_mechanism": "不同 GIS 软件对相同 Landsat NDVI 输入的处理方式可能导致植被绿度分类面积和与现状的一致性产生差异。",
+      "variables_and_data_use": "使用 Landsat 9 OLI-2 单景影像的红光波段 4 和近红外波段 5 计算 NDVI，并将 NDVI 分类为不同植被绿度等级；使用 Kota Palu 行政边界进行裁剪，并以若干实地状况对分类结果进行准确性比较。",
+      "method_paradigm": "遥感指标计算与软件精度验证",
+      "used_assets": [
+        "Landsat 9 OLI 2",
+        "LC09_L2SP_114061_20241026_20241027_02_T1",
+        "Batas Administrasi Kota Palu"
+      ],
+      "author_team": [
+        "Budi Andresi",
+        "Supriadi Takwim",
+        "Yan Radhinal",
+        "Andi Idham Asman",
+        "Rasdiana A"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Perbandingan Ketelitian Metode NDVI Melalui Software Global Mapper Dan Arcgis",
+        "doi": "10.22487/peweka.v3i2.35",
+        "year": 2024,
+        "venue": "Jurnal Peweka Tadulako",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "研究评估 2013 至 2023 年印度河三角洲的植被退化、沉积物减少、海岸线退缩和海平面上升状况及其空间变化。",
+      "hypothesis_or_mechanism": "河流流量和沉积物输入减少、海平面上升及人为干预共同加剧海岸侵蚀、红树林退化和三角洲生态脆弱性。",
+      "variables_and_data_use": "使用 Landsat 8 OLI 和 Landsat 9 OLI-2 的红光、近红外和绿色波段地表反射率计算 NDVI 和 NDSSI，用于分析植被健康、植被面积及悬浮沉积物变化；使用 Landsat 影像提取多期海岸线并通过 DSAS 计算 NSM、EPR 和 LRR；使用 Copernicus Climate Change Service (C3S) 卫星测高数据分析海平面趋势，使用 Shuttle Radar Topography Mission (SRTM) DEM 进行淹没和沿海脆弱性模拟。",
+      "method_paradigm": "遥感变化检测与风险制图",
+      "used_assets": [
+        "Landsat 8 OLI",
+        "Landsat 9 OLI-2",
+        "Copernicus Climate Change Service (C3S)",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Muhammad Irfan",
+        "Shahzaib Farrukh",
+        "Humaira Altaf Khan",
+        "Shaista Mahmud",
+        "Bassam Nasir",
+        "Mohammad Idrees"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatiotemporal Modelling of Coastal Vulnerability and Ecosystem Degradation in Indus Delta: A Landsat and DSAS Approach",
+        "doi": "10.22581/muet1982.0502",
+        "year": 2025,
+        "venue": "Mehran University Research Journal of Engineering and Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "研究区气候因素如何影响乌甘查特卡尔国家公园的植被覆盖变化？",
+      "hypothesis_or_mechanism": "月度降水、气温和土壤温度变化会与植被绿度及植被覆盖变化产生统计关系。",
+      "variables_and_data_use": "论文处理 Landsat 5 TM、Landsat 7 TM/ETM+ 和 Landsat 8 OLI 地表反射率影像，计算 NDVI 和 SAVI，并使用月度平均植被指数与 Uzhydromet 提供的月度降水、气温和土壤温度进行相关分析和回归分析。",
+      "method_paradigm": "遥感时序关系分析",
+      "used_assets": [
+        "Google Earth Engine",
+        "Landsat 5 TM",
+        "Landsat 7 ETM+",
+        "Landsat 7 TM",
+        "Landsat 8 OLI surface reflectance satellite images",
+        "Hydrometeorological Service Agency under the Ministry of Ecology, Environmental Protection and Climate Change of the Republic of Uzbekistan (Uzhydromet)",
+        "local meteorological stations"
+      ],
+      "author_team": [
+        "Bokhir Alikhanov",
+        "Bakhtiyor Pulatov",
+        "Luqmon Samiev"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Vegetation cover change in Ugam Chatkal National Park, Uzbekistan, in relation to climate variables during the post-Soviet period (1991-2022)",
+        "doi": "10.23917/forgeo.v38i1.3824",
+        "year": 2024,
+        "venue": "Forum Geografi",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "论文研究 Wonosobo District 2019—2023 年植被绿度与地表温度之间的相关关系。",
+      "hypothesis_or_mechanism": "植被绿度增加可能通过植被覆盖和蒸散作用增强而对应较低的地表温度。",
+      "variables_and_data_use": "使用 Landsat 8 Level 2, Collection 2, Tier 2 影像的 Red 和 NIR 波段计算 NDVI，并利用热红外相关信息计算 LST，随后在鱼网采样点提取两者数值并进行相关性分析；行政边界用于限定研究范围。",
+      "method_paradigm": "遥感指标相关分析",
+      "used_assets": [
+        "Landsat 8 Level 2, Collection 2, Tier 2 image data",
+        "shapefiles of Wonosobo District administrative boundaries",
+        "Google Earth Engine",
+        "ArcMap 10.8",
+        "Microsoft Excel"
+      ],
+      "author_team": [
+        "Ahmad Syafril Romadhon",
+        "Umar El Izzudin Kiat",
+        "Arrohman Mardiyansyah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Correlation Analysis of Normalized Different Vegetation Index and Land Surface Temperature using Landsat 8 Image based on Cloud Computing",
+        "doi": "10.23917/iseth.5361",
+        "year": 2025,
+        "venue": "Proceeding ISETH (International Summit on Science, Technology, and Humanity)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "论文研究如何利用 Landsat 遥感数据估算 Karbala Province 的地表温度和土壤湿度指数，并分析其与植被绿度之间的关系。",
+      "hypothesis_or_mechanism": "植被绿度升高通常对应更高的植被覆盖率和不同的地表发射率，而地表温度与土壤湿度之间存在反向关系。",
+      "variables_and_data_use": "研究使用 Landsat 8 OLI/TIRS 的 Band 4 红光、Band 5 近红外以及 Band 10 和 Band 11 热红外数据；经大气校正后计算 NDVI，再由 NDVI 推导植被覆盖率和地表发射率，并结合热红外信息估算 LST 和 SMI。DEM 和 Karbala Province shapefile 用于辅助空间分析。",
+      "method_paradigm": "遥感指数关系分析",
+      "used_assets": [
+        "Landsat 8 OLI/TIRS",
+        "Collection 2/ Level 1",
+        "digital elevation model (DEM)",
+        "shapefile data for Karbala Province",
+        "USGS Earth Explorer database"
+      ],
+      "author_team": [
+        "Yusra K. H. Moussa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Land Surface Temperature and Soil Moisture Index Assessments Using Satellite Imagery at Karbala City",
+        "doi": "10.24996/ijs.2026.67.2.45",
+        "year": 2026,
+        "venue": "Iraqi Journal of Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "研究比较 Landsat 9 与 Pleiades 影像计算的植被光谱指数在植被和土地覆盖评估中的表现。",
+      "hypothesis_or_mechanism": "不同空间分辨率和传感器光谱响应会导致植被指数表现和植被参数估计精度存在差异。",
+      "variables_and_data_use": "研究使用 Landsat 9 多光谱影像和 Pleiades 多光谱影像，经过辐射校准、大气校正、几何校正和噪声降低后，利用红光、近红外及其他波段计算 NDVI、NDVSI、SAVI、NDBI、MNDWI 和 BSI，并比较两类数据的指数结果及其与植被参数的关系。",
+      "method_paradigm": "跨传感器测量验证",
+      "used_assets": [
+        "Landsat 9 imagery",
+        "Landsat 9 data",
+        "Pleiades Imager",
+        "Pleiades-1A",
+        "Pleiades-1B"
+      ],
+      "author_team": [
+        "Reem Sh. Hameed",
+        "Loay E. George",
+        "Muthanna Albayati",
+        "Baqer H. Sayyid"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "The Effect of Sensor Resolution (Landsat 9 and Pleiades) on Spectral Indices Information: Comparison and Analysis",
+        "doi": "10.24996/ijs.2026.67.3.42",
+        "year": 2026,
+        "venue": "Iraqi Journal of Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "如何利用遥感变量识别Lubuk Sikaping区域的地热潜力指示区？",
+      "hypothesis_or_mechanism": "地热活动引起的植被热胁迫、地表温度异常及断层裂缝分布具有空间关联，将三者综合可识别潜在地热区。",
+      "variables_and_data_use": "研究使用Landsat 8 OLI反射率波段计算NDVI，使用Landsat 8 TIRS Band 10计算LST，使用SRTM DEM提取Fault and Fracture Density，并将NDVI、LST和FFD通过AHP加权叠加生成地热潜力指示图。",
+      "method_paradigm": "遥感综合制图与决策支持",
+      "used_assets": [
+        "Landsat 8 Operational Land Imager/ Thermal Infrared Sensor (OLI/TIRS)",
+        "Level-2 (C2 T1)",
+        "Digital Elevation Model (DEM) Shuttle Radar Topography Mission (SRTM)",
+        "data potensi panas bumi wilayah Lubuk Sikaping",
+        "data batas administrasi Kecamatan Lubuk Sikaping dari BPS Kabupupaten Pasaman"
+      ],
+      "author_team": [
+        "Tari Kajufa",
+        "Elistia Liza Namigo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Pemetaan Potensi Panas Bumi Berbasis Pengindraan Jauh di Wilayah Lubuk Sikaping, Kabupaten Pasaman Menggunakan parameter LST, NDVI dan FFD",
+        "doi": "10.25077/jfu.15.4.446-453.2026",
+        "year": 2026,
+        "venue": "Jurnal Fisika Unand",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "论文研究 2015 至 2020 年 Kota Bogor 绿色土地面积如何发生变化。",
+      "hypothesis_or_mechanism": "城市土地利用变化会导致植被覆盖和绿色土地面积发生变化，且可通过 NDVI 阈值分类识别。",
+      "variables_and_data_use": "使用 Landsat 8 Collection 2 Level 2 影像的红光和近红外反射率计算 NDVI，通过云掩膜、阈值分类和像元面积换算估计植被与非植被面积，并利用行政边界限定统计范围。",
+      "method_paradigm": "遥感变化检测",
+      "used_assets": [
+        "citra landsat 8 collection 2 level 2",
+        "citra landsat 8",
+        "peta administrasi Kota Bogor",
+        "google maps"
+      ],
+      "author_team": [
+        "Asep Denih",
+        "Irma Anggraeni",
+        "Runanto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Analisis Perubahan Luas Lahan Hijau Di Kota Bogor Dengan Citra Landsat 8 Menggunakan Normalized Difference Vegetation Index",
+        "doi": "10.25126/jtiik.2024118771",
+        "year": 2024,
+        "venue": "Jurnal Teknologi Informasi dan Ilmu Komputer",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "如何利用 Landsat 8 衍生的 NDVI、LST 和 TVDI 识别土地干旱区域并支持森林火灾风险缓解？",
+      "hypothesis_or_mechanism": "植被覆盖下降通常伴随地表温度升高，因而 NDVI-LST 特征空间中的干湿边界及其 TVDI 值能够表征地表水分胁迫和潜在火灾风险。",
+      "variables_and_data_use": "研究从 LANDSAT/LC08/C02/T1 的红光和近红外波段计算 NDVI及植被比例，并结合 LANDSAT/LC08/C02/T1_TOA 的热红外信息推导亮温、地表发射率和 LST；随后通过 NDVI-LST 线性回归确定干湿边界并计算 TVDI，最后使用 hotspot.brin.go.id 的热点记录验证高火灾易发区分类。",
+      "method_paradigm": "遥感状态重建",
+      "used_assets": [
+        "LANDSAT/LC08/C02/T1",
+        "LANDSAT/LC08/C02/T1_TOA",
+        "hotspot.brin.go.id"
+      ],
+      "author_team": [
+        "HARY NUGROHO",
+        "DEWI KANIA SARI",
+        "THORIQ BAIHAQI"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Detection Of Land Drought Using Landsat Imagery On The Google Earth Engine Platform For Forest Fire Mitigation",
+        "doi": "10.26760/elkomika.v12i4.1023",
+        "year": 2024,
+        "venue": "ELKOMIKA: Jurnal Teknik Energi Elektrik, Teknik Telekomunikasi, &amp; Teknik Elektronika",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "研究 Lages 市夏季和冬季不同年份的地表温度与 NDVI 的空间变化及二者之间的关系。",
+      "hypothesis_or_mechanism": "植被覆盖增加会提高 NDVI 并降低地表温度，而不同季节的气候条件会改变地表覆盖，从而影响二者关系。",
+      "variables_and_data_use": "使用 Landsat 5 TM 和 Landsat 8 OLI-TIRS 影像的红光与近红外波段计算 NDVI，并利用热波段计算地表温度；同时使用 INMET 和 EPAGRI/CIRAM 气象站的日气温数据进行气候分析和统计比较。",
+      "method_paradigm": "遥感指数关系分析",
+      "used_assets": [
+        "Landsat 5 TM",
+        "Landsat 8 OLI-TIRS",
+        "INMET",
+        "EPAGRI/CIRAM",
+        "QGIS 3.4.15",
+        "RS&GIS"
+      ],
+      "author_team": [
+        "Patricia Coelho",
+        "Claudia Guimarães Camargo Campos",
+        "Eder Alexandre Schatz Sá",
+        "Leonardo Biffi",
+        "Paula Carvalho da Silveira"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Application of Remote Sensing for Climatic Vulnerability Analysis of the Urban Area of Lages/SC through the Use of Radiometric Index and Surface Temperature",
+        "doi": "10.26848/rbgf.v17.2.p785-803",
+        "year": 2024,
+        "venue": "Revista Brasileira de Geografia Física",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_41",
+      "research_question": "研究区内 1985—2022 年植被 NDVI 发生了怎样的时序变化，以及飓风等自然和人为因素对这些变化有何影响？",
+      "hypothesis_or_mechanism": "飓风等自然扰动通过改变植被覆盖和冠层反射率，导致较大尺度的 NDVI 下降。",
+      "variables_and_data_use": "使用 Landsat 5、Landsat 7 和 Landsat 8 的红光与近红外波段计算 1985、1993、2000、2010 和 2022 年 NDVI，并将 NDVI 变化与 NOAA 飓风轨迹及其他文献和土地利用信息结合，用于分析植被覆盖变化及其可能原因。",
+      "method_paradigm": "多时相变化检测与过程归因",
+      "used_assets": [
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat 8",
+        "archivo con extensión (.shp) que muestra todas las trayectorias de los huracanes ocurridos en la región desde 1972 hasta la actualidad",
+        "NOAA International Best Track Archive for Climate Stewardship (IBTrACS)"
+      ],
+      "author_team": [
+        "Alejandro Antonio Vela Pelaez",
+        "María Angélica Navarro Martínez",
+        "Martín Alfonso Mendoza Briseño",
+        "Joan Alberto Sánchez Sánchez",
+        "Ligia Guadalupe Esparza Olguín"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Análisis multitemporal de cambios en el NDVI en una región con aprovechamiento forestal en la península de Yucatán, México",
+        "doi": "10.29298/rmcf.v15i81.1425",
+        "year": 2024,
+        "venue": "Revista Mexicana de Ciencias Forestales",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_42",
+      "research_question": "研究 Landsat 影像从数字量化值转换为地表反射率后，对 Sabkhat al-Jabbul 区域 NDVI 和 NDWI 计算结果及其统计特征有何影响。",
+      "hypothesis_or_mechanism": "将 Landsat Level-2 数字量化值按比例因子和偏移量转换为地表反射率，并进行质量掩膜，会改变并提高光谱指数计算的物理一致性和可靠性。",
+      "variables_and_data_use": "使用 Landsat 8 和 Landsat 9 Level-2 地表反射率数据及 Landsat 8 Level 2 影像，提取红光、近红外和绿色波段，分别从 DN 和转换后的地表反射率计算 NDVI 与 NDWI，并比较两类指数的分布、相关性、差异和误差。",
+      "method_paradigm": "遥感测量验证",
+      "used_assets": [
+        "Landsat 8 and 9 satellite data",
+        "Landsat Level-2 surface reflectance products",
+        "Landsat 8 Level 2 image",
+        "QA_PIXEL"
+      ],
+      "author_team": [
+        "Almustafa Abd Elkader Ayek",
+        "Bilel Zerouali",
+        "Mohannad Ali Loho",
+        "Nadjem Bailek",
+        "Celso Augusto Guimarães Santos",
+        "Safieh Eid",
+        "Suzan Fathe Karmoka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating the impact of digital number to surface reflectance conversion on the accuracy of NDVI and NDWI: A case study of Sabkhat Al-Jabbul, Syria",
+        "doi": "10.30493/das.2025.504896",
+        "year": 2025,
+        "venue": "DYSONA – Applied Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_43",
+      "research_question": "论文研究 Ternate Island 上植被绿度与地表温度之间的空间关系。",
+      "hypothesis_or_mechanism": "植被越茂密，蒸散和遮阴等作用越强，地表温度可能越低，因此 NDVI 与地表温度存在关系。",
+      "variables_and_data_use": "论文使用 Landsat 8 OLI/TIRS 影像的第 4 波段红光和第 5 波段近红外计算 NDVI，并使用热红外第 10 波段计算地表温度；行政边界数据用于研究区裁剪和空间分析，随后通过叠加分析、Pearson 相关和 Spearman 秩相关检验 NDVI 与地表温度的关系。",
+      "method_paradigm": "空间关系与相关分析",
+      "used_assets": [
+        "Landsat 8 OLI/TRIS satellite image data",
+        "sub-district administrative boundaries on Ternate Island"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Vadim V Khromykh",
+        "Philia Christi Latue"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatial Analysis of the Relationship between Vegetation Index and Land Surface Temperature in Ternate Island, Indonesia",
+        "doi": "10.30598/biopendixvol12issue1page48-57",
+        "year": 2025,
+        "venue": "BIOPENDIX: Jurnal Biologi, Pendidikan dan Terapan",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_44",
+      "research_question": "研究镍矿开采活动如何影响印度尼西亚奥比岛的植被覆盖及其时空变化。",
+      "hypothesis_or_mechanism": "镍矿开采导致植被清除和地表扰动，使研究区 NDVI 降低并引起植被覆盖类型变化。",
+      "variables_and_data_use": "使用 Landsat 8 Surface Reflectance Collection 2 Tier 1 影像的红光和近红外波段，在去除高云量影像后按年份生成中值合成，并计算 2015、2020 和 2025 年 NDVI，用于识别植被覆盖变化及其与镍矿开采活动的关系。",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "Landsat 8 Surface Reflectance Collection 2 Tier 1"
+      ],
+      "author_team": [
+        "Heinrich Rakuasa",
+        "Vadim V Khromykh",
+        "Ahmad Rifai",
+        "Philia Christi Latue"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatial Analysis of the Impact of Nickel Mining on Vegetation Cover Change in Obi Island, Indonesia",
+        "doi": "10.30598/biopendixvol12issue2page77-85",
+        "year": 2025,
+        "venue": "BIOPENDIX: Jurnal Biologi, Pendidikan dan Terapan",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_45",
+      "research_question": "如何利用 Landsat 8 影像计算的植被和水分指数建立并预测 Corong River Basin 的农业干旱状况？",
+      "hypothesis_or_mechanism": "当植被状况和水分状况同时下降时，NDDI 将升高并反映更严重的农业干旱，且其时间序列可以通过 SARIMA 进行预测。",
+      "variables_and_data_use": "论文使用 Landsat 8 OLI/TIRS Level 2 影像计算 NDVI 和 NDWI，再将两者组合为 NDDI，用于 2017 至 2021 年农业干旱监测，并将干旱时间序列输入 SARIMA 模型进行预测。",
+      "method_paradigm": "遥感指数与时间序列预测",
+      "used_assets": [
+        "Landsat 8 imagery",
+        "Landsat 8 OLI/TIRS level 2 images",
+        "NDVI",
+        "NDWI",
+        "NDDI"
+      ],
+      "author_team": [
+        "N. A. Affandy",
+        "D. Iranata",
+        "N. Anwar",
+        "M. A. Maulana",
+        "D. D. Prastyo",
+        "W. Wardoyo",
+        "B. M. Sukojo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Assessment of Agricultural Drought Using the Normalized Difference Drought Index (NDDI) to Prediction Drought at Corong River Basin",
+        "doi": "10.30880/ijie.2024.16.01.032",
+        "year": 2024,
+        "venue": "International Journal of Integrated Engineering",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_46",
+      "research_question": "2014年至2024年间植被NDVI和土地覆盖如何变化，以及这些变化对城市流域水文功能和峰值流量有何影响？",
+      "hypothesis_or_mechanism": "植被退化和非植被区域扩张会削弱截留与入渗、增加地表径流，从而提高峰值流量并导致流域水文调节功能退化。",
+      "variables_and_data_use": "研究使用来自USGS的Landsat影像和来自Copernicus Open Access Hub的Sentinel影像，以红光和近红外反射率计算2014年与2024年的NDVI，划分植被及土地覆盖类别，并结合河流流量、土地利用资料和现场观测分析植被变化与水文响应。",
+      "method_paradigm": "时空变化检测",
+      "used_assets": [
+        "citra satelit Landsat",
+        "citra satelit Sentinel",
+        "data debit sungai",
+        "data penggunaan lahan",
+        "observasi spasial wilayah penelitian"
+      ],
+      "author_team": [
+        "Bokiraiya Latuamury",
+        "Husain Marasabessy",
+        "Miranda H. Hadidjah",
+        "Moda Talaohu",
+        "Syamsul Fallah Kelihu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "DINAMIKA NORMALIZED DIFFERENCE VEGETATION INDEX  AKIBAT PERUBAHAN TUTUPAN LAHAN PERKOTAAN  DI DAS WAE BATU MERAH KOTA AMBON",
+        "doi": "10.31938/jns.v26i1.979",
+        "year": 2026,
+        "venue": "Jurnal Nusa Sylva",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_47",
+      "research_question": "研究2014至2022年东部马哈拉施特拉邦植被NDVI的季节变化及其与地表温度变化之间的关系。",
+      "hypothesis_or_mechanism": "植被覆盖增加通过蒸散作用产生降温效应，因此NDVI与地表温度之间存在负相关关系。",
+      "variables_and_data_use": "使用Landsat 8 Collection 2 Tier 1地表反射率红光和近红外波段计算NDVI，并利用热红外波段估算LST；NDVI还被用于自适应植被分类和土地利用分类，随后分析其与LST的相关性，并使用MODIS MOD11A2对Landsat派生LST进行交叉验证。",
+      "method_paradigm": "时序变化与相关分析",
+      "used_assets": [
+        "Landsat 8 OLI satellite images",
+        "Landsat-8 Collection-2 Tier-1 Surface Reflectance imagery",
+        "MODIS MOD11A2"
+      ],
+      "author_team": [
+        "Dipti Pawade",
+        "Sonali Patil"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "nalyzing the Seasonal Relationship between Vegetation Variation and Land Surface Temperature Dynamics in Eastern Maharashtra",
+        "doi": "10.32526/ennrj/24/20250231",
+        "year": 2026,
+        "venue": "Environment and Natural Resources Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_48",
+      "research_question": "如何利用 NDVI、NDTI、人工结构特征和公众偏好构建并验证适用于不同亚洲城市河流的美学河流指数？",
+      "hypothesis_or_mechanism": "植被覆盖、水体清晰度和人工结构美学共同影响河流景观感知，将这些指标按专家赋权进行综合能够较好解释现场观测者的审美评价。",
+      "variables_and_data_use": "使用 Landsat 8 OLI 红光、近红外和绿光波段计算 NDVI 与 NDTI，将 NDVI 表示植被覆盖、NDTI 表示水体清晰度；同时从卫星影像和高分辨率底图提取人工结构，并通过 AHP 确定各变量权重，生成逐像元 ARI，再与现场 Likert 审美评分进行相关验证。",
+      "method_paradigm": "GIS 指数构建与现场验证",
+      "used_assets": [
+        "Landsat 8 Operational Land Imager (OLI) scenes",
+        "NDVI",
+        "NDTI",
+        "high-resolution basemaps"
+      ],
+      "author_team": [
+        "Robby Yussac Tallar",
+        "Golan Geldoffer Mauregar",
+        "Jian-Ping Suen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Aesthetic river index: a GIS-based multi-criteria framework for assessing visual quality in recreational urban rivers",
+        "doi": "10.3389/fbuil.2025.1655317",
+        "year": 2025,
+        "venue": "Frontiers in Built Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_49",
+      "research_question": "不同全色锐化算法会如何影响Landsat 9和PRISMA影像的地表反射率及NDVI，并且锐化结果与地面光谱和UAV参考观测的一致性如何？",
+      "hypothesis_or_mechanism": "全色锐化通过引入更高空间分辨率的全色信息改变红光和近红外反射率，因此不同算法可能产生不同程度的光谱失真和NDVI偏差，且对多光谱与高光谱数据的影响不同。",
+      "variables_and_data_use": "使用LC09_L2SP_192025_20220804_20230404_02_T1的红光和近红外地表反射率计算原生及全色锐化NDVI，使用LC09_L1TP_192025_20220804_20230404_02_T1的PAN波段实施锐化；同时使用PRS_L2D_STD_20220807101606_20220807101610_0001计算Landsat-like和窄带NDVI，并以ASD FieldSpec 4地面光谱及MicaSense RedEdge-MX UAV反射率和NDVI作为比较与验证基准。",
+      "method_paradigm": "跨传感器测量验证",
+      "used_assets": [
+        "LC09_L2SP_192025_20220804_20230404_02_T1",
+        "LC09_L1TP_192025_20220804_20230404_02_T1",
+        "PRS_L2D_STD_20220807101606_20220807101610_0001",
+        "ASD FieldSpec 4",
+        "MicaSense RedEdge-MX",
+        "senseFly Duet T"
+      ],
+      "author_team": [
+        "Jan Procházka",
+        "Jan Komárek",
+        "David Moravec",
+        "Jiří Rous",
+        "Tomáš Klouček"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Pansharpening largely preserves the normalized difference vegetation index: a multi-sensor comparison with PRISMA, Landsat 9, and field spectroscopy",
+        "doi": "10.3389/frsen.2025.1713895",
+        "year": 2026,
+        "venue": "Frontiers in Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_50",
+      "research_question": "研究如何结合 Landsat 遥感影像及其派生产品与 HEC-RAS 二维水动力模型，提高 2008 年 Koshi 河堤坝溃决洪水淹没范围制图的准确性。",
+      "hypothesis_or_mechanism": "利用 NDVI、HAND 和永久水体掩膜去除植被、地形和常年水体造成的误判，并结合水动力模型结果能够改善基于 MNDWI 的洪水范围识别。",
+      "variables_and_data_use": "使用 Landsat 5 地表反射率影像计算 NDVI 和 MNDWI，使用 NDVI、HAND 和 JRC 永久水体数据进行掩膜和洪水范围提取；使用 NASADEM 建立 HEC-RAS 二维地形模型，并以 Chatara 测站日流量作为上游边界条件，最后将遥感洪水图与模型洪水图进行二分类精度比较。",
+      "method_paradigm": "遥感分类与水动力模拟",
+      "used_assets": [
+        "Landsat 5 TM Level-2 Surface Reflectance Images and Derived Products",
+        "Global HAND",
+        "JRC Global Surface Water Mapping Layers",
+        "NASADEM Digital Elevation Model",
+        "Hydrology (Chatara Gaging Station)"
+      ],
+      "author_team": [
+        "Aashutosh Aryal",
+        "Rajiv Sinha",
+        "Nawa Raj Pradhan",
+        "Venkataraman Lakshmi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Enhancing flood inundation mapping technique using Landsat-based remote sensing and 2D hydrodynamic modeling: a case study of the Bihar flood caused by the Koshi embankment breach",
+        "doi": "10.3389/frsen.2026.1807693",
+        "year": 2026,
+        "venue": "Frontiers in Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_51",
+      "research_question": "研究不同机器学习方法能否有效分类高原山区森林火灾严重度，以及火灾严重度如何影响长期火后植被恢复。",
+      "hypothesis_or_mechanism": "火灾严重度越高，火后植被光谱绿度恢复越慢或程度越低，而地形、植被和气候条件会调节恢复过程。",
+      "variables_and_data_use": "论文使用 GEE 中的 Landsat TM/ETM+/OLI 数据及其地表反射率波段，计算 NBR、dNBR、NDVI 和 LSWI；dNBR 用于生成火灾严重度类别和机器学习分类样本，NDVI、LSWI 和 NBR 用于评价火后植被恢复。",
+      "method_paradigm": "机器学习分类与变化检测",
+      "used_assets": [
+        "Landsat TM/ETM+/OLI datasets on GEE",
+        "USGS Land Satellite Surface Reßectance data",
+        "NBR",
+        "dNBR",
+        "NDVI",
+        "LSWI"
+      ],
+      "author_team": [
+        "Pengfei Liu",
+        "Weiyu Zhuang",
+        "Weili Kou",
+        "Leiguang Wang",
+        "Qiuhua Wang",
+        "Zhongjian Deng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Fire Severity Outperforms Remote Sensing Indices in Exploring Post-Fire Vegetation Recovery Dynamics in Complex Plateau Mountainous Regions",
+        "doi": "10.3390/f16020263",
+        "year": 2025,
+        "venue": "Forests",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_52",
+      "research_question": "如何利用 Landsat 时间序列和年度 NDVI 监测 Catalonia 露天采矿活动及其恢复过程的长期演变？",
+      "hypothesis_or_mechanism": "采矿扰动会降低植被绿度并形成较低 NDVI 区域，而未开采或恢复区域的植被恢复会导致 NDVI 随时间升高。 ",
+      "variables_and_data_use": "研究使用 Landsat 5 TM、Landsat 7 ETM+ 和 Landsat 8 OLI 的 Level 2、Collection 2、Tier 1 地表反射率影像，筛选生长季影像并进行云、雪和云影掩膜，计算年度中位数合成影像，再计算年度 NDVI。NDVI 被用于采矿区与非采矿区分类、年度变化制图、面积统计和时间序列分析；EXTCATA 用于采矿区边界，MUCSC 用于土地覆盖验证。",
+      "method_paradigm": "遥感变化检测与决策支持",
+      "used_assets": [
+        "Landsat 5 TM sensor imagery",
+        "Landsat 7 ETM+ sensor imagery",
+        "Landsat 8 OLI sensor images",
+        "USGS Landsat 5, 7, and 8 Level 2, Collection 2, and Tier 1",
+        "Google Earth Engine",
+        "EXTCATA",
+        "MUCSC",
+        "QGIS 3.34.8"
+      ],
+      "author_team": [
+        "Pau Montero",
+        "Edgardo Bustos",
+        "Joan-Cristian Padró",
+        "Vicenç Carabassa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Monitoring of Open-Pit Mining Areas Using Landsat Series Imagery (1984–2023) and Cloud Processing",
+        "doi": "10.3390/land13081301",
+        "year": 2024,
+        "venue": "Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_53",
+      "research_question": "级联水电开发影响下，汉江中游生长季河岸植被和典型洲滩的NDVI如何变化，以及这种变化与水文气候因素有何关系？",
+      "hypothesis_or_mechanism": "级联水电开发改变水位及区域水文气候条件，进而影响河岸植被和洲滩植被的生长季NDVI及其时空变化。",
+      "variables_and_data_use": "使用Landsat 5、Landsat 7和Landsat 8数据计算红光与近红外地表反射率NDVI，并通过云掩膜和生长季最大值合成生成年度NDVI；使用CMDC的降水和温度数据以及湖北省水文水资源局的实测水位数据，分析这些水文气候因素与植被NDVI及洲滩变化之间的关系。",
+      "method_paradigm": "遥感时序与相关分析",
+      "used_assets": [
+        "Google Earth Engine (GEE) platform",
+        "Landsat 5",
+        "Landsat 7",
+        "Landsat 8",
+        "China Meteorological Data Service Center (CMDC)",
+        "Hydrology and Water Resources Bureau of Hubei Province"
+      ],
+      "author_team": [
+        "Yiwen Liu",
+        "Xiaorong Lu",
+        "Zhiyuan Liu",
+        "Xuelei Wang",
+        "Qing Yang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "The Mechanisms Driving Vegetation Changes in Riparian and Typical Floodplains Under Cascade Hydropower Development in the Middle Reach of Hanjiang River",
+        "doi": "10.3390/plants15030347",
+        "year": 2026,
+        "venue": "Plants",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_54",
+      "research_question": "能否利用 Landsat 年度光谱、纹理和地形特征识别并预测巴西亚马逊地区金矿和锡矿手工开采活动的发生位置？",
+      "hypothesis_or_mechanism": "手工采矿会造成植被清除、地表扰动和水文地形变化，从而在 Landsat NDVI 等光谱指数、纹理特征及地形变量的时间序列中形成可识别的变化信号。",
+      "variables_and_data_use": "研究使用 Landsat 7 ETM+ 和 Landsat 8 OLI Level-2 surface reflectance 影像，经过云掩膜、传感器协调和干季年度 medoid 合成后，计算 NDVI、EVI、NBR、NDMI、LSWI、MNDWI、NDPI 和 NDWI，并结合六个 Landsat 原始波段的 GLCM 纹理特征进行 LandTrendr 时间序列分割。SRTM DEM 提供 elevation、aspect、slope、hill shade 和 TWI，RAISG 及人工解译多边形提供采矿 occurrence 和 non-occurrence 训练与验证数据。",
+      "method_paradigm": "变化检测与监督分类",
+      "used_assets": [
+        "Landsat 7 Enhanced Thematic Mapper (ETM+)",
+        "Landsat 8 Operational Land Imager (OLI)",
+        "surface reflectance (Level-2)",
+        "NASA Jet Propulsion Laboratory Shuttle Radar Topography Mission V3 digital elevation model (DEM)",
+        "Rede Amazônica de Informação Socioambiental (RAISG)",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Alejandro Fonseca",
+        "Michael Thomas Marshall",
+        "Suhyb Salama"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Enhanced Detection of Artisanal Small-Scale Mining with Spectral and Textural Segmentation of Landsat Time Series",
+        "doi": "10.3390/rs16101749",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_55",
+      "research_question": "研究不同时间和空间尺度上的水文及水文社会因素如何影响Arkansas River沿岸河岸植被的NDVI变化和累积植被密度。",
+      "hypothesis_or_mechanism": "降水、温度、河流交换流和地下水深度通过改变河岸生态系统的水分供给影响NDVI，其中多年生河流汇流处抬升地下水位并促进植被生长。",
+      "variables_and_data_use": "使用Landsat 5、7和8影像提取逐像元NDVI，经过云、冰和云影筛选后计算月平均NDVI、时间积分NDVI和空间平均值；同时使用West Wide Drought Tracker的降水和温度、USGS月流量以及地下水观测井深度作为时间和空间协变量。",
+      "method_paradigm": "贝叶斯时空层次建模",
+      "used_assets": [
+        "Google Earth Engine (GEE)",
+        "Landsat 5, 7, and 8 imagery (path:31 and row:34)",
+        "National Land Cover Database",
+        "West Wide Drought Tracker",
+        "USGS Surface-Water Monthly Statistics for the Nation",
+        "Colorado's Division of Water Resources"
+      ],
+      "author_team": [
+        "Matthew R. Lurtz",
+        "Ryan R. Morrison",
+        "Pamela L. Nagler"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "On Connecting Hydrosocial Parameters to Vegetation Greenness Differences in an Evolving Groundwater-Dependent Ecosystem",
+        "doi": "10.3390/rs16142536",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 54,
+    "source_paper_count": 54,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

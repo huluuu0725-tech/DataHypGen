@@ -1,0 +1,925 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_031",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "NOAA CDR AVHRR NDVI: Normalized Difference Vegetation Index, Version 4",
+    "spatial_coverage": {
+      "region_name": "Tropical South America",
+      "coverage": "Global land coverage on a 0.05 degree grid, including the Amazon basin, the Guiana Shield, the Cerrado and the Andean margin of tropical South America."
+    },
+    "temporal_coverage": "1981-06-24 to 2019-05-16",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.05 degrees (about 5.6 km)",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Multi-decadal vegetation greenness analysis spanning the early 1980s onward",
+      "Daily-to-monthly aggregation for seasonal and interannual dynamics",
+      "Interannual coupling analysis against climate oscillation indices",
+      "Regional averaging and comparison across sub-regions of a continent",
+      "Lag and cross-correlation analysis between vegetation state and other monthly gridded variables"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDVI as a dimensionless index, stored with a scale factor of 0.0001",
+      "runtime_hint": "Multiply `NDVI` by 0.0001 to obtain physical values. Screen observations with the `QA` bit flags before aggregating, since daily AVHRR retrievals are sensitive to cloud and off-nadir viewing. `TIMEOFDAY` gives hours since the start of day at a 0.01 scale, which reveals drift in acquisition time across the multi-decadal record. Daily sampling means monthly means need explicit handling of missing days rather than a plain average."
+    },
+    "data_source": "NOAA National Centers for Environmental Information, derived from AVHRR sensors",
+    "gee_asset": {
+      "id": "NOAA/CDR/AVHRR/NDVI/V4",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NOAA/CDR/AVHRR/NDVI/V4",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_031.json",
+    "source_sha256": "dfd6b82ff25934a509f16df3aa36bc44e2b9624418049e35743eaddfd96b0bb5",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_031/prompt.json",
+    "current_prompt_sha256": "09f7bfd77204c963facc7d8d608eabdf139439dccacffafbd4e8fc34fa21cdba",
+    "original_anchor_asset": {
+      "id": "NOAA/CDR/AVHRR/NDVI/V4",
+      "observable_group": "noaa_cdr_avhrr_daily_ndvi",
+      "observation_identity_contract": {
+        "physical_object": "spectral vegetation greenness",
+        "source_lineage": "NOAA Climate Data Record AVHRR NDVI production lineage",
+        "core_measurement_semantics": "NOAA CDR AVHRR NDVI",
+        "non_material_variations": "CDR version 4/5, archive, grid, resampling or temporal aggregation retaining the NOAA CDR NDVI observations",
+        "material_mismatches": "GIMMS, MODIS, SPOT, PROBA-V, Landsat or another AVHRR processing lineage without NOAA CDR input"
+      },
+      "asset_alias_policy": "The NOAA Climate Data Record of AVHRR NDVI is admitted, either version 4 or version 5; MODIS MOD13/MYD13 tiers, GIMMS NDVI3g, SPOT VEGETATION, PROBA-V and Landsat-derived vegetation indices are excluded.",
+      "alias_policy_scope": "This policy defines which product counts as the anchor, not whether a paper may also use other vegetation-index products. A study comparing AVHRR against MODIS is admissible as long as the CDR AVHRR series is itself operationally processed.",
+      "anchor_repointed": {
+        "from": "MODIS/061/MOD13Q1",
+        "to": "NOAA/CDR/AVHRR/NDVI/V4",
+        "reason": "The admitted product is the daily AVHRR Climate Data Record at 0.05 degrees, not a 250 m 16-day MODIS collection. MODIS also begins in 2000 and cannot support analysis reaching back to 1981.",
+        "verified_against": "Earth Engine catalog entry NOAA/CDR/AVHRR/NDVI/V4 (daily cadence, 5566 m gsd corresponding to 0.05 degrees, NDVI at 0.0001 scale with TIMEOFDAY and QA bands, record 1981-06-24 to 2019-05-16)",
+        "version_choice": "V4 is marked deprecated in the catalog while V5 is current, but V5 stops at 2013-12-31 whereas V4 runs to 2019-05. V4 is admitted because it is the only version covering the full period of interest; V5 remains acceptable under the alias policy for work confined to 1981-2013.",
+        "residual_gap": "V4 carries a deprecated status, so it could be withdrawn from the catalog. Work that only needs 1981-2013 should prefer V5, which is current.",
+        "review_date": "2026-08-28"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "How does vegetation biomass density affect the reliability of remotely sensed resilience estimates? Task transfer scope: assess the same question for tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "hypothesis_or_mechanism": "Autocorrelation-based resilience indicators respond differently across biomass states, so observed stability trends can reflect state-dependent measurement behavior. Task mechanism condition: interpret the mechanism under tropical South America ENSO–soil-moisture–NDVI coupling and lagged response, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation-index time series are analyzed with biomass-density information and resilience indicators. Task operationalization: use the anchor asset and task-specific covariates needed to represent tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "method_paradigm": "State-stratified time-series resilience analysis and robustness testing. Task evaluation frame: stratify, compare, or validate results against the constraints of tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "biomass density"
+      ],
+      "author_team": [
+        "Taylor Smith",
+        "Niklas Boers"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Reliability of vegetation resilience estimates depends on biomass density",
+        "doi": "10.1038/s41559-023-02194-7",
+        "year": 2023,
+        "venue": "Nature Ecology & Evolution",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "tropical South America ENSO–soil-moisture–NDVI coupling and lagged response",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "How long is the seasonal lag between precipitation and vegetation response in the Mara River Basin? Task transfer scope: assess the same question for tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "hypothesis_or_mechanism": "Water storage and plant phenology delay the NDVI response, producing season- and land-cover-dependent lagged correlations. Task mechanism condition: interpret the mechanism under tropical South America ENSO–soil-moisture–NDVI coupling and lagged response, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 NDVI is related to seasonal precipitation at multiple temporal lags. Task operationalization: use the anchor asset and task-specific covariates needed to represent tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "method_paradigm": "Lagged time-series correlation stratified by season and landscape. Task evaluation frame: stratify, compare, or validate results against the constraints of tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "precipitation"
+      ],
+      "author_team": [
+        "Shouming Feng",
+        "Zhenke Zhang",
+        "Shuhe Zhao",
+        "Xinya Guo",
+        "Wanyi Zhu",
+        "Priyanko Das"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Time lag effect of vegetation response to seasonal precipitation in the Mara River Basin",
+        "doi": "10.1186/s13717-023-00461-w",
+        "year": 2023,
+        "venue": "Ecological Processes",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "tropical South America ENSO–soil-moisture–NDVI coupling and lagged response",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "Where are subtropical chir-pine forests most vulnerable to wildfire? Task transfer scope: assess the same question for tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "hypothesis_or_mechanism": "Vegetation condition interacts with terrain, climate, and human access to shape ignition and fire-spread susceptibility. Task mechanism condition: interpret the mechanism under tropical South America ENSO–soil-moisture–NDVI coupling and lagged response, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are combined with terrain, climate, infrastructure, and fire observations. Task operationalization: use the anchor asset and task-specific covariates needed to represent tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "method_paradigm": "Machine-learning fire-vulnerability mapping with predictor importance and validation. Task evaluation frame: stratify, compare, or validate results against the constraints of tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "terrain and climate",
+        "human-access and fire data"
+      ],
+      "author_team": [
+        "Sultan Muhammad",
+        "Syed Moazzam Nizami",
+        "Qunou Jiang",
+        "Kaleem Mehmood",
+        "M. Hussain",
+        "Shoaib Ahmad Anees",
+        "Fahad Shahzad",
+        "Waseem Razzaq Khan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Machine learning-based forest fire vulnerability assessment in subtropical chir pine forests of Pakistan",
+        "doi": "10.1186/s42408-025-00408-w",
+        "year": 2025,
+        "venue": "Fire Ecology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "tropical South America ENSO–soil-moisture–NDVI coupling and lagged response",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "Where is land productivity declining along the Great Green Wall, and how much change is attributable to human restoration or degradation? Task transfer scope: assess the same question for tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "hypothesis_or_mechanism": "Climate-adjusted vegetation productivity residuals separate human-associated departures from environmentally expected trends. Task mechanism condition: interpret the mechanism under tropical South America ENSO–soil-moisture–NDVI coupling and lagged response, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation time series are analyzed with climate, land-cover, and restoration information. Task operationalization: use the anchor asset and task-specific covariates needed to represent tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "method_paradigm": "Land-productivity trend assessment with human-versus-climate attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate",
+        "land management and land cover"
+      ],
+      "author_team": [
+        "Yubo Zhi",
+        "Xiaosong Li",
+        "Tong Shen",
+        "Graciela Metternicht",
+        "Anne Grainger",
+        "Yude Pan",
+        "Qi Lu",
+        "Amos T. Kabo–bah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Land productivity declines in the GGW while human contributions to restoration far outweighing degradation",
+        "doi": "10.1038/s41598-025-18963-2",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "tropical South America ENSO–soil-moisture–NDVI coupling and lagged response",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "How does vegetation respond to interacting climate factors after removing long-term and temporal confounding? Task transfer scope: assess the same question for tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "hypothesis_or_mechanism": "Climate-trend and residual-trend decomposition distinguishes direct climatic response from persistent residual vegetation change. Task mechanism condition: interpret the mechanism under tropical South America ENSO–soil-moisture–NDVI coupling and lagged response, including its relevant spatial and temporal contrasts.",
+      "variables_and_data_use": "MOD13Q1 vegetation indices are analyzed with four climate factors using CTSS-RESTREND. Task operationalization: use the anchor asset and task-specific covariates needed to represent tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "method_paradigm": "Climate time-series decomposition and residual trend attribution. Task evaluation frame: stratify, compare, or validate results against the constraints of tropical South America ENSO–soil-moisture–NDVI coupling and lagged response.",
+      "used_assets": [
+        "MODIS MOD13Q1",
+        "climate variables"
+      ],
+      "author_team": [
+        "Baihui Hao",
+        "Songlin Ding",
+        "Zhengfang Wu",
+        "Z. Ruan",
+        "Li Mai",
+        "Yaning Kuang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of vegetation response to four climate factors based on the CTSS-RESTREND method",
+        "doi": "10.1007/s13762-025-06527-w",
+        "year": 2025,
+        "venue": "International Journal of Environmental Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "cross_task_context": {
+        "status": "reframed",
+        "scope": "tropical South America ENSO–soil-moisture–NDVI coupling and lagged response",
+        "basis": "Original source-paper direction retained; task-specific transfer scope added to all four semantic fields.",
+        "repaired_date": "2026-08-27"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究如何利用NOAA AVHRR NDVI长期记录并将其与MODIS NDVI harmon化，以构建适用于澳大利亚长期植被监测的连续NDVI数据集。",
+      "hypothesis_or_mechanism": "通过梯度提升决策树结合观测质量、时间信息、空间信息及气候变量，可以校准NOAA NDVI CDR与MODIS MCD43A4之间的系统差异，并重建AVHRR记录中的缺失时段。",
+      "variables_and_data_use": "以NOAA NDVI CDR作为AVHRR输入数据，经过质量筛选、月尺度聚合和空间重投影后，用于预测和校准MODIS MCD43A4 NDVI；使用太阳天顶角、观测时间、月份、纬度、MODIS NDVI统计量以及降雨、温度、太阳辐射、蒸汽压亏缺等变量作为模型特征，并使用Landsat TM和ETM+ NDVI异常验证前MODIS时期的年际变化。",
+      "method_paradigm": "多源数据融合与机器学习重建",
+      "used_assets": [
+        "NOAA NDVI CDR",
+        "MODIS MCD43A4",
+        "Landsat TM",
+        "Landsat ETM+",
+        "GIMMS",
+        "GIMMS-PKU",
+        "GIMMS-PKU-consolidated"
+      ],
+      "author_team": [
+        "Chad A. Burton",
+        "Sami W. Rifai",
+        "Luigi J. Renzullo",
+        "Albert I. J. M. Van Dijk"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing long-term vegetation monitoring in Australia: a new approach for harmonising the Advanced Very High Resolution Radiometer normalised-difference vegetation index (NDVI) with MODIS NDVI",
+        "doi": "10.5194/essd-16-4389-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "评估AVHRR气候数据记录（CDR）地表反射率产品的精度及其在小麦产量监测中的应用性能。",
+      "hypothesis_or_mechanism": "假设AVHRR CDR V4的地表反射率与MODIS参考产品具有良好的一致性，且其季节性最大NDVI与小麦产量呈正相关线性关系。",
+      "variables_and_data_use": "使用AVHRR CDR V4的通道1和2地表反射率计算NDVI，并结合MODIS地表反射率、云掩膜及大气参数进行交叉验证与辐射定标评估；利用NDVI峰值预测小麦产量。",
+      "method_paradigm": "多源遥感交叉验证与农业应用示范",
+      "used_assets": [
+        "NOAA Climate Data Record (CDR)",
+        "MODIS CMG",
+        "MODIS Terra",
+        "MODIS Aqua"
+      ],
+      "author_team": [
+        "Belen Franch",
+        "Eric Vermote",
+        "Jean-Claude Roger",
+        "Emilie Murphy",
+        "Inbal Becker-Reshef",
+        "Chris Justice",
+        "Martin Claverie",
+        "Jyoteshwar Nagol",
+        "Ivan Csiszar",
+        "Dave Meyer",
+        "Frederic Baret",
+        "Edward Masuoka",
+        "Robert Wolfe",
+        "Sadashiva Devadiga"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A 30+ Year AVHRR Land Surface Reflectance Climate Data Record and Its Application to Wheat Yield Monitoring",
+        "doi": "10.3390/rs9030296",
+        "year": 2017,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "如何基于原始 NOAA CDR NDVI 重建长期、连续且无缺口的日尺度 NDVI，并验证其时空可靠性？",
+      "hypothesis_or_mechanism": "通过利用原始有效 NOAA CDR NDVI 的时空信息填补缺失和修正异常值，可以生成与原始有效观测高度一致的连续日尺度植被绿度序列。",
+      "variables_and_data_use": "以 original NOAA CDR NDVI 作为重建输入和主要验证基准，生成 daily gap-free NDVI dataset；使用 MODIS MCD19A3CMG v6.1 daily continuous gap-filled NDVI 进行日尺度比较，并使用 GIMMS3g NDVI、SPOT/PROBA NDVI 和 MODIS MOD13C2 NDVI 进行月尺度时空一致性验证，评价指标包括 r、R 2、MAE、RMSE 和 PB。",
+      "method_paradigm": "时空重建与验证",
+      "used_assets": [
+        "original NOAA CDR NDVI",
+        "daily gap-free NDVI dataset",
+        "MODIS MCD19A3CMG v6.1 daily continuous gap-filled NDVI",
+        "GIMMS3g NDVI",
+        "SPOT/PROBA NDVI",
+        "MODIS MOD13C2 NDVI"
+      ],
+      "author_team": [
+        "Huiwen Li",
+        "Yue Cao",
+        "Jingfeng Xiao",
+        "Zuoqiang Yuan",
+        "Zhanqing Hao",
+        "Xiaoyong Bai",
+        "Yiping Wu",
+        "Yu Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A daily gap-free normalized difference vegetation index dataset from 1981 to 2023 in China",
+        "doi": "10.1038/s41597-024-03364-3",
+        "year": 2024,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "该论文研究 1981–2020 年 Odisha 森林物候特征如何变化，以及这些变化与气候参数变化之间的关系。",
+      "hypothesis_or_mechanism": "气温、降水和相对湿度等气候因子的长期变化会影响植被生长周期，从而改变森林 NDVI 物候特征。",
+      "variables_and_data_use": "论文使用 Global PALSAR Forest /Non-Forest product 划定森林区域；使用 NASA POWER (Climate data) 生成 1981–2020 年月平均气温、最高气温、最低气温、降水和相对湿度等气候变量；使用 NOAA Climate Data Record (CDR) of the AVHRR Normalized Difference Vegetation Index (NDVI) Version 5 的 gridded daily NDVI 分析森林植被物候特征，并将其与气候变化进行关联分析。",
+      "method_paradigm": "遥感时序分析",
+      "used_assets": [
+        "Global PALSAR Forest /Non-Forest product",
+        "NASA POWER (Climate data)",
+        "NOAA CDR AVHRR NDVI",
+        "NOAA Climate Data Record (CDR) of the AVHRR Normalized Difference Vegetation Index (NDVI) Version 5"
+      ],
+      "author_team": [
+        "Pallabi Panda",
+        "Rakesh Arya",
+        "Kiran Jalem",
+        "Suraj Kumar",
+        "Kanhaiya Lal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Impact of shift in climatic parameters on forest phenology in Odisha, India",
+        "doi": "10.25303/198da920102",
+        "year": 2026,
+        "venue": "Disaster Advances",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "气候变化因素（降水、温度、湿度、风速）如何影响印度哈里亚纳邦水稻和小麦的生长及产量？",
+      "hypothesis_or_mechanism": "气象条件的时空变化通过驱动植被生长状态（NDVI/LAI）的波动，进而对主要农作物的季节性产量产生显著影响。",
+      "variables_and_data_use": "使用NOAA CDR AVHRR NDVI和LAI作为植被状态变量，结合IMD与NASA POWER的气象数据，计算月度和年度相关系数以评估气候对植被及产量的影响。",
+      "method_paradigm": "时间序列相关性分析",
+      "used_assets": [
+        "NOAA Climate Data Record AVHRR NDVI",
+        "NOAA Climate Data Record AVHRR LAI",
+        "IMD gridded daily weather data",
+        "NASA POWER",
+        "Ministry of Agriculture yield data"
+      ],
+      "author_team": [
+        "Nitesh Awasthi",
+        "Jayant Nath Tripathi",
+        "K. K. DAKHORE",
+        "Dileep Kumar Gupta",
+        "YE Kadam"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Assessment of climatic impact on growth and production of rice (Kharif) and wheat (Rabi) using geospatial technology over Haryana",
+        "doi": "10.54302/mausam.v74i4.6194",
+        "year": 2023,
+        "venue": "MAUSAM",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "中国西北干旱和半干旱地区的植被覆盖变化及其恢复潜力如何随时间和空间变化？",
+      "hypothesis_or_mechanism": "气候条件、干旱过程和自然环境差异共同影响植被变化，并决定不同区域在当前状态与最优自然生长状态之间的恢复潜力。",
+      "variables_and_data_use": "使用 NASA AVHRR CDR NDVI V5 生成的中国 5 km 月度 NDVI 数据，经月合成和最大值合成后计算植被覆盖度、植被恢复潜力及其趋势；结合温度、降水、相对湿度、风速、日照等气象变量、SPEI base v2.9 干旱指数以及 LPJ 模型模拟的 NPP、叶面积指数、土壤碳储量、生物量、蒸散发和径流开展分析。",
+      "method_paradigm": "变化检测与恢复潜力评估",
+      "used_assets": [
+        "5 km resolution monthly NDVI grid dataset of China",
+        "NASA AVHRR CDR NDVI V5 version",
+        "monthly gridded temperature and precipitation",
+        "daily dataset of fundamental meteorological elements (V3.0)",
+        "surface climate of China",
+        "SPEI base v2.9",
+        "LPJ (Lund–Potsdam–Jena) model"
+      ],
+      "author_team": [
+        "Xiran Sui",
+        "Qinghai Xu",
+        "Hui Tao",
+        "Bin Zhu",
+        "Guangshuai Li",
+        "Zengxin Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Vegetation Dynamics and Recovery Potential in Arid and Semi-Arid Northwest China",
+        "doi": "10.3390/plants13233412",
+        "year": 2024,
+        "venue": "Plants",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "1982至2019年间南地中海地区植被物候指标在不同土地利用类别下的历史变化趋势及其对区域作物产量的影响机制是什么？",
+      "hypothesis_or_mechanism": "气候条件向更湿润的秋冬季节转变以及热/水复合胁迫格局的改变，通过延长生长季长度与提升峰值植被健康度，进而正向驱动区域作物产量增长。",
+      "variables_and_data_use": "使用NOAA CDR NDVI数据集计算15项植被物候指标；结合ESA CCI土地覆被数据划分研究区；利用ERA5L、MERRA2、CRU降水及Elnashar蒸散发数据构建水分与热量胁迫指数；引入世界银行作物产量指数(CPI)进行相关性检验。",
+      "method_paradigm": "长期趋势分析与物候指标建模",
+      "used_assets": [
+        "NOAA Climate Data Record of Normalized Difference Vegetation Index",
+        "ESA CCI Land Cover (LC)",
+        "ERA5Land",
+        "MERRA2",
+        "CRU.v4.06",
+        "Elnashar ETa",
+        "World Bank Crop Production Index (CPI)"
+      ],
+      "author_team": [
+        "Behnam Mirgol",
+        "Bastien Dieppois",
+        "Jessica Northey",
+        "Lionel Jarlan",
+        "Saïd Khabba",
+        "Michel Le Page",
+        "Jonathan Eden",
+        "Job Ekolu",
+        "Ikram El Hazdour",
+        "Gil Mahé"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Interplay Among Recent Trends in Climate Extremes, Vegetation Phenology, and Crop Production in the Southern Mediterranean Region",
+        "doi": "10.1002/joc.8768",
+        "year": 2025,
+        "venue": "International Journal of Climatology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "过去三十年间（历史期1982-1985年与近期2015-2018年），全球陆地生物群系的植被覆盖季节性谐波分量（振幅与相位）发生了怎样的时空变化？",
+      "hypothesis_or_mechanism": "气候变化与环境条件演变导致全球植被物候进程加速（生长季提前）及季节性振幅增强，尤其在北半球中高纬度地区表现显著。",
+      "variables_and_data_use": "使用 NOAA CDR AVHRR NDVI（AVH13C1）每日时间序列数据；通过 HANTS/FFT 算法拟合曲线并提取年度平均振幅（a0）、年度振幅（a1）与年度相位（φ1）；对比历史期与近期数据的均值差异及统计显著性。",
+      "method_paradigm": "时间序列谐波分析与物候变化检测",
+      "used_assets": [
+        "AVH13C1"
+      ],
+      "author_team": [
+        "Hadi Zare Khormizi",
+        "Hamid Reza Ghafarian Malamiri",
+        "Sahar Alian",
+        "Alfred Stein",
+        "Zahra Kalantari",
+        "Carla Ferreira"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Proof of evidence of changes in global terrestrial biomes using historic and recent NDVI time series",
+        "doi": "10.1016/j.heliyon.2023.e18686",
+        "year": 2023,
+        "venue": "Heliyon",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "兰沧河流域1982-2015年径流变化的主要驱动因素及其相对贡献率是多少？",
+      "hypothesis_or_mechanism": "植被覆盖变化（通过NDVI表征）和人类活动是主导该流域径流减少的关键下垫面因素，其影响可通过Budyko参数和弹性系数量化。",
+      "variables_and_data_use": "使用NOAA CDR AVHRR NDVI序列作为植被变化代理变量，结合气象站降水/潜在蒸散发数据和水文站径流数据，通过Budyko水量平衡方程和弹性系数法进行归因分析。",
+      "method_paradigm": "水文归因与时间序列突变检测",
+      "used_assets": [
+        "NOAA CDR AVHRR NDVI",
+        "China Meteorological Data Service Center meteorological data",
+        "Yunjinghong hydrological station runoff data"
+      ],
+      "author_team": [
+        "Yuan Liu",
+        "Weiqiang Chen",
+        "Ling Li",
+        "Junchang Huang",
+        "Xianglong Wang",
+        "Yulong Guo",
+        "Guangxing Ji"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Assessing the contribution of vegetation variation to streamflow variation in the Lancang River Basin, China",
+        "doi": "10.3389/fevo.2022.1058055",
+        "year": 2023,
+        "venue": "Frontiers in Ecology and Evolution",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "气候变化如何驱动阿穆尔河流域湿地植被绿度的时空演变及其对不同气候因子的响应机制？",
+      "hypothesis_or_mechanism": "区域气候变暖（尤其是夜间升温）与降水格局变化通过水热条件耦合，显著促进湿地植被生长，且该响应过程具有明显的纬度、经度与国家侧空间异质性。",
+      "variables_and_data_use": "以NOAA CDR AVHRR NDVI V5月合成数据为核心目标变量计算趋势与突变点；以CRU TS 4.05温湿数据为解释变量进行像素级相关与偏相关分析；结合Landsat湿地边界进行空间提取；利用CMIP6模式数据开展未来情景模拟。",
+      "method_paradigm": "长时序趋势检验与气候响应相关性分析",
+      "used_assets": [
+        "NOAA CDR of AVHRR NDVI version 5",
+        "CRU TS 4.05",
+        "Landsat TM/OLI land cover data",
+        "CNRM-ESM2-1 CMIP6"
+      ],
+      "author_team": [
+        "Zihan Xing",
+        "Xiaoyan Li",
+        "Dehua Mao",
+        "Ling Luo",
+        "Zongming Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Heterogeneous responses of wetland vegetation to climate change in the Amur River basin characterized by normalized difference vegetation index from 1982 to 2020",
+        "doi": "10.3389/fpls.2023.1290843",
+        "year": 2023,
+        "venue": "Frontiers in Plant Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "塞内加尔大非洲绿墙再造林前后植被动态及其与降水、土壤水分和其他气候参数的关系如何变化？",
+      "hypothesis_or_mechanism": "再造林后植被动态改善，且 NDVI 与降水、土壤水分及其他气候参数之间的关系发生变化。",
+      "variables_and_data_use": "使用 NOAA-CDR 的 NDVI 表征植被绿度，使用 NOAA-STAR 的 VH、CHIRPS 降水和 NOAA CPC 土壤水分作为补充植被与气候变量，构建趋势、异常和时间序列，并比较再造林前后的差异及相关关系。",
+      "method_paradigm": "趋势断点与前后比较",
+      "used_assets": [
+        "National Oceanic and Atmospheric Administration Climate Data Record Program (NOAA-CDR)",
+        "NDVI",
+        "Vegetation Health (VH)",
+        "Center for Satellite Applications and Research",
+        "NOAA-STAR",
+        "Climate Hazards Group Infrared Precipitation with Stations (CHIRPSs) precipitation data",
+        "Monthly soil moisture data",
+        "NOAA Climate Prediction Center (CPC) database"
+      ],
+      "author_team": [
+        "Bi Tra Olivier Gore",
+        "Angora Aman",
+        "Yves K. Kouadio",
+        "Ody-Marc Duclos"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Recent Vegetation Cover Dynamics and Climatic Parameters Evolution Study in the Great Green Wall of Senegal",
+        "doi": "10.4236/jep.2023.144018",
+        "year": 2023,
+        "venue": "Journal of Environmental Protection",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "萨赫勒-苏丹地区植被对水分胁迫的时空敏感性及其累积效应持续时间（CED）如何演变，其主要气候驱动机制是什么？",
+      "hypothesis_or_mechanism": "该区域植被生长主要受水分可用性限制，其水敏感性与CED的长期变化受降水、温度、太阳辐射及CO2浓度变化的共同驱动。",
+      "variables_and_data_use": "以NOAA CDR AVHRR NDVI月异常值与去趋势序列作为植被响应变量；以SPEI多时间尺度作为水分胁迫代理变量；结合MODIS物候、ERA5-Land气象要素与Copernicus土地覆盖数据，通过OLS回归与随机森林模型进行敏感性评估与归因分析。",
+      "method_paradigm": "时空回归分析与机器学习归因",
+      "used_assets": [
+        "NOAA Climate Data Record (CDR) of the AVHRR Normalized Difference Vegetation Index",
+        "SPEI",
+        "CHIRPS",
+        "GLEAM",
+        "MCD12Q MODIS Land Cover Dynamics",
+        "ERA5-Land",
+        "Copernicus Land Service"
+      ],
+      "author_team": [
+        "Tingting Lu",
+        "Wenmin Zhang",
+        "Christin Abel",
+        "Stéphanie Horion",
+        "Martin Brandt",
+        "Ke Huang",
+        "Rasmus Fensholt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Changes in vegetation-water response in the Sahel-Sudan during recent decades",
+        "doi": "10.1016/j.ejrh.2024.101672",
+        "year": 2024,
+        "venue": "Journal of Hydrology Regional Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "如何利用卫星植被指数时间序列的突变与季节性异常特征来检测干旱区洪水事件及其水文参数？",
+      "hypothesis_or_mechanism": "洪水补给浅层含水层导致河岸植被生长扩张，进而引起植被指数基线值升高与季节性信号正向异常，该变化幅度与洪水体积和持续时间呈正相关。",
+      "variables_and_data_use": "使用 NOAA/CDR/AVHRR/NDVI/V5 等产品的 NDVI、MSAVI 和 NDWI 时间序列，通过 BFAST 趋势突变检测和 TFA-GSI 异常积分计算提取植被响应特征，并与水文站实测的洪水体积和持续时间进行线性回归建模。",
+      "method_paradigm": "多源遥感时间序列变化检测与水文回归建模",
+      "used_assets": [
+        "NOAA/CDR/AVHRR/NDVI/V5",
+        "NOAA/CDR/AVHRR/SR/V5",
+        "MOD13Q1",
+        "MOD09GQ",
+        "MCD43A4",
+        "LT05/C01/T1_TOA",
+        "LC08/C01/T1_TOA"
+      ],
+      "author_team": [
+        "Omer Burstein",
+        "Tamir Grodek",
+        "Yehouda Enzel",
+        "David Helman"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "SatVITS‐Flood: Satellite Vegetation Index Time Series Flood Detection Model for Hyperarid Regions",
+        "doi": "10.1029/2023wr035164",
+        "year": 2023,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "如何融合多源卫星遥感、地面监测与再分析数据，利用机器学习模型高精度估算雅典地区的每日PM2.5浓度？",
+      "hypothesis_or_mechanism": "气溶胶光学厚度、氮氧化物浓度、气象扩散条件、地表特征及植被绿度共同驱动颗粒物的生成、传输与沉降过程，其多模态联合输入可显著降低单一数据源的预测误差并提升PM2.5反演精度。",
+      "variables_and_data_use": "使用MODIS MAIAC AOD、地面NO2监测、ERA5/MERRA2气象与气溶胶再分析、NOAA ISD能见度、GTOPO30高程、OpenStreetMap路网、Copernicus城市用地以及NOAA CDR AVHRR NDVI作为特征输入，构建包含随机森林、梯度提升和前馈神经网络的堆叠集成模型，以最小化预测误差并输出每日PM2.5浓度估计值。",
+      "method_paradigm": "堆叠集成机器学习反演",
+      "used_assets": [
+        "NOAA Climate Data Record AVHRR NDVI V5",
+        "MODIS Collection 6 MAIAC AOD",
+        "ERA5",
+        "MERRA2",
+        "NOAA Integrated Surface Database",
+        "GTOPO30 DEM",
+        "OpenStreetMap",
+        "Copernicus Urban Atlas"
+      ],
+      "author_team": [
+        "Seyong Chang",
+        "Evangelia Samoli",
+        "Evangelia Diapouli",
+        "Konstantina Dimakopoulou",
+        "Barrak Alahmad",
+        "Petros Koutrakis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Development of a predictive model for PM2.5 over the greater Athens metropolitan area, Greece, at a 1 km by 1 km grid using satellite measurements and machine learning methods",
+        "doi": "10.1371/journal.pone.0352975",
+        "year": 2026,
+        "venue": "PLoS ONE",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "该论文研究北阿尔伯塔 boreal forest 中泥炭地、气候、水文地形、燃料和植被物候如何影响火灾避难地出现概率。",
+      "hypothesis_or_mechanism": "泥炭地和湿润地形通过提高水分可用性、改变燃料结构并与季节性植被物候共同作用，从而增加火灾中保留未燃烧斑块的可能性。",
+      "variables_and_data_use": "论文使用 AlbertaSeverityAtlasdataset 的 RBR 标识火灾避难地，使用 NOAA CDR AVHRR NDVI, Version 4 的火前 7 日和 14 日最小、最大、平均 NDVI 表征植被物候，并结合 ClimateNA 气候变量、DEM 地形湿度变量、ABoVELandsat-derived AnnualDominant Landcover dataset、ALPHA3.0Predictive Landcover dataset、Soil LandscapesofCanadaVersion3.2dataset、HumanFootprintInventory(HFI) 和 CNFDB 火灾属性作为预测或控制变量。",
+      "method_paradigm": "空间统计建模",
+      "used_assets": [
+        "National Oceanic and Atmospheric Administration (NOAA) Climate Data Record (CDR) of NDVI Version 4 dataset",
+        "NOAACDRAVHRR NDVI,Version4",
+        "AlbertaSeverityAtlasdataset",
+        "CanadianNationalFireDatabase(CNFDB)",
+        "DEM-derived",
+        "ABoVELandsat-derived AnnualDominant Landcover dataset",
+        "ALPHA3.0Predictive Landcover dataset",
+        "Soil LandscapesofCanadaVersion3.2dataset",
+        "ClimateNA, Version 6.3",
+        "HumanFootprintInventory(HFI)"
+      ],
+      "author_team": [
+        "Christine E. Kuntzemann",
+        "Ellen Whitman",
+        "Diana Stralberg",
+        "Marc‐André Parisien",
+        "Dan K. Thompson",
+        "Scott E. Nielsen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Peatlands promote fire refugia in boreal forests of northern Alberta, Canada",
+        "doi": "10.1002/ecs2.4510",
+        "year": 2023,
+        "venue": "Ecosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "北美中部迁徙通道上秋季帝王蝶栖息群规模在 2007–2023 年间如何随时空变化，天气和植被条件能否解释这些变化？",
+      "hypothesis_or_mechanism": "逆风、低温和降雨阻碍迁徙飞行，会使栖息群增大；较高的 NDVI 代表更好的蜜源与中途停歇条件，从而影响栖息群规模。",
+      "variables_and_data_use": "以 Journey North 栖息群最大计数为响应变量；以 NOAA CDR 0.05° 逐日 NDVI 在观测点 12.5 km 半径内的同日值，以及 Visual Crossing 观测前 7 天的气温、降水和顺风指标为协变量；用 HILDA+ 检验城市化采样偏差，用 PRISM 和 DAYMET 验证天气数据。",
+      "method_paradigm": "贝叶斯空间变系数负二项模型（INLA）与 WAIC 模型平均",
+      "used_assets": [
+        "NOAA Climate Data Record NDVI (0.05°)",
+        "Journey North roost database",
+        "Visual Crossing weather API",
+        "HILDA+",
+        "PRISM",
+        "DAYMET"
+      ],
+      "author_team": [
+        "Andrew K. Davis",
+        "Jordan R. Croy",
+        "William E. Snyder"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Dramatic recent declines in the size of monarch butterfly ( Danaus plexippus ) roosts during fall migration",
+        "doi": "10.1073/pnas.2410410121",
+        "year": 2024,
+        "venue": "Proceedings of the National Academy of Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "在陆气耦合强度不同的草地与森林生态系统中，广义互补关系的形状参数和潜在蒸发相关参数分别受陆面还是大气因素控制？",
+      "hypothesis_or_mechanism": "森林与外层大气强耦合使潜在蒸发相关参数随平均相对湿度变化，草地弱耦合使形状参数随长期土壤湿润程度变化。",
+      "variables_and_data_use": "利用通量站点的月尺度实际蒸发、相对湿度和土壤含水量数据，拟合 sigmoid 型广义互补关系的两个参数，并建立参数与环境变量的相关性参数化方案以改进蒸发预测。",
+      "method_paradigm": "通量站点参数反演与相关分析",
+      "used_assets": [
+        "24 grassland and 19 forest flux sites"
+      ],
+      "author_team": [
+        "Songjun Han",
+        "Jianwei Yan",
+        "Yaping Liu",
+        "Fuqiang Tian",
+        "Baozhong Zhang",
+        "Xiaochun Wang",
+        "Changliang Shao",
+        "Liming Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Contrasting Land and Atmospheric Controls on the Generalized Complementary Relationship of Evaporation Over Grasslands and Forests",
+        "doi": "10.1029/2023wr035501",
+        "year": 2023,
+        "venue": "Water Resources Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "加州城市地区居住邻里绿地（NDVI）及其变化是否影响出生体重和小于胎龄儿风险，这种关系是否因母亲种族/族裔而不同？",
+      "hypothesis_or_mechanism": "更高的居住区绿地可能缓解心理社会和环境压力，从而提高出生体重、降低小于胎龄儿风险。",
+      "variables_and_data_use": "在 Google Earth Engine 中将 NOAA CDR AVHRR 逐日 NDVI 聚合为普查区-年均值，负值置零，作为暴露变量。按母亲居住普查区和出生年份与出生记录关联，并结合 2010 年人口普查的邻里劣势指数和个体协变量进行建模。",
+      "method_paradigm": "横断面回归与母亲固定效应同胞设计",
+      "used_assets": [
+        "NOAA Climate Data Record (CDR) Normalized Difference Vegetation Index (NDVI)",
+        "California Department of Public Health (CDPH) Birth Cohort Files (BCFs)",
+        "2010 U.S. Decennial Census"
+      ],
+      "author_team": [
+        "Samantha Gailey"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Changes in Residential Greenspace and Birth Outcomes among Siblings: Differences by Maternal Race",
+        "doi": "10.3390/ijerph20186790",
+        "year": 2023,
+        "venue": "International Journal of Environmental Research and Public Health",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 23,
+    "source_paper_count": 23,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

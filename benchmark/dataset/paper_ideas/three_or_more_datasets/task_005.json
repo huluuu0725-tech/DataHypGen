@@ -1,0 +1,59 @@
+{
+  "paper_id": "10.1007/s00024-026-04050-8",
+  "task_id": "three_or_more_datasets/task_005",
+  "title": "Lightning Behavior and Its Relationship with Topography, Precipitation, and Land Use in the São Francisco River Basin",
+  "category": "climate_surface_interaction",
+  "year": 2026,
+  "journal": "Pure and Applied Geophysics",
+  "impact_level": "medium",
+  "datasets": [
+    "CHIRPS Daily Final Precipitation v2.0",
+    "ASTER Global Digital Elevation Model V003",
+    "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "precipitation_driver",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    },
+    {
+      "role": "topographic_driver",
+      "dataset": "ASTER Global Digital Elevation Model V003"
+    },
+    {
+      "role": "target_observation",
+      "dataset": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations"
+    }
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_005:lightning_terrain_climate",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from the seed abstract and declared dataset roles; empirical results are excluded from the idea fields."
+  },
+  "idea": {
+    "research_question": "How do terrain and precipitation jointly explain spatial and seasonal variability in lightning activity across a river basin?",
+    "hypothesis": "Lightning flash-rate density responds nonlinearly to elevation and season, with precipitation modifying the strength and spatial distribution of the terrain relationship.",
+    "mechanism": "LIS/TRMM event observations are aggregated to a common grid; ASTER GDEM supplies elevation, slope and aspect; CHIRPS represents precipitation state. Seasonal threshold and interaction analyses test whether topographic control changes under distinct hydroclimatic regimes.",
+    "key_variables": {
+      "target": "Lightning flash-rate density, hotspot location and seasonal event-rate regime",
+      "predictors": [
+        "LIS/TRMM lightning event counts",
+        "ASTER GDEM elevation, slope and aspect",
+        "CHIRPS precipitation",
+        "season"
+      ]
+    },
+    "data_sources": [
+      "NASA_CMR:LIS_TRMM_LIGHTNING",
+      "NASA_CMR:ASTGTM_003",
+      "UCSB-CHG/CHIRPS/DAILY"
+    ],
+    "analytical_approach": "Common-grid aggregation, seasonal stratification, hotspot/cluster analysis, nonlinear threshold detection and terrain-by-precipitation/land-use interaction modelling.",
+    "expected_contribution": "A quantitative basin-scale framework for separating topographic, hydroclimatic and land-use controls on lightning risk.",
+    "falsification_condition": "Lightning rates show no reproducible association with terrain after precipitation and land-use adjustment, or the inferred thresholds are unstable across seasons and spatial cross-validation folds."
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from the verified seed abstract and multidataset prompt specification on 2026-09-29."
+}

@@ -1,0 +1,327 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Orulgan Ridge, Northeast Siberia",
+  "datasets": [
+    {
+      "role": "multispectral_landscape_mapping",
+      "data_description": {
+        "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+        "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+        "temporal_coverage": "2017-03-28 to near present",
+        "data_source": "ESA Copernicus Sentinel-2 MSI",
+        "gee_asset": {
+          "id": "COPERNICUS/S2_SR_HARMONIZED",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+        "analytical_capabilities": [
+          "Cloud-masked spectral compositing",
+          "Land-cover and vegetation classification",
+          "NDVI, BSI, NDWI and other index derivation",
+          "Multi-date change detection"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Surface reflectance scaled integer bands",
+          "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+        },
+        "spatial_coverage": {
+          "region_name": "Orulgan Ridge, Northeast Siberia",
+          "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+        }
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    },
+    {
+      "role": "historical_optical_time_series",
+      "data_description": {
+        "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+        "data_type": "Raster image collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+        "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+        "temporal_coverage": "2013-04-11 to near present",
+        "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+        "gee_asset": {
+          "id": "LANDSAT/LC08/C02/T1_L2",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+        "analytical_capabilities": [
+          "Long-term multispectral vegetation monitoring",
+          "Surface-temperature and bare-soil indicators",
+          "Land-cover transition mapping",
+          "Cross-sensor temporal comparison"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+          "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+        },
+        "spatial_coverage": {
+          "region_name": "Orulgan Ridge, Northeast Siberia",
+          "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+        }
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+    },
+    {
+      "role": "landform_and_elevation",
+      "data_description": {
+        "dataset_name": "ASTER Global Digital Elevation Model V003",
+        "data_type": "Raster collection",
+        "data_format": "NASA Earthdata tiled elevation product",
+        "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+        "temporal_unit": "Static global elevation composite",
+        "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+        "data_source": "NASA/METI ASTER GDEM",
+        "data_path": "NASA_CMR:ASTGTM_003",
+        "analytical_capabilities": [
+          "Megarelief and landform derivation",
+          "Elevation and hypsometric profiles",
+          "Terrain stratification of ecological units",
+          "Topographic support for landscape classification"
+        ],
+        "unit_of_measurement": {
+          "primary_measurement": "Elevation in metres above the EGM96 geoid",
+          "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+        },
+        "spatial_coverage": {
+          "region_name": "Orulgan Ridge, Northeast Siberia",
+          "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+        }
+      },
+      "data_path": "NASA_CMR:ASTGTM_003"
+    }
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "Mountain permafrost landscape composite observation",
+    "observable_group": "mountain_permafrost_landscape_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Mountain permafrost landscape composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Orulgan Ridge, Northeast Siberia",
+        "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+      },
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "multispectral_landscape_mapping",
+        "data_description": {
+          "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+          "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+          "temporal_coverage": "2017-03-28 to near present",
+          "data_source": "ESA Copernicus Sentinel-2 MSI",
+          "gee_asset": {
+            "id": "COPERNICUS/S2_SR_HARMONIZED",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+          "analytical_capabilities": [
+            "Cloud-masked spectral compositing",
+            "Land-cover and vegetation classification",
+            "NDVI, BSI, NDWI and other index derivation",
+            "Multi-date change detection"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Surface reflectance scaled integer bands",
+            "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+          },
+          "spatial_coverage": {
+            "region_name": "Orulgan Ridge, Northeast Siberia",
+            "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+          }
+        },
+        "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED"
+      },
+      {
+        "role": "historical_optical_time_series",
+        "data_description": {
+          "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+          "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+          "temporal_coverage": "2013-04-11 to near present",
+          "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+          "gee_asset": {
+            "id": "LANDSAT/LC08/C02/T1_L2",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+          "analytical_capabilities": [
+            "Long-term multispectral vegetation monitoring",
+            "Surface-temperature and bare-soil indicators",
+            "Land-cover transition mapping",
+            "Cross-sensor temporal comparison"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+            "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+          },
+          "spatial_coverage": {
+            "region_name": "Orulgan Ridge, Northeast Siberia",
+            "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+          }
+        },
+        "data_path": "GEE:LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "landform_and_elevation",
+        "data_description": {
+          "dataset_name": "ASTER Global Digital Elevation Model V003",
+          "data_type": "Raster collection",
+          "data_format": "NASA Earthdata tiled elevation product",
+          "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+          "temporal_unit": "Static global elevation composite",
+          "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+          "data_source": "NASA/METI ASTER GDEM",
+          "data_path": "NASA_CMR:ASTGTM_003",
+          "analytical_capabilities": [
+            "Megarelief and landform derivation",
+            "Elevation and hypsometric profiles",
+            "Terrain stratification of ecological units",
+            "Topographic support for landscape classification"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Elevation in metres above the EGM96 geoid",
+            "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+          },
+          "spatial_coverage": {
+            "region_name": "Orulgan Ridge, Northeast Siberia",
+            "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+          }
+        },
+        "data_path": "NASA_CMR:ASTGTM_003"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Phenological optical response interpreted jointly with historical optical coverage and terrain/landform structure.",
+      "alignment": "Sentinel-2 and Landsat time-series features are harmonized to the landscape mapping grid and linked to ASTER-derived terrain variables.",
+      "required_roles": [
+        "multispectral_landscape_mapping",
+        "historical_optical_time_series",
+        "landform_and_elevation"
+      ],
+      "component_count": 3
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "NASA_CMR:ASTGTM_003"
+  ],
+  "schema_version": "2.0-composite-anchor",
+  "data_descriptions": [
+    {
+      "dataset_name": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "10 m visible/NIR bands; 20 m red-edge/SWIR bands",
+      "temporal_unit": "Scene-level observations with approximately 5-day revisit at the equator",
+      "temporal_coverage": "2017-03-28 to near present",
+      "data_source": "ESA Copernicus Sentinel-2 MSI",
+      "gee_asset": {
+        "id": "COPERNICUS/S2_SR_HARMONIZED",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:COPERNICUS/S2_SR_HARMONIZED",
+      "analytical_capabilities": [
+        "Cloud-masked spectral compositing",
+        "Land-cover and vegetation classification",
+        "NDVI, BSI, NDWI and other index derivation",
+        "Multi-date change detection"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Surface reflectance scaled integer bands",
+        "runtime_hint": "Apply the catalog scale factor and mask clouds/cirrus using the scene classification and QA bands before computing indices."
+      },
+      "spatial_coverage": {
+        "region_name": "Orulgan Ridge, Northeast Siberia",
+        "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+      }
+    },
+    {
+      "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+      "data_type": "Raster image collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "30 m multispectral grid; thermal products are catalog-resampled",
+      "temporal_unit": "Scene-level observations with a nominal 16-day revisit",
+      "temporal_coverage": "2013-04-11 to near present",
+      "data_source": "USGS/NASA Landsat 8 OLI/TIRS",
+      "gee_asset": {
+        "id": "LANDSAT/LC08/C02/T1_L2",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:LANDSAT/LC08/C02/T1_L2",
+      "analytical_capabilities": [
+        "Long-term multispectral vegetation monitoring",
+        "Surface-temperature and bare-soil indicators",
+        "Land-cover transition mapping",
+        "Cross-sensor temporal comparison"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Scaled surface reflectance and surface-temperature bands",
+        "runtime_hint": "Use QA_PIXEL and QA_RADSAT masks and preserve the distinction between optical reflectance and thermal surface temperature."
+      },
+      "spatial_coverage": {
+        "region_name": "Orulgan Ridge, Northeast Siberia",
+        "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+      }
+    },
+    {
+      "dataset_name": "ASTER Global Digital Elevation Model V003",
+      "data_type": "Raster collection",
+      "data_format": "NASA Earthdata tiled elevation product",
+      "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+      "temporal_unit": "Static global elevation composite",
+      "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+      "data_source": "NASA/METI ASTER GDEM",
+      "data_path": "NASA_CMR:ASTGTM_003",
+      "analytical_capabilities": [
+        "Megarelief and landform derivation",
+        "Elevation and hypsometric profiles",
+        "Terrain stratification of ecological units",
+        "Topographic support for landscape classification"
+      ],
+      "unit_of_measurement": {
+        "primary_measurement": "Elevation in metres above the EGM96 geoid",
+        "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+      },
+      "spatial_coverage": {
+        "region_name": "Orulgan Ridge, Northeast Siberia",
+        "coverage": "Catalog coverage intersected with Orulgan Ridge, Northeast Siberia."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S2_SR_HARMONIZED",
+    "GEE:LANDSAT/LC08/C02/T1_L2",
+    "NASA_CMR:ASTGTM_003"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "multispectral_landscape_mapping",
+      "historical_optical_time_series",
+      "landform_and_elevation"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

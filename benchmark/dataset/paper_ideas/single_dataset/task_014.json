@@ -1,0 +1,56 @@
+{
+  "paper_id": "10.1007/s12524-016-0635-9",
+  "task_id": "single_dataset/task_014",
+  "title": "Multi-Index Soil Moisture Estimation: Comparative Evaluation of TWI, TVDI and Improved TVDI",
+  "category": "geomorphology_analysis",
+  "year": 2017,
+  "journal": "Journal of the Indian Society of Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "ASTER DEM",
+    "Landsat"
+  ],
+  "anchor_substitution": {
+    "paper_used": "ASTER DEM, to derive slope and flow accumulation for the topographic wetness index",
+    "task_anchor": "NASA/NASADEM_HGT/001",
+    "former_anchor": "NASA/ASTER_GED/AG100_003",
+    "why_the_former_anchor_was_wrong": [
+      "product identity: AG100 is the ASTER Global Emissivity Dataset, not the standalone ASTER GDEM; elevation is one embedded band among emissivity, LST and NDVI",
+      "version: the embedded elevation band carries GDEM V002, while the prompt and alias policy both claimed V3",
+      "resolution: the asset is 100 m, while the prompt claimed 30 m -- too coarse for the hillslope water redistribution this study is about"
+    ],
+    "why_nasadem": "The Earth Engine catalog publishes no standalone ASTER GDEM. NASADEM is a reprocessing of SRTM that incorporates auxiliary data from ASTER GDEM, ICESat GLAS and PRISM, so it shares lineage with the paper's source; it is 30 m, global, void-free and supported, which is what a slope-and-flow-accumulation TWI needs.",
+    "residual_gap": "NASADEM is SRTM-based with ASTER GDEM only as auxiliary input, so elevation values differ from the paper's source in detail.",
+    "fields_left_unchanged": [
+      "datasets",
+      "idea.data_sources",
+      "idea.analytical_approach"
+    ],
+    "note": "Those fields still say ASTER DEM because that is what the paper used. Do not rewrite them to match the anchor. The seed full text has not been read; the DEM role recorded here comes from paper_ideas.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "如何整合地形湿度指数与植被-地表温度干旱指数，以提高不同地形条件下土壤湿度遥感估算的适用性和解释能力？",
+    "hypothesis": "相较于单独使用TWI或TVDI，结合地形控制与植被-温度状态信息的改进型TVDI能够更有效地表征土壤湿度的空间变化，尤其是在地形起伏导致水分再分配明显的区域。",
+    "mechanism": "土壤湿度受地形汇流、坡位排水条件、植被覆盖状况和地表热状态共同控制。TWI表征由坡度和汇流面积决定的潜在水分累积能力，TVDI通过植被指数与地表温度关系反映地表干湿状态。将TWI与TVDI结合，可以同时捕捉地形驱动的水分空间再分配和植被-温度响应所反映的表层水分胁迫，从而形成更完整的土壤湿度估算机制。",
+    "key_variables": {
+      "target": "土壤湿度或相对土壤水分状况",
+      "predictors": [
+        "地形湿度指数TWI",
+        "温度植被干旱指数TVDI",
+        "改进型TVDI",
+        "数字高程模型派生的坡度",
+        "汇流面积或地形汇水条件",
+        "归一化植被指数NDVI",
+        "地表温度LST"
+      ]
+    },
+    "data_sources": [
+      "ASTER DEM",
+      "Landsat遥感影像"
+    ],
+    "analytical_approach": "基于ASTER DEM提取地形因子并计算TWI，基于Landsat影像反演NDVI和地表温度并构建TVDI，在此基础上设计融合地形信息的改进型TVDI；通过不同地形分区比较各指数对土壤湿度空间格局的表征能力，并开展机制层面的对比分析。",
+    "expected_contribution": "提出并评估一种融合地形因子与植被-温度信息的土壤湿度遥感估算框架，为复杂地形区土壤湿度监测提供比单一指数方法更具物理解释性的研究设计，并澄清不同地形条件下多指数组合的适用机制。",
+    "falsification_condition": "如果改进型TVDI在不同地形分区中不能比单独的TWI或TVDI更稳定地解释或预测土壤湿度空间变化，或者地形信息的加入未能改善对水分再分配过程的表征，则该假设将被推翻。"
+  }
+}

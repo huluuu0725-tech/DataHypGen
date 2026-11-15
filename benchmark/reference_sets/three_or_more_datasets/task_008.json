@@ -1,0 +1,1131 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_008",
+  "reference_coverage": "no_admitted_complete_set_references",
+  "evaluation_year": 2026,
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_008:composite_observation",
+    "type": "composite_observation",
+    "name": "urban_landslide_long_term_monitoring composite observation",
+    "observable_group": "urban_landslide_long_term_monitoring_multidataset_observation",
+    "components": [
+      {
+        "role": "multi_season_optical_surface_input",
+        "data_description": {
+          "dataset_name": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "data_type": "Multispectral surface-reflectance image collection",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "USGS/NASA Landsat 8/9",
+          "data_path": "LANDSAT/LC08/C02/T1_L2",
+          "spatial_coverage": {
+            "region_name": "Taiwan",
+            "coverage": "Declared analysis region within Taiwan."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "LANDSAT/LC08/C02/T1_L2"
+      },
+      {
+        "role": "human_activity_disambiguation_input",
+        "data_description": {
+          "dataset_name": "VIIRS Black Marble nighttime radiance",
+          "data_type": "Daily corrected nighttime-radiance raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA Black Marble VNP46A2",
+          "data_path": "NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Taiwan",
+            "coverage": "Declared analysis region within Taiwan."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "terrain_context_input",
+        "data_description": {
+          "dataset_name": "NASA SRTM 30 m Digital Elevation Model",
+          "data_type": "Static elevation raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA SRTM",
+          "data_path": "USGS/SRTMGL1_003",
+          "spatial_coverage": {
+            "region_name": "Taiwan",
+            "coverage": "Declared analysis region within Taiwan."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "USGS/SRTMGL1_003"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "multi_season_optical_surface_input",
+        "human_activity_disambiguation_input",
+        "terrain_context_input"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after declared spatial and temporal alignment.",
+      "supplement_policy": "Supplementary data may be added only with a distinct mechanism, validation or context role; no supplement may replace a required role."
+    }
+  },
+  "seed_exclusion": null,
+  "construction": {
+    "adjudication_contract_version": "multidataset_set_identity_v4_consensus_quote_gate",
+    "admission_rule": "Cross-family analogous substitution counts as an expanded_set_reference member when verified verbatim to be actually used in the anchor role.",
+    "candidate_and_fulltext_sources": [
+      "reference_sets/audit/complete_literature_pool_20260929"
+    ]
+  },
+  "quality": {
+    "ref_count": 9,
+    "source_paper_count": 9,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 9,
+    "partial_set_reference_count": 0,
+    "component_support_count": 0,
+    "uncertain_count": 0,
+    "rejected_count": 0,
+    "error_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": true,
+    "manual_admission_count": 9,
+    "partial_set_support_count": 7
+  },
+  "reference_papers": [
+    {
+      "doi": "10.3390/rs12172832",
+      "title": "Mapping 10-m Resolution Rural Settlements Using Multi-Source Remote Sensing Datasets with the Google Earth Engine Platform",
+      "year": 2020,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_human_adjudicated_cross_family_analogous_verified_fulltext",
+      "adjudication_note": "跨族类比口径准入（用户 2026-10-05 裁定）：gpt 将替代产品判为 analogous/parent/compatible 且全文核验确认替代产品在锚点角色中实际被使用，故覆盖 qwen 的 not_matched/mention_only。identity_relation_evidence 由 gpt 逐字引文补回，非准入门。\n  multi_season_optical_surface_input: gpt=analogous_product / qwen=not_matched -> 声明 analogous_product（human_review_overrules_weaker_model）\n  human_activity_disambiguation_input: gpt=compatible_lineage / qwen=analogous_product -> 声明 compatible_lineage（conservative_max_of_both_models）\n  terrain_context_input: gpt=exact_product / qwen=exact_product -> 声明 exact_product（conservative_max_of_both_models）",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "Sentinel2 MSI Level1C",
+        "VIIRS DNB Composites Version 1",
+        "SRTM Version 3 (V3) product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "role": "multi_season_optical_surface_input",
+          "anchor_product": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "actual_dataset": "Sentinel2 MSI Level1C",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Sentinel2providesmultispectraldata,includingfourbandswith10mspatialresolution,sixbandswith20mspatialresolution,threebandswith60mspatialresolutionandthreequalityassessment(QA)bands,whereQA60isabitmaskfrequencybandwithcloudmaskinformation.We",
+            "WeemployedtheSentinel2MSILevel1Cdatainthisstudy.",
+            "Then,acompositeimagewasobtainedfromallselectedimagesusingthemedianreducerinGEE.Finally,spectralfeatureswerecomputedbasedonthecompositeimage.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements."
+          ],
+          "identity_relation_evidence": {
+            "anchor_observable": "Landsat Collection 2 Level-2 Surface Reflectance",
+            "actual_observable": "Sentinel2 MSI",
+            "relation_explanation": "实际产品 Sentinel2 MSI 与锚点 Landsat Collection 2 Level-2 Surface Reflectance 分属不同传感器/产品族，但本研究将其直接用作锚点角色（multi_season_optical_surface_input）的输入，提供相同的地表观测对象与遥感模态；经全文核验确为实际操作使用而非仅提及，按跨族类比计入 expanded_set_reference（用户 2026-10-05 裁定口径）。",
+            "same_observed_object": true,
+            "same_measurement_capability": true,
+            "same_modality": true,
+            "same_lineage": false,
+            "evidence_quotes": [
+              ",\nusingGEE.Thepresentstudymakesthreemaincontributions:(1)Theproposedframeworkwasable\ntoproducea10mruralsettlementmapfrom\nmultisourceremotesensingdatasetsincluding\nSentinel1SyntheticApertureRadar(SAR),Sentinel2MultiSpectralInstrument(MSI),Visible\nInfraredImagingRadiometerSuitesupportingaDayNightBand(VIIRSDNB),andShuttleRadar\nTopographyMissionDigitalElevationModel(SRTMimageryusingtheGEEplatform;we\ninvestigatedtheimportanceofvarious\nfeaturesbygraduallyintrod"
+            ]
+          },
+          "identity_basis": "human_review_overrules_weaker_model",
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "Sentinel2 MSI Level1C",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "role": "human_activity_disambiguation_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS DNB Composites Version 1",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "VIIRSDNBnightlightdata,collectedbytheSuomiNationalPolarorbitingPartnershipsatelliteoftheNationalAeronauticsandSpaceAdministration(NASA)/NationalOceanicandAtmosphericAdministration(NOAA),hastheuniqueabilitytorecordemittedvisibleandnearinfrared(VNIR)radiationatnightwithaspatialresolutionof15arcseconds(equivalentto0.5kmat",
+            "Forthisstudy,weusedVIIRSDNBCompositesVersion1data,whicharethemonthlyaverageradiancecomposites.",
+            "AcompositeVIIRSDNBdatawasobtainedfromallcollectedVIIRSDNBdatausingthemedianreducerinGEEtoeliminatethemaximumvalueofnighttimelightandobtainmorestablenighttimelightdata.Finally,theaverageDNBradiancevalues(avg_rad)wereselectedfromthecompositeVIIRSDNBdata.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements."
+          ],
+          "identity_relation_evidence": {
+            "anchor_observable": "VIIRS Black Marble nighttime radiance",
+            "actual_observable": "VIIRS DNB Composites",
+            "relation_explanation": "实际产品 VIIRS DNB Composites 与锚点 VIIRS Black Marble nighttime radiance 同属一个观测谱系（处理变体），观测对象与光谱/雷达测量能力一致，故判 compatible_lineage。",
+            "same_observed_object": true,
+            "same_measurement_capability": true,
+            "same_modality": true,
+            "same_lineage": true,
+            "evidence_quotes": [
+              "ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÝÝáÍÎÓÝÞâ&\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0003\u000bÿÿÿÿÿÿþþý\u0001\u0000\u0002ýýýÿÿÿÿÿÿÿÿÿþþþa^RTaaþþýÿÿÿÿÿÿÿÿÿe:\u0000\u0000\u0000\u0000\u0000\u0000ÿýýÿÿÿþþþ\u0003\u0001\u0000\u0000\u0000\u0000\u000b\u0012\u0019þÿÿÿÿÿþþþþÿÿøøø\n\nRemoteSens.2020,12,28325of26\n\ntheequator).Forthisstudy,weusedVIIRSDNBCompositesVersion1data,whicharethemonthly\naverageradiancecomposites.AcompositeVIIRSDNBdatawasobtainedfromallcollectedVIIRS\nDNBdatausingthemedianreducerinGEEtoeliminatethemaximumvalueofnighttimelightand\nobtainmorestable\nnighttimelightdata.Finally,theaverageDNBr"
+            ]
+          },
+          "identity_basis": "conservative_max_of_both_models",
+          "model_identity_matches": {
+            "gpt": "compatible_lineage",
+            "qwen": "analogous_product"
+          },
+          "model_products": {
+            "gpt": "VIIRS DNB Composites Version 1",
+            "qwen": "VIIRS DNB Composites Version 1"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        },
+        {
+          "member_id": "terrain_context_input",
+          "role": "terrain_context_input",
+          "anchor_product": "NASA SRTM 30 m Digital Elevation Model",
+          "actual_dataset": "SRTM Version 3 (V3) product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "SRTMdata,measuredandreleasedbyNASAandtheNationalSurveyingandMappingBureauoftheDepartmentofDefense,cancover80%ofthegloballandsurface[42].TheSRTMVersion3(V3)product,providedbyNASAJetPropulsionLaboratory(JPL)ataresolutionof1arcsecond(approximately30m),wasexploitedinourresearch.Weusedtheslopeandelevationinformationinthestudy.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements.",
+            "elevationandslopedatcalculatedfromSRTMDEMwereaddedtothefeaturevector."
+          ],
+          "identity_relation_evidence": null,
+          "identity_basis": "conservative_max_of_both_models",
+          "model_identity_matches": {
+            "gpt": "exact_product",
+            "qwen": "exact_product"
+          },
+          "model_products": {
+            "gpt": "SRTM Version 3 (V3) product",
+            "qwen": "SRTM Version 3 (V3)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        }
+      ],
+      "model_disagreements": {
+        "multi_season_optical_surface_input": {
+          "gpt": "analogous_product",
+          "qwen": "not_matched",
+          "declared": "analogous_product"
+        },
+        "human_activity_disambiguation_input": {
+          "gpt": "compatible_lineage",
+          "qwen": "analogous_product",
+          "declared": "compatible_lineage"
+        }
+      },
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [
+        "Inthisstudy,fourtypesofdatasources(Table1),namelySentinel1SARgroundrangedetecteddata,Sentinel2opticalimagery,VIIRSDNBnightlightdata,andSTRMDEMimagery,wereselectedforthemappingofruralsettlementsacrossthestudyareausingtheGEEplatform.",
+        "When differentdatasourceswerecollected,inputsweresampledtothespatialresolutionof10m,whichcorrespondstothefinerresolutionofSentinel1SAR.Finally,alldatawereprojectedintotheGCSWGS84coordinatesystem.",
+        "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements.",
+        "A rural settlementisacomprehensivelandusetype,includingvegetation,roads,rivers,buildings,andotherfeatures."
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/adjudication_gpt_qwen_v8/uncertain_remaining_task001_012_20261005/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "admitted",
+        "gpt_confidence": 0.94,
+        "gpt_coverage_tier": "expanded_set_reference",
+        "gpt_matched_member_count": 3,
+        "qwen_verdict": "uncertain",
+        "qwen_confidence": 0,
+        "qwen_coverage_tier": "partial_set_support",
+        "qwen_matched_member_count": 2,
+        "evidence_source_quality": "unverified_section_boundary",
+        "note": "gpt derived matched_member_count=3 and an expanded_set_reference tier; the consensus layer kept the record out because it requires every selected model to hand-write admitted. qwen marked the cross-family substitute not_matched/mention_only; the 2026-10-05 cross-family policy overrides that because the substitute was verified verbatim to be actually used in the anchor role. identity_relation_evidence was backfilled from gpt's verbatim quotes and is not an admission gate."
+      }
+    },
+    {
+      "doi": "10.5194/tc-13-2977-2019",
+      "title": "Recent glacier and lake changes in High Mountain Asia and their relation to precipitation changes",
+      "year": 2019,
+      "venue": "The cryosphere",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multi_season_optical_surface_input<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_disambiguation_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "adjudication_date": "2026-10-05",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "VIIRS Black Marble nighttime radiance",
+        "SRTM DEM (3 arcsec / 1 arcsec)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "role": "multi_season_optical_surface_input",
+          "anchor_product": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "actual_dataset": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "dorheiclakesinparticularinthenorthernandeasterntp.weestimatelakevolumechangesthroughacombinationofre-peatlakeextentsfromlandsatdataandshorelineelevationsfromicesatandtheshuttleradartopographymission(srtm)digitalelevationmodel(dem)forover1300lakes.theriseinwatervolumecontainedinthelakescorrespondsto4–25mma−1,whendistributedoverentirecatchments,fortheareaswher"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "Global Surface Water dataset",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "role": "human_activity_disambiguation_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "terrain_context_input",
+          "role": "terrain_context_input",
+          "anchor_product": "NASA SRTM 30 m Digital Elevation Model",
+          "actual_dataset": "SRTM DEM (3 arcsec / 1 arcsec)",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "As the reference DEM for our ICESat processing and to derive lake shoreline elevations, we use the DEM from the Shuttle Radar Topography Mission (SRTM, Farr et al., 2007; Farr and Kobrick, 2000). We used the C-band, non-void-filled SRTM DEM version at 3 arcsec resolution (SRTM3). As an alternative elevation reference, we used also the SRTM DEM at 1 arcsec resolution (SRTM1)."
+          ],
+          "identity_basis": "conservative_weakest_model_with_used_as_data",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {
+            "gpt": "compatible_lineage",
+            "qwen": "exact_product"
+          },
+          "model_products": {
+            "gpt": "SRTM DEM",
+            "qwen": "SRTM DEM (3 arcsec / 1 arcsec)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        }
+      ],
+      "model_disagreements": {},
+      "non_anchor_requirements": [],
+      "joint_use_evidence_quotes": [
+        "We compute annual water volume change of the Tibetan lakes by multiplying annual lake areas with water level changes from repeat water surface elevations for each year over the period 1990–2015.",
+        "Maximum annual lake extents are obtained directly from the Global Surface Water dataset.",
+        "We retrieve the corresponding lake surface elevations in two ways: (a) from SRTM DEM elevations of the lake shore by computing the median of interpolated DEM elevations for lake shore cells for each areal extent, and (b) directly from ICESat footprint elevations on the lake areas for those lakes where ICESat data are available."
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "machine_state_at_admission": {
+        "record_machine_verdict": "uncertain",
+        "gpt_verdict": "uncertain",
+        "gpt_initial_verdict": "partial",
+        "gpt_coverage_tier": "component_support",
+        "gpt_matched_member_count": 1,
+        "gpt_missing_member_ids": [
+          "multi_season_optical_surface_input",
+          "human_activity_disambiguation_input"
+        ],
+        "qwen_verdict": "uncertain",
+        "qwen_initial_verdict": "rejected",
+        "qwen_coverage_tier": "component_support",
+        "qwen_matched_member_count": 1,
+        "qwen_missing_member_ids": [
+          "multi_season_optical_surface_input",
+          "human_activity_disambiguation_input"
+        ],
+        "evidence_source_quality": "unverified_section_boundary",
+        "bclass_triage": "REVIEW_FOR_ADMIT",
+        "user_ruling": "admit REVIEW_FOR_ADMIT + ADMIT_CANDIDATE batches (2026-10-05)",
+        "note": "Both models hand-wrote verdict=uncertain on this record; the user admitted the slice-presence batches. Machine fields preserved, not rewritten. Declared identities never exceed the weakest model identity that reported data use; members without any model data-use finding carry the human slice-presence verdict at the weakest matched level."
+      }
+    },
+    {
+      "doi": "10.1016/j.rse.2015.10.014",
+      "title": "Development of a global ~90m water body map using multi-temporal Landsat images",
+      "year": 2015,
+      "venue": "Remote Sensing of Environment",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "ons is larger in higher latitude (even though 125  eastern Siberia is missing by GLS1990). 126  2.2 Digital Elevation Model 127  A Digital Elevation Model (DEM) was used to generate an ocean mask and also for 128  distinguishing shadows from wate"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.1080/01431161.2012.712224",
+      "title": "Height and biomass of mangroves in Africa from ICESat/GLAS and SRTM",
+      "year": 2012,
+      "venue": "International Journal of Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.1109/access.2019.2896241",
+      "title": "Downscaling Land Surface Temperatures Using a Random Forest Regression Model With Multitype Predictor Variables",
+      "year": 2019,
+      "venue": "IEEE Access",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "nstudyareasAandB. conversionmaybesuitabletoevaluatetheaccuraciesofthe downscaledLSTs. 4)SRTMDATA Thedigitalelevationmodel(DEM)dataarederivedfrom TheNASA'sShuttleRadarTopographyMission(SRTM), whichisajointeffortbetweenNASA,theNationalBureau ofDefe"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.1111/gcb.14919",
+      "title": "Vegetation expansion in the subnival Hindu Kush Himalaya",
+      "year": 2020,
+      "venue": "Global Change Biology",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "red in the rest of  the paper 6  |     ANDERSON Et Al. by computing aspect based on the SRTM global digital elevation model  (DEM) at 30 m resolution, but the analysis was rescaled to 90 m res- olution during the pixel counting phase (to calculat"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.1186/s40068-024-00366-3",
+      "title": "Modeling of land use and land cover changes using google earth engine and machine learning approach: implications for landscape management",
+      "year": 2024,
+      "venue": "ENVIRONMENTAL SYSTEMS RESEARCH",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "jen and Soni, 2021  Data types and sources Multi-temporal LULC transformations were discerned using digital data processed from satellite images in the GEE platform. Additional bands for elevation and slope were extracted using the SRTM DEM avail"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.3390/rs12071132",
+      "title": "Mapping Mediterranean Forest Plant Associations and Habitats with Functional Principal Component Analysis Using Landsat 8 NDVI Time Series",
+      "year": 2020,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "y applying the Principal Component Analysis (PCA) to the local terrain attributes (extracted from a Digital Elevation Model (DEM)) and the lithology; and finally, (iii) perform a supervised classification of the predictors to discriminate and map"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    },
+    {
+      "doi": "10.3390/rs13153032",
+      "title": "Mangrove Forest Cover and Phenology with Landsat Dense Time Series in Central Queensland, Australia",
+      "year": 2021,
+      "venue": "Remote Sensing",
+      "record_type": "article",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "adjudication_note": "独立全文数据清单核验准入（fulltext_read_20261005 + 独立判读，不看模型判据）。角色覆盖 2/3；缺失成员 ['human_activity_disambiguation_input']。逐成员判定与证据见 member_adjudications。",
+      "adjudication_date": "2026-10-06",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "verdict": "used_analogous",
+          "evidence": "strong use-context window in full text (independent read)"
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "verdict": "not_used",
+          "evidence": "absent or mention-only in full text (independent read)"
+        },
+        {
+          "member_id": "terrain_context_input",
+          "verdict": "used_analogous",
+          "evidence": "createdacompositeonaperpixelperbandbasisusingthemedian reducerinGEE[27 1arc-second(approximately30m)digitalelevationmodel,theShuttleRadarTopography Mission(SRTM),sourcedfromtheNationalAeronauticsandSpaceAdministrationAgency (NASA)JetPropulsionLab"
+        }
+      ],
+      "covered_member_count": 2,
+      "adjudication_evidence_file": "reference_sets/audit/fulltext_read_20261005/",
+      "machine_state_at_admission": {
+        "independent_read": true,
+        "source": "FULLTEXT_INDEPENDENT_READ_20261006"
+      },
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ]
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "manual_admitted_complete_set_reference_001",
+      "source_paper_doi": "10.3390/rs12172832",
+      "title": "Mapping 10-m Resolution Rural Settlements Using Multi-Source Remote Sensing Datasets with the Google Earth Engine Platform",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_human_adjudicated_cross_family_analogous_verified_fulltext",
+      "actual_datasets": [
+        "Sentinel2 MSI Level1C",
+        "VIIRS DNB Composites Version 1",
+        "SRTM Version 3 (V3) product"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "role": "multi_season_optical_surface_input",
+          "anchor_product": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "actual_dataset": "Sentinel2 MSI Level1C",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "Sentinel2providesmultispectraldata,includingfourbandswith10mspatialresolution,sixbandswith20mspatialresolution,threebandswith60mspatialresolutionandthreequalityassessment(QA)bands,whereQA60isabitmaskfrequencybandwithcloudmaskinformation.We",
+            "WeemployedtheSentinel2MSILevel1Cdatainthisstudy.",
+            "Then,acompositeimagewasobtainedfromallselectedimagesusingthemedianreducerinGEE.Finally,spectralfeatureswerecomputedbasedonthecompositeimage.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements."
+          ],
+          "identity_relation_evidence": {
+            "anchor_observable": "Landsat Collection 2 Level-2 Surface Reflectance",
+            "actual_observable": "Sentinel2 MSI",
+            "relation_explanation": "实际产品 Sentinel2 MSI 与锚点 Landsat Collection 2 Level-2 Surface Reflectance 分属不同传感器/产品族，但本研究将其直接用作锚点角色（multi_season_optical_surface_input）的输入，提供相同的地表观测对象与遥感模态；经全文核验确为实际操作使用而非仅提及，按跨族类比计入 expanded_set_reference（用户 2026-10-05 裁定口径）。",
+            "same_observed_object": true,
+            "same_measurement_capability": true,
+            "same_modality": true,
+            "same_lineage": false,
+            "evidence_quotes": [
+              ",\nusingGEE.Thepresentstudymakesthreemaincontributions:(1)Theproposedframeworkwasable\ntoproducea10mruralsettlementmapfrom\nmultisourceremotesensingdatasetsincluding\nSentinel1SyntheticApertureRadar(SAR),Sentinel2MultiSpectralInstrument(MSI),Visible\nInfraredImagingRadiometerSuitesupportingaDayNightBand(VIIRSDNB),andShuttleRadar\nTopographyMissionDigitalElevationModel(SRTMimageryusingtheGEEplatform;we\ninvestigatedtheimportanceofvarious\nfeaturesbygraduallyintrod"
+            ]
+          },
+          "identity_basis": "human_review_overrules_weaker_model",
+          "model_identity_matches": {
+            "gpt": "analogous_product",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "Sentinel2 MSI Level1C",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "uncertain"
+          }
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "role": "human_activity_disambiguation_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS DNB Composites Version 1",
+          "identity_match": "compatible_lineage",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "VIIRSDNBnightlightdata,collectedbytheSuomiNationalPolarorbitingPartnershipsatelliteoftheNationalAeronauticsandSpaceAdministration(NASA)/NationalOceanicandAtmosphericAdministration(NOAA),hastheuniqueabilitytorecordemittedvisibleandnearinfrared(VNIR)radiationatnightwithaspatialresolutionof15arcseconds(equivalentto0.5kmat",
+            "Forthisstudy,weusedVIIRSDNBCompositesVersion1data,whicharethemonthlyaverageradiancecomposites.",
+            "AcompositeVIIRSDNBdatawasobtainedfromallcollectedVIIRSDNBdatausingthemedianreducerinGEEtoeliminatethemaximumvalueofnighttimelightandobtainmorestablenighttimelightdata.Finally,theaverageDNBradiancevalues(avg_rad)wereselectedfromthecompositeVIIRSDNBdata.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements."
+          ],
+          "identity_relation_evidence": {
+            "anchor_observable": "VIIRS Black Marble nighttime radiance",
+            "actual_observable": "VIIRS DNB Composites",
+            "relation_explanation": "实际产品 VIIRS DNB Composites 与锚点 VIIRS Black Marble nighttime radiance 同属一个观测谱系（处理变体），观测对象与光谱/雷达测量能力一致，故判 compatible_lineage。",
+            "same_observed_object": true,
+            "same_measurement_capability": true,
+            "same_modality": true,
+            "same_lineage": true,
+            "evidence_quotes": [
+              "ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÝÝáÍÎÓÝÞâ&\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0003\u000bÿÿÿÿÿÿþþý\u0001\u0000\u0002ýýýÿÿÿÿÿÿÿÿÿþþþa^RTaaþþýÿÿÿÿÿÿÿÿÿe:\u0000\u0000\u0000\u0000\u0000\u0000ÿýýÿÿÿþþþ\u0003\u0001\u0000\u0000\u0000\u0000\u000b\u0012\u0019þÿÿÿÿÿþþþþÿÿøøø\n\nRemoteSens.2020,12,28325of26\n\ntheequator).Forthisstudy,weusedVIIRSDNBCompositesVersion1data,whicharethemonthly\naverageradiancecomposites.AcompositeVIIRSDNBdatawasobtainedfromallcollectedVIIRS\nDNBdatausingthemedianreducerinGEEtoeliminatethemaximumvalueofnighttimelightand\nobtainmorestable\nnighttimelightdata.Finally,theaverageDNBr"
+            ]
+          },
+          "identity_basis": "conservative_max_of_both_models",
+          "model_identity_matches": {
+            "gpt": "compatible_lineage",
+            "qwen": "analogous_product"
+          },
+          "model_products": {
+            "gpt": "VIIRS DNB Composites Version 1",
+            "qwen": "VIIRS DNB Composites Version 1"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        },
+        {
+          "member_id": "terrain_context_input",
+          "role": "terrain_context_input",
+          "anchor_product": "NASA SRTM 30 m Digital Elevation Model",
+          "actual_dataset": "SRTM Version 3 (V3) product",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "SRTMdata,measuredandreleasedbyNASAandtheNationalSurveyingandMappingBureauoftheDepartmentofDefense,cancover80%ofthegloballandsurface[42].TheSRTMVersion3(V3)product,providedbyNASAJetPropulsionLaboratory(JPL)ataresolutionof1arcsecond(approximately30m),wasexploitedinourresearch.Weusedtheslopeandelevationinformationinthestudy.",
+            "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements.",
+            "elevationandslopedatcalculatedfromSRTMDEMwereaddedtothefeaturevector."
+          ],
+          "identity_relation_evidence": null,
+          "identity_basis": "conservative_max_of_both_models",
+          "model_identity_matches": {
+            "gpt": "exact_product",
+            "qwen": "exact_product"
+          },
+          "model_products": {
+            "gpt": "SRTM Version 3 (V3) product",
+            "qwen": "SRTM Version 3 (V3)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "Inthisstudy,fourtypesofdatasources(Table1),namelySentinel1SARgroundrangedetecteddata,Sentinel2opticalimagery,VIIRSDNBnightlightdata,andSTRMDEMimagery,wereselectedforthemappingofruralsettlementsacrossthestudyareausingtheGEEplatform.",
+        "When differentdatasourceswerecollected,inputsweresampledtothespatialresolutionof10m,whichcorrespondstothefinerresolutionofSentinel1SAR.Finally,alldatawereprojectedintotheGCSWGS84coordinatesystem.",
+        "Inourstudy,spectralindicesofSentinel2MSI,backscatteringandtexturalfeaturesofSentinel1SAR,nightlightinformationfromVIIRSDNB,andterrainfeaturesofSRTMDEMweregeneratedfortheextractionofruralsettlements.",
+        "A rural settlementisacomprehensivelandusetype,includingvegetation,roads,rivers,buildings,andotherfeatures."
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/threeplus_pipeline_threeplus_v8_newdoi_20261002_220359/adjudication_gpt_qwen_v8/uncertain_remaining_task001_012_20261005/MANUAL_REVIEW.md",
+      "adjudication_note": "跨族类比口径准入（用户 2026-10-05 裁定）：gpt 将替代产品判为 analogous/parent/compatible 且全文核验确认替代产品在锚点角色中实际被使用，故覆盖 qwen 的 not_matched/mention_only。identity_relation_evidence 由 gpt 逐字引文补回，非准入门。\n  multi_season_optical_surface_input: gpt=analogous_product / qwen=not_matched -> 声明 analogous_product（human_review_overrules_weaker_model）\n  human_activity_disambiguation_input: gpt=compatible_lineage / qwen=analogous_product -> 声明 compatible_lineage（conservative_max_of_both_models）\n  terrain_context_input: gpt=exact_product / qwen=exact_product -> 声明 exact_product（conservative_max_of_both_models）",
+      "research_question": "论文旨在回答如何在长三角大范围区域内，利用多源遥感数据高效、准确地制图10 m分辨率农村居民点。研究还关注所提出框架在不同区域之间的可迁移性，以及多维特征相较单一光学数据是否能提升农村居民点提取精度。",
+      "hypothesis_or_mechanism": "核心机制是农村居民点在光学光谱、SAR后向散射与纹理、夜间灯光和地形条件等多维特征上具有可识别差异，多源信息融合可减少其与裸地、低植被覆盖地等地物的混淆。由于长三角不同区域农村居民点具有明显区域差异，论文假定分区训练的随机森林模型可迁移到相应区域内其他市辖区，从而减少大范围样本采集成本。",
+      "variables_and_data_use": "研究使用Sentinel-1 SAR GRD数据提取VV、VH极化后向散射及基于GLCM的纹理特征，使用Sentinel-2 MSI Level-1C影像生成无云合成影像并计算光谱特征。还结合VIIRS DNB夜间灯光数据和SRTM DEM地形数据，在Google Earth Engine平台上作为农村居民点分类输入特征。",
+      "method_paradigm": "方法范式为基于Google Earth Engine的多源遥感特征融合与随机森林监督分类。研究在四个不同区域的训练市辖区分别训练四个随机森林模型，并将模型迁移到对应区域的其他市辖区，同时通过逐步引入不同数据源评估特征重要性和精度提升。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs12172832.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:02:56",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_complete_set_reference_008",
+      "source_paper_doi": "10.5194/tc-13-2977-2019",
+      "title": "Recent glacier and lake changes in High Mountain Asia and their relation to precipitation changes",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_slice_presence_review_user_ruled_batch_20261005",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "VIIRS Black Marble nighttime radiance",
+        "SRTM DEM (3 arcsec / 1 arcsec)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "multi_season_optical_surface_input",
+          "role": "multi_season_optical_surface_input",
+          "anchor_product": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "actual_dataset": "Landsat Collection 2 Level-2 Surface Reflectance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "dorheiclakesinparticularinthenorthernandeasterntp.weestimatelakevolumechangesthroughacombinationofre-peatlakeextentsfromlandsatdataandshorelineelevationsfromicesatandtheshuttleradartopographymission(srtm)digitalelevationmodel(dem)forover1300lakes.theriseinwatervolumecontainedinthelakescorrespondsto4–25mma−1,whendistributedoverentirecatchments,fortheareaswher"
+          ],
+          "identity_basis": "human_slice_presence_user_ruled_batch",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "Global Surface Water dataset",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "human_activity_disambiguation_input",
+          "role": "human_activity_disambiguation_input",
+          "anchor_product": "VIIRS Black Marble nighttime radiance",
+          "actual_dataset": "VIIRS Black Marble nighttime radiance",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [],
+          "identity_basis": "human_batch_ruling_no_member_evidence",
+          "human_identity_verdict": "analogous_product",
+          "model_identity_matches": {
+            "gpt": "not_matched",
+            "qwen": "not_matched"
+          },
+          "model_products": {
+            "gpt": "",
+            "qwen": ""
+          },
+          "model_usage": {
+            "gpt": "uncertain",
+            "qwen": "mention_only"
+          }
+        },
+        {
+          "member_id": "terrain_context_input",
+          "role": "terrain_context_input",
+          "anchor_product": "NASA SRTM 30 m Digital Elevation Model",
+          "actual_dataset": "SRTM DEM (3 arcsec / 1 arcsec)",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "evidence_quotes": [
+            "As the reference DEM for our ICESat processing and to derive lake shoreline elevations, we use the DEM from the Shuttle Radar Topography Mission (SRTM, Farr et al., 2007; Farr and Kobrick, 2000). We used the C-band, non-void-filled SRTM DEM version at 3 arcsec resolution (SRTM3). As an alternative elevation reference, we used also the SRTM DEM at 1 arcsec resolution (SRTM1)."
+          ],
+          "identity_basis": "conservative_weakest_model_with_used_as_data",
+          "human_identity_verdict": "exact_product",
+          "model_identity_matches": {
+            "gpt": "compatible_lineage",
+            "qwen": "exact_product"
+          },
+          "model_products": {
+            "gpt": "SRTM DEM",
+            "qwen": "SRTM DEM (3 arcsec / 1 arcsec)"
+          },
+          "model_usage": {
+            "gpt": "used_as_data",
+            "qwen": "used_as_data"
+          }
+        }
+      ],
+      "joint_use_evidence_quotes": [
+        "We compute annual water volume change of the Tibetan lakes by multiplying annual lake areas with water level changes from repeat water surface elevations for each year over the period 1990–2015.",
+        "Maximum annual lake extents are obtained directly from the Global Surface Water dataset.",
+        "We retrieve the corresponding lake surface elevations in two ways: (a) from SRTM DEM elevations of the lake shore by computing the median of interpolated DEM elevations for lake shore cells for each areal extent, and (b) directly from ICESat footprint elevations on the lake areas for those lakes where ICESat data are available."
+      ],
+      "adjudication_evidence_file": "reference_sets/audit/MANUAL_REVIEW.md",
+      "adjudication_note": "B-class batch admission (user ruling 2026-10-05; triage REVIEW_FOR_ADMIT). gpt verdict=uncertain matched=1, qwen verdict=uncertain matched=1. Members with a model used_as_data finding take the weakest such model identity; members without one are admitted on the human corpus slice-presence ruling at the weakest matched level (analogous_product), evidence quotes are whitespace-stripped corpus windows. Human slice-presence members: multi_season_optical_surface_input<-['landsat']. Members admitted solely by the batch ruling without member-level evidence (human_batch_ruling_no_member_evidence; model-cited quotes kept where the findings had any): human_activity_disambiguation_input. Full review: reference_sets/audit/MANUAL_REVIEW.md.",
+      "research_question": "论文旨在回答高山亚洲地区冰川体积/质量变化、青藏高原内流湖水量变化以及降水变化之间的关系，尤其是降水增加是否可能解释部分区域出现的正冰川物质平衡。研究还关注2003–2008年冰川增厚和变薄的空间格局，以及1990–2015年湖泊水量变化如何与区域水文气候变化相联系。",
+      "hypothesis_or_mechanism": "核心机制是内流湖水量增加可来自湖泊入流增加或水量损失减少，其中入流增加主要与降水增加、增强的冰川融水有关，也可能涉及多年冻土融化和地下水储量变化；水量损失减少则主要与蒸发变化有关。若某些区域冰川质量平衡为正，同时湖泊水量和降水也增加，则降水增加可能是冰川增厚的重要原因。",
+      "variables_and_data_use": "冰川高程变化使用NASA ICESat/GLAS GLAH14激光测高数据与SRTM C波段DEM（SRTM3，另用SRTM1作替代参考）计算ICESat与SRTM高程差dh，并结合RGI冰川面积换算体积/质量变化。降水相关变量使用MERRA-2和ERA-Interim再分析的月总降水、降雪和蒸发，并使用中国气象站日降水、平均气温和蒸发观测；湖泊面积来自Global Surface Water Landsat水体分类数据，湖面高程来自SRTM湖岸高程和ICESat湖面足印高程。",
+      "method_paradigm": "冰川部分采用ICESat–SRTM双差分高程变化估计，并按人工划定的地形气候空间单元进行稳健线性回归、t拟合和Theil–Sen线性回归，同时进行冰川高程带代表性校正和垂直偏差校正。湖泊部分采用遥感湖泊面积—湖面高程关系建模，通过稳健线性回归外推1990–2015年湖面高程并计算湖泊体积变化，再按HydroSHEDS内流流域汇总分析。",
+      "four_dim_provenance": {
+        "source_file": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.5194_tc-13-2977-2019.methods.txt",
+        "source_chars": 16000,
+        "model": "gpt-5.5",
+        "extracted_at": "2026-10-06T20:03:15",
+        "method": "llm_extraction_from_fulltext",
+        "reused_from": "calibration_20261006"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_003",
+      "source_paper_doi": "10.1016/j.rse.2015.10.014",
+      "title": "Development of a global ~90m water body map using multi-temporal Landsat images",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "论文旨在回答如何利用多时相 Landsat 影像构建一个全球约 90 m（3 arc-second）分辨率、无云和冰雪观测空缺的水体图，并同时表征水体存在频率。重点是区分永久水体（如低水位河道、永久湖泊）与临时被水覆盖区域（如洪泛区、湿地、稻田）。",
+      "hypothesis_or_mechanism": "核心机制是：通过重叠的多时相 Landsat 场景计算每个像元的水体存在频率，可以把永久水体与临时水覆盖区域分开。作者认为，在全球水体制图中，多时相影像的使用与提高空间分辨率同样重要，尤其有助于更清楚地区分河道和洪泛区。",
+      "variables_and_data_use": "主要使用 GLCF Landsat Global Land Survey（GLS）数据库中 GLS1990、GLS2000、GLS2005、GLS2010 的 33,890 景 Landsat TM/ETM+ 影像，利用 Band 2 绿光、Band 3 红光、Band 4 近红外、Band 5 短波红外和 Band 6 热红外计算反射率、亮温、NDWI 和 NDVI 来识别水体。还使用 Viewfinder Panoramas 3 arc-second DEM 生成海洋掩膜并用高程梯度区分阴影与水体，使用 OpenStreetMap coastline 辅助海岸线掩膜，并使用 SRTM Water Body Data（SWBD）修正河道连通性。",
+      "method_paradigm": "方法范式是基于多时相遥感影像的自动化规则分类与频率分析：先将 Landsat 影像重采样到 3 arc-second WGS84 网格，计算大气顶反射率、亮温、NDWI/NDVI 等指标，再通过多场景合成排除云、冰雪等观测空缺。随后在像元尺度统计水体存在频率，以生成 G3WBM，并区分永久水体和临时水覆盖区域。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1016_j.rse.2015.10.014.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:39"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_004",
+      "source_paper_doi": "10.1080/01431161.2012.712224",
+      "title": "Height and biomass of mangroves in Africa from ICESat/GLAS and SRTM",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "论文旨在回答如何在非洲大陆尺度系统估计红树林的总面积、冠层高度分布和地上生物量。研究还评估将星载LiDAR与InSAR/DEM数据结合用于非洲红树林三维结构和生物量制图的可行性及误差。",
+      "hypothesis_or_mechanism": "核心机制是红树林通常位于海平面附近，因此SRTM测得的高程/雷达相位中心与冠层高度直接相关，可通过ICESat/GLAS LiDAR高度进行校准。进一步假定红树林冠层高度与地上生物量存在通用异速生长关系，从而可由高度估算AGB。",
+      "variables_and_data_use": "研究使用Landsat ETM+/GeoCover影像通过ISODATA分类提取红树林、其他植被、裸地和水体，并用SRTM DEM筛选低于40 m的沿海潜在红树林区域。使用ICESat/GLAS的GLA14全球陆地测高产品提取rh75等冠层相对高度，并将GLAS足迹对应的SRTM version 4 DEM像元高程用于线性回归校准冠层高度。随后用Saenger和Snedaker的高度—生物量方程 Biomass=10.8×Height+35 由冠层高度计算地上生物量。",
+      "method_paradigm": "方法范式是多源遥感融合制图：先进行Landsat光学影像的非监督分类和掩膜制图，再进行ICESat/GLAS LiDAR与SRTM InSAR DEM的回归校准以估计冠层高度。最后采用高度—生物量异速生长模型进行大陆尺度红树林AGB估算，并用Google Earth高分辨率影像进行分类精度验证。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1080_01431161.2012.712224.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:40"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_005",
+      "source_paper_doi": "10.1109/access.2019.2896241",
+      "title": "Downscaling Land Surface Temperatures Using a Random Forest Regression Model With Multitype Predictor Variables",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "多类型预测变量随机森林回归（MTVRF）能否在不同地表覆盖和地形条件下，将990 m的陆地表面温度（LST）有效降尺度至90 m，并保持稳定、具有较好的泛化性能？研究还比较了其在水体、植被和不透水面等区域的降尺度表现。",
+      "hypothesis_or_mechanism": "地表反射率、光谱指数、地形因子和土地覆盖类型共同表征LST的空间变化，利用随机森林拟合这些变量与LST之间的非线性关系，比仅依赖少数植被指标更能适应复杂地表。模型通过粗尺度训练、细尺度预测，并将粗尺度原始LST与模拟LST之间的残差分配到细尺度像元，以修正模型误差。",
+      "variables_and_data_use": "研究将Landsat-8 OLI地表反射率（波段2–7）及其光谱指数（NDVI、植被覆盖度、SAVI、NDBI、NDDI、NMDI和MNDWI）、SRTM 90 m DEM派生的坡度、坡向和阴影，以及土地覆盖分类图作为预测变量；这些数据先聚合至990 m用于训练MTVRF，再在90 m尺度输入模型进行预测。目标LST来自MODIS Collection 6 MOD11A1产品（重采样至990 m，并通过与ASTER LST的线性回归进行转换），降尺度结果使用ASTER AST08 90 m LST进行验证；Landsat-8 OLI数据还用于研究区影像和反射率信息获取。",
+      "method_paradigm": "多类型预测变量随机森林非线性回归降尺度范式：在990 m尺度建立LST与多源预测变量的关系，利用尺度不变性将模型迁移至90 m，并加入粗尺度残差校正。模型采用随机森林袋外误差调参和精度评价，并与基础随机森林及基于LST-NDVI线性关系的TsHARP方法比较。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1109_access.2019.2896241.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:18"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_006",
+      "source_paper_doi": "10.1111/gcb.14919",
+      "title": "Vegetation expansion in the subnival Hindu Kush Himalaya",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "论文旨在回答HKH亚冰雪带的空间范围有多大，以及1993—2018年间亚冰雪带植被覆盖的空间范围是否发生变化、变化速率和空间位置如何。研究还分别在萨加玛塔/珠峰区域、尼泊尔全国和整个HKH区域的不同海拔带中评估这些变化。",
+      "hypothesis_or_mechanism": "核心机制是利用长时间序列、30 m分辨率的Landsat地表反射率数据，通过NDVI阈值识别稀疏高海拔植被的存在/缺失，并据此推断亚冰雪带植被覆盖的年际变化。作者认为后季风期云和雪最少、物候差异较小，且经过云雪阴影掩膜、坡向掩膜和Landsat 7/8传感器校正后，NDVI可作为亚冰雪带绿色生物量/植被存在的稳健指标。",
+      "variables_and_data_use": "使用NASA Landsat 5、7、8 Tier 1 Surface Reflectance数据，在Google Earth Engine中选取1993—2018年10—11月影像，基于红光和近红外波段计算NDVI，并以NDVI > 0.1统计年度“green fraction”；同时利用Landsat QA层掩膜云、雪、阴影并生成雪覆盖比例。使用MODIS fractional snow product估计2013—2017年8—9月永久雪覆盖，结合Randolph Glacier Inventory估计永久冰雪范围；使用SRTM 30 m DEM划分海拔带、计算坡向并排除北向阴影坡。",
+      "method_paradigm": "方法范式为基于Google Earth Engine的遥感时序分析与阈值分类：对Landsat年内季节合成NDVI，按海拔带和区域统计植被像元比例的年度变化。空间设计包括两个Landsat路径/行列区域分析、尼泊尔边界约束分析，以及在整个HKH内按海拔带随机布设5 km半径ROI的抽样分析，并对Landsat 8 OLI与Landsat 7 ETM+差异采用Roy等人的辐射校正。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1111_gcb.14919.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:47"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_007",
+      "source_paper_doi": "10.1186/s40068-024-00366-3",
+      "title": "Modeling of land use and land cover changes using google earth engine and machine learning approach: implications for landscape management",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "1993—2023年间，Robit流域的土地利用/土地覆盖（LULC）发生了哪些时空变化？这些变化的主要驱动因素是什么？",
+      "hypothesis_or_mechanism": "人口增长、农业用地扩张、城镇和非法定居点扩张，以及燃料木材采集和木炭生产，会推动植被、灌丛和农业用地之间的转化。相反，土地利用管理规则、土地封育（area exclosure）和高海拔桉树种植可能促进森林和其他植被恢复。",
+      "variables_and_data_use": "以农业用地、牧 grazingland、灌丛、森林、建设用地和裸地等LULC类别及其面积比例、净变化和类别转移为主要变量，利用ArcGIS Pro开展1993—2023年LULC变化检测和转移矩阵分析；利用NDVI产品比较不同年份的植被状况。人口数据来自埃塞俄比亚中央统计局（CSA）人口普查报告，驱动因素信息来自关键知情人访谈（KII）、焦点小组讨论（FGD）、访谈和实地观察。",
+      "method_paradigm": "多期遥感土地覆盖分类变化检测与转移矩阵分析，结合NDVI时序对比和定性社会调查的混合方法范式。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.1186_s40068-024-00366-3.methods.txt",
+        "chars": 12798,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:40:06"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_008",
+      "source_paper_doi": "10.3390/rs12071132",
+      "title": "Mapping Mediterranean Forest Plant Associations and Habitats with Functional Principal Component Analysis Using Landsat 8 NDVI Time Series",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "论文旨在回答：能否利用Landsat 8 NDVI时间序列提取的森林季节性物候信息，并结合地形与岩性变量，对地中海森林植物群落进行监督分类制图。研究还评估这些物候梯度与地形、岩性及植物群落分布之间的关系。",
+      "hypothesis_or_mechanism": "核心机制是不同森林植物群落在一年内具有可区分的NDVI季节性变化模式，而这些模式又受到地形和岩性所代表的环境梯度影响。因此，将多时相NDVI物候信息与地形、岩性因子结合，可提高植物群落/生境制图的判别能力。",
+      "variables_and_data_use": "研究使用2013年4月至2019年4月的91景无云Landsat 8 Level-2影像，计算NDVI并聚合为像元尺度的双周平均NDVI年内时间序列；再用FPCA提取FPCA得分，作为森林NDVI季节性变化的预测变量。地形变量来自NASA SRTM 30 m DEM，并用SAGA GIS提取海拔、坡度、潜在太阳辐射、Bora冷风效应、地形湿度指数和多尺度地形位置指数；岩性变量来自Marche Region岩性图，参考样本来自野外植被调查、RTK GPS定位样地和Google Earth 0.5 m影像目视解译。",
+      "method_paradigm": "方法范式是基于时间序列函数数据分析与机器学习分类的监督制图：先对像元级双周NDVI时间序列进行函数主成分分析（FPCA/PACE），并对地形和二值化岩性变量做PCA以提取环境梯度。随后以FPCA得分和PCA得分为预测变量、植物群落参考分类为训练数据，采用带下采样的随机森林分类，并通过重复20次的10折交叉验证评估精度。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs12071132.methods.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:51"
+      }
+    },
+    {
+      "direction_id": "manual_admitted_partial_set_009",
+      "source_paper_doi": "10.3390/rs13153032",
+      "title": "Mangrove Forest Cover and Phenology with Landsat Dense Time Series in Central Queensland, Australia",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "manual_fulltext_independent_read_20261006",
+      "actual_datasets": [
+        "Landsat Collection 2 Level-2 Surface Reflectance",
+        "NASA SRTM 30 m Digital Elevation Model"
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "human_activity_disambiguation_input"
+      ],
+      "research_question": "论文旨在回答澳大利亚昆士兰中部大堡礁河口集水区的红树林在2009—2019年间如何发生空间与时间变化，以及其物候季节性如何随21年降雨变率和极端事件变化。研究还关注遥感密集时间序列能否用于监测该区域红树林覆盖、损失/增益和生长动态。",
+      "hypothesis_or_mechanism": "核心机制是红树林的生长物候会反映气候驱动，特别是降水异常和强热带气旋等极端事件会影响NDVI时间序列中的季节性和年际变化。作者假定利用植被指数的周期性变化可区分红树林与其他植被类型，并揭示红树林对气候和极端天气的响应。",
+      "variables_and_data_use": "研究使用USGS Landsat 7和Landsat 8 Collection地表反射率产品，在Google Earth Engine中构建2008—2010与2018—2020三年窗口的云掩膜中值合成，并计算NDVI、MNDWI、SR和GCVI等植被指数用于分类和物候分析。辅助数据包括NASA SRTM 1 arc-second数字高程模型用于限制低海拔沿海红树林潜在区域，参考数据包括Global Mangrove Watch 2009和Geoscience Australia Digital Earth Australia数据；NDVI时间序列还与降水异常和热带气旋发生进行对照分析。",
+      "method_paradigm": "方法范式包括基于Landsat密集时间序列的监督机器学习分类和物候时间序列建模。作者用随机森林将土地覆盖分为红树林与非红树林，并用NDVI时间序列的线性回归、谐波回归以及TIMESAT/Savitzky-Golay平滑提取物候指标，分析年内和年际季节性变化。",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "source": "reference_sets\\audit\\threeplus_pipeline_threeplus_v8_newdoi_20261002_220359\\corpus\\text\\10.3390_rs13153032.txt",
+        "chars": 16000,
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-06T23:39:51"
+      }
+    }
+  ],
+  "anchor_asset_type": "composite_observation",
+  "anchor_component_paths": [
+    "LANDSAT/LC08/C02/T1_L2",
+    "NASA/VIIRS/002/VNP46A2",
+    "USGS/SRTMGL1_003"
+  ]
+}

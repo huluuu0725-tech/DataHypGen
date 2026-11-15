@@ -1,0 +1,79 @@
+{
+  "paper_id": "10.3390/rs14112706",
+  "task_id": "single_dataset/task_020",
+  "title": "Attribution of NDVI Dynamics over the Globe from 1982 to 2015",
+  "category": "land_use_land_cover",
+  "year": 2022,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "GIMMS v3.1g NDVI (1982-2015, 1/12 degree, half-month; catalog substitute NOAA CDR AVHRR NDVI V4)",
+    "CRU global temperature, precipitation and potential evapotranspiration (1901-2017, 0.5 degree)",
+    "IPCC historical atmospheric CO2 forcing",
+    "Song et al. annual Vegetation Continuous Fields: tree canopy, short vegetation and bare ground (1982-2015, 0.05 degree)",
+    "FAOSTAT regional forest, agricultural, cropland and arable-land area statistics",
+    "University of Maryland global land-cover dataset used to remove non-vegetated grid cells"
+  ],
+  "study_area_verified": {
+    "name": "Global vegetated land excluding hyper-arid regions",
+    "period": "1982-2015 for NDVI, land-cover attribution and aridity classification; climate inputs extend from 1901 to 2017 to support lagged effects",
+    "analysis_grid": "GIMMS half-month NDVI was averaged to monthly values using valid observations and bilinearly resampled from 1/12 degree to the 0.5 degree climate grid. Hyper-arid cells with AI below 0.05 and cells without vegetation cover were excluded.",
+    "review_date": "2026-08-29"
+  },
+  "anchor_resolution": {
+    "paper_used": "GIMMS v3.1g NDVI from AVHRR, 1/12 degree and half-monthly, 1982-2015",
+    "task_anchor": "NASA_CMR:Global_Veg_Greenness_GIMMS_3G_2187",
+    "former_anchor": "NOAA/CDR/AVHRR/NDVI/V4",
+    "why_former_anchor_was_wrong": "NOAA CDR V4 belongs to a different AVHRR processing lineage and changes the seed's grid and temporal compositing. NASA ORNL DAAC now exposes a temporally complete third-generation GIMMS collection.",
+    "why_current_anchor": "GIMMS-3G+ V1.2 preserves the GIMMS lineage, 0.0833-degree grid and twice-monthly maximum-NDVI composites while covering 1982-2022.",
+    "residual_gap": "The NASA collection is GIMMS-3G+ V1.2 rather than the seed's GIMMS v3.1g release. They are accepted as one product family, but values must not be assumed cell-for-cell identical.",
+    "corrections": [
+      "The former datasets list incorrectly named MODIS and ERA5; neither appears in the supplied Methods.",
+      "The vegetation record is GIMMS v3.1g, while meteorological inputs are CRU temperature, precipitation and potential evapotranspiration rather than ERA5.",
+      "The supplied Methods also operationally use IPCC historical CO2 forcing, Song annual Vegetation Continuous Fields, FAOSTAT land-area statistics and a UMD global land-cover mask."
+    ],
+    "companion_dataset_availability": {
+      "NASA_CMR:Global_Veg_Greenness_GIMMS_3G_2187": "NASA ORNL DAAC GIMMS-3G+ V1.2, 0.0833 degree, twice monthly, 1982-2022",
+      "NASA/GIMMS/3GV0": "Earth Engine copy from the GIMMS lineage, but available only through 2013-12-16",
+      "CRU temperature, precipitation and potential evapotranspiration": "no exact matching CRU product was identified in the local Earth Engine catalog",
+      "IPCC historical atmospheric CO2 forcing": "no exact matching gridded asset was identified in the local Earth Engine catalog",
+      "Song et al. annual Vegetation Continuous Fields": "no exact matching 1982-2015 TC/SV/BG product was identified in the local Earth Engine catalog",
+      "FAOSTAT regional land-area statistics": "tabular FAOSTAT inputs; no exact matching Earth Engine catalog asset was identified",
+      "UMD global land-cover mask": "the supplied excerpt does not identify the exact product edition, and no exact catalog mapping was established"
+    },
+    "sibling_task_boundary": "single_dataset/task_020 and single_dataset/task_033 now share the GIMMS third-generation product family but remain separate task contexts. single_dataset/task_020 covers global attribution; single_dataset/task_033 covers Tibetan Plateau vegetation-climate analysis. single_dataset/task_031 retains NOAA CDR and is not an alias.",
+    "fields_left_unchanged": "All idea.* fields remain unchanged under the benchmark provenance rule. Several idea.* claims go beyond or conflict with the supplied Methods and are documented here rather than rewritten.",
+    "note": "The source describes TSS-RESTREND v3.0 as the attribution software; it is not a geospatial dataset and is therefore not included in the datasets list.",
+    "review_date": "2026-09-20"
+  },
+  "idea": {
+    "research_question": "1982—2015年全球植被NDVI变化在多大程度上可由大气CO2浓度升高、土地利用变化、长期气候变化和气候变率解释，这些驱动机制是否因干湿气候区而异？",
+    "hypothesis": "全球植被变化主要受大气CO2升高及其施肥效应驱动，表现为NDVI长期增加；土地利用变化是植被退化的重要驱动，并预计在湿润区主要产生负向影响、在部分干旱区通过灌溉和植被恢复产生正向影响；长期气候变化对NDVI的影响具有显著空间异质性，其作用方向取决于水分限制程度；气候变率主要解释年际波动，而不是全球植被长期趋势。",
+    "mechanism": "大气CO2浓度升高通过增强光合作用、提高水分利用效率和延长生长季，促进植被净初级生产力增加，进而提高NDVI；土地利用变化通过森林砍伐、农田扩张、城市化、放牧和土地管理改变植被覆盖度与冠层结构，从而导致NDVI下降或上升；长期气候变化通过温度、降水、辐射和蒸汽压亏缺改变光合作用、呼吸作用、蒸散和土壤水分条件，进而影响植被生长；气候变率通过ENSO、干旱、极端高温和异常降水等短期扰动改变植被生长状态。上述驱动因素共同作用于植被生产力和冠层覆盖度，并通过NDVI时间序列表现为长期趋势、阶段性变化和残差变化。",
+    "key_variables": {
+      "target": "全球植被归一化植被指数NDVI时间序列及其长期趋势，优先使用生长季最大NDVI或年最大NDVI作为植被状态指标，并计算每个植被网格的趋势斜率和分段趋势。",
+      "predictors": [
+        "大气CO2浓度及其年际增量",
+        "土地利用/土地覆被类型转换和土地管理变化，包括森林损失、农田扩张、城市化、灌溉和植被恢复",
+        "长期气候变化指标，包括生长季平均温度、降水量、太阳辐射、蒸汽压亏缺和潜在蒸散",
+        "气候变率指标，包括年际温度和降水异常、干旱指数以及ENSO指数",
+        "植被类型、干湿度分区、基准期气候条件和土壤水分作为空间异质性调节变量"
+      ]
+    },
+    "data_sources": [
+      "GIMMS NDVI3g v1或同类AVHRR长期NDVI产品，1982—2015年，约1/12度空间分辨率，半月或月尺度；用于构建全球植被NDVI时间序列",
+      "CRU TS气候数据集，1982—2015年，0.5度月尺度；提供地表温度、降水和太阳辐射等气候变量",
+      "ERA-Interim或ERA5再分析资料，1982—2015年，约0.25—0.75度月尺度；用于计算蒸汽压亏缺、潜在蒸散和土壤水分等水分胁迫指标",
+      "NOAA或Mauna Loa大气CO2观测序列，1982—2015年，月尺度；用于表征全球大气CO2浓度及其变化",
+      "HYDE 3.2、LUH或ESA CCI Land Cover土地利用/土地覆被数据，1982—2015年或覆盖该时期的年度产品，约0.25度至300米空间分辨率；用于识别土地利用转换和管理活动",
+      "MODIS土地覆被产品或ESA CCI土地覆被产品，2000年代以来，约300米至0.25度分辨率；用于植被类型、土地覆被校验和空间掩膜构建",
+      "Global Aridity Index and Potential Evapotranspiration Database或CRU干湿度资料，基准期通常为1981—2010年，约0.5度分辨率；用于划分干旱区与湿润区",
+      "NOAA Oceanic Niño Index或Niño 3.4指数，1982—2015年月尺度；用于表征ENSO相关气候变率"
+    ],
+    "analytical_approach": "首先对NDVI进行质量控制、植被区掩膜、季节性平滑和异常值处理，并计算年最大NDVI或生长季NDVI。随后使用时间序列分段算法识别NDVI中的结构变化点和阶段性趋势；可采用BFAST或基于断点检测的Time Series Segment方法，将完整NDVI序列分解为不同时间段的趋势和扰动。针对每个网格，采用RESTREND思想建立NDVI与气候变量之间的多元回归或偏最小二乘回归模型，先移除温度、降水、辐射、蒸汽压亏缺和气候变率的解释部分，再对残差进行Mann-Kendall趋势检验和Theil-Sen斜率估计。通过逐步加入或移除CO2、土地利用、长期气候变化和气候变率变量，比较残差趋势及解释度变化，以进行TSS-RESTREND归因。使用偏回归系数、标准化效应量、方差分解和相对贡献率区分各驱动因素，并采用空间分层模型或分区回归检验干旱区与湿润区、不同植被类型之间的机制差异。显著性检验建议采用双侧Mann-Kendall检验或置换检验，并使用Benjamini-Hochberg方法控制全球多重比较的假发现率；对空间自相关可使用有效样本量修正或空间自助法进行稳健性检验。",
+    "expected_contribution": "建立一种基于观测NDVI时间序列、分段趋势识别和残差归因的全球植被变化分析框架，减少仅依赖陆面模型模拟所带来的不确定性；将全球植被长期变化分解为CO2施肥、土地利用、长期气候变化和气候变率的相对作用；揭示植被变化驱动机制在干旱度、植被类型和土地利用背景下的空间异质性；为全球植被模型中CO2施肥参数化、土地利用过程表达和区域气候响应评估提供观测约束。",
+    "falsification_condition": "若在控制温度、降水、辐射、蒸汽压亏缺、气候变率和土地利用变化后，CO2相关残差趋势在全球植被网格中不稳定，且其标准化效应量的95%置信区间跨越0、绝对值小于0.05，或CO2模型项对NDVI趋势解释度提升低于5%，则否定“CO2施肥是全球植被长期增绿的主要驱动”这一假设；若土地利用变化对NDVI长期趋势的解释度低于5%，或其效应方向在干旱区和湿润区均无法达到至少0.10个标准差的区域差异，则否定土地利用具有区域异质性作用的假设；若气候变率能够解释超过50%的NDVI长期趋势，或加入气候变率后NDVI趋势斜率改变超过50%，则否定“气候变率主要影响年际波动而非长期趋势”的假设。"
+  },
+  "enriched": true,
+  "enrichment_source": "abstract_only"
+}

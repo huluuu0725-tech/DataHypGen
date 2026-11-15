@@ -1,0 +1,1113 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_002",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "CHIRPS Precipitation Daily: Climate Hazards Center InfraRed Precipitation With Station Data (Version 2.0 Final)",
+    "spatial_coverage": {
+      "region_name": "Australia",
+      "coverage": "Quasi-global land precipitation coverage from 50 degrees S to 50 degrees N, including mainland Australia and Tasmania."
+    },
+    "temporal_coverage": "1981-01-01 to near present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+    "temporal_unit": "Daily images",
+    "analytical_capabilities": [
+      "Aggregate daily rainfall to pentad, monthly, seasonal or annual precipitation totals",
+      "Compute precipitation anomalies, drought indicators and return-period summaries",
+      "Drive hydrological, land-surface, vegetation or hazard models with gridded rainfall",
+      "Compare rainfall patterns across basins, climate zones, elevations or land-cover contexts",
+      "Validate or benchmark other precipitation products against a station-blended satellite rainfall record"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Daily precipitation depth in millimeters per day",
+      "runtime_hint": "Use the precipitation band. Summing daily values gives accumulated precipitation over the chosen period; averaging daily values gives mean daily intensity for that period. Do not treat CHIRPS-Prelim, CHIRPS v3 daily SAT/RNL variants, IMERG, ERA5-Land, MSWEP or FLDAS outputs as the same asset unless the task explicitly asks for a separate comparison."
+    },
+    "data_source": "UCSB Climate Hazards Group CHIRPS version 2.0 Final",
+    "gee_asset": {
+      "id": "UCSB-CHG/CHIRPS/DAILY",
+      "type": "image_collection"
+    },
+    "region_scope_provenance": "replacement seed full text (10.5194/hess-25-4185-2021) section 2.1 uses Australia as the case study, while section 2.2 uses CHIRPS precipitation forcing on a 0.05 degree grid"
+  },
+  "current_data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_002.json",
+    "source_sha256": "dbf8d2ad6148a497a3266dc20c0f8fc59d4fd998c12beb8db32c09dca6226373",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_002/prompt.json",
+    "current_prompt_sha256": "71b7dba74b98ed13af93ee7ee620494b7157f4f532c3a2c492eb022ac0a88bd8",
+    "original_anchor_asset": {
+      "id": "UCSB-CHG/CHIRPS/DAILY",
+      "observable_group": "chirps_v2_precipitation",
+      "observation_identity_contract": {
+        "physical_object": "near-surface precipitation amount over land",
+        "source_lineage": "UCSB Climate Hazards Group CHIRPS version 2.0 Final, blending infrared satellite precipitation estimates with in-situ station observations",
+        "core_measurement_semantics": "0.05 degree gridded precipitation depth in millimeters, represented in the GEE daily collection as the precipitation band in mm/day",
+        "non_material_variations": "CHIRPS v2.0 daily, pentad or monthly aggregations; spatial reprojection, clipping, basin averaging, temporal aggregation or disaggregation that preserves CHIRPS v2.0 precipitation amounts",
+        "material_mismatches": "CHIRP without station blending, CHIRPS-Prelim near-real-time products, CHIRPS v3 products unless explicitly justified as an equivalent successor, IMERG, PERSIANN, MSWEP, ERA5-Land precipitation, FLDAS or other downstream products merely forced by CHIRPS"
+      },
+      "asset_alias_policy": "Admit operational use of CHIRPS version 2.0 Final precipitation, including UCSB-CHG/CHIRPS/DAILY, UCSB-CHG/CHIRPS/PENTAD, explicit CHIRPS v2.0 daily/pentad/monthly data, or publisher-hosted CHIRPS v2.0 files preserving the same precipitation observation. Generic CHIRPS mentions remain unresolved if the paper gives no product/version or use evidence. CHIRPS v3, CHIRPS-Prelim, CHIRP-only and other satellite precipitation products are not direct aliases unless a later adjudication explicitly establishes observation equivalence.",
+      "alias_policy_scope": "A paper need not reproduce the seed's Australia case study, CABLE model, GRACE assimilation, grid, temporal disaggregation or validation design. Methods/Data must establish that CHIRPS precipitation itself is read, processed, modeled, validated, compared or used as an input variable."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "如何综合坡度、土地覆盖、地质、土壤和降水参数识别并绘制Meninting子流域的滑坡易发区？",
+      "hypothesis_or_mechanism": "坡度越陡、土壤和岩性越易失稳、降水越高且土地覆盖越不利于坡体稳定，综合滑坡易发性评分就越高。",
+      "variables_and_data_use": "研究由Data DEM SRTM派生坡度，利用Citra Landsat 8 OLI tahun 2021生成土地覆盖，利用Peta Geologi Pulau Lombok和Peta Jenis Tanah表示地质与土壤条件，并使用Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)计算降水等级；随后对各变量分类评分、赋权并进行GIS叠加，生成低、中、高三级滑坡易发性分区。",
+      "method_paradigm": "GIS加权叠加",
+      "used_assets": [
+        "Data DEM SRTM",
+        "Citra Landsat 8 OLI tahun 2021",
+        "Peta Geologi Pulau Lombok",
+        "Peta Jenis Tanah",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)"
+      ],
+      "author_team": [
+        "Arben Virgota",
+        "Baiq Farista"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Identification and Mapping of Landslide-Prone Areas in the Meninting Watershed Area, West of Lombok",
+        "doi": "10.29303/jbt.v23i1.4493",
+        "year": 2023,
+        "venue": "Jurnal Biologi Tropis",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "不同卫星降水产品在旬尺度和月尺度上重现参考降水的能力如何，并且哪些产品最适合区域降水监测、干旱预警和水资源评估？",
+      "hypothesis_or_mechanism": "卫星降水产品的精度会随生物气候区、雨季阶段、时间尺度及产品输入与校准方式而变化，综合性能指标和产品属性可识别最适合不同业务用途的产品。",
+      "variables_and_data_use": "研究使用IMERGv6-Final、IMERGv6-Late、ARC2、RFE2、MSWEPv2.2、CMORPHv1.0、PERSIANN-CCS-CDR、PDIR-Now和TAMSATv3.1的降水估计，以AGRHYMET RCC-WAS merged product作为参考；在统一的0.1°网格上按旬和月计算相关系数、相对偏差、平均绝对误差和KGE，并结合季节循环再现能力、时间覆盖、空间分辨率和延迟进行PROMETHEE II排序。",
+      "method_paradigm": "多产品验证与MCDA排序",
+      "used_assets": [
+        "AGRHYMET RCC-WAS merged product",
+        "CHIRPSv2.0",
+        "ARC2",
+        "RFE2",
+        "MSWEPv2.2",
+        "IMERGv6-Late",
+        "IMERGv6-Final",
+        "CMORPHv1.0",
+        "PERSIANN-CCS-CDR",
+        "PDIR-Now",
+        "TAMSATv3.1"
+      ],
+      "author_team": [
+        "Mandela C. M. Houngnibo",
+        "Bernard Minoungou",
+        "Seydou B. Traore",
+        "Ross I. Maidment",
+        "Agali Alhassane",
+        "Abdou Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Validation of high-resolution satellite precipitation products over West Africa for rainfall monitoring and early warning",
+        "doi": "10.3389/fclim.2023.1185754",
+        "year": 2023,
+        "venue": "Frontiers in Climate",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "GPM_IMERG version 6 和 CHIRPS Version 2.0 降水数据驱动 HEC-HMS 时，能否可靠模拟流域径流，以及哪种卫星降水产品的模型表现更好？",
+      "hypothesis_or_mechanism": "不同卫星降水产品对降水时空分布的表征差异会传递至 HEC-HMS 径流模拟，而 GPM_IMERG version 6 预计比 CHIRPS Version 2.0 产生更接近实测流量的结果。",
+      "variables_and_data_use": "将 GPM_IMERG version 6、CHIRPS Version 2.0 和地面雨量站的日降水作为 HEC-HMS 输入，使用 SRTM (Shuttle Radar Topography Model) 划分流域并提取流域特征，以 SWALIM 实测流量进行七年校准和七年验证，并通过 NSE、R2、RMSE 和 PBIAS 比较模拟性能。",
+      "method_paradigm": "产品比较验证",
+      "used_assets": [
+        "GPM_IMERG version 6",
+        "CHIRPS Version 2.0",
+        "SRTM (Shuttle Radar Topography Model)",
+        "Ethiopian Meteorological Agency",
+        "SWALIM Somali Water and Land Information Management"
+      ],
+      "author_team": [
+        "Abdinour Abshir Hussein",
+        "Ahmet Baylar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Hydrological Model Evaluation of Ground, GPM IMERG, and CHIRPS precipitation data for Shabelle Basin in Ethiopia",
+        "doi": "10.55529/jecnam.31.41.60",
+        "year": 2023,
+        "venue": "Journal of Electronics,Computer Networking and Applied Mathematics",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "How can annual maximum precipitation be estimated for return periods of 10, 100, and 1000 years in the Ocoña watershed?",
+      "hypothesis_or_mechanism": "Gridded precipitation datasets (CHIRPS, ERA5-Land, RAIN4PE) provide reliable estimates of extreme rainfall that align with ground-based station measurements after statistical validation.",
+      "variables_and_data_use": "Annual maximum precipitation extracted from CHIRPS, ERA5-Land, and RAIN4PE via Google Earth Engine, processed in ArcGIS, and statistically validated against records from the Salamanca meteorological station.",
+      "method_paradigm": "Extreme-precipitation return-period analysis with gridded reanalysis validation",
+      "used_assets": [
+        "ECMWF/ERA5_LAND/HOURLY",
+        "CHIRPS",
+        "RAIN4PE",
+        "Salamanca meteorological station records"
+      ],
+      "author_team": [
+        "Flavio Jossepith Tejada-Diaz",
+        "Jani Kaori Nacira Rojas-Bicerra",
+        "Abel Carmona-Arteaga"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Obtención de precipitación para diversos periodosde retorno utilizando los conjuntos de datosCHIRPS, ERA5-Land y RAIN4PE en lacuenca hidrográfica Ocoña",
+        "doi": "10.15649/2346030x.4443",
+        "year": 2025,
+        "venue": "AiBi Revista de Investigación, Administración e Ingeniería",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "2020—2025 年 Rajasthan 的 NDVI 均值与异常在各行政区如何变化，以及这些模式与植被类型、土壤、降雨和地形背景存在何种关系？",
+      "hypothesis_or_mechanism": "降雨变化以及不同植被、土壤和地形条件会共同调节区域植被活力，从而形成具有空间差异的 NDVI 异常。",
+      "variables_and_data_use": "使用 MOD13Q1 NDVI (250m, 16-day composite) 计算多年平均 NDVI、最新 NDVI 和异常并进行区级聚合；使用 ESA WorldCover 2020 Land Use Classification 和 ISRIC SoilGrids 解释植被及土壤差异；使用 CHIRPS 与 IMD (India Meteorological Department) 降雨数据分析气候相关性；使用 SRTM DEM 提供地形背景；使用 FAO GAUL boundaries 进行行政区统计，并以 Sentinel-2 imagery 验证植被分类。",
+      "method_paradigm": "时空相关分析",
+      "used_assets": [
+        "MOD13Q1 NDVI (250m, 16-day composite)",
+        "ESA WorldCover 2020 Land Use Classification",
+        "FAO GAUL boundaries",
+        "ISRIC SoilGrids (global gridded soil database)",
+        "SRTM DEM",
+        "CHIRPS",
+        "IMD (India Meteorological Department)",
+        "Sentinel-2 imagery"
+      ],
+      "author_team": [
+        "Shrijit Chatterjee"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatio-Temporal Analysis of Vegetation Health and Soil Characteristics across Rajasthan using NDVI Anomalies",
+        "doi": "10.22214/ijraset.2025.69944",
+        "year": 2025,
+        "venue": "International Journal for Research in Applied Science and Engineering Technology",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "能否通过两阶段人工神经网络将GRACE月度mascon陆地水储量数据降尺度，并结合气候变量与井观测准确预测地下水位？",
+      "hypothesis_or_mechanism": "高分辨率气候和水量平衡变量可学习粗分辨率GRACE水储量的空间变化，而降尺度GRACE信息能够为地下水位预测提供独立且显著的储量约束。",
+      "variables_and_data_use": "研究处理GRACE mascon monthly products并将其降尺度至4×4公里；使用CHIRPS降水以及TerraClimate的实际蒸散发、水分亏缺、干旱指数、潜在蒸散发、短波辐射、径流、土壤水分和雪水当量等变量作为模型输入；使用YMD井水位作为预测目标和验证数据，并以USGS potentiometric data进行补充比较。",
+      "method_paradigm": "两阶段神经网络",
+      "used_assets": [
+        "GRACE mascon monthly products",
+        "Climate Hazards Group Infrared Precipitation with Stations (CHIRPS)",
+        "TerraClimate",
+        "Yazoo Mississippi Delta Joint Water Management District (YMD)",
+        "USGS potentiometric data"
+      ],
+      "author_team": [
+        "Abdel Rahman M. Awawdeh",
+        "Hakan Yasarer",
+        "Zahra Ghaffari",
+        "Lance D. Yarbrough"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling GRACE Data for Improved Groundwater Forecasting Using Artificial Neural Networks",
+        "doi": "10.28991/cej-2025-011-02-01",
+        "year": 2025,
+        "venue": "Civil Engineering Journal",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "论文研究全球绿化、Green Legacy Initiative及Prosopis juliflora扩张如何影响埃塞俄比亚Afar和Dire Dawa地区的植被、土壤水分和生态恢复结果。",
+      "hypothesis_or_mechanism": "植被扩张和入侵植物可能通过增强蒸散、消耗土壤水分及改变土壤性质而加剧干旱区水分压力，但水土保持和适应性管理能够缓解这些影响。",
+      "variables_and_data_use": "论文使用Landsat 8/9和未具体说明产品的MODIS NDVI追踪植被变化，使用CHIRPS分析降雨趋势，并结合土壤水分数据、SPEI、蒸散发、土地覆盖、坡度和降雨侵蚀力等变量开展相关分析、趋势检验和情景建模。",
+      "method_paradigm": "混合方法与情景建模",
+      "used_assets": [
+        "Landsat 8/9",
+        "CHIRPS",
+        "NDVI from MODIS",
+        "soil moisture data",
+        "SPEI",
+        "HYDRUS",
+        "RUSLE",
+        "ArcGIS"
+      ],
+      "author_team": [
+        "Belay Goshu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Mitigating soil moisture reduction from vegetation greening in Ethiopia’s drylands: Integrated strategies and adaptive frameworks for Afar and Dire Dawa",
+        "doi": "10.65221/0050",
+        "year": 2025,
+        "venue": "African Research Reports",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "How accurately do CHIRPS and ERA5-Land precipitation datasets reproduce observed rainfall and characterize drought events across Morocco's varied topography and climate regimes?",
+      "hypothesis_or_mechanism": "ERA5-Land's physical land-surface modeling will yield higher correlation and lower bias for precipitation and drought indices compared to CHIRPS, particularly in complex terrain and cold seasons.",
+      "variables_and_data_use": "Monthly and aggregated precipitation from ERA5-Land and CHIRPS (1987–2016) resampled and processed in Python to compute SPI indices and statistical performance metrics against 114 ground station observations.",
+      "method_paradigm": "Multi-scale precipitation and drought product validation",
+      "used_assets": [
+        "ECMWF/ERA5_LAND/HOURLY",
+        "UCSB-CHG/CHIRPS/PRECLIMATE",
+        "Moroccan meteorological station observations"
+      ],
+      "author_team": [
+        "Majda Choukri",
+        "Mustapha Naimi",
+        "Mohamed Chikhaoui"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparative analysis of CHIRPS and ERA5-Land for precipitation and drought assessment in Morocco (1987–2016)",
+        "doi": "10.1007/s00704-026-06180-4",
+        "year": 2026,
+        "venue": "Theoretical and Applied Climatology",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "如何利用集成机器学习和多源卫星及地面变量，将GRACE/GRACE-FO地下水储量异常降尺度，以刻画数据稀缺流域的长期时空变化和局地枯竭热点？",
+      "hypothesis_or_mechanism": "地形、降水、地表温度、蒸散发和植被状态共同调节地下水补给与消耗，因此将这些变量输入堆叠集成模型可恢复粗分辨率GRACE观测未能解析的局地地下水变化。",
+      "variables_and_data_use": "研究以GRACE/GRACE-FO terrestrial water storage anomalies (TWSA)和GLDAS components推导GWSA，并将MODIS LST、ET、NDVI、CHIRPS precipitation和SRTM elevation作为空间降尺度预测变量，同时结合in-situ groundwater observations，对2002—2023年的地下水储量变化、2020年结构突变及其后枯竭趋势进行分析。",
+      "method_paradigm": "集成学习状态重建",
+      "used_assets": [
+        "GRACE/GRACE-FO terrestrial water storage anomalies (TWSA)",
+        "GLDAS components",
+        "MODIS LST",
+        "ET",
+        "NDVI",
+        "CHIRPS precipitation",
+        "SRTM elevation",
+        "in-situ groundwater observations"
+      ],
+      "author_team": [
+        "S. Karunarathna",
+        "B. C. Dissanayake",
+        "L. Gunawardhana",
+        "L. Rajapakse"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "High-Resolution Downscaling of GRACE-Derived Groundwater Storage Anomalies using Stacking Ensemble Machine Learning in the Data-Scarce Tropical Catchments",
+        "doi": "10.1007/s41748-026-01022-9",
+        "year": 2026,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何结合Sentinel-1洪水变化检测、MERIT Hydro HAND地形约束和AHP多因子分析，绘制湿季洪水范围、量化农地暴露并评估洪水易感性？",
+      "hypothesis_or_mechanism": "低SAR后向散射可指示开放或稀疏植被覆盖的洪水，而坡度和MERIT Hydro HAND约束能够排除雷达阴影及水文上不连通的误分类区域，进而提高洪水制图与易感性评估的可靠性。",
+      "variables_and_data_use": "使用COPERNICUS/S1_GRD的VH后向散射构建旱季中值基线和湿季第20百分位合成，通过Otsu阈值识别洪水；使用MERIT Hydro dataset的HAND变量实施低于150 m的水文连通性约束；使用SRTM DEM派生高程和坡度并执行坡度掩膜；使用CHIRPS湿季降水、OpenLandMap土壤、Sentinel-2分类得到的LULC及河流距离构建AHP易感性指数；使用Sentinel-2 MNDWI验证洪水范围，并用JRC Global Surface Water dataset剔除永久水体。",
+      "method_paradigm": "变化检测与多准则决策",
+      "used_assets": [
+        "COPERNICUS/S1_GRD",
+        "MERIT Hydro dataset",
+        "30 m Shuttle Radar Topography Mission (SRTM) DEM",
+        "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) precipitation data",
+        "OpenLandMap global soil datasets",
+        "Sentinel-2 MultiSpectral Instrument (MSI) Level-2A imagery",
+        "Sentinel-2 SR (Surface Reflectance) imagery",
+        "GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED",
+        "JRC Global Surface Water dataset"
+      ],
+      "author_team": [
+        "Kebede Bekele Atlaw",
+        "Estifanos Lemma",
+        "Gebeyehu Abebe",
+        "Esubalew Ayimere Awoke",
+        "Sebsibeh Gizachew Mengiste"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Integrating sentinel-1 SAR and AHP for flood susceptibility and agricultural impact assessment in the Awash River Basin, Ethiopia",
+        "doi": "10.1038/s41598-026-63431-0",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何整合SRTM地形、长期降雨、土地覆盖、土壤和植被等条件因子，构建并验证Najran Basin的洪水易感性空间分区？",
+      "hypothesis_or_mechanism": "排水密度、坡度和高程通过控制径流汇集、输移速度和低地积水倾向而主导洪水易感性，降雨、土地覆盖、土壤和植被条件则进一步调节产流与入渗。",
+      "variables_and_data_use": "研究以SRTM DEM (30 m)提供高程并派生坡度、河网、排水密度和TWI，以CHIRPS v2.0 daily precipitation构建2000–2024年平均年降雨面，以Sentinel-2 imagery派生LULC，以FAO soil database提供土壤类型，以Landsat 8红光和近红外波段计算NDVI；各因子标准化后通过FAHP加权叠加形成连续洪水易感性指数，并使用official municipal reports中的35个洪水易发地点计算成功率曲线和AUC。",
+      "method_paradigm": "GIS-FAHP决策支持",
+      "used_assets": [
+        "SRTM DEM (30 m)",
+        "CHIRPS v2.0 daily precipitation",
+        "MEWA gauges",
+        "Sentinel-2 imagery",
+        "FAO soil database",
+        "Landsat 8",
+        "official municipal reports"
+      ],
+      "author_team": [
+        "Fawaz Alzabari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Flood susceptibility mapping in a data-scarce arid catchment of Southwestern Saudi Arabia",
+        "doi": "10.3389/feart.2026.1905637",
+        "year": 2026,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "How do multi-scale drought conditions relate to long-term vegetation dynamics and vegetation regime shifts in the semi-arid Jebel Marra Highlands?",
+      "hypothesis_or_mechanism": "Drought at different accumulation timescales produces delayed and scale-dependent vegetation responses, while persistent drought-related departures can coincide with structural breaks in the NDVI record.",
+      "variables_and_data_use": "Monthly Landsat Collection 2 surface-reflectance NDVI from 2000–2024 is compared with SPEI-3, SPEI-6, and SPEI-12 derived from CHIRPS precipitation and ERA5-Land potential evapotranspiration; lagged correlations, trend tests, drought severity comparisons, and BFAST breakpoints quantify the relationship.",
+      "method_paradigm": "Multi-scale drought–vegetation time-series coupling with lag analysis and regime-shift detection.",
+      "used_assets": [
+        "Landsat Collection 2 Surface Reflectance",
+        "CHIRPS",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Abdalrahman Ahmed",
+        "Kornel Czimber"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Multi-scale drought-vegetation relationships in the Jebel Marra Highlands, Sudan: evidence from Landsat NDVI time series, SPEI, and BFAST analysis",
+        "doi": "10.3389/ffgc.2026.1879552",
+        "year": 2026,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "该论文研究2002—2024年乍得盆地降雨、总水储量、地表水/土壤水和地下水储量的时空变化及其相互关系。",
+      "hypothesis_or_mechanism": "论文隐含机制是降雨、地表水和总水储量变化会影响地下水储量，但蒸发、抽水压力和水文地质条件可能削弱降雨向地下水补给的转化。",
+      "variables_and_data_use": "论文使用CHIRPS v2.0的月降雨量、GRACE/GRACE-FO NASA JPL的月TWSA并由厘米转换为毫米、GLDAS-NOAH v2.1的地表水/土壤水变量，并通过GRACE TWSA与GLDAS水分量差值派生GWSA；随后在GEE、ArcGIS和Python中进行年度聚合、制图、趋势分析和相关分析。",
+      "method_paradigm": "遥感时空趋势分析",
+      "used_assets": [
+        "CHIRPS v2.0",
+        "GRACE/GRACE-FO",
+        "NASA JPL",
+        "GLDAS-NOAH v2.1",
+        "Derived (GRACE-GLDAS)"
+      ],
+      "author_team": [
+        "Ubong Paulinus Udoka",
+        "Karel Pavelka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Estimating Long-Term Groundwater Storage Change in the Chad Basin, Nigeria, Using GRACE/GRACE-FO and GLDAS Terrestrial Water Storage Anomalies",
+        "doi": "10.5194/isprs-archives-xlix-b3-2026-859-2026",
+        "year": 2026,
+        "venue": "The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究1991—2024年埃塞俄比亚植被NDVI的季节和长期变化如何响应降水、温度及未来气候情景。",
+      "hypothesis_or_mechanism": "降水变化和温度胁迫共同驱动植被绿度变化，其中水分限制和降水变率是多数地区NDVI变化的主要控制因素。",
+      "variables_and_data_use": "使用NOAA/CDR/AVHRR/NDVI/V5构建1991—2000年早期NDVI序列，使用MODIS/061/MOD13Q1构建2001—2024年MODIS NDVI序列，并计算季节和年度NDVI气候态、异常及趋势；使用ERA5、TerraClimate、CHIRPS和NASA/GDDP-CMIP6提供温度、降水及未来气候驱动变量，建立NDVI与气候变量的回归模型并进行未来投影。",
+      "method_paradigm": "变化检测与关系机制分析",
+      "used_assets": [
+        "NOAA/CDR/AVHRR/NDVI/V5",
+        "MODIS/061/MOD13Q1",
+        "ECMWF/ERA5/MONTHLY",
+        "IDAHO_EPSCOR/TERRACLIMATE",
+        "NASA/GDDP-CMIP6",
+        "CHIRPS"
+      ],
+      "author_team": [
+        "Gezahegn Mergia Tullu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Climate-Driven Vegetation Dynamics and Future Projection over Ethiopia Using NDVI and Google Earth Engine",
+        "doi": "10.62762/jgeo.2026.291236",
+        "year": 2026,
+        "venue": "Journal of Geoscience and Earth Observation",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "2019—2024年Sulaymaniyah Province的NO2、SO2、CO和O3如何发生年度与季节变化，且这些变化与地表温度和降水有何关系？",
+      "hypothesis_or_mechanism": "工业和城市排放推动污染物柱浓度的时空变化，而温度与降水通过化学反应条件和湿清除过程影响NO2及其他污染物水平。",
+      "variables_and_data_use": "使用Sentinel-5P OFFL: NO2、Sentinel-5P OFFL: SO2、Sentinel-5P OFFL: CO和Sentinel-5P OFFL: O3生成2019—2024年年度图与季节平均值；使用MOD11A2 version 6.1获取地表温度，使用CHIRPS获取平均降雨量，并通过Pearson相关检验分析气候参数与污染物的关系。",
+      "method_paradigm": "时空变化与相关分析",
+      "used_assets": [
+        "Sentinel-5P OFFL: NO2",
+        "Sentinel-5P OFFL: SO2",
+        "Sentinel-5P OFFL: CO",
+        "Sentinel-5P OFFL: O3",
+        "MOD11A2 version 6.1",
+        "CHIRPS"
+      ],
+      "author_team": [
+        "فرمێسك رشيد عبدالله",
+        "سرياز صالح حسين",
+        "ئەژين إبراهيم سەمين",
+        "پروين محمد مينا عمر"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "رصد التغيرات في تلوث الهواء باستخدام بيانات القمر الصناعي Sentinel-5P في محافظة السليمانية، إقليم كردستان العراق (2019-2024)",
+        "doi": "10.66026/cq7ke077",
+        "year": 2026,
+        "venue": "Journal Of Babylon Center for Humanities Studies",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "农户对气候变化相关天气模式的感知是否与南塞拉利昂的ERA5-Land和CHIRPS数据所反映的天气变化一致？",
+      "hypothesis_or_mechanism": "农户对天气变化的感知应与长期再分析和降水数据揭示的气候趋势存在一定一致性，但观测稀疏和数据质量问题可能造成差异。",
+      "variables_and_data_use": "使用ERA5-Land和CHIRPS数据分析2004年至2024年的气候相关天气模式，并通过趋势检验、Sen斜率估计和Kendall秩相关分析，将数据结果与农户调查和访谈得到的气候变化感知进行比较。",
+      "method_paradigm": "混合方法与趋势验证",
+      "used_assets": [
+        "CHIRPS",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Mohamed Jalloh",
+        "Lamin R. Mansaray",
+        "Denis Magnus Ken Amara",
+        "Adam Sheka Kanu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user-directed obvious candidate from current formal reference pool structured used_assets; source direction already present in formal pool",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Climate Change-related Weather Patterns in Southern Sierra Leone; Validating Farmer Perceptions with  CHIRPS/ERA5-Land Datasets",
+        "doi": "10.9734/jgeesi/2026/v30i81107",
+        "year": 2026,
+        "venue": "Journal of Geography, Environment and Earth Science International",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_directed_obvious_formal_pool_candidate",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "不同来源、分辨率和生产方法的全球网格化降水产品在南美健康应用和气候影响评估中的性能及实用性有何差异？",
+      "hypothesis_or_mechanism": "由于再分析产品在热带地区和站点稀疏地区的表现可能较弱，CHIRPS 等结合卫星与站点观测的产品应能更好地再现降水时序、极端降水和区域聚合降水，但产品差异会传递到依赖降水的生态模型结果中。",
+      "variables_and_data_use": "研究实际使用 CHIRPS 2.0、CRUTS、ERA5、ERA5-Land、GPCC 和 PERSIANN-CDR 的网格降水数据，在原始分辨率及统一的 0.5° 网格上提取日值，计算行政区平均降水、月尺度序列、季节循环、ETCCDI 降水极端指数、生物气候变量和降水驱动的蚊媒环境承载力；INMET 和 IDEAM 站点数据用于验证，GADM 用于行政区边界，GPWv4 用于人口空间背景。",
+      "method_paradigm": "多产品比较与验证",
+      "used_assets": [
+        "CHIRPS",
+        "CRUTS",
+        "ERA5",
+        "ERA5-Land",
+        "GPCC",
+        "PERSIANN-CDR",
+        "INMET",
+        "IDEAM",
+        "Global Administrative Area Database (GADM), version 4.1",
+        "Gridded Population of the World, Version 4 (GPWv4, Revision 11)"
+      ],
+      "author_team": [
+        "Sally Jahn",
+        "Katy A. M. Gaythorpe",
+        "Caroline M. Wainwright",
+        "Neil M. Ferguson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of the Performance and Utility of Global Gridded Precipitation Products for Health Applications and Impact Assessments in South America",
+        "doi": "10.1029/2024gh001260",
+        "year": 2025,
+        "venue": "GeoHealth",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究 Borana 区 1991—2020 年不同时间尺度气象干旱的时空变化特征。",
+      "hypothesis_or_mechanism": "降水量的异常及其时间尺度累积会导致不同程度和持续时间的气象干旱。",
+      "variables_and_data_use": "使用 CHIRPS-2.0 网格降水数据和 chirps-month 月尺度降水序列，基于降水量拟合概率分布并计算 SPI3、SPI6、SPI9 和 SPI12。",
+      "method_paradigm": "时空重建与指数分析",
+      "used_assets": [
+        "CHIRPS",
+        "CHIRPS-2.0",
+        "chirps-month",
+        "GeoCLIM",
+        "GIS",
+        "Python"
+      ],
+      "author_team": [
+        "Gezahegn Mergia Tullu",
+        "Abebe Kebede Habtegebriel",
+        "Komi Mensah Agboka"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Impact of ENSO on Drought in Borena Zone, Ethiopia",
+        "doi": "10.11648/j.ajrs.20241202.13",
+        "year": 2024,
+        "venue": "American Journal of Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究IGAD地区1981至2020年降雨季节开始、结束及季节长度的时空变化特征。",
+      "hypothesis_or_mechanism": "气候变率及其相关的降水和蒸散发变化会导致降雨季节开始和结束日期发生提前或推迟，并改变生长季长度。",
+      "variables_and_data_use": "使用CHIRPS降水数据计算降雨日、五日累计降雨量、降雨开始日期和降雨结束日期，并使用NOAA最高和最低气温数据计算潜在蒸散发和水分平衡，进而估计降雨季节长度及其年代际变化。",
+      "method_paradigm": "气候变化检测与时序统计分析",
+      "used_assets": [
+        "Climate Hazards Group (CHG) Infrared Precipitation with in-situ station (CHIRPS) datasets",
+        "CHIRPS product",
+        "NOAA maximum and minimum temperature gridded datasets"
+      ],
+      "author_team": [
+        "Paulino Omoj Omay",
+        "Nzioka John Muthama",
+        "Christopher Oludhe",
+        "Josiah Mwivandi Kinama",
+        "Guleid A. Artan",
+        "Zachary Atheru"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Changes and Variability in rainfall onset, cessation and length of rainy season in the IGAD region of Eastern Africa",
+        "doi": "10.21203/rs.3.rs-2313664/v1",
+        "year": 2022,
+        "venue": "Research Square",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "研究评估2001至2023年Antalya Agricultural Basin农业干旱的时空变化及其对水资源管理的启示。",
+      "hypothesis_or_mechanism": "降水不足是农业干旱的主要驱动，高温、植被水分胁迫和土壤水分亏缺会共同强化作物水分压力。",
+      "variables_and_data_use": "使用CHIRPS降水计算月累计降水和PCI，使用MOD09A1.061反射率计算NDVI、NDWI和NDDI，使用MOD11A2.061地表温度计算TCI，使用ERA5-Land土壤湿度计算SMCI，并以SMAP downscaled dataset (NSIDC-0779)补充和比较地表水分变化，进一步综合形成多指标干旱评估。",
+      "method_paradigm": "多源遥感指数综合评估",
+      "used_assets": [
+        "MODIS MOD11A2.061 Terra Land Surface Temperature and Emissivity",
+        "MODIS MOD09A1.061 Terra Surface Reflectance",
+        "CHIRPS",
+        "SMAP downscaled dataset (NSIDC-0779)",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "V. Lakshmi",
+        "Elif Gülen KIR",
+        "Alperen Kır",
+        "Bin Fang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Remote Sensing-Based Monitoring of Agricultural Drought and Irrigation Adaptation Strategies in the Antalya Basin, Türkiye",
+        "doi": "10.3390/hydrology12110288",
+        "year": 2025,
+        "venue": "Hydrology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "研究印度洋偶极子、ENSO及其他大尺度气候驱动系统如何影响东非降雨变异，特别是OND季节降雨和2019年极端降雨。",
+      "hypothesis_or_mechanism": "海温异常及其形成的IOD、ENSO、PDO和NTA等遥相关模态通过改变区域大气环流、湿度和垂直运动，进而调制东非OND季节降雨。",
+      "variables_and_data_use": "使用CHIRPSv2日网格降雨数据计算东非降雨量、长期平均和异常；使用HadISST1.1、CRU和ERSSTV3b海表温度数据构造或获取IOD、SOI、Niño 3.4、Niño 3、Niño 4、PDO和NTA等指数；使用NOAA的海表温度和相对湿度，以及ERA5的位势高度、垂直速度和涡度分析大气状态和环流复合场。",
+      "method_paradigm": "气候遥相关与复合分析",
+      "used_assets": [
+        "Climate Hazards Group InfraRed Precipitation with Station Data Version 2 (CHIRPSv2)",
+        "The Hadley Centre Global Sea Ice and Sea Surface Temperature (HadISST1.1)",
+        "Climate Research Unit (CRU) website",
+        "Extended Reconstruction SST Version 3 (ERSSTV3b)",
+        "National Oceanic and Atmosphere Administration (NOAA)",
+        "ECMWF Reanalysis v5 (ERA5)"
+      ],
+      "author_team": [
+        "Constantine Ingeri",
+        "Wen Wang",
+        "Joseph Ndakize Sebaziga",
+        "Vedaste Iyakaremye",
+        "Samuel Ekwacu",
+        "Prosper Ayabagabo",
+        "Anthony Twahirwa",
+        "Jonah Kazora"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Potential Driving Systems Associated with Extreme Rainfall across East Africa during October to December (OND) Season 2019",
+        "doi": "10.4236/gep.2024.127003",
+        "year": 2024,
+        "venue": "Journal of Geoscience and Environment Protection",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "论文研究如何利用遥感和全球网格化气候数据改进HYPE模型在Costa Rica不同规模流域中的水文模拟与校准。",
+      "hypothesis_or_mechanism": "将PET和AET等遥感蒸散发信息纳入分步校准能够约束模型参数空间、改善水量平衡并提高流量模拟表现。",
+      "variables_and_data_use": "论文使用CHIRPS version 2降水作为日尺度模型驱动、地面雨量站进行比较和偏差校正，使用CPC Global Daily Temperature product提供气温，使用MODIS提供PET和AET用于模型校准与评价，并结合SRTM、SoilGrids和CCI LC构建流域、土壤和土地覆盖空间结构。",
+      "method_paradigm": "分布式水文建模与多源数据校准",
+      "used_assets": [
+        "CHIRPS version 2",
+        "National Meteorological Service (IMN in Spanish)",
+        "CPC Global Daily Temperature product",
+        "MODIS",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "SoilGrids",
+        "Climate Change Initiative Land Cover (CCI LC)",
+        "Costa Rican Electricity Institute (ICE)"
+      ],
+      "author_team": [
+        "Saúl Arciniega‐Esparza",
+        "Christian Birkel",
+        "Andrés Chavarría-Palma",
+        "Berit Arheimer",
+        "José Agustín Breña‐Naranjo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Remote sensing-aided rainfall–runoff modeling in the tropics of Costa Rica",
+        "doi": "10.5194/hess-26-975-2022",
+        "year": 2022,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究2009年至2020年印度不同区域标准气象周干湿期概率及其长期变化和空间差异。",
+      "hypothesis_or_mechanism": "季风降水的启动、维持和撤退会造成印度不同区域干湿期概率的显著时空变化，并形成干旱易发区与水分充足区。",
+      "variables_and_data_use": "使用CHIRPS日降水量数据计算标准气象周降水总量，并以每周20毫米为阈值划分干周和湿周，进一步计算初始概率、条件概率、持续时长、变异系数和趋势；NOAA CPC与IMD日降水数据用于初始降雨概率的对比。",
+      "method_paradigm": "降水时序统计与趋势分析",
+      "used_assets": [
+        "CHIRPS",
+        "UCSB-CHG_CHIRPS_DAILY",
+        "NOAA CPC",
+        "IMD"
+      ],
+      "author_team": [
+        "Indrani Choudhury",
+        "BIMAL BHATTACHRYA"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Assessing the long-term fluctuations in dry-wet spells over Indian region using Markov model in GEE cloud platform",
+        "doi": "10.54386/jam.v25i2.2184",
+        "year": 2023,
+        "venue": "Journal of Agrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究评估CHIRPS和IMERG降水估计在安哥拉对地面降雨的表征能力，并利用表现较好的数据刻画降水季节性、区域降水模式以及雨季开始和结束时间。",
+      "hypothesis_or_mechanism": "不同地形和区域的降水季节性存在空间差异，而融合卫星与站点信息的CHIRPS数据能够较好地再现这种降水时空变化。",
+      "variables_and_data_use": "使用CHIRPS v2.0的0.05度日尺度降水数据和月尺度降水序列，并与IMERG降水估计及INAMET气象站降雨观测比较；经过验证后，使用CHIRPS日、月降水数据进行聚类、降水区域化以及雨季开始和结束时间估计。",
+      "method_paradigm": "降水产品验证与区域化",
+      "used_assets": [
+        "CHIRPS version 2.0",
+        "CHIRPS",
+        "Integrated Multi-satellite Retrievals for GPM (IMERG)",
+        "IMERG Final Run",
+        "IMERG version 07B",
+        "INAMET observation network",
+        "METEOSAT satellite images"
+      ],
+      "author_team": [
+        "João Maria de Sousa Afonso",
+        "David Pareja-Quispe",
+        "Jonathan Aparco‐Lara",
+        "Isidro Metódio Tuleni Johanes Ihadua",
+        "Adriano Pereira Almeida",
+        "George Ulguim Pedra",
+        "António Manuel Lameira Gaspar",
+        "Manuel Da Silva Caetano",
+        "Mayara Christine Correia Lins",
+        "Edson Claudio Tchivango Segunda",
+        "Nelson dos Anjos Adriano Vasco"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Regionalization of Precipitation and Identification of the Onset and Cessation of the Rainy Season in Angola Using Satellite-Based Precipitation Estimates",
+        "doi": "10.1007/s41748-025-00872-z",
+        "year": 2025,
+        "venue": "Earth Systems and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "研究评估东巴勒地区历史及未来气候情景下气象干旱的时空模式、严重程度和发生频率。",
+      "hypothesis_or_mechanism": "较高排放的SSP5-8.5情景将导致比SSP2-4.5更高的降水异常、干旱严重程度和干旱发生频率。",
+      "variables_and_data_use": "使用CHIRPS月度降水数据计算历史SPI并与气象站降水进行验证和改进；使用站点降水进行SDSM校准与验证；使用NCEP-DOE预测变量和CanESM5情景输出生成未来站点降水，并据此计算2023至2052年的SPI、干旱严重程度和频率。",
+      "method_paradigm": "统计降尺度与干旱评估",
+      "used_assets": [
+        "CHIRPS precipitation data",
+        "CHIRPS 1993–2022",
+        "Station rainfall 1985–2014",
+        "CanESM5 (1979–2100)",
+        "NCEP-DOE (1979–2014)",
+        "GeoCLIM",
+        "SDSM 4.2"
+      ],
+      "author_team": [
+        "Moti Deresu",
+        "Habitamu Taddese",
+        "Gebiaw Teshome Ayele",
+        "Bayisa Negasa Wolteji"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Analyzing meteorological drought under historical and future climate scenarios in East Bale zone, South-eastern Ethiopia",
+        "doi": "10.1007/s42452-025-07336-z",
+        "year": 2025,
+        "venue": "Discover Applied Sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究比较十种高分辨率卫星降水产品在青藏高原对降水发生和降水时间序列的检测与测量能力。",
+      "hypothesis_or_mechanism": "复杂地形、站点稀疏和降水空间异质性会导致不同卫星降水产品的检测精度和时间序列表现存在显著差异。",
+      "variables_and_data_use": "使用CHIRPS V2、CMORPH、GSMaP、GPM IMERG-Final、MSWEP和PERSIANN系列产品的降水估计，与CMA和NTPDC地面站降水观测进行日尺度对比，计算降水发生检测指标、时间序列指标及综合排名分数。",
+      "method_paradigm": "卫星降水产品验证",
+      "used_assets": [
+        "CMA",
+        "NTPDC",
+        "CHIRPS V2",
+        "CMORPH",
+        "GSMaP MVK V7",
+        "GSMaP NRT V7",
+        "GPM IMERG-Final",
+        "MSWEP",
+        "PERSIANN CCS",
+        "PERSIANN PDIR-Now",
+        "PERSIANN CDR",
+        "PERSIANN Initial version"
+      ],
+      "author_team": [
+        "Zhaofei Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comprehensive Evaluation of High-Resolution Satellite Precipitation Products over the Qinghai–Tibetan Plateau Using the New Ground Observation Network",
+        "doi": "10.3390/rs15133381",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "研究考察CHIRPS和GSMaP-Gauge在越南西北部复杂山地条件下相对于地面雨量站的降水估计能力及其高程依赖性。",
+      "hypothesis_or_mechanism": "复杂地形和高程梯度会导致卫星降水产品产生系统性误差，而基于高程的偏差校正能够降低误差并改善高地站点的估计表现。",
+      "variables_and_data_use": "使用CHIRPS v2.0（0.05°）和GSMaP-Gauge（0.10°）的卫星降水估计，与11个雨量站的观测配对；计算相关系数、RMSE、MAE、偏差以及降雨事件检测指标，并按月、季节和高程带分析，随后对两种卫星产品实施高程偏差校正。",
+      "method_paradigm": "卫星产品验证与偏差校正",
+      "used_assets": [
+        "CHIRPS v2.0 (0.05°)",
+        "GSMaP-Gauge (0.10°)",
+        "11 rain stations"
+      ],
+      "author_team": [
+        "Noi Doan Thi",
+        "Son Nguyen Hoang",
+        "P. T. Minh Thu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Elevation-based bias correction of chirps and GSMAP rainfall in northwest vietnam (2000–2024): application to climate-resilient transport infrastructure management",
+        "doi": "10.47869/tcsj.77.1.9",
+        "year": 2026,
+        "venue": "The Transport and Communications Science Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "如何准确评估多种格点气象产品（GMPs）在意大利北部复杂地形区对降雨径流模拟的适用性与精度？",
+      "hypothesis_or_mechanism": "格点气象产品的空间分辨率、数据源类型（站点插值、再分析或卫星融合）及其对极端降水与季节变化的捕捉能力，将显著影响概念性水文模型的径流模拟效率。",
+      "variables_and_data_use": "使用SCIA、E-OBS、ERA5-Land、MERIDA-HRES和CHIRPS v2.0的每日降水与温度数据；以SCIA为基准进行直接统计对比（KGE等），并将各产品降水及派生PET作为输入驱动CemaNeige-GR6J水文模型进行间接验证。",
+      "method_paradigm": "直接统计对比与间接水文模拟结合",
+      "used_assets": [
+        "SCIA",
+        "E-OBS (v28.0)",
+        "ERA5-Land",
+        "MERIDA-HRES",
+        "CHIRPS (v2.0)"
+      ],
+      "author_team": [
+        "Gökhan Sarigil",
+        "Mattia Neri",
+        "Elena Toth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT-only quote-back downgrade overridden by user approval",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of national and international gridded meteorological products for rainfall-runoff modelling in Northern Italy",
+        "doi": "10.1016/j.ejrh.2024.102031",
+        "year": 2024,
+        "venue": "Journal of Hydrology Regional Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "巴西全国范围内触发滑坡的极端降水事件频率及其长期变化趋势是什么？",
+      "hypothesis_or_mechanism": "特定阈值（如24小时50毫米）以上的降水日数与滑坡发生概率呈正相关，且近年来高强度降水事件频率呈上升趋势。",
+      "variables_and_data_use": "使用CHIRPS每日0.05度格点降水数据（单位：毫米），计算各网格点超过50mm、100mm和150mm阈值的年累计日数，并按市政区域平均以量化气候灾害风险。",
+      "method_paradigm": "阈值统计与空间聚合分析",
+      "used_assets": [
+        "CHIRPS dataset",
+        "REINDESC (Cemaden)"
+      ],
+      "author_team": [
+        "Pedro Ivo Mioni Camarinha",
+        "Guilherme Yukio Seki",
+        "Diego Oliveira de Souza",
+        "Leandro Patrício"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT-only quote-back downgrade overridden by user approval",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Quantitative analysis of rainfall events for potential rapid landslides and flashfloods in brazilian municipalities",
+        "doi": "10.30574/ijsra.2024.11.2.0433",
+        "year": 2024,
+        "venue": "International Journal of Science and Research Archive",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "东非主要牧区的气候变量（降雨、温度）与植被指数（NDVI）之间存在怎样的时空演变规律与相互关系？",
+      "hypothesis_or_mechanism": "降雨和温度的年际变化通过影响水分和热量条件，直接驱动东非热带草原植被覆盖度（NDVI）的波动与趋势。",
+      "variables_and_data_use": "使用CHIRPS-v2降水数据、ERA5温度数据和NOAA-07 GAC NDVI数据；通过Mann-Kendall检验分析各变量的年际趋势，利用EOF分析和空间相关系数量化气象要素与NDVI的协同变异模式。",
+      "method_paradigm": "经验正交函数与趋势统计检验",
+      "used_assets": [
+        "CHIRPS-v2",
+        "NOAA-07 GAC NDVI",
+        "ECMWF ERA5"
+      ],
+      "author_team": [
+        "Natiko Peter",
+        "Wen Wang",
+        "Nyasulu Matthews",
+        "Raharivelo Sitraka Ny Aina",
+        "Alupot Donnata"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT-only quote-back downgrade overridden by user approval",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Spatio-Temporal Variability of Rainfall and Temperature and Their Effects on Pasture Variability over East Africa: Implication on the Cattle Grazing Areas",
+        "doi": "10.4236/gep.2024.123004",
+        "year": 2024,
+        "venue": "Journal of Geoscience and Environment Protection",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 30,
+    "source_paper_count": 30,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

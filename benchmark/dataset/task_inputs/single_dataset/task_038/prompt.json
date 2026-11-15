@@ -1,0 +1,34 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "FireCCI51: MODIS Fire_cci Burned Area Pixel Product, Version 5.1",
+    "spatial_coverage": {
+      "region_name": "Global land areas",
+      "coverage": "Global monthly burned-area observations within the FireCCI51 product footprint."
+    },
+    "temporal_coverage": "2001-01-01 to 2020-12-01",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "250 m",
+    "temporal_unit": "Monthly",
+    "analytical_capabilities": [
+      "Map and quantify the spatial distribution of burned areas",
+      "Analyze monthly and seasonal patterns of fire occurrence",
+      "Detect interannual and long-term variability in burned area",
+      "Compare fire activity across locations, ecological zones, or administrative boundaries",
+      "Stratify burned pixels using the supplied ESA CCI land-cover class",
+      "Evaluate detection confidence and distinguish unobserved or non-burnable pixels"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "BurnDate, the estimated day of year of first burn detection; ConfidenceLevel is expressed as a percentage",
+      "runtime_hint": "Use the BurnDate band to identify and time detected burning. ConfidenceLevel ranges from 1 to 100 percent. LandCover contains ESA CCI categorical classes for burned pixels. ObservedFlag uses -1 for pixels not observed during the month and -2 for non-burnable pixels; these values must not be counted as valid unburned observations. No catalog scale factor is specified for these bands."
+    },
+    "data_source": "European Space Agency Climate Change Initiative Fire ECV, hosted in Google Earth Engine",
+    "gee_asset": {
+      "id": "ESA/CCI/FireCCI/5_1",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:ESA/CCI/FireCCI/5_1"
+}

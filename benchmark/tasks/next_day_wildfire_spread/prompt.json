@@ -1,0 +1,104 @@
+{
+ "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+ "task_description": "The dataset is the companion release of a reference paper (see data_description.paper_overview). Use it as the research starting point: propose research ideas that could achieve better performance than the reference paper's reported configuration, evaluated on this same dataset under a fair comparison protocol.",
+ "region_name": "Next-day wildfire spread prediction tiles, contiguous United States (NDWS companion release)",
+ "data_description": {
+  "dataset_name": "Next Day Wildfire Spread (NDWS) dataset, United States (companion data of Huot et al. 2022, IEEE TGRS, DOI 10.1109/TGRS.2022.3192974)",
+  "spatial_coverage": {
+   "region_name": "Contiguous United States",
+   "coverage": "18,545 64x64-km tiles (1-km pixels) centered on ongoing fire events across the US; each tile is one sample."
+  },
+  "temporal_coverage": "Nearly a decade of remote-sensing aggregates (2012-2020 per the registry audit); each sample holds two daily fire snapshots: PrevFireMask (day t) and FireMask (day t+1).",
+  "data_type": "Multi-channel 2D raster tiles packaged as TFRecord examples",
+  "data_format": "TFRecord shards (19 files, ~2.1GB): next_day_wildfire_spread_{train_00..14, eval_00..01, test_00..01}.tfrecord. Local companion surface: per_sample_fire_index.csv (one row per sample with tile-level aggregates).",
+  "spatial_resolution": "1 km per pixel; 64x64 pixels per tile",
+  "coordinate_system": "Tiles are geographic patches without per-pixel coordinate columns in the release; per-pixel lat/lon is not shipped.",
+  "temporal_unit": "Per-sample day pair (t, t+1); no explicit date column per sample in the release.",
+  "records": "18545 samples x 13 channels x 64x64 pixels",
+  "data_type_numeric": "All channels float32 rasters. Two channels are label-like masks (PrevFireMask, FireMask) with values -1/0/1; eleven channels are continuous covariates. The prediction target is the FireMask channel.",
+  "total_samples": 18545,
+  "table_content": {
+   "label": "FireMask (day t+1 fire pixels): 1 = fire (raw MODIS classes 7,8,9), 0 = non-fire (3,5), -1 = uncertain (1,2,4,6) per the official label mapping; 845,195 of 75,956,480 pixels are 1 (1.11%); unknown labels are ignored in training/evaluation per the paper.",
+   "column_keys": [
+    "elevation", "pdsi", "NDVI", "pr", "sph", "th", "tmmn", "tmmx", "vs", "erc", "population", "PrevFireMask", "FireMask"
+   ],
+   "column_groups": {
+    "topography": ["elevation"],
+    "vegetation": ["NDVI"],
+    "weather": ["pr", "sph", "th", "tmmn", "tmmx", "vs"],
+    "drought_and_fuel": ["pdsi", "erc"],
+    "anthropogenic": ["population"],
+    "fire_masks": ["PrevFireMask", "FireMask"]
+   },
+   "sample_row_note": "Each channel is a 64x64 float32 raster per sample. The per_sample_fire_index.csv companion stores, per sample: split, shard, fire/uncertain pixel counts for both masks, and the tile mean of each continuous channel."
+  },
+  "unit_of_measurement": "elevation: metres (SRTM). pdsi: Palmer Drought Severity Index (official clip range -6.1..7.9). NDVI: index values (official clip -9821..9996). pr: precipitation in mm (official clip 0..44.5). sph: specific humidity, 0-1 (kg/kg). th: wind direction, degrees clockwise from north (0-360). tmmn/tmmx: min/max temperature in Kelvin (official clips 253.2-298.9 / 253.2-315.1). vs: wind velocity (official clip 0-10). erc: NFDRS energy release component, BTU per square foot (official clip 0-106). population: population density per pixel. PrevFireMask/FireMask: -1/0/1 masks.",
+  "data_source": "Author-curated Google Earth Engine aggregation released on Kaggle (fantineh/next-day-wildfire-spread, CC-BY-4.0 per registry audit; versions/2 = 19 TFRecord shards, 2.08GB archive) plus the official google-research/simulation_research/next_day_wildfire_spread code (Apache-2.0). Underlying sensors: MODIS (fire, vegetation), VIIRS (thermal anomalies), SRTM (elevation), GRIDMET (weather/drought), LandScan/HGIS (population).",
+  "reference": "Paper DOI 10.1109/TGRS.2022.3192974; arXiv 2112.02447; Kaggle dataset fantineh/next-day-wildfire-spread; official code github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread",
+  "important_note": "Structural facts a reader needs before use: (1) The unit of analysis is a 64x64 tile, not a row; the official task is pixel-wise next-day fire prediction per tile. The local per_sample_fire_index.csv aggregates each tile to one row - per-sample tabular claims are supportable from it, but any claim about spatial pattern, adjacency, or per-pixel prediction requires the TFRecords. (2) The TFRecords were re-fetched anonymously (kagglehub, ~2.1GB, no account needed) and profiled in full, then removed from local disk per the large-asset policy; re-download before any pixel-level work. (3) Official splits are by file: train 14,979 / eval 1,877 / test 1,689 samples. The registry audit flags the paper's split as weekly-random 8:1:1 with a 1-day buffer - tiles from the same fire event can appear in different splits, which is a leakage audit point for any reproduction. (4) Raw stored channel values EXTEND BEYOND the official clip ranges (clipping happens in the official loader, not in the files): measured min/max vs official clip - pdsi -152.9..81 vs -6.1..7.9; pr -167.4..136.8 vs 0..44.5 (negative precipitation values exist); th -505900..37740 vs 0..360; tmmn -444.7..716.6 and tmmx 0..1230 vs 253.2..298.9/253.2..315.1 (Kelvin); vs -82.7..103.2 vs 0..10; erc -1196..2471 vs 0..106; sph -0.129..0.0855 vs 0..1; elevation -45..4203 vs 0..3141; NDVI -9567..9966 within its clip. Median values sit inside the clips (e.g., pdsi p50 -1.34, erc p50 49.6, tmmx p50 299.8 K). Any statistical claim must state whether the official clip+standardize preprocessing is applied. (5) The official preprocessing standardizes each channel with the DATA_STATS constants shipped in constants.py (min_clip, max_clip, mean, std). (6) All 18,545 samples are ongoing-fire tiles: 16,433 have at least one fire pixel in FireMask; nonzero fire-pixel counts have median 22, p90 132, p99 393, max 952. (7) The paper's models are trained with class balancing (1:1 for the sklearn baselines; unknown labels ignored) and evaluated on the unbalanced test set with AUC PR as the primary metric.",
+  "column_profiles": {
+   "elevation": {"type": "numeric", "min": -45, "p1": 1, "p50": 623, "p99": 2961, "max": 4203, "mean": 904.6, "std": 846.5},
+   "pdsi": {"type": "numeric", "min": -152.9, "p1": -5.14, "p50": -1.34, "p99": 5.41, "max": 81, "mean": -0.74, "std": 2.48},
+   "NDVI": {"type": "numeric", "min": -9567, "p1": 0, "p50": 5447, "p99": 8934, "max": 9966, "mean": 5297, "std": 2187},
+   "pr": {"type": "numeric", "min": -167.4, "p1": -0.0218, "p50": 0, "p99": 7.66, "max": 136.8, "mean": 0.335, "std": 1.59},
+   "sph": {"type": "numeric", "min": -0.129, "p1": 0.00119, "p50": 0.00558, "p99": 0.0177, "max": 0.0855, "mean": 0.00647, "std": 0.00368},
+   "th": {"type": "numeric", "min": -505900, "p1": 30.5, "p50": 207.6, "p99": 331.7, "max": 37740, "mean": 154.1, "std": 3163},
+   "tmmn": {"type": "numeric", "min": -444.7, "p1": 265.2, "p50": 283.1, "p99": 297, "max": 716.6, "mean": 281.9, "std": 18.1},
+   "tmmx": {"type": "numeric", "min": 0, "p1": 277.6, "p50": 299.8, "p99": 312.8, "max": 1230, "mean": 297.7, "std": 19.1},
+   "vs": {"type": "numeric", "min": -82.7, "p1": 1.41, "p50": 3.46, "p99": 7.59, "max": 103.2, "mean": 3.65, "std": 1.31},
+   "erc": {"type": "numeric", "min": -1196, "p1": 10.6, "p50": 49.6, "p99": 104.5, "max": 2471, "mean": 53.6, "std": 25.3},
+   "population": {"type": "numeric", "min": 0, "p1": 0, "p50": 0.16, "p99": 825.6, "max": 27100, "mean": 29.9, "std": 214.3},
+   "PrevFireMask": {"type": "mask", "values": {"-1": 863318, "0": 74454485, "1": 642517}},
+   "FireMask": {"type": "mask", "values": {"-1": 1819163, "0": 73295962, "1": 845195}}
+  },
+  "dataset_facts": {
+   "samples_total": 18545,
+   "splits": {"train": 14979, "eval": 1877, "test": 1689},
+   "tiles_with_fire": 16433,
+   "fire_pixel_share_of_all_pixels": 0.0111,
+   "per_sample_index_csv": "datasets/next_day_wildfire_spread/per_sample_fire_index.csv (18,545 rows; fire_pixels: mean 44-55 per split, median 17-19, max 952; erc_tile_mean 0.05-116.4 median 50.0; tmmx_tile_mean 203.8-318.2 K; pdsi_tile_mean -6.32..8.00)",
+   "official_preprocessing": "constants.py DATA_STATS per channel: (min_clip, max_clip, mean, std); loader clips then standardizes; label mapping -1 uncertain / 0 non-fire / 1 fire.",
+   "channel_range_violations": "Raw files contain values far outside official clips (see important_note item 4); the loader clips them."
+  },
+  "analytical_capabilities": "Supportable locally and immediately: per-sample tabular analyses from per_sample_fire_index.csv (fire-count distributions by split, tile-mean covariate contrasts between high-fire and low-fire tiles, split-level drift checks). Supportable after re-downloading the TFRecords (anonymous, ~2.1GB): pixel-wise next-day fire prediction with the official 12-input/target setup, the paper's baselines (UNet-style NN, logistic regression, random forest) and AUC PR evaluation, ablations, per-channel clip/normalize experiments, spatial-adjacency analyses. NOT supportable: sub-daily dynamics (data are daily snapshots), per-sample geolocation (no coordinates shipped), claims about fire cause, suppression, or individual fire timelines beyond the two snapshots.",
+  "paper_overview": {
+   "citation": "Huot, F., Hu, R. L., Goyal, N., Sankar, T., Ihme, M., and Chen, Y.-F.: Next Day Wildfire Spread: A Machine Learning Data Set to Predict Wildfire Spreading from Remote-Sensing Data, IEEE Transactions on Geoscience and Remote Sensing, 60, 2022, DOI 10.1109/TGRS.2022.3192974 (arXiv 2112.02447).",
+   "research_question": "Can next-day wildfire spread across the United States be predicted at 1-km pixel resolution from twelve aligned remote-sensing covariates (topography, vegetation, drought, weather, population) plus the current fire mask, and does a deep learning model outperform classical baselines on this curated benchmark?",
+   "data_used": "Nearly a decade of US remote-sensing aggregates assembled in Google Earth Engine: MODIS/VIIRS fire labels and vegetation (NDVI), SRTM elevation, GRIDMET-derived weather (precipitation, specific humidity, wind direction/velocity, min/max temperature), Palmer Drought Severity Index, NFDRS energy release component, and population density; 18,545 64x64 1-km tiles centered on ongoing fires with day-t and day-(t+1) fire masks.",
+   "methods": "Three model families: (1) a UNet-style encoder-decoder convolutional network on all 12 inputs (hyperparameters by grid search over layers/filters, selection by validation AUC PR); (2) logistic regression; (3) random forest (sklearn, class-balanced 1:1 training). Evaluation: pixel-wise AUC PR on the held-out test set, plus precision/recall on the positive class; persistence baseline (predicting day-t fire as day-(t+1)) and ablation studies (remove-one-feature and single-feature retrains).",
+   "main_results": [
+    "Persistence baseline AUC (PR) = 11.5%; all trained models exceed it (paper Table II).",
+    "Neural network achieves the highest test AUC (PR) = 28.4%, with positive-class precision 33.6% and recall 43.1%; logistic regression and random forest trail by at least 6 AUC points and stay within 3 points of each other.",
+    "Removing the current fire mask (PrevFireMask) causes the largest AUC drop - current fire location is the dominant predictor; removing most other single features changes AUC little (many features are correlated; training has ~0.5% AUC variation from random cropping).",
+    "Using only PrevFireMask reaches recall 49.6% but precision 29.2% and AUC 22.9%.",
+    "Aggregating predictions to 8x larger output areas raises AUC to 66.3% at the cost of localization (paper Table III); on six known historical fires the model reaches AUC 38.7% (precision 33.4%, recall 37.2%).",
+    "The authors report prediction artifacts: smoother/rounder fire boundaries than targets, missed small fires, and merging of nearby fires."
+   ],
+   "stated_scope_and_limitations": [
+    "Lead time is one day; the benchmark targets spread prediction for ongoing fires, not fire ignition.",
+    "Labels derive from MODIS active-fire classes with an explicit uncertain class (-1) that is ignored in training/evaluation; small fires are under-detected at 1-km MODIS resolution.",
+    "Test tiles are not event-independent by design (weekly-random split with 1-day buffer, per the registry audit of the paper's protocol) - spatial/temporal leakage risk is acknowledged as an audit point.",
+    "Metrics are low in absolute terms because positive pixels are rare (1.1%) and the task is fine-grained pixel segmentation; the authors present coarser-resolution aggregation as an operating-point alternative.",
+    "The data set aggregates US fires 2012-2020 (registry audit); no per-sample dates are shipped, limiting temporal analyses."
+   ],
+   "not_disclosed_in_paper_sources_available_here": [
+    "Per-sample dates and geographic coordinates are not shipped with the release, so the weekly split cannot be independently re-derived from the files alone.",
+    "The exact train/eval/test tile assignment per fire event is not published; only shard-level split membership is observable.",
+    "Full training duration/hardware details are in the paper text beyond the retrieved sections."
+   ]
+  },
+  "improvement_directive": {
+   "objective": "Treat the Huot et al. 2022 paper summarized above as the baseline starting point. Propose research ideas that could achieve better performance than the paper's reported configuration, using this dataset as the data source.",
+   "better_performance_means": "For this task, better performance is concretely one or more of: higher test AUC (PR) than the paper's 28.4% under the official split and metric; higher positive-class recall at matched precision (or precision at matched recall); better calibration of pixel probabilities; improved handling of the uncertain (-1) label class; leakage-controlled evaluation that either confirms or exceeds the reported numbers under stricter (event/spatially grouped) resampling; better small-fire detection or boundary quality; stronger performance at coarser operating points than the paper's 66.3% at 8x aggregation. No particular improvement direction is presumed effective in advance.",
+   "requirements_per_idea": [
+    "Name the specific limitation or deficiency of the original paper's approach that the idea addresses (e.g., split leakage, uncertain-label handling, class balancing scheme, loss choice, feature clipping, small-fire misses, boundary smoothness).",
+    "State the concrete change (input preprocessing, model architecture, loss, label handling, evaluation protocol, or research angle) and why it could plausibly work.",
+    "Explain how the idea would be compared fairly against the paper's original configuration: freeze the baseline (official 12-input setup, official split files, AUC PR metric, persistence baseline included), change one thing at a time, and report paired differences on the same test tiles.",
+    "Formulate testable claims: state what must be computed, on which samples/pixels, with which expected direction, and give falsification conditions (what observed result would refute the claim).",
+    "Check data affordability: tabular per-sample claims must be computable from per_sample_fire_index.csv; pixel-level and architecture claims require re-downloading the TFRecords (anonymous kagglehub) - mark this explicitly in the idea."
+   ],
+   "constraints": "The official label is the FireMask channel with -1/0/1 semantics; the official loader clips and standardizes channels with constants.py DATA_STATS. Any change to labels, splits, or preprocessing is a legitimate idea but must be stated and compared against the frozen original configuration."
+  }
+ },
+ "data_path": "./datasets/next_day_wildfire_spread"
+}

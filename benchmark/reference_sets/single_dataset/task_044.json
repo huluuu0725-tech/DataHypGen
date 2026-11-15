@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_044",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "NASA VIIRS Black Marble VNP46A2 Daily Nighttime Lights",
+    "spatial_coverage": {
+      "region_name": "Global land areas with valid daily nighttime observations",
+      "coverage": "Near-global daily nighttime radiance over land, subject to clouds, snow, lunar conditions, viewing geometry, and retrieval-quality screening."
+    },
+    "temporal_coverage": "January 2012-present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 m",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Mapping daily BRDF-corrected nighttime radiance and its spatial distribution",
+      "Constructing location-specific seasonal and pre-event radiance baselines",
+      "Detecting abrupt radiance departures and estimating their onset, depth, duration, and spatial extent",
+      "Comparing anomaly trajectories across neighborhoods, regions, and repeated events",
+      "Auditing cloud, snow, ephemeral-light, lunar, and gap-filling effects with the supplied quality layers"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Nighttime DNB radiance in nanowatts per square centimetre per steradian",
+      "runtime_hint": "Prefer DNB_BRDF_Corrected_NTL for observed radiance and use Mandatory_Quality_Flag, QF_Cloud_Mask, Snow_Flag, and Latest_High_Quality_Retrieval to define valid samples. Treat gap-filled values separately and compare dates against a matched local baseline rather than raw global thresholds."
+    },
+    "data_source": "NASA VIIRS Land Science Investigator-led Processing System and Black Marble product team",
+    "gee_asset": {
+      "id": "NASA/VIIRS/002/VNP46A2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_044.json",
+    "source_sha256": "e72de0812db08987fa7876671b92f96c459461a20944ed4bbb7d43d9f428bfa8",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_044/prompt.json",
+    "current_prompt_sha256": "a4aefed40123b0ff175f8c673d3645fbec16664da1fa31293d82f94e4d4d6eb0",
+    "original_anchor_asset": {
+      "id": "NASA/VIIRS/002/VNP46A2",
+      "observable_group": "viirs_black_marble_daily_brdf_corrected_nighttime_radiance",
+      "asset_alias_policy": "NASA Black Marble VNP46A2 Version 1 or 2 daily BRDF-corrected nighttime-light data are admitted; VNP46A1, monthly EOG composites, annual VIIRS composites, and DMSP-OLS are excluded.",
+      "observation_identity_contract": {
+        "physical_object": "NASA VIIRS Black Marble VNP46A2 Daily Nighttime Lights, representing viirs black marble daily brdf corrected nighttime radiance.",
+        "source_lineage": "Task Prompt source: NASA VIIRS Land Science Investigator-led Processing System and Black Marble product team. Current task anchor: NASA/VIIRS/002/VNP46A2 (viirs_black_marble_daily_brdf_corrected_nighttime_radiance). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "Nighttime DNB radiance in nanowatts per square centimetre per steradian; spatial resolution: 500 m; temporal structure: Daily",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: NASA Black Marble VNP46A2 Version 1 or 2 daily BRDF-corrected nighttime-light data are admitted; VNP46A1, monthly EOG composites, annual VIIRS composites, and DMSP-OLS are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "viirs_ref_01",
+      "research_question": "How did communities affected by Hurricane Sandy differ in disturbance magnitude and recovery rate?",
+      "hypothesis_or_mechanism": "A V-shaped VNP46A2 trajectory captures functional disturbance and return, and its depth and slope operationalize resilience across urban and rural communities.",
+      "variables_and_data_use": "Daily VNP46A2 high-quality radiance before, during, and after Sandy is aggregated to pixels, block groups, and metropolitan areas and related to wind, damage, land cover, and social-media indicators.",
+      "method_paradigm": "Matched pre-event baseline, recovery-trajectory metrics, multiscale spatial analysis, and explanatory regression.",
+      "used_assets": [
+        "NASA Black Marble VNP46A2",
+        "housing damage and wind",
+        "land cover and Twitter indicators"
+      ],
+      "source_paper": {
+        "title": "Spatial Assessment of Community Resilience from 2012 Hurricane Sandy Using Nighttime Light",
+        "doi": "10.3390/rs13204128",
+        "year": 2021,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Jinwen Xu",
+        "Yi Qiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "open full-text PDF Methods",
+      "idea_type": "relationship_mechanism",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "viirs_ref_02",
+      "research_question": "How did activity interruption and rebound differ among Chinese cities across successive COVID-19 stages?",
+      "hypothesis_or_mechanism": "Stage-specific radiance loss relative to a December reference and subsequent rebound capture the interruption and partial restoration of company, shopping, traffic, and other activity functions.",
+      "variables_and_data_use": "Daily VNP46A2 radiance from five epidemic stages is quality filtered and combined with POIs, cases, GDP, electricity use, and land use.",
+      "method_paradigm": "Event-stage baseline differencing, random-forest contribution analysis, and cross-city recovery comparison.",
+      "used_assets": [
+        "NASA Black Marble VNP46A2",
+        "points of interest",
+        "epidemic and socioeconomic data"
+      ],
+      "source_paper": {
+        "title": "Human Activity Changes During COVID-19 Lockdown in China—A View From Nighttime Light",
+        "doi": "10.1029/2021GH000555",
+        "year": 2022,
+        "venue": "GeoHealth",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "X. Wang",
+        "G. Yan",
+        "X. Mu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "impact_assessment",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "viirs_ref_03",
+      "research_question": "Across 30 Atlantic hurricanes, which communities experience outages more often, more severely, and for longer?",
+      "hypothesis_or_mechanism": "VNP46A2 radiance deficits identify outage occurrence and severity, while the percentage returned by day 30 measures restoration; decomposing stages reveals distinct social-vulnerability mechanisms.",
+      "variables_and_data_use": "Cloud-masked DNB_BRDF_Corrected_NTL is measured at a 15-30 day baseline and 3, 7, 14, and 30 days after landfall for census tracts, then linked to hurricane exposure and social vulnerability.",
+      "method_paradigm": "Multi-event three-stage hurdle models for occurrence, conditional severity, and recovery with geographic and land-cover controls.",
+      "used_assets": [
+        "NASA Black Marble VNP46A2 via Earth Engine",
+        "IBTrACS hurricanes",
+        "CDC Social Vulnerability Index"
+      ],
+      "source_paper": {
+        "title": "Hurricane power outage burden lands unequally: satellite evidence across 30 Atlantic storms",
+        "doi": "10.21203/rs.3.rs-9349878/v1",
+        "year": 2026,
+        "venue": "Research Square preprint with open full text",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "C. C. Lim",
+        "C. Román-Palacios",
+        "I. Estacio"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "anomaly_discrepancy",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "viirs_ref_04",
+      "research_question": "COVID-19 防控措施如何影响中东城市的夜间灯光活动，以及夜间灯光变化与人员流动数据在时间上有多大同步性？",
+      "hypothesis_or_mechanism": "封锁、宵禁和社会活动限制会减少夜间城市活动，从而导致 Black Marble 夜间辐亮度下降，而 Ramadan 等季节性活动会调节夜间灯光与人员流动之间的关系。",
+      "variables_and_data_use": "研究使用 VNP46A2 的日尺度夜间辐亮度，在 GHS-FUA 城市功能区内进行高质量像元筛选、空间平均、缺测插值和平滑，并通过欧氏距离比较其与 Google mobility data 的时间序列相似性；同时利用 Coronanet government measures database 和 COVID-19 Government Response Stringency Index 分析夜间辐亮度变化与政策实施时间及政策强度的关系。",
+      "method_paradigm": "时间序列分析与政策影响评估",
+      "used_assets": [
+        "500 m daily NASA Black Marble nighttime lights product (VNP46A2)",
+        "Black Marble",
+        "VNP46A2",
+        "Global Human Settlement Functional Urban Areas (GHS-FUA) dataset",
+        "Google mobility data",
+        "Coronanet government measures database",
+        "COVID-19 Government Response Stringency Index"
+      ],
+      "author_team": [
+        "Eleanor C. Stokes",
+        "Miguel O. Román"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Tracking COVID-19 urban activity changes in the Middle East from nighttime lights",
+        "doi": "10.1038/s41598-022-12211-7",
+        "year": 2022,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "viirs_ref_05",
+      "research_question": "在云覆盖影响严重的热带地区，每日卫星夜间灯光数据的可观测性如何约束其用于灾害监测和恢复评估的可靠性？",
+      "hypothesis_or_mechanism": "热带地区持续的云覆盖导致有效观测间歇性分布且具有季节性结构，只有在足够的观测支持和城市主导信号提取的约束条件下，每日夜间灯光才能与电力中断恢复形成有意义的对应关系。",
+      "variables_and_data_use": "使用 VIIRS Black Marble VNP46A2 每日 BRDF 校正夜间辐射率数据，通过有效像元阈值量化时空完整性和辐射率变异性，结合 GHSL SMOD 居民点掩膜隔离稳定信号区域，并与 NGCP 小时级电力负荷数据进行外部一致性验证。",
+      "method_paradigm": "可观测性诊断与数据质量评估",
+      "used_assets": [
+        "VIIRS Black Marble VNP46A2",
+        "GHSL SMOD",
+        "NGCP hourly electricity load"
+      ],
+      "author_team": [
+        "Rene L. Jr. Principe",
+        "Karin J Reinke",
+        "Sheelu Jones"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Reliability-qualified Nighttime Lights for Disaster Impact and Recovery in cloud-impacted tropical Regions",
+        "doi": "10.5194/isprs-archives-xlix-b2-2026-1091-2026",
+        "year": 2026,
+        "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "viirs_ref_06",
+      "research_question": "户外夜间灯光暴露是否以及如何影响成年人睡眠时长和睡眠结构？",
+      "hypothesis_or_mechanism": "较高的夜间灯光暴露可能通过干扰昼夜节律和睡眠环境，改变总睡眠、浅睡和深睡时长。",
+      "variables_and_data_use": "使用NASA's Black Marble的VNP46A2每日夜间灯光辐亮度作为户外夜间灯光暴露变量，构造参与者所在城市的3日、7日和月平均暴露，并按 tertiles 分组；使用Zepp Health smart bracelets记录的客观睡眠参数作为结果变量，使用ERA5-Land温度及人口、行为和城市环境变量作为控制变量。",
+      "method_paradigm": "观察性影响评估与混合效应回归",
+      "used_assets": [
+        "NASA's Black Marble product",
+        "VNP46A2",
+        "Visible Infrared Imaging Radiometer Suite (VIIRS)",
+        "Day/Night Band (DNB)",
+        "Suomi National Polar-orbiting Partnership (SNPP)",
+        "Zepp Health smart bracelets",
+        "ERA5-Land"
+      ],
+      "author_team": [
+        "Huining Yang",
+        "Jiajun Liu",
+        "Ye Chen",
+        "Mintao Su",
+        "Sarawut Thepanondh",
+        "Peining Zhou",
+        "Kunyao Yu",
+        "Jing Ma",
+        "Zhenyu Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Outdoor night light exposure and sleep structure, a panel study using consumer-grade wearables",
+        "doi": "10.1186/s12889-025-26132-3",
+        "year": 2026,
+        "venue": "BMC Public Health",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "viirs_ref_07",
+      "research_question": "飓风冲击如何影响受影响邮政编码区域的夜间灯光辐亮度，并且这种影响会持续多久？",
+      "hypothesis_or_mechanism": "飓风造成的基础设施破坏和社会经济活动变化会导致夜间灯光辐亮度下降，并在灾后恢复过程中逐步变化。",
+      "variables_and_data_use": "使用VNP46A2和VSC-NTL中的DNB夜间辐亮度，在每个飓风前后12个月的时间窗内按月、按受影响邮政编码区域提取并计算均值；使用DW构建建成区掩膜，并利用质量掩膜、阈值处理和历史高质量值插补处理噪声和缺失值。",
+      "method_paradigm": "事件研究与时序分析",
+      "used_assets": [
+        "VNP46A2",
+        "VSC-NTL",
+        "DW"
+      ],
+      "author_team": [
+        "Nancy Thomas",
+        "Saba Rahimi",
+        "Annita Vapsi",
+        "Cathy Ansell",
+        "Elizabeth Christie",
+        "Daniel Borrajo",
+        "Tucker R. Balch",
+        "Manuela Veloso"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Shining a Light on Hurricane Damage Estimation via Nighttime Light Data: Pre-Processing Matters",
+        "doi": "10.1109/igarss53475.2024.10641216",
+        "year": 2024,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "viirs_ref_08",
+      "research_question": "该论文研究如何利用 Black Marble 夜间灯光影像和时空图神经网络预测飓风前后佛罗里达县域电力中断严重程度与恢复空间格局。",
+      "hypothesis_or_mechanism": "飓风造成的电力中断会导致每日夜间灯光辐射亮度下降，而县域之间的时空依赖可帮助模型预测后续 NTL 模式和停电严重程度。",
+      "variables_and_data_use": "论文使用 NASA'sBlackMarble 的每日 VNP46A2 夜间 DNB radiance 影像作为模型输入和预测目标，下载每次重大天气事件前后 30 天影像，并将栅格调整为 128x128；同时使用 BlackMarbleproductVNP46A3 最近三个可用月度合成的平均值计算 Percent Normal，用于表达相对正常夜间灯光水平和停电影响。",
+      "method_paradigm": "时空图神经网络",
+      "used_assets": [
+        "NASA'sBlackMarble",
+        "VNP46A2",
+        "BlackMarbleproductVNP46A3",
+        "BlackMarblePypackage"
+      ],
+      "author_team": [
+        "Alejandro Aparcedo",
+        "Lopez, Christian",
+        "Abhinav Kotta",
+        "Mengjie Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Multimodal Power Outage Prediction for Rapid Disaster Response and Resource Allocation",
+        "doi": "10.48550/arxiv.2410.00017",
+        "year": 2024,
+        "venue": "arXiv (Cornell University)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 8,
+    "source_paper_count": 8,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

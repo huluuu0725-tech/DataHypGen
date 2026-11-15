@@ -1,0 +1,785 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_020",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Global Vegetation Greenness (NDVI) from AVHRR GIMMS-3G+, 1981-2022",
+    "spatial_coverage": {
+      "region_name": "Global land surfaces",
+      "coverage": "Global 0.0833-degree gridded AVHRR vegetation-greenness observations."
+    },
+    "temporal_coverage": "1982-01-01 to 2022-12-31",
+    "data_type": "Raster time-series collection",
+    "data_format": "NASA ORNL DAAC NetCDF collection indexed through NASA Earthdata CMR STAC",
+    "spatial_resolution": "0.0833 degrees (approximately 1/12 degree)",
+    "temporal_unit": "Twice-monthly maximum-NDVI composites",
+    "analytical_capabilities": [
+      "Multi-decadal vegetation-greenness trend analysis",
+      "Twice-monthly to monthly, seasonal or annual temporal aggregation",
+      "Vegetation anomaly and persistence analysis",
+      "Attribution of greening and browning patterns to climate and land-cover covariates",
+      "Quality-screened comparison across biomes and aridity classes"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Normalized Difference Vegetation Index (NDVI), dimensionless",
+      "runtime_hint": "Use the collection's quality information and fill-value conventions before aggregation. The archive is GIMMS-3G+ V1.2, not the older GIMMS v3.1g file used by the seed; both share the third-generation GIMMS AVHRR lineage, grid and twice-monthly cadence, but values must not be assumed cell-for-cell identical."
+    },
+    "data_source": "NASA ORNL DAAC",
+    "source_metadata": {
+      "source": "NASA_CMR",
+      "id": "Global_Veg_Greenness_GIMMS_3G_2187",
+      "doc_url": "https://search.earthdata.nasa.gov/search/granules?p=C2759076389-ORNL_CLOUD",
+      "provider": "NASA ORNL DAAC",
+      "thematic_group": "Vegetation Greenness"
+    }
+  },
+  "current_data_path": "NASA_CMR:Global_Veg_Greenness_GIMMS_3G_2187",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_020.json",
+    "source_sha256": "cd451ee699c87b9c960b54bdabe8c9fe0b0fa4e8883df9c035414ca9fc2ee1c8",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_020/prompt.json",
+    "current_prompt_sha256": "fa1d176dd85791493df765267da17270ad8b6d1a18bf23caf6320a91bcc6fe33",
+    "original_anchor_asset": {
+      "id": "NASA_CMR:Global_Veg_Greenness_GIMMS_3G_2187",
+      "observable_group": "gimms_avhrr_twice_monthly_ndvi",
+      "observation_identity_contract": {
+        "physical_object": "spectral vegetation greenness",
+        "source_lineage": "Global Inventory Modeling and Mapping Studies third-generation AVHRR NDVI production lineage",
+        "core_measurement_semantics": "corrected and calibrated AVHRR NDVI reported as twice-monthly maximum-value composites on a 0.0833-degree global grid",
+        "non_material_variations": "GIMMS NDVI3g v1/v3.1g or GIMMS-3G+ V1.2 release, NASA archive packaging, NetCDF encoding, spatial resampling or temporal aggregation retaining GIMMS observations",
+        "material_mismatches": "NOAA CDR, MODIS, SPOT, PROBA-V, Landsat or another AVHRR processing lineage without GIMMS input"
+      },
+      "asset_alias_policy": "GIMMS third-generation AVHRR NDVI products are admitted, including the seed's GIMMS v3.1g and NASA ORNL DAAC GIMMS-3G+ V1.2. NOAA AVHRR CDR, MODIS MOD13/MYD13, SPOT VEGETATION, PROBA-V and Landsat-derived vegetation indices are excluded unless a GIMMS series is also operationally processed.",
+      "alias_policy_scope": "GIMMS v3.1g and GIMMS-3G+ are treated as product-family releases rather than numerically interchangeable files. Papers must state operational use of a GIMMS third-generation NDVI series; generic AVHRR NDVI is insufficient.",
+      "anchor_repointed": {
+        "from": "NOAA/CDR/AVHRR/NDVI/V4",
+        "to": "NASA_CMR:Global_Veg_Greenness_GIMMS_3G_2187",
+        "reason": "NASA ORNL DAAC now exposes a GIMMS third-generation collection covering 1982-2022. It preserves the seed's GIMMS lineage, 0.0833-degree grid and twice-monthly composites, unlike the former daily NOAA CDR substitute.",
+        "seed_evidence": "The seed uses GIMMS v3.1g NDVI at 1/12 degree and a half-month cadence for 1982-2015, aggregates valid observations to monthly means and resamples them to the 0.5-degree analysis grid.",
+        "verified_against": "NASA CMR concept C2759076389-ORNL_CLOUD, native id Global_Veg_Greenness_GIMMS_3G_2187, GIMMS-3G+ V1.2, 1982-2022, 0.0833 degree, two maximum-NDVI composites per month.",
+        "version_note": "The NASA CMR collection is the later GIMMS-3G+ V1.2 release rather than the seed's v3.1g file. Product lineage, grid and cadence match, but values must not be assumed cell-for-cell identical.",
+        "review_date": "2026-09-20"
+      },
+      "verification": {
+        "status": "verified_against_supplied_methods_and_catalog",
+        "evidence": "The supplied Methods name GIMMS v3.1g at 1/12 degree and a half-month cadence for 1982-2015, aggregate valid NDVI observations to monthly means, and then resample to 0.5 degrees.",
+        "catalog_match": "NASA ORNL DAAC GIMMS-3G+ V1.2 spans 1982-2022 at 0.0833 degree and reports two maximum-NDVI composites per month in NetCDF.",
+        "review_date": "2026-09-20"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文研究如何将长期 AVHRR NDVI 记录校准并协调到 MODIS NDVI，以构建可靠的澳大利亚长期植被监测数据集。",
+      "hypothesis_or_mechanism": "通过使用 MODIS MCD43A4 NDVI 作为目标数据并用机器学习校正 NOAA NDVI CDR 的偏差，可改善 AVHRR NDVI 的长期一致性和季节性表现。",
+      "variables_and_data_use": "论文将 NOAA NDVI CDR product 作为输入 NDVI 数据，使用 MODIS MCD43A4 surface reflectance NBAR product 派生的 NDVI 作为目标数据，并结合太阳天顶角、观测时间、月份、纬度、气候变量、CO2 浓度和 woody-cover fraction 等变量进行校准、协调和缺口填补。",
+      "method_paradigm": "机器学习校准协调",
+      "used_assets": [
+        "NOAA NDVI CDR product",
+        "NDVI CDR",
+        "MODIS MCD43A4 surface reflectance NBAR product",
+        "NDVI MCD43A4",
+        "DEA's Landsat NBAR",
+        "NDVI Landsat",
+        "GIMMS",
+        "GIMMS-PKU",
+        "GIMMS-PKU-consolidated"
+      ],
+      "author_team": [
+        "Chad A. Burton",
+        "Sami W. Rifai",
+        "Luigi J. Renzullo",
+        "Albert I. J. M. Van Dijk"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing long-term vegetation monitoring in Australia: a new approach for harmonising the Advanced Very High Resolution Radiometer normalised-difference vegetation index (NDVI) with MODIS NDVI",
+        "doi": "10.5194/essd-16-4389-2024",
+        "year": 2024,
+        "venue": "Earth System Science Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "CYGNSS 反演土壤湿度与 NDVI 及生长季开始时间所表征的植被活动之间存在怎样的联系？",
+      "hypothesis_or_mechanism": "土壤水分状况会影响植被绿度和生长季启动，因此经 SMAP 校准与验证的 CYGNSS SM 应与 NDVI 及 SOS 呈现可识别的时空关联。",
+      "variables_and_data_use": "使用 CYGNSS L1 data 反演 2019.01 至 2022.12 的 CYGNSS SM，以 Level 3 36-km SMAP gridded data 完成土壤湿度转换、质量控制和验证，并将 NDVI3g dataset 从 10 km 最近邻重采样到 36 km，用于分析土壤湿度与 NDVI 和 SOS 的联系。",
+      "method_paradigm": "多源遥感关系分析",
+      "used_assets": [
+        "CYGNSS L1 data",
+        "Level 3 36-km SMAP gridded data",
+        "NDVI3g dataset"
+      ],
+      "author_team": [
+        "Ting Yang",
+        "Nan Cong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "A preliminary view of the CYGNSS soil moisture-vegetation activity linkage",
+        "doi": "10.3389/ffgc.2023.1320432",
+        "year": 2023,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "研究 1982—2022 年全球不同区域 NDVI 的长期频率分布和变化模式，以及这些模式与气候变量之间的关系。",
+      "hypothesis_or_mechanism": "植被绿度变化由温度、湿度、降水、太阳辐射和云量等多种气候因素共同驱动，并因区域环境条件不同而表现出不同的长期响应模式。",
+      "variables_and_data_use": "使用 GIMMS-3G+ V1.2 的两次月 NDVI 最大值合成数据构建 41 年像元时间序列和 NDVI 频率分布，同时使用 Agrometeorological Indicators from the Copernicus Climate Change Service 中的 2 米气温、2 米相对湿度、降水、太阳辐射和云量等气候变量进行空间分布、趋势和时间变化分析；两类数据统一转换到 0.25° × 0.25° 网格。",
+      "method_paradigm": "长期时空关系分析",
+      "used_assets": [
+        "Global Inventory Modeling and Mapping Studies-3rd Generation V1.2 (GIMMS-3G+)",
+        "Agrometeorological Indicators from the Copernicus Climate Change Service",
+        "European Center for Medium-Range Weather Forecasts Reanalysis v5 (ERA5)",
+        "AgERA5"
+      ],
+      "author_team": [
+        "Won-Jun Choi",
+        "Hwan-Jin Song",
+        "Hyeon-Ju Gim",
+        "Myungjin Kim",
+        "Hye-Sook Park"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "K-means classification of long-term global vegetation index variation",
+        "doi": "10.3389/ffgc.2025.1696015",
+        "year": 2026,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "1982–2020年极端气候和植被生长季长度如何影响青藏高原净初级生产力的时空变化？",
+      "hypothesis_or_mechanism": "极端温度、极端降水和生长季长度通过改变植被吸收光合有效辐射、温度胁迫及水分胁迫，共同调节NPP，且不同生态系统中的作用强度存在差异。",
+      "variables_and_data_use": "研究以GIMMS NDVI3g构建1982–2015年植被绿度序列，并用MOD13A2 NDVI融合延伸至2020年；将月NDVI、CN05.1温度和降水、月日照时数及植被类型输入CASA模型估算NPP，利用NDVI年度时间序列和TIMESAT提取生长季长度，以日温度和降水计算18个极端气候指数，并用地上生物量转换的实测NPP验证估算结果。",
+      "method_paradigm": "模型估算与归因",
+      "used_assets": [
+        "GIMMS NDVI3g",
+        "MOD13A2 NDVI",
+        "CN05.1 dataset",
+        "monthly sunshine duration",
+        "vegetation type data",
+        "aboveground biomass data"
+      ],
+      "author_team": [
+        "Huaizhang Sun",
+        "Xueqiang Zhao",
+        "Yangbo Chen",
+        "Jun Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Impacts of extreme climate and vegetation phenology on net primary productivity across the Qinghai-Xizang Plateau, China from 1982 to 2020",
+        "doi": "10.1007/s40333-025-0075-x",
+        "year": 2025,
+        "venue": "Journal of Arid Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "1982—2015年间，单一及复合气候极端在多大程度上与植被生长负极端重合并成为其主导驱动因素？",
+      "hypothesis_or_mechanism": "异常温度、水分条件和高蒸汽压亏缺可单独或共同造成植被生长负异常，其中复合气候极端可能产生比同等强度单一极端更严重的植被影响。",
+      "variables_and_data_use": "研究计算双周NDVI的生长季平均值，经线性去趋势后以低于第10百分位的异常识别植被负极端；使用CRU v4.04的温度、降水和霜冻日，ERA5四个土层的土壤含水量，以及MERRA- 2的温度、比湿和气压计算蒸汽压亏缺，据此识别单一与复合气候极端，并通过移动窗口重合分析、随机时间序列检验和强度分箱比较评估其驱动作用。",
+      "method_paradigm": "极端事件归因",
+      "used_assets": [
+        "CRU v4.04",
+        "ERA5",
+        "MERRA- 2"
+      ],
+      "author_team": [
+        "Hui Yang",
+        "Seth M. Munson",
+        "Chris Huntingford",
+        "Nuno Carvalhais",
+        "Alan K. Knapp",
+        "Xiangyi Li",
+        "Josep Peñuelas",
+        "Jakob Zscheischler",
+        "Anping Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "The detection and attribution of extreme reductions in vegetation growth across the global land surface",
+        "doi": "10.1111/gcb.16595",
+        "year": 2023,
+        "venue": "Global Change Biology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "云南-贵州高原过去几十年的植被绿度发生了怎样的时空演变，其对温度与降水异常的响应机制是什么？",
+      "hypothesis_or_mechanism": "区域气温持续升高是驱动植被长期正向增长的核心因素，而降水异常主要调制植被生长的年际波动与极端干旱期的负向偏离。",
+      "variables_and_data_use": "使用GIMMS NDVI 3g.v1与MODIS NDVI计算像元级线性趋势与标准化异常；结合温度、降水气象数据及中国植被图，通过OLS回归与皮尔逊相关分析评估气候因子的驱动强度与时空异质性。",
+      "method_paradigm": "时间序列趋势分析与异常相关分析",
+      "used_assets": [
+        "GIMMS NDVI 3g.v1",
+        "MODIS MOD13A3",
+        "高分辨率气象数据",
+        "China Vegetation Map"
+      ],
+      "author_team": [
+        "Xuelian Song",
+        "Zhiwei Wang",
+        "Puchang Wang",
+        "Xiri Ruan",
+        "Shumin He",
+        "Qian Wang",
+        "Wen Zhang",
+        "Leilei Ding"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "NDVI-based Vegetation Change and Its Response\nto Hydrothermal Changes in the Yunnan-Guizhou\nPlateau of Chinese Karst Regions\nfrom 1982 to 2019",
+        "doi": "10.15244/pjoes/214890",
+        "year": 2025,
+        "venue": "Polish Journal of Environmental Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "GIMMS NDVI3g 的长期趋势能否真实反映干旱草地植物量和植被盖度变化，以及哪些环境因素能够解释遥感与地面观测之间的差异？",
+      "hypothesis_or_mechanism": "论文检验 NDVI3g 与地面植被变化应当一致的假设，并提出在植被稀疏条件下，土壤湿度、沙覆盖和地表粗糙度可能比叶绿素或植物量更强地控制 NDVI3g 光谱响应。",
+      "variables_and_data_use": "研究从 GIMMS NDVI3g V0 提取 1982—2013 年每月两次的 NDVI，计算年度平均值、z 分数、线性趋势、Mann-Kendall 趋势和 Sen 斜率；随后将其与 National Meteorological Office 的降雨数据以及历史样地记录中的植物量、植被盖度、沙覆盖率、土壤湿度和土壤质地进行回归、相关和时序比较。",
+      "method_paradigm": "遥感测量验证",
+      "used_assets": [
+        "GIMMS NDVI3g V0",
+        "National Meteorological Office",
+        "historical records collected since 1975"
+      ],
+      "author_team": [
+        "T. AIT HAMMOUDA",
+        "A. HIRCHE",
+        "N. ADI",
+        "H. TOUAHRIA",
+        "L. OMARI-BOUSSADIA",
+        "S. KHOUDIR"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "MONITORING DEGRADED ARID RANGELANDS WITH GIMMS NDVI3g DATA: A CASE STUDY OF THE WESTERN ALGERIAN STEPPE",
+        "doi": "10.15666/aeer/2306_1142111437",
+        "year": 2025,
+        "venue": "Applied Ecology and Environmental Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "第三代GIMMS NDVI能否通过与MODIS NDVI的空间相关关系和统计建模，生成可追溯至20世纪80年代的长期一致MODIS式NDVI序列？",
+      "hypothesis_or_mechanism": "GIMMS与MODIS对植被绿度变化具有稳定且较强的共同响应，因此可利用重叠时期的统计关系从GIMMS NDVI重建MODIS NDVI。",
+      "variables_and_data_use": "使用1982至2015年的gimmsNDVI3g作为长期预测输入，并使用2002至2021年的MODIS TERRA Collection 006 MOD13Q1 NDVI作为较高分辨率目标变量；将MODIS数据重采样至8公里后，在2002至2015年生长季开展空间相关分析和PLSR建模。",
+      "method_paradigm": "跨传感器状态重建",
+      "used_assets": [
+        "gimmsNDVI3g",
+        "MOD13Q1",
+        "MODIS TERRA Collection 006"
+      ],
+      "author_team": [
+        "Munkhdulam Otgonbayar",
+        "Davaagatan Tuyagerel",
+        "Renchinmyadag Tovuudorj",
+        "Odbaatar Enkhjargal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "User-reported manual/Deep Research Anchor verification or explicit reference-space inclusion",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Extending NDVI time series in Mongolia using spatial correlation analysis between AVHRR-GIMMS and MODIS TERRA data",
+        "doi": "10.5564/mjgg.v62i46.4133",
+        "year": 2025,
+        "venue": "Mongolian Journal of Geography and Geoecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "研究 1982 至 2015 年气候因子如何影响呼伦湖盆地植被绿度、植被物候和生物量变化。",
+      "hypothesis_or_mechanism": "温度、降水和太阳辐射通过影响植被生长和衰老过程，改变 NDVI 的年际变化、绿化期和褐化期。",
+      "variables_and_data_use": "使用 GIMMS NDVI3g 的双周 NDVI 时间序列计算 INDVI、VNDVI、年最大 NDVI 和 NDVIratio，并结合中国高分辨率气象强迫数据中的降水、气温和太阳辐射变量，通过部分相关分析评估气候驱动因素与植被指标之间的关系。",
+      "method_paradigm": "植被气候关系机制分析",
+      "used_assets": [
+        "GIMMS NDVI3g",
+        "high-resolution meteorological forcing dataset for China"
+      ],
+      "author_team": [
+        "Nan Shan",
+        "Tie Wang",
+        "Qian Zhang",
+        "Jinqi Gong",
+        "Mingzhu He",
+        "Xiaokang Zhang",
+        "Xuehe Lu",
+        "Feng Qiu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Monitoring Long-Term Vegetation Dynamics in the Hulun Lake Basin of Northeastern China Through Greening and Browning Speeds from 1982 to 2015",
+        "doi": "10.3390/plants14213394",
+        "year": 2025,
+        "venue": "Plants",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "论文研究1982至2020年黄河源区植被NDVI的时空变化、突变特征及其与气象、地形、土地利用和人类活动因素的关系。",
+      "hypothesis_or_mechanism": "气象因素尤其是降水和温度是黄河源区植被NDVI空间分异和时间变化的主要驱动因素，多个自然和人类因素之间存在增强性的交互作用。",
+      "variables_and_data_use": "使用AVHRR GIMMS NDVI3g的半月NDVI计算5月至9月年度最大NDVI，分析植被覆盖分类、趋势和突变；使用ERA5-Land的降水和气温等变量，以及实际蒸散、土壤水分、土壤温度、高程、坡度、坡向、土地利用、GDP和人口密度等因子开展相关分析和地理探测器分析。",
+      "method_paradigm": "时序变化与驱动归因",
+      "used_assets": [
+        "AVHRR GIMMS NDVI3g dataset",
+        "ERA5-Land",
+        "Remote Sensing Monitoring Database of China’s Land Use Status (RSMDC)",
+        "ASTER GDEM V3",
+        "GDP data from the National Earth System Science Data Center",
+        "population density data from the Resource and Environmental Science Data Platform"
+      ],
+      "author_team": [
+        "Kaining Yu",
+        "Caijia Yang",
+        "Tao Wu",
+        "Yifeng Zhai",
+        "Shixiong Tian",
+        "Yuqing Feng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Analysis of vegetation coverage changes and driving forces in the source region of the yellow river",
+        "doi": "10.1038/s41598-025-06921-x",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何利用全球 Landsat NDVI 样本和机器学习校准 GIMMS NDVI3g，并将其与 MODIS NDVI 拼接，以生成 1982 至 2022 年时空一致的全球 NDVI 数据集？",
+      "hypothesis_or_mechanism": "高质量且跨时期稳定的 Landsat NDVI 样本能够识别并校正 GIMMS NDVI3g 中由卫星轨道漂移、传感器退化和时间不一致造成的误差，而 MODIS NDVI 能够在校准后扩展其时间覆盖。",
+      "variables_and_data_use": "研究使用 GIMMS NDVI3g 半月最大值 NDVI 作为主要输入和解释变量，使用 Landsat Surface Reflectance 计算的 NDVI 作为校准样本与验证基准，使用 MODIS Land Cover Type 产品确定植被生物群系，使用 MOD13C1 NDVI 延长 2003 至 2022 年的时间覆盖，并对 MODIS 数据进行半月时间聚合和空间重采样后与 PKU GIMMS NDVI 拼接。",
+      "method_paradigm": "遥感产品校准与验证",
+      "used_assets": [
+        "Landsat Surface Reflectance data (Collection 1 Tier 1)",
+        "MODIS Land Cover Type products (MCD12Q1 and MCD12C1, V6.1)",
+        "GIMMS NDVI3g product (V1.0)",
+        "MODIS Vegetation Index product (MOD13C1, V6.1)",
+        "PKU GIMMS NDVI"
+      ],
+      "author_team": [
+        "Muyi Li",
+        "Sen Cao",
+        "Zaichun Zhu",
+        "Zhe Wang",
+        "Ranga B. Myneni",
+        "Shilong Piao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Spatiotemporally consistent global dataset of the GIMMS Normalized Difference Vegetation Index (PKU GIMMS NDVI) from 1982 to 2022",
+        "doi": "10.5194/essd-15-4181-2023",
+        "year": 2023,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究黄河流域 1982 至 2022 年极端碳源事件的发生特征、演化规律及其环境驱动因素。",
+      "hypothesis_or_mechanism": "植被状态、气象条件、地形和土地覆盖等背景及前期环境因素共同影响极端碳源事件的持续时间、累计碳释放量和强度。",
+      "variables_and_data_use": "使用 GIMMS NDVI3g v1 作为植被指数输入，并结合 China Land Cover Dataset (CLCD)、Digital Elevation Model (DEM)、降水、气温和 ERA5-Land 太阳辐射数据估算 NEP，识别极端碳源事件，再以不同前期时间窗口的环境变量开展随机森林归因分析。",
+      "method_paradigm": "事件检测与机器学习归因",
+      "used_assets": [
+        "GIMMS NDVI3g v1 from NASA LP DAAC",
+        "China Land Cover Dataset (CLCD)",
+        "Digital Elevation Model (DEM) from the National Tibetan Plateau Data Center",
+        "Precipitation and temperature from the National Tibetan Plateau Data Center",
+        "ERA5-Land dataset"
+      ],
+      "author_team": [
+        "Feng, Kai",
+        "Yuan, Haobo",
+        "Wang, Yingying",
+        "Wu, Haijiang",
+        "Su, Xiaoling",
+        "Huang, Shengzhi",
+        "Wang, Fei",
+        "Zhang, Zezhong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "An Event-Based Perspective: Uncovering Hidden Extreme Carbon Source Events and Their Drivers in the Yellow River Basin",
+        "doi": "10.5281/zenodo.17531384",
+        "year": 2025,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "中国不断增强的干旱约束如何影响生态系统恢复窗口的变化？",
+      "hypothesis_or_mechanism": "增强的气象干旱及其伴随的土壤水分和温度变化会压缩生态系统恢复窗口，并且这种影响受土地覆盖类型和相关陆面气象条件调节。",
+      "variables_and_data_use": "使用 GIMMS-3G+ V1.2 的 NDVI 表征 1982 至 2022 年植被动态和生态系统恢复；使用 ERA5-Land 的土壤湿度、土壤温度、降水、向下地表太阳辐射、风速、2 米气温和 2 米露点温度描述陆面和气象条件；使用 SPEIbase 的 SPEI1 量化气象干旱；使用 MCD12C1 土地覆盖数据提供土地利用背景信息。",
+      "method_paradigm": "干旱影响关系机制分析",
+      "used_assets": [
+        "ERA5-Land",
+        "Global Inventory Modeling and Mapping Studies-3rd Generation V1.2 (GIMMS-3G+)",
+        "SPEIbase",
+        "MODIS Collection 6 annual land cover product (MCD12C1)"
+      ],
+      "author_team": [
+        "Shenghang Gao",
+        "Shengzhi Huang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Data for \"Ecosystem recovery windows are shrinking under intensifying drought constraints across China\"",
+        "doi": "10.5281/zenodo.19702665",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "研究如何融合疟疾流行病学指标、GIMMS-3G+ NDVI、降水、温度和高程等多源数据，对乌干达和津巴布韦的疟疾风险进行时空重建、预测和解释。",
+      "hypothesis_or_mechanism": "植被绿度、降水和温度等环境变化通过影响蚊媒及疟疾传播生态条件，能够改善月度疟疾风险的下推和机器学习预测。",
+      "variables_and_data_use": "使用 GIMMS-3G+ NDVI 作为月度植被环境协变量，结合 CHIRPS 降水、ERA5 再分析气象变量、NASADEM 高程和 Malaria Atlas Project 流行病学指标，先通过主成分分析构建年度疟疾风险指数，再用状态空间动态潜变量模型进行月度下推，并将合并数据用于 XGBoost、LSTM 和跨国评估。",
+      "method_paradigm": "时空重建与机器学习预测",
+      "used_assets": [
+        "Malaria Atlas Project (MAP)",
+        "CHIRPS",
+        "GIMMS-3G+ NDVI",
+        "ERA5 reanalysis",
+        "NASADEM elevation data"
+      ],
+      "author_team": [
+        "Bonface Osoro"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Explainable Geospatial Artificial Intelligence for Malaria Risk Forecasting: A Multi-Indicator Framework.",
+        "doi": "10.5281/zenodo.20055573",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究干旱后的复湿如何影响春季物候，以及秋季过度补偿在其中发挥什么作用。",
+      "hypothesis_or_mechanism": "干旱后的复湿通过秋季植被生理和碳储备的过度补偿，促进下一年春季物候提前。",
+      "variables_and_data_use": "使用 GIMMS NDVI3g、GOSIF-GPP 和 MODIS-NBAR 等遥感数据提取植被物候和生产力变量，结合 PEP725、RCNN 和 CPON 地面物候数据识别干旱—复湿事件并进行比较分析，同时使用 NorESM2-MM、CAS-ESM2-0、CMCC-ESM2-SR5 和 CMCC-ESM2 进行未来物候预测。",
+      "method_paradigm": "过程归因与机制分析",
+      "used_assets": [
+        "GIMMS NDVI3g",
+        "GOSIF-GPP",
+        "MODIS-NBAR",
+        "PEP725",
+        "RCNN",
+        "CPON",
+        "NorESM2-MM",
+        "CAS-ESM2-0",
+        "CMCC-ESM2-SR5",
+        "CMCC-ESM2"
+      ],
+      "author_team": [
+        "Minghong Yu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Code for paper \"Autumn overcompensation following post-drought rewetting advances spring phenology\"",
+        "doi": "10.5281/zenodo.22898143",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "研究全球自然生态系统中植被生产力的突变下降如何发生，以及生态系统恢复力是否能够作为突变程度的早期预警指标。",
+      "hypothesis_or_mechanism": "恢复力较低的生态系统更可能表现出更大的植被生产力突变，而这种预警能力会随植被光学深度梯度及气候、土壤、植被和人类活动条件变化。",
+      "variables_and_data_use": "使用GIMMS NDVI3g的NDVI并转换为kNDVI，结合VODCA的植被光学深度识别1992至2015年的植被生产力突变；以VOD计算恢复力指标ACF1和方差，以CRU、CMIP6、土壤数据库、VCF和植被类型数据分析突变程度及预警能力的驱动因素。",
+      "method_paradigm": "变化检测与关系机制分析",
+      "used_assets": [
+        "Global Land Surface Satellite-global land cover (GLASSGLC)",
+        "global Microwave Vegetation Optical Depth Climate Archive (VODCA)",
+        "Global Inventory Modeling and Mapping Studies (GIMMS) NDVI3g",
+        "Climatic Research Unit (CRU)",
+        "Coupled Model Intercomparison Project (CMIP6)",
+        "Regridded Harmonized World Soil Database v1.2",
+        "Vegetation Continuous Fields (VCF) Version 1 product (VCF5KYR)"
+      ],
+      "author_team": [
+        "Maohong Wei",
+        "Xue Tang",
+        "Hailing Li",
+        "Lin Zhu",
+        "Weiqing Meng",
+        "Jianfeng Feng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen initially admitted but quote guard downgraded to uncertain",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "How resilience signals abrupt declines in vegetation productivity: globally uneven yet predictable",
+        "doi": "10.1186/s13717-026-00699-0",
+        "year": 2026,
+        "venue": "Ecological Processes",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "论文研究 1995—2020 年生长季期间，非洲之角农业干旱的时空变化、干旱属性及其与气候变率和玉米产量之间的关系。",
+      "hypothesis_or_mechanism": "降水减少、土壤湿度下降和气温变化会通过植被绿度下降表现为更高的农业干旱频率和脆弱性，并影响玉米产量。",
+      "variables_and_data_use": "使用 GIMMS NDVI3g 计算季节 NDVI 和 VCI，使用 MODIS NDVI 补充 GIMMS 覆盖之外的时期；使用 CHIRPS 降水、ERA5 气温和 ESA CCI Soil Moisture 构建气候关系和加权干旱脆弱性指标，并用 FAOSTAT 玉米产量验证 VCI。",
+      "method_paradigm": "时空重建与关系分析",
+      "used_assets": [
+        "GIMMS NDVI3g",
+        "MODIS NDVI",
+        "CHIRPS",
+        "ERA5",
+        "ESA CCI Soil Moisture",
+        "FAOSTAT"
+      ],
+      "author_team": [
+        "Albert Poponi Maniraho",
+        "L. Lanhai",
+        "Jie Bai",
+        "Igboeli Emeka Edwin",
+        "Vincent Nzabarinda",
+        "Muhirwa Fabien",
+        "David Izere",
+        "Pauline Niyomugabo",
+        "Adeline Umugwaneza",
+        "Fabiola Bakayisire"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen initially admitted but quote guard downgraded to uncertain",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Spatiotemporal analysis of agricultural drought and its relationship with climate variabilities in the growing season of the Horn of Africa",
+        "doi": "10.3389/fclim.2025.1719715",
+        "year": 2026,
+        "venue": "Frontiers in Climate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "论文研究 1982 至 2022 年地中海气候区雨养谷物物候参数的时序变化模式，以及这些变化与水文气候变量之间的关系。",
+      "hypothesis_or_mechanism": "水分和温度条件等水文气候因素会影响雨养谷物的生长季开始、结束、长度及生长季峰值绿度，并可能导致不同历史时期的物候趋势变化。",
+      "variables_and_data_use": "论文使用 GIMMS NDVI3g V1.2 的半月 AVHRR NDVI 构建逐日平滑 NDVI 时间序列，并提取生长季开始日期 SOS、生长季结束日期 EOS、生长季长度 LOS、拔节期日期和峰值 NDVI；同时使用 EOBS 的降水、最高温度、最低温度和相对湿度计算 VPD，并使用 ERA5-Land 根区土壤水分数据分析水文气候因素与物候参数的相关关系。",
+      "method_paradigm": "遥感物候提取与趋势归因",
+      "used_assets": [
+        "normalized difference vegetation index third-generation V1.2 (NDVI3g)",
+        "Global Inventory Modeling and Mapping Studies (GIMMS)",
+        "Climate Change Initiative (CCI) Land Cover (LC)",
+        "Digital Global Map of Irrigation Areas",
+        "EOBS database",
+        "ERA5-Land reanalysis database"
+      ],
+      "author_team": [
+        "Pilar Benito-Verdugo",
+        "Ángel González‐Zamora",
+        "José Martínez‐Fernández"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen initially admitted but quote guard downgraded to uncertain",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Recent Cereal Phenological Variations under Mediterranean Conditions",
+        "doi": "10.3390/rs16111879",
+        "year": 2024,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究 Hunshandake Sandy Land 及其周边生态交错带的植被 NDVI 如何随气候变化和人类活动发生时空变化。",
+      "hypothesis_or_mechanism": "植被 NDVI 的变化主要受区域温度和降水等气候因子影响，并在不同生态分区表现出差异化响应，而人口密度和夜间灯光等人类活动指标的影响总体有限。",
+      "variables_and_data_use": "使用 GIMMSNDVI3gv1 计算 1982—2015 年的 NDVI、年际异常、趋势和物候指标；使用温度和降水等气候数据分析气候响应；使用 PANDA 夜间灯光、人口和草食牲畜数据评估人类活动影响；使用 MODISNDVI 进行一致性比较，并结合 GlobeLand30 和 SRTM 3 DEM v4.0 描述土地覆盖和地形背景。",
+      "method_paradigm": "相关分析与趋势归因",
+      "used_assets": [
+        "GIMMSNDVI3gv1",
+        "GIMMS AVHRR NDVI",
+        "MODISNDVI",
+        "GLDAS",
+        "GEWEX-SRB",
+        "TRMM",
+        "PANDA",
+        "GlobeLand30",
+        "SRTM 3 DEM v4.0"
+      ],
+      "author_team": [
+        "Chao Ma",
+        "Xiaoting LI",
+        "Xiaoming XIANG",
+        "Weiwei LIU",
+        "Tingting Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "两模型初始均 admitted；两侧均因 quote failed verbatim check 降为 uncertain；用户批准人工例外",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Responses of NDVI evolution to climate change and human activities in the Hunshandake Sandy Land and its ecotones",
+        "doi": "10.18402/resci.2023.01.15",
+        "year": 2023,
+        "venue": "资源科学",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "研究不同植被指数提取的青藏高原植被物候指标在空间分布和长期变化趋势上是否一致。",
+      "hypothesis_or_mechanism": "不同植被指数的传感器来源、时间空间分辨率和数据处理差异会导致物候指标及其变化趋势出现系统差异。",
+      "variables_and_data_use": "使用GIMMS NDVI3g时间序列提取生长季开始和结束时间，并与GIMMS LAI3g及MODIS EVI2或MCD12Q2物候结果进行空间、时间和趋势比较。",
+      "method_paradigm": "多源指数比较分析",
+      "used_assets": [
+        "GIMMS NDVI3g",
+        "GIMMS LAI3g",
+        "MCD12Q2",
+        "MODIS EVI2"
+      ],
+      "author_team": [
+        "Tao Chen",
+        "Chen Zhu",
+        "Gaodi Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "两模型初始均 admitted；两侧均因 quote failed verbatim check 降为 uncertain；用户批准人工例外",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Spatiotemporal analysis of phenological metrics on the Qinghai-Tibet Plateau based on multiple vegetation indices",
+        "doi": "10.3389/fenvs.2024.1489267",
+        "year": 2024,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 20,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

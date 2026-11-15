@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Northern Poland lakes",
+  "data_description": {
+    "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 TOA Reflectance",
+    "spatial_coverage": {
+      "region_name": "Northern Poland lakes",
+      "coverage": "Landsat 8 scene coverage over inland-water and surrounding land surfaces in northern Poland, subject to orbital acquisition, cloud cover and data availability."
+    },
+    "temporal_coverage": "2013-03-18 to 2026-06-30",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m for multispectral and thermal bands; 15 m for panchromatic B8",
+    "temporal_unit": "Scene-based acquisitions with a nominal 16-day revisit interval",
+    "analytical_capabilities": [
+      "Multispectral characterization of inland-water and shoreline conditions",
+      "Thermal infrared observation and surface-temperature proxy analysis",
+      "Cloud-screened lake-temperature time-series analysis",
+      "Assessment of spatial thermal variability within and among lakes",
+      "Multi-temporal environmental change detection"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Calibrated top-of-atmosphere reflectance and thermal infrared observations",
+      "runtime_hint": "Use TOA bands `B1`-`B7` for multispectral predictors and thermal `B10`/`B11` for temperature-related features; B10/B11 are resampled from 100 m to 30 m, while panchromatic `B8` is 15 m. Apply the 16-bit `QA_PIXEL` CFMask bits for fill, dilated cloud, cirrus, cloud, cloud shadow and snow, and use `QA_RADSAT` to remove saturated observations. The TOA collection provides calibrated values rather than Level-2 surface-reflectance bands; do not substitute `SR_B*` or `ST_B10` for these TOA bands."
+    },
+    "data_source": "NASA and the U.S. Geological Survey Landsat program",
+    "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1_TOA",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:LANDSAT/LC08/C02/T1_TOA"
+}

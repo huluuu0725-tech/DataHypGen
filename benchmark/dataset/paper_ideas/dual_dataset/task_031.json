@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.15282/construction.v5i2.12436",
+  "task_id": "dual_dataset/task_031",
+  "title": "Comparative Analysis Between Landsat and MODIS Data for Urban Heat Island Mapping in Kuala Lumpur",
+  "category": "landsat_modis_urban_heat",
+  "year": 2025,
+  "journal": "Construction",
+  "impact_level": "medium",
+  "datasets": [
+    "Landsat land-surface-temperature observations",
+    "MODIS land-surface-temperature observations"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "landsat_land_surface_temperature",
+      "dataset": "Landsat land-surface-temperature observations"
+    },
+    {
+      "role": "modis_land_surface_temperature",
+      "dataset": "MODIS land-surface-temperature observations"
+    }
+  ],
+  "idea": {
+    "research_question": "What joint spatial or temporal associations are present between Landsat land-surface-temperature observations and MODIS land-surface-temperature observations?",
+    "hypothesis": "The required components contain a joint signal not represented by either component alone.",
+    "mechanism": "Align every required component, construct role-specific features, test their joint association, and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial-temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:LANDSAT/LC08/C02/T1_L2",
+      "GEE:MODIS/061/MOD11A1"
+    ],
+    "required_component_usage": [
+      "landsat_land_surface_temperature",
+      "modis_land_surface_temperature"
+    ],
+    "expected_contribution": "A benchmark task that requires both components of a composite observation.",
+    "falsification_condition": "Reject an idea if either required component is absent, background-only, or not operationally used with the other required component."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_031:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_dataset_expansion_20260930\\seed_audit.json"
+  }
+}

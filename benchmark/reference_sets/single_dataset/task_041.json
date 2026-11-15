@@ -1,0 +1,1258 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_041",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MODIS Net Evapotranspiration 8-Day (MOD16A2 C061)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:MODIS/061/MOD16A2",
+    "spatial_resolution": "500 m",
+    "temporal_resolution": "8-day composite",
+    "gee_asset": {
+      "id": "MODIS/061/MOD16A2",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MOD16A2",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_041.json",
+    "source_sha256": "14066ae993361ee22ebf3f520fb8ea8e03720c64aa84e8ab98a3b7c62579b8e6",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_041/prompt.json",
+    "current_prompt_sha256": "097d2a7e57b947540089178ad4c1a5bbd72576b475d8273c67d48fb07051a50d",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MOD16A2",
+      "observable_group": "modis_terra_et_eight_day_composite",
+      "kind": "evapotranspiration",
+      "title": "MODIS Net Evapotranspiration 8-Day (MOD16A2, C061)",
+      "observation_identity_contract": {
+        "physical_object": "terrestrial evapotranspiration and potential evapotranspiration",
+        "source_lineage": "MODIS Terra MOD16 ET/PET 8-day composite production lineage, collection 061",
+        "core_measurement_semantics": "MOD16A2 8-day net ET and PET at 500 m",
+        "non_material_variations": "archive, tile/grid, resampling, or temporal aggregation retaining MOD16 ET/PET output",
+        "material_mismatches": "GLEAM, FLUXCOM, PML, SSEBop, or eddy-covariance upscaling products without MOD16 operational input"
+      },
+      "asset_alias_policy": "Only the MOD16A2 8-day ET/PET family (collection 6/6.1) is admitted; other ET products may be compared against it but do not satisfy the anchor rule on their own."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "研究如何利用遥感和水文数据估算叙利亚提什林水库的蒸发量，并评估其经济影响。",
+      "hypothesis_or_mechanism": "水库水面面积、水位、降水和MOD16A2蒸散发观测共同决定水库蒸发损失及其经济后果。",
+      "variables_and_data_use": "使用MODIS MOD16A2蒸发数据估算蒸发量，使用Sentinel-2通过MNDWI提取水库面积，使用CHIRPS逐日降水数据，并结合逐月水库蓄水量和水位进行分析。",
+      "method_paradigm": "遥感估算与影响评估",
+      "used_assets": [
+        "CHIRPS",
+        "MODIS MOD1 6A2",
+        "Sentinel-2"
+      ],
+      "author_team": [
+        "Hothefa Alali",
+        "Aleksey V. Perminov"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Water evaporation from the 16 Tishrin reservoir in Syria: volume measurement and economic impact assessment",
+        "doi": "10.31774/2712-9357-2023-13-3-314-331",
+        "year": 2023,
+        "venue": "Land Reclamation and Hydraulic Engineering",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "不同全球蒸散发产品在不同地表类型、气候条件、时间尺度和海拔条件下的表现如何，以及如何据此构建低不确定性的全球综合蒸散发产品？",
+      "hypothesis_or_mechanism": "不同蒸散发产品在环境条件和时间尺度上的相对优势不同，将表现较好的产品结合起来能够降低综合蒸散发估计的不确定性。",
+      "variables_and_data_use": "研究使用 MOD16A2 V6、MOD16A2105、PML、SSEBop、SEBS、NTSG、GLEAM、GLDAS、FLDAS 和 TerraClimate 等 ET 变量，并将其与通量塔潜热通量转换得到的实际 ET 进行比较，依据相关系数、Taylor score、平均误差和均方根误差筛选产品，最后对选定产品重采样并取平均生成综合 ET。",
+      "method_paradigm": "多产品验证与集成",
+      "used_assets": [
+        "MOD16A2 V6",
+        "MOD16A2105",
+        "PML",
+        "SSEBop",
+        "SEBS",
+        "NTSG",
+        "GLEAM",
+        "GLDAS",
+        "FLDAS",
+        "TerraClimate",
+        "flux EC data",
+        "CR ET product",
+        "FAO WaPOR version 2",
+        "SRTM",
+        "GMTED2010"
+      ],
+      "author_team": [
+        "Abdelrazek Elnashar",
+        "Linjiang Wang",
+        "Bingfang Wu",
+        "Weiwei Zhu",
+        "Hongwei Zeng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Synthesis of global actual evapotranspiration from 1982 to 2019",
+        "doi": "10.5194/essd-13-447-2021",
+        "year": 2021,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "卫星和再分析蒸散发数据集在不同模型校准策略下能否提升分布式水文模型的整体预测能力？",
+      "hypothesis_or_mechanism": "将蒸散发与径流进行多变量联合校准能够改善水文模型对陆地水文过程的表示，但效果取决于蒸散发数据集和空间校准策略。",
+      "variables_and_data_use": "研究比较了 MOD16A2、SSEBop、ALEXI、CMRSET、SEBS、GLEAM、ERA5、MERRA-2 和 JRA-55 等实际蒸散发数据集，并将其与径流联合用于 mHM 校准；同时使用 ESA-CCI 土壤湿度和 GRACE 陆地水储量进行独立过程诊断。",
+      "method_paradigm": "多变量水文模型校准",
+      "used_assets": [
+        "MOD16A2",
+        "SSEBop",
+        "ALEXI",
+        "CMRSET",
+        "SEBS",
+        "GLEAM v3.2a",
+        "GLEAM v3.3a",
+        "GLEAM v3.2b",
+        "GLEAM v3.3b",
+        "ERA5",
+        "MERRA-2",
+        "JRA-55",
+        "ESA-CCI",
+        "GRACE",
+        "streamflow"
+      ],
+      "author_team": [
+        "Moctar Dembélé",
+        "Natalie Ceperley",
+        "Sander Jaap Zwart",
+        "Elga Salvadore",
+        "Grégoire Mariethoz",
+        "Bettina Schaefli"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Potential of satellite and reanalysis evaporation datasets for hydrological modelling under various model calibration strategies",
+        "doi": "10.1016/j.advwatres.2020.103667",
+        "year": 2020,
+        "venue": "Advances in Water Resources",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "研究MOD16A2.006实际蒸散发和潜在蒸散发产品在阿根廷潘帕斯农业区不同气候和作物生长条件下的表现及误差。",
+      "hypothesis_or_mechanism": "MOD16A2.006的估算误差受水分可利用性、土壤性质、地表反照率和区域湿润程度影响，并可通过线性校正得到改善。",
+      "variables_and_data_use": "使用MOD16A2.006的ETp和ETa波段作为卫星蒸散发变量；使用MERRA、MOD12Q1、MOD15和MCD43A2/A3作为产品算法输入；使用MOD13A1.006的NDVI计算作物系数，并结合ORA、SMN和土壤水分平衡数据构建ETc和ETa参考值，用于比较、验证和误差校正。",
+      "method_paradigm": "产品验证与误差校正",
+      "used_assets": [
+        "MOD16A2.006",
+        "MERRA",
+        "MOD12Q1",
+        "MOD15",
+        "MCD43A2/A3",
+        "MOD13A1.006",
+        "ORA",
+        "Servicio Meteorológico Nacional (SMN)"
+      ],
+      "author_team": [
+        "María Florencia Degano",
+        "Raúl Eduardo Rivas",
+        "Facundo Carmona",
+        "Raquel R. Niclos",
+        "Juan Manuel Sánchez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of the MOD16A2 evapotranspiration product in an agricultural area of Argentina, the Pampas region",
+        "doi": "10.1016/j.ejrs.2020.08.004",
+        "year": 2020,
+        "venue": "The Egyptian Journal of Remote Sensing and Space Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "超导重力观测能否结合水量平衡方程有效估算累计蒸散发，并与MOD16A2等方法的结果一致？",
+      "hypothesis_or_mechanism": "局地水储量变化引起的重力残差能够反映土壤和地下水储量变化，从而通过水量平衡方程推算蒸散发及其水分胁迫变化。",
+      "variables_and_data_use": "研究使用SG038超导重力残差估算局地水储量变化，使用降水数据和径流估计建立水量平衡，并以SMT100土壤水分、HYDRUS-1D模拟储水、地下水位和数值模型结果进行比较或验证；同时使用MOD16A2 version 6的500米、8天蒸散发总量，对AGGO周边3×3像元求平均后作为独立蒸散发估计进行比较。",
+      "method_paradigm": "多源观测水量平衡比较",
+      "used_assets": [
+        "MOD16A2 version 6",
+        "SMT100",
+        "HYDRUS-1D",
+        "SG038",
+        "Level 3 precipitation (P)",
+        "Level 3 reference evapotranspiration ET0",
+        "MERRA GMA"
+      ],
+      "author_team": [
+        "Jonatan Emmanuel Pendiuk",
+        "Luis Guarracino",
+        "Marvin Reich",
+        "Andreas Güntner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Estimating cumulative evapotranspiration using superconducting gravimeter data: a study in Buenos Aires Province, Argentina",
+        "doi": "10.1080/02626667.2023.2264283",
+        "year": 2023,
+        "venue": "Hydrological Sciences Journal",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该研究探讨如何利用降水、蒸散发和河流流量数据估算巴拉圭河流域的水量平衡。",
+      "hypothesis_or_mechanism": "流域降水输入、MOD16A2 蒸散发输出和河流径流输出的综合平衡可以表征流域的年度水量收支。",
+      "variables_and_data_use": "使用 TRMM-3B43 月降水率计算累计降水量，使用 MOD16A2 蒸散发像元值转换并积分为月度和年度流域蒸散发，使用 Porto Murtinho 水文站流量数据计算河流出流量，最终整合三类变量估算水量平衡。",
+      "method_paradigm": "流域水量平衡估算",
+      "used_assets": [
+        "MOD16A2",
+        "TRMM",
+        "TRMM-3B43",
+        "dados de vazão da estação de Porto Murtinho",
+        "Agência Nacional de Águas (ANA, 2018)"
+      ],
+      "author_team": [
+        "Hudson de Azevedo Macedo",
+        "José Cândido Stevaux",
+        "Ivan Bergier",
+        "Aguinaldo Silva"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "BALANÇO HÍDRICO DA BACIA DO ALTO PARAGUAI POR MEIO DE DADOS TRMM E MOD16A2",
+        "doi": "10.22533/at.ed.22712903686",
+        "year": 2019,
+        "venue": "Antonella Carvalho de Oliveira eBooks",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "2001年至2021年间中伏尔加河地区森林生态系统蒸散发呈现怎样的变化趋势，以及这种变化与降水、地表温度、植被生产力和森林退化有何关系？",
+      "hypothesis_or_mechanism": "降水变化和大范围森林火灾通过改变森林植被状况与水分供给，驱动区域蒸散发的长期变化。",
+      "variables_and_data_use": "使用 MOD16A2 蒸散发数据构建2001年至2021年的蒸散发时间序列并进行趋势分析，使用 MOD13Q1 NDVI 表征植被生产力和植被动态，并使用 TerraClimate 提供的 LST 和 Pr 分析气候因素与蒸散发之间的关系；Landsat-8 用于补充遥感植被和地表信息。",
+      "method_paradigm": "遥感时间序列趋势分析",
+      "used_assets": [
+        "MOD16A2",
+        "MOD13Q1",
+        "TerraClimate",
+        "Landsat-8"
+      ],
+      "author_team": [
+        "Д.М. Дергунов",
+        "О.Н. Воробьев",
+        "Э.А. Курбанов",
+        "С.А. Лежнин",
+        "А.В. Губаев",
+        "Л.В. Тарасова"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "ANALYSIS OF EVAPOTRANSPIRATION DYNAMICS IN THE FOREST STANDS OF THE MIDDLE VOLGA REGION BASED ON MOD16A2 DATA DURING THE 2001-2021 PERIOD",
+        "doi": "10.25686/4184.2022.65.71.001",
+        "year": 2022,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "研究区长期降水和生物物理参数变化如何反映并影响伊拉乌苏巴市的荒漠化过程及其空间时间演变。",
+      "hypothesis_or_mechanism": "降水减少或异常、潜在蒸散发增强以及地表温度和植被状态变化共同加剧水分亏缺，从而提高区域荒漠化风险。",
+      "variables_and_data_use": "使用CHIRPS降水数据并通过自动气象站进行验证，使用MOD16A2的潜在蒸散发、MOD11A2的地表温度以及相关NDVI变量进行年度或多年平均分析，并结合MapBiomas土地利用土地覆盖数据评估土地变化和荒漠化风险。",
+      "method_paradigm": "变化检测与关系机制分析",
+      "used_assets": [
+        "CHIRPS",
+        "MOD16A2",
+        "MOD11A2",
+        "MapBiomas",
+        "Automatic Weather Stations (AWS)",
+        "Google Earth Engine",
+        "QGIS"
+      ],
+      "author_team": [
+        "João Guilherme Justino Da Costa",
+        "Geber Barbosa de Albuquerque Moura",
+        "Pabrício Marcos Oliveira Lopes",
+        "Pedro Rogério Giongo",
+        "José Ivaldo Barbosa de Brito"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Assessment of desertification in the brazilian semiarid region using time series of climatic and biophysical variables",
+        "doi": "10.26848/rbgf.v16.6.p3424-3444",
+        "year": 2023,
+        "venue": "Revista Brasileira de Geografia Física",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "研究问题是STEPS、TSEB和SCOPE三种蒸散发模型与MOD16A2、GLEAM及TerraClimate等全球数据集在不同空间和时间尺度上的估算表现有何差异。",
+      "hypothesis_or_mechanism": "不同模型和数据集因生态系统类型、能量平衡计算方式及水分可利用性约束不同，会产生显著的蒸散发估算差异，并且模型表现取决于区域和生态系统类型。",
+      "variables_and_data_use": "研究使用STEPS、SCOPE和TSEB生成或比较蒸散发估算结果，并与MOD16A2、GLEAM和TerraClimate等全球数据集进行多尺度比较，同时使用涡度协方差地面测量进行验证。",
+      "method_paradigm": "模型比较与地面验证",
+      "used_assets": [
+        "STEPS",
+        "SCOPE",
+        "TSEB",
+        "MOD16A2",
+        "GLEAM",
+        "TerraClimate",
+        "eddy covariance based ground measurements"
+      ],
+      "author_team": [
+        "Zaib Unnisa",
+        "Ajit Govind",
+        "Egor Prikaziuk",
+        "Christiaan van der Tol",
+        "Bruno Lasserre",
+        "Vicente Burchard‐Levine",
+        "Marco Anthony Marchetti"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing Evapotranspiration Models for Regional Implementation in the Mediterranean: A Comparative Analysis of STEPS, TSEB, and SCOPE with Global Datasets",
+        "doi": "10.3390/app14177685",
+        "year": 2024,
+        "venue": "Applied Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "研究 2000 至 2019 年气候变化是否改变了阿尔卑斯山谷牧场和阔叶林的植被物候与蒸散发趋势。",
+      "hypothesis_or_mechanism": "气温升高、降水变化和积雪融化时间提前可能延长植被生长季并增加植被蒸散发。",
+      "variables_and_data_use": "使用 MOD13Q1 v.6 的 NDVI 时间序列提取 SOS、EOS、LOS 和 MAXVI，使用 MOD16A2 v.6 的八天净 ET 合成值构建 ET 时间序列并分析年度趋势，使用 MOD10A1 v.6 提取积雪融化时间，结合 CHIRPS、地面气象站、SRTM v3 product (SRTM Plus)、CORINE land cover 2018 dataset 和 MCD12Q2 v.6 Land Cover Dynamics product 进行气候解释、地形分层、土地覆盖筛选和物候验证。",
+      "method_paradigm": "遥感时间序列趋势分析",
+      "used_assets": [
+        "MOD13Q1 v.6",
+        "MOD16A2 v.6",
+        "MOD10A1 v.6",
+        "MCD12Q2 v.6 Land Cover Dynamics product",
+        "SRTM v3 product (SRTM Plus)",
+        "CHIRPS",
+        "Ground weather stations data from the Centro Funzionale VdA",
+        "CORINE land cover 2018 dataset"
+      ],
+      "author_team": [
+        "Tommaso Orusa",
+        "Enrico Corrado Borgogno-Mondino"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Exploring Short-Term Climate Change Effects on Rangelands and Broad-Leaved Forests by Free Satellite Data in Aosta Valley (Northwest Italy)",
+        "doi": "10.3390/cli9030047",
+        "year": 2021,
+        "venue": "Climate",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "研究探讨植被蒸散发和物候变化是否与Aosta Valley野生岩羚羊传染性角膜结膜炎的流行率相关。",
+      "hypothesis_or_mechanism": "气候变化引起的植被活动和蒸散发变化可能改变动物栖息环境与资源条件，从而影响野生动物之间的接触和疾病传播。",
+      "variables_and_data_use": "使用MOD16A2 v.6提取8天净蒸散发并计算年度累计ET和区域土地覆盖类别内的年度平均ET；使用MOD13Q1 v.6生成NDVI时间序列并提取生长季开始、结束、长度和最大NDVI等物候指标；使用SRTM地形数据划分海拔类别，使用CLC2018识别牧场、天然草地、灌丛和荒地等有利土地覆盖类型，并将这些变量与年度IKC流行率进行相关和二次多项式回归分析。",
+      "method_paradigm": "遥感时间序列关系分析",
+      "used_assets": [
+        "MOD13Q1 v.6",
+        "MOD16A2 v.6",
+        "SRTM v3 product (SRTM Plus)",
+        "SRTM30",
+        "CLC2018",
+        "COPERNICUS/CORINE/V20/100m",
+        "Google Earth Engine"
+      ],
+      "author_team": [
+        "Tommaso Orusa",
+        "Riccardo Orusa",
+        "Annalisa Viani",
+        "Emanuele Carella",
+        "Enrico Corrado Borgogno-Mondino"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Geomatics and EO Data to Support Wildlife Diseases Assessment at Landscape Level: A Pilot Experience to Map Infectious Keratoconjunctivitis in Chamois and Phenological Trends in Aosta Valley (NW Italy)",
+        "doi": "10.3390/rs12213542",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究比较 Advection Aridity 模型利用气候站历史资料估算 Karnataka State 实际蒸散发的准确性。",
+      "hypothesis_or_mechanism": "基于互补关系假说，潜在蒸散发与湿环境蒸散发可结合气象观测估算区域实际蒸散发，并能与 MODIS MOD16A2 观测结果较好一致。",
+      "variables_and_data_use": "使用 Afzalpur 和 Hungund 气象站的历史气候记录计算潜在蒸散发和湿环境蒸散发，再由 Advection Aridity 模型得到 AET，并使用 MODIS MOD16A2 的八天合成 AET（500米）进行验证。",
+      "method_paradigm": "模型估计与遥感验证",
+      "used_assets": [
+        "MODIS MOD16A2",
+        "historical climate records of the Afzalpur and Hungund stations",
+        "State Water Resources Development Organization"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Modeling Actual Evapotranspiration using the Advection Aridity Model",
+        "doi": "10.35940/ijrte.b1225.0782s319",
+        "year": 2019,
+        "venue": "International Journal of Recent Technology and Engineering (IJRTE)",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "PML-V2水碳耦合模型能否利用多源遥感、气象和通量观测数据生成中国区域高时空分辨率的蒸散发和总初级生产力产品？",
+      "hypothesis_or_mechanism": "将光合作用、冠层导度和Penman–Monteith蒸散发过程耦合，并利用中国通量塔观测校准参数，可以提高不同生态系统ET和GPP估算的准确性。",
+      "variables_and_data_use": "研究使用MOD15A2H.006的叶面积指数、MCD43A3.006的反照率、MOD11A2.006的地表发射率和MCD12Q1.006的土地覆盖作为遥感输入，结合CMFD、GLDAS-2.1、ERA5-Land、NOAA等气象和大气CO2数据驱动PML-V2，生成日尺度ET、植物蒸腾、土壤蒸发、截留蒸发和GPP；利用FLUXNET2015、National Tibetan Plateau Data Center、Heihe Integrated Observatory Network和ChinaFLUX通量观测进行校准验证，并用流域水量平衡数据和GRACE产品验证流域尺度ET。",
+      "method_paradigm": "过程模型构建与验证",
+      "used_assets": [
+        "PML-V2(China)",
+        "MOD15A2H.006",
+        "MCD43A3.006",
+        "MOD11A2.006",
+        "MCD12Q1.006",
+        "CMFD",
+        "GLDAS-2.1",
+        "ERA5-Land",
+        "NOAA",
+        "FLUXNET2015",
+        "National Tibetan Plateau Data Center",
+        "Heihe Integrated Observatory Network",
+        "ChinaFLUX",
+        "National Water Resources Bulletin",
+        "NASA Jet Propulsion Laboratory",
+        "GeoForschungsZentrum Potsdam",
+        "Center for Space Research"
+      ],
+      "author_team": [
+        "Shaoyang He",
+        "Yongqiang Zhang",
+        "Ning Ma",
+        "Jing Tian",
+        "Dongdong Kong",
+        "Changming Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A daily and 500 m coupled evapotranspiration and gross primary production product across China during 2000–2020",
+        "doi": "10.5194/essd-14-5463-2022",
+        "year": 2022,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "CoSEB模型能否利用遥感、再分析和站点观测生成同时满足地表辐射平衡与能量平衡的全球地表辐射和热通量数据集？",
+      "hypothesis_or_mechanism": "通过多变量随机森林共同估计多个能量通量并学习能量守恒关系，可以提高全球地表辐射和热通量估计的一致性与精度。",
+      "variables_and_data_use": "使用MOD16A2的LE、GLASS的LAI和FVC、MOD44B的树木覆盖率、ERA5-Land的气象和土壤变量、GMTED2010的地形变量、NOAA/GML的CO2浓度，以及MODIS和其他遥感输入，共同估计SW IN、SW OUT、LW IN、LW OUT、Rn、LE、H和G，并用302个涡动协方差站点及SURFRAD观测进行训练和验证；同时将MOD16A2、PML_V2、FLUXCOM、ETMonitor等产品用于交叉比较。",
+      "method_paradigm": "能量守恒驱动的机器学习重建",
+      "used_assets": [
+        "MOD16A2",
+        "GLASS",
+        "ERA5-Land",
+        "MOD44B",
+        "NOAA/GML atmospheric carbon dioxide ( CO 2 ) concentration data",
+        "GMTED2010",
+        "FLUXCOM",
+        "ETMonitor",
+        "PML_V2",
+        "BESS-Rad",
+        "BESSV2.0",
+        "302 eddy covariance (EC) sites",
+        "SURFRAD"
+      ],
+      "author_team": [
+        "Junrui Wang",
+        "Ronglin Tang",
+        "Meng Liu",
+        "Zhao-Liang Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Energy-conservation datasets of global land surface radiation and heat fluxes from 2000–2020 generated by CoSEB",
+        "doi": "10.5194/essd-18-443-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同全球蒸散发产品在灌溉区域对灌溉空间分布和季节性蒸散发变化的刻画是否一致。",
+      "hypothesis_or_mechanism": "灌溉面积较高的区域在灌溉季应具有较高蒸散发，而不同产品因模型结构、气象强迫和植被水分胁迫处理不同会产生系统性差异。",
+      "variables_and_data_use": "使用MOD16A2、FLUXCOM RS、GLEAM4.3a、ERA5-Land、SSEBop v6.1和PMLv2的ET变量，在统一0.1度网格上计算月平均值；使用GLEAM4.3a的PET、MSWEP v2.8降水、GMIAv5灌溉面积、OpenET集成ET和两个涡度协方差站点观测进行空间对应、产品比较和现场验证。",
+      "method_paradigm": "多产品对比与观测验证",
+      "used_assets": [
+        "FLUXCOM RS",
+        "GLEAM4.3a",
+        "ERA5-Land",
+        "MOD16A2",
+        "SSEBop v6.1",
+        "PMLv2",
+        "GMIAv5",
+        "OpenET",
+        "MSWEP v2.8",
+        "Eddy covariance measurements",
+        "WorldCereal",
+        "TerraClimate",
+        "VIIRS",
+        "Landsat",
+        "GLDAS-2.1",
+        "NASA GMAO (GEOS-5)"
+      ],
+      "author_team": [
+        "Pierre Laluet",
+        "Chiara Corbari",
+        "Oscar M. Baez-Villanueva",
+        "Sophia Walther",
+        "Yongqiang Zhang",
+        "Joaquín Muñoz‐Sabater",
+        "Clément Albergel",
+        "Wouter Arnoud Dorigo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing the suitability of global evapotranspiration products over irrigated areas",
+        "doi": "10.5194/hess-30-1779-2026",
+        "year": 2026,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究评估高分辨率遥感和陆面模型数据生成的降水、土壤湿度及蒸散发干旱指数在半干旱地区识别和解释干旱机制方面的适用性。",
+      "hypothesis_or_mechanism": "降水、蒸散发和土壤湿度之间存在具有时间滞后的相互作用，而高时间和空间分辨率数据能够更好地捕捉短期水分异常及其干旱响应。",
+      "variables_and_data_use": "使用MOD16A2的实际蒸散发和潜在蒸散发计算ETDI，使用SMOS1km表层土壤湿度计算SMDI，使用SAFRAN降水计算SPI，并以SURFEX-ISBA模拟的蒸散发、潜在蒸散发、土壤湿度和降水构建对应的模型指数，随后进行相关性和时间滞后分析。",
+      "method_paradigm": "干旱指数构建与滞后相关分析",
+      "used_assets": [
+        "MOD16A2",
+        "SMOS1km",
+        "SURFEX-ISBA",
+        "SAFRAN",
+        "ECOCLIMAP-II"
+      ],
+      "author_team": [
+        "Jaime Gaona",
+        "Pere Quintana‐Seguí",
+        "Maria‐José Escorihuela",
+        "Aaron Anthony Boone",
+        "María Carmen Llasat"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Interactions between precipitation, evapotranspiration and soil-moisture-based indices to characterize drought with high-resolution remote sensing and land-surface model data",
+        "doi": "10.5194/nhess-22-3461-2022",
+        "year": 2022,
+        "venue": "Natural hazards and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "研究改进SSEBop算法能否利用Landsat和气象数据在中纬度地区估算季节性实际蒸散发，并与MOD16A2及水量平衡结果保持一致。",
+      "hypothesis_or_mechanism": "引入土壤水分随时间变化的约束能够改善SSEBop对实际蒸散发的估算，尤其是在卫星影像时间分布不均和土壤干旱条件下。",
+      "variables_and_data_use": "使用Landsat 7和8影像计算NDVI、地表反照率和地表温度，结合IMGW-PIB的气温、露点温度、气压、风速、日照和降水数据驱动mSSEBop；使用MOD16A2八日实际蒸散发进行空间和时间匹配验证，并以水量平衡、径流和地下水位观测进行补充验证。",
+      "method_paradigm": "遥感模型验证",
+      "used_assets": [
+        "Landsat 7",
+        "Landsat 8",
+        "MOD16A2",
+        "IMGW-PIB",
+        "Corine Land Cover database",
+        "SSEBop",
+        "mSSEBop"
+      ],
+      "author_team": [
+        "Daniel Zaszewski",
+        "Tomasz Gruszczyński",
+        "Jerzy J. Małecki"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Application of satellite data in the quantitative assessment of evapotranspiration in northeastern Poland",
+        "doi": "10.7306/gq.1553",
+        "year": 2020,
+        "venue": "Geological Quarterly",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究不同国家和收入水平下生态系统服务之间的权衡与协同关系及其空间分布特征。",
+      "hypothesis_or_mechanism": "不同生态系统服务受自然生态过程和社会经济因素共同影响，因此在不同国家、洲别和收入组之间呈现差异化的权衡或协同关系。",
+      "variables_and_data_use": "使用MOD16A2提供2018年全球蒸散发ET数据，结合MOD17A2的植被NPP、欧洲航天局全球土地覆盖数据、世界银行WDI以及World Water Outlook数据，核算供给、调节和文化服务价值，并分析服务之间及其与社会经济因素之间的相关关系。",
+      "method_paradigm": "生态系统服务核算与相关分析",
+      "used_assets": [
+        "MOD17A2",
+        "MOD16A2",
+        "global land cover data of the European Space Agency",
+        "World Bank's World Development Indicators (WDI) database",
+        "World Water Outlook database"
+      ],
+      "author_team": [
+        "Wang Jinnan",
+        "Wenjun Wu",
+        "Meng Yang",
+        "Yueming Gao",
+        "Jiacheng Shao",
+        "Weishan Yang",
+        "Guoxia Ma",
+        "Fang Yu",
+        "Nan Yao",
+        "Hongqiang Jiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Exploring the complex trade-offs and synergies of global ecosystem services",
+        "doi": "10.1016/j.ese.2024.100391",
+        "year": 2024,
+        "venue": "Environmental Science and Ecotechnology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "如何利用高空间分辨率遥感解释变量改进全球太阳诱导叶绿素荧光产品的空间降尺度和时间更新？",
+      "hypothesis_or_mechanism": "植被光谱信息、水分胁迫和热胁迫能够通过半经验光能利用率模型解释并重新分配低空间分辨率SIF，从而生成更高空间分辨率的SIF估计。",
+      "variables_and_data_use": "使用MOD16A2蒸散发表示水分胁迫，使用MYD11C2和MOD11C2地表温度表示热胁迫，使用MCD43C4反射率计算NDVI、EVI、NIRv和NDWI，并以GOME-2 SIF作为降尺度目标、OCO-2 SIF进行验证、TROPOMI SIF进行比较和偏差校正。",
+      "method_paradigm": "遥感产品降尺度与交叉验证",
+      "used_assets": [
+        "MOD16A2",
+        "MYD11C2",
+        "MOD11C2",
+        "MCD43C4",
+        "GOME-2",
+        "OCO-2",
+        "TROPOMI"
+      ],
+      "author_team": [
+        "Grégory Duveiller",
+        "Federico Filipponi",
+        "Sophia Walther",
+        "Philipp Köhler",
+        "Christian Frankenberg",
+        "Luis Guanter",
+        "Alessandro Cescatti"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A spatially downscaled sun-induced fluorescence global product for enhanced monitoring of vegetation productivity",
+        "doi": "10.5194/essd-12-1101-2020",
+        "year": 2020,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "能否利用 ET、降水和土地利用密度等时空变量，通过随机森林预测堪萨斯州高平原含水层的地下水开采量？",
+      "hypothesis_or_mechanism": "低降水与高蒸散发共同表征较高的作物用水需求，并会对应更高的地下水抽取量。",
+      "variables_and_data_use": "使用 MOD16A2.006 的 ET 波段并将4月至9月八天 ET 累加为季节总 ET；使用 PRISM 降水数据作为降水变量；使用 USDA-NASS 土地覆盖数据生成农业、城市和地表水密度及作物系数；使用 Kansas 地下水抽取数据作为预测目标。",
+      "method_paradigm": "机器学习决策支持",
+      "used_assets": [
+        "MOD16A2.006:Terranet evapotranspiration8\u0002day global500m",
+        "PRISMmonthlyspatialclimatedatasetAN81m",
+        "USDA\u0002NASScroplanddatalayers",
+        "Kansasinsitugroundwaterpumpingdata",
+        "WaterInformationManagementandAnalysisSystem(WIMAS)"
+      ],
+      "author_team": [
+        "Sayantan Majumdar",
+        "Ryan Smith",
+        "James J. Butler",
+        "V. Lakshmi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Groundwater Withdrawal Prediction Using Integrated Multitemporal Remote Sensing Data Sets and Machine Learning",
+        "doi": "10.1029/2020wr028059",
+        "year": 2020,
+        "venue": "Water Resources Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "研究城市化如何影响长江流域五个城市群的降雨不对称变化和干旱发展。",
+      "hypothesis_or_mechanism": "城市扩张通过改变下垫面、局地热力和水分条件，增强降雨的非对称变化并加剧干旱，而蒸散发、气溶胶和对流条件可能参与其中。",
+      "variables_and_data_use": "论文使用CMDC气象站的降水、气温、气压和相对湿度计算降雨及干旱指标，使用MOD13A2 NDVI、MOD16A2的8日PET和ET、LGHAP AOD以及ERA5的K指数和对流降雨分析潜在机制，并使用CLUDs刻画城市扩张和划分城乡站点。",
+      "method_paradigm": "统计分析与数值模拟",
+      "used_assets": [
+        "China Meteorological Data Service Center (CMDC)",
+        "China's Land-Use/Cover Datasets (CLUDs)",
+        "MOD13A2",
+        "MOD16A2",
+        "Longterm Gap-free High-resolution Air Pollutants concentration data set (LGHAP)",
+        "ERA5",
+        "Weather Research and Forecasting (WRF)"
+      ],
+      "author_team": [
+        "Shuzhe Huang",
+        "Yuan Gan",
+        "Xiang Zhang",
+        "Nengcheng Chen",
+        "Chao Wang",
+        "Xihui Gu",
+        "Jingjin Ma",
+        "Dev Niyogi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Urbanization Amplified Asymmetrical Changes of Rainfall and Exacerbated Drought: Analysis Over Five Urban Agglomerations in the Yangtze River Basin, China",
+        "doi": "10.1029/2022ef003117",
+        "year": 2023,
+        "venue": "Earth s Future",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "土壤质地如何调节温度与矿质土壤碳储量之间的关系，以及JULES模型能否再现这一空间格局？",
+      "hypothesis_or_mechanism": "细质地土壤具有更强的有机质物理化学稳定能力，因此其碳储量对温度的响应较弱，而粗质地土壤中的易分解碳对增温更敏感。",
+      "variables_and_data_use": "研究使用WoSIS土壤剖面数据计算矿质土壤顶部20或50厘米的碳储量，以土壤黏粒含量表示质地；使用WorldClim version 2.0的长期平均温度和降水，MOD17A3的年GPP，以及MOD16A2的8天ET和PET并计算年平均ET/PET分数，分析温度、生产力、降水和干旱度与土壤碳储量的关系；同时使用UKESM1-0-LL和JULES输出进行模型比较。",
+      "method_paradigm": "空间关系分析与模型评估",
+      "used_assets": [
+        "World Soil Information (WoSIS) database",
+        "MCD12Q1",
+        "WorldClim version 2.0",
+        "MOD17A3",
+        "MOD16A2",
+        "UKESM1-0-LL",
+        "JULES",
+        "CMIP6"
+      ],
+      "author_team": [
+        "Iain P. Hartley",
+        "Tim Hill",
+        "Sarah Chadburn",
+        "Gustaf Hugelius"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Temperature effects on carbon storage are controlled by soil stabilisation capacities",
+        "doi": "10.1038/s41467-021-27101-1",
+        "year": 2021,
+        "venue": "Nature Communications",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "灌溉如何影响印度河恒河平原的蒸散发、地表温度以及干热和湿热胁迫？",
+      "hypothesis_or_mechanism": "灌溉增加土壤和植被可利用水分，通过增强蒸散发及其冷却效应改变地表温度和湿热条件，并影响区域热胁迫。",
+      "variables_and_data_use": "使用MOD16A2的8天蒸散发分析灌溉响应及其与白天地表温度的关系，使用MOD13C2的EVI、MCD15A2H的LAI和MCD12Q1土地覆盖描述植被与土地覆盖特征，使用MOD11C1的LST和MOD08D3的AOD开展Granger因果分析，并结合IMD气温、农业普查灌溉数据、FAO GMIA和WRF-CLM4模拟评估灌溉对热胁迫的影响。",
+      "method_paradigm": "模式模拟与因果关系分析",
+      "used_assets": [
+        "WRF-CLM4",
+        "European Centre for Medium-Range Weather Forecast Interim Re-Analysis",
+        "agricultural census-based irrigation data",
+        "Food and Agricultural Organisation (FAO) Global Map of Irrigated Areas (GMIA)",
+        "IMD",
+        "MOD16A2 version-6 8-day composite Evapotranspiration (ET) dataset",
+        "MOD13C2 version-6 monthly Enhanced Vegetation Index (EVI)",
+        "MCD15A2H version-6 8-day composite Leaf Area Index (LAI) product",
+        "MCD12Q1",
+        "MOD08D3",
+        "MOD11C1 version-6",
+        "HYSPLIT"
+      ],
+      "author_team": [
+        "Roshan Jha",
+        "Arpita Mondal",
+        "Anjana Devanand",
+        "Mathew Koll Roxy",
+        "Subimal Ghosh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Limited influence of irrigation on pre-monsoon heat stress in the Indo-Gangetic Plain",
+        "doi": "10.1038/s41467-022-31962-5",
+        "year": 2022,
+        "venue": "Nature Communications",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "如何利用MOD16A2蒸散发及其他遥感和土壤变量估算中国玉米和小麦的产量与作物水分生产率？",
+      "hypothesis_or_mechanism": "作物蒸散发、总初级生产力、叶面积指数、陆表温度和土壤属性共同反映作物生长状态，因此能够解释并预测作物产量及其水分生产率。",
+      "variables_and_data_use": "使用MOD16A2 ET、MOD11A2 Ts、MOD17A2 GPP和MOD15A2 LAI作为遥感预测变量，将500米8天合成数据重采样到1公里，并依据ChinaCropPhen1km物候期计算作物生长期累计ET、GPP和Ts及LAI平均值；同时加入土壤黏土、砂和粉砂含量，以县级统计产量训练随机森林模型，并用像元尺度产量和ChinaFLUX通量塔ET进行验证。",
+      "method_paradigm": "遥感驱动产量估算",
+      "used_assets": [
+        "MOD11A2 Ts products",
+        "MOD16A2 ET products",
+        "MOD17A2 GPP products",
+        "MOD15A2 LAI products",
+        "1-km National Land Cover Dataset (NLCD)",
+        "ChinaCropPhen1km dataset",
+        "1:1 million soil type map",
+        "Second China Soil Survey",
+        "China Rural Statistical Yearbook",
+        "National Meteorological Data Center of China",
+        "ChinaFLUX"
+      ],
+      "author_team": [
+        "Minghan Cheng",
+        "Xiyun Jiao",
+        "Lei Shi",
+        "Josep Peñuelas",
+        "Lalit Kumar",
+        "Chenwei Nie",
+        "Tianao Wu",
+        "Kaihua Liu",
+        "Wenbin Wu",
+        "Xiuliang Jin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "High-resolution crop yield and water productivity dataset generated using random forest and remote sensing",
+        "doi": "10.1038/s41597-022-01761-0",
+        "year": 2022,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "森林损失及其土地利用格局差异如何影响亚马逊地区的蒸散发、潜热通量、地表温度、植被状况和降雨特征？",
+      "hypothesis_or_mechanism": "森林转化为商品农业或农村聚落会通过改变植被结构、能量交换和水分循环，导致蒸散发、蒸发与蒸腾比例、潜热通量及地表温度发生差异。",
+      "variables_and_data_use": "使用 MODIS MOD16A2 的八日 ET 和 LE 分析森林损失相关的蒸散发与能量通量变化，并结合 MOD15A2H Collection 6 的 LAI 分解蒸发和蒸腾；使用 MCD19A1 计算 EVI，使用 MOD11C2 Version 6 和 Landsat 8-based LST product 分析地表温度，使用 TRMM 3A25 分析降雨，使用 MapBiomas Collection 4 识别土地覆盖和森林损失。",
+      "method_paradigm": "空间替代归因分析",
+      "used_assets": [
+        "MapBiomas Collection 4",
+        "FRAGSTATS 4.2",
+        "MCD19A1",
+        "TRMM 3A25",
+        "MOD11C2 Version 6",
+        "Landsat 8-based LST product",
+        "MODIS MOD16A2",
+        "MOD15A2H Collection 6"
+      ],
+      "author_team": [
+        "Eduardo Eiji Maeda",
+        "Temesgen Alemayehu Abera",
+        "Mika Siljander",
+        "Luiz E. O. C. Aragão",
+        "Yhasmin Mendes de Moura",
+        "Janne Heiskanen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Large-scale commodity agriculture exacerbates the climatic impacts of Amazonian deforestation",
+        "doi": "10.1073/pnas.2023787118",
+        "year": 2021,
+        "venue": "Proceedings of the National Academy of Sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究亚马逊森林蒸散发及水分状态如何与干旱、降雨和土地变化过程相关。",
+      "hypothesis_or_mechanism": "森林覆盖和气候条件通过改变蒸散发及地表热状态影响区域水分循环，并调节干旱响应。",
+      "variables_and_data_use": "使用 MOD16A2 的8天净蒸散发变量作为核心水分通量指标，结合 MYD11C2 地表温度/比辐射率和 ERA5 再分析气象变量分析森林、水分与气候过程之间的关系。",
+      "method_paradigm": "关系机制分析",
+      "used_assets": [
+        "MOD16A2 MODIS/Terra Net Evapotranspiration 8-Day L4 Global 500m SIN Grid V006",
+        "MYD11C2 MODIS/Aqua Land Surface Temperature/Emissivity 8-Day L3 Global 0.05Deg CMG V006",
+        "ERA5 Reanalysis (0.25 Degree Latitude-Longitude Grid)"
+      ],
+      "author_team": [
+        "Xiyan Xu",
+        "Xiaoyan Zhang",
+        "W. J. Riley",
+        "Ying Xue",
+        "CARLOS AFONSO NOBRE",
+        "Thomas Ε. Lovejoy",
+        "Gensuo Jia"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Deforestation triggering irreversible transition in Amazon hydrological cycle",
+        "doi": "10.1088/1748-9326/ac4c1d",
+        "year": 2022,
+        "venue": "Environmental Research Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "保护区如何通过改变蒸散发、地表能量收支和局地地表温度来缓冲陆地生态系统的增温过程？",
+      "hypothesis_or_mechanism": "保护区内较完整的植被通过较高的蒸散发和潜热通量增强蒸发冷却，并改变反照率及湍流热通量，从而降低地表温度及其增温速率。",
+      "variables_and_data_use": "使用 MOD16A2 version 6 的蒸散发和潜热通量计算保护区与非保护区之间的潜热差异；结合 MCD43A3 version 6 反照率、MYD11A2 version 6 地表温度、MCD12Q1 version 6 土地覆盖、MOD15A2H v006 叶面积指数、ERA5 月气温以及辐射和高程数据，比较保护区、非保护区和农田的能量收支、温度差异与长期增温趋势。",
+      "method_paradigm": "保护区影响评估与能量收支分析",
+      "used_assets": [
+        "WDPA",
+        "MCD12Q1 version 6",
+        "SRTM30 gridded DEM",
+        "MOD15A2H v006",
+        "LANDSAT-8 collection-2 level-2",
+        "MYD11A2 version 6",
+        "MCD43A3 version 6",
+        "MOD16A2 version 6",
+        "Clouds and the Earth’s Radiant Energy System Energy Balanced and Filled Surface products",
+        "European Centre for Medium-Range Weather Forecasts (ECMWF) ERA5 monthly reanalysis"
+      ],
+      "author_team": [
+        "Xiyan Xu",
+        "Anqi Huang",
+        "Elise M. S. Belle",
+        "Pieter De Frenne",
+        "Gensuo Jia"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Protected areas provide thermal buffer against climate change",
+        "doi": "10.1126/sciadv.abo0119",
+        "year": 2022,
+        "venue": "Science Advances",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "识别哪些轨道产品组合最适合估算巴西南部亚马逊地区Xingu河流域小尺度和中尺度的水量平衡",
+      "hypothesis_or_mechanism": "不同轨道遥感产品(降水、蒸散发、土壤水分)的组合性能差异影响水量平衡估算精度,蒸散发是该流域水文平衡的重要组成部分",
+      "variables_and_data_use": "使用MOD16A2的collection 005和006蒸散发数据、CHIRPS和TRMM降水数据、GRACE土壤水分数据,通过水量平衡方程计算径流,与实测流量站数据对比验证不同产品组合的精度",
+      "method_paradigm": "水量平衡估算 精度验证 产品对比",
+      "used_assets": [
+        "MOD16A2 collection 005",
+        "MOD16A2 collection 006",
+        "CHIRPS version 2.0",
+        "TRMM 3B42 version 7",
+        "GRACE",
+        "SRTM"
+      ],
+      "author_team": [
+        "Charles Caioni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "DESEMPENHO DE PRODUTOS ORBITAIS NA ESTIMATIVA DO BALANÇO HÍDRICO DA BACIA DO RIO XINGU",
+        "doi": "10.18677/agrarian_academy_2021a2",
+        "year": 2021,
+        "venue": "Agrarian Academy",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "研究不同WRF参数化方案和陆面模式对热带气旋期间区域天气变量及蒸散发模拟能力的影响。",
+      "hypothesis_or_mechanism": "WRF物理参数化方案和陆面模式对地表能量、水分交换及实际蒸散发模拟具有显著影响，MOD16A2可用于评估其空间网格化蒸散发表现。",
+      "variables_and_data_use": "使用NCEP FNL和GFS驱动WRF，使用IMD和ECMWF Re-Analysis验证降水、气温和气压，使用MOD16A2 8天实际蒸散发产品与WRF-RUC及FAO-56 Penman-Monteith估算结果进行比较。",
+      "method_paradigm": "数值模拟与遥感验证",
+      "used_assets": [
+        "NCEP Final (FNL) Operational Global analysis product",
+        "Global Forecast System (GFS)",
+        "India Meteorological Department (IMD)",
+        "ECMWF Re-Analysis (ERA)",
+        "MOD16A2",
+        "WRF-RUC",
+        "FAO-56 Penman-Monteith"
+      ],
+      "author_team": [
+        "Subhadeep Mandal",
+        "Bhabagrahi Sahoo",
+        "Ashok Mishra"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing land-surface feedback flux and its drivers during tropical cyclones using Weather Research and Forecasting Model",
+        "doi": "10.21203/rs.3.rs-3053096/v1",
+        "year": 2023,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何利用 MOD16A2 蒸散发、降水和河流流量数据估算灌溉需水量，并识别灌溉增长导致的区域水资源冲突和水安全问题？",
+      "hypothesis_or_mechanism": "灌溉面积和作物蒸散发需求的增加会提高灌溉取水量，从而压缩河流可用水量并增加水资源冲突风险。",
+      "variables_and_data_use": "使用 MOD16A2 的实际蒸散发估计灌溉作物耗水量，使用 TRMM 3B42 降水计算三日水量平衡，使用 Landsat 和 MOD13Q1 NDVI 识别作物生长状态和实际灌溉区域，使用田间实际蒸散发校正 MOD16A2，并将估算的灌溉取水量与 ANA 河流流量数据结合以评估水资源冲突和水安全。",
+      "method_paradigm": "遥感水量平衡与决策支持",
+      "used_assets": [
+        "MOD16A2 Version 6 Evapotranspiration/Latent Heat Flux product",
+        "Landsat 5, 7, and 8",
+        "MODIS MOD13Q1 NDVI product Version 6",
+        "TRMM Multi-Satellite Precipitation Analysis (TMPA, product 3B42, GESDISC, 2020)",
+        "Field Actual Evapotranspiration Data",
+        "automatic weather stations",
+        "ANA, the Brazilian Water Agency",
+        "center pivot maps developed by Pousa et al. (2019)"
+      ],
+      "author_team": [
+        "Ana Beatriz Santos"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Remote sensing-based water resource diagnosis in regions with intensive expansion of irrigation in Brazil",
+        "doi": "10.47328/ufvbbt.2024.090",
+        "year": 2024,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "论文研究可微分过程模型能否在数据稀缺条件下跨流域和跨区域可靠地推广并生成大尺度水文估计。",
+      "hypothesis_or_mechanism": "由于可微分模型具有更强的过程结构约束，其参数化网络学习到的关系应具有空间普适性，从而比 LSTM 和传统过程模型更适合空间外推。",
+      "variables_and_data_use": "模型使用降水、温度和潜在蒸散发等气象变量驱动 HBV，并使用流量观测训练和评估；同时使用 Moderate Resolution Imaging Spectroradiometer (MODIS) 蒸散发产品对模拟蒸散发的季节性和结果进行独立验证。",
+      "method_paradigm": "可微分物理信息水文建模",
+      "used_assets": [
+        "CAMELS dataset",
+        "Maurer meteorological forcing data",
+        "Daymet",
+        "Moderate Resolution Imaging Spectroradiometer (MODIS) satellite"
+      ],
+      "author_team": [
+        "Dapeng Feng",
+        "Hylke E. Beck",
+        "Kathryn Elizabeth Lawson",
+        "Chaopeng Shen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "The suitability of differentiable, physics-informed machine learning hydrologic models for ungauged regions and climate change impact assessment",
+        "doi": "10.5194/hess-27-2357-2023",
+        "year": 2023,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "论文研究不同实际蒸散发数据源能否通过一组多时间尺度特征有效刻画AET动态及其差异。",
+      "hypothesis_or_mechanism": "基于AET时间序列的多时间尺度特征能够揭示传统效率指标无法识别的季节性、年际变异和事件响应差异。",
+      "variables_and_data_use": "论文使用OzFlux通量塔AET作为基准，使用MOD16A2GF.061的8天遥感AET并加权聚合为月尺度，同时使用CMRSET月尺度AET进行对比；另使用SILO的Morton湿环境PET计算水分胁迫和AET与PET异步性。",
+      "method_paradigm": "多尺度特征验证",
+      "used_assets": [
+        "OzFlux",
+        "MOD16A2GF.061",
+        "CSIRO MODIS Reflectance-based Scaling Evapotranspiration (CMRSET)",
+        "SILO",
+        "PyFluxPro (v3.4.17)",
+        "TERN data portal"
+      ],
+      "author_team": [
+        "Hansini Gardiya Weligamage",
+        "Keirnan Fowler",
+        "Margarita Saft",
+        "Tim J. Peterson",
+        "Dongryeol Ryu",
+        "Murray Cameron Peel"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessing deficiencies in remotely sensed actual evapotranspiration (AET): introducing AET signatures",
+        "doi": "10.5194/hess-30-4057-2026",
+        "year": 2026,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 32,
+    "source_paper_count": 32,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

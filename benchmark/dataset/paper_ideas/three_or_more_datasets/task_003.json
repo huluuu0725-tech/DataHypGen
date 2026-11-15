@@ -1,0 +1,58 @@
+{
+  "paper_id": "10.3390/su18020641",
+  "task_id": "three_or_more_datasets/task_003",
+  "title": "A Computational Sustainability Framework for Vegetation Degradation and Desertification Assessment in Arid Lands in Saudi Arabia",
+  "category": "environmental_monitoring",
+  "year": 2026,
+  "journal": "Sustainability",
+  "impact_level": "medium",
+  "datasets": [
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance",
+    "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance",
+    "CHIRPS Daily Final Precipitation v2.0"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "spectral_indicators",
+      "dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+    },
+    {
+      "role": "long_term_spectral_context",
+      "dataset": "USGS Landsat 8 Collection 2 Tier 1 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "rainfall_stress",
+      "dataset": "CHIRPS Daily Final Precipitation v2.0"
+    }
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_003:dryland_degradation",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from the seed abstract and declared dataset roles; empirical results are excluded from the idea fields."
+  },
+  "idea": {
+    "research_question": "How can multisensor optical indicators and rainfall be integrated to screen vegetation degradation in arid protected areas?",
+    "hypothesis": "Combining short-term Sentinel-2 spectral indicators with Landsat history and rainfall stress separates water-stress signals from persistent environmental degradation.",
+    "mechanism": "Sentinel-2 indices capture current vegetation and bare-soil response; Landsat provides historical spectral context; CHIRPS measures rainfall stress. A normalized multi-indicator model can therefore rank degradation zones.",
+    "key_variables": {
+      "target": "Vegetation-degradation screening class and spatial priority zone",
+      "predictors": [
+        "Sentinel-2 NDVI/BSI/LST-related indicators",
+        "Landsat multispectral history",
+        "CHIRPS rainfall totals and anomalies"
+      ]
+    },
+    "data_sources": [
+      "COPERNICUS/S2_SR_HARMONIZED",
+      "LANDSAT/LC08/C02/T1_L2",
+      "UCSB-CHG/CHIRPS/DAILY"
+    ],
+    "analytical_approach": "Cloud-masked multisensor compositing, index extraction and normalization, followed by AHP/MCDA-style weighting, spatial classification and qualitative validation of degradation zones.",
+    "expected_contribution": "A transparent multisource framework for early-stage dryland degradation screening that makes the roles of climate, soil, terrain and land cover explicit.",
+    "falsification_condition": "The multisource score is no more stable or discriminative than a single optical index, or its high-degradation zones are inconsistent with independent environmental or field evidence."
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from the verified seed abstract and multidataset prompt specification on 2026-09-29."
+}

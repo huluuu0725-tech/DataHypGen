@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1029/2019WR026793",
+  "task_id": "dual_dataset/task_015",
+  "title": "Enhancing Streamflow Forecast and Extracting Insights Using Long Short Term Memory Networks With Data Integration at Continental Scales",
+  "category": "streamflow_meteorological_forcing",
+  "year": 2020,
+  "journal": "Water Resources Research",
+  "impact_level": "medium",
+  "datasets": [
+    "USGS NWIS daily streamflow observations",
+    "NLDAS meteorological forcing"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "streamflow_observation",
+      "dataset": "USGS NWIS daily streamflow observations"
+    },
+    {
+      "role": "meteorological_forcing",
+      "dataset": "NLDAS meteorological forcing"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between streamflow observations and meteorological forcing?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "API:https://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ny&parameterCd=00060&statCd=00003&period=P7D&siteStatus=active",
+      "GEE:NASA/NLDAS/FORA0125_H002"
+    ],
+    "required_component_usage": [
+      "streamflow_observation",
+      "meteorological_forcing"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_015:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

@@ -1,0 +1,930 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_025",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture",
+    "spatial_coverage": {
+      "region_name": "Conterminous United States",
+      "coverage": "The conterminous United States subset of the global 36 km EASE-Grid 2.0 SMAP Level-3 passive-radiometer product."
+    },
+    "temporal_coverage": "2015-03-31 to present",
+    "data_type": "Daily global gridded raster collection",
+    "data_format": "NASA Earthdata / NSIDC HDF5 granules indexed by Common Metadata Repository (CMR)",
+    "spatial_resolution": "36 km EASE-Grid 2.0",
+    "temporal_unit": "Daily",
+    "analytical_capabilities": [
+      "Analyze daily near-surface soil-moisture states and anomalies",
+      "Compare soil-moisture change over weekly to seasonal windows",
+      "Track the onset, intensification and recovery of dry or wet conditions",
+      "Aggregate retrievals over administrative, climatic or hydrologic regions",
+      "Compare satellite soil-moisture trajectories with independent drought indicators"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Volumetric surface soil moisture in cubic metres per cubic metre (m3/m3)",
+      "runtime_hint": "Use the SPL3SMP science and quality fields documented for the selected version. Apply retrieval-quality flags before temporal differencing or spatial aggregation, preserve day/night or AM/PM provenance, and do not reinterpret 9 km enhanced, Level-4 root-zone, SMAP-Sentinel or NASA-USDA Palmer-model products as this 36 km Level-3 passive collection."
+    },
+    "data_source": "NASA NSIDC DAAC / NASA Jet Propulsion Laboratory SMAP mission",
+    "source_metadata": {
+      "source": "NASA_CMR",
+      "id": "SPL3SMP",
+      "concept_id": "C2938664585-NSIDC_CPRD",
+      "version": "009",
+      "product_doi": "10.5067/4XXOGX0OOW1S",
+      "doc_url": "https://nsidc.org/data/spl3smp/versions/9",
+      "data_url": "https://search.earthdata.nasa.gov/search/granules?p=C2938664585-NSIDC_CPRD",
+      "provider": "NASA NSIDC DAAC; NASA/JPL/SMAP",
+      "thematic_group": "Soil Moisture / Passive Microwave"
+    },
+    "region_scope_provenance": "paper_ideas/single_dataset/task_025.json research_question names CONUS地区干旱类型演变"
+  },
+  "current_data_path": "NASA_CMR:SPL3SMP",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_025.json",
+    "source_sha256": "de84bce1981296393d7c3bddb4a3955cf3b3a9d7817b029c72d7178a3c560b21",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_025/prompt.json",
+    "current_prompt_sha256": "5c8e140901b494a4609c30c6821017b7d2f13156ee329d3d6bd7b9d651fe6164",
+    "original_anchor_asset": {
+      "id": "NASA_CMR:SPL3SMP",
+      "observable_group": "smap_l3_passive_radiometer_surface_soil_moisture_36km",
+      "observation_identity_contract": {
+        "physical_object": "near-surface volumetric soil moisture retrieved from SMAP L-band passive-radiometer observations",
+        "source_lineage": "NASA/JPL SMAP Level-3 passive radiometer product distributed by NASA NSIDC DAAC as SPL3SMP / L3_SM_P",
+        "core_measurement_semantics": "daily passive-radiometer surface-soil-moisture retrievals on the 36 km EASE-Grid 2.0 global grid",
+        "non_material_variations": "SPL3SMP or L3_SM_P version updates that retain the 36 km Level-3 passive product identity; day/night or AM/PM retrieval selection; quality screening; temporal aggregation; reprojection or resampling that preserves the source observations",
+        "material_mismatches": "SPL3SMP_E 9 km enhanced/downscaled retrievals, SPL4SMGP model-assimilated Level-4 root-zone estimates, SMAP-Sentinel active-passive products, NASA-USDA Palmer-model SMAP10KM data, or a different microwave soil-moisture mission without operational SPL3SMP input"
+      },
+      "asset_alias_policy": "Admit SMAP Level-3 passive radiometer surface-soil-moisture data explicitly identified as L3_SM_P or SPL3SMP on the 36 km EASE-Grid 2.0, including documented version iterations. Resampling or temporal aggregation does not change the source identity. Exclude SPL3SMP_E 9 km enhanced, SPL4SMGP Level-4, SMAP-Sentinel, and NASA_USDA/HSL/SMAP10KM unless the paper also operationally uses the 36 km SPL3SMP observations.",
+      "alias_policy_scope": "A paper need not reproduce the seed's drought-change windows or CONUS study area, but Methods/Data must establish operational use of the 36 km Level-3 passive product. Bare references to SMAP or a 36 km footprint are insufficient when the product level and passive-radiometer lineage are not resolved.",
+      "catalog_record": {
+        "source": "NASA Earthdata CMR",
+        "concept_id": "C2938664585-NSIDC_CPRD",
+        "short_name": "SPL3SMP",
+        "current_version": "009",
+        "entry_title": "SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture V009",
+        "product_doi": "10.5067/4XXOGX0OOW1S",
+        "archive_center": "NASA NSIDC DAAC",
+        "originator": "NASA/JPL/SMAP",
+        "earthdata_url": "https://search.earthdata.nasa.gov/search/granules?p=C2938664585-NSIDC_CPRD",
+        "verified_on": "2026-09-24"
+      },
+      "restored_from": {
+        "former_anchor": "NASA_USDA/HSL/SMAP10KM_soil_moisture",
+        "withdrawal_reason": "The exact 36 km product was absent from Google Earth Engine.",
+        "why_withdrawal_was_invalid": "The benchmark supports authoritative external datasets, and NASA Earthdata CMR/NSIDC publicly distributes the exact SPL3SMP 36 km product used by the seed. GEE absence is not dataset absence.",
+        "review_date": "2026-09-24"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "如何利用卷积神经网络及 MODIS 辅助变量，将 SMAP 36 km 和 9 km 表层土壤水分产品降尺度至 3 km 和 1 km，并评估降尺度结果的精度？",
+      "hypothesis_or_mechanism": "卷积神经网络能够学习相邻像元之间的空间信息，并结合地表反射率和地表温度解释粗分辨率土壤水分的亚像元差异，从而优于逐像元机器学习方法。",
+      "variables_and_data_use": "以 36-km L3_SM_P 和 9-km L3_SM_P_E 表层土壤水分为目标数据，使用 MODIS Terra surface reflectance (B1–B7) 和 MODIS Terra LST 作为辅助预测变量，通过 CNN_N 生成 3 km 和 1 km 土壤水分，并使用 in situ data from 109 stations of OKM 进行验证。",
+      "method_paradigm": "深度学习降尺度",
+      "used_assets": [
+        "36-km L3_SM_P",
+        "9-km L3_SM_P_E",
+        "MODIS Terra surface reflectance (B1–B7)",
+        "MODIS Terra LST",
+        "in situ data from 109 stations of OKM"
+      ],
+      "author_team": [
+        "Wei Hua Xu",
+        "Zhaoxu Zhang",
+        "Zehao Long",
+        "Qiming Qin"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited full text Methods section; GPT quote verified; Qwen retry identity admitted and quote manually matched after PDF token-spacing normalization",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Downscaling SMAP Soil Moisture Products With Convolutional Neural Network",
+        "doi": "10.1109/jstars.2021.3069774",
+        "year": 2021,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "如何利用 SMAP 土壤水分时序和降水信息提取河南省旱地灌溉信号并评估灌溉发生时间？",
+      "hypothesis_or_mechanism": "在缺少有效降水的情况下，灌溉会造成地表土壤水分快速增加并随后缓慢衰减，因此土壤水分增加阶段可用于识别灌溉事件。",
+      "variables_and_data_use": "使用 SMAP L3 被动土壤水分产品的逐日体积土壤水分，转换为相对土壤水分并提取增加阶段；使用逐日降水判断土壤水分增加是否可归因于灌溉；使用站点土壤水分、降水和灌溉记录进行验证，并结合土地覆盖、高程和气象数据计算潜在蒸散发及表征环境条件。",
+      "method_paradigm": "遥感时序分析与模糊推理",
+      "used_assets": [
+        "SMAP L3 Passive Soil Moisture Product",
+        "The SMAP L3 Radiometer Global Daily 36km EASE-Grid Soil Moisture",
+        "In situ soil moisture data",
+        "Daily Precipitation Dataset",
+        "hourly merged precipitation product",
+        "2015 land use/land cover dataset of China",
+        "elevation data",
+        "meteorological dataset derived from 184 weather stations"
+      ],
+      "author_team": [
+        "Liming Zhu",
+        "A‐Xing Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; quote manually matched after PDF token-spacing normalization",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Extraction of Irrigation Signals by Using SMAP Soil Moisture Data",
+        "doi": "10.3390/rs13112142",
+        "year": 2021,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "研究评估SMAP三级被动辐射计土壤湿度产品在青藏高原那曲区域的地面验证表现及其与不同空间尺度地面观测的一致性。",
+      "hypothesis_or_mechanism": "将地面土壤湿度观测聚合到SMAP产品空间尺度并进行过境时刻匹配，可以减小点尺度与卫星足迹之间的空间代表性差异，从而提高验证的一致性。",
+      "variables_and_data_use": "使用SPL3SMP 36 km被动辐射计表层土壤湿度和SPL3SMP_E 9 km增强表层土壤湿度，与那曲网络0至5 cm地面土壤湿度观测进行空间聚合、过境匹配和质量控制；同时使用Tropical Rainfall Measuring Mission降雨数据作为辅助资料评估验证结果。",
+      "method_paradigm": "卫星产品地面验证",
+      "used_assets": [
+        "SPL3SMP",
+        "SPL3SMP_E_9km",
+        "Tropical Rainfall Measuring Mission",
+        "Naqu network",
+        "SMTMN"
+      ],
+      "author_team": [
+        "Khidir Abdalla Kwal Deng",
+        "George P. Petropoulos",
+        "Yansong Bao",
+        "Andrew Pavlides",
+        "Abdoul Aziz Saidou Chaibou",
+        "Birhanu Asmerom Habtemicheal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; quote manually matched after PDF token-spacing normalization",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "An Examination of the SMAP Operational Soil Moisture Products Accuracy at the Tibetan Plateau",
+        "doi": "10.3390/rs14246255",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "如何利用SMAP被动微波亮温及相关辅助变量改进区域尺度地表土壤水分和植被光学深度的联合反演？",
+      "hypothesis_or_mechanism": "在短时间窗口内联合估计并动态更新土壤表面粗糙度和植被单次散射反照率，可以更好地表示地表状态变化，从而提高基于SMAP亮温的土壤水分和植被光学深度反演稳定性与精度。",
+      "variables_and_data_use": "使用SPL3SMP中的地表土壤水分、水平和垂直极化亮温、入射角、地表温度和质量控制信息；将双极化亮温、入射角、地表温度和土壤质地作为前向模型输入，反演地表土壤水分和植被光学深度，并以5 cm地面土壤水分观测进行验证，同时使用MCCAsoilmoistureproduct进行比较。",
+      "method_paradigm": "物理模型反演与地面验证",
+      "used_assets": [
+        "SPL3SMP",
+        "MCCAsoilmoistureproduct",
+        "ShandianRiverBasinSoilTemperatureandMoistureWirelessSensorNetworkDataset(20192025)"
+      ],
+      "author_team": [
+        "Xiangdong Qin",
+        "Zhiguo Pang",
+        "Jingxuan Lu",
+        "June Fu",
+        "Minghan Sun",
+        "Zhuoyue Zhou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; quote manually matched after PDF token-spacing normalization",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Soil Moisture Retrieval Based on Multi-Temporal Dual-Polarization Brightness Temperature Parameterization",
+        "doi": "10.3390/rs18173048",
+        "year": 2026,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "能否利用跨传感器校准后的AMSR-E/AMSR2亮温和神经网络重建2002年至2019年的全球36 km逐日土壤水分序列？",
+      "hypothesis_or_mechanism": "AMSR-E/AMSR2亮温衍生的反射率和微波植被指数与SMAP表层土壤水分之间存在可由逐网格神经网络学习的稳定关系，从而能够重建长期土壤水分变化。",
+      "variables_and_data_use": "论文使用SMAPL3sm作为2015年至2017年的土壤水分训练目标和参考数据，使用AMSR-E L1S TB与AMSR2 Level 3下降轨道亮温构建反射率和微波植被指数，并使用由亮温估计的地表温度筛除冻结状态；经过跨传感器校准后，神经网络输出2002年至2019年的逐日体积土壤水分。",
+      "method_paradigm": "跨传感器校准与神经网络重建",
+      "used_assets": [
+        "SMAPL3sm",
+        "AMSR-E L1S TB",
+        "AMSR2 Level 3 daily descending TB data",
+        "estimated surface temperatures (Ts)"
+      ],
+      "author_team": [
+        "Panpan Yao",
+        "Hui Min Lu",
+        "Jiancheng Shi",
+        "Tianjie Zhao",
+        "Kun Yang",
+        "Michael H. Cosh",
+        "Daniel J. Short Gianotti",
+        "Dara Entekhabi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A long term global daily soil moisture dataset derived from AMSR-E and AMSR2 (2002–2019)",
+        "doi": "10.1038/s41597-021-00925-8",
+        "year": 2021,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究如何利用SMAP土壤水分与多源地表变量将Awash River Basin的36 km土壤水分降尺度到更高空间分辨率。",
+      "hypothesis_or_mechanism": "SMAP土壤水分与植被、地表温度、SAR反演的地表粗糙度、土壤属性和降水之间存在非线性关系，这些关系可以用于估计细分辨率土壤水分。",
+      "variables_and_data_use": "以SMAP L3 36 km逐日土壤水分为目标和粗分辨率输入，以Sentinel-1A SAR的VV/VH数据估计地表粗糙度，以MYD11A1、MOD13A2和MCD15A3H提供地表温度、植被指数和叶面积指数，以Soil Grids提供土壤属性，以CHIRPS提供降水，并用现场土壤水分测量验证降尺度结果。",
+      "method_paradigm": "机器学习降尺度与实地验证",
+      "used_assets": [
+        "Sentinel-1A SAR",
+        "level three (L3) daily soil moisture product with 36km spatial resolution",
+        "MYD11A1",
+        "MOD13A2",
+        "MCD15A3H",
+        "Soil Grids",
+        "CHIRPS",
+        "in-situ measurements"
+      ],
+      "author_team": [
+        "Shimelis Sishah",
+        "Temesgen Abrahem",
+        "Getasew Azene",
+        "Amare Dessalew",
+        "Hurgesa Hundera"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Downscaling and validating SMAP soil moisture using a machine learning algorithm over the Awash River basin, Ethiopia",
+        "doi": "10.1371/journal.pone.0279895",
+        "year": 2023,
+        "venue": "PLoS ONE",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "研究能否利用SMAP土壤水分反演校准CYGNSS表面反射率，从而在没有同步SMAP观测时生成CYGNSS土壤水分反演。",
+      "hypothesis_or_mechanism": "CYGNSS有效表面反射率与SMAP表层土壤水分在空间子网格内具有稳定的线性关系，该关系可用于将后续CYGNSS观测转换为土壤水分。",
+      "variables_and_data_use": "使用SMAP土壤水分反演作为同日校准基准，使用CYGNSS延迟多普勒图峰值计算并校正有效表面反射率，再在约3 km子网格内拟合线性关系，最后聚合到36 km EASE-2网格；使用Global Surface Water Explorer水体季节性数据剔除开放水体影响。",
+      "method_paradigm": "经验校准与遥感反演",
+      "used_assets": [
+        "SMAP",
+        "SMAP soil moisture retrievals",
+        "CYGNSS",
+        "Global Surface Water Explorer (GSWE)"
+      ],
+      "author_team": [
+        "Clara C. Chew",
+        "Eric E. Small"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Description of the UCAR/CU Soil Moisture Product",
+        "doi": "10.3390/rs12101558",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "研究如何利用SMAP土壤湿度下采样结果耦合Sentinel-1雷达反演模型，以提高农业区高空间分辨率土壤湿度估计能力。",
+      "hypothesis_or_mechanism": "将36 km SMAP被动微波土壤湿度通过DISPATCH结合MODIS和Landsat光学热红外信息逐步下采样，可为Sentinel-1后向散射模型提供参考，从而实现田块尺度土壤湿度反演。",
+      "variables_and_data_use": "使用36 km SMAP三级土壤湿度作为DISPATCH输入和参考数据，使用MODIS LST/EVI及Landsat LST/NDVI进行两阶段空间下采样，使用Sentinel-1 GRD/SLC构建后向散射、极化比和相干性变量，并用Sentinel-2 NDVI、现场theta probe和TDR土壤湿度进行建模或验证。",
+      "method_paradigm": "多源遥感融合与空间下采样",
+      "used_assets": [
+        "36 km resolution SMAP level-3 version 005 product",
+        "SPL3SMP",
+        "MOD11A1",
+        "MOD13A2",
+        "MYD11A1",
+        "Landsat-7",
+        "Landsat-8",
+        "Sentinel-1 level-1 GRD",
+        "Sentinel-1 SLC",
+        "Sentinel-2 level-2 product",
+        "SRTM digital elevation model",
+        "theta probe measurements",
+        "TDR sensors"
+      ],
+      "author_team": [
+        "Nitu Ojha",
+        "Olivier Merlin",
+        "Abdelhakim Amazirh",
+        "Nadia Ouaadi",
+        "Vincent Rivalland",
+        "Lionel Jarlan",
+        "Salah Er‐Raki",
+        "Maria‐José Escorihuela"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A Calibration/Disaggregation Coupling Scheme for Retrieving Soil Moisture at High Spatio-Temporal Resolution: Synergy between SMAP Passive Microwave, MODIS/Landsat Optical/Thermal and Sentinel-1 Radar Data",
+        "doi": "10.3390/s21217406",
+        "year": 2021,
+        "venue": "Sensors",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "如何融合长期被动微波土壤水分、光学反射率和热红外地表温度数据，构建中国区域高覆盖率的1公里日尺度全天候地表土壤水分数据集？",
+      "hypothesis_or_mechanism": "粗分辨率被动微波土壤水分提供稳定的土壤水分约束，而光学和热红外观测提供细尺度空间变化信息，二者结合并通过云 gap filling 和改进下推模型能够提高空间分辨率与覆盖率。",
+      "variables_and_data_use": "使用AMSR-E/AMSR-2-based SSM或NN-SM product作为36公里被动微波土壤水分基础输入，使用MYD21A1N.v061地表温度、MCD43A4.v061反射率及其派生的SEE、NDVI和NMDI作为细尺度预测变量，使用SRTM高程辅助建模，并使用SMAP level 3 radiometer-based daily 36 km SSM product（SPL3SMP Version 8）和地面土壤水分进行验证。",
+      "method_paradigm": "多源遥感融合与空间下推",
+      "used_assets": [
+        "AMSR-E/AMSR-2-based SSM",
+        "NN-SM product",
+        "MYD21A1N.v061",
+        "MCD43A4.v061",
+        "SRTM",
+        "SMAP level 3 radiometer-based daily 36 km SSM product",
+        "SPL3SMP, Version 8",
+        "SPL2SMAP_S_V3"
+      ],
+      "author_team": [
+        "Peilin Song",
+        "Yongqiang Zhang",
+        "Jianping Guo",
+        "Jiancheng Shi",
+        "Tianjie Zhao",
+        "Bing Tong"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A 1 km daily surface soil moisture dataset of enhanced coverage under all-weather conditions over China in 2003–2019",
+        "doi": "10.5194/essd-14-2613-2022",
+        "year": 2022,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何利用36 km SMAP表层土壤水分及相关地表变量生成北方荒漠化地区的1 km逐日土壤水分产品？",
+      "hypothesis_or_mechanism": "植被、地表温度、反照率、地形和土壤质地等高分辨率变量能够通过非线性机器学习关系将粗分辨率SMAP土壤水分有效下尺度到1 km。",
+      "variables_and_data_use": "以L3_SM_P Version 6的36 km逐日被动辐射计土壤水分为目标变量，使用MODIS地表温度、NDVI、EVI、LAI、反射率派生指数和反照率，以及SRTM地形和CSCD土壤质地作为预测变量；使用Maqu和Babao原位观测验证结果，并用气象和其他网格化土壤水分产品进行比较分析。",
+      "method_paradigm": "机器学习空间下尺度",
+      "used_assets": [
+        "L3_SM_P, Version 6",
+        "MOD09A1",
+        "MOD11A1",
+        "MOD13A2",
+        "MOD15A2H",
+        "MCD43D58",
+        "SRTM digital elevation model, version 3",
+        "China Soil Characteristics Dataset (CSCD)",
+        "Maqu monitoring network",
+        "Babao monitoring network",
+        "China Meteorological Data Service Centre",
+        "L2_SM_SP",
+        "GCOM-W1 AMSR2",
+        "C3S",
+        "ERA5",
+        "FLDAS"
+      ],
+      "author_team": [
+        "Pinzeng Rao",
+        "Yicheng Wang",
+        "Fang Wang",
+        "Yang Liu",
+        "Xiaoya Wang",
+        "Zhu Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Daily soil moisture mapping at 1 km resolution based on SMAP data for desertification areas in northern China",
+        "doi": "10.5194/essd-14-3053-2022",
+        "year": 2022,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "如何通过改进DISPATCH算法（veg-ext）并融合多源热红外与雷达数据，提升高空间分辨率（1km）土壤湿度产品的时空覆盖率与精度？",
+      "hypothesis_or_mechanism": "引入植被扩展机制（veg-ext）并结合早过境Sentinel-3热红外数据，可有效填补密集植被区与云层遮挡导致的数据空洞，从而在不降低精度的前提下显著提升有效像元比例。",
+      "variables_and_data_use": "使用SMAP被动辐射计土壤湿度作为降尺度基准输入；利用MODIS/Sentinel-3地表温度与NDVI/EVI构建温度-植被干旱指数（TVDI）特征空间；结合Sentinel-1雷达土壤湿度及SMAP/S1协同产品进行交叉验证；使用地面实测土壤湿度计算相关系数、偏差与均方根误差。",
+      "method_paradigm": "多源遥感数据融合与算法降尺度验证",
+      "used_assets": [
+        "SMAP SM data",
+        "MODIS LST/NDVI",
+        "Sentinel-3 LST",
+        "Copernicus Sentinel-1",
+        "SMAP/S1",
+        "insitu SM"
+      ],
+      "author_team": [
+        "Nitu Ojha",
+        "Olivier Merlin",
+        "Christophe Suere",
+        "Maria‐José Escorihuela"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Data section; product identity manually resolved from space-collapsed PDF text",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Extending the Spatio-Temporal Applicability of DISPATCH Soil Moisture Downscaling Algorithm: A Study Case Using SMAP, MODIS and Sentinel-3 Data",
+        "doi": "10.3389/fenvs.2021.555216",
+        "year": 2021,
+        "venue": "Frontiers in Environmental Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "研究如何利用DISPATCH顺序下尺度方法将SMAP土壤水分从36 km逐步细化至100 m，并确定适合常规应用的中间空间分辨率。",
+      "hypothesis_or_mechanism": "利用MODIS和Landsat地表温度、植被覆盖度与土壤蒸发散热状态之间的空间关系，可以在保留SMAP低分辨率土壤水分约束的同时重建更高空间分辨率的土壤水分变异。",
+      "variables_and_data_use": "以SPL3SMPA/D的36 km SMAP表层土壤水分作为低分辨率输入，使用MOD11A1、MYD11A1和MOD13构建1 km尺度下尺度变量，再结合Landsat-7和Landsat-8的反射率与热红外数据推导100 m尺度的NDVI、植被覆盖度和地表温度；MOD05提供大气水汽，SRTM用于地形校正，并以田间土壤水分测量进行验证。",
+      "method_paradigm": "遥感土壤水分空间下尺度",
+      "used_assets": [
+        "SPL3SMPA/D",
+        "MOD11A1",
+        "MYD11A1",
+        "MOD13",
+        "Landsat-7",
+        "Landsat-8",
+        "MOD05",
+        "SRTM"
+      ],
+      "author_team": [
+        "Nitu Ojha",
+        "Olivier Merlin",
+        "Beatriz Molero",
+        "Christophe Suere",
+        "Luis Olivera-Guerra",
+        "Bouchra Aït Hssaine",
+        "Abdelhakim Amazirh",
+        "Ahmad Al Bitar",
+        "Maria‐José Escorihuela",
+        "Salah Er‐Raki"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Data section; dual-model identity admitted; quote manually matched after PDF token-spacing normalization",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Stepwise Disaggregation of SMAP Soil Moisture at 100 m Resolution Using Landsat-7/8 Data and a Varying Intermediate Resolution",
+        "doi": "10.3390/rs11161863",
+        "year": 2019,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何结合多源卫星土壤湿度反演的降雨量与IMERG降水产品，通过最优线性组合生成高精度的全球融合降雨数据集？",
+      "hypothesis_or_mechanism": "不同卫星土壤湿度产品（SMAP、SMOS、ASCAT等）通过SM2RAIN算法反演的降雨量具有互补误差结构，结合IMERG的探测优势进行加权融合可显著降低整体降水估计误差并减少虚警。",
+      "variables_and_data_use": "使用SMAP L3、SMOS L3、ASCAT及AMSR2的土壤湿度产品驱动SM2RAIN算法反演降雨；使用IMERG-ER作为降水主分量；使用地面雨量计/雷达网络数据（如NCEP Stage IV、E-OBS等）作为校准与验证参考。",
+      "method_paradigm": "水量平衡反演与最优线性组合融合",
+      "used_assets": [
+        "SMAP L3 Level 3 SM retrievals (v5)",
+        "SMOS L3 RE04",
+        "ASCAT H115",
+        "AMSR2 X-band SM",
+        "IMERG-ER",
+        "NCEP Stage IV",
+        "E-OBS",
+        "AWAP",
+        "IMD"
+      ],
+      "author_team": [
+        "Christian Massari",
+        "Luca Brocca",
+        "Thierry Pellarin",
+        "Gab Abramowitz",
+        "Paolo Filippucci",
+        "Luca Ciabatta",
+        "Viviana Maggioni",
+        "Yann H. Kerr",
+        "D.F. Prieto"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Data section; exact product identity and publication year manually verified",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A daily 25 km short-latency rainfall product for data-scarce regions based on the integration of the Global Precipitation Measurement mission rainfall and multiple-satellite soil moisture products",
+        "doi": "10.5194/hess-24-2687-2020",
+        "year": 2020,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "研究问题是如何利用随机森林融合多源高分辨率地表变量和SMAP土壤水分产品，将36公里和9公里土壤水分下采样至1公里，并评估Sentinel-1预测变量的贡献。",
+      "hypothesis_or_mechanism": "假设地表温度、植被指数、反照率、地形、降水以及Sentinel-1后向散射和纹理信息能够刻画土壤水分的空间变化，从而改善SMAP土壤水分的高分辨率重建。",
+      "variables_and_data_use": "以L3SMP和L3SMP_E土壤水分作为粗分辨率响应变量，使用MODIS陆地表面温度、NDVI和反照率，Sentinel-1 VV/VH后向散射及纹理特征，SRTM地形变量，PRISM降水和前期降水指数作为预测变量，并使用ISMN原位土壤水分进行验证。",
+      "method_paradigm": "机器学习空间下采样",
+      "used_assets": [
+        "L3SMP",
+        "L3SMP_E",
+        "L2_SM_SP",
+        "Sentinel-1",
+        "MOD11A1",
+        "MYD11A1",
+        "MOD13A2",
+        "MCD43A3",
+        "SRTM",
+        "PRISM",
+        "ISMN",
+        "MOD44W"
+      ],
+      "author_team": [
+        "Shimelis Asfaw Wakigari",
+        "Robert Leconte"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing Spatial Resolution of SMAP Soil Moisture Products through Spatial Downscaling over a Large Watershed: A Case Study for the Susquehanna River Basin in the Northeastern United States",
+        "doi": "10.3390/rs14030776",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "研究不同地表空间异质性如何影响SMAP土壤水分产品的表现，以及多源高分辨率变量能否提升土壤水分尺度转换结果。",
+      "hypothesis_or_mechanism": "地形和地表反射率所表征的空间异质性会影响SMAP土壤水分的空间代表性，而融合这些变量能够提高从点尺度或高分辨率信息推断土壤水分的能力。",
+      "variables_and_data_use": "以QLB-NET 5 cm原位体积土壤水分作为目标和验证数据，使用SPL3SMAP 36 km及SPL3SMP_E 9 km SMAP土壤水分产品进行建模、验证和比较；使用HLSv2.0反射率派生NDVI和SWCI，使用NASADEM派生高程、坡度和坡向，并加入年内日序数及其正弦编码作为预测变量。",
+      "method_paradigm": "机器学习尺度转换与产品验证",
+      "used_assets": [
+        "QLB-NET",
+        "SPL3SMP_E",
+        "SPL3SMAP",
+        "HLSv2.0",
+        "NASADEM"
+      ],
+      "author_team": [
+        "Jiakai Qin",
+        "Zhongli Zhu",
+        "Qingxia Wu",
+        "Jian Ma",
+        "Xiang Li",
+        "Linna Chai",
+        "Ziwei Xu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; quote manually matched after PDF token-spacing normalization",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Upscaling of Soil Moisture over Highly Heterogeneous Surfaces and Validation of SMAP Product",
+        "doi": "10.3390/land14102098",
+        "year": 2025,
+        "venue": "Land",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究如何利用多源遥感变量估算印度后季作物期的地表土壤水分。",
+      "hypothesis_or_mechanism": "地表温度、光谱植被指数、反照率、高程和农业区域信息与 SMAP 地表土壤水分存在可建模的关联，可用于提高局地土壤水分估算能力。",
+      "variables_and_data_use": "以 SMAP Level-3 36 km 土壤水分作为目标变量，并使用 MOD09GA、MYD09GA 计算的 NDVI 和 NDWI、MOD11A1 和 MYD11A1 的地表温度、MCD43A3 的反照率、SRTM90 V4 的高程以及 GFSAD 农业掩膜作为输入变量；SMAP 数据进一步进行 3 天合成，并使用 KDS-042 现场传感器数据进行验证。",
+      "method_paradigm": "多源遥感回归估算与现场验证",
+      "used_assets": [
+        "SMAP 36 km Soil Moisture",
+        "Level-3 (L3) SM",
+        "MOD09GA",
+        "MYD09GA",
+        "MOD11A1",
+        "MYD11A1",
+        "MCD43A3",
+        "SRTM90 V4",
+        "GFSAD",
+        "KDS-042"
+      ],
+      "author_team": [
+        "Jayantrao D. Mohite",
+        "Suryakant A. Sawant",
+        "A. Pandit",
+        "S. Pappula"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section; dual-model identity admitted; quote manually matched after PDF punctuation normalization",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "SPATIAL DOWNSCALING OF SMAP SOIL MOISTURE USING THE MODIS AND SRTM OBSERVATIONS",
+        "doi": "10.5194/isprs-archives-xliii-b3-2022-933-2022",
+        "year": 2022,
+        "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "不同SMAP、SMOS和AMSR2卫星土壤水分产品在复杂地表条件下相对于地面观测的表现有何差异？",
+      "hypothesis_or_mechanism": "植被光学厚度、发射层温度、地表异质性和无线电频率干扰等因素会造成不同卫星土壤水分产品之间的精度和偏差差异。",
+      "variables_and_data_use": "研究使用SMAP-SCAH、SMAP-SCAV和SMAP-DCA的表层土壤水分检索值，并与SMOS-IC、SMOS-L3、AMSR2 LPRM-C1/C2/X、AMSR2 JAXA-X及HiWATER地面土壤水分观测进行比较；同时使用土壤温度和MODIS NDVI分析发射层温度与植被光学厚度对反演结果的影响。",
+      "method_paradigm": "卫星产品交叉验证",
+      "used_assets": [
+        "SMAP passive level-3 product (L3_SM_P, version 007)",
+        "SMAP-SCAH",
+        "SMAP-SCAV",
+        "SMAP-DCA",
+        "SMOS-IC",
+        "SMOS-L3",
+        "AMSR2 LPRM-C1/C2/X",
+        "AMSR2 JAXA-X",
+        "ground observations from the HiWATER field campaign",
+        "MODIS NDVI"
+      ],
+      "author_team": [
+        "Zengyan Wang",
+        "Tao Che",
+        "Tianjie Zhao",
+        "Liyun Dai",
+        "Xiaojun Li",
+        "Jean‐Pierre Wigneron"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Data/Methods sections; dual-model identity admitted; GPT quote verified and Qwen quote manually resolved",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of SMAP, SMOS, and AMSR2 Soil Moisture Products Based on Distributed Ground Observation Network in Cold and Arid Regions of China",
+        "doi": "10.1109/jstars.2021.3108432",
+        "year": 2021,
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "研究如何利用 SMAP 36 km 被动辐射计土壤水分及相关热辐射变量计算土壤水分指标，并评估其与其他卫星土壤水分产品的一致性。",
+      "hypothesis_or_mechanism": "SMAP 双极化亮温结合有效土壤温度计算的地表发射率能够支持土壤水分指标的构建，并反映不同卫星土壤水分产品之间的变化一致性。",
+      "variables_and_data_use": "使用 SPL3SMP V5 的土壤水分、水平和垂直极化亮温以及有效土壤温度；选取 SMAP 下降轨道上午观测，用亮温和有效土壤温度计算地表发射率并获得 SMI，同时使用 SMAP 官方被动土壤水分产品和 ESA CCI soil moisture (V04.2) 进行互相比较。",
+      "method_paradigm": "指标构建与产品互校",
+      "used_assets": [
+        "SPL3SMP",
+        "SMAP L3 radiometer global daily 36 km EASE-Grid soil moisture product (SPL3SMP, V5)",
+        "SMAP official passive soil moisture products (36 km)",
+        "ESA CCI soil moisture (V04.2)"
+      ],
+      "author_team": [
+        "Jiangyuan Zeng",
+        "K.-S. Chen",
+        "Chao Cui",
+        "Haibo Bi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "DEVELOPMENT AND VALIDATION OF A NEW PASSIVE MICROWAVE BASED SOIL MOISTURE INDEX",
+        "doi": "10.5194/isprs-annals-v-3-2020-125-2020",
+        "year": 2020,
+        "venue": "ISPRS annals of the photogrammetry, remote sensing and spatial information sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究不同机器学习方法能否利用CYGNSS观测和地理环境变量，将36公里尺度的SMAP土壤水分下采样至3公里尺度。",
+      "hypothesis_or_mechanism": "CYGNSS反射信号特征与地形、土地覆盖、植被和降水等变量共同包含土壤水分空间变化信息，因此可以学习36公里SMAP土壤水分与高分辨率输入之间的统计关系。",
+      "variables_and_data_use": "以SPL3SMP提供的36公里SMAP地表土壤水分作为参考值和响应变量，以CYGNSS Level-1数据中的反射率、LES、TES和DDM_SNR作为主要预测变量，并加入SRTM高程、MCD12Q1土地覆盖、MOD09GQ NDVI、CHIRPS降水、经纬度和年积日等变量，训练模型生成3公里土壤水分结果，再用ISMN原位观测进行验证。",
+      "method_paradigm": "机器学习土壤水分下采样",
+      "used_assets": [
+        "CYGNSS Level-1 (L1) version 2.1 product",
+        "SMAP Level-3 (L3) Radiometer Global Daily 36km EASE-Grid Soil Moisture (Version 8, SPL3SMP)",
+        "International Soil Moisture Network (ISMN)",
+        "Shuttle Radar Topography Mission (SRTM)",
+        "MOD09GQ",
+        "MCD12Q1",
+        "CHIRPS"
+      ],
+      "author_team": [
+        "Qidi Luo",
+        "Yueji Liang",
+        "Yue Guo",
+        "Xingyong Liang",
+        "Chao Ren",
+        "Weiting Yue",
+        "Binglin Zhu",
+        "Xueyu Jiang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods section; dual-model identity admitted; GPT quote verified and Qwen quote manually matched after PDF spacing normalization",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhancing Spatial Resolution of GNSS-R Soil Moisture Retrieval through XGBoost Algorithm-Based Downscaling Approach: A Case Study in the Southern United States",
+        "doi": "10.3390/rs15184576",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "如何利用机器学习算法将粗分辨率的SMAP被动辐射计土壤水分降尺度至1 km高分辨率，并有效填补因云和冻融事件导致的数据缺失？",
+      "hypothesis_or_mechanism": "结合高分辨率光学/热红外地表变量与地形因子，通过随机森林和人工神经网络捕捉其与土壤水分的非线性映射关系，可实现空间细节增强与覆盖度提升。",
+      "variables_and_data_use": "以36 km SPL3SMP产品作为输出目标变量；使用MODIS地表温度、植被指数、反照率及表面反射率波段、SRTM地形数据以及CLDAS降水数据作为输入预测因子；利用SMN-SDR原位站点数据进行多尺度精度验证。",
+      "method_paradigm": "机器学习经验统计降尺度",
+      "used_assets": [
+        "SPL3SMP",
+        "CLDAS",
+        "MODIS MYD11A1/MOD11A1",
+        "MODIS MYD13A2/MOD13A2",
+        "MODIS MYD09GA/MOD09GA",
+        "SRTM DEM",
+        "SMN-SDR",
+        "HOBO Rain Gauges"
+      ],
+      "author_team": [
+        "Adeel Ahmad Nadeem",
+        "Yuanyuan Zha",
+        "Liangsheng Shi",
+        "Shoaib Ali",
+        "Xi Wang",
+        "Zeeshan Zafar",
+        "Zeeshan Afzal",
+        "Muhammad Atiq Ur Rehman Tariq"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data sections; both models matched all observation-identity dimensions; Qwen quote verified",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Spatial Downscaling and Gap-Filling of SMAP Soil Moisture to High Resolution Using MODIS Surface Variables and Machine Learning Approaches over ShanDian River Basin, China",
+        "doi": "10.3390/rs15030812",
+        "year": 2023,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "提高土壤湿度观测的空间分辨率或时间采样频率是否能够改善土壤湿度和地表热通量估计？",
+      "hypothesis_or_mechanism": "更高的空间分辨率能够更好地刻画土壤湿度空间异质性，而更高的时间采样频率能够通过更频繁的数据同化减少土壤湿度估计偏差并改善根区状态估计。",
+      "variables_and_data_use": "研究使用SMAP L3_SM_P的36 km表层土壤湿度观测、L3_SM_P_E的9 km增强土壤湿度观测，以及SMOS-IC补充观测；将其分别或融合后同化到耦合热量和水分传输模型中，并结合GOES地表温度、3IMERGHH降水、NLDAS-2气象强迫、MCD15A2叶面积指数和ESA CCI土地覆盖数据，评估表层与根区土壤湿度以及感热和潜热通量。",
+      "method_paradigm": "数据同化影响评估",
+      "used_assets": [
+        "L3_SM_P",
+        "L3_SM_P_E",
+        "SMOS-IC",
+        "GOES",
+        "3IMERGHH",
+        "NLDAS-2",
+        "MCD15A2",
+        "ESA CCI",
+        "CRN",
+        "SCAN",
+        "EBBR"
+      ],
+      "author_team": [
+        "Yang Lu",
+        "Jianzhi Dong",
+        "Susan C. Steele‐Dunne"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited repository PDF Methods/Data section; dual-model identity admitted; quote manually verified against the two-column PDF extraction",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impact of Soil Moisture Data Resolution on Soil Moisture and Surface Heat Flux Estimates through Data Assimilation: A Case Study in the Southern Great Plains",
+        "doi": "10.1175/jhm-d-18-0234.1",
+        "year": 2019,
+        "venue": "Journal of Hydrometeorology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "研究比较不同 SMAP 土壤水分产品在孟加拉国九个气象站附近的精度，并评估其与地面观测的一致性。",
+      "hypothesis_or_mechanism": "不同处理级别、空间分辨率和产品类型的 SMAP 土壤水分估计会因空间代表性和处理方法不同而产生不同误差，其中地面点观测与卫星网格尺度不匹配可能是主要误差来源。",
+      "variables_and_data_use": "论文使用 L4_SM、L3_SM_P_E、L3_SM_P、L2_SM_P_E 和 L2_SM_P 的土壤水分变量，并与 Bangladesh Meteorological Department 在九个站点、5 cm 深度采集的地面土壤水分进行比较，计算 RMSE、Bias、ubRMSE 和相关系数。",
+      "method_paradigm": "多产品验证与误差分析",
+      "used_assets": [
+        "L4_SM",
+        "L3_SM_P_E",
+        "L3_SM_P",
+        "L2_SM_P_E",
+        "L2_SM_P",
+        "Bangladesh Meteorological Department (BMD) in-situ soil moisture data"
+      ],
+      "author_team": [
+        "Md. Sabbir Ahmed Ruman",
+        "NHM. A. Azim",
+        "Sofi Mahmud Parvez",
+        "Tutul Miah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen initially admitted but quote guard downgraded to uncertain",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Soil Moisture Retrieval from Soil Moisture Active Passive (SMAP) Satellite: A Validation and Error Analysis Using Ground-Based Observation Over Bangladesh",
+        "doi": "10.14738/aivp.1302.18669",
+        "year": 2025,
+        "venue": "European journal of applied sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 22,
+    "source_paper_count": 22,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

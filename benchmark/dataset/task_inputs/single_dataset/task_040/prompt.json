@@ -1,0 +1,33 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas with valid annual nighttime observations",
+  "data_description": {
+    "dataset_name": "DMSP-OLS Nighttime Lights Version 4",
+    "spatial_coverage": {
+      "region_name": "Global land areas with valid annual nighttime observations",
+      "coverage": "Near-global annual nighttime visible-light observations between 65°S and 75°N, with oceans and locations lacking valid coverage masked or separable by coverage bands."
+    },
+    "temporal_coverage": "1992-2013 (annual composites from multiple DMSP satellites)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 arc-seconds (approximately 1 km at the equator)",
+    "temporal_unit": "Annual",
+    "analytical_capabilities": [
+      "Mapping the annual spatial distribution and intensity of persistent nighttime visible lights",
+      "Quantifying interannual changes in illuminated extent and digital-number intensity",
+      "Comparing brightness distributions, gradients, clusters, and spatial concentration across regions",
+      "Separating persistent lights from ephemeral detections using stable-light and cloud-free coverage bands",
+      "Auditing saturation, inter-satellite overlap, and coverage-related uncertainty in long time series"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Stable-light digital number from 0 to 63, with separate average-visible and cloud-free coverage bands",
+      "runtime_hint": "Use stable_lights for persistent annual light intensity and cf_cvg to enforce a minimum observation count. Treat the value 63 as potentially saturated, avoid interpreting raw values as calibrated radiance, and harmonize overlapping satellites before temporal comparison."
+    },
+    "data_source": "NOAA National Centers for Environmental Information, Earth Observation Group",
+    "gee_asset": {
+      "id": "NOAA/DMSP-OLS/NIGHTTIME_LIGHTS",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:NOAA/DMSP-OLS/NIGHTTIME_LIGHTS"
+}

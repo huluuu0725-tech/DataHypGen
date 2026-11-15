@@ -1,0 +1,905 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_039",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "Tsinghua FROM-GLC Year of Change to Impervious Surface",
+    "spatial_coverage": {
+      "region_name": "Global terrestrial areas",
+      "coverage": "Global terrestrial coverage of transitions from pervious to artificial impervious surface."
+    },
+    "temporal_coverage": "1985-01-01 to 2018-12-31",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "30 m",
+    "temporal_unit": "Annual",
+    "analytical_capabilities": [
+      "Map the spatial distribution and timing of conversion to artificial impervious surface",
+      "Reconstruct impervious extent for any year from 1985 through 2018",
+      "Quantify changes in impervious extent and derived impervious fraction",
+      "Detecting patterns of urban expansion and land development over time",
+      "Compare impervious-surface characteristics across regions",
+      "Analyzing spatial heterogeneity and temporal trends in human-built land cover"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "change_year_index, an integer code from 34 for transition in 1985 to 1 for transition in 2018",
+      "runtime_hint": "The sole band is change_year_index. For valid codes 1 through 34, transition_year = 2019 - change_year_index. Reconstruct impervious extent at a target year by selecting pixels whose transition_year is less than or equal to that year. A value of 0 does not encode a dated transition in the 1985-2018 record. The asset is one static image, not one image per year, and its values are not impervious percentages."
+    },
+    "data_source": "Tsinghua University and collaborating research institutions",
+    "gee_asset": {
+      "id": "Tsinghua/FROM-GLC/GAIA/v10",
+      "type": "image"
+    }
+  },
+  "current_data_path": "GEE:Tsinghua/FROM-GLC/GAIA/v10",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_039.json",
+    "source_sha256": "876ae0afd7672065cc7d41bc2df1d24a68aef3028b98b60c4b4ee1e934498579",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_039/prompt.json",
+    "current_prompt_sha256": "b1fec340401f051c7976590cc6f1a41ffd26d3bb0479ba73f9dc2c40f18f241c",
+    "original_anchor_asset": {
+      "id": "Tsinghua/FROM-GLC/GAIA/v10",
+      "observable_group": "gaia_annual_global_impervious_area",
+      "observation_identity_contract": {
+        "physical_object": "artificial impervious land-surface extent and expansion timing",
+        "source_lineage": "Tsinghua FROM-GLC GAIA Landsat-based production lineage",
+        "core_measurement_semantics": "GAIA change-year or annual impervious-area observation",
+        "non_material_variations": "official/community mirror, archive, format, reprojection or derived annual masks retaining GAIA change-year information",
+        "material_mismatches": "another built-up or impervious-surface product without GAIA lineage"
+      },
+      "asset_alias_policy": "The Tsinghua FROM-GLC GAIA v1.0 change-year raster distributed by its authors, the official Earth Engine asset Tsinghua/FROM-GLC/GAIA/v10, and a demonstrably identical community mirror such as projects/sat-io/open-datasets/GAIA are admitted. Other impervious-surface, built-up-area and urban-land products are excluded.",
+      "repointed_from": {
+        "former_anchor": "projects/sat-io/open-datasets/GAIA",
+        "why_former_anchor_was_incomplete": "The former ID is a community mirror and is not present in the current dataset index. Its prompt also misdescribed GAIA as an annual ImageCollection of 0-100 impervious fractions.",
+        "why_new_anchor": "Tsinghua/FROM-GLC/GAIA/v10 is the ready official catalog asset and the sole exact GAIA product match in the current dataset index. It is a single 30 m change-year image covering transitions from 1985 through 2018.",
+        "direction_consequence": "Existing directions remain valid because they operationally use the same GAIA product family; this is an official-host repoint rather than an observable or product-family replacement.",
+        "review_date": "2026-08-31"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "How does urbanization shift precipitation and heavy-rainfall patterns across cities and urban agglomerations?",
+      "hypothesis_or_mechanism": "Impervious expansion modifies surface energy, roughness, aerosols, and circulation, producing location- and direction-dependent rainfall changes.",
+      "variables_and_data_use": "GAIA impervious-area change is linked to precipitation observations or reanalysis, urban-rural contrasts, and atmospheric controls.",
+      "method_paradigm": "Urbanization-gradient and counterfactual comparison of precipitation responses.",
+      "used_assets": [
+        "GAIA impervious area",
+        "precipitation",
+        "atmospheric and geographic controls"
+      ],
+      "author_team": [
+        "Jinghua Xiong",
+        "Yuting Yang",
+        "Long Yang",
+        "Dawen Yang",
+        "Fanggang Li",
+        "Yingbao Yang",
+        "Haider Ali",
+        "Jingkai Xie"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_papers": [
+        {
+          "title": "Asymmetric shifts in precipitation due to urbanization across global cities",
+          "doi": "10.1038/s41467-025-61053-0",
+          "year": 2025,
+          "venue": "Nature Communications",
+          "pool_source": "original_existing"
+        },
+        {
+          "title": "Assessing the consistent and divergent impacts of urbanization on heavy rainfall in Chinese urban agglomerations",
+          "doi": "10.1038/s43247-025-02283-4",
+          "year": 2025,
+          "venue": "Communications Earth & Environment",
+          "pool_source": "original_existing"
+        }
+      ],
+      "human_confirmation": {
+        "decision": "same_direction_positive",
+        "review_date": "2026-08-27"
+      },
+      "anchor_validity": {
+        "status": "valid_same_product_family_after_catalog_repoint",
+        "admitted_against": "projects/sat-io/open-datasets/GAIA",
+        "current_anchor": "Tsinghua/FROM-GLC/GAIA/v10",
+        "reason": "Both IDs represent GAIA v1.0 change-to-impervious observations; the direction remains within the current product-family alias policy.",
+        "recorded_date": "2026-08-31"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "研究考察2001—2020年全球及不同空间尺度上不透水面扩张的时空变化、扩张模式及其驱动因素。",
+      "hypothesis_or_mechanism": "经济发展和人口、道路等社会经济因素以及地形和气候等自然因素会共同影响不透水面扩张的强度与空间模式，且这种作用因收入水平和空间尺度而异。",
+      "variables_and_data_use": "使用GAIA不透水面数据提取2001—2020年的年度不透水面变化，将ISA栅格重采样至1 km并计算扩张速率、扩张强度、热点冷点和景观扩张模式；使用GAIA的Built-up area boundary data (GUB)掩膜驱动因素数据，并结合GEBCO高程、坡度、TerraClimate温度和降水、OpenStreetMap道路密度、WorldBank经济与人口数据、联合国HDI及就业率等变量，通过RF-SHAP分析驱动因素的重要性及其正负影响。",
+      "method_paradigm": "时空变化与驱动归因",
+      "used_assets": [
+        "TsinghuaUniversity'sGlobalArticialImperviousArea(GAIA)",
+        "GAIA",
+        "Built-upareaboundarydata(GUB)",
+        "GEBCO",
+        "Terraclimate",
+        "OpenStreetMap(OSM)",
+        "WorldBank",
+        "UnitedNationshumandevelopmentreport",
+        "PopulationStat"
+      ],
+      "author_team": [
+        "Yihan Xia",
+        "Yanning Guan",
+        "Tao Yang",
+        "Jiaqi Qian",
+        "Zhishou Wei",
+        "Wutao Yao",
+        "Rui Deng",
+        "Chunyan Zhang",
+        "Shan Guo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Spatiotemporal Trends and Driving Factors of Global Impervious Surface Area Changes from 2001 to 2020",
+        "doi": "10.3390/rs17193309",
+        "year": 2025,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "研究东南亚大陆边境地区建设用地扩张的强度、空间形态及其沿边界、道路和网络方向的表现。",
+      "hypothesis_or_mechanism": "跨境交通网络、边境贸易和基础设施合作会促进建设用地沿道路、边界及多节点网络扩张。",
+      "variables_and_data_use": "使用 GAIA 年度人工不透水面及其变化数据计算建设用地面积变化、扩张强度、紧凑度和分形维数；使用 OSM 道路网络和水系数据作为空间辅助信息，并结合 World Bank Open Data、FAOSTAT Database 和国家统计年鉴开展社会经济分析与讨论。",
+      "method_paradigm": "变化检测与空间形态分析",
+      "used_assets": [
+        "Global Artificial Impervious Area dataset (GAIA)",
+        "OpenStreetMap (OSM) open data",
+        "World Bank Open Data",
+        "FAOSTAT Database",
+        "national statistical yearbooks of countries such as China, Vietnam, and Thailand"
+      ],
+      "author_team": [
+        "Pengcheng Wang",
+        "Liguo Zhang",
+        "Rucheng Lu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Unveiling the morphologies and mechanisms of construction land expansion in border areas of Mainland Southeast Asia",
+        "doi": "10.1038/s41598-025-92620-6",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究如何结合高分辨率影像、Landsat 年度合成数据和已有土地覆盖/不透水面产品来构建代表性训练样本并提取中国不透水面。",
+      "hypothesis_or_mechanism": "通过利用 GAIA 的不透水面建成年份异质性和多源土地覆盖熵选择高代表性样本区，可提升复杂区域不透水面样本覆盖度和分类模型判别能力。",
+      "variables_and_data_use": "论文使用 GAIA 的不透水面年份标签计算不透水面熵、统计各年份类别面积并抽取正样本；使用 ESA20、GLC20 和 FCS20 计算土地覆盖熵并构建负样本；使用 2 米 Gaofen-1、Gaofen-6、Ziyuan-3 影像进行专家目视解译；使用 Landsat Collection 2 surface reflectance data 的年度合成光谱波段和有效观测次数以及 SRTM DEM 地形变量作为分类相关输入。",
+      "method_paradigm": "多源遥感分类",
+      "used_assets": [
+        "Gaofen-1",
+        "Gaofen-6",
+        "Ziyuan-3",
+        "Landsat Collection 2 surface reflectance data",
+        "SRTM DEM",
+        "GAIA",
+        "GlobalLand30-2020",
+        "ESA WorldCover 10 m 2020",
+        "GLC_FCS30-2020"
+      ],
+      "author_team": [
+        "Ranyu Yin",
+        "Guojin He",
+        "Guizhou Wang",
+        "Kaiyuan Zheng",
+        "Chengjuan Gong",
+        "Tengfei Long",
+        "Qing Guo"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Enhanced 30 m Impervious Surfaces for China (2020, 2022) via 2 m/30 m Data Fusion",
+        "doi": "10.1038/s41597-026-06619-3",
+        "year": 2026,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "该论文研究如何构建并验证中国主要城市 2000—2022 年年度 LCZ 城市形态动态数据集。",
+      "hypothesis_or_mechanism": "区域尺度样本和逐年变化约束能够降低城市形态分类噪声并提高年度 LCZ 制图的时序一致性。",
+      "variables_and_data_use": "论文使用年度 LCZ1-LCZ17 城市形态分类图，统计不同 LCZ 建筑类型的面积变化，比较原始分类、过滤结果和最终合成结果的精度，并结合卫星影像检查异常变化点。",
+      "method_paradigm": "时序分类制图",
+      "used_assets": [
+        "dataset of urban morphology dynamic from 2000 to 2022 of major cities in China",
+        "LCZ maps",
+        "satellite images",
+        "10.5281/zenodo.14614256"
+      ],
+      "author_team": [
+        "Hanguang Yu",
+        "Yang Yang",
+        "Jiyao Zhao",
+        "Meng Cai",
+        "Ran Wang",
+        "Guangzhao Chen",
+        "Chunxiao Zhang",
+        "Le Yu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Dynamic urban morphology mapping in Chinese cities based on local climate zone approach",
+        "doi": "10.1038/s41597-025-04478-y",
+        "year": 2025,
+        "venue": "Scientific Data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "该论文研究如何将空间可持续性评估、GIS 和法律合规变量结合起来，解释并预测 Pekanbaru City 的城市蔓延和不透水面增长。",
+      "hypothesis_or_mechanism": "论文假设法律执行薄弱、分区不合规以及社会经济驱动因素会共同促进无序土地转换和不可持续的 ISA 扩张。",
+      "variables_and_data_use": "论文使用 30×30 米栅格化空间数据、土地利用数据、建成区或 ISA 增长变量、67 个生物物理、社会、经济和法律变量，并将法律分区合规数据与土地利用数据在 GIS 中叠加，再用 CatBoost 等集成机器学习模型预测 ISA growth。",
+      "method_paradigm": "GIS-机器学习建模",
+      "used_assets": [
+        "Spatial Sustainability Assessment Model (SSAM)",
+        "GIS",
+        "land use data",
+        "Regional Regulation (Perda) of Pekanbaru City Number 7 of 2020 on the City Spatial Plan (RTRW) 2020 2040",
+        "Law Number 26 of 2007 on Spatial Planning",
+        "Law Number 32 of 2009 on Environmental Protection and Management",
+        "CatBoost with GoldenFeatures"
+      ],
+      "author_team": [
+        "Bayu Andrianto Wirawan",
+        "Yusni Ikhwan Siregar",
+        "Sukendi Sukendi",
+        "Mulyadi Mulyadi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Legal and Spatial Perspectives on Sustainable Built-Up Land Conversion Control in Pekanbaru",
+        "doi": "10.26532/jh.v41i4.45024",
+        "year": 2025,
+        "venue": "Jurnal Hukum",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "该论文研究非平稳水文条件下 Wei River basin 的降水–径流关系如何变化及其潜在驱动因素。",
+      "hypothesis_or_mechanism": "气候强迫、地下水、植被变化、城市化、人类取用水和水库调节等因素会通过改变流域响应过程来增强或削弱降水–径流联系。",
+      "variables_and_data_use": "论文使用 Yellow River Conservancy Commission 的径流数据并分离基流，使用 China National Surface Weather Station (V3.0) 的气象变量计算潜在蒸散发，使用 SRTM DEM 描述地形，使用 GIMMS NDVI3g 表征植被覆盖，使用 30 m ISR 数据计算研究区不透水面比例以表征城市化，使用 DMSP OLS 夜间灯光和 WorldPop 人口数据表征人类活动，并结合水库与用水资料分析人为干预。",
+      "method_paradigm": "非平稳归因分析",
+      "used_assets": [
+        "Daily streamflow data from the Yellow River Conservancy Commission",
+        "China National Surface Weather Station (V3.0)",
+        "USGS Shuttle Radar Topography Mission (SRTM) digital elevation database",
+        "Global Inventory Modelling and Mapping Studies (GIMMS) NDVI3g dataset",
+        "Impervious surface ratio (ISR) data from 1985 to 2019 at a spatial resolution of 30 m",
+        "Google Earth Engine platform",
+        "Defense Meteorological Satellite Program's Operational Linescan System",
+        "NOAA National Geophysical Data Center",
+        "WorldPop"
+      ],
+      "author_team": [
+        "Tian Lan",
+        "Tongfang Li",
+        "Hongbo Zhang",
+        "Jiefeng Wu",
+        "Yongqin David Chen",
+        "Chong‐Yu Xu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Exploring the potential processes controlling changes in precipitation–runoff relationships in non-stationary environments",
+        "doi": "10.5194/hess-29-903-2025",
+        "year": 2025,
+        "venue": "Hydrology and earth system sciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "该论文研究哥伦比亚安第斯城市中城市基础设施、植被邻近性和人类干扰如何影响局地鸟类多样性。",
+      "hypothesis_or_mechanism": "作者假设不透水表面和城市基础设施代表更高城市化与扰动强度，而靠近植被和较低行人干扰的斑块应支持更高的鸟类丰富度和丰度。",
+      "variables_and_data_use": "论文使用 2024 Global Artificial Impervious Area (GAIA) raster，通过 QGIS Zonal Statistics 计算城市和研究样点的不透水表面百分比，用于构建城市化梯度；同时使用实地鸟类点计数、激光测距获得的植被和城市基础设施距离、行人与宠物密度、AVONET dataset 的鸟类性状以及 birdtree.org 的系统发育树来建模物种丰富度、相对丰度、进化独特性和功能多样性。",
+      "method_paradigm": "城市生态统计建模",
+      "used_assets": [
+        "2024 Global Artificial Impervious Area (GAIA) raster",
+        "AVONET dataset",
+        "birdtree.org",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Melissa Ardila‐Villamizar",
+        "Daniel Sánchez",
+        "Laurence H. De Clippele",
+        "Davide M. Dominoni"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Neotropical puzzles: Assessing the role of spatial arrangement and human-induced disturbances on the avian diversity of local patches.",
+        "doi": "10.32942/x2bp91",
+        "year": 2025,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "城市化如何改变全球保护地森林栖息地的城市压力、人类活动强度和地表温度？",
+      "hypothesis_or_mechanism": "距离城市更近且周边建成强度更高的保护地-城市界面森林会承受更高城市压力，并表现出相对于保护地内部更高的地表温度和热极端。",
+      "variables_and_data_use": "论文用 WDPA 确定保护地边界，用 ESA CCI land cover data 识别保护地内森林，用 GUB 提取 1990 和 2018 年城市边界并构建缓冲区，用 GAIA 年度人工不透水面图计算 0.01° 像元建成强度和城市压力，用 SRTM30 DEM 控制高程差，用 MYD11A2 计算森林地表温度差异和热极端，并用 Human footprint intensity 比较人类活动压力。",
+      "method_paradigm": "空间配对影响评估",
+      "used_assets": [
+        "World Database on Protected Areas (WDPA)",
+        "European Space Agency (ESA) Climate Change Initiative (CCI) land cover data",
+        "multitemporal global urban boundary (GUB) dataset",
+        "global artificial impervious area (GAIA) dataset",
+        "USGS 30-arc sec SRTM30 gridded DEM data",
+        "MYD11A2",
+        "Human footprint intensity"
+      ],
+      "author_team": [
+        "Anqi Huang",
+        "Xiyan Xu",
+        "Gensuo Jia",
+        "Elise van Belle",
+        "Pieter De Frenne",
+        "Yuyu Zhou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Forests in protected areas worldwide face increased thermal pressure from urbanization",
+        "doi": "10.1038/s41467-026-76226-8",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "在气候变化背景下，森林与非森林地表之间的地表温度及其他生物物理差异如何变化，以及哪些气候驱动因素解释这些变化？",
+      "hypothesis_or_mechanism": "气候变化通过改变叶面积指数和潜热交换，并直接影响植被蒸散过程，进而调节森林相对于非森林区域的地表温度差异。",
+      "variables_and_data_use": "使用 MYD11A1 的地表温度、MOD16A2GF 的潜热、MCD15A3H 的叶面积指数、MCD43A3 的反照率和 MCD12Q1 的土地覆盖数据计算森林与非森林差异；使用 GFC 筛除森林损失、GAIA 筛除人工不透水地表比例较高区域、GMTED2010 控制高程；使用 ERA5-Land 提供气温、露点温度、降水、辐射、风速和土壤湿度等气候变量，并以 CMIP6 历史模拟比较模拟的森林生物物理效应。",
+      "method_paradigm": "多源遥感—再分析—结构方程",
+      "used_assets": [
+        "MYD11A1",
+        "MOD16A2GF (MOD16A2 Gap-filled)",
+        "MCD15A3H",
+        "MCD43A3",
+        "MCD12Q1",
+        "Global Forest Change (GFC) dataset",
+        "Global Artificial Impervious Area (GAIA) dataset",
+        "GMTED2010",
+        "ERA5-Land reanalysis dataset",
+        "CMIP6"
+      ],
+      "author_team": [
+        "Yitao Li",
+        "Jun Ge",
+        "Hua Wu",
+        "Ronglin Tang",
+        "Yuanliang Cheng",
+        "Xiangyang Liu",
+        "Yi Wang",
+        "Wei Zhao",
+        "Caixia Gao",
+        "Si‐Bo Duan",
+        "Qian Shi",
+        "Pei Leng",
+        "Enyu Zhao",
+        "Guangjian Yan",
+        "Xiaoning Song",
+        "Chenghu Zhou",
+        "Zhao-Liang Li"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Amplified local cooling effect of forestation in warming Europe",
+        "doi": "10.1038/s41467-025-63556-2",
+        "year": 2025,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "全球无山地区域冲积河流平面形态（分汊、游荡、弯曲、顺直）的空间分布格局及其水文地貌驱动机制是什么？",
+      "hypothesis_or_mechanism": "河道分汊程度与水流功率、沉积物浓度及洪水淹没频率呈正相关，且受气候带与地形条件的共同调控。",
+      "variables_and_data_use": "使用GSWO提取河道范围与水发生概率，结合SWORD河网构建研究单元；利用GAIA不透水面变化年掩膜辅助判定岛屿稳定性；通过NDVI与淹没率(IR)计算训练SVM分类器；引入坡度、水流功率、FPW/W比值及悬移质浓度等水文地貌变量进行PCA与统计回归分析。",
+      "method_paradigm": "多源遥感数据融合与机器学习分类",
+      "used_assets": [
+        "GSWO",
+        "SWORD",
+        "GLAKES",
+        "GUM",
+        "GMBA",
+        "GAIA",
+        "IRIS",
+        "OSMWL",
+        "HydroBASINS",
+        "Landsat Surface Reflectance"
+      ],
+      "author_team": [
+        "Qiuqi Luo",
+        "Edward Park",
+        "Edgardo M. Latrubesse",
+        "Xuehui Pi",
+        "Hongwei Fang",
+        "Yan Liu",
+        "Adam D. Switzer",
+        "Dongfeng Li",
+        "Wenhui Qiu",
+        "Chunmiao Zheng",
+        "Pan Liu",
+        "Lian Feng Lian Feng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Global alluvial channel patterns",
+        "doi": "10.1038/s41467-026-68569-z",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "气候变化、城市化、社会经济适应及景观策略如何共同影响未来与热相关的死亡风险？",
+      "hypothesis_or_mechanism": "城市化扩张通过增强城市热岛效应加剧高温暴露，而社会经济适应与绿色屋顶等景观策略可有效缓解由此带来的健康风险。",
+      "variables_and_data_use": "使用GAIA年度不透水面数据构建2015年城市空间基线；结合ERA5历史气温与NEX-GDDP未来气温投影计算暴露度；利用MODIS LST与站点气温建立转换关系；引入人口与GDP投影评估社会经济适应效应。",
+      "method_paradigm": "蒙特卡洛模拟与情景实验设计",
+      "used_assets": [
+        "ECMWF_ERA5_DAILY",
+        "NASA_NEX-GDDP",
+        "MODIS_061_MOD11A1",
+        "GHSL",
+        "GAIA dataset",
+        "GHCND",
+        "Baidu Map"
+      ],
+      "author_team": [
+        "Xue Liu",
+        "Ming Hao",
+        "Yuyu Zhou",
+        "Yue Zhang",
+        "Zhipeng Xu",
+        "Xiaojuan Liu",
+        "Yukun Gao",
+        "Rui Li",
+        "Han Zhang",
+        "Xia Li",
+        "Xiaoping Liu",
+        "Yuanzhi Yao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Projections of Heat-Related Mortality in Chinese Cities: The Roles of Climate Change, Urbanization, Socioeconomic Adaptation, and Landscape-Level Strategies",
+        "doi": "10.1289/ehp15010",
+        "year": 2025,
+        "venue": "Environmental Health Perspectives",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "深圳市不同街道级别的爱蚊叮咬风险空间分布特征及其关键驱动因素是什么？",
+      "hypothesis_or_mechanism": "爱蚊密度、人类暴露水平与人口脆弱性在空间上的高值重叠会显著放大蚊媒传染病传播风险，且不透水面等城市化景观因子是核心驱动机制。",
+      "variables_and_data_use": "使用GAIA不透水面数据作为城市景观预测变量之一，结合气象、社会经济、人口及实地蚊媒监测数据，通过OPGD筛选关键因子，利用GWRF插值生成危害层，结合人口密度构建暴露层，应用GWPCA计算多维剥夺指数作为脆弱层，最终按权重合成街道级风险指数并识别热点。",
+      "method_paradigm": "地理探测器与加权随机森林融合的风险制图",
+      "used_assets": [
+        "GAIA",
+        "Ovitrap/Aedes surveillance data",
+        "Climate data (PRE, RH, TEM)",
+        "Population density (Chen et al. 2024)",
+        "Demographic census data",
+        "PM10"
+      ],
+      "author_team": [
+        "Liangqiang Lin",
+        "Yifei He",
+        "Xu Guang",
+        "Lanbin Xiang",
+        "Dongfeng Kong",
+        "Kaichuan Diao",
+        "Haidong Wang",
+        "Bin Zhu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Spatial pattern assessment of Aedes mosquito bite risk in a subtropical metropolitan area: A case study in Shenzhen",
+        "doi": "10.1371/journal.pntd.0013843",
+        "year": 2025,
+        "venue": "PLoS neglected tropical diseases",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "如何在加拿大首都区域的城镇增长模拟中整合绿地保护与生态连通性指标以实现紧凑城市与社会公平情景？",
+      "hypothesis_or_mechanism": "在SLEUTH-3r模型中引入绿地核心区重要性与廊道电流图作为排斥层，能够有效抑制无序蔓延并维持生态空间完整性。",
+      "variables_and_data_use": "使用GAIA获取历史不透水面分布，结合GLC_CFS30、CDEM、OSM等构建多源输入栅格，驱动SLEUTH-3r进行城镇化概率预测与情景推演。",
+      "method_paradigm": "元胞自动机城镇演化模拟",
+      "used_assets": [
+        "Tsinghua/FROM-GLC/GAIA/v10",
+        "GLC_CFS30",
+        "Dynamic World",
+        "CDEM",
+        "OpenStreetMap"
+      ],
+      "author_team": [
+        "Abdolrassoul Salmanmahiny",
+        "Scott Mitchell",
+        "Joseph Bennett"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "MSPA-informed SLEUTH urban growth modeling for green space protection in Ottawa",
+        "doi": "10.1371/journal.pone.0328656",
+        "year": 2025,
+        "venue": "PLoS ONE",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同来源和类型的全球水文数据集在水量平衡一致性方面表现如何，以及这种表现的空间和时间变化受哪些环境与观测因素影响？",
+      "hypothesis_or_mechanism": "水文数据集的一致性受干旱度、温度、植被覆盖、灌溉、人工不透水区、观测密度和侧向水流等因素共同影响，并可能因观测技术进步和气候变化而随时间改善。 ",
+      "variables_and_data_use": "论文组合使用降水 PR、蒸散发 ET、径流 RO 和土壤湿度变化 Δ SM 数据，在全球网格上以 PR−ET−RO 与 Δ SM 的线性回归调整 R²衡量水量平衡一致性；同时使用 GRACE 总水储量进行替代评估，并将土壤质地、干旱度、树木覆盖、灌溉面积、GAIA 人工不透水区、气温、观测密度和侧向水流作为影响因素，通过随机森林和 SHAP 进行归因。",
+      "method_paradigm": "多数据集一致性评估与可解释归因",
+      "used_assets": [
+        "Global artificial impervious area from Gong et al. (2020)",
+        "CPC",
+        "CRU TS v4.06",
+        "UDel v5.01",
+        "EM-EARTH",
+        "GPCC v2022",
+        "PREC/L",
+        "X-BASE",
+        "GRUN",
+        "SoMo.ml",
+        "CHIRPS v2.0",
+        "CMAP",
+        "CMORPH v1",
+        "GPCP(M) v2.3",
+        "GPCP(D) v1.3",
+        "GPM IMERG v07",
+        "PERSIANN-CDR",
+        "MSWEP v2.8",
+        "MODIS",
+        "PT-JPL",
+        "PML-v2",
+        "GLASS",
+        "GLEAM v4.1",
+        "SMAP L4 v7",
+        "ESA CCI v08.1",
+        "20CR v3",
+        "JRA-55",
+        "ERA5",
+        "NCEP-NCAR R1",
+        "NCEP-DOE R2",
+        "MERRA-2",
+        "GLDAS-2.0",
+        "GLDAS-2.1",
+        "GLDAS-2.2",
+        "ERA5-land",
+        "GRACE",
+        "Harmonized World Soil Database version 2.0",
+        "NASA Vegetation Continuous Fields Version 1",
+        "Area equipped for irrigation from Mehta et al. (2024)",
+        "FLUXNET2015",
+        "AmeriFlux",
+        "Global Streamflow Indices and Metadata Archive (GSIM)",
+        "International Soil Moisture Network (ISMN)",
+        "National Center for Monitoring and Early Warning of Natural Disasters of Brazil (CEMADEN)",
+        "Miguez-Macho and Fan (2025)"
+      ],
+      "author_team": [
+        "Hao Huang",
+        "Junguo Liu",
+        "Aifang Chen",
+        "Melissa Ruiz‐Vásquez",
+        "René Orth"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "State-of-the-art hydrological datasets exhibit low water balance consistency globally",
+        "doi": "10.5194/essd-18-3109-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "研究长期变化的 PM 2.5 暴露是否与中国中老年人的抑郁症状相关，以及清洁空气政策导致的 PM 2.5 降低是否改善心理健康。",
+      "hypothesis_or_mechanism": "长期 PM 2.5 暴露可能增加抑郁症状，而持续降低 PM 2.5 暴露可能通过减少空气污染负担改善心理健康。",
+      "variables_and_data_use": "使用 global annual raster data, version V4.GL.03 提供年度 PM 2.5 暴露，使用 30 m global artificial impervious area (GAIA) data 生成 2018 年城市与非城市边界并进行暴露分区，使用 air temperature with a resolution of 1 km × 1 km 作为环境温度控制变量，并结合 China Health and Retirement Longitudinal Study (CHARLS) 的 CESD10 抑郁症状、人口学和社会经济协变量开展纵向分析与政策前后比较。",
+      "method_paradigm": "纵向暴露效应与准实验",
+      "used_assets": [
+        "China Health and Retirement Longitudinal Study (CHARLS)",
+        "global annual raster data, version V4.GL.03",
+        "30 m global artificial impervious area (GAIA) data",
+        "air temperature with a resolution of 1 km × 1 km",
+        "global 0.5° climate data set released by CRU (Climatic Research Unit gridded)",
+        "global high-resolution climate data set produced by WorldClim"
+      ],
+      "author_team": [
+        "Zhao Xiu-ling",
+        "Weiqi Zhou",
+        "Andreas M. Neophytou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Impact of Continuously Improved Air Quality on Mental Health: A Quasi-experimental Study Based on Longitudinal Observations for Chinese Adults",
+        "doi": "10.1021/envhealth.5c00033",
+        "year": 2025,
+        "venue": "Environment & Health",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "将基于遥感产品构建的区域分层与随机抽样相比，是否能够提高固体废物及塑料废物入户调查样本的代表性和建模稳定性？",
+      "hypothesis_or_mechanism": "基于人口密度、经济活动和不透水地表城乡特征进行分层，可以更均衡地覆盖不同区域类型，从而降低样本方差和预测误差。",
+      "variables_and_data_use": "使用 VIIRS Nighttime Day/Night Band Composites Version 1 表示 GDP/GRP，使用 WorldPop Global Project Population Data: Estimated Residential Population 表示人口密度，使用 Tsinghua FROM-GLC Year of Change to Impervious Surface 构建城乡区域特征，并结合 Copernicus Land Use dataset's LULC 数据形成区域分类指数；随后依据高、中、低潜在废物产生区域进行分层抽样，并以家庭废物产生量和塑料废物产生量作为结果变量。",
+      "method_paradigm": "分层抽样与预测建模",
+      "used_assets": [
+        "VIIRS Nighttime Day/Night Band Composites Version 1",
+        "Copernicus Land Use dataset's LULC (Land Use Land Cover) data",
+        "WorldPop Global Project Population Data: Estimated Residential Population",
+        "Tsinghua FROM-GLC Year of Change to Impervious Surface"
+      ],
+      "author_team": [
+        "Elprida Agustina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "ENHANCED STRATIFIED SAMPLING WITH REMOTE SENSING DATA FOR SOLID WASTE PROJECTS AND RESEARCH SURVEYS",
+        "doi": "10.21660/2025.130.4780",
+        "year": 2025,
+        "venue": "International Journal of Geomate",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "人工夜间光如何影响北半球主要城市及其周边植被的秋季物候，并受到哪些气候、经济和植被因素调节？",
+      "hypothesis_or_mechanism": "人工夜间光可能通过改变光周期信号和光合作用过程延迟或改变秋季叶片衰老，其影响受温度、经济发展和植被结构等因素调节。",
+      "variables_and_data_use": "研究使用 CPON 和 PEP725 地面秋季物候记录，以及 MCD12Q2 Version 6.1 的 Greenup 和 Dormancy 指标；使用 NPP-VIIRS-like、DMSP-OLS、NPP-VIIRS 和 H-NTL-v2 表征年度或月度人工夜间光；使用 Global Artificial Impervious Area product 划定城市边界；使用 TerraClimate、CRU JRA v2.4 和 NorESM2-MM 提供气候变量，并结合 V cmax25、OCO-2、GPP、ET、FPAR、aboveground biomass、tree density、canopy height、Human Development Index、gross domestic product 和 per capita GDP 进行相关分析、因果分析、空间归因和秋季物候预测。",
+      "method_paradigm": "关系机制与空间归因",
+      "used_assets": [
+        "CPON",
+        "PEP725",
+        "MCD12Q2 Version 6.1",
+        "NPP-VIIRS-like",
+        "DMSP-OLS",
+        "NPP-VIIRS",
+        "H-NTL-v2",
+        "TerraClimate",
+        "CRU JRA v2.4",
+        "NorESM2-MM",
+        "Global Artificial Impervious Area product",
+        "Human Development Index",
+        "gross domestic product",
+        "per capita GDP",
+        "IIASA-SSP database",
+        "aboveground biomass",
+        "tree density",
+        "canopy height",
+        "V cmax25",
+        "OCO-2",
+        "GPP",
+        "ET",
+        "FPAR"
+      ],
+      "author_team": [
+        "Yang Chen",
+        "Wendi Qu",
+        "Constantin M. Zohner",
+        "Josep Peñuelas",
+        "Chaoyang Wu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Increased artificial illumination delays urban autumnal foliar senescence",
+        "doi": "10.1038/s41467-025-68246-7",
+        "year": 2026,
+        "venue": "Nature Communications",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "研究评估如何利用开放地理空间数据刻画 Coimbatore 的城市发展和 built-up area 扩张，并估算城市屋顶用于食物、水和能源生产的潜力。",
+      "hypothesis_or_mechanism": "开放建筑 footprint、GAIA 不透水地表扩张和 GHSL 长期 built-up surface 数据能够共同表征城市增长，并支持对屋顶资源利用潜力的估算。",
+      "variables_and_data_use": "使用 GAIA 年度人工不透水面积地图分析 1988 至 2018 年的不透水地表扩张；使用 Google Open Buildings dataset v3 获取建筑 footprint 并计算屋顶面积；使用 GHSL global builtup surface 1975–2030 (P2023A) 分析长期 built-up surface 变化；再结合降雨、日照、作物产量和价格等参数估算屋顶农业、雨水收集和光伏潜力及收益。",
+      "method_paradigm": "多源空间分析与决策支持",
+      "used_assets": [
+        "Google Open Buildings dataset v3",
+        "annual maps of global artificial impervious area (GAIA) dataset",
+        "the global human settlement layer (GHSL): global builtup surface 1975–2030 (P2023A)"
+      ],
+      "author_team": [
+        "V. S. Manivasagam",
+        "G. V. Saai Shreyaa",
+        "Shri Dharsini Ganesh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Food-energy-water sustainability in urban spaces: insights from open geospatial datasets in Coimbatore, India",
+        "doi": "10.1007/s43762-025-00213-w",
+        "year": 2025,
+        "venue": "Computational Urban Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "城市形态、植被、土地利用和不透水地表等因素如何影响 Travis County 昼间和夜间地表温度的空间分异？",
+      "hypothesis_or_mechanism": "更高的不透水地表比例、更高的建筑和道路密度可能增强地表热积累，而植被覆盖和较高的天空可视因子可能促进降温，并且这些作用具有昼夜差异和空间异质性。",
+      "variables_and_data_use": "研究以 Sentinel-3 SLSTR 生成的昼间和夜间 LST 合成为目标变量，并以 GAIA dataset 计算的 Impervious Surface Percent、USDA Forest Service 树冠覆盖、NLCD 土地利用、OpenStreetMap 道路网络、USGS Landsat Surface Reflectance 计算的 NDVI、建筑物矢量及其他街区形态和景观指标作为预测变量，统一汇总到街区尺度后进行标准化和空间统计分析。",
+      "method_paradigm": "空间异质性机制分析",
+      "used_assets": [
+        "GAIA dataset",
+        "USDA Forest Service",
+        "NLCD",
+        "OpenStreetMap",
+        "USGS Landsat Surface Reflectance",
+        "City of Austin Open Data Portal",
+        "Sentinel-3 SLSTR",
+        "GLASS LST"
+      ],
+      "author_team": [
+        "Huan Chen",
+        "Chenxi Du",
+        "Ting Han",
+        "Yifei Jiang",
+        "Zixuan Wang",
+        "Hongjun Su",
+        "Xinchang Zhang",
+        "Yiping Chen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Exploring the influence of urban land use and morphology on diurnal heat variation: insights from Travis, Texas",
+        "doi": "10.1007/s44212-025-00100-z",
+        "year": 2026,
+        "venue": "Urban Informatics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 21,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

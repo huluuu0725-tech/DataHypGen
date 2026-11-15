@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.1016/j.scitotenv.2024.171161",
+  "task_id": "three_or_more_datasets/task_009",
+  "title": "Identifying recurrent and persistent landslides using satellite imagery and deep learning: A 30-year analysis of the Himalaya",
+  "category": "persistent_recurrent_landslide_lifecycle",
+  "year": 2024,
+  "journal": "The Science of The Total Environment",
+  "impact_level": "medium",
+  "datasets": [
+    "Landsat Collection 2 Level-2 Surface Reflectance",
+    "VIIRS Black Marble nighttime radiance",
+    "NASA SRTM 30 m Digital Elevation Model"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "long_term_optical_surface_input",
+      "dataset": "Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "human_pressure_context_input",
+      "dataset": "VIIRS Black Marble nighttime radiance"
+    },
+    {
+      "role": "terrain_context_input",
+      "dataset": "NASA SRTM 30 m Digital Elevation Model"
+    }
+  ],
+  "idea": {
+    "research_question": "Where do landslides persist or reactivate across decades, and how can multi-source observations reveal their lifecycle?",
+    "hypothesis": "Optical scars, terrain controls and human-pressure context jointly improve multi-decadal segmentation and distinguish persistent hazard from land-use change.",
+    "mechanism": "U-Net segmentation, temporal recurrence/persistence metrics and independent inventory validation",
+    "expected_contribution": "Transfers routine satellite observations into hazard-lifecycle analysis at mountain-range scale.",
+    "required_component_usage": [
+      "long_term_optical_surface_input",
+      "human_pressure_context_input",
+      "terrain_context_input"
+    ],
+    "data_sources": [
+      "LANDSAT/LC08/C02/T1_L2",
+      "NASA/VIIRS/002/VNP46A2",
+      "USGS/SRTMGL1_003"
+    ],
+    "falsification_condition": "Reject if any required role is omitted, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_009:composite_observation",
+    "anchor_type": "composite_observation",
+    "extraction_basis": "Full-text seed evidence; empirical results are excluded from the task prompt."
+  }
+}

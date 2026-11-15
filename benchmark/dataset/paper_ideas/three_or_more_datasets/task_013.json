@@ -1,0 +1,53 @@
+{
+  "paper_id": "10.3390/rs10091378",
+  "task_id": "three_or_more_datasets/task_013",
+  "title": "Remote Sensing Derived Built-Up Area and Population Density to Quantify Global Exposure to Five Natural Hazards over Time",
+  "category": "built_up_population_hazard",
+  "year": 2018,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "Global built-up area layer",
+    "Global population-density layer",
+    "Global natural-hazard layer"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "built_up_area",
+      "dataset": "Global built-up area layer"
+    },
+    {
+      "role": "population_density",
+      "dataset": "Global population-density layer"
+    },
+    {
+      "role": "hazard_layer",
+      "dataset": "Global natural-hazard layer"
+    }
+  ],
+  "idea": {
+    "research_question": "What spatial associations can be identified between built-up area, population density and hazard layers?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:JRC/GHSL/P2023A/GHS_BUILT_S",
+      "GEE:JRC/GHSL/P2023A/GHS_POP",
+      "GEE:GLOBAL_FLOOD_DB/MODIS_EVENTS/V1"
+    ],
+    "required_component_usage": [
+      "built_up_area",
+      "population_density",
+      "hazard_layer"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_013:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

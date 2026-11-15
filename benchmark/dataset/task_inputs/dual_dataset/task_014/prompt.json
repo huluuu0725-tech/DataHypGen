@@ -1,0 +1,146 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Cloud-prone wildfire landscapes",
+  "datasets": [
+    {
+      "role": "sar_observation",
+      "data_description": {
+        "dataset_name": "Sentinel-1 SAR time-series imagery",
+        "data_type": "C-band SAR image time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:COPERNICUS/S1_GRD",
+        "spatial_coverage": {
+          "region_name": "Cloud-prone wildfire landscapes",
+          "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+        },
+        "analytical_capabilities": [
+          "Cloud- and smoke-robust backscatter change detection",
+          "Temporal feature construction"
+        ]
+      },
+      "data_path": "GEE:COPERNICUS/S1_GRD"
+    },
+    {
+      "role": "burned_area_reference",
+      "data_description": {
+        "dataset_name": "MODIS Burned Area Monthly Global 500 m",
+        "data_type": "Burned-area raster reference observations",
+        "data_format": "Google Earth Engine ImageCollection asset",
+        "data_path": "GEE:MODIS/061/MCD64A1",
+        "spatial_coverage": {
+          "region_name": "Cloud-prone wildfire landscapes",
+          "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+        },
+        "analytical_capabilities": [
+          "Fire-event labeling",
+          "Independent validation of SAR-derived progression"
+        ]
+      },
+      "data_path": "GEE:MODIS/061/MCD64A1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Sentinel-1 SAR time-series imagery",
+      "data_type": "C-band SAR image time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:COPERNICUS/S1_GRD",
+      "spatial_coverage": {
+        "region_name": "Cloud-prone wildfire landscapes",
+        "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+      },
+      "analytical_capabilities": [
+        "Cloud- and smoke-robust backscatter change detection",
+        "Temporal feature construction"
+      ]
+    },
+    {
+      "dataset_name": "MODIS Burned Area Monthly Global 500 m",
+      "data_type": "Burned-area raster reference observations",
+      "data_format": "Google Earth Engine ImageCollection asset",
+      "data_path": "GEE:MODIS/061/MCD64A1",
+      "spatial_coverage": {
+        "region_name": "Cloud-prone wildfire landscapes",
+        "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+      },
+      "analytical_capabilities": [
+        "Fire-event labeling",
+        "Independent validation of SAR-derived progression"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:MODIS/061/MCD64A1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_014:composite_observation",
+    "type": "composite_observation",
+    "name": "sar_fire composite observation",
+    "observable_group": "sar_fire_multidataset_observation",
+    "components": [
+      {
+        "role": "sar_observation",
+        "data_description": {
+          "dataset_name": "Sentinel-1 SAR time-series imagery",
+          "data_type": "C-band SAR image time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:COPERNICUS/S1_GRD",
+          "spatial_coverage": {
+            "region_name": "Cloud-prone wildfire landscapes",
+            "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+          },
+          "analytical_capabilities": [
+            "Cloud- and smoke-robust backscatter change detection",
+            "Temporal feature construction"
+          ]
+        },
+        "data_path": "GEE:COPERNICUS/S1_GRD"
+      },
+      {
+        "role": "burned_area_reference",
+        "data_description": {
+          "dataset_name": "MODIS Burned Area Monthly Global 500 m",
+          "data_type": "Burned-area raster reference observations",
+          "data_format": "Google Earth Engine ImageCollection asset",
+          "data_path": "GEE:MODIS/061/MCD64A1",
+          "spatial_coverage": {
+            "region_name": "Cloud-prone wildfire landscapes",
+            "coverage": "Declared analysis region within Cloud-prone wildfire landscapes."
+          },
+          "analytical_capabilities": [
+            "Fire-event labeling",
+            "Independent validation of SAR-derived progression"
+          ]
+        },
+        "data_path": "GEE:MODIS/061/MCD64A1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "sar_observation",
+        "burned_area_reference"
+      ],
+      "component_count": 2,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_014:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:COPERNICUS/S1_GRD",
+    "GEE:MODIS/061/MCD64A1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "sar_observation",
+      "burned_area_reference"
+    ],
+    "max_required_datasets": 3,
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true
+  }
+}

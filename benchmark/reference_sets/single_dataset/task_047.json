@@ -1,0 +1,852 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_047",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "ECMWF ERA5 Hourly Single-Level Reanalysis",
+    "spatial_coverage": {
+      "region_name": "Global atmosphere and land-ocean surface",
+      "coverage": "Global hourly reanalysis fields on a regular grid, representing spatially complete model-data assimilation estimates rather than direct measurements at every cell."
+    },
+    "temporal_coverage": "January 1940-present",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "Approximately 0.25 degrees, about 28 km",
+    "temporal_unit": "Hourly",
+    "analytical_capabilities": [
+      "Characterizing hourly temperature, dew point, pressure, precipitation, and near-surface wind fields",
+      "Deriving wind speed, humidity-related quantities, thermal anomalies, and compound weather states",
+      "Estimating seasonal cycles, persistence, ramp rates, spatial correlation, and co-occurring regional extremes",
+      "Comparing multidecadal weather variability among regions and climate regimes",
+      "Auditing accumulated versus instantaneous variables, time-zone aggregation, grid dependence, and reanalysis uncertainty"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "SI units by band, including kelvin, pascals, metres of accumulated precipitation, and metres per second",
+      "runtime_hint": "Derive 10 m wind speed from the u and v components, convert temperature and pressure units explicitly, difference accumulated fields where required, and preserve hourly chronology when calculating persistence or ramp statistics."
+    },
+    "data_source": "European Centre for Medium-Range Weather Forecasts Copernicus Climate Change Service",
+    "gee_asset": {
+      "id": "ECMWF/ERA5/HOURLY",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:ECMWF/ERA5/HOURLY",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_047.json",
+    "source_sha256": "5040c8d0772e41dc428a0702548ac72348172463d40346089bf43ee09f569f70",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_047/prompt.json",
+    "current_prompt_sha256": "8c118382dff913abafe73f3fa75d546087ca80757317fc6431f1f0101fe85cc7",
+    "original_anchor_asset": {
+      "id": "ECMWF/ERA5/HOURLY",
+      "observable_group": "era5_hourly_single_level_weather",
+      "asset_alias_policy": "ERA5 hourly single-level fields distributed by the Copernicus Climate Data Store or their Earth Engine-hosted subset are the admitted product family; ERA5-Land, MERRA-2, regional reanalyses, forecasts, and monthly aggregates are excluded.",
+      "observation_identity_contract": {
+        "physical_object": "ECMWF ERA5 Hourly Single-Level Reanalysis, representing era5 hourly single level weather.",
+        "source_lineage": "Task Prompt source: European Centre for Medium-Range Weather Forecasts Copernicus Climate Change Service. Current task anchor: ECMWF/ERA5/HOURLY (era5_hourly_single_level_weather). Use the task-defined product lineage; do not infer equivalence to another product family.",
+        "core_measurement_semantics": "SI units by band, including kelvin, pascals, metres of accumulated precipitation, and metres per second; spatial resolution: Approximately 0.25 degrees, about 28 km; temporal structure: Hourly",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: ERA5 hourly single-level fields distributed by the Copernicus Climate Data Store or their Earth Engine-hosted subset are the admitted product family; ERA5-Land, MERRA-2, regional reanalyses, forecasts, and monthly aggregates are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "era5_ref_01",
+      "research_question": "How have extreme wind-solar power shortage events varied worldwide from 1980 to 2022, and how will climate change alter them?",
+      "hypothesis_or_mechanism": "ERA5 wind and radiation converted to generation and combined with load reveal multiday compound shortage events that average resource statistics hide.",
+      "variables_and_data_use": "Hourly ERA5 wind, solar radiation, temperature-related demand, installed portfolios, deficit magnitude, duration, and spatial concurrence are analysed globally.",
+      "method_paradigm": "Weather-to-power conversion, compound-event identification, global shortage climatology, and climate-change attribution.",
+      "used_assets": [
+        "ERA5 hourly weather",
+        "wind and solar conversion models",
+        "electricity demand profiles"
+      ],
+      "source_paper": {
+        "title": "Climate change impacts on the extreme power shortage events of wind-solar supply systems worldwide during 1980-2022",
+        "doi": "10.1038/s41467-024-48966-y",
+        "year": 2024,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Dongsheng Zheng",
+        "Dan Tong",
+        "Steven J. Davis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "impact_assessment",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_ref_02",
+      "research_question": "How should a sector-coupled European energy system be designed so that it remains feasible across 60 historical weather years?",
+      "hypothesis_or_mechanism": "Optimizing against a small set of weather years understates correlated renewable drought and demand extremes; broad ERA5 sampling exposes robust capacity, storage, and transmission needs.",
+      "variables_and_data_use": "Sixty years of ERA5 hourly wind, solar and temperature are converted to renewable availability and heat-electric demand and passed to a sector-coupled optimization model.",
+      "method_paradigm": "Multi-weather-year capacity-expansion robustness analysis with adequacy stress testing.",
+      "used_assets": [
+        "ERA5 hourly weather",
+        "European energy-demand data",
+        "sector-coupled network model"
+      ],
+      "source_paper": {
+        "title": "Designing a sector-coupled European energy system robust to 60 years of historical weather data",
+        "doi": "10.1038/s41467-024-54853-3",
+        "year": 2024,
+        "venue": "Nature Communications",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Gøtske",
+        "Andresen",
+        "Neumann",
+        "Victoria"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "method_innovation",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_ref_03",
+      "research_question": "Does the hidden ENSO state make Texas renewable supply and electricity demand jointly predictable months ahead?",
+      "hypothesis_or_mechanism": "ENSO reorganizes ERA5 wind, radiation, and temperature fields, creating predictable covariance between renewable supply and weather-sensitive demand rather than independent resource anomalies.",
+      "variables_and_data_use": "ERA5 100 m wind, surface solar radiation and 2 m temperature are converted to wind supply, solar supply and demand anomalies and conditioned on ENSO states.",
+      "method_paradigm": "Weather-to-energy conversion, hidden-state climate classification, and probabilistic supply-demand predictability analysis.",
+      "used_assets": [
+        "ERA5 hourly single-level weather",
+        "Texas wind and solar fleet models",
+        "temperature-sensitive demand"
+      ],
+      "source_paper": {
+        "title": "Potential climate predictability of renewable energy supply and demand for Texas given the ENSO hidden state",
+        "doi": "10.1126/sciadv.ado3517",
+        "year": 2024,
+        "venue": "Science Advances",
+        "pool_source": "original_existing"
+      },
+      "author_team": [
+        "Zhang",
+        "Yan",
+        "Amonkar",
+        "Nayak",
+        "Lall"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Europe PMC open full text Methods",
+      "idea_type": "relationship_mechanism",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "era5_ref_04",
+      "research_question": "南极沿岸极端东风事件中，大尺度强迫与局地过程分别如何影响近地面风？",
+      "hypothesis_or_mechanism": "低层斜压性、下坡风驱动及其他局地过程与大尺度强迫共同作用，塑造沿岸极端风事件。",
+      "variables_and_data_use": "使用 ERA5 的 10 米风筛选并合成极端事件，结合海平面气压、模式层风和模式层温度计算动量收支及相关强迫项。",
+      "method_paradigm": "再分析合成与动量收支归因",
+      "used_assets": [
+        "ERA5"
+      ],
+      "author_team": [
+        "Thomas Caton Harrison",
+        "John King",
+        "Thomas J. Bracegirdle",
+        "Hua Lu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Dynamics of extreme wind events in the marine and terrestrial sectors of coastal Antarctica",
+        "doi": "10.1002/qj.4727",
+        "year": 2024,
+        "venue": "Quarterly Journal of the Royal Meteorological Society",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_05",
+      "research_question": "南极半岛北部 1979–2022 年地面风速的多年代际变化和趋势如何，且这些变化与主要大气变率模态有何联系？",
+      "hypothesis_or_mechanism": "南半球环状模态和 ENSO 通过影响南大洋西风及阿蒙森海低压等环流特征，调制南极半岛的地面风速变化。",
+      "variables_and_data_use": "使用 ERA5 近地面风速月平均场评估区域变化，并与 SCAR MET-READER 及 Juan Carlos I 站点风速观测比较；结合 SAM 指数和 SOI，分析风速与大气变率模态的关系及异常合成。",
+      "method_paradigm": "再分析验证与趋势归因",
+      "used_assets": [
+        "ERA5",
+        "SCAR MET-READER",
+        "Spanish Base Juan Carlos I",
+        "Southern Annular Mode (SAM) index",
+        "Southern Oscillation Index (SOI)"
+      ],
+      "author_team": [
+        "Miguel Andrés-Martín",
+        "César Azorín-Molina",
+        "Encarna Serrano",
+        "Sergi González",
+        "José A. Guijarro",
+        "Shalenys Bedoya-Valestt",
+        "Eduardo Utrabo‐Carazo",
+        "Sergio Martín Vicente Serrano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Near-surface wind speed trends and variability over the Antarctic Peninsula, 1979–2022",
+        "doi": "10.1016/j.atmosres.2024.107568",
+        "year": 2024,
+        "venue": "Atmospheric Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_06",
+      "research_question": "不同偏差订正方法能否在时间和空间上稳定改善 ERA5 与 WRF 风速及风电容量因子的估算？",
+      "hypothesis_or_mechanism": "风速偏差会因地形复杂度和地点而异，订正方法的效果因此可能随时间和空间变化。",
+      "variables_and_data_use": "使用 ERA5 风速和次网格地形、WRF 插值风速、测风塔观测、年度风电容量因子及风机功率曲线；比较五种偏差订正方法对风速和容量因子估算的影响。",
+      "method_paradigm": "风速偏差订正评估",
+      "used_assets": [
+        "ERA5",
+        "WRF",
+        "wind speeds from anemometric masts",
+        "annual wind farm capacity factors",
+        "three wind turbine power curves"
+      ],
+      "author_team": [
+        "Alejandra Maciel-Tiburcio",
+        "Oscar Martínez‐Alvarado",
+        "Osvaldo Rodríguez-Hernández"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluating bias correction methods for wind power estimation using numerical meteorological models",
+        "doi": "10.1016/j.renene.2025.122927",
+        "year": 2025,
+        "venue": "Renewable Energy",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_07",
+      "research_question": "该论文研究如何区分地中海具有热带样特征的暖心气旋与由非绝热过程形成暖心结构的气旋。",
+      "hypothesis_or_mechanism": "如果气旋在获得对称深暖心前最大切向风半径收缩，并处于低斜压、较弱风切变和有利对流环境中，则更可能具有热带样发展机制。",
+      "variables_and_data_use": "论文使用 ERA‐5 reanalysis data 的位势高度、10 m 和不同气压层的 u/v 风、不同气压层气温、850 hPa 比湿以及 CAPE，计算 CPS 参数、最大切向风距离趋势、耦合指数、斜压指数和垂直风切变，并结合复合气旋轨迹进行分类分析。",
+      "method_paradigm": "气旋结构诊断",
+      "used_assets": [
+        "ERA‐5 reanalysis data",
+        "ERA‐5",
+        "composite approach aimed at producing a reference data set for Mediterranean cyclones (Flaounas et al., 2023)"
+      ],
+      "author_team": [
+        "Jesús Gutiérrez‐Fernández",
+        "Mario Marcello Miglietta",
+        "Juan Jesús González‐Alemán",
+        "Μiguel Angel Gaertner"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "A New Refinement of Mediterranean Tropical‐Like Cyclones Characteristics",
+        "doi": "10.1029/2023gl106429",
+        "year": 2024,
+        "venue": "Geophysical Research Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_08",
+      "research_question": "SWOT 与 Sentinel‐1 卫星观测能否在湖泊上可靠估计风向和风速，并相较 ERA5 提供怎样的表现？",
+      "hypothesis_or_mechanism": "湖面 SAR 后向散射中的风条纹可用于推断风向，而 C 波段后向散射与中性 10 米风速之间的经验关系可用于估计风速。",
+      "variables_and_data_use": "使用 SWOT Ka 波段 sigma0、Sentinel‐1 C 波段 VV 后向散射和入射角估计风场；以浮标实测风速和风向验证，并用 ERA5 的 10 米风速和风向作基准比较；湖冰范围用于筛除受冰影响的观测。",
+      "method_paradigm": "遥感反演与实测验证",
+      "used_assets": [
+        "SWOT Level 2 Water Mask Raster Image Data Product version C",
+        "Sentinel‐1 (S1) C‐band data",
+        "In‐Situ Buoy Dataset",
+        "ERA5",
+        "Sentinel‐3 derived Daily Lake Ice Extent product"
+      ],
+      "author_team": [
+        "Katie A. McQuillan",
+        "George Henry Allen",
+        "Jessica V. Fayne",
+        "Huilin Gao",
+        "Jida Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Estimating Wind Direction and Wind Speed Over Lakes With Surface Water Ocean Topography and Sentinel‐1 Satellite Observations",
+        "doi": "10.1029/2024ea003971",
+        "year": 2025,
+        "venue": "Earth and Space Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_09",
+      "research_question": "研究孟加拉国 1979 至 2021 年年度及季风相关时段的户外 WBGT 水平、变化趋势与热应激状况。",
+      "hypothesis_or_mechanism": "温度、相对湿度、太阳辐射和风速等气象条件共同影响 WBGT，其长期变化可能改变农业劳动者面临的热应激风险。",
+      "variables_and_data_use": "使用 ERA5 小时再分析变量，包括相对湿度、气温、太阳辐射以及由风分量计算并调整至 2 米高度的风速；据此计算 WBGT 及其自然湿球温度和黑球温度分量，并分析年度、季风前和季风期间的平均值、最大值及趋势。",
+      "method_paradigm": "再分析驱动的热应激趋势分析",
+      "used_assets": [
+        "ERA5",
+        "reanalysis-era5-singlelevels"
+      ],
+      "author_team": [
+        "A. S. M. Maksud Kamal",
+        "Abul Kashem Faruki Fahim",
+        "Shamsuddin Shahid"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Changes in wet bulb globe temperature and risk to heat-related hazards in Bangladesh",
+        "doi": "10.1038/s41598-024-61138-8",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_10",
+      "research_question": "ERA5 和其他再分析风数据能否准确表征摩洛哥及西班牙站点的风况，并支持近海风能资源评估？",
+      "hypothesis_or_mechanism": "利用地面风观测学习的偏差调整函数可改善 ERA5 风数据在验证期的表现，而风场高度换算可支持风机高度的资源估算。",
+      "variables_and_data_use": "使用 ERA5 的 10 米和 100 米风变量进行观测验证、风廓线高度换算、偏差调整及风功率和容量因子评估；以 HadISD 和 ECA &D 站点风观测作基准，并与 MERRA-2 及 WFDE5 比较。",
+      "method_paradigm": "再分析验证与风能评估",
+      "used_assets": [
+        "ERA5",
+        "ERA5-BA",
+        "MERRA-2",
+        "MERRA-2-BA",
+        "WFDE5",
+        "Hadley Centre Integrated Surface Database (HadISD)",
+        "European Climate Assessment Data (ECA &D)"
+      ],
+      "author_team": [
+        "Younes Zekeik",
+        "M. J. OrtizBeviá",
+        "F. Álvarez-García",
+        "Ali Haddi",
+        "Youness El Mourabit",
+        "Ali Alrubaye"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Improved wind power assessments by bias adjusted reanalysed data with applications near Morocco’s coast",
+        "doi": "10.1038/s41598-024-77765-0",
+        "year": 2024,
+        "venue": "Scientific Reports",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_11",
+      "research_question": "WRF-Chem 能否准确模拟南亚地区季风和后季风期间的近地面气象、垂直气象结构以及 PM 2.5、黑碳和 AOD 分布？",
+      "hypothesis_or_mechanism": "ERA5 驱动的气象场及其与排放和气溶胶化学过程的耦合能够再现污染期间的气象停滞、边界层演变和颗粒物积累，但风场、湿度和排放表示误差会造成模拟偏差。",
+      "variables_and_data_use": "使用 ERA5 的温度、风和水汽变量初始化 WRF-Chem、设置边界条件并进行每 6 小时网格 nudging；使用 MERRA-2 比较气象、PM 2.5 和黑碳空间分布，使用 IEM-ASOS 和 radiosonde observations (RAOB) 验证气象场，使用 CPCB/OpenAQ 验证地面 PM 2.5，并使用 MODIS 和 AERONET version 2 level 2.0 验证 550 nm AOD。",
+      "method_paradigm": "数值模拟与多源验证",
+      "used_assets": [
+        "ERA5",
+        "MERRA-2",
+        "Iowa Environmental Mesonet-Automated Surface Observing System; IEM-ASOS network",
+        "radiosonde observations (RAOB), University of Wyoming",
+        "Central Pollution Control Board of India (CPCB), accessed via the OpenAQ platform",
+        "MODIS",
+        "AERONET version 2 level 2.0",
+        "Fire Inventory from NCAR, version 1.5 (FINNv1.5)",
+        "EDGAR-HTAPv2.2",
+        "Model of Emissions of Gases and Aerosol from Nature (MEGAN v2.0)",
+        "Model of Emissions and Chemical Interactions (MOSAIC)"
+      ],
+      "author_team": [
+        "Prerita Agarwal",
+        "David S. Stevenson",
+        "Mathew R. Heal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Evaluation of WRF-Chem-simulated meteorology and aerosols over northern India during the severe pollution episode of 2016",
+        "doi": "10.5194/acp-24-2239-2024",
+        "year": 2024,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_12",
+      "research_question": "研究如何利用GF-5B/AHSI高光谱观测识别和估算山西煤矿甲烷点源排放，并评估ERA5风场对排放通量估算的影响。",
+      "hypothesis_or_mechanism": "光谱校准和自动羽流分割能够改善甲烷增强反演与排放估算，而ERA5近地面风速误差会直接传播到点源排放通量的不确定性中。",
+      "variables_and_data_use": "使用GF-5B/AHSI短波红外光谱反演ΔXCH4并计算羽流超额质量，使用ERA5 U 10逐小时风速估算排放通量并与气象站观测比较，使用TROPOMI筛选潜在点源、Google Earth核查地面设施、SRTM进行几何校正。",
+      "method_paradigm": "遥感反演与不确定性评估",
+      "used_assets": [
+        "GF-5B/AHSI",
+        "TROPOMI",
+        "Google Earth",
+        "ECMWF ERA5",
+        "ERA5 reanalysis",
+        "SRTM",
+        "China Meteorological Administration Data Centre"
+      ],
+      "author_team": [
+        "Zhonghua He",
+        "Gao Ling",
+        "Miao Liang",
+        "Zhao‐Cheng Zeng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "A survey of methane point source emissions from coal mines in Shanxi province of China using AHSI on board Gaofen-5B",
+        "doi": "10.5194/amt-17-2937-2024",
+        "year": 2024,
+        "venue": "Atmospheric measurement techniques",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_13",
+      "research_question": "多种气旋强度指标之间如何关联，以及如何利用这些指标对北大西洋和欧洲区域的温带气旋进行分类？",
+      "hypothesis_or_mechanism": "温带气旋的动力强度指标与影响相关指标能够提供互补信息，结合降维和聚类可以识别具有不同强度特征的气旋类别。",
+      "variables_and_data_use": "论文使用 ERA5 reanalysis 的海平面气压、850 hPa 相对涡度、850 hPa 和 925 hPa 风速、10 m 风速、10 m 阵风、降水及其累计量等变量，先构建气旋轨迹和 11 类强度指标，再通过相关分析、稀疏主成分分析和高斯混合模型进行分类。",
+      "method_paradigm": "降维与无监督聚类",
+      "used_assets": [
+        "ERA5 reanalysis",
+        "ERA5 pressure level data"
+      ],
+      "author_team": [
+        "Joona Samuel Cornér",
+        "Clément Gael Francis Bouvier",
+        "Benjamin Doiteau",
+        "Florian Pantillon",
+        "Victoria A. Sinclair"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Classification of North Atlantic and European extratropical cyclones using multiple measures of intensity",
+        "doi": "10.5194/nhess-25-207-2025",
+        "year": 2025,
+        "venue": "Natural hazards and earth system sciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_14",
+      "research_question": "印度可再生能源干旱（风能和太阳能低产期）的天气模式和遥相关驱动因素是什么",
+      "hypothesis_or_mechanism": "特定的大尺度天气模式（如季风环流类型）和遥相关信号（MJO 和 BSISO）导致风能和太阳能同时低产，形成能源干旱事件",
+      "variables_and_data_use": "使用 ERA5 逐小时地表层变量（向下短波辐射通量、10 米和 100 米风速、2 米温度）驱动风能和太阳能产能模型（1979-2022），识别低产日（最低 2.5%）；使用 ERA5 850 hPa 风场和地表短波辐射进行 k-means 聚类生成影响导向模式；结合印度天气模式分类、MJO 和 BSISO 指数分析低产日的天气和遥相关特征",
+      "method_paradigm": "再分析驱动的能源模拟与天气模式聚类",
+      "used_assets": [
+        "ERA5 reanalysis",
+        "MJO indices",
+        "BSISO indices",
+        "Indian weather patterns"
+      ],
+      "author_team": [
+        "Isa Dijkstra",
+        "Hannah Bloomfield",
+        "Kieran M. R. Hunt"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Identifying weather patterns responsible for renewable energy droughts over India",
+        "doi": "10.5194/adgeo-65-127-2025",
+        "year": 2025,
+        "venue": "Advances in geosciences",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_15",
+      "research_question": "不同空间和技术组合的风电与光伏装机分布如何影响爱尔兰国家及风电场尺度的可再生能源发电爬坡事件？",
+      "hypothesis_or_mechanism": "空间分散化以及风电与光伏资源的互补性能够降低相对装机容量的高幅度爬坡及其季节性，但更高的总装机容量可能提高绝对功率爬坡规模。",
+      "variables_and_data_use": "使用 ERA5 reanalysis 的小时天气变量驱动 Atlite，重点使用地表向下太阳辐射和 2 米温度模拟光伏与风电功率；使用 EirGrid 的国家及风电场可用功率观测进行验证；使用 renewables.ninja 的风机功率曲线选择风电模型参数，并分析容量因子、3 小时功率变化、爬坡幅度、季节分布和返回期。",
+      "method_paradigm": "再分析驱动的情景模拟",
+      "used_assets": [
+        "ERA5 reanalysis",
+        "EirGrid",
+        "Atlite",
+        "renewables.ninja",
+        "NEG Micon NM 60/1000",
+        "IEA 15 MW offshore reference turbine"
+      ],
+      "author_team": [
+        "Aina Maimó-Far",
+        "C. Sweeney",
+        "Damian Flynn"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Wind and solar PV generation ramping events from farm to national level: the case of Ireland",
+        "doi": "10.5194/asr-22-53-2025",
+        "year": 2025,
+        "venue": "Advances in science and research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_16",
+      "research_question": "所提供文本不足以确定该论文的研究问题。",
+      "hypothesis_or_mechanism": "所提供文本不足以确定该论文的假设或作用机制。",
+      "variables_and_data_use": "所提供文本未列出论文实际使用的产品、变量或数据处理方式。",
+      "method_paradigm": "信息不足，无法确定",
+      "used_assets": [],
+      "author_team": [
+        "Antonio Jiménez-Garrote",
+        "Francisco J. Santos‐Alamillos",
+        "Guadalupe Sánchez-Hernández",
+        "Miguel López-Cuesta",
+        "Jose Antonio Ruiz-Arias",
+        "David Pozo‐Vázquez"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Evaluation of a Database of the Spanish Wind Energy Resources Derived from a Regional Reanalysis",
+        "doi": "10.3390/en17071523",
+        "year": 2024,
+        "venue": "Energies",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "era5_ref_17",
+      "research_question": "海上风电场的供给侧缓解策略（风机技术、尾流效应、停机时间和空间分散）如何影响不同时间尺度（逐小时、逐日、逐月）的中度和极端风能干旱的发生频率和持续时间？",
+      "hypothesis_or_mechanism": "先进的风机技术（更高轮毂高度、更优功率曲线）、降低尾流损失和停机时间、以及跨多个海洋生态区的空间分散布局，能够通过提高低风速条件下的容量因子和利用区域间风资源的时空异步性，减少风能干旱事件的频率和持续时间。",
+      "variables_and_data_use": "使用ERA5的10米和100米高度经向和纬向风速分量（v10m, u10m, v100m, u100m），通过幂律外推计算150米高度风速，再结合不同风机的功率曲线、尾流效应和停机时间的效率因子，计算逐小时容量因子时间序列，并进行时间聚合（逐日、逐月）和空间聚合（专属经济区和海洋生态区层面），通过百分位数阈值（P20和P5）识别中度和极端风能干旱事件。",
+      "method_paradigm": "情景对比分析 时间序列统计",
+      "used_assets": [
+        "ERA5",
+        "Wind farm site locations",
+        "IEA 15MW wind turbine power curve",
+        "NREL 5MW wind turbine power curve",
+        "IEA 22MW wind turbine power curve",
+        "Marine ecoregions"
+      ],
+      "author_team": [
+        "Christopher Jung",
+        "Dirk Schindler"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Quantifying Supply-Side Mitigation Strategies for Offshore Wind Energy Droughts on a Global Scale",
+        "doi": "10.3390/en19040955",
+        "year": 2026,
+        "venue": "Energies",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "research_question": "Can combining gauge, satellite, and reanalysis inputs produce a more accurate 1 km daily precipitation dataset for the Europe–Mediterranean region?",
+      "hypothesis_or_mechanism": "Multi-source merging and high-resolution climatological downscaling can improve spatial coverage and precipitation estimates while retaining the parent datasets’ distinct error structures.",
+      "variables_and_data_use": "ERA5-Land hourly precipitation is accumulated to daily values and used as the reanalysis parent for downscaling and as an input in the M4 merge; first-soil-layer surface temperature is also used to identify frozen conditions.",
+      "method_paradigm": "Hydroclimatic product development using climatology-guided downscaling, Triple Collocation merging, and evaluation against gauge, satellite, and reference precipitation datasets.",
+      "used_assets": [
+        "ECMWF:ERA5-Land:hourly:1950-present"
+      ],
+      "idea_type": "measurement_validation",
+      "direction_id": "exp_e2d09a51a2db7c8b3742",
+      "source_paper": {
+        "doi": "10.5194/essd-17-5221-2025",
+        "title": "Development of HYPER-P: HYdroclimatic PERformance-enhanced Precipitation at 1 km/daily over the Europe-Mediterranean region from 2007 to 2022",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "authors": [
+          "Paolo Filippucci",
+          "Luca Brocca",
+          "Luca Ciabatta",
+          "Hamidreza Mosaffa",
+          "Francesco Avanzi",
+          "Christian Massari"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "ECMWF:ERA5-Land:hourly:1950-present",
+        "name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper uses ERA5-Land hourly precipitation as a reanalysis parent, accumulates it to daily values, downscales precipitation inputs to 1 km, and includes the reanalysis in the M4 combination. The field remains precipitation, but the land replay, 0.1° grid, daily accumulation and 1 km derived product differ from the 0.25° hourly ERA5 anchor. This qualifies as a documented similar dataset, not an identical anchor.",
+      "comparability_quote": "The hourly precipitation was accumulated to daily scale in this study.",
+      "differences_vs_anchor": {
+        "lineage": "ERA5-Land is the land-component replay; the task anchor is full ERA5 single-level reanalysis.",
+        "variable": "The extension use is precipitation (and first-layer surface temperature for a freeze mask); it does not represent the anchor’s full hourly variable set.",
+        "spatial_scale": "ERA5-Land is reported at 0.1° (~9 km); the downstream HYPER-P product is downscaled to 1 km, while the anchor grid is about 0.25° (~31 km).",
+        "temporal_scale": "Hourly precipitation is accumulated to daily values for this analysis; the anchor reference is hourly.",
+        "product_role": "ERA5-Land is a parent/reference input in a multi-source precipitation product, not a replacement name for ERA5."
+      },
+      "comparability_handling": "The authors state the hourly-to-daily accumulation, use a 0.009° target grid for downscaling, and retain ERA5-Land as the reanalysis component in the multi-source analysis. The extension entry is recorded separately as similar_dataset.",
+      "doi": "10.5194/essd-17-5221-2025",
+      "task_id": "single_dataset/task_047",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "ECMWF/ERA5/HOURLY",
+      "actual_dataset_id": "ECMWF:ERA5-Land:hourly:1950-present",
+      "actual_product_name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis",
+      "expansion_contract_id": "single_dataset/task_047_expansion_v1",
+      "expansion_contract_sha256": "a2fa30b6cad24b4bfae4c7bc3ebe9a0db02a8863aad123d3987f2c0c9ea96444",
+      "task_card_sha256": "41a839906e270916e2740de96eca90bb483d0f0ef22af3b0cbc80835e8552f95",
+      "source_text_sha256": "30248e1bf57fa275a547b0856a322e97ecef8de520e54e2ff4532946c455b569",
+      "product_use_quote": "The selected products were CPC for Gauge data, ERA5-Land for Reanalysis",
+      "operational_use_quote": "The frozen condition mask is obtained from ERA5-Land, by selecting all the dates in which the surface temperature of the first soil layer is below 0.",
+      "application_scope_quote": "A downscaling procedure is carried out for each precipitation product by using the high-resolution information contained in CHELSA.",
+      "supporting_quote": "The hourly precipitation was accumulated to daily scale in this study.",
+      "human_reviewer": "Codex manual review",
+      "human_reviewed_at_utc": "2026-10-07T02:24:12Z",
+      "human_reason": "Admitted after reading the Methods/Data. The paper names the approved hourly ERA5-Land product and documents its operational use, hourly-to-daily aggregation, and downstream spatial transformation. The topic is eligible under the current unrestricted application rule.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "expansion_20261007_task_047_r007",
+      "source_pool_sha256": "fe23891cebe877f25247f60bbb2b840b72d9cd97e6d2d0a6e38ba026214e8aba",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Paolo Filippucci",
+        "Luca Brocca",
+        "Luca Ciabatta",
+        "Hamidreza Mosaffa",
+        "Francesco Avanzi",
+        "Christian Massari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How can optical and microwave satellite observations identify snowfall events over Arctic regions, with radar and reanalysis data providing supporting evidence?",
+      "hypothesis_or_mechanism": "Combining independent satellite, radar, and reanalysis observations can improve the detection and characterization of snowfall events under challenging Arctic conditions.",
+      "variables_and_data_use": "Hourly ERA5-Land snow water equivalent at approximately 9 km is included as a supplemental dataset; the study calculates daily means alongside radar and satellite observations.",
+      "method_paradigm": "Multi-sensor snowfall-event detection and measurement validation using optical and microwave satellite observations, weather radar, in situ data, and reanalysis.",
+      "used_assets": [
+        "ECMWF:ERA5-Land:hourly:1950-present"
+      ],
+      "idea_type": "measurement_validation",
+      "direction_id": "exp_6eae0e24cc6703c561cd",
+      "source_paper": {
+        "doi": "10.5194/hess-28-3855-2024",
+        "title": "Detecting snowfall events over the Arctic using optical and microwave satellite measurements",
+        "year": 2024,
+        "venue": "Hydrology and earth system sciences",
+        "authors": [
+          "Emmihenna Jääskeläinen",
+          "Kerttu Kouki",
+          "Aku Riihelä"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "ECMWF:ERA5-Land:hourly:1950-present",
+        "name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper operationally uses hourly ERA5-Land snow water equivalent and computes daily means. The article reports the ~9 km land grid and non-assimilating replay lineage; official ERA5-Land metadata identifies the snow-depth-water-equivalent field and unit. Daily means and the land-focused lineage differ from the task’s hourly full ERA5 anchor, so this is admitted only as a similar dataset.",
+      "comparability_quote": "In this study, we use hourly SWE values from which we calculate daily means.",
+      "differences_vs_anchor": {
+        "lineage": "ERA5-Land is a land-component replay without direct data assimilation; the anchor is full ERA5 reanalysis.",
+        "variable": "The extension use is snow water equivalent (ERA5-Land snow-depth-water-equivalent field), not the anchor’s complete atmospheric field set.",
+        "spatial_scale": "The paper reports ~9 km ERA5-Land grid spacing versus ~31 km for the anchor.",
+        "temporal_scale": "Hourly SWE values are converted to daily means; the anchor remains an hourly reference.",
+        "product_role": "ERA5-Land SWE supplements optical, microwave and radar snowfall observations."
+      },
+      "comparability_handling": "The authors explicitly identify the hourly SWE input, calculate daily means, and retain ERA5-Land as a supplemental analysis dataset. The review keeps its land-reanalysis identity and daily processing distinct from the strict ERA5 anchor.",
+      "doi": "10.5194/hess-28-3855-2024",
+      "task_id": "single_dataset/task_047",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "ECMWF/ERA5/HOURLY",
+      "actual_dataset_id": "ECMWF:ERA5-Land:hourly:1950-present",
+      "actual_product_name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis",
+      "expansion_contract_id": "single_dataset/task_047_expansion_v1",
+      "expansion_contract_sha256": "a2fa30b6cad24b4bfae4c7bc3ebe9a0db02a8863aad123d3987f2c0c9ea96444",
+      "task_card_sha256": "41a839906e270916e2740de96eca90bb483d0f0ef22af3b0cbc80835e8552f95",
+      "source_text_sha256": "4ccd6275b45db7afde48d312c1607f3c7d81b8a7c92c90276a3929e1bac8a705",
+      "product_use_quote": "we also include ERA5-Land (ERA5L) SWE data to the analysis",
+      "operational_use_quote": "In this study, we use hourly SWE values from which we calculate daily means.",
+      "application_scope_quote": "we also include ERA5-Land (ERA5L) SWE data to the analysis",
+      "supporting_quote": "The spatial resolution of ERA5L is 9 km, and, contrary to ERA5, ERA5L is run without data assimilation and coupling of the atmospheric module.",
+      "human_reviewer": "Codex manual review",
+      "human_reviewed_at_utc": "2026-10-07T02:24:12Z",
+      "human_reason": "Admitted after reading the Methods/Data and checking the cited product metadata. The paper explicitly uses hourly ERA5-Land SWE, states its spatial scale and daily-mean handling, and treats it as a supplemental snow-analysis dataset.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "expansion_20261007_task_047_r007",
+      "source_pool_sha256": "fe23891cebe877f25247f60bbb2b840b72d9cd97e6d2d0a6e38ba026214e8aba",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Emmihenna Jääskeläinen",
+        "Kerttu Kouki",
+        "Aku Riihelä"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How well do observation-based and reanalysis precipitation datasets identify precipitation extremes associated with floods and gravitational mass movements across a transboundary Alpine region?",
+      "hypothesis_or_mechanism": "Different spatial and temporal resolutions and analysis methods identify different extreme-event dates and hazard associations.",
+      "variables_and_data_use": "ERA5-Land hourly accumulated total precipitation is aggregated to daily totals over 00:00–00:00 UTC and analyzed at its native ~9 km grid over 2003–2020, alongside regional observation-based and other reanalysis datasets.",
+      "method_paradigm": "Comparative extreme-event detection with temporal and spatial hazard-association analysis across multiple climate datasets.",
+      "used_assets": [
+        "ECMWF:ERA5-Land:hourly:1950-present"
+      ],
+      "idea_type": "impact_assessment",
+      "direction_id": "exp_34c54c5f1f59a572043e",
+      "source_paper": {
+        "doi": "10.5194/nhess-26-1975-2026",
+        "title": "Detection and characterization of precipitation extremes and geohydrological hazards over a transboundary Alpine area based on different methods and climate datasets",
+        "year": 2026,
+        "venue": "Natural hazards and earth system sciences",
+        "authors": [
+          "Alice Crespi",
+          "Katharina Enigl",
+          "Sebastian Lehner",
+          "Klaus Haslinger",
+          "Massimiliano Pittore"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "ECMWF:ERA5-Land:hourly:1950-present",
+        "name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The Methods identify hourly ERA5-Land surface fields and derive daily total precipitation from accumulated totals over 00:00–00:00 UTC. The paper uses native grids over a common 2003–2020 period and compares ERA5-Land with regional gridded datasets. The variable is precipitation; daily aggregation and the 9 km land grid differ from the 0.25° hourly full ERA5 anchor, so this remains a similar_dataset relation.",
+      "comparability_quote": "Daily precipitation totals are extracted from accumulated precipitation totals (including both liquid and solid precipitation) from 00:00 UTC of the current day to 00:00 UTC of the next day.",
+      "differences_vs_anchor": {
+        "lineage": "ERA5-Land is the land-component replay driven by ERA5; the anchor is full ERA5 single-level reanalysis.",
+        "variable": "The extension analysis uses total precipitation, a surface field, rather than the anchor’s broader weather-variable set.",
+        "spatial_scale": "The paper reports ERA5-Land at ~9 km and uses each product on its native grid; the anchor is ~31 km.",
+        "temporal_scale": "Hourly accumulated precipitation is aggregated over 00:00–00:00 UTC into daily totals; the anchor reference is hourly.",
+        "product_role": "ERA5-Land is one of several climate datasets evaluated for precipitation extremes and hazard association."
+      },
+      "comparability_handling": "The paper gives the hourly accumulation window, uses the common 2003–2020 period and native product grids, and accounts for grid spacing in its spatial search radius. The extension is recorded as ERA5-Land similar_dataset, not as strict ERA5.",
+      "doi": "10.5194/nhess-26-1975-2026",
+      "task_id": "single_dataset/task_047",
+      "scope": "dataset_expansion",
+      "relation_scope": "similar_dataset",
+      "anchor_dataset_id": "ECMWF/ERA5/HOURLY",
+      "actual_dataset_id": "ECMWF:ERA5-Land:hourly:1950-present",
+      "actual_product_name": "ERA5-Land hourly data from 1950 to present, single-level land reanalysis",
+      "expansion_contract_id": "single_dataset/task_047_expansion_v1",
+      "expansion_contract_sha256": "a2fa30b6cad24b4bfae4c7bc3ebe9a0db02a8863aad123d3987f2c0c9ea96444",
+      "task_card_sha256": "41a839906e270916e2740de96eca90bb483d0f0ef22af3b0cbc80835e8552f95",
+      "source_text_sha256": "4088912e00cb46b75a6afa1ef6fb889ab02769f26c9f0d51aa016ac0773bea14",
+      "product_use_quote": "ERA5-Land is a replay of the land component of the global reanalysis ERA5 with a finer spatial resolution of 9 km and provides hourly fields of surface variables from 1950 to present.",
+      "operational_use_quote": "Daily precipitation totals are extracted from accumulated precipitation totals (including both liquid and solid precipitation) from 00:00 UTC of the current day to 00:00 UTC of the next day.",
+      "application_scope_quote": "The three methods are independently applied to all climate datasets, yielding three sorted lists of dates per dataset.",
+      "supporting_quote": "All analyses were based on the congruent period 2003–2020, while each product was used in its native spatial resolution.",
+      "human_reviewer": "Codex manual review",
+      "human_reviewed_at_utc": "2026-10-07T02:24:12Z",
+      "human_reason": "Admitted after reading the Methods/Data. The paper establishes the hourly ERA5-Land product, identifies precipitation, specifies the daily accumulation window, and reports native-grid use; its topic is within the current unrestricted application scope.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "expansion_20261007_task_047_r007",
+      "source_pool_sha256": "fe23891cebe877f25247f60bbb2b840b72d9cd97e6d2d0a6e38ba026214e8aba",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Alice Crespi",
+        "Katharina Enigl",
+        "Sebastian Lehner",
+        "Klaus Haslinger",
+        "Massimiliano Pittore"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 20,
+    "source_paper_count": 20,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

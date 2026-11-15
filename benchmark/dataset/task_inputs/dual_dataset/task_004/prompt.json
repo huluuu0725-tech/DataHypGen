@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Europe and Mediterranean hydroclimatic regimes",
+  "datasets": [
+    {
+      "role": "precipitation_observation_input",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Gridded precipitation raster collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "0.05 degree grid",
+        "temporal_unit": "Daily precipitation estimate",
+        "temporal_coverage": "1981-present",
+        "data_source": "Climate Hazards Center CHIRPS v2.0",
+        "gee_asset": {
+          "id": "UCSB-CHG/CHIRPS/DAILY",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "analytical_capabilities": [
+          "Rainfall accumulation and anomaly construction",
+          "Extreme precipitation indicators",
+          "Hydroclimatic covariates"
+        ],
+        "spatial_coverage": {
+          "region_name": "Europe and Mediterranean hydroclimatic regimes",
+          "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+        }
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    },
+    {
+      "role": "reanalysis_forcing_input",
+      "data_description": {
+        "dataset_name": "ERA5-Land Daily Aggregated Reanalysis",
+        "data_type": "Reanalysis raster time series",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "Approximately 0.1 degree reanalysis grid",
+        "temporal_unit": "Daily aggregated meteorological fields",
+        "temporal_coverage": "1950-present",
+        "data_source": "ECMWF ERA5-Land reanalysis",
+        "gee_asset": {
+          "id": "ECMWF/ERA5_LAND/DAILY_AGGR",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:ECMWF/ERA5_LAND/DAILY_AGGR",
+        "analytical_capabilities": [
+          "Reanalysis precipitation and land-surface forcing",
+          "Climate covariate construction",
+          "Downscaling and model evaluation"
+        ],
+        "spatial_coverage": {
+          "region_name": "Europe and Mediterranean hydroclimatic regimes",
+          "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+        }
+      },
+      "data_path": "GEE:ECMWF/ERA5_LAND/DAILY_AGGR"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Gridded precipitation raster collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "0.05 degree grid",
+      "temporal_unit": "Daily precipitation estimate",
+      "temporal_coverage": "1981-present",
+      "data_source": "Climate Hazards Center CHIRPS v2.0",
+      "gee_asset": {
+        "id": "UCSB-CHG/CHIRPS/DAILY",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "analytical_capabilities": [
+        "Rainfall accumulation and anomaly construction",
+        "Extreme precipitation indicators",
+        "Hydroclimatic covariates"
+      ],
+      "spatial_coverage": {
+        "region_name": "Europe and Mediterranean hydroclimatic regimes",
+        "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+      }
+    },
+    {
+      "dataset_name": "ERA5-Land Daily Aggregated Reanalysis",
+      "data_type": "Reanalysis raster time series",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "Approximately 0.1 degree reanalysis grid",
+      "temporal_unit": "Daily aggregated meteorological fields",
+      "temporal_coverage": "1950-present",
+      "data_source": "ECMWF ERA5-Land reanalysis",
+      "gee_asset": {
+        "id": "ECMWF/ERA5_LAND/DAILY_AGGR",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:ECMWF/ERA5_LAND/DAILY_AGGR",
+      "analytical_capabilities": [
+        "Reanalysis precipitation and land-surface forcing",
+        "Climate covariate construction",
+        "Downscaling and model evaluation"
+      ],
+      "spatial_coverage": {
+        "region_name": "Europe and Mediterranean hydroclimatic regimes",
+        "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:ECMWF/ERA5_LAND/DAILY_AGGR"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "precipitation_reanalysis_downscaling composite observation",
+    "observable_group": "precipitation_reanalysis_downscaling_multidataset_observation",
+    "data_description": {
+      "dataset_name": "precipitation_reanalysis_downscaling composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Europe and Mediterranean hydroclimatic regimes",
+        "coverage": "Declared study region within Europe and Mediterranean hydroclimatic regimes."
+      },
+      "analytical_capabilities": [
+        "Role-aware spatial and temporal alignment",
+        "Joint feature construction",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "precipitation_observation_input",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Gridded precipitation raster collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid",
+          "temporal_unit": "Daily precipitation estimate",
+          "temporal_coverage": "1981-present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Rainfall accumulation and anomaly construction",
+            "Extreme precipitation indicators",
+            "Hydroclimatic covariates"
+          ],
+          "spatial_coverage": {
+            "region_name": "Europe and Mediterranean hydroclimatic regimes",
+            "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      },
+      {
+        "role": "reanalysis_forcing_input",
+        "data_description": {
+          "dataset_name": "ERA5-Land Daily Aggregated Reanalysis",
+          "data_type": "Reanalysis raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "Approximately 0.1 degree reanalysis grid",
+          "temporal_unit": "Daily aggregated meteorological fields",
+          "temporal_coverage": "1950-present",
+          "data_source": "ECMWF ERA5-Land reanalysis",
+          "gee_asset": {
+            "id": "ECMWF/ERA5_LAND/DAILY_AGGR",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:ECMWF/ERA5_LAND/DAILY_AGGR",
+          "analytical_capabilities": [
+            "Reanalysis precipitation and land-surface forcing",
+            "Climate covariate construction",
+            "Downscaling and model evaluation"
+          ],
+          "spatial_coverage": {
+            "region_name": "Europe and Mediterranean hydroclimatic regimes",
+            "coverage": "Catalog coverage intersected with Europe and Mediterranean hydroclimatic regimes."
+          }
+        },
+        "data_path": "GEE:ECMWF/ERA5_LAND/DAILY_AGGR"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "The declared components jointly define the task observation and must be interpreted with their stated roles.",
+      "alignment": "All required components must be spatially collocated and aligned to a declared temporal support before analysis.",
+      "required_roles": [
+        "precipitation_observation_input",
+        "reanalysis_forcing_input"
+      ],
+      "component_count": 2,
+      "supplement_policy": "Ideas may add verified auxiliary datasets with distinct scientific roles; auxiliary data cannot replace required roles."
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:UCSB-CHG/CHIRPS/DAILY",
+    "GEE:ECMWF/ERA5_LAND/DAILY_AGGR"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "precipitation_observation_input",
+      "reanalysis_forcing_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

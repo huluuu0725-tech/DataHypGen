@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Semi-arid groundwater basins",
+  "datasets": [
+    {
+      "role": "satellite_gravimetry_tws_input",
+      "data_description": {
+        "dataset_name": "GRACE Monthly Mass Grids Land",
+        "data_type": "Satellite gravimetry raster time series",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "Product-dependent coarse global grid",
+        "temporal_unit": "Monthly terrestrial water-storage anomaly",
+        "temporal_coverage": "2002-present for GRACE/GRACE-FO-compatible records",
+        "data_source": "NASA GRACE/GRACE-FO land mass-grid lineage",
+        "gee_asset": {
+          "id": "NASA/GRACE/MASS_GRIDS/LAND",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+        "analytical_capabilities": [
+          "Terrestrial water-storage anomalies",
+          "Trend and drought analysis",
+          "Groundwater-storage constraint"
+        ],
+        "spatial_coverage": {
+          "region_name": "Semi-arid groundwater basins",
+          "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+        }
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+    },
+    {
+      "role": "precipitation_driver_input",
+      "data_description": {
+        "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+        "data_type": "Gridded precipitation raster collection",
+        "data_format": "Google Earth Engine ImageCollection",
+        "spatial_resolution": "0.05 degree grid",
+        "temporal_unit": "Daily precipitation estimate",
+        "temporal_coverage": "1981-present",
+        "data_source": "Climate Hazards Center CHIRPS v2.0",
+        "gee_asset": {
+          "id": "UCSB-CHG/CHIRPS/DAILY",
+          "type": "image_collection"
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+        "analytical_capabilities": [
+          "Rainfall accumulation and anomaly construction",
+          "Extreme precipitation indicators",
+          "Hydroclimatic covariates"
+        ],
+        "spatial_coverage": {
+          "region_name": "Semi-arid groundwater basins",
+          "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+        }
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "GRACE Monthly Mass Grids Land",
+      "data_type": "Satellite gravimetry raster time series",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "Product-dependent coarse global grid",
+      "temporal_unit": "Monthly terrestrial water-storage anomaly",
+      "temporal_coverage": "2002-present for GRACE/GRACE-FO-compatible records",
+      "data_source": "NASA GRACE/GRACE-FO land mass-grid lineage",
+      "gee_asset": {
+        "id": "NASA/GRACE/MASS_GRIDS/LAND",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "analytical_capabilities": [
+        "Terrestrial water-storage anomalies",
+        "Trend and drought analysis",
+        "Groundwater-storage constraint"
+      ],
+      "spatial_coverage": {
+        "region_name": "Semi-arid groundwater basins",
+        "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+      }
+    },
+    {
+      "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+      "data_type": "Gridded precipitation raster collection",
+      "data_format": "Google Earth Engine ImageCollection",
+      "spatial_resolution": "0.05 degree grid",
+      "temporal_unit": "Daily precipitation estimate",
+      "temporal_coverage": "1981-present",
+      "data_source": "Climate Hazards Center CHIRPS v2.0",
+      "gee_asset": {
+        "id": "UCSB-CHG/CHIRPS/DAILY",
+        "type": "image_collection"
+      },
+      "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+      "analytical_capabilities": [
+        "Rainfall accumulation and anomaly construction",
+        "Extreme precipitation indicators",
+        "Hydroclimatic covariates"
+      ],
+      "spatial_coverage": {
+        "region_name": "Semi-arid groundwater basins",
+        "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "anchor_asset": {
+    "id": "composite_observation",
+    "type": "composite_observation",
+    "name": "grace_precipitation_groundwater composite observation",
+    "observable_group": "grace_precipitation_groundwater_multidataset_observation",
+    "data_description": {
+      "dataset_name": "grace_precipitation_groundwater composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled aligned dataset bundle",
+      "spatial_coverage": {
+        "region_name": "Semi-arid groundwater basins",
+        "coverage": "Declared study region within Semi-arid groundwater basins."
+      },
+      "analytical_capabilities": [
+        "Role-aware spatial and temporal alignment",
+        "Joint feature construction",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "satellite_gravimetry_tws_input",
+        "data_description": {
+          "dataset_name": "GRACE Monthly Mass Grids Land",
+          "data_type": "Satellite gravimetry raster time series",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "Product-dependent coarse global grid",
+          "temporal_unit": "Monthly terrestrial water-storage anomaly",
+          "temporal_coverage": "2002-present for GRACE/GRACE-FO-compatible records",
+          "data_source": "NASA GRACE/GRACE-FO land mass-grid lineage",
+          "gee_asset": {
+            "id": "NASA/GRACE/MASS_GRIDS/LAND",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+          "analytical_capabilities": [
+            "Terrestrial water-storage anomalies",
+            "Trend and drought analysis",
+            "Groundwater-storage constraint"
+          ],
+          "spatial_coverage": {
+            "region_name": "Semi-arid groundwater basins",
+            "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+          }
+        },
+        "data_path": "GEE:NASA/GRACE/MASS_GRIDS/LAND"
+      },
+      {
+        "role": "precipitation_driver_input",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Gridded precipitation raster collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid",
+          "temporal_unit": "Daily precipitation estimate",
+          "temporal_coverage": "1981-present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Rainfall accumulation and anomaly construction",
+            "Extreme precipitation indicators",
+            "Hydroclimatic covariates"
+          ],
+          "spatial_coverage": {
+            "region_name": "Semi-arid groundwater basins",
+            "coverage": "Catalog coverage intersected with Semi-arid groundwater basins."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "The declared components jointly define the task observation and must be interpreted with their stated roles.",
+      "alignment": "All required components must be spatially collocated and aligned to a declared temporal support before analysis.",
+      "required_roles": [
+        "satellite_gravimetry_tws_input",
+        "precipitation_driver_input"
+      ],
+      "component_count": 2,
+      "supplement_policy": "Ideas may add verified auxiliary datasets with distinct scientific roles; auxiliary data cannot replace required roles."
+    }
+  },
+  "anchor_asset_id": "composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+    "GEE:UCSB-CHG/CHIRPS/DAILY"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "satellite_gravimetry_tws_input",
+      "precipitation_driver_input"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

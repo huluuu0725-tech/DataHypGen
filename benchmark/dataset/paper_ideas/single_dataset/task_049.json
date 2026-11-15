@@ -1,0 +1,28 @@
+{
+  "paper_id": "10.12775/eq.2026.043",
+  "task_id": "single_dataset/task_049",
+  "title": "Revealing urban vegetation dynamics: Comprehensive NDVI time series analysis and forecasting using ARIMA/SARIMA models in Karachi",
+  "category": "landsat_vegetation_index",
+  "year": 2026,
+  "journal": "Ecological Questions",
+  "impact_level": "medium",
+  "datasets": [
+    "USGS Landsat 8 Level 2, Collection 2, Tier 1"
+  ],
+  "idea": {
+    "research_question": "Can monthly NDVI derived from Landsat 8 surface reflectance characterise urban vegetation dynamics in Karachi and support accurate seasonal forecasting?",
+    "hypothesis": "A monthly Landsat 8 NDVI series contains a stable seasonal signal that can be represented by a SARIMA model and used to forecast near-term urban vegetation conditions.",
+    "mechanism": "Mask and scale Landsat 8 Level 2 surface reflectance, calculate NDVI from the red and near-infrared bands, aggregate valid observations monthly, and model the resulting series with ARIMA/SARIMA.",
+    "analytical_approach": "Single-source Landsat 8 NDVI time-series analysis with trend, seasonality, residual diagnostics and ARIMA/SARIMA forecast evaluation",
+    "data_sources": [
+      "GEE:LANDSAT/LC08/C02/T1_L2"
+    ],
+    "expected_contribution": "A reproducible single-dataset benchmark for deriving Landsat 8 NDVI and evaluating seasonal urban-vegetation forecasts.",
+    "falsification_condition": "Reject the hypothesis if a holdout evaluation shows that the fitted seasonal model does not improve on an appropriate non-seasonal or persistence baseline."
+  },
+  "seed_audit": {
+    "selection_basis": "independent_section_ready_audit",
+    "audited_candidate_space": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\batch_reference_spaces_20260929\\landsat_vegetation_index.json",
+    "migration_note": "Migrated from dual_dataset/task_010 on 2026-10-07 because the paper derives NDVI from Landsat 8 rather than operationally combining two independent source datasets."
+  }
+}

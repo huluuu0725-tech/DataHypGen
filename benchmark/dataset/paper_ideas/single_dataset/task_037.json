@@ -1,0 +1,89 @@
+{
+  "paper_id": "10.1038/s41893-019-0220-7",
+  "task_id": "single_dataset/task_037",
+  "title": "China and India lead in greening of the world through land-use management",
+  "category": "climate_surface_interaction",
+  "year": 2019,
+  "journal": "Nature Sustainability",
+  "impact_level": "high",
+  "datasets": [
+    "MOD15A2H and MYD15A2H Collection 6 LAI/FPAR (500 m, 8-day)",
+    "AVHRR LAI3gV1 (1/12 degree, bimonthly, 1981-2016)",
+    "MCD12C1 land cover, IGBP classification (0.05 degrees)",
+    "MOD44B vegetation continuous fields (250 m, annual)",
+    "CRU TS4.01 monthly temperature and precipitation (0.5 degrees)",
+    "GADM country administrative boundaries (v2.8)",
+    "FAOSTAT arable area, harvested area, cereal production and population",
+    "National Continuous Forest Inventory of China"
+  ],
+  "study_area_verified": {
+    "name": "Global, with China and India as the two focal countries",
+    "period": "2000-2017 for MODIS LAI; 1982-2016 for AVHRR LAI3gV1; 2000-2016 for climate climatology",
+    "grid": "all gridded inputs aggregated to 0.05 degrees in a climate-modelling grid",
+    "review_date": "2026-08-28"
+  },
+  "anchor_repoint": {
+    "paper_used": "Collection 6 Terra and Aqua MODIS LAI (MOD15A2H and MYD15A2H), 500 m on an 8-day step, quality-screened, averaged into 16-day composites, spatially aggregated to 0.05 degrees, then reduced to an annual mean",
+    "task_anchor": "MODIS/061/MOD15A2H",
+    "former_anchor": "MODIS/061/MOD13Q1",
+    "why_the_former_anchor_was_wrong": "The source measures leaf area index, not a vegetation index. MOD13Q1 disagrees on observable class, grid (250 m against 500 m) and cadence (16-day against 8-day).",
+    "why_a_repoint_rather_than_a_substitution": "MOD15A2H is published in the Earth Engine catalog at Collection 6.1 with status ready, covering 2000-02-18 to present, so the exact product is available.",
+    "ndvi_role_in_source": "GIMMS NDVI3gV1 appears only as a training input to the neural network that generates the AVHRR LAI3gV1 comparison series. It is an intermediate, never an analysed observable.",
+    "corrections": [
+      "The earlier datasets list read [\"MODIS NDVI\", \"Landsat\"]. Neither is correct: the source analyses MODIS LAI, and Landsat appears nowhere in its Methods. That field is what steered the mapping table to a vegetation-index anchor, even though this file's own key_variables and data_sources already named MOD15A2H and MYD15A2H."
+    ],
+    "companion_dataset_availability": {
+      "in_catalog": [
+        "MODIS/061/MYD15A2H",
+        "MODIS/061/MCD12C1",
+        "MODIS/061/MOD44B"
+      ],
+      "not_in_catalog": [
+        "AVHRR LAI3gV1",
+        "CRU TS4.01",
+        "GADM v2.8",
+        "FAOSTAT statistics",
+        "National Continuous Forest Inventory of China"
+      ]
+    },
+    "sibling_task_boundary": "task_040 anchors MODIS/061/MCD15A3H, the Terra+Aqua 4-day tier. The two alias policies exclude each other so the candidate pools stay separate.",
+    "fields_left_unchanged": [
+      "idea.data_sources",
+      "idea.analytical_approach",
+      "idea.key_variables"
+    ],
+    "note": "Those fields already described MOD15A2H and MYD15A2H correctly and describe what the source did; they must not be rewritten to match an anchor.",
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "在2000—2017年全球尺度上，土地利用管理是否能够解释植被叶面积增加的主要空间差异，并通过何种机制影响中国和印度的植被变绿？其中，农田复种、化肥投入和灌溉扩张是否主要通过提高单位耕地的季节性生产力驱动农田LAI增加，森林恢复与林分结构变化是否主要驱动中国森林LAI增加？",
+    "hypothesis": "H1：在控制温度、降水及土地覆盖类型后，土地利用管理强度的提高与LAI趋势显著正相关，并且其解释力高于同期气候变化。H2：中国的LAI增加主要由森林恢复、森林覆盖度提高及林分结构改善与农田集约化共同驱动；印度的LAI增加主要由复种指数、灌溉覆盖和化肥投入增加驱动。H3：土地利用管理通过提高植被生长季长度、年内生长周期数和单位面积生产力，形成“管理投入—植被生产力—LAI增加”的机制路径。",
+    "mechanism": "土地利用管理影响植被变绿的具体路径包括三条：第一，农田复种和灌溉扩张延长作物生长季并增加年内生长周期，使8天尺度LAI峰值、积分LAI和年均LAI上升；第二，化肥投入增加提高单位面积养分供给，在水分条件允许时增强作物冠层形成和叶面积维持；第三，森林恢复、退耕还林及林分覆盖度和结构改善提高木本植被冠层密度，从而增加森林LAI。以CRU TS4.01温度和降水作为气候驱动控制变量，通过分层分析和面板模型区分管理因素与气候因素的作用，并使用中介分析检验“管理投入—生长季或生产周期—LAI趋势”的间接效应。",
+    "key_variables": {
+      "target": "植被LAI变化，包括0.05°网格尺度的年均LAI趋势、生长季LAI积分趋势、LAI显著增加区域的净叶面积变化量。LAI趋势由MODIS MOD15A2H和MYD15A2H的500 m、8天合成产品计算；净叶面积变化量按“LAI趋势 × 网格内像元面积 × 17年”计算，并仅对Mann–Kendall检验显著的趋势像元进行汇总。",
+      "predictors": [
+        "土地覆盖类型：MODIS MCD12C1 IGBP分类，2007年静态土地覆盖图，区分森林、农田、草地及其他植被类型",
+        "森林管理与植被结构：MODIS VCF MOD44B 250 m树木覆盖度及其空间变化",
+        "农田集约化：FAOSTAT 2000—2017年作物产量、收获面积、单位面积产量、化肥投入、灌溉相关指标和复种或多熟制代理变量",
+        "森林恢复：覆盖2000—2017年调查期的中国国家连续森林资源清查数据，包括森林面积、森林覆盖度及林分结构指标",
+        "气候控制变量：CRU TS4.01 0.5°月尺度温度和降水，聚合为年尺度、生长季尺度及关键作物生长期指标",
+        "历史植被背景：AVHRR LAI3gV1 1981—2016年长期LAI序列，用于检验2000年前后趋势一致性及长期背景变化",
+        "空间与时间控制变量：纬度、经度、海拔或生态区固定效应，以及年份固定效应和土地覆盖类型固定效应"
+      ]
+    },
+    "data_sources": [
+      "MODIS Collection 6 LAI产品MOD15A2H和MYD15A2H，500 m空间分辨率、8天合成，2000—2017年；经过云、气溶胶、积雪和阴影质量标识筛选后，聚合至0.05°网格",
+      "AVHRR LAI3gV1，1981—2016年长期LAI数据；该产品由基于MODIS与AVHRR-NDVI重叠期训练的人工神经网络反演，用于长期趋势对照",
+      "MODIS MCD12C1土地覆盖产品，IGBP分类，2007年静态土地覆盖图，用于土地覆盖分层和区域归因",
+      "MODIS VCF MOD44B树木和植被覆盖产品，250 m空间分辨率，采用与MODIS LAI时期重叠的年度数据表征树木覆盖和森林结构变化",
+      "CRU TS4.01月尺度气温和降水数据，0.5°空间分辨率，使用2000—2017年数据并聚合为年度和生长季气候指标",
+      "FAOSTAT国家和作物统计数据，2000—2017年，包括作物产量、收获面积、单位面积产量、化肥投入和灌溉相关指标",
+      "中国国家连续森林资源清查数据，使用覆盖2000—2017年调查期的森林面积、森林覆盖度和林分结构指标"
+    ],
+    "analytical_approach": "首先，对MOD15A2H和MYD15A2H进行质量标识筛选，去除云、气溶胶、积雪和阴影污染，并将有效观测合成为0.05°网格的年均、季节均值和生长季积分LAI；对重叠区域和重叠年份进行传感器一致性检查。其次，在网格、土地覆盖类型以及中国和印度国家尺度上，使用带Yue–Pilon预白化的Mann–Kendall非参数趋势检验识别LAI单调趋势，采用R包zyp实现，显著性阈值设为p≤0.1；将显著趋势乘以像元面积和17年得到净叶面积变化量，并分别按森林、农田和其他植被类型汇总。第三，将LAI趋势或LAI年际值作为因变量，构建包含网格固定效应、年份固定效应和土地覆盖类型分层的面板回归模型：LAI_it = β1管理强度_it + β2温度_it + β3降水_it + α_i + γ_t + ε_it；对温度、降水、化肥、灌溉和复种指标进行标准化，并使用空间聚类稳健标准误。第四，在中国和印度分别进行森林与农田分层回归，利用交互项检验管理因素效应的国家差异，并使用分块交叉验证或留一国家验证评估模型稳健性。第五，以生长季长度、年内LAI峰值数量和生长季积分LAI作为中介变量，采用非参数Bootstrap 5,000次估计管理投入对LAI趋势的直接效应、间接效应及总效应。最后，使用AVHRR LAI3gV1重新计算1981—2016年趋势，并通过替换趋势窗口、改变显著性阈值至p≤0.05、剔除高气候变率区域和采用不同土地覆盖掩膜开展敏感性分析。",
+    "expected_contribution": "建立一个将卫星LAI趋势、土地覆盖、森林结构、农田管理和气候变化统一到同一空间分析框架中的研究设计；定量区分土地利用管理与气候变化对全球变绿的相对作用，并识别中国森林恢复主导路径与印度农田集约化主导路径的差异；通过中介分析把宏观管理投入连接到生长季、复种周期和冠层生产力等可检验的生态过程，为评估土地管理对全球碳循环、粮食生产和生态恢复的协同效应提供方法基础。",
+    "falsification_condition": "若在控制CRU TS4.01温度和降水、土地覆盖类型、空间固定效应及年份固定效应后，化肥投入、灌溉扩张、复种指标、森林覆盖度或林分结构变化与LAI趋势不存在稳定且显著的正向关系；其效应在中国农田、印度农田或中国森林等预设作用区域不具有一致性；管理变量对生长季长度、年内生长周期数和生长季积分LAI的中介路径不显著；或者LAI趋势主要由气候变量解释且在替换传感器、趋势窗口、显著性阈值和土地覆盖掩膜后管理效应消失，则不支持土地利用管理驱动区域和全球植被变绿的假设。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

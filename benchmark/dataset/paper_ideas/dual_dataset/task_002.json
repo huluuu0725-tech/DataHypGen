@@ -1,0 +1,65 @@
+{
+  "paper_id": "10.1007/s10661-025-14420-9",
+  "task_id": "dual_dataset/task_002",
+  "title": "Improved early-stage crop classification using a novel fusion-based machine learning approach with Sentinel-2A and Landsat 8–9 data",
+  "category": "multisensor_optical_fusion",
+  "year": 2025,
+  "journal": "",
+  "impact_level": "medium",
+  "datasets": [
+    "USGS Landsat Collection 2 Level-2 Surface Reflectance",
+    "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "historical_optical_surface_input",
+      "dataset": "USGS Landsat Collection 2 Level-2 Surface Reflectance"
+    },
+    {
+      "role": "high_resolution_optical_surface_input",
+      "dataset": "Harmonized Sentinel-2 MSI Level-2A Surface Reflectance"
+    }
+  ],
+  "allowed_supplementary_data": [
+    "DEM",
+    "precipitation",
+    "land-cover reference labels",
+    "field observations"
+  ],
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_002:multisensor_optical_fusion",
+    "anchor_type": "composite_observation",
+    "seed_role": "task seed exclusion; not included as a reference direction",
+    "extraction_basis": "Ex-ante research design reconstructed from independently selected full-text evidence; empirical results are excluded from idea fields."
+  },
+  "idea": {
+    "research_question": "Can Landsat and Sentinel-2 observations be fused to improve early-stage crop or land-cover classification across heterogeneous landscapes?",
+    "hypothesis": "Landsat provides longer temporal context while Sentinel-2 contributes finer spectral detail, so feature-level fusion should improve early-stage class separability and transferability.",
+    "mechanism": "Cloud masking, cross-sensor harmonization and temporal compositing create aligned optical features; a classifier compares fused features with single-sensor baselines.",
+    "key_variables": {
+      "target": "Joint observable and task-specific response",
+      "predictors": [
+        "historical_optical_surface_input",
+        "high_resolution_optical_surface_input",
+        "DEM",
+        "precipitation",
+        "land-cover reference labels",
+        "field observations"
+      ]
+    },
+    "data_sources": [
+      "GEE:LANDSAT/LC08/C02/T1_L2",
+      "GEE:COPERNICUS/S2_SR_HARMONIZED"
+    ],
+    "analytical_approach": "Cross-sensor feature fusion, supervised classification and spatial cross-validation",
+    "expected_contribution": "A reproducible benchmark for testing whether a proposed idea preserves all required data roles and adds auxiliary data only for a distinct mechanism, validation or refinement purpose.",
+    "falsification_condition": "The idea fails if it drops a required role, cannot align the required inputs, or does not improve explanatory, predictive or validation performance over the appropriate single-source baseline.",
+    "required_component_usage": [
+      "historical_optical_surface_input",
+      "high_resolution_optical_surface_input"
+    ]
+  },
+  "enriched": false,
+  "enrichment_source": "Constructed from independently selected full-text multidataset evidence and the composite prompt contract on 2026-09-29."
+}

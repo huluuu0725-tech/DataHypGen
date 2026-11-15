@@ -1,0 +1,621 @@
+{
+  "schema_version": "2.1-current-task-paired-reference-pool",
+  "task_id": "dual_dataset/task_034",
+  "reference_coverage": "user_confirmed_historical_reference_pairing",
+  "evaluation_year": 2026,
+  "seed_paper": {
+    "title": "Using Sentinel-1 and GRACE satellite data to monitor the hydrological variations within the Tulare Basin, California",
+    "doi": "10.1038/s41598-022-07650-1",
+    "year": 2022,
+    "venue": "Scientific Reports",
+    "datasets": [
+      "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+      "CSR GRACE/GRACE-FO RL06 Mascon Solutions"
+    ],
+    "dataset_roles": [
+      {
+        "role": "jpl_aria_insar_los_displacement",
+        "dataset": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series"
+      },
+      {
+        "role": "csr_rl06_mascon_terrestrial_water_storage",
+        "dataset": "CSR GRACE/GRACE-FO RL06 Mascon Solutions"
+      }
+    ],
+    "anchor_asset_id": "COMPOSITE:dual_dataset/task_034:composite_observation",
+    "anchor_asset_type": "composite_observation"
+  },
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_034:composite_observation",
+    "type": "composite_observation",
+    "name": "jpl_aria_insar_csr_rl06_mascon composite observation",
+    "observable_group": "jpl_aria_insar_csr_rl06_mascon_hydrological_observation",
+    "components": [
+      {
+        "role": "jpl_aria_insar_los_displacement",
+        "data_description": {
+          "dataset_name": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+          "data_type": "Interferometric SAR line-of-sight surface-displacement time-series observations",
+          "data_format": "JPL ARIA processed InSAR raster time series with spatial metadata",
+          "data_path": "NASA_CMR:ARIA_S1_GUNW_1",
+          "source_metadata": {
+            "provider": "NASA Jet Propulsion Laboratory ARIA",
+            "product_family": "Sentinel-1 InSAR displacement time series"
+          }
+        },
+        "data_path": "NASA_CMR:ARIA_S1_GUNW_1"
+      },
+      {
+        "role": "csr_rl06_mascon_terrestrial_water_storage",
+        "data_description": {
+          "dataset_name": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+          "data_type": "Monthly gravimetric terrestrial-water-storage anomaly estimates",
+          "data_format": "CSR RL06 Mascon gridded monthly solution",
+          "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04",
+          "source_metadata": {
+            "provider": "Center for Space Research, University of Texas at Austin",
+            "product_family": "GRACE/GRACE-FO RL06 Mascon Solutions"
+          }
+        },
+        "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Tulare Basin hydrological variation observed jointly through ARIA InSAR deformation and CSR RL06 Mascon storage anomalies",
+      "required_roles": [
+        "jpl_aria_insar_los_displacement",
+        "csr_rl06_mascon_terrestrial_water_storage"
+      ],
+      "component_count": 2,
+      "alignment": "Aggregate CSR monthly storage anomalies over Tulare Basin and align them with ARIA displacement dates or compatible monthly aggregates; preserve the different spatial supports.",
+      "supplement_policy": "Additional data may provide context or validation but cannot replace either required product."
+    }
+  },
+  "current_task_binding": {
+    "datasets": [
+      {
+        "role": "jpl_aria_insar_los_displacement",
+        "data_description": {
+          "dataset_name": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+          "data_type": "Interferometric SAR line-of-sight surface-displacement time-series observations",
+          "data_format": "JPL ARIA processed InSAR raster time series with spatial metadata",
+          "data_path": "NASA_CMR:ARIA_S1_GUNW_1",
+          "spatial_coverage": {
+            "region_name": "Tulare Basin, California",
+            "coverage": "Tulare Basin scenes covered by the selected JPL ARIA Sentinel-1 InSAR product."
+          },
+          "temporal_unit": "InSAR acquisition interval; preserve acquisition dates and reference geometry.",
+          "analytical_capabilities": [
+            "Remove long-term compaction from LOS displacement time series",
+            "Aggregate or align displacement observations to monthly hydrological support",
+            "Analyse short-term surface deformation associated with hydrological variation"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Line-of-sight surface displacement, typically metres or millimetres according to ARIA product metadata.",
+            "runtime_hint": "Use processed JPL ARIA InSAR displacement products. Do not substitute Sentinel-1 GRD backscatter; GRD does not supply interferometric phase-derived LOS displacement."
+          },
+          "source_metadata": {
+            "provider": "NASA Jet Propulsion Laboratory ARIA",
+            "product_family": "Sentinel-1 InSAR displacement time series"
+          }
+        },
+        "data_path": "NASA_CMR:ARIA_S1_GUNW_1"
+      },
+      {
+        "role": "csr_rl06_mascon_terrestrial_water_storage",
+        "data_description": {
+          "dataset_name": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+          "data_type": "Monthly gravimetric terrestrial-water-storage anomaly estimates",
+          "data_format": "CSR RL06 Mascon gridded monthly solution",
+          "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04",
+          "spatial_coverage": {
+            "region_name": "Tulare Basin, California",
+            "coverage": "Basin-scale aggregation of the global CSR RL06 Mascon solution."
+          },
+          "temporal_unit": "Monthly",
+          "analytical_capabilities": [
+            "Aggregate monthly equivalent-water-height or terrestrial-water-storage anomalies over Tulare Basin",
+            "Align basin-scale mass-storage anomalies with InSAR displacement observations",
+            "Analyse co-variation between short-term deformation and water-storage change"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Monthly terrestrial-water-storage anomaly or equivalent water height, according to CSR RL06 Mascon metadata.",
+            "runtime_hint": "Use CSR RL06 Mascon solutions and their documented corrections and scaling guidance. Do not substitute the deprecated GEE NASA/GRACE/MASS_GRIDS/LAND product."
+          },
+          "source_metadata": {
+            "provider": "Center for Space Research, University of Texas at Austin",
+            "product_family": "GRACE/GRACE-FO RL06 Mascon Solutions"
+          }
+        },
+        "data_path": "NASA_CMR:TELLUS_GRAC_L3_CSR_RL06_LND_v04"
+      }
+    ]
+  },
+  "required_roles": [
+    "jpl_aria_insar_los_displacement",
+    "csr_rl06_mascon_terrestrial_water_storage"
+  ],
+  "reference_count": 2,
+  "admitted_count": 2,
+  "independent_reference_count": 2,
+  "references": [
+    {
+      "doi": "10.1109/tgrs.2023.3324043",
+      "rounds": [
+        "round1",
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2023,
+      "title": "Land Subsidence and Groundwater Storage Assessment Using ICOPS, GRACE, and Susceptibility Mapping in Pekalongan, Indonesia",
+      "manual_review": false,
+      "source_task_id": "dual_dataset/task_034",
+      "target_task_id": "dual_dataset/task_034",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2023,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_034_direct_pairings.json"
+    },
+    {
+      "doi": "10.3390/rs15020529",
+      "rounds": [
+        "round2"
+      ],
+      "coverage_tier": "direct_set_reference",
+      "paper_year": 2023,
+      "title": "Mapping of Mean Deformation Rates Based on APS-Corrected InSAR Data Using Unsupervised Clustering Algorithms",
+      "manual_review": true,
+      "source_task_id": "dual_dataset/task_034",
+      "target_task_id": "dual_dataset/task_034",
+      "pairing_status": "direct_inclusion_unchanged_observations",
+      "year": 2023,
+      "admission_status": "admitted",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "is_seed_paper": false,
+      "pairing_review_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_034_direct_pairings.json"
+    }
+  ],
+  "pairing_status": "direct_inclusion_unchanged_observations",
+  "pairing_provenance": {
+    "source_task_id": "dual_dataset/task_034",
+    "historical_pool_sha256": "292b5eeab88c6d5dbfbe6eea72741bd6a35b39fd8d2a90b85d8420ef0aa26cb5",
+    "paired_pool_file": "reference_sets\\dual_dataset\\dual_020_038_final\\current_task_pairing_review_20261009\\dual_dataset_task_034_direct_pairings.json",
+    "paired_pool_sha256": "f209c29e9806b543e41dd2dbc98be33cf6ab50a9a925e08e811ecb3d63d7f998",
+    "current_prompt_sha256": "0c5e32ab27b844e8a80ef2e46bdc3afde5d55cf33fa087b1d5bcc08857c49eb9",
+    "user_confirmed_observations": null
+  },
+  "audit_note": "Historical admission reused under user decisions; actual product identities and original coverage tiers retained. No new fulltext or eligibility adjudication and no assertion of exact current-product equivalence. This is a paper pool, not a newly extracted semantic direction space.",
+  "quality": {
+    "paper_count": 2,
+    "semantic_directions_extracted": true,
+    "direction_count": 2,
+    "pending_instance_count": 0,
+    "pending_instances": [],
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 2,
+    "complete_member_combination_count": 1,
+    "disputed_complete_pending_recheck_count": 1,
+    "partial_set_support_count": 0,
+    "component_support_count": 0,
+    "zero_member_support_count": 0,
+    "member_conflict_count": 1,
+    "shared_product_dedup_count": 0,
+    "instance_extraction_batch": "dual_research_instance_extraction_20261010"
+  },
+  "directions": [
+    {
+      "direction_id": "task_034_ref_01",
+      "source_paper_doi": "10.1109/tgrs.2023.3324043",
+      "source_paper": {
+        "doi": "10.1109/tgrs.2023.3324043",
+        "title": "Land Subsidence and Groundwater Storage Assessment Using ICOPS, GRACE, and Susceptibility Mapping in Pekalongan, Indonesia",
+        "year": 2023,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1 SAR C-band satellites / Sentinel-1A SAR data processed through a time-series InSAR method based on ICOPS",
+        "GRACE satellite data"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "jpl_aria_insar_los_displacement",
+          "anchor_product": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1 SAR C-band satellites / Sentinel-1A SAR data processed through a time-series InSAR method based on ICOPS",
+          "actual_product_in_paper": "Sentinel-1 SAR C-band satellites / Sentinel-1A SAR data processed through a time-series InSAR method based on ICOPS",
+          "evidence_quotes": [
+            "In this study, 124 synthetic aperture radar (SAR) datasets from the Sentinel-1 radar satellite between 2017 and 2022 in descending tracks were used.",
+            "Therefore, th\nis study aim\ns to monitor land\nsubsidence from 2017 to 2022 in Pekalongan using Sentinel\n-\n1\ndata.",
+            "The data were processed through a time\n-\nseries\ninterferometry SAR (InSAR) method based on the im\nproved\ncombined scatterers interferometry with optimized point\nscatterers (ICOPS) algorithm to maximize the density of the\nmeasurement points (MPs) by exploiting both persistent\nscatterer (PS) and distributed scatterer (DS) points.",
+            "In this study, synthetic aperture radar (SAR) data from\nSentinel\n-\n1 SAR C\n-\nband satellites that emit a wavelength of 5.5\ncm were used.",
+            "The two different frames (613\nand 618) of Sentinel\n-\n1A SAR data used in this study consist of\na total of 248 images in descending flight direction from\nOctober 2017 to April 2022\nwith path number 76",
+            "In this study, synthetic aperture radar (SAR) data from Sentinel-1 SAR C-band satellites that emit a wavelength of 5.5 cm were used.",
+            "The results of time-series deformation in Pekalongan were compared with the GPS station measurements."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Sentinel-1 SAR data processed through time-series InSAR/ICOPS to generate deformation/displacement time series",
+              "dataset_name": "Sentinel-1 InSAR displacement observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Sentinel-1 SAR C-band satellites (time-series InSAR)",
+              "dataset_name": "Sentinel-1 InSAR displacement observations"
+            }
+          }
+        },
+        {
+          "member_id": "csr_rl06_mascon_terrestrial_water_storage",
+          "anchor_product": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+          "verdict": "used_parent_scope",
+          "identity_match": "parent_scope",
+          "usage": "used_as_data",
+          "actual_dataset": "GRACE satellite data",
+          "actual_product_in_paper": "GRACE satellite data",
+          "evidence_quotes": [
+            "monitoring groundwater activity using data from the GRACE satellite and comparing them with weather station data",
+            "Experiment (GRACE) and GRACE Follow\n-\non (GRACE\n-\nFO)\nmission satellite data (RL\n-\n06, level\n-\n3) were acquired from\nthree institutions\n:\n\nthe Center for Space Research (CSR, the\nUniversity of Texas), Jet Propulsion Laboratory (JPL,\nPasadena, CA, USA), and GeoForschungsZentrum Potsdam\n(GFZ, Potsdam, Germany).",
+            "Pixel\naveraging of the\nterrestrial water storage (TWS) data from the three different\ninstitutions could improve the accuracy of the GRACE\nsatellite measurements\n\n.",
+            "Further processing of the TWS data needs to be conducted\nsince the change in TWS is the sum of several components,\nincluding groundwater storage (GWS), soil moisture (SM),\ncanopy water storage (CWS), surface\n\nrunoff (QS), and snow\nwater equivalent (SWE).",
+            "Finally, the GWS can be estimated by the GWS processing\nworkflow, as shown in\nFig.\n\n3\n, and using the water balance\nequation (1). Since the TWS data from the GRACE satellite\nwere\n\nanomalous data, we\nneeded\n\nto convert the SM, CWS,\nand QS parameters to anomalous data by subtracting the\ncurrent data at a specific time from the average of\nthe\nto\ntal\ndata.",
+            "Experiment (GRACE) and GRACE Follow-on (GRACE-FO) mission satellite data (RL-06, level-3) were acquired from three institutions :",
+            "Finally, the GWS can be estimated by the GWS processing workflow, as shown in Fig. 3, and using the water balance equation (1)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 6,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "GRACE and GRACE Follow-on mission satellite data (RL-06, level-3) terrestrial water storage (TWS)",
+              "dataset_name": "GRACE terrestrial water-storage observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "GRACE and GRACE-FO mission satellite data (RL-06, level-3)",
+              "dataset_name": "GRACE terrestrial water-storage observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": true,
+      "combination_coverage": "complete_member_combination",
+      "joint_use_evidence_quotes": [
+        "In this study, 124 synthetic aperture radar (SAR) datasets from the Sentinel-1 radar satellite between 2017 and 2022 in descending tracks were used.",
+        "Further analysis of this study would involve monitoring groundwater activity using data from the GRACE satellite and comparing them with weather station data.",
+        "The analysis of the two datasets aims to understand the relationships between groundwater storage data and the monthly precipitation in Pekalongan."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "本研究针对印度尼西亚 Pekalongan 的地面沉降、地下水储量与沉降易发性开展评估，回答如何利用 Sentinel-1 InSAR、GRACE 与 GIS 易发性制图监测沉降并分析其与地下水/降水的关系。研究还关注沉降结果与 GPS 测量的一致性，以及未来可能发生沉降的位置。",
+      "hypothesis_or_mechanism": "论文认为 Pekalongan 的地面沉降主要与年轻冲积土压密、聚落区建筑荷载以及过量抽取地下水有关；地下水抽取会降低孔隙水压力的有效应力，从而导致含水层压密。沉降会加剧沿海洪水和淹没风险。",
+      "variables_and_data_use": "论文使用 Sentinel-1 SAR C-band 影像作为 InSAR 时序处理输入，经 ICOPS、CNN 与 OHSA 提取和聚类形变测量点，以估计 Pekalongan 的地表形变/沉降。论文将 InSAR 时间序列形变结果与 GPS station measurements 对比验证，并使用 GRACE satellite data 监测 groundwater activity，与 weather station data 的 monthly precipitation 比较以分析地下水储量与降水关系。论文还使用 Pekalongan 的 geological map 和 land-use map 等 GIS 因子支持研究区描述和易发性制图。",
+      "method_paradigm": "方法范式为 Sentinel-1 时序 InSAR 形变反演，结合 ICOPS 优化 PS/DS 测量点、CNN 预测/优化时间序列测量点，并用 OHSA 进行空间热点聚类；同时结合 GRACE 与气象站降水数据进行地下水—降水关系分析，并采用 GIS susceptibility mapping 评估沉降易发性。",
+      "study_area": "Pekalongan, Indonesia / Pekalongan city on the northern coast of Java",
+      "study_period": "October 2017 to April 2022",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1 SAR C-band satellites",
+          "role_in_study": "作为 InSAR 时序处理输入，用于监测 Pekalongan 地面沉降/地表形变。",
+          "usage": "used_as_data",
+          "evidence_quote": "synthetic aperture radar (SAR) data from Sentinel-1 SAR C-band satellites that emit a wavelength of 5.5 cm were used",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Sentinel-1A SAR data",
+          "role_in_study": "两个 frame 的 Sentinel-1A SAR 影像用于覆盖研究区并生成沉降时间序列。",
+          "usage": "used_as_data",
+          "evidence_quote": "The two different frames (613 and 618) of Sentinel-1A SAR data used in this study consist of a total of 248 images in descending flight direction from October 2017 to April 2022 with path number 76",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GPS station measurements",
+          "role_in_study": "作为地面测量数据，用于验证/比较 InSAR 时间序列形变结果。",
+          "usage": "used_as_data",
+          "evidence_quote": "The results of time-series deformation in Pekalongan were compared with the GPS station measurements.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "GRACE satellite",
+          "role_in_study": "用于监测地下水活动/地下水储量数据，并与降水数据比较。",
+          "usage": "used_as_data",
+          "evidence_quote": "monitoring groundwater activity using data from the GRACE satellite and comparing them with weather station data",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "weather station data",
+          "role_in_study": "提供月降水数据，用于与地下水储量数据分析关系。",
+          "usage": "used_as_data",
+          "evidence_quote": "The analysis of the two datasets aims to understand the relationships between groundwater storage data and the monthly precipitation in Pekalongan.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "geological map produced by the Ministry of Energy and Mineral Resources of the Republic of Indonesia",
+          "role_in_study": "提供 Pekalongan 地质构造/地貌分布信息，用于研究区地质背景和 GIS 相关分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "The geological formation of Pekalongan city and its surrounding area (modified from a geological map produced by the Ministry of Energy and Mineral Resources of the Republic of Indonesia).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "land-use map of Pekalongan produced by the Ministry of Environment and Forestry of the Republic of Indonesia",
+          "role_in_study": "提供研究区土地利用信息，用于描述土地利用分布及支持沉降与聚落/土地利用关系分析。",
+          "usage": "used_as_data",
+          "evidence_quote": "Land use map of Pekalongan city and the surrounding area (modified from a land-use map of Pekalongan produced by the Ministry of Environment and Forestry of the Republic of Indonesia).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Advanced Land Observing Satellite (ALOS) Phased Array type-L Synthetic Aperture Radar (PALSAR) satellite data",
+          "role_in_study": "作为既有研究中的数据被提及，用于说明 Pekalongan 既往沉降监测背景，并非本文实际输入。",
+          "usage": "mention_only",
+          "evidence_quote": "A study monitoring land subsidence in Pekalongan was conducted using Advanced Land Observing Satellite (ALOS) Phased Array type-L Synthetic Aperture Radar (PALSAR) satellite data acquired from 2007 to 2009",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1109_tgrs.2023.3324043.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.1109_tgrs.2023.3324043.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "1928b2eab9c89cb7a73c2ad33e6df223006a4c597307d946f7b1248e17994214",
+        "model": "gpt-5.5",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T17:30:12",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_034/10.1109_tgrs.2023.3324043.json",
+        "quote_gate": {
+          "total": 13,
+          "verified": 13
+        },
+        "title_overlap_ratio": 0.909
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_034/10.1109_tgrs.2023.3324043.json",
+        "sha256": "1e310f0b859d87c82ef24bc70fe84574a01348e6e9a402bb5ee14c4ac9d9e598",
+        "source_task_id": "dual_dataset/task_034",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    },
+    {
+      "direction_id": "task_034_ref_02",
+      "source_paper_doi": "10.3390/rs15020529",
+      "source_paper": {
+        "doi": "10.3390/rs15020529",
+        "title": "Mapping of Mean Deformation Rates Based on APS-Corrected InSAR Data Using Unsupervised Clustering Algorithms",
+        "year": 2023,
+        "venue": ""
+      },
+      "reference_tier": "expanded_set_reference",
+      "legacy_coverage_tier": "direct_set_reference",
+      "admission_basis": "User authorized default inclusion when observation quantities are unchanged; historical admission reused without entry re-adjudication.",
+      "member_verification_basis": "dual_research_instance_extraction_20261010",
+      "actual_datasets": [
+        "Sentinel-1A SAR datasets processed through InSAR, PSI, and SBAS",
+        "CSR GRACE/GRACE-FO RL06 Mascon Solutions"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "jpl_aria_insar_los_displacement",
+          "anchor_product": "JPL ARIA Sentinel-1 InSAR line-of-sight displacement time series",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Sentinel-1A SAR datasets processed through InSAR, PSI, and SBAS",
+          "actual_product_in_paper": "Sentinel-1A SAR datasets processed through InSAR, PSI, and SBAS",
+          "evidence_quotes": [
+            "TheperformanceofconvertingthezenithintotheLOSdirection,aswellasoftheAIM,wasevaluatedbasedonSentinel-1ASARdatasets.",
+            "The performance of converting the zenith into the LOS direction, as well as of the AIM, was evaluated based on Sentinel-1A SAR datasets.",
+            "Sentinel-1A radar acquisitions have been applied to interferometric processes utilizing different approaches, including InSAR, PSI, and SBAS.",
+            "The MDRM of the study area was then calculated by using PSI and SBAS algorithms.",
+            "The performance of converting the zenith into the LOS direction, as well as of the AIM, was evaluated based on Sentinel-1 ASAR datasets.",
+            "As mentioned, Sentinel-1A radar acquisitions have been applied to interferometric processes utilizing different approaches, including InSAR, PSI, and SBAS."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 5,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "compatible_lineage",
+              "usage": "used_as_data",
+              "matched_product": "Sentinel-1A SAR datasets and radar acquisitions processed with InSAR, PSI, and SBAS to derive displacement observations",
+              "dataset_name": "Sentinel-1 InSAR displacement observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "Sentinel-1 ASAR datasets / Sentinel-1A radar acquisitions",
+              "dataset_name": "Sentinel-1 InSAR displacement observations"
+            }
+          }
+        },
+        {
+          "member_id": "csr_rl06_mascon_terrestrial_water_storage",
+          "anchor_product": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+          "verdict": "used_exact",
+          "identity_match": "exact_product",
+          "usage": "used_as_data",
+          "actual_dataset": "CSR GRACE/GRACE-FO RL06 Mascon Solutions",
+          "actual_product_in_paper": "GRACE satellite data",
+          "evidence_quotes": [
+            "Additionally, GRACE satellite data will be used to confirm the deformations derived from SAR data processing by comparing the water level elevation trend with the GNSS station's vertical component in the study area.",
+            "the trend in the time series of groundwater levels at the location of the GNSS station, which was obtained from GRACE data.",
+            "data derived from the GNSS and GRACE satellite.",
+            "Comparison between the trend in the timeseries of groundwater levels obtained from GRACE data with linear fitting"
+          ],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 4,
+          "verification_basis": [
+            "prior_quote_verified"
+          ],
+          "prior_basis": "dual_020_038_gpt_qwen_consensus_used",
+          "prior_basis_strength": "strong",
+          "prior_usage": "used_as_data",
+          "fresh_text_tier": "fulltext",
+          "member_conflict": true,
+          "prior_models": {
+            "gpt": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "GRACE satellite data",
+              "dataset_name": "GRACE terrestrial water-storage observations"
+            },
+            "qwen": {
+              "identity_match": "exact_product",
+              "usage": "used_as_data",
+              "matched_product": "GRACE satellite data / GRACE data",
+              "dataset_name": "GRACE terrestrial water-storage observations"
+            }
+          }
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": false,
+      "missing_member_ids": [],
+      "disputed_member_ids": [
+        "csr_rl06_mascon_terrestrial_water_storage"
+      ],
+      "needs_manual_recheck": true,
+      "same_research_instance": false,
+      "combination_coverage": "complete_disputed_pending_recheck",
+      "joint_use_evidence_quotes": [
+        "TheperformanceofconvertingthezenithintotheLOSdirection,aswellasoftheAIM,wasevaluatedbasedonSentinel-1ASARdatasets.",
+        "TheresultsandimprovementsarecomparedwiththeverticalcomponentoftheGNSSsignal.",
+        "ECMWFERA5reanalysisproductsareprovidedhourlyat0.25"
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文研究尼日尔三角洲Port Harcourt地区的地表形变，尤其是沉降等长期变形过程，探讨如何利用经大气相位屏（APS）校正的SAR形变数据和无监督聚类算法确定可靠的平均形变速率区间并制图。",
+      "hypothesis_or_mechanism": "假设利用ERA5气象模型通过高级积分方法（AIM）校正SAR观测中的对流层延迟，可以增强真实地表形变信号并改善InSAR、PSI和SBAS结果。进一步假设基于经校正形变速度、经纬度的无监督聚类能够识别形变模式并确定比传统等间隔或标准差分级更可靠的平均形变速率区间。",
+      "variables_and_data_use": "研究使用Sentinel-1A SAR数据生成InSAR、PSI和SBAS形变速度，并利用ERA5再分析产品提供的三维气象参数实施AIM对流层延迟校正；美国地质调查局数字高程模型用于去除地形相位分量。无监督聚类以点的经度、纬度和各处理方法获得的形变速度作为主要特征，并以GNSS/GPS站垂向形变分量验证校正和制图结果。",
+      "method_paradigm": "方法范式为SAR/InSAR形变处理与ERA5驱动的AIM大气相位屏校正相结合，再使用无监督聚类确定形变速率分级区间。论文比较K-means、模糊K-means和K-medians，并结合相似性度量及Davies–Bouldin指数选择SBAS-K-medians结果。",
+      "study_area": "Port Harcourt，尼日尔三角洲（Niger Delta）",
+      "study_period": "所给论文文本未明确说明研究时段",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-1ASARdatasets",
+          "role_in_study": "作为SAR观测输入，生成InSAR、PSI和SBAS形变结果，并用于评估AIM大气校正效果。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheperformanceofconvertingthezenithintotheLOSdirection,aswellasoftheAIM,wasevaluatedbasedonSentinel-1ASARdatasets.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ECMWFERA5reanalysisproducts",
+          "role_in_study": "提供不同压力层的三维气象参数，用于计算卫星视线方向上的对流层延迟并实施AIM校正。",
+          "usage": "used_as_data",
+          "evidence_quote": "ECMWFERA5reanalysisproductsareprovidedhourlyat0.25",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "UnitedStatesGeologicalSurveydigitalelevationmodels",
+          "role_in_study": "用于去除差分干涉图中的地形相位分量。",
+          "usage": "used_as_data",
+          "evidence_quote": "DifferentialinterferogramsweregeneratedusingSARscapesoftwarecreatedbyL3Harris,SARmapSA,andUnitedStatesGeologicalSurveydigitalelevationmodelstoremovetopographicphasecomponents.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "verticalcomponentoftheGNSSsignal",
+          "role_in_study": "作为GNSS站垂向形变观测，用于评价AIM校正后的InSAR、PSI和SBAS信号及形变图。",
+          "usage": "used_as_data",
+          "evidence_quote": "TheresultsandimprovementsarecomparedwiththeverticalcomponentoftheGNSSsignal.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "InSAR,PSI,andSBASproduceresults(velocity)",
+          "role_in_study": "由Sentinel-1A SAR数据处理得到的形变速度输出，作为AIM校正和无监督聚类制图的输入。",
+          "usage": "used_as_data",
+          "evidence_quote": "Tobeginwith,interferometrySAR(InSAR),PSI,andSBASproduceresults(velocity).",
+          "quote_verified": true
+        }
+      ],
+      "paper_type": "research_article",
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs15020529.txt",
+          "external:C:\\Users\\Park.Chanyeol\\Desktop\\PDF\\dual_020_038_fulltextpdf_part1_round2_text\\workspace\\dual_020_038_20261003\\corpus\\text\\10.3390_rs15020529.methods.txt"
+        ],
+        "chars": 19031,
+        "text_mode": "head+methods",
+        "source_sha256": "ecf2aecb6eb40191aa0bfac2f839bfd24291e4f994c8ad0ec583324f7ccedfbf",
+        "model": "gpt-5.5",
+        "attempts": 2,
+        "extracted_at": "2026-10-10T17:33:48",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/dual_dataset__task_034/10.3390_rs15020529.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        },
+        "title_overlap_ratio": 1.0
+      },
+      "research_instance_status": "extracted",
+      "prior_adjudication": {
+        "file": "reference_sets/dual_dataset/dual_020_038_final/workspace/dual_020_038_20261003/machine_annotations/task_034/10.3390_rs15020529.json",
+        "sha256": "5d2cc1ddb2322d755b2fc49ea2a363404a69f38e482760fb74a4bfe9ec9797df",
+        "source_task_id": "dual_dataset/task_034",
+        "model_verdicts": {
+          "gpt": "admitted",
+          "qwen": "admitted"
+        },
+        "note": "旧 dual_020_038 工作区判读；dataset_1/dataset_2 按锚点成员顺序对应当前 role。"
+      }
+    }
+  ],
+  "directions_schema": "dual-task-research-instance-v1-20261010"
+}

@@ -1,0 +1,58 @@
+{
+  "paper_id": "10.3390/rs13173513",
+  "task_id": "three_or_more_datasets/task_016",
+  "title": "Improving the Resolution of GRACE Data for Spatio-Temporal Groundwater Storage Assessment",
+  "category": "grace_precipitation_sm_data",
+  "year": 2021,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "GRACE/GRACE-FO terrestrial water-storage mass grids",
+    "TRMM/IMERG precipitation estimates",
+    "ESA CCI or GLDAS soil-moisture product"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "grace_storage_input",
+      "dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids"
+    },
+    {
+      "role": "precipitation_driver",
+      "dataset": "TRMM/IMERG precipitation estimates"
+    },
+    {
+      "role": "soil_moisture_state",
+      "dataset": "ESA CCI or GLDAS soil-moisture product"
+    }
+  ],
+  "idea": {
+    "research_question": "How do GRACE storage, precipitation and soil moisture jointly improve regional groundwater-storage downscaling?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "GEE:NASA/GPM_L3/IMERG_V07",
+      "GEE:NASA/SMAP/SPL4SMGP/008"
+    ],
+    "required_component_usage": [
+      "grace_storage_input",
+      "precipitation_driver",
+      "soil_moisture_state"
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently audited full-text seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_016:composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "audited_candidate_space": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\grace_precipitation_sm_data.json",
+    "extracted_methods_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\pdf_reextract\\remotesensing-13-03513-v2.methods.txt",
+    "evidence_terms": {
+      "GRACE": true,
+      "rainfall": true,
+      "soil moisture": true
+    }
+  }
+}

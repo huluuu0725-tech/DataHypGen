@@ -1,0 +1,1437 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_001",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "ASTER Global Digital Elevation Model V003",
+    "spatial_coverage": {
+      "region_name": "Baxie River basin, northwestern China",
+      "coverage": "The Baxie River basin subset of the ASTER GDEM land coverage between 83 degrees north and 83 degrees south."
+    },
+    "temporal_coverage": "ASTER Level-1A source scenes acquired from 2000-03-01 to 2013-11-30",
+    "data_type": "Raster collection",
+    "data_format": "NASA Earthdata tiled Cloud Optimized GeoTIFF and NetCDF4 collection",
+    "spatial_resolution": "1 arc-second postings (approximately 30 m at the equator)",
+    "temporal_unit": "Static global elevation composite",
+    "analytical_capabilities": [
+      "Elevation mapping and terrain-gradient analysis",
+      "Derivation of slope, aspect, curvature, and other terrain indices",
+      "Watershed, drainage, flow-path, and topographic wetness analysis",
+      "Landform and relief characterization",
+      "Aggregation to coarser grids for multi-scale terrain analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Elevation in meters above the EGM96 geoid",
+      "runtime_hint": "Use the DEM layer as terrain elevation in metres. Retain the accompanying NUM layer when available because it records the number of ASTER scenes contributing to each pixel and identifies pixels supplemented from reference DEMs."
+    },
+    "data_source": "NASA/METI ASTER GDEM via NASA Earthdata CMR",
+    "source_metadata": {
+      "source": "NASA_CMR",
+      "id": "ASTGTM_003",
+      "doc_url": "https://cmr.earthdata.nasa.gov/stac/ALL/collections/ASTGTM_003",
+      "provider": "NASA LP DAAC; METI",
+      "thematic_group": "Elevation & Topography"
+    }
+  },
+  "current_data_path": "NASA_CMR:ASTGTM_003",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_001.json",
+    "source_sha256": "833db49e50b05ceb69a119d3475deaa2e1133f834e1d75f7f29d373cfa167cce",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_001/prompt.json",
+    "current_prompt_sha256": "998bff8245d439298b82dba8e4349a9b6f3daea8d8772059e1d3fcc44241fed2",
+    "original_anchor_asset": {
+      "id": "NASA_CMR:ASTGTM_003",
+      "observable_group": "aster_gdem_thirty_metre_global_terrain_elevation",
+      "observation_identity_contract": {
+        "physical_object": "land-surface terrain elevation",
+        "source_lineage": "NASA/METI ASTER GDEM production lineage derived by stereo-correlation and stacking of Terra ASTER Level-1A scenes",
+        "core_measurement_semantics": "global terrain elevation at one arc-second postings referenced to the WGS84/EGM96 geoid",
+        "non_material_variations": "ASTER GDEM V2/V3 version, NASA CMR encoding (GeoTIFF, COG or NetCDF), publisher mirror, reprojection, resampling or aggregation that retains ASTER GDEM elevation",
+        "material_mismatches": "a different DEM mission or production lineage, ASTER GED emissivity with only a resampled 100 m elevation layer, surface-height DSM semantics, or elevation not derived from ASTER GDEM"
+      },
+      "asset_alias_policy": "ASTER GDEM/ASTGTM V2 or V3 terrain elevation is admitted, including ASTGTM_003 and ASTGTM_NC_003 plus faithful publisher mirrors. ASTGTM_NUMNC_003 attributes alone, ASTER GED, NASADEM, SRTM/SRTMGL1, ALOS AW3D30, Copernicus DEM, MERIT DEM, 3DEP and lidar-derived elevation are excluded unless ASTER GDEM elevation is also operationally processed.",
+      "alias_policy_scope": "This policy identifies the ASTER GDEM product family rather than banning multi-DEM comparison. A paper may compare other elevation products, but ASTER GDEM elevation must itself be an empirical input.",
+      "anchor_repointed": {
+        "from": "NASA/NASADEM_HGT/001",
+        "to": "NASA_CMR:ASTGTM_003",
+        "reason": "The seed paper operationally uses 30 m ASTER GDEM. The unified catalog already contains the authoritative NASA CMR ASTGTM_003 collection, so the former NASADEM substitute is unnecessary and observation-incompatible.",
+        "seed_evidence": "The seed uses ASTER GDEM at 30 m and resamples that grid to 40, 50, 60, 70, 80 and 90 m for DEM-resolution sensitivity analysis in the Baxie River basin.",
+        "verified_against": "NASA CMR collection ASTGTM_003, ASTER Global Digital Elevation Model V003, one arc-second terrain elevation distributed through NASA Earthdata.",
+        "review_date": "2026-09-19"
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_04",
+      "research_question": "该论文研究不同数字高程模型在研究区地形与流域制图中的高程精度和地形派生产品差异。",
+      "hypothesis_or_mechanism": "不同雷达或光学来源 MDE 的空间分辨率、采集方式和插值处理会影响高程一致性、坡向、排水网络和地貌表达精度。",
+      "variables_and_data_use": "论文获取并处理 NASADEM、SRTM、ASTER GDEM、ALOS PALSAR、TopoData、COPERNICUS DEM、TERRASAR-X 等 MDE，高程值通过 QGIS、TAUDEM 和 point sampling tools 提取，并与 IBGE 控制点及派生坡向、流向、流域等栅格子产品进行统计比较。",
+      "method_paradigm": "精度验证对比",
+      "used_assets": [
+        "NASADEM",
+        "SRTM",
+        "COPERNICUS DEM",
+        "ALOS PALSAR",
+        "TopoData",
+        "TERRASAR-X",
+        "ASTER GDEM2",
+        "TANDEM/TERRASAR-X"
+      ],
+      "author_team": [
+        "Fernando Yogi",
+        "Fábio Noel Stanganini"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "dual-model admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparação e Avaliação de Modelos Digitais de Elevação dos sensores SRTM, ASTER, TANDEM/TERRASAR –X, NASADEM, COPERNICUS DEM e ALOS PALSAR para análise digital de terreno para aplicações no saneamento básico",
+        "doi": "10.33448/rsd-v12i1.39350",
+        "year": 2023,
+        "venue": "Research, Society and Development",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "ASTER GDEM3、SRTM3、NASADEM、AW3D30 (v3.1)、ALOS PALSAR 和 TanDEM-X90 相对于高精度 TanDEM-X12 的高程与坡度精度表现有何差异？",
+      "hypothesis_or_mechanism": "不同传感器的光学立体或雷达干涉测高机制、空间分辨率和生产处理流程会导致系统性高程偏差及不同程度的坡度误差。",
+      "variables_and_data_use": "使用 ASTER GDEM3、SRTM3、NASADEM、AW3D30 (v3.1)、ALOS PALSAR 和 TanDEM-X90 的高程及派生坡度作为待评估变量，以 TanDEM-X12 的高程和坡度作为参考；统一投影和垂直基准，并重采样后计算描述统计、高程差、相关系数、DoD、RMSE、STDE、ME、AME 和线性误差。",
+      "method_paradigm": "多产品精度验证",
+      "used_assets": [
+        "ASTER GDEM3",
+        "SRTM3",
+        "NASADEM",
+        "AW3D30 (v3.1)",
+        "ALOS PALSAR",
+        "TanDEM-X90",
+        "TanDEM-X12"
+      ],
+      "author_team": [
+        "Zakaria Adiri",
+        "Rachid Lhissou",
+        "Lhou Maacha",
+        "Abdelhakim Jilali",
+        "El Hassan Talbi",
+        "Amine Jellouli",
+        "Mohcine Chakouri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Comparison of ASTER GDEM3, SRTM3, NASADEM, TanDEM-X90, AW3D30, and ALOS PALSAR data with TanDEM-X12: a case study of Tagragra of Akka inlier, Moroccan Anti-Atlas",
+        "doi": "10.1007/s12517-022-10885-x",
+        "year": 2022,
+        "venue": "Arabian Journal of Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "1992—2022年土地利用与土地覆盖变化如何影响Danro流域及其子流域的河网形态，并应如何评定其受威胁状态和保护边界？",
+      "hypothesis_or_mechanism": "农业及其他土地利用变化会造成河流数量、总长度、排水密度和河流级序下降，从而导致小河流萎缩或消失并提高流域受威胁程度。",
+      "variables_and_data_use": "使用Landsat 5和Landsat 9反射波段生成1992年和2022年LULC分类；使用ASTER Digital Elevation Model (DEM)划定流域及子流域边界；使用SOI地形图重建1977年河网；结合DJI AIR 2S和Garmin eTrex 30现场数据更新2022年河段状态，并计算河流数量、河流长度、排水密度、分汊比、河流频率等指标。",
+      "method_paradigm": "多时相变化检测",
+      "used_assets": [
+        "ASTER Digital Elevation Model (DEM)",
+        "Landsat 5",
+        "Landsat 9",
+        "Survey of India (SOI) Open Series Map (OSM) toposheets (63P/8, 63P/12, and 63P/16)",
+        "Drone (DJI AIR 2S)",
+        "GPS device (Garmin eTrex 30)"
+      ],
+      "author_team": [
+        "Rahul Kumar Pandey",
+        "Anshumali",
+        "Abhay Krishna Singh"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Disappearing streams and morphometric degradation in small watersheds of the Ganga River basin",
+        "doi": "10.1007/s43832-025-00333-8",
+        "year": 2026,
+        "venue": "Discover Water",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "1998—2023年魏河流域生长季NDVI如何变化，气候变化与人为活动分别贡献了多少？",
+      "hypothesis_or_mechanism": "温度和降水通过影响植被生长条件驱动NDVI年际变化，而生态恢复、城市扩张等人为活动产生独立且可能更强的长期影响。",
+      "variables_and_data_use": "使用SPOT-VGT VEGETATION和MOD1S MOD13A3构建生长季NDVI序列，以年平均温度和年平均降水作为气候解释变量，结合CLCD、植被类型、人口密度和ASTER GDEM product描述土地覆盖、人类活动及地形背景，并通过一阶差分回归分离气候与人为贡献。",
+      "method_paradigm": "时空趋势与过程归因",
+      "used_assets": [
+        "ASTER GDEM product (Advanced spaceborne thermal emission and reflection radiometer global digital elevation model)",
+        "SPOT-VGT VEGETATION",
+        "MOD1S MOD13A3",
+        "China Meteorological Administration Climate data",
+        "Vegetation type distribution map",
+        "Landsat based annual land cover data set for China (CLCD)",
+        "NDVI timing data obtained from SPOT satellite remote sensing images",
+        "China population spatial distribution kilometer grid dataset"
+      ],
+      "author_team": [
+        "Lina Li",
+        "Rui Xia",
+        "Ming Dou",
+        "Minhua Ling",
+        "Guiqiu Li",
+        "Cai Wang",
+        "Qingbin Mi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "process_attribution",
+      "source_paper": {
+        "title": "Integrating landsat NDVI data with climate and anthropogenic factors reveals drivers of vegetation dynamics in the semi-arid Basin of Western China",
+        "doi": "10.1038/s41598-025-02360-w",
+        "year": 2025,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "在相同约30米空间分辨率下，ASTER GDEM 与 DEM SRTM 对河流和地貌的识别精度有何差异？",
+      "hypothesis_or_mechanism": "不同传感器和数字高程模型生产机制所造成的地形表达差异，会导致河流识别精度不同，而较大尺度的地貌识别结果可能较为接近。",
+      "variables_and_data_use": "研究使用 ASTER GDEM Images 和 DEM SRTM Images 的地形高程信息提取河流与地貌，并通过 Regional Coordinate Point River flows 和 Geomorphologic Coordinate Points 进行样点核查和空间精度比较，同时使用 Shapefile of Administrative Boundary 界定分析范围。",
+      "method_paradigm": "对比精度验证",
+      "used_assets": [
+        "ASTER GDEM Images",
+        "DEM SRTM Images",
+        "Shapefile of Administrative Boundary",
+        "Regional Coordinate Point River flows",
+        "Geomorphologic Coordinate Points"
+      ],
+      "author_team": [
+        "Naf’an Arifian",
+        "Kemal Rahman Denis",
+        "Sri Kandi Putri"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "COMPARISON OF ASTER GDEM IMAGES AND SRTM IMAGES FOR RIVER WATERSHED AND GEOMORPHOLOGY STUDY",
+        "doi": "10.24036/irsaj.v3i2.38",
+        "year": 2023,
+        "venue": "International Remote Sensing Applied Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "ERA5-Land再分析能否可靠再现Podkamennaya Tunguska River各测试集水区长期降水、蒸散发和径流的数值及年际动态？",
+      "hypothesis_or_mechanism": "ERA5-Land能够在一定程度上重现观测水量平衡要素的长期变化，但其径流数值和动态与水文站观测之间可能存在因集水区地形及水分条件差异而变化的系统偏差。",
+      "variables_and_data_use": "使用GMTED2010进行初始集水区划分，并以ASTER Global Digital Elevation Model V003 (ASTGTM.003)细化边界和计算面积、平均绝对高度及高程振幅；使用水文站流量计算年度径流，使用气象站数据获得观测降水；从ERA5-Land Monthly Aggregated global database (19512022)提取total_precipitation_sum、total_evaporation_sum和surface_runoff_sum，汇总到年度或集水区尺度后，通过Spearman相关系数、相对误差、RMSE和nRMSE与地面观测比较。",
+      "method_paradigm": "再分析数据验证",
+      "used_assets": [
+        "USGS EROS ArchiveDigital ElevationGlobal Multi-resolution Terrain Elevation Data 2010 (GMTED2010)",
+        "ASTER Global Digital Elevation Model V003 (ASTGTM.003)",
+        "ERA5-Land Monthly Aggregated global database (19512022)",
+        "Google Earth Engine",
+        "archival information of the Central Siberian Service for Hydrometeorology and Environmental Monitoring on the water discharges at gauging stations",
+        "Precipitation data from the weather stations"
+      ],
+      "author_team": [
+        "I. V. Danilova",
+        "E. V. Fedotova",
+        "T. A. Burenina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Analysis of Water Balance Based on Long-term Observations and ERA5-Land Reanalysis in the Podkamennaya Tunguska River Basin",
+        "doi": "10.3103/s1068373926030040",
+        "year": 2026,
+        "venue": "Russian Meteorology and Hydrology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "WRF-Fire 火灾—大气耦合模型能否利用高分辨率地形、燃料和气象数据准确重现 2022 年 Xintian 森林火灾的传播过程及局地风场变化？",
+      "hypothesis_or_mechanism": "局地地形、地面风场和燃料空间分布共同控制火线传播速度与方向，而燃烧释放的热量和水汽又通过火灾—大气双向反馈改变近地面气象条件。",
+      "variables_and_data_use": "ASTER GDEM V3 提供约 30 m 地形高程；NCEP FNL analysis data 提供气象初始场和边界条件；from-glc 经处理并结合森林燃料固定样地调查数据生成 Anderson 燃料分类；Sentinel-2 satellite data 的 4、3、2 波段合成影像用于验证模拟烧毁区域的形状和范围。",
+      "method_paradigm": "耦合数值模拟",
+      "used_assets": [
+        "ASTER GDEM (Advanced Spaceborne Thermal Emission and Reflection Radiometer Global Digital Elevation Model) V3",
+        "Sentinel-2 satellite data",
+        "NCEP FNL analysis data",
+        "from-glc (Finer Resolution Observation and Monitoring of Global Land Cover)",
+        "survey data of forest fuel fixed sample plots in the hilly area of central Hunan",
+        "WRF-Fire",
+        "SFIRE model"
+      ],
+      "author_team": [
+        "Hongmei Hu",
+        "Xiangwen Deng",
+        "Gui Zhang",
+        "Lanbo Feng",
+        "Jun Long",
+        "Ziming Li",
+        "Yu Zhu",
+        "Yiying Wang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Fire behavior simulation of Xintian forest fire in 2022 using WRF-fire model",
+        "doi": "10.3389/ffgc.2024.1336716",
+        "year": 2024,
+        "venue": "Frontiers in Forests and Global Change",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "ASTER GDEM v3及其他公共DEM的垂直精度、重采样敏感性和系统误差能否通过DGPS地面控制点得到可靠评估与改善？",
+      "hypothesis_or_mechanism": "DEM中存在可由DEM高程与DGPS高程线性关系刻画的系统偏差，利用DGPS拟合校正可显著降低偏差、RMSE和MAE。",
+      "variables_and_data_use": "研究提取ASTER GDEM v3、SRTM v3、SRTM v4.1、CartoDEM v3R1、MERIT和TanDEM-X DEM在145个GCP处的高程，采用最近邻、双线性和双三次方法采样，以DGPS高程为参考进行回归校正和误差统计，并以Mobile GPS开展地面设备精度比较。",
+      "method_paradigm": "测量验证与偏差校正",
+      "used_assets": [
+        "ASTER GDEM version 3",
+        "SRTM version 3",
+        "SRTM version 4.1",
+        "CartoDEM version v3R1",
+        "MERIT",
+        "TanDEM-X DEM",
+        "Leica CS14/GS15 DGPS",
+        "Samsung Galaxy on7"
+      ],
+      "author_team": [
+        "Kumari Preety",
+        "Anup K. Prasad",
+        "Atul K. Varma",
+        "Hesham El-Askary"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Accuracy Assessment, Comparative Performance, and Enhancement of Public Domain Digital Elevation Models (ASTER 30 m, SRTM 30 m, CARTOSAT 30 m, SRTM 90 m, MERIT 90 m, and TanDEM-X 90 m) Using DGPS",
+        "doi": "10.3390/rs14061334",
+        "year": 2022,
+        "venue": "Remote Sensing",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用30米 ASTER DEM 和地形图定量刻画 Beas River basin 的排水与流域形态特征？",
+      "hypothesis_or_mechanism": "流域的高程起伏、坡面形态和排水网络结构共同控制其水文响应及水资源规划特征。",
+      "variables_and_data_use": "研究使用 USGS-ASTERDEM 的30米地形高程划定流域，并在 ArcGIS 10.5 中派生河流级序、分汊比、河流频度、排水密度及起伏等形态参数，同时使用 Survey of India toposheet (1:50000) 提供辅助地形参照。",
+      "method_paradigm": "流域形态重建",
+      "used_assets": [
+        "USGS-ASTERDEM",
+        "Survey of India toposheet (1:50000)"
+      ],
+      "author_team": [
+        "Sanjeev Sharma",
+        "Divya Sharma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Morphometric Analysis of Beas River Basin in Kullu District of Himachal Pradesh, India using Geospatial Techniques",
+        "doi": "10.36948/ijfmr.2025.v07i03.44036",
+        "year": 2025,
+        "venue": "International Journal For Multidisciplinary Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何结合 ASTER‐DEM、Landsat 光谱指数和地下水位数据刻画 Palar River basin 的流域形态、水文行为及地表特征变化？",
+      "hypothesis_or_mechanism": "流域地形和排水形态参数与植被、水体及土壤光谱指数存在显著相关关系，并共同反映流域的水文与地下水状况。",
+      "variables_and_data_use": "使用 ASTER‐DEM 30米高程提取流域、河网、坡度、坡向、起伏及形态计量参数；使用 Landsat 4–5 TM 和 Landsat 8 (OLI/TIRS) 波段计算 NDVI、NDWI 和 SAVI；使用 Bore well data 验证地下水状况。",
+      "method_paradigm": "遥感GIS相关分析",
+      "used_assets": [
+        "ASTER‐DEM",
+        "Landsat 8 (OLI/TIRS)",
+        "Landsat 4–5 TM",
+        "Bore well data"
+      ],
+      "author_team": [
+        "Smruti Ranjan Sahu",
+        "Kishan Singh Rawat",
+        "Sudhir Kumar Singh",
+        "Keerat Kumar Gupta"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Analysis of drainage morphometry and spectral indices using earth observation datasets in Palar River basin, India",
+        "doi": "10.1007/s44288-024-00038-w",
+        "year": 2024,
+        "venue": "Discover Geoscience",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "不同30米全球DEM的绝对高程精度有何差异，以及最准确的DEM能否支持河流流域和子流域的可靠自动划分？",
+      "hypothesis_or_mechanism": "不同DEM的传感器与生产流程会造成系统性和随机性高程误差，而这些误差会通过洼地填充、流向和汇流计算影响流域边界识别。",
+      "variables_and_data_use": "研究使用ASTER GDEM (Version 3, 2019)、ALOS World 3D (Version 3.2, 2021)、Copernicus DEM (Version 3, 2021)和SRTM DEM (Version 3, 2013)的高程值，与1:100,000地形图提取的参考高程进行点位比较，计算系统误差、RMSE和MAE等指标；随后将DEM用于ArcGIS洼地填充、流向、汇流量、河网和流域边界推导。",
+      "method_paradigm": "测量验证与地形建模",
+      "used_assets": [
+        "ASTER GDEM (Version 3, 2019)",
+        "ALOS World 3D (Version 3.2, 2021)",
+        "Copernicus DEM (Version 3, 2021)",
+        "SRTM DEM (Version 3, 2013)",
+        "topographic map with a scale of 1: 100,000"
+      ],
+      "author_team": [
+        "Vladimir Tabunshchik",
+        "Roman Gorbunov",
+        "Tatiana Gorbunova",
+        "Cam Nhung Pham",
+        "Aleksandra Klyuchkina"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Identification of river basins within northwestern slope of Crimean Mountains using various digital elevation models (ASTER GDEM, ALOS World 3D, Copernicus DEM, and SRTM DEM)",
+        "doi": "10.3389/feart.2023.1218823",
+        "year": 2023,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "不同来源和空间分辨率的 DEM 在 Chai Dakuk River basin 的高程精度及流域形态参数计算结果上有何差异？",
+      "hypothesis_or_mechanism": "DEM 的生产谱系、垂直精度和空间分辨率会影响排水网络提取、河道长度以及流域形态和高程积分参数的计算结果。",
+      "variables_and_data_use": "研究使用 ASTER-GDEM 1arc-second、ALOS PALSAR (ASF12.5)、SRTM 1 arc-second、SRTM 3arc-second 和 GMTED-7.5 arc-second 的高程变量，利用 133 ground reference elevation points 与 toposheet 1:20000 验证高程精度，并在 ArcGIS 中从各 DEM 提取排水网络、流域边界、主河道及多项形态和高程积分参数进行比较。",
+      "method_paradigm": "多产品精度验证",
+      "used_assets": [
+        "ASTER-GDEM 1arc-second",
+        "ALOS PALSAR (ASF12.5)",
+        "SRTM 1 arc-second",
+        "SRTM 3arc-second",
+        "GMTED-7.5 arc-second",
+        "133 ground reference elevation points",
+        "toposheet 1:20000"
+      ],
+      "author_team": [
+        "Ayad A. Faris Beg",
+        "Mohamed B. Thamer",
+        "Mohad A. Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT verified quote and user-approved override of Qwen-only quote-back failure",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of Basin Morphometric Measurements Accuracy Based on Different DEM Data, Chai Dakuk Basin a Case Study, Iraq",
+        "doi": "10.46717/igj.56.1b.18ms-2023-2-26",
+        "year": 2023,
+        "venue": "The Iraqi Geological Journal",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "ASTER GDEM、SRTM和Cartosat-1三种30米DEM在自动河网提取及流域形态参数计算方面的适用性和表现有何差异？",
+      "hypothesis_or_mechanism": "不同传感器和DEM生产流程造成的地形表达差异会改变流向、汇流量及河网阈值结果，进而影响提取河网和形态参数的质量。",
+      "variables_and_data_use": "使用ASTER GDEM version 3、SRTM version 3和Cartosat DEM version v3R1的高程值推导洼地填充、流向、汇流量、流域和河网，并计算河流级序、数量、长度及流域几何参数；使用Sentinel-2 satellite imagery目视验证河网重叠情况。",
+      "method_paradigm": "比较与测量验证",
+      "used_assets": [
+        "ASTER GDEM version 3",
+        "SRTM version 3",
+        "Cartosat DEM version v3R1",
+        "Sentinel-2 satellite imagery"
+      ],
+      "author_team": [
+        "Sayema Jamal",
+        "Adila Ali"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "A comparative study of automatic drainage network extraction using ASTER GDEM, SRTM DEM and Cartosat-1 DEM in parts of Kosi basin, Bihar, India",
+        "doi": "10.1007/s43995-023-00014-4",
+        "year": 2023,
+        "venue": "Journal of Umm Al-Qura University for Engineering and Architecture",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "如何整合地形、排水、水文、土壤和地质条件因子，并利用 TOPSIS 与 VIKOR 划分洪水危险区？",
+      "hypothesis_or_mechanism": "低高程、低起伏和缓坡有利于水流汇集与广泛淹没，而排水结构、入渗条件、地表湿润度、土壤和地质共同调节洪水危险性。",
+      "variables_and_data_use": "使用 ASTER DEM 的高程及其派生起伏度、崎岖度和坡度，结合 Survey of India (SOI) topographical maps 的排水参数、Landsat 8 images 计算的 NDWI、NBSS & LUP 土壤数据、Geological Survey of India (GSI) 地质数据以及 annual flood reports 构建和验证洪水危险图。",
+      "method_paradigm": "多准则决策支持",
+      "used_assets": [
+        "ASTER DEM",
+        "Survey of India (SOI) topographical maps",
+        "NBSS & LUP",
+        "Geological Survey of India (GSI)",
+        "Landsat 8 images",
+        "annual flood reports"
+      ],
+      "author_team": [
+        "Shanku Ghosh",
+        "Chakkaravarthi Parakasm"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Morphometry-based flood hazard zonation of Ajay River basin using coupled TOPSIS–VIKOR models, India",
+        "doi": "10.12775/bgeo-2025-0009",
+        "year": 2025,
+        "venue": "Bulletin of Geography. Physical Geography Series",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "2011—2025 年间植被覆盖变化如何影响沙丘稳定性，并与风驱动的地形侵蚀和堆积格局相互作用？",
+      "hypothesis_or_mechanism": "较高植被覆盖通过提高地表粗糙度、降低近地风速并捕获沉积物来抑制沙粒迁移，而区域主导风向控制沙丘表面的侵蚀、搬运和堆积空间格局。",
+      "variables_and_data_use": "研究从 ASTER data 和 Landsat 8 OLI 计算 NDVI 与 NSI，并进行植被、稳定沙丘、活动沙丘和裸土分类；使用 ASTER Global Digital Elevation Model (GDEM, Version 3) 作为参考地形高程，与 Sentinel-1 Single Look Complex (SLC) image pairs 生成的 2025 年 DEM 进行配准和差分；再结合 wind data、Google Earth imagery、official 1:100,000 geological map 及野外调查解释和验证植被稳定作用与风成地貌变化。",
+      "method_paradigm": "多源遥感关系机制分析",
+      "used_assets": [
+        "ASTER Global Digital Elevation Model (GDEM, Version 3)",
+        "Sentinel-1 Single Look Complex (SLC) image pairs",
+        "Sentinel-1–derived DEM (2025)",
+        "ASTER data",
+        "Landsat 8 OLI",
+        "Google Earth imagery",
+        "official 1:100,000 geological map",
+        "wind data"
+      ],
+      "author_team": [
+        "Naoual El Hammouch",
+        "Hassan Tabyaoui",
+        "Fatima El Hammichi",
+        "Ahmed Gaber"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Mapping Vegetation Cover and Assessing Dune Stabilization in the Merzouga Desert Using NDVI Indicators from ASTER and Landsat Data",
+        "doi": "10.30564/re.v8i3.12800",
+        "year": 2026,
+        "venue": "Research in Ecology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "不同来源的30米DEM在小型城市化流域形态参数提取中的结果和相对精度有何差异？",
+      "hypothesis_or_mechanism": "不同DEM的生产技术、垂直精度和地表表达差异会改变水文校正后的流向、河网及流域边界，从而导致形态参数及其误差不同。",
+      "variables_and_data_use": "研究使用 ASTER GDEM V3、SRTM DEM V3、ALOS DEM、NASA DEM 和 TOPO DEM 的高程变量；对各DEM进行重投影、填洼和河道刻蚀，计算流向与汇流量，提取河网和流域边界，并计算14项线性、面积及地势形态参数，最后以 TOPO DEM 为参考计算MAPE。",
+      "method_paradigm": "多源DEM测量验证",
+      "used_assets": [
+        "ASTER GDEM V3",
+        "SRTM DEM V3",
+        "ALOS DEM",
+        "NASA DEM",
+        "TOPO DEM"
+      ],
+      "author_team": [
+        "Batuhan Kılıç",
+        "Fatih Gülgen",
+        "Meltem Çelen",
+        "Mehmet Öncel",
+        "Halil Oruç",
+        "Sinem Vural"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "External full-text/Deep Research anchor verification reported by user",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Morphometric Analysis of Saz-Çayırova Drainage Basin using Geographic Information Systems and Different Digital Elevation Models",
+        "doi": "10.30897/ijegeo.1079851",
+        "year": 2022,
+        "venue": "International Journal of Environment and Geoinformatics",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "ASTER 30米DEM结合Arc Hydro和GIS加权叠置方法能否有效划分Hulu Langat流域并绘制滑坡易发性分区图？",
+      "hypothesis_or_mechanism": "ASTER地形高程及其派生的坡度、坡向等地形变量，结合土地利用、岩性、道路和河流邻近度等因素，可以改善流域划分和滑坡风险空间识别。",
+      "variables_and_data_use": "研究将ASTER 30m DEM用于Arc Hydro流域划分，并派生坡度和坡向；将Landsat 8 imagery用于土地利用分类，同时结合road data、river proximity、lithology和其他空间因子，通过加权叠置生成滑坡易发性等级，并使用river lines and watershed boundary data及past landslides进行验证。",
+      "method_paradigm": "GIS空间分析与决策支持",
+      "used_assets": [
+        "ASTER 30m DEM",
+        "ASTER open-source DEMs",
+        "ASTER DEM",
+        "Landsat 8 imagery",
+        "river lines and watershed boundary data",
+        "road data",
+        "map of lithology obtained from open sources",
+        "past landslides"
+      ],
+      "author_team": [
+        "Nurul Najihah Rosedin",
+        "Abdul Rauf Abdul Rasam",
+        "Nurhanisah Hashim",
+        "Edzrie Shah Shaharudin",
+        "Siti Rashidah Hanum Abd Wahab"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "user manual quote-guard admission: GPT/Qwen initial admitted; final downgrade was caused by quote/verbatim verification, original model files unchanged",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "HARNESSING ASTER-DEM-DERIVED WATERSHED FEATURES FOR LANDSLIDE SUSCEPTIBILITY MAPPING",
+        "doi": "10.33736/jcest.8975.2026",
+        "year": 2026,
+        "venue": "Journal of Civil Engineering, Science and Technology",
+        "pool_source": "original_existing"
+      },
+      "admission_basis": "user_manual_quote_guard_override_dual_initial_admitted",
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "如何利用多源遥感数据识别和分析多年冻土区热融地质灾害及其发生时间与空间范围？",
+      "hypothesis_or_mechanism": "D-InSAR能够通过多时相SAR干涉提取地表形变，结合光学影像分类和地形校正可以提高热融地质灾害识别的准确性。",
+      "variables_and_data_use": "使用Sentinel-1A多时相C波段SAR影像提取地表形变，使用ASTER GDEM 30-meter resolution digital elevation data进行地形校正和地形相位移除，使用GF-2satellite image data进行灾害范围提取和CNN分类，使用Landsat images确定灾害发生时间与动态演化，并结合野外调查进行验证。",
+      "method_paradigm": "多源遥感变化检测",
+      "used_assets": [
+        "Sentinel-1A",
+        "GF-2satellite image data",
+        "ASTER GDEM 30-meter resolution digital elevation data",
+        "Landsat images"
+      ],
+      "author_team": [
+        "Yongyan Zhang",
+        "Sailajia Wei",
+        "Rui Zhang",
+        "Qiannan Xin",
+        "Hao Sun"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Thermokarst hazard dataset for Qilian mountains permafrost regions in China",
+        "doi": "10.1016/j.dib.2025.111430",
+        "year": 2025,
+        "venue": "Data in Brief",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "不同开源地形数据如何影响高山亚洲流域尺度突发洪水模拟的水文、水动力和时间特征及风险评估？",
+      "hypothesis_or_mechanism": "不同地形数据的空间分辨率和局地高程质量会改变洪水路径与河道地形表达，从而造成洪水范围、深度、速度、作用力及到达时间的系统偏差。",
+      "variables_and_data_use": "研究使用 30-m ASTER GDEM、30-m SRTM DEM、30-m Copernicus DEM 和 12.5-m ALOS PALSAR DEM 作为二维水动力模型的地形输入，并以 5-m UAV 实测地形作为基准；使用 30-m Landsat TM image data 获取土地利用信息，结合设计降雨情景模拟洪水范围、深度、速度、到达时间、峰值时间和水动力作用力。",
+      "method_paradigm": "多源地形对比与二维水动力模拟",
+      "used_assets": [
+        "30-m ASTER GDEM data",
+        "30-m Shuttle Radar Topography Mission DEM (SRTM DEM) data",
+        "30-m Copernicus DEM (COP DEM) data",
+        "12.5-m Advanced Land Observing Satellite Phase Array type L-band Synthetic Aperture Radar DEM (ALOS PALSAR DEM) data",
+        "5-m measured topographic data obtained by using the Unmanned Aerial Vehicle (UAV, DJI Phantom 4)",
+        "30-m Landsat TM image data"
+      ],
+      "author_team": [
+        "Zhu Li",
+        "Yan‐Fang Sang",
+        "Vijay P. Singh",
+        "Yueling WANG",
+        "Xilin Xia",
+        "Yichi Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Influence of open-source topographic data on basin-scale flash flood modelling in High Mountain Asia",
+        "doi": "10.1016/j.ejrh.2026.103396",
+        "year": 2026,
+        "venue": "Journal of Hydrology Regional Studies",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "研究如何利用多源遥感、数字地形分析和模糊逻辑空间建模 delineate Gundar River Basin中Kadaladi Taluk的古河道网络。",
+      "hypothesis_or_mechanism": "古河道形成的低坡度、地形凹陷、汇流集中和较高地形湿度等地形特征，与植被和土壤水分光谱异常相结合，可以识别被埋藏或遗留的古河道带。",
+      "variables_and_data_use": "使用ASTER GDEM Version 3的高程数据计算坡度、坡向、曲率、流向、汇流量和TWI；使用Landsat-9 OLI波段计算NDVI、NDWI和NDMI，并生成假彩色及SWIR组合影像；随后将这些地形和光谱变量标准化为模糊隶属度并进行模糊伽马叠加，以 delineate 潜在古河道区域。",
+      "method_paradigm": "遥感地形综合建模",
+      "used_assets": [
+        "Landsat-9 Operational Land Imager (OLI)",
+        "Advanced Spaceborne Thermal Emission and Reflection Radiometer Global Digital Elevation Model (ASTER GDEM) Version 3",
+        "Survey of India"
+      ],
+      "author_team": [
+        "Narayanan MSS",
+        "V. Stephen Pitchaimani",
+        "M. Sivakumar",
+        "T. Dinesh Kumar",
+        "Shankar Karuppannan",
+        "R. J. Jerin Joe"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Delineation of palaeochannels using DEM and spectral indices in the Gundar basin of Kadaladi region",
+        "doi": "10.1038/s41598-026-35549-8",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "研究区的多光谱遥感和地形信息能否有效识别岩性单元、地质线性构造及其空间分布特征。",
+      "hypothesis_or_mechanism": "地形起伏、坡度突变和山体阴影能够增强断层、沟谷及岩性边界的可见性，而Landsat光谱差异能够进一步区分不同岩性单元。",
+      "variables_and_data_use": "使用Landsat 5 TM反射波段进行大气校正、假彩色合成、主成分分析、方向滤波和K-means及SVM分类；使用ASTER GDEM v3地形高程生成DEM、山体阴影和彩色地形图，并派生坡度图，用于辅助构造提取和岩性边界验证。",
+      "method_paradigm": "遥感制图与地形分析",
+      "used_assets": [
+        "Landsat 5 Thematic Mapper (TM)",
+        "ASTER GDEM v3 elevation data",
+        "ASTER GDEM v3"
+      ],
+      "author_team": [
+        "Salma Essam",
+        "Walid M. Mabrouk",
+        "Khaled S. Soliman",
+        "Ahmed Mohamed Metwally"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Structural and lithological controls on landfill site suitability in Tenth of Ramadan City, Egypt using remote sensing and machine learning",
+        "doi": "10.1038/s41598-026-41772-0",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "研究不同开放获取的 30m 空间borne DEM 在 West Rapti River basin 的高程精度及其对洪水淹没模拟结果的影响。",
+      "hypothesis_or_mechanism": "不同 DEM 的传感器来源、生产方法和空间误差会造成地形高程偏差，并进一步影响洪水传播和淹没范围模拟。",
+      "variables_and_data_use": "使用 ASTER GDEM v3、AW3D30 version 2.1、SRTM-30 和 Carto DEM v3 的地形高程，与 spot heights 及 river cross-section data 进行平均误差和 RMSE 比较；随后将各 DEM 分别作为二维洪水模型的地形输入，并使用 SENTINEL-1 SAR 估计的淹没范围进行参照。",
+      "method_paradigm": "DEM精度验证与洪水模拟",
+      "used_assets": [
+        "AW3D30 version 2.1",
+        "ASTER GDEM v3",
+        "SRTM-30",
+        "Carto DEM v3",
+        "spot heights",
+        "river cross-section data",
+        "SENTINEL-1 SAR"
+      ],
+      "author_team": [
+        "Rocky Talchabhadel",
+        "Hajime Nakagawa",
+        "Kenji Kawaike",
+        "Kazuki YAMANOI",
+        "Bhesh Raj Thapa"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Assessment of vertical accuracy of open source 30m resolution space-borne digital elevation models",
+        "doi": "10.1080/19475705.2021.1910575",
+        "year": 2021,
+        "venue": "Geomatics Natural Hazards and Risk",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "研究如何利用ASTER GDEM地形高程和GIS水文分析重建并刻画摩洛哥Oued Rheris流域的边界、排水网络及其形态特征。",
+      "hypothesis_or_mechanism": "地形高程控制地表汇流方向和累积过程，因此可通过数字高程模型提取与真实地貌相符的流域边界和排水网络，并量化流域形态特征。",
+      "variables_and_data_use": "使用ASTER GDEM version 3的30米地形高程作为主要输入，经过投影、洼地填充、D8流向和汇流累积计算，提取河网和流域边界，并计算线性、面积、形状及起伏度等形态参数；同时使用地质图和高分辨率卫星影像进行背景描述与结果验证。",
+      "method_paradigm": "GIS地形水文分析",
+      "used_assets": [
+        "ASTER GDEM (Advanced Spaceborne Thermal Elevation Model) version 3",
+        "geological maps",
+        "high-resolution satellite imagery",
+        "available topographic information"
+      ],
+      "author_team": [
+        "Siham Aouzal",
+        "Manare Adnani",
+        "Hicham Elbelrhiti",
+        "Ilias Kacimi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Morphometric vulnerability of the Oued Rheris Watershed (Southeast Morocco): How elongated shape and sparse drainage amplify desertification risk and threaten oasis sustainability",
+        "doi": "10.12912/27197050/226284",
+        "year": 2026,
+        "venue": "Ecological Engineering & Environmental Technology",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "不同免费DEM数据源在流域形态计量分析中的适用性和结果一致性如何？",
+      "hypothesis_or_mechanism": "不同DEM的传感器来源、空间分辨率和高程表达差异会导致排水网络、流域边界及形态计量参数出现不同程度的误差。",
+      "variables_and_data_use": "研究使用ASTER GDEM、SRTM DEM、ALOS DSM和NASA DEM提取排水线、流域边界及形态计量参数，并以由1:25K地形图生成的TOPO DEM作为参考，通过平均绝对百分比误差比较各DEM结果。",
+      "method_paradigm": "DEM对比与误差验证",
+      "used_assets": [
+        "ASTER GDEM",
+        "SRTM DEM",
+        "ALOS DSM",
+        "NASA DEM",
+        "TOPO DEM"
+      ],
+      "author_team": [
+        "Batuhan Kılıç",
+        "Fatih Gülgen",
+        "Meltem Çelen",
+        "Mehmet Salim Öncel",
+        "Halil Nurullah Oruç",
+        "Sinem Vural"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "COMPARING THE BASIN MORPHOMETRIC PARAMETERS DERIVED FROM FREELY AVAILABLE DEMS AND TOPOGRAPHIC DATASET: A CASE STUDY OF SAZ-ÇAYIROVA BASIN, TURKEY",
+        "doi": "10.15659/isag2021.12519",
+        "year": 2022,
+        "venue": null,
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "研究旨在建立适用于青藏高原区域尺度土地形态分类的面向对象分析流程，并比较其与传统像元分类方法的准确性。",
+      "hypothesis_or_mechanism": "面向对象分析通过利用空间对象的形状、纹理、光谱和地形上下文，能够减少异质地形中的椒盐噪声并提高土地形态分类精度。",
+      "variables_and_data_use": "研究使用 30 m ASTER GDEM v3 计算坡度、坡向、曲率、地形湿度指数、地形起伏度等 12 个地形变量，使用 Sentinel-2 Level-2A 地表反射率生成四个光谱波段、NDVI 和 NDWI，并将这些变量与几何特征共同输入面向对象随机森林和像元最大似然分类模型；Google Earth imagery、已发表地质图和实地照片用于训练与验证样本标注。",
+      "method_paradigm": "面向对象分类与精度比较",
+      "used_assets": [
+        "30 m ASTER GDEM v3",
+        "Sentinel-2 Level-2A surface reflectance data",
+        "Google Earth imagery",
+        "published geological maps",
+        "Field photographs from a 2019 expedition"
+      ],
+      "author_team": [
+        "Claire Ashworth andrew Devlin",
+        "Kate Pemberton"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Analysis of landform classification using object-based image analysis in the Tibetan Plateau",
+        "doi": "10.22271/27067483.2025.v7.i4c.569",
+        "year": 2025,
+        "venue": "International Journal of Geography Geology and Environment",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_29",
+      "research_question": "如何利用ASTER GDEM地形数据、气象观测和土地土壤信息建立HEC-HMS模型，以模拟厄瓜多尔Guayas河流域实验区的河流排放？",
+      "hypothesis_or_mechanism": "地形形态、土地利用、土壤纹理和降水共同控制降雨向径流及河道排放的转换，合理参数化这些因素能够再现实测流量过程。",
+      "variables_and_data_use": "使用global ASTER GDEM digital terrain elevation model (DEM)提取流域边界、面积、河道长度、坡度和其他形态参数；使用Pichilingue站降水数据驱动气象模型；使用土地利用覆盖和土壤纹理数据计算SCS水文曲线数；使用Quevedo Baba站实测流量进行模型校准和验证。",
+      "method_paradigm": "水文模型与参数校准",
+      "used_assets": [
+        "global ASTER GDEM digital terrain elevation model (DEM) (METI & NASA, 2022)",
+        "precipitation meteorological data from the Pichilingue station",
+        "land use coverage at a scale of 1:100,000 prepared in 2015 by SENPLADES - MAGAP (MAGAP, 2015)",
+        "soil texture coverage at a scale of 1:25,000 from the pedological map prepared in 2020 by MAGAP",
+        "gauging measured at the Quevedo Baba station"
+      ],
+      "author_team": [
+        "Universidad Técnica Estatal de Quevedo",
+        "José Luis Muñoz Marcillo",
+        "Theofilos Toulkeridis"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Hydrological modeling for the discharge production in an experimental area of the Guayas river basin, Ecuador",
+        "doi": "10.23854/07199562.20231.munoz",
+        "year": 2023,
+        "venue": "Revista Geográfica de Chile Terra Australis",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_30",
+      "research_question": "如何利用流域尺度地形参数识别和解释研究区的构造地貌特征及构造活动强度？",
+      "hypothesis_or_mechanism": "活动构造通过改变地表抬升、河流纵坡、流域形态和侵蚀阶段，在高程积分、河流长度梯度、坡度、地形起伏度及地貌信息熵中形成可识别的空间响应。",
+      "variables_and_data_use": "以Global Digital Elevation Model高程数据提取河网和158个子流域，并计算平均、最大和最小高程、坡度、地形起伏度、高程积分、流域形状指数、河流长度梯度指数和地貌信息熵；使用Google Earth images校正河网，结合ChinaMeteorological Data Network降雨数据、1:250,000 geological map of Yunnan Province地层数据和Yunnan Quaternary Active Fracture Distribution Map解释或验证地貌指标。",
+      "method_paradigm": "地形指标关系分析",
+      "used_assets": [
+        "Global Digital Elevation Model",
+        "ChinaMeteorological Data Network",
+        "1:250,000 geological map of Yunnan Province",
+        "Yunnan Quaternary Active Fracture Distribution Map",
+        "Google Earth images"
+      ],
+      "author_team": [
+        "Sheng Li",
+        "Yuanhua Qing",
+        "Na Li",
+        "Nannan Lu",
+        "Shuang Yang",
+        "Yufan Xu",
+        "Jingnan Liu",
+        "Ruotong Mona Liu",
+        "He Hao"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Geomorphologic feature and its tectonic significance in the middle and upper reaches of Yunnan section of the Lancang River Basin",
+        "doi": "10.3389/feart.2025.1594817",
+        "year": 2025,
+        "venue": "Frontiers in Earth Science",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_31",
+      "research_question": "研究比较并评估高加索冰川过去约20年的面积、质量平衡和冰厚变化及其区域差异。",
+      "hypothesis_or_mechanism": "冰川退缩和质量损失受区域气候条件、地形差异以及碎屑覆盖影响，并在不同冰川和山坡之间表现出差异。",
+      "variables_and_data_use": "使用ASTER GDEM版本3计算冰川的坡向、坡度和高程分布，结合Hugonnet等人的大地测量质量平衡和冰厚变化数据、冰川范围数据、WGMS现场质量平衡数据、Landsat和Sentinel冰川面积数据、碎屑覆盖数据以及气象站温度和降水数据，估算和比较冰川质量变化。",
+      "method_paradigm": "遥感变化分析与质量平衡比较",
+      "used_assets": [
+        "ASTER Global Digital Elevation Model (GDEM), version 3",
+        "ASTER L1A stereo images",
+        "Landsat 8 Operational Land Imager (OLI)",
+        "ALOS PALSAR DEM",
+        "geodetic mass balance and ice thickness data from Hugonnet et al. (2021)",
+        "WGMS server",
+        "debris-covered glacier dataset from Tielidze et al. (2020a)",
+        "Caucasus glacier inventory by Tielidze et al. (2021)",
+        "Sentinel",
+        "SPOT image 2019",
+        "Pléiades"
+      ],
+      "author_team": [
+        "Levan Tielidze",
+        "Vincent Jomelli",
+        "G. A. Nosenko"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Analysis of Regional Changes in Geodetic Mass Balance for All Caucasus Glaciers over the Past Two Decades",
+        "doi": "10.3390/atmos13020256",
+        "year": 2022,
+        "venue": "Atmosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_32",
+      "research_question": "不同来源和精度的 DEM 如何影响山地流域的形态计量分析，以及线性回归能否改善 DEM 的高程精度？",
+      "hypothesis_or_mechanism": "DEM 来源和垂直精度差异会改变流域地形及排水形态参数，而基于参考点高程的线性回归可以降低高程误差并改善地形表示。",
+      "variables_and_data_use": "使用 ASTER GDEMV003 和 SRTM 30 m DEM 提取流域排水网络、面积、形状、最大和最小高程、平均高程、地形起伏、坡度及其他形态参数；使用 696 个参考点的点高程和数字等高线比较两种 DEM 的高程，并训练和验证线性回归校正模型。",
+      "method_paradigm": "DEM对比与回归校正",
+      "used_assets": [
+        "SRTM: N06_E080, 30 m",
+        "ASTER GDEMV003:N06E080, 30 m",
+        "Spot heights, Digital contour, 1:50,000"
+      ],
+      "author_team": [
+        "B. Janavathsasarma",
+        "I. A. K. S. Illeperuma"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Identification of the ‘Best’ DEM via Analysis of Morphological Parameters Derived From Different DEMS, and Applying Linear Regression for Accuracy Enhancement",
+        "doi": "10.4038/jgs.v4i2.56",
+        "year": 2024,
+        "venue": "Journal of Geospatial Surveying",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_33",
+      "research_question": "研究区内Mandakini河流域及其四个子流域的线性、面积和地形起伏形态特征如何，并如何据此进行子流域优先级排序？",
+      "hypothesis_or_mechanism": "流域的排水结构、地形起伏和其他形态计量参数能够反映侵蚀、沉积及地貌过程差异，并支持子流域管理优先级判定。",
+      "variables_and_data_use": "使用ASTER GDEM（2011）高程数据制作底图、提取等高线和排水网络，并在Arc-Hydro和ArcGIS中划分流域及网格、计算13项形态计量参数；同时使用LISS-III、Google Earth Image和Survey of India地形图作为辅助空间数据。",
+      "method_paradigm": "GIS形态计量与流域排序",
+      "used_assets": [
+        "ASTER GDEM (2011)",
+        "LISS-III (2013)",
+        "Google Earth Image",
+        "Survey of India (SOI) topo-sheets (53J/14, 53/J15, 53N/1, 53N/2, 53N/3, 53N/4 and 53N/6) on 1:50,000 scale"
+      ],
+      "author_team": [
+        "Sandeep Kumar",
+        "Sangeeta Bansal"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Prioritization Based on Morphometric Analysis - A Case Study of Mandakini River Basin",
+        "doi": "10.51220/jmr.v18i1.7",
+        "year": 2023,
+        "venue": "Journal of Mountain Research",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_34",
+      "research_question": "研究1990年代以来整个Karakoram地区冰川面积、碎屑覆盖和几何属性如何发生变化。",
+      "hypothesis_or_mechanism": "全球变暖总体驱动冰川退缩和碎屑覆盖增加，但冰川突涌、前进及区域地形差异会造成显著的空间异质性。",
+      "variables_and_data_use": "使用Landsat TM/ETM+/OLI影像提取1990年代、2000年代、2010年代和2020年代的冰川轮廓及清洁冰雪和碎屑覆盖面积；使用ASTER GDEM v3计算最小、中位数和最大高程、坡度、坡向，并生成分水岭和山脊线；使用Sentinel-2和Planet 3m image开展轮廓精度和不确定性评估，结合HydroSHEDS及模拟冰厚数据进行子流域和冰量相关分析。",
+      "method_paradigm": "多时相半自动变化制图",
+      "used_assets": [
+        "Landsat TM/ETM+/OLI",
+        "Sentinel-2",
+        "Planet 3m image",
+        "ASTER GDEM v3",
+        "ICESat GLA 14",
+        "GGI18",
+        "CCI",
+        "SCGI",
+        "ICIMOD",
+        "Mölg et al. (2018)",
+        "Scherler et al. (2018)",
+        "Herreid and Pellicciotti (2020)",
+        "Bhambri et al. (2017)",
+        "Guillet et al. (2022)",
+        "HydroSHEDS",
+        "Farinotti et al. (2019) simulated ice thickness datasets",
+        "Millan et al. (2022a) simulated ice thickness datasets",
+        "Shuttle Radar Topography Mission (SRTM) DEM"
+      ],
+      "author_team": [
+        "Fuming Xie",
+        "Shiyin Liu",
+        "Yongpeng Gao",
+        "Yu Zhu",
+        "Tobias Bolch",
+        "Andreas Kääb",
+        "Shimei Duan",
+        "Wenfei Miao",
+        "Jianfang Kang",
+        "Yaonan Zhang",
+        "Xiran Pan",
+        "Caixia Qin",
+        "Kunpeng Wu",
+        "Miaomiao Qi",
+        "Xianhe Zhang",
+        "Ying Yi",
+        "Fengze Han",
+        "Xiaojun Yao",
+        "Qiao Liu",
+        "Xin Wang",
+        "Zongli Jiang",
+        "Donghui Shangguan",
+        "Yong Zhang",
+        "Richard Grünwald",
+        "Muhammad Adnan",
+        "Jyoti Karki",
+        "Muhammad Saifullah"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Interdecadal glacier inventories in the Karakoram since the 1990s",
+        "doi": "10.5194/essd-15-847-2023",
+        "year": 2023,
+        "venue": "Earth system science data",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_35",
+      "research_question": "研究区的地形起伏、坡度、坡向和地形剖分特征如何分布，以及这些地形特征如何指示土壤侵蚀易发区域？",
+      "hypothesis_or_mechanism": "高程差异较大、相对起伏较高、坡度较陡和地形剖分程度较强的区域具有更高的地表径流和土壤侵蚀风险。",
+      "variables_and_data_use": "使用 ASTER GDEM 高程栅格计算坡度和坡向，并派生绝对高程、相对高程和剖分指数；使用 SOI 地形图进行基础制图、配准和等高线及河流数字化；使用 GPS Data 进行地面验证。",
+      "method_paradigm": "GIS 地形分析与空间制图",
+      "used_assets": [
+        "SOI (Survey of India) Topographical Maps (1:50,000 map scale)",
+        "ASTER GDEM (Advanced Spaceborne Thermal Emission and Reflection Radiometer - Global Digital Elevation Model)",
+        "GPS Data"
+      ],
+      "author_team": [
+        "Ashok B. Divekar",
+        "Mithilesh N. Chavan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/Qwen admitted open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Relief Analysis of Daund Tahsil, Pune District, Maharashtra Using Geospatial Technology",
+        "doi": "10.5281/zenodo.21544199",
+        "year": 2026,
+        "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_36",
+      "research_question": "如何在埃及贝尼苏韦夫省识别兼顾环境、技术与社会经济约束的废物转能源（WTE）设施最优选址？",
+      "hypothesis_or_mechanism": "通过整合多源地理空间数据与专家权重评估，构建GIS-MCDM模型可系统量化不同候选区域的适宜性并输出最优解。",
+      "variables_and_data_use": "使用ASTER GDEM提取高程与坡度作为地形约束；利用Landsat-9影像进行土地覆盖分类；结合OpenStreetMap基础设施矢量数据与政府官方垃圾管理记录，共同输入AHP加权叠加分析。",
+      "method_paradigm": "GIS多准则决策分析 (AHP)",
+      "used_assets": [
+        "ASTER GDEM",
+        "Landsat-9 imagery",
+        "OpenStreetMap",
+        "official governmental datasets"
+      ],
+      "author_team": [
+        "Wael Mostafa",
+        "Saif M. Abo Khashaba",
+        "Abdelhamid Elsabagh",
+        "Zenhom Magd",
+        "Hussein Abdelfattah M. Abdelkhalek",
+        "Mohamed R. Abdelzaher"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Qwen admitted with verified quote; GPT-only quote-back downgrade overridden by user approval",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "GIS-integrated multi-criteria decision framework for waste-to-energy plant site selection in Beni Suef governorate, Egypt",
+        "doi": "10.1038/s41598-026-59518-3",
+        "year": 2026,
+        "venue": "Scientific Reports",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_37",
+      "research_question": "论文研究阿尔泰山区Biya河流域的地质历史如何与河流形态特征及水文地貌格局相关联。",
+      "hypothesis_or_mechanism": "河流地质演化和周围地形约束塑造河道平面形态、河谷结构及其沿程变化。",
+      "variables_and_data_use": "论文使用ASTER GDEM v3的地形高程建立河流轴线、活动河道宽度、河谷横断面、谷地宽度和地形曲率等几何变量，并结合近期卫星影像人工 delineate 河流形态；使用Russia ArcticNET的长期月流量数据通过Gumbel分布确定HQ5情景，进而分析活动洪泛平原。",
+      "method_paradigm": "地形分析与形态统计",
+      "used_assets": [
+        "ASTER GDEM v3",
+        "recent satellite images",
+        "Russia ArcticNET"
+      ],
+      "author_team": [
+        "Lisa Schmalfuss",
+        "Christoph Hauer",
+        "Liubov V. Yanygina",
+        "Martin Schletterer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Landscape Reading for Alpine Rivers: A Case Study from the river Biya",
+        "doi": "10.24057/2071-9388-2022-046",
+        "year": 2023,
+        "venue": "GEOGRAPHY ENVIRONMENT SUSTAINABILITY",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_38",
+      "research_question": "研究旨在识别和制图海南三亚槟榔种植园的空间分布，并分析其空间聚集、地形特征、历史光谱变化和土地利用背景。",
+      "hypothesis_or_mechanism": "槟榔种植园的空间分布和聚集模式可能受到地形高程、坡度、土地利用类型以及历史土地覆盖变化的共同影响。",
+      "variables_and_data_use": "研究使用GoogleEarthimagery的RGB可见光波段进行样本构建和槟榔种植园分割制图，使用ASTER GDEM V3提取高程并分析坡度，使用Landsat5andLandsat8surface-reflectancedata构建1986至2016年的NBR时间序列并开展LandTrendr变化分析，使用ThirdNationalLandSurvey进行土地利用类别叠加比较，并结合GPS实地调查点进行样本核查。",
+      "method_paradigm": "遥感制图与空间关联分析",
+      "used_assets": [
+        "GoogleEarthimagery",
+        "GarminGPSMAP63csx",
+        "Landsat5andLandsat8surface-reflectancedata",
+        "ASTER GDEM V3",
+        "ThirdNationalLandSurvey",
+        "HainanStatisticalYearbooks"
+      ],
+      "author_team": [
+        "Xuewu Wang",
+        "Wenlu Zhao",
+        "Cai Wang",
+        "Xu Chen",
+        "Yan Xu",
+        "Zuoman Zhang",
+        "Xirui Qiao",
+        "Cao Bing",
+        "Huifang Wang",
+        "Hao Liu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "High-Resolution Mapping and Spatial Pattern Analysis of Areca Palm Plantations in Sanya, China, Using SAMLoRA",
+        "doi": "10.3390/f17091031",
+        "year": 2026,
+        "venue": "Forests",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_39",
+      "research_question": "研究旨在建立整个大高加索地区的岩冰川清单，并刻画其数量、面积、位置、高程、坡度和活动状态。",
+      "hypothesis_or_mechanism": "岩冰川的形态特征、地形位置和表面结构能够支持其活动与残留状态的判别，并反映区域多年冻土和地貌演化格局。",
+      "variables_and_data_use": "论文使用SPOT、Worldview、QuickBird、IKONOS和Sentinel-2影像识别并人工数字化岩冰川边界，使用ASTER GDEM version 3提取岩冰川多边形范围内的最低、平均和最高高程及坡度，并结合形态特征分类活动和残留岩冰川。",
+      "method_paradigm": "遥感制图与地形分析",
+      "used_assets": [
+        "SPOT",
+        "Worldview-1/-2",
+        "QuickBird",
+        "IKONOS",
+        "Sentinel-2",
+        "Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) Global Digital Elevation Model (GDEM, 2011) version 3",
+        "Shuttle Radar Topography Mission version 3 (SRTM)"
+      ],
+      "author_team": [
+        "Levan Tielidze",
+        "Alessandro Cicoira",
+        "G. A. Nosenko",
+        "Shaun Eaves"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "The First Rock Glacier Inventory for the Greater Caucasus",
+        "doi": "10.3390/geosciences13040117",
+        "year": 2023,
+        "venue": "Geosciences",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_40",
+      "research_question": "研究不同 DEM 分辨率下地形信息量如何变化，以及如何确定研究区域的最佳 DEM 分辨率并融合多源 DEM。",
+      "hypothesis_or_mechanism": "DEM 分辨率会影响地形因子描述的信息量和精度，多源 DEM 按不同坡度区域进行加权融合可以降低高程误差并改善地形表达。",
+      "variables_and_data_use": "使用 SRTM1i、ASTERGDEMV3i 和 AW3D30i 地形高程数据，将 AW3D30i 提取的坡度划分为九个等级，再依据坡度等级对三种 DEM 进行加权平均融合，并使用 5mDEM 计算 RMSE。",
+      "method_paradigm": "信息熵分析与多源数据融合",
+      "used_assets": [
+        "SRTM1i",
+        "ASTERGDEMV3i",
+        "AW3D30i",
+        "SRTM1DEM",
+        "AW3D30DEM",
+        "FusedDEM",
+        "5mDEM"
+      ],
+      "author_team": [
+        "Shangmin Zhao",
+        "Jiao Liu",
+        "Weiming Cheng",
+        "Chenghu Zhou"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Fusion Scheme and Implementation Based on SRTM1, ASTER GDEM V3, and AW3D30",
+        "doi": "10.3390/ijgi11030207",
+        "year": 2022,
+        "venue": "ISPRS International Journal of Geo-Information",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    },
+    {
+      "direction_id": "ref_41",
+      "research_question": "研究 2000–2020 年间大高加索地区冰川的数量、面积和末端位置如何变化。",
+      "hypothesis_or_mechanism": "气候变化及其相关的冰川消融过程导致大高加索冰川面积缩减、数量结构变化和冰川末端退缩。",
+      "variables_and_data_use": "使用 Landsat 5/7、Sentinel-2、SPOT 6/7 和 QuickBird 光学影像人工勾绘 2000 年和 2020 年冰川边界，计算冰川数量、面积和末端高程变化；使用 ASTER GDEM version 3 提取坡向、坡度和冰川高程分布，并使用 SRTM3 作为部分高分辨率影像的地形叠加背景。",
+      "method_paradigm": "多时相遥感变化检测",
+      "used_assets": [
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 7 Enhanced Thematic Mapper Plus (ETM+)",
+        "Sentinel-2",
+        "SPOT 6/7",
+        "QuickBird",
+        "SRTM3 topography",
+        "ASTER Global Digital Elevation Model (GDEM), version 3",
+        "Google Earth"
+      ],
+      "author_team": [
+        "Levan Tielidze",
+        "G. A. Nosenko",
+        "T. Khromova",
+        "Frank Paul"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT admitted with verified quote; Qwen-only quote-back downgrade overridden by user approval",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Strong acceleration of glacier area loss in the Greater Caucasus between 2000 and 2020",
+        "doi": "10.5194/tc-16-489-2022",
+        "year": 2022,
+        "venue": "The cryosphere",
+        "pool_source": "original_existing"
+      },
+      "pool_sources": [
+        "original_existing"
+      ],
+      "pool_source": "original_existing"
+    }
+  ],
+  "quality": {
+    "ref_count": 38,
+    "source_paper_count": 38,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

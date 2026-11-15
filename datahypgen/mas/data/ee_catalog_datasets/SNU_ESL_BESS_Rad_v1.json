@@ -1,0 +1,170 @@
+{
+    "type": "Collection",
+    "id": "SNU/ESL/BESS/Rad/v1",
+    "stac_version": "1.1.0",
+    "description": "Breathing Earth System Simulator (BESS) is a simplified process-based model\nthat couples atmosphere and canopy radiative transfers, canopy\nphotosynthesis, transpiration, and energy balance. It couples an atmospheric\nradiative transfer model and artificial neural network with forcings from\nMODIS atmospheric products to generate 5-km daily products.\n\nPublications:\n\n* Ryu Youngryel, Chongya Jiang, Hideki Kobayashi, Matteo Detto,\n  MODIS-derived global land products of shortwave radiation and diffuse and\n  total photosynthetically active radiation at 5km resolution from 2000.\n  Remote Sensing of Environment, Volume 204,\n  2018.\n  [doi:10.1016/j.rse.2017.09.021](https://doi.org/10.1016/j.rse.2017.09.021)\n",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/catalog.json",
+            "type": "application/json",
+            "title": "Google Earth Engine Catalog"
+        },
+        {
+            "rel": "related",
+            "href": "https://code.earthengine.google.com/?scriptPath=Examples:Datasets/SNU/SNU_ESL_BESS_Rad_v1",
+            "type": "text/html",
+            "title": "Run the example for SNU/ESL/BESS/Rad/v1 in the Earth Engine Code Editor",
+            "code": "JavaScript"
+        },
+        {
+            "rel": "preview",
+            "href": "https://developers.google.com/earth-engine/datasets/images/SNU/SNU_ESL_BESS_Rad_v1_sample.png",
+            "type": "image/png"
+        },
+        {
+            "rel": "license",
+            "href": "https://developers.google.com/earth-engine/datasets/catalog/SNU_ESL_BESS_Rad_v1#terms-of-use",
+            "type": "text/html"
+        },
+        {
+            "rel": "license",
+            "href": "https://spdx.org/licenses/CC-BY-4.0.html",
+            "type": "text/html"
+        },
+        {
+            "rel": "source",
+            "href": "https://drive.google.com/drive/folders/1B2aSPkgnGsSdQx4XtX4H21O7tP6kq-pG"
+        },
+        {
+            "rel": "self",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/SNU/SNU_ESL_BESS_Rad_v1.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://storage.googleapis.com/earthengine-stac/catalog/SNU/catalog.json",
+            "type": "application/json",
+            "title": "SNU"
+        }
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/version/v1.2.0/schema.json"
+    ],
+    "gee:categories": [
+        "climate"
+    ],
+    "gee:interval": {
+        "interval": 1,
+        "type": "cadence",
+        "unit": "day"
+    },
+    "gee:terms_of_use": "[CC-BY-4.0](https://spdx.org/licenses/CC-BY-4.0.html)",
+    "gee:type": "image_collection",
+    "gee:user_uploaded": true,
+    "version": "1",
+    "gee:status": "ready",
+    "title": "Breathing Earth System Simulator (BESS) Radiation v1",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2001-01-01T00:00:00Z",
+                    "2021-12-31T00:00:00Z"
+                ]
+            ]
+        }
+    },
+    "license": "CC-BY-4.0",
+    "keywords": [
+        "climate",
+        "evapotranspiration",
+        "gpp",
+        "modis-derived",
+        "par",
+        "radiation",
+        "shortwave"
+    ],
+    "providers": [
+        {
+            "name": "Seoul National University (SNU)",
+            "roles": [
+                "licensor",
+                "producer"
+            ],
+            "url": "https://www.environment.snu.ac.kr/bess-rad"
+        },
+        {
+            "name": "Google Earth Engine",
+            "roles": [
+                "host"
+            ],
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/SNU_ESL_BESS_Rad_v1"
+        }
+    ],
+    "summaries": {
+        "eo:bands": [
+            {
+                "description": "Surface downwelling photosynthetic radiative flux in air",
+                "gee:units": "W/m^2",
+                "name": "PAR_Daily",
+                "gsd": [
+                    5500
+                ]
+            },
+            {
+                "description": "Surface diffuse downwelling photosynthetic radiative flux in air",
+                "gee:units": "W/m^2",
+                "name": "PARdiff_Daily",
+                "gsd": [
+                    5500
+                ]
+            },
+            {
+                "description": "Surface downwelling shortwave flux in air",
+                "gee:units": "W/m^2",
+                "name": "RSDN_Daily",
+                "gsd": [
+                    5500
+                ]
+            }
+        ],
+        "gee:visualizations": [
+            {
+                "display_name": "Surface downwelling photosynthetic radiative flux (W/m^2)",
+                "image_visualization": {
+                    "band_vis": {
+                        "bands": [
+                            "PAR_Daily"
+                        ],
+                        "max": [
+                            70
+                        ],
+                        "min": [
+                            0
+                        ]
+                    }
+                },
+                "lookat": {
+                    "lat": 24.9,
+                    "lon": 2.1,
+                    "zoom": 3
+                }
+            }
+        ],
+        "gsd": [
+            5500
+        ]
+    }
+}

@@ -1,0 +1,1022 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_013",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "MODIS Land Cover Type Yearly 500m (MCD12Q1 C061)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:MODIS/061/MCD12Q1",
+    "spatial_resolution": "500 m",
+    "temporal_resolution": "yearly",
+    "gee_asset": {
+      "id": "MODIS/061/MCD12Q1",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:MODIS/061/MCD12Q1",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_013.json",
+    "source_sha256": "d4493b187e45f1dd3de730d943833d8eb2205f2baf7b74e27970a69f0991abf1",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_013/prompt.json",
+    "current_prompt_sha256": "a172626e16022fa79fd44e66fdc620d3b1459a5adb48374348e5cd0fc939a380",
+    "original_anchor_asset": {
+      "id": "MODIS/061/MCD12Q1",
+      "observable_group": "modis_land_cover_type_yearly_500m",
+      "kind": "land_cover_land_use",
+      "title": "MODIS Land Cover Type Yearly 500m (MCD12Q1, C061)",
+      "observation_identity_contract": {
+        "physical_object": "categorical land-cover type",
+        "source_lineage": "MODIS Terra+Aqua MCD12Q1 Land Cover Type Yearly Global 500m production lineage, collection 061",
+        "core_measurement_semantics": "MCD12Q1 yearly land-cover type (IGBP/UMD/LAI/fBP classification schemes) at 500 m",
+        "non_material_variations": "classification scheme choice among the MCD12Q1-provided schemes, archive, grid, resampling, or majority/consensus post-processing retaining MCD12Q1 classification output",
+        "material_mismatches": "ESA WorldCover, ESA CCI Land Cover, GLC/FROM-GLC, NLCD, Dynamic World or another land-cover product without MCD12Q1 operational input"
+      },
+      "asset_alias_policy": "Only the MCD12Q1 yearly land-cover family (collection 6/6.1, any provided classification scheme) is admitted; other land-cover products may be compared against it but do not satisfy the anchor rule on their own."
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "direction_id": "ref_01",
+      "research_question": "如何利用 Landsat 影像和深度学习生成1994年至2024年中部里奥格兰德流域30米年度作物与土地覆盖分类数据集，并评估其与现有土地覆盖产品的一致性？",
+      "hypothesis_or_mechanism": "利用不同月份的 Landsat 光谱和热红外特征能够区分作物物候与土地覆盖类型，而多时相建模和注意力分割网络可以提高年度分类的稳定性与精度。",
+      "variables_and_data_use": "使用 Landsat 5 和 Landsat 8 的可见光、近红外、短波红外、热红外地表反射率和地表温度，并使用 NDVI 作为衍生特征生成 CLCLU 分类；使用 CDL 构建训练和验证样本，使用 NLCD 与 MCD12Q1-UMD 进行土地覆盖类别面积比例对比和验证。",
+      "method_paradigm": "深度学习分类与产品互验证",
+      "used_assets": [
+        "Landsat 5 Thematic Mapper (TM)",
+        "Landsat 8 Operational Land Imager/Thermal Infrared Sensor (OLI/TIRS)",
+        "Landsat Collection 2 Level-2 Tier 1",
+        "USDA National Agriculture Statistics Service (NASS) Cropland Data Layer (CDL)",
+        "MODIS_061_MCD12Q1",
+        "MCD12Q1-UMD",
+        "National Land Cover Database (NLCD)"
+      ],
+      "author_team": [
+        "Saman Ebrahimi",
+        "Mahdis Khorram",
+        "Raquel Neri-Barranco",
+        "Rosario Sanchez",
+        "Rocky Talchabhadel",
+        "Santosh Subhash Palmate",
+        "Marisol Domínguez-Tuda",
+        "Elizabeth Fussell Racine",
+        "Saurav Kumar"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "30 Years of simultaneous crop & land cover land use maps for Middle Rio Grande from 1994 to 2024",
+        "doi": "10.1038/s41597-025-05771-6",
+        "year": 2025,
+        "venue": "Scientific Data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_02",
+      "research_question": "研究区内的土地利用和土地覆盖类型如何分布，并如何与降雨状况及植被动态相联系？",
+      "hypothesis_or_mechanism": "不同降雨状况可能与保护区内植被和土地覆盖类型的空间分布及动态变化相关。",
+      "variables_and_data_use": "使用 MCD12Q1 的年度土地覆盖分类变量识别研究区土地覆盖类型，并使用 TRMM 3B43 V6 降水数据计算研究区降水估计，用于与植被动态联合分析。",
+      "method_paradigm": "遥感制图与统计分析",
+      "used_assets": [
+        "MCD12Q1",
+        "TRMM 3B43 V6"
+      ],
+      "author_team": [],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "relationship_mechanism",
+      "source_paper": {
+        "title": "Assessment of Land Use in A Conservation Unit in the Brazilian Pantanal by Remote Sensing",
+        "doi": "10.22587/ajbas.2019.13.6.16",
+        "year": 2019,
+        "venue": "AUSTRALIAN JOURNAL OF BASIC AND APPLIED SCIENCES",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_03",
+      "research_question": "2001年至2022年金沙萨地区各土地覆盖类别的面积和空间组成如何变化？",
+      "hypothesis_or_mechanism": "森林砍伐等土地利用变化会导致Woody Savannas减少、Savannas增加，并联动影响其他土地覆盖类别。",
+      "variables_and_data_use": "使用MCD12Q1年度土地覆盖分类资产，提取不同土地覆盖类别及其面积百分比，按三年时间间隔比较2001年至2022年的变化趋势，并使用GIS、Excel和OriginPro进行处理和统计分析。",
+      "method_paradigm": "土地覆盖变化检测",
+      "used_assets": [
+        "MCD12Q1.A200101.h19v09.061",
+        "MCD12Q1.A200201.h19v09.061",
+        "MCD12Q1.A200301.h19v09.061",
+        "MCD12Q1.A200401.h19v09.061",
+        "MCD12Q1.A200501.h19v09.061",
+        "MCD12Q1.A200601.h19v09.061",
+        "MCD12Q1.A200701.h19v09.061",
+        "MCD12Q1.A200801.h19v09.061",
+        "MCD12Q1.A200901.h19v09.061",
+        "MCD12Q1.A201001.h19v09.061",
+        "MCD12Q1.A201101.h19v09.061",
+        "MCD12Q1.A201201.h19v09.061",
+        "MCD12Q1.A201301.h19v09.061",
+        "MCD12Q1.A201401.h19v09.061",
+        "MCD12Q1.A201501.h19v09.061",
+        "MCD12Q1.A201601.h19v09.061",
+        "MCD12Q1.A201701.h19v09.061",
+        "MCD12Q1.A201801.h19v09.061",
+        "MCD12Q1.A201901.h19v09.061",
+        "MCD12Q1.A202001.h19v09.061",
+        "MCD12Q1.A202101.h19v09.061",
+        "MCD12Q1.A202201.h19v09.061"
+      ],
+      "author_team": [
+        "nnocent MUFUNGIZI MIHIGO",
+        "Trésor HUBERT KAWAYA",
+        "Roda BONGELI MBOPANG",
+        "Jean KABULO BANZA",
+        "Ridi DIAKONDUA VUILAWO",
+        "Ruben LOOLA LOKETO"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Mapping and Spatiotemporal Dynamics of Land-use and Land-cover Change Based on the USGS and NASA Platformsfrom MCD12Q1Landsat Imagery: A Case Study of Kinshasa, DR Congo",
+        "doi": "10.31695/ijasre.2023.9.11.6",
+        "year": 2023,
+        "venue": "International Journal of Advances in Scientific Research and Engineering",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_04",
+      "research_question": "如何融合多个卫星和地面植被物候数据集，以生成更可靠的大尺度植被 SOS 和 EOS 数据集？",
+      "hypothesis_or_mechanism": "基于各物候数据集的一致性、偏差和时间稳定性进行可靠性加权，可以降低单一数据源的不确定性并提高物候估计精度。",
+      "variables_and_data_use": "使用 MCD12Q2、VIP、GIM_3g 和 GIM_4g 的 SOS、EOS 及相关植被指数物候变量进行 REA 融合；使用 MCD12Q1 土地覆盖类别移除农田、裸地、水体等区域；使用 PhenoCam Dataset v2.0、Japan Internet Nature Information System digital camera data 和 Phenological Eyes Network 进行地面验证。",
+      "method_paradigm": "多源数据融合与验证",
+      "used_assets": [
+        "MCD12Q2",
+        "VIP",
+        "GIM_3g",
+        "GIM_4g",
+        "PhenoCam Dataset v2.0",
+        "Japan Internet Nature Information System digital camera data",
+        "Phenological Eyes Network",
+        "MCD12Q1 land use dataset",
+        "MODIS/MCD12Q1.061"
+      ],
+      "author_team": [
+        "Yishuo Cui",
+        "Shouzhi Chen",
+        "Yufeng Gong",
+        "Mingwei Li",
+        "Zitong Jia",
+        "Yuyu Zhou",
+        "Yongshuo H. Fu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "A vegetation phenology dataset developed by integrating multiple sources using the reliability ensemble averaging method",
+        "doi": "10.5194/essd-17-4005-2025",
+        "year": 2025,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_05",
+      "research_question": "意大利北部地区在 2000-2020 年期间干旱事件的时空特征及其对不同植被类型的影响如何？",
+      "hypothesis_or_mechanism": "降水分布变化是意大利北部干旱的主要触发因素，不同植被类型对干旱的敏感性存在差异，受人类活动干扰较大的植被类型更易受干旱影响",
+      "variables_and_data_use": "使用 MCD12Q1 土地覆盖数据识别植被类型（森林、草地、湿地、农田等）和非植被区域（城市、水体），结合 MOD13A2 植被指数（NDVI、EVI）和 MOD11A2 地表温度数据，以及地面降水和温度数据计算的干旱指数（SPEI、SPI），分析不同植被类型在不同干旱时间尺度（12、24、36 个月）下的响应模式",
+      "method_paradigm": "时空相关性分析",
+      "used_assets": [
+        "MCD12Q1",
+        "MOD11A2",
+        "MOD13A2"
+      ],
+      "author_team": [
+        "Alice Baronetti",
+        "Matia Menichini",
+        "Antonello Provenzale"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Vegetation response to droughts: The case of northern Italy",
+        "doi": "10.1002/joc.8340",
+        "year": 2023,
+        "venue": "International Journal of Climatology",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_06",
+      "research_question": "研究不同全球土地覆盖产品及其森林分类方案能否准确表示芬兰北方森林的树覆盖和针叶、落叶树种组成。",
+      "hypothesis_or_mechanism": "不同土地覆盖产品的分类阈值、树高定义和类别体系会导致其对森林树覆盖及针叶与落叶树种分布的表示存在系统差异。",
+      "variables_and_data_use": "使用MCD12Q1的多个土地覆盖分类方案、MOD44B的百分比树覆盖、ESA CCI土地覆盖分类以及MS-NFI的树冠覆盖度、落叶树冠覆盖度、树高和土地类别数据；将分类类别通过translation legend转换为树覆盖比例，并使用混淆矩阵、RMSE、MBE和决定系数进行比较评估。",
+      "method_paradigm": "土地覆盖产品验证与交叉比较",
+      "used_assets": [
+        "MS-NFI 2017 products",
+        "MCD12Q1",
+        "MOD44B vegetation continuous fields (VCF)",
+        "ESA CCI",
+        "MCD12C1"
+      ],
+      "author_team": [
+        "Titta Majasalmi",
+        "Miina Rautiainen"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Representation of tree cover in global land cover products: Finland as a case study area",
+        "doi": "10.1007/s10661-021-08898-2",
+        "year": 2021,
+        "venue": "Environmental Monitoring and Assessment",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_07",
+      "research_question": "评估巴西卡廷加地区国家和全球土地覆盖分类地图的空间一致性和分类差异",
+      "hypothesis_or_mechanism": "不同土地覆盖地图由于分类系统和遥感数据源的差异，在卡廷加地区的空间模式和类别分配上存在显著差异，特别是在稀树草原和阶梯稀树草原类别之间",
+      "variables_and_data_use": "使用 MODIS MCD12Q1 IGBP 分类层、ESA GlobCover 2009、ESA CCI 土地覆盖产品与巴西 IBGE、ProBio、TCN 和 MapBiomas 地图进行成对比较，通过 SPAEF 空间效率指标和差异度量（数量、交换、位移）评估空间相关性和分类一致性",
+      "method_paradigm": "地图比较 空间一致性分析",
+      "used_assets": [
+        "MODIS MCD12Q1 Land Cover Product (IGBP)",
+        "GlobCover 2009",
+        "ESA CCI Land Cover",
+        "IBGE Vegetation Map",
+        "ProBio Map",
+        "TCN Map",
+        "MapBiomas"
+      ],
+      "author_team": [
+        "E. Bontempo",
+        "Mehmet Cüneyd Demirel",
+        "C. Corsini",
+        "F. Martins",
+        "Dalton Morrison Valeriano"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "measurement_validation",
+      "source_paper": {
+        "title": "Classification System Drives Disagreement Among Brazilian Vegetation Maps at a Sample Area of the Semiarid Caatinga",
+        "doi": "10.1109/lagirs48042.2020.9165656",
+        "year": 2020,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_08",
+      "research_question": "伊斯法罕大都市区的地表城市热岛强度特征是什么",
+      "hypothesis_or_mechanism": "城市建成区与非城市区域之间的地表温度差异构成地表城市热岛现象",
+      "variables_and_data_use": "使用 MCD12Q1 地表覆盖类型产品识别城市建成区（代码 13）和非城市区域，使用 MOD11A1 地表温度产品计算城市与非城市代表像元之间的温度差异",
+      "method_paradigm": "遥感指数计算",
+      "used_assets": [
+        "MCD12Q1",
+        "MOD11A1"
+      ],
+      "author_team": [
+        "Majid Montazeri",
+        "Seyed Abolfazl Masoodian"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Quantifying of surface urban heat island intensity in Isfahan metropolis using MODIS\\Terra\\LST data",
+        "doi": "10.20937/atm.53249",
+        "year": 2024,
+        "venue": "Atmósfera",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_09",
+      "research_question": "武汉市在 COVID-19 疫情期间(2019年12月至2020年3月初)与疫情前相比，地表温度在不同土地覆盖类型上的时空变化特征是什么",
+      "hypothesis_or_mechanism": "封锁政策导致人为活动减少(公共交通关闭、工厂停产、居民活动受限)，可能降低城市地表温度，特别是在建成区",
+      "variables_and_data_use": "使用 MCD12Q1 土地覆盖数据将研究区分为建成区、非建成用地和水体三类，使用 MOD11A2 地表温度数据对比封锁前后各土地覆盖类型的平均温度差异",
+      "method_paradigm": "时空对比分析",
+      "used_assets": [
+        "MCD12Q1",
+        "MOD11A2"
+      ],
+      "author_team": [
+        "Hamim Zaky Hadibasyir",
+        "Seftiawan Samsu Rijal",
+        "Dewi Ratna Sari"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Comparison of Land Surface Temperature During and Before the Emergence of Covid-19 using Modis Imagery in Wuhan City, China",
+        "doi": "10.23917/forgeo.v34i1.10862",
+        "year": 2020,
+        "venue": "Forum Geografi",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_10",
+      "research_question": "如何将年度MCD12Q1土地覆盖类别与加拿大FBP燃料类型体系结合，以生成更新的加拿大燃料类型图？",
+      "hypothesis_or_mechanism": "依据土地覆盖类别与燃料类型之间的生态和生物物理相似性建立类别对应关系，可以利用年度MCD12Q1数据更新和改进燃料类型制图。",
+      "variables_and_data_use": "使用MODISMCD12Q1的年度土地覆盖类别作为土地覆盖变量，使用NationalFBPfuel-typemap中的燃料类型作为参照和目标分类，通过重投影、镶嵌、最近邻重采样、类别重分类、像元计数矩阵和混淆矩阵建立两套分类之间的对应关系，并生成新的燃料类型图。",
+      "method_paradigm": "分类制图与精度评估",
+      "used_assets": [
+        "MODISMCD12Q1",
+        "MODISMCD12Q1 Version6.1",
+        "NationalFBPfuel-typemap",
+        "FBPFTM",
+        "CanadianWildlandFireInformationSystem(CWFIS)"
+      ],
+      "author_team": [
+        "Enrica Nestola",
+        "Olga V. Gavrichkova",
+        "Vito Vitale",
+        "Enrico Brugnoli",
+        "Maurizio Sarti"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Characterization of Fuel Types for the Canadian Region Using MODIS MCD12Q1 Data",
+        "doi": "10.3390/fire7120485",
+        "year": 2024,
+        "venue": "Fire",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_11",
+      "research_question": "不同全球土地覆盖产品和Landsat影像分类方法在中国贵州省黎平县不透水面制图中的表现如何？",
+      "hypothesis_or_mechanism": "不同产品的空间分辨率、分类谱系和类别定义会导致不透水面识别结果存在差异，而30米Landsat地表反射率结合随机森林能够提供更细空间尺度的不透水面制图结果。",
+      "variables_and_data_use": "研究使用MODIS MCD12Q1、ESA CCI-LC和GUL中的城市或不透水面相关类别，并将其简化为“ISs”和“other”进行比较；同时使用2015年Landsat 8 Surface Reflectance Tier 1的7个地表反射率波段作为随机森林预测变量，利用人工标注样本训练分类器，并用Google Earth影像进行精度验证。",
+      "method_paradigm": "产品比较与监督分类",
+      "used_assets": [
+        "MODIS/Terra and Aqua Combined Land Cover Type Yearly Global 500 m SIN Grid Version 006 (MODIS MCD12Q1)",
+        "ESA Climate Change Initiative Land Cover Project (ESA CCI-LC)",
+        "high-resolution multi-temporal mapping of Global Urban Land (GUL)",
+        "Landsat 8 Surface Reflectance Tier 1",
+        "Google Earth",
+        "OpenStreetMap"
+      ],
+      "author_team": [
+        "Zhao Jing",
+        "Narumasa Tsutsumida"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Mapping Fragmented Impervious Surface Areas Overlooked by Global Land-Cover Products in the Liping County, Guizhou Province, China",
+        "doi": "10.3390/rs12091527",
+        "year": 2020,
+        "venue": "Remote Sensing",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_12",
+      "research_question": "如何利用遥感数据构建哈萨克斯坦森林火灾危险指数，以支持森林火灾危险预测和管理？",
+      "hypothesis_or_mechanism": "静态燃料和地形特征与动态地表温度、植被、水分及火灾相关光谱特征共同决定森林火灾危险程度。",
+      "variables_and_data_use": "研究使用 MCD12Q1 的 IGBP 土地覆盖类型构建燃料危险指数，使用 SRTM DEM 派生高程、坡度和坡向危险指数，使用 MOD09GA、MOD09A1 计算 NMDI、VARI 和 MNDFI，使用 MOD11A1、MOD11A2 获取地表温度，并使用 Human influence index (HII) 表示人类干扰；MCD14 和 2012 至 2016 年火灾热点用于验证和统计分析。",
+      "method_paradigm": "遥感指数构建与决策支持",
+      "used_assets": [
+        "MCD12Q1",
+        "MODIS Terra + Aqua Land Cover Type Yearly L3 Global 500 m SIN Grid product (MCD12Q1)",
+        "SRTM DEM",
+        "SRTM",
+        "MOD11A1",
+        "MOD09GA",
+        "MOD09A1",
+        "MOD11A2",
+        "MCD14",
+        "Human influence index (HII)",
+        "Forest fire hotspots from 2012 to 2016"
+      ],
+      "author_team": [
+        "K. V. Suresh Babu",
+        "Gulzhiyan Kabdulova",
+        "Gulnara Rashidenovna Kabzhanova"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Developing the Forest Fire Danger Index for the Country Kazakhstan by Using Geospatial Techniques",
+        "doi": "10.3808/jeil.201900006",
+        "year": 2019,
+        "venue": "Journal of Environmental Informatics Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_13",
+      "research_question": "如何利用土地覆盖、地形和历史火点数据构建并验证研究区的静态森林火灾危险指数？",
+      "hypothesis_or_mechanism": "不同土地覆盖类型及地形条件会影响火灾发生概率，历史火点分布可以用于确定各类土地覆盖和地形因子的相对火灾危险程度。",
+      "variables_and_data_use": "使用 MCD12Q1 的 IGBP 土地覆盖类别统计各类别中的历史火点并生成土地覆盖危险指数；使用 ASTER GDEM V2 派生地形粗糙度、坡度、坡向和高程危险指数；使用 MCD14 火点数据构建历史火灾样本并对 SFDI 进行验证。",
+      "method_paradigm": "指数构建与空间验证",
+      "used_assets": [
+        "MCD12Q1",
+        "ASTER GDEM V2",
+        "MCD14"
+      ],
+      "author_team": [
+        "K. V. Suresh Babu",
+        "A. Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Static Fire Danger Estimation Based on the Historical MODIS Hotspot Data Using Geospatial Techniques for the Uttarakhand State, India",
+        "doi": "10.3808/jeil.202000038",
+        "year": 2020,
+        "venue": "Journal of Environmental Informatics Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_14",
+      "research_question": "不同叶面积指数(LAI)和土地覆盖(LC)卫星数据集如何影响中国生物源挥发性有机化合物(BVOC)排放估算及其对臭氧和二次有机气溶胶浓度的贡献?",
+      "hypothesis_or_mechanism": "LC 数据集差异对 BVOC 估算的影响大于 LAI 数据集差异,且 MEGAN 输入的不确定性会传播到 O₃ 和 SOA 浓度模拟,其中 LC 数据集选择导致的 BSOA 相对差异在华东地区可达 160%",
+      "variables_and_data_use": "使用 MODIS MCD12Q1、C3S LC、CGLS LC 三种土地覆盖产品和 GLASS、MOD15、CGLS 三种 LAI 产品作为 MEGAN v2.1 模型输入,将土地覆盖重分类为 15 类 CLM4 植被功能类型(PFT),结合 LAIv 估算 2016 年中国 BVOC 排放(异戊二烯、单萜烯等 19 类化合物),再通过源追踪 CMAQ 模型量化 BVOC 对 O₃ 和 SOA 浓度的贡献",
+      "method_paradigm": "敏感性分析 化学传输模拟 源追踪",
+      "used_assets": [
+        "MODIS MCD12Q1 LC products",
+        "C3S LC products",
+        "CGLS LC products",
+        "GLASS LAI",
+        "MODIS MOD15A2H LAI",
+        "CGLS LAI"
+      ],
+      "author_team": [
+        "Jinlong Ma",
+        "Shengqiang Zhu",
+        "Siyu Wang",
+        "Peng Wang",
+        "Jianmin Chen",
+        "Hongliang Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Impacts of land cover changes on biogenic emission and its contribution to ozone and secondary organic aerosol in China",
+        "doi": "10.5194/acp-23-4311-2023",
+        "year": 2023,
+        "venue": "Atmospheric chemistry and physics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_15",
+      "research_question": "如何利用时间序列Landsat影像和多源土地覆盖训练数据生成具有细分类体系的全球30米土地覆盖产品？",
+      "hypothesis_or_mechanism": "结合多时相Landsat光谱与纹理特征、局部自适应随机森林以及高质量土地覆盖训练样本，可以提高全球细分类土地覆盖制图的空间细节和分类精度。",
+      "variables_and_data_use": "论文使用Landsat地表反射率及其NDVI、NDWI、EVI、NBR和纹理特征作为分类变量，使用SRTM DEM和GDEM2提供高程、坡度和坡向辅助变量，使用CCI_LC和MCD43A4 NBAR构建训练样本，使用MCD12Q1 STEP数据集及其他参考数据构建和补充验证样本，并叠加MSMT_IS30-2015不透水面结果。",
+      "method_paradigm": "全球土地覆盖制图",
+      "used_assets": [
+        "Landsat-8 surface reflectance data",
+        "SRTM DEM",
+        "GDEM2 DEM dataset",
+        "MSMT_IS30-2015",
+        "CCI_LC",
+        "MCD43A4 NBAR",
+        "MODIS Land Cover (MCD12Q1) product System for Terrestrial Ecosystem Parameterization (STEP) dataset",
+        "GOFC_GOLD datasets",
+        "FROM_GLC validation dataset",
+        "GLWD dataset"
+      ],
+      "author_team": [
+        "Xiao Zhang",
+        "Liangyun Liu",
+        "Xidong Chen",
+        "Yuan Gao",
+        "Shuai Xie",
+        "Jun Mi"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "GLC_FCS30: global land-cover product with fine classification system at 30 m using time-series Landsat imagery",
+        "doi": "10.5194/essd-13-2753-2021",
+        "year": 2021,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_16",
+      "research_question": "如何利用 Landsat 多时相观测生成1990至2019年中国30米年度土地覆盖数据，并揭示中国土地覆盖变化及其空间格局？",
+      "hypothesis_or_mechanism": "多时相 Landsat 光谱、物候和地形特征结合随机森林分类及空间时间一致性约束，能够提高年度土地覆盖制图的空间细节和时间连续性。",
+      "variables_and_data_use": "以 Landsat surface reflectance (SR) 计算光谱、光谱指数和物候特征，以 SRTM data 提供坡度和坡向，以 CLUDs 和人工解译样本训练随机森林模型，生成 CLCD；使用 MCD12Q1、ESACCI_LC、Geo-Wiki、GLCVSS 及其他专题产品进行比较和精度验证。",
+      "method_paradigm": "监督分类与产品验证",
+      "used_assets": [
+        "Landsat surface reflectance (SR) data",
+        "China's land-use/cover datasets (CLUDs)",
+        "Shuttle Radar Topography Mission (SRTM) data",
+        "MCD12Q1",
+        "ESACCI_LC",
+        "Geo-Wiki",
+        "Global Land Cover Validation Sample Set (GLCVSS)",
+        "Global Forest Change (GFC)",
+        "Global Impervious Surface Area (GISA)",
+        "Global Artificial Impervious Area (GAIA)",
+        "Global Annual Urban Dynamics (GAUD)",
+        "Global Surface Water (GSW)",
+        "MODIS EVI",
+        "MODIS NDVI"
+      ],
+      "author_team": [
+        "Jie Yang",
+        "Xin Huang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "The 30 m annual land cover dataset and its dynamics in China from 1990 to 2019",
+        "doi": "10.5194/essd-13-3907-2021",
+        "year": 2021,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_17",
+      "research_question": "如何融合国家森林清查统计与多源遥感土地覆盖信息，重建中国1981至2023年的年度森林覆盖和植物功能型分布，并改进生态系统模型对碳水通量的模拟？",
+      "hypothesis_or_mechanism": "利用国家森林清查对森林面积的统计约束以及多源遥感数据对空间分布和森林类型的约束，可以比ESA CCI和MCD12Q1等全球PFT产品更准确地表示中国森林恢复过程，从而改善GPP、NEE、LAI和ET模拟。",
+      "variables_and_data_use": "研究使用国家森林清查中的省级森林面积和森林类型统计量约束森林覆盖重建，使用多源LULC数据和Landsat生长季NDVI识别森林像元，使用气候、地形和温度数据细分PFT，并将新建PFT数据与ESA CCI和MCD12Q1分别作为LPJ–GUESS的土地覆盖驱动，比较GPP、NEE、LAI和ET模拟结果。",
+      "method_paradigm": "遥感重建与模型评估",
+      "used_assets": [
+        "MCD12Q1",
+        "ESA CCI",
+        "GLC_FCS30D",
+        "National forest inventories (NFIs)",
+        "Landsat",
+        "Köppen–Geiger climate classification",
+        "GMTED2010",
+        "SRTM4.1dev",
+        "CMFD 2.0",
+        "China dataset of soil properties for land surface modelling version 2 (CSDL v2)",
+        "FLUXCOM GPP",
+        "FLUXCOM NEE",
+        "GIMMS LAI4g",
+        "GLEAM ET",
+        "1 km annual forest cover and plant functional type dataset for China from 1981 to 2023"
+      ],
+      "author_team": [
+        "Bo Liu",
+        "Boyang Li",
+        "Fulai Feng",
+        "Yangcan Bao",
+        "Jing Li",
+        "Qi Feng"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "1 km annual forest cover and plant functional type dataset for China from 1981 to 2023",
+        "doi": "10.5194/essd-18-1103-2026",
+        "year": 2026,
+        "venue": "Earth system science data",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_18",
+      "research_question": "该论文研究伊朗在 2002-03-21 至 2018-03-21 期间不同土地利用类别中的烧毁面积分布。",
+      "hypothesis_or_mechanism": "不同土地利用类型因植被结构、可燃物和人类活动差异而具有不同的火烧面积分布。",
+      "variables_and_data_use": "论文使用 Global Wildfire Information System 的每日烧毁面积数据获取火烧区域，并使用 MCD12Q1 制备土地利用图，将烧毁面积按土地利用类别进行统计和展示。",
+      "method_paradigm": "空间叠加统计",
+      "used_assets": [
+        "Global Wildfire Information System",
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Faridoddin Ebrahimi Manesh",
+        "Khosro Piri",
+        "Asghar Abdoli",
+        "Saeed Tajik"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Sixteen Year Analyses of Burned Areas in Iran Based on Provincial Borders and Land Use with the Aim of Prioritizing and Managing Fires: A Case Study",
+        "doi": "10.21203/rs.3.rs-2527031/v1",
+        "year": 2023,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_19",
+      "research_question": "该论文研究如何利用 AVHRR GIMMS NDVI3g 时间序列和 MODIS MCD12Q1 参考样本重建南亚 2001 至 2015 年土地覆盖/土地利用变化。",
+      "hypothesis_or_mechanism": "稳定的 MCD12Q1 IGBP 土地覆盖类别可作为训练和验证参考，使 AVHRR NDVI 时间序列能够分类并检测长期 LULC 变化。",
+      "variables_and_data_use": "论文使用 AVHRR GIMMS NDVI3g 双月 NDVI 作为分类输入，将 MODIS MCD12Q1 年度 IGBP LULC 图集重采样到相同 1/12 像元后，用于识别训练区、构建验证样本并进行精度评估。",
+      "method_paradigm": "监督分类与变化检测",
+      "used_assets": [
+        "AVHRR GIMMS NDVI3g",
+        "MODIS MCD12Q1"
+      ],
+      "author_team": [
+        "Shahzad Ali",
+        "Huang An Qi",
+        "Malak Henchiri",
+        "Sha Zhang",
+        "Fahim Ullah Khan",
+        "Muhammad Sajid",
+        "Sajid Ali",
+        "Fengmei Yao",
+        "Jiahua Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Studying of Land Cover And Use Maps of South Asia Regions From 2001 To 2015 With AVHRR And MODIS Data",
+        "doi": "10.21203/rs.3.rs-590999/v1",
+        "year": 2021,
+        "venue": "Research Square",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_20",
+      "research_question": "该论文生成一个基于 MODIS MCD12Q1 年度土地覆盖类型的 2001-2023 年全球土地覆盖派生数据集。",
+      "hypothesis_or_mechanism": "MCD12Q1 V6.1 的年度 500 m 分类土地覆盖输出可以通过一致的数据生成流程转换为全球尺度的可分发栅格数据集，同时保留原始土地覆盖分类观测语义。",
+      "variables_and_data_use": "使用 MODIS Land Cover Type product (MCD12Q1, Version 6.1) / MODIS/061/MCD12Q1 的年度 500 m 土地覆盖类型编码值，通过 Google Earth Engine 获取并派生为 GeoTIFF 数据集，时间覆盖 2001-2023 年。Methods 片段未显示其他辅助数据产品。",
+      "method_paradigm": "数据集构建",
+      "used_assets": [
+        "MODIS Land Cover Type product (MCD12Q1, Version 6.1)",
+        "MODIS/061/MCD12Q1",
+        "2023_global_crop_dynamic.zip"
+      ],
+      "author_team": [
+        "Ana De Freitas",
+        "Fábio Gama",
+        "Felipe Souza",
+        "Felipe Menino",
+        "Liana Anderson"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "\"Global Cropland Dynamics from Land Use and Land Cover Transition Period Maps\"",
+        "doi": "10.21227/t12p-c866",
+        "year": 2025,
+        "venue": "IEEE DataPort",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_21",
+      "research_question": "该论文研究 2001 至 2021 年北阿尔及利亚土地覆盖类别的时空变化及主要转换格局。",
+      "hypothesis_or_mechanism": "区域土地覆盖变化被城市扩张、农业活动、火灾、过牧、退化和气候变动等压力共同驱动，并可在年度 MCD12Q1 分类序列中表现为类别面积和像元转换变化。",
+      "variables_and_data_use": "论文使用 MODIS/061/MCD12Q1 的 LC_Type1 IGBP 年度土地覆盖分类作为核心变量，检查 QC band，剔除填充值和未分类像元，将 17 个 IGBP 类重分类为 8 个区域尺度类别，并计算年度面积、比例变化、年变化率和转移矩阵。",
+      "method_paradigm": "后分类变化检测",
+      "used_assets": [
+        "Terra and Aqua combined Moderate Resolution Imaging Spectroradiometer Land Cover Type product, MCD12Q1 Version 6.1",
+        "MODIS/061/MCD12Q1",
+        "LC_Type1",
+        "QC band"
+      ],
+      "author_team": [
+        "Bilel Zeroualı",
+        "Richarde Marques da Silva",
+        "Nadjem Bailek",
+        "Valeriano Carneiro de Lima Silva",
+        "Celso Augusto Guimarães Santos"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Land cover transformations in northern Algeria from 2001 to 2021: A MODIS-based spatiotemporal analysis",
+        "doi": "10.30493/das.2026.011109",
+        "year": 2026,
+        "venue": "DYSONA – Applied Science",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_22",
+      "research_question": "不同土地覆盖和叶面积指数输入如何影响中国区域生物源挥发性有机物排放、臭氧和二次有机气溶胶浓度的模拟结果？",
+      "hypothesis_or_mechanism": "土地覆盖类别和叶面积指数的空间差异会改变植被组成及生物源挥发性有机物排放，进而导致臭氧和二次有机气溶胶浓度出现显著差异。",
+      "variables_and_data_use": "使用 MCD12Q1 和 CGLS LC 等土地覆盖数据，以及不同叶面积指数数据作为 MEGAN 生物源挥发性有机物排放输入；土地覆盖图先重网格化到 CMAQ 域，并将植被类型重分类为 CLM-15 植被功能类型，再通过 WRF-CMAQ 模型模拟臭氧和二次有机气溶胶。MEIC 和 EDGAR v4.3 用于提供人为排放背景。",
+      "method_paradigm": "情景模拟与影响评估",
+      "used_assets": [
+        "MCD12Q1",
+        "CGLS LC",
+        "MEIC",
+        "EDGAR v4.3"
+      ],
+      "author_team": [
+        "Hongliang Zhang"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "GPT/opus admitted open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "Reply on RC1",
+        "doi": "10.5194/acp-2022-739-ac1",
+        "year": 2023,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_23",
+      "research_question": "该论文研究 1981-2022 年四川盆地夏季复合干旱-高温事件的时空演变及其对不同植被类型 NDVI 响应的影响。",
+      "hypothesis_or_mechanism": "升温主导的复合干旱-高温风险会通过能量-水分耦合和滞后水分胁迫改变植被绿度，不同土地覆盖类型因根系、管理和恢复能力差异表现出不同稳定性。",
+      "variables_and_data_use": "使用 CN05.1 降水和气温计算 SPI、STI 并以 Copula 构建 CDHI；使用 NASA GIMMS-3G+ NDVI 计算月度 NDVI、标准化异常、即时和滞后响应、阻力与恢复力；使用 MCD12Q1 (500 m) IGBP 土地覆盖分类重分类植被类型，并通过多数值聚合和稳定像元筛选支撑分类型比较。",
+      "method_paradigm": "复合事件影响评估",
+      "used_assets": [
+        "CN05.1",
+        "NASA GIMMS-3G+ NDVI",
+        "MCD12Q1 (500 m)"
+      ],
+      "author_team": [
+        "B. Zhang",
+        "X. R. Xiao",
+        "C.Z. YANG",
+        "X.J. LI"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "impact_assessment",
+      "source_paper": {
+        "title": "WARMING-AMPLIFIED SUMMER COMPOUND DROUGHT– HOT EVENTS AND LAGGED VEGETATION RESPONSES IN THE SICHUAN BASIN, CHINA, DURING 1981-2022",
+        "doi": "10.15666/aeer/2403_59015922",
+        "year": 2026,
+        "venue": "Applied Ecology and Environmental Research",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_24",
+      "research_question": "该论文研究印度尼西亚各省土地覆盖、生态系统服务价值和地区生产总值如何共同影响 Green GRDP，并预测 2030 年结果。",
+      "hypothesis_or_mechanism": "土地覆盖结构决定生态系统服务价值，不同省份的经济发展水平与土地覆盖变化共同影响 Green GRDP 及其空间差异。",
+      "variables_and_data_use": "论文使用土地覆盖分类结果计算森林、草地、农业用地、水体、建成区和未开发地等类别面积，并结合 ESV 系数估算生态系统服务价值；同时使用 GRDP Province 2001 - 2020 进行趋势预测和 Green GRDP 计算。",
+      "method_paradigm": "土地覆盖模拟预测",
+      "used_assets": [
+        "land cover classification",
+        "GRDP Province 2001 - 2020"
+      ],
+      "author_team": [
+        "Ibnu Gata",
+        "Ernawati Pasaribu"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Analysis and Prediction of Green GRDP in Indonesia with Ecosystem Service Value Approach",
+        "doi": "10.34123/icdsos.v2025i1.627",
+        "year": 2025,
+        "venue": "Proceedings of The International Conference on Data Science and Official Statistics",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_25",
+      "research_question": "如何整合 MODIS 和 ASTER 遥感数据构建适用于 Uttarakhand 的森林火灾危险指数？",
+      "hypothesis_or_mechanism": "土地覆盖燃料类型和地形等静态条件与地表温度、湿度等动态条件共同影响森林火灾危险程度，将二者集成可以形成近实时火险评估结果。",
+      "variables_and_data_use": "研究使用 MCD12Q1 土地覆盖类型构建燃料类型危险指数，使用 ASTER GDEM 派生高程、坡度、坡向和地形起伏度危险指数，使用 MOD11NRT 或 MOD11_L2 的地表温度计算潜在地表温度，并使用 MOD09GA NRT/MOD09 的反射率波段计算 PMI 和 MNDFI，最后将静态和动态危险指数相加形成 FFDI。",
+      "method_paradigm": "多源遥感指数集成",
+      "used_assets": [
+        "MOD11NRT",
+        "MOD09GA NRT",
+        "MOD03",
+        "ASTER",
+        "MCD14",
+        "MCD12Q1",
+        "MOD11_L2",
+        "ASTER GDEM",
+        "MOD09"
+      ],
+      "author_team": [
+        "K. V. Suresh Babu",
+        "Arijit Roy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "decision_support",
+      "source_paper": {
+        "title": "Automation of Forest Fire Danger Index from the Near Real Time Satellite Datasets",
+        "doi": "10.3808/jeil.201900015",
+        "year": 2019,
+        "venue": "Journal of Environmental Informatics Letters",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_26",
+      "research_question": "评估 MODIS 像元质量、土地覆盖类型和水文周期对潘塔纳尔湿地洪水制图性能的影响",
+      "hypothesis_or_mechanism": "土地覆盖类型调制光谱指数，独立于植被指数捕获的生物物理参数，因此加入 MCD12Q1 土地覆盖信息可以改善基于光谱水体指数的洪水制图精度",
+      "variables_and_data_use": "使用 MCD12Q1 的 UMD 分类方案土地覆盖类型作为逻辑回归模型的协变量，与 MOD13Q1 的 LSWI、NDVI、EVI 结合，评估土地覆盖对洪水分类性能的贡献",
+      "method_paradigm": "逻辑回归 实地验证 精度评估",
+      "used_assets": [
+        "MCD12Q1",
+        "MOD13Q1",
+        "SPOT 5"
+      ],
+      "author_team": [
+        "Sérgio Wagner Gripp da Silveira",
+        "Ibraim Fantin‐Cruz",
+        "Peter Zeilhofer"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "state_reconstruction",
+      "source_paper": {
+        "title": "Influence of Pixel Quality, Land Cover, and Hydroclimatic Cycle on Moderate Resolution Imaging Spectroradiometer Inundation Monitoring Performance in the Pantanal, Brazil",
+        "doi": "10.4236/gep.2023.112007",
+        "year": 2023,
+        "venue": "Journal of Geoscience and Environment Protection",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_27",
+      "research_question": "伊拉克纳杰夫省 2001-2023 年土地利用和土地覆盖的时间变化趋势是什么",
+      "hypothesis_or_mechanism": "干旱气候、城市化、农业扩张和水资源短缺驱动纳杰夫省土地覆盖类别的长期变化",
+      "variables_and_data_use": "使用 MODIS MCD12Q1 数据集提取 2001-2023 年各土地覆盖类别（裸地、农业用地、城市、水体、树木覆盖等）的年度面积百分比，通过 MATLAB 进行数据加载、研究区提取和类别聚合，计算各类别的时间序列趋势",
+      "method_paradigm": "时间序列变化检测",
+      "used_assets": [
+        "MODIS MCD12Q1"
+      ],
+      "author_team": [
+        "Klodian Dhoska",
+        "Mostafa Salaheldin Abdelsalam Abotaleb",
+        "Raed H. C. Alfilh",
+        "Ali Ssubhi Alhumaima",
+        "Hussein Alkattan"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Monitoring Land Use and Land Cover Changes in Najaf Using MODIS MCD12Q1 Data (2001-2023)",
+        "doi": "10.62486/978-9915-704-23-4.ch09",
+        "year": 2026,
+        "venue": null,
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    },
+    {
+      "direction_id": "ref_28",
+      "research_question": "巴西半干旱区帕热乌河流域土地利用和覆盖变化的时空动态及其与气候条件的关系",
+      "hypothesis_or_mechanism": "半干旱区植被覆盖密度不仅取决于当年降雨，灌木植被对气候条件变化更为敏感",
+      "variables_and_data_use": "使用 MCD12Q1 产品的 Land_Cover_Type_1（IGBP 分类方案）层，提取 2001-2013 年年度土地覆盖类型数据，分析流域内土地利用和植被覆盖的时间序列变化",
+      "method_paradigm": "时间序列变化检测",
+      "used_assets": [
+        "MCD12Q1"
+      ],
+      "author_team": [
+        "Luciana Mayla de Aquino França",
+        "Rodrigo de Queiroga Miranda",
+        "Valéria Sandra de Oliveira Costa",
+        "Josiclêda Domiciano Galvíncio"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "audited open full text Methods/Data section",
+      "idea_type": "change_detection",
+      "source_paper": {
+        "title": "Análise do uso e ocupação do solo na bacia hidrográfica do rio Pajeú (Pernambuco) com o produto MODIS MCD12Q1",
+        "doi": "10.66205/rbsr.v1i1.2",
+        "year": 2020,
+        "venue": "Revista Brasileira de Sensoriamento Remoto",
+        "pool_source": "original_plan_inpool"
+      },
+      "pool_sources": [
+        "original_plan_inpool"
+      ],
+      "pool_source": "original_plan_inpool"
+    }
+  ],
+  "quality": {
+    "ref_count": 28,
+    "source_paper_count": 28,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

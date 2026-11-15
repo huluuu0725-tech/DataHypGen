@@ -1,0 +1,53 @@
+{
+  "paper_id": "10.1016/j.serj.2015.09.005",
+  "task_id": "three_or_more_datasets/task_020",
+  "title": "Mapping groundwater recharge potential zone using a GIS approach in Hualian River, Taiwan",
+  "category": "land_cover_drainage_terrain",
+  "year": 2016,
+  "journal": "Sustainable Environment Research",
+  "impact_level": "medium",
+  "datasets": [
+    "Land-use and land-cover map",
+    "Drainage and hydrographic network",
+    "SRTM digital elevation model"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "land_cover",
+      "dataset": "Land-use and land-cover map"
+    },
+    {
+      "role": "drainage",
+      "dataset": "Drainage and hydrographic network"
+    },
+    {
+      "role": "terrain",
+      "dataset": "SRTM digital elevation model"
+    }
+  ],
+  "idea": {
+    "research_question": "What spatial associations can be identified between land cover, drainage and terrain?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:ESA/WorldCover/v200",
+      "GEE:MERIT/Hydro/v1_0_1",
+      "GEE:USGS/SRTMGL1_003"
+    ],
+    "required_component_usage": [
+      "land_cover",
+      "drainage",
+      "terrain"
+    ],
+    "expected_contribution": "A reproducible benchmark for testing association discovery across the selected data components.",
+    "falsification_condition": "Reject if any required component is absent or not jointly represented in the research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_020:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_underrepresented_20260929\\pdf_seed_audit.json"
+  }
+}

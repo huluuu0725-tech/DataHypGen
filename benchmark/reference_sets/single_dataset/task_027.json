@@ -1,0 +1,342 @@
+{
+  "schema_version": "1.0",
+  "task_id": "single_dataset/task_027",
+  "pairing_status": "paired",
+  "current_task_binding": {
+    "dataset_name": "USGS Landsat 8 Collection 2 Tier 1 TOA Reflectance",
+    "spatial_coverage": {
+      "region_name": "Northern Poland lakes",
+      "coverage": "Landsat 8 scene coverage over inland-water and surrounding land surfaces in northern Poland, subject to orbital acquisition, cloud cover and data availability."
+    },
+    "temporal_coverage": "2013-03-18 to 2026-06-30",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 m for multispectral and thermal bands; 15 m for panchromatic B8",
+    "temporal_unit": "Scene-based acquisitions with a nominal 16-day revisit interval",
+    "analytical_capabilities": [
+      "Multispectral characterization of inland-water and shoreline conditions",
+      "Thermal infrared observation and surface-temperature proxy analysis",
+      "Cloud-screened lake-temperature time-series analysis",
+      "Assessment of spatial thermal variability within and among lakes",
+      "Multi-temporal environmental change detection"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Calibrated top-of-atmosphere reflectance and thermal infrared observations",
+      "runtime_hint": "Use TOA bands `B1`-`B7` for multispectral predictors and thermal `B10`/`B11` for temperature-related features; B10/B11 are resampled from 100 m to 30 m, while panchromatic `B8` is 15 m. Apply the 16-bit `QA_PIXEL` CFMask bits for fill, dilated cloud, cirrus, cloud, cloud shadow and snow, and use `QA_RADSAT` to remove saturated observations. The TOA collection provides calibrated values rather than Level-2 surface-reflectance bands; do not substitute `SR_B*` or `ST_B10` for these TOA bands."
+    },
+    "data_source": "NASA and the U.S. Geological Survey Landsat program",
+    "gee_asset": {
+      "id": "LANDSAT/LC08/C02/T1_TOA",
+      "type": "image_collection"
+    }
+  },
+  "current_data_path": "GEE:LANDSAT/LC08/C02/T1_TOA",
+  "pairing_provenance": {
+    "source_path": "reference_sets/single_dataset/handoff_single_dataset_by_task_20261009/reference_sets/single_dataset/task_027.json",
+    "source_sha256": "85a2e9cefa2f5c7d8361b4193b686bc1405a9ca82cdf5a9000b9214f904449a4",
+    "current_prompt_path": "dataset/task_inputs/single_dataset/task_027/prompt.json",
+    "current_prompt_sha256": "a3b54a6f9ae09d406dcf6ff9f0fb57c370ac853a83a2b9babf35094fc760cd95",
+    "original_anchor_asset": {
+      "id": "LANDSAT/LC08/C02/T1_TOA",
+      "observable_group": "landsat8_collection2_tier1_toa_reflectance_and_thermal",
+      "asset_alias_policy": "Only Landsat 8 Collection 2 Tier 1 calibrated TOA scenes are admitted. Level-2 surface-temperature products may appear as companion validation or comparison data, but a direction must operationally process the TOA asset. Raw-DN Tier-1 scenes, Level-2-only studies, Collection 1, other Landsat sensors and unspecified generic Landsat use are excluded.",
+      "anchor_repointed": {
+        "from": "LANDSAT/LC08/C02/T1_L2",
+        "reason": "The source's primary GEE input and empirical predictors are the calibrated Collection 2 Tier-1 TOA bands. The former Level-2-only anchor omitted that input and incorrectly characterized the predictors as Level-2 surface reflectance. Because benchmark prompts expose one dataset, the Level-2 LST product remains a companion comparison input rather than part of the anchor.",
+        "verified_against": "Earth Engine catalog entry LANDSAT/LC08/C02/T1_TOA: ready, global Landsat 8 Collection 2 Tier-1 TOA collection, 16-day revisit, B1-B11, QA_PIXEL, QA_RADSAT and geometry bands; B10/B11 are thermal bands resampled from 100 m to 30 m.",
+        "residual_gap": "The source also evaluates the separate USGS Level-2 surface-temperature science product, but that companion product is not represented in the single benchmark input and is not part of the anchor contract.",
+        "review_date": "2026-08-29"
+      },
+      "verification": {
+        "status": "verified_against_supplied_methods_and_catalog",
+        "evidence": "Section 2.3 names Landsat 8 Collection 2 Level 1 Tier 1 calibrated TOA data obtained through GEE and uses those bands for the empirical lake-temperature estimation; Section 2.4 separately uses the USGS Level-2 surface-temperature product for comparison.",
+        "review_date": "2026-08-29"
+      },
+      "observation_identity_contract": {
+        "physical_object": "USGS Landsat 8 Collection 2 Tier 1 TOA Reflectance, representing landsat8 collection2 tier1 toa reflectance and thermal.",
+        "source_lineage": "Task Prompt source: NASA and the U.S. Geological Survey Landsat program. Current task anchor: LANDSAT/LC08/C02/T1_TOA (landsat8_collection2_tier1_toa_reflectance_and_thermal). Catalog-substitution context recorded in the task definition: The source's primary GEE input and empirical predictors are the calibrated Collection 2 Tier-1 TOA bands. The former Level-2-only anchor omitted that input and incorrectly characterized the predictors as Level-2 surface reflectance. Because benchmark prompts expose one dataset, the Level-2 LST product remains a companion comparison input rather than part of the anchor.",
+        "core_measurement_semantics": "Calibrated top-of-atmosphere reflectance and thermal infrared observations; spatial resolution: 30 m for multispectral and thermal bands; 15 m for panchromatic B8; temporal structure: Scene-based acquisitions with a nominal 16-day revisit interval",
+        "non_material_variations": "Only the aliases/versions explicitly admitted in asset_alias_policy are non-material. Spatial clipping, temporal subsetting, or band selection is non-material only when it preserves the named product, source lineage, and core measurement semantics without introducing a replacement product or processing level. No unlisted sensor, product, collection, or processing-level change is pre-admitted.",
+        "material_mismatches": "Any product outside the admitted family in asset_alias_policy is a material mismatch. Enforce the task-specific boundary verbatim: Only Landsat 8 Collection 2 Tier 1 calibrated TOA scenes are admitted. Level-2 surface-temperature products may appear as companion validation or comparison data, but a direction must operationally process the TOA asset. Raw-DN Tier-1 scenes, Level-2-only studies, Collection 1, other Landsat sensors and unspecified generic Landsat use are excluded."
+      }
+    },
+    "review_evidence": "../current_task_pairing_review_20261009.md",
+    "historical_expansion_contract_reapproved": false
+  },
+  "directions": [
+    {
+      "research_question": "How did the spatial extent and directional distribution of athaphum fishing structures in the central Loktak Lake conservation area change from 1988 to 2023?",
+      "hypothesis_or_mechanism": "Athaphum can be delineated consistently across the multi-decadal Landsat record because its vegetation signal produces elevated NDVI relative to surrounding lake water; changes in its mapped area and distribution indicate temporal change in the fishing structures.",
+      "variables_and_data_use": "The study uses red and near-infrared TOA reflectance bands from Landsat scenes to calculate NDVI, applies cloud filtering and spatial clipping, uses k-means clustering on NDVI images to delineate athaphum, and performs zonal analysis to tabulate area and percentage coverage. The Landsat 7 and Landsat 8 scenes are used for the 2005-2010 and 2015-2023 periods respectively, with earlier Landsat 5 data also included.",
+      "method_paradigm": "Multi-temporal optical remote-sensing change detection using NDVI feature extraction, unsupervised k-means classification, and zonal area analysis.",
+      "used_assets": [
+        "LANDSAT/LE07/C02/T1_TOA"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_fbb4525bbe866aa4e3ea",
+      "source_paper": {
+        "doi": "10.18520/cs/v127/i3/315-321",
+        "title": "Challenges and Dynamics of Athaphum: A Longitudinal Study of Loktak Lake in Northeast India",
+        "year": 2024,
+        "venue": "Current Science",
+        "authors": [
+          "Stutee Gupta",
+          "T. Dharmaraj",
+          "K. Mruthyunjaya Reddy"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LE07/C02/T1_TOA",
+        "name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The source table identifies Landsat 7 Collection 2 Tier 1 TOA scenes at 30 m, with red and NIR bands used in NDVI. Other Landsat missions also appear, but only the independently listed LE07 branch is admitted here; it is a same-class TOA product and is not treated as a complete substitute for the anchor's other sensors.",
+      "comparability_quote": "0.69\n\n24 January 2010\n\nLANDSAT/LE07/C02/T1_TOA/LE07_135043_20100124\n\nNIR (B4)\n\n0.77\n\n0.90\n\n15 February 2015\n\nLandsat 8/OLI\n\nLANDSAT/LC08/C02/T1_TOA/LC08_135043_20150215\n\nRed (B4)\n\n0.64\n\n0.67\n\n13 February 2020\n\n",
+      "differences_vs_anchor": {
+        "lineage": "Landsat 7 ETM+ TOA calibration versus the task anchor's Landsat family product.",
+        "spatial_temporal_support": "30 m scene-level observations at selected dates versus the anchor's broader multisensor record.",
+        "additional_sources": "The paper also lists LT05 and LC08; neither is included in this admission.",
+        "operation": "Red/NIR bands are used to derive NDVI, followed by clustering and area analysis."
+      },
+      "comparability_handling": "Count only the LE07 TOA scenes as the admitted product relation. Keep LT05 and LC08 as unapproved auxiliary branches in the direction notes, and preserve the paper's sensor-specific band assignments and multi-date design.",
+      "doi": "10.18520/cs/v127/i3/315-321",
+      "task_id": "single_dataset/task_027",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LC08/C02/T1_TOA",
+      "actual_dataset_id": "LANDSAT/LE07/C02/T1_TOA",
+      "actual_product_name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance",
+      "expansion_contract_id": "single_dataset/task_027_expansion_v1",
+      "expansion_contract_sha256": "bb621fff76256ba833d9f4bd6cd93b9ccf779574c9e35ebc089d1e115e5ad77c",
+      "task_card_sha256": "9b18ff6b09f15bddc9dcf25f939de90ed57b306c7022bce608d125b337c53809",
+      "source_text_sha256": "dc86c24be75bd7d83780e285e0b6bbf3a661cc3b1e9c44c43fde6afd85a9f5da",
+      "product_use_quote": "1996\n\nLANDSAT/LT05/C02/T1_TOA/LT05_135043_19960227\n\nNIR (B4)\n\n0.76\n\n0.90\n\n22 February 2000\n\nLANDSAT/LT05/C02/T1_TOA/LT05_135043_20000222\n\n11 February 2005\n\nLandsat 7/ETM+\n\nLANDSAT/LE07/C02/T1_TOA/LE07_135043_20050211\n\nRed (B3)\n\n0.63\n\n",
+      "operational_use_quote": "consisting\nof cloud filtering and clipping to the boundary, was done\nusing GEE. We generated the normalized difference vegetation index (NDVI) maps for corresponding years as they\nsignify the vegetation and provide valuable information in\n",
+      "application_scope_quote": "NDVI = (NIR  R)/(NIR + R,\nwhere NIR is the reflectance in the near-infrared band and\nR is the reflectance in the red (visible) band.\nThe NDVI measurements range between 1.0 and +1.0.\nThe higher NDVI values occur as the amount of green\n",
+      "supporting_quote": "consisting\nof cloud filtering and clipping to the boundary, was done\nusing GEE. We generated the normalized difference vegetation index (NDVI) maps for corresponding years as they\nsignify the vegetation and provide valuable information in\n",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:25:06Z",
+      "human_reason": "Table 1 gives exact Collection 2 TOA scene IDs for Landsat 7, alongside unapproved Landsat 5 and Landsat 8 branches. Count only the separately identified approved LE07 branch; do not count LT05 or LC08.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_027_r001",
+      "source_pool_sha256": "a083301e21a50d4963ff6520e4cb35c551ef491e5021c8d469cbb7619582ecd0",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Stutee Gupta",
+        "T. Dharmaraj",
+        "K. Mruthyunjaya Reddy"
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    },
+    {
+      "research_question": "How did land use and forest cover in Omo Forest Reserve change from 2002 to 2022 using Landsat-family satellite imagery and machine-learning classification?",
+      "hypothesis_or_mechanism": "Multispectral Landsat observations and derived NDVI can distinguish forest cover, cropland, built environment, and water classes over time, enabling detection of forest-cover transitions relevant to conservation planning.",
+      "variables_and_data_use": "The study used Landsat 7, Landsat 8, and Landsat 9 Collection 2 Tier 1 TOA imagery, selected low-cloud annual scenes, mosaicked and clipped them to the Omo Forest Reserve, used selected spectral bands and NDVI, and trained/validated Random Forest land-cover classifications for 2002, 2012, and 2022.",
+      "method_paradigm": "Google Earth Engine preprocessing and feature derivation, supervised Random Forest classification with training and validation samples, confusion-matrix accuracy assessment, variable-importance analysis, and QGIS-based spatial/landscape analysis.",
+      "used_assets": [
+        "LANDSAT/LE07/C02/T1_TOA",
+        "LANDSAT/LC09/C02/T1_TOA"
+      ],
+      "idea_type": "change_detection",
+      "direction_id": "exp_792b173cafb3d2ee0ede",
+      "source_paper": {
+        "doi": "10.59324/ejiss.2026.2(3).03",
+        "title": "Investigation of the Impacts of Forest Transformation in Omo Forest Reserve, Ogun State",
+        "year": 2026,
+        "venue": "European Journal of Innovative Studies and Sustainability",
+        "authors": [
+          "Oluwatoyin Faith Ayodele-Olufemi",
+          "Emmanuel Temitope Jayeoba"
+        ],
+        "pool_source": "dataset_expansion"
+      },
+      "actual_dataset": {
+        "id": "LANDSAT/LE07/C02/T1_TOA",
+        "name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance"
+      },
+      "comparability_fit": "yes",
+      "comparability_reason": "The paper uses three separately dated 30 m Collection 2 Tier 1 TOA scenes for 2002, 2012 and 2022, then classifies the snapshots. LE07 and LC09 are individually approved; LC08 is also used but is not in this contract. The paper does not merge these scene identities into one product.",
+      "comparability_quote": "dataset and eight bands for the 2012 and 2022 datasets due to spectral limitations in the 2002 images.\nThis multispectral classification f\nacilitated effective land management and conservation planning.\n\nTable 1\n.\n\nSatellite Images Details\n",
+      "differences_vs_anchor": {
+        "lineage": "Landsat 7 ETM+ and Landsat 9 OLI TOA branches versus the anchor product.",
+        "spatial_temporal_support": "30 m, three selected scene dates; two admitted branches are 20 years apart.",
+        "additional_sources": "The 2012 LC08 branch is documented but not approved by this contract and is excluded from the admission.",
+        "operation": "Selected bands and NDVI feed separate time-slice Random Forest classifications."
+      },
+      "comparability_handling": "Count only the 2002 LE07 and 2022 LC09 product branches. Retain LC08 as an unapproved auxiliary source in the paper description, without including it in the admitted product IDs or used assets.",
+      "doi": "10.59324/ejiss.2026.2(3).03",
+      "task_id": "single_dataset/task_027",
+      "scope": "dataset_expansion",
+      "relation_scope": "same_class_dataset",
+      "anchor_dataset_id": "LANDSAT/LC08/C02/T1_TOA",
+      "actual_dataset_id": "LANDSAT/LE07/C02/T1_TOA",
+      "actual_product_name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance",
+      "expansion_contract_id": "single_dataset/task_027_expansion_v1",
+      "expansion_contract_sha256": "bb621fff76256ba833d9f4bd6cd93b9ccf779574c9e35ebc089d1e115e5ad77c",
+      "task_card_sha256": "9b18ff6b09f15bddc9dcf25f939de90ed57b306c7022bce608d125b337c53809",
+      "source_text_sha256": "f1539ba4bb10286103881b4b9094fb7a3694312e77147cb3a12b2cb941a4a16e",
+      "product_use_quote": "\nSatellite\n\nImage ID\n\nNo. of bands\n\nResolution\n\nObservation Date\n\nLandsat 7\n\nLANDSAT/LE07/C02/T1_TOA\n\n6\n\n30m\n\n05 January 2002\n\nLandsat 8\n\nLANDSAT/LC08/C02/T1_TOA\n\n8\n\n30m\n\n12 May 2012\n\nLandsat 9\n\nLANDSAT/LC09/C02/T1_TOA\n\n8\n\n30m\n\n23 March ",
+      "operational_use_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+      "application_scope_quote": "was used for\ntraining and 25 % for validation. 6 bands ( 'B2',\n'B3','B4','B5','B7','B8') were selected for the 2002 dataset\nwhile 8 bands ('B2','B3','B4','B5','B6','B7','B8','B11') were selected for the 2012 and 2022 dataset. 200\ndecision ",
+      "supporting_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+      "human_reviewer": "Codex manual source review",
+      "human_reviewed_at_utc": "2026-10-08T14:25:06Z",
+      "human_reason": "Methods/Data identify separately dated Landsat 7, 8 and 9 Collection 2 Tier 1 TOA scenes and use them for independent time-slice classification. Count the approved LE07 and LC09 branches only; exclude LC08 from the admitted product set.",
+      "execution_kind": "production",
+      "strict_reconsideration": null,
+      "source_run_id": "datasetexp_recall1_20261008_task_027_r001",
+      "source_pool_sha256": "a083301e21a50d4963ff6520e4cb35c551ef491e5021c8d469cbb7619582ecd0",
+      "pool_source": "dataset_expansion",
+      "pool_sources": [
+        "dataset_expansion"
+      ],
+      "author_team": [
+        "Oluwatoyin Faith Ayodele-Olufemi",
+        "Emmanuel Temitope Jayeoba"
+      ],
+      "expansion_direction_ids": [
+        "exp_792b173cafb3d2ee0ede",
+        "exp_58790151e9e3555b2d94"
+      ],
+      "relation_scopes": [
+        "same_class_dataset",
+        "similar_dataset"
+      ],
+      "actual_dataset_ids": [
+        "LANDSAT/LE07/C02/T1_TOA",
+        "LANDSAT/LC09/C02/T1_TOA"
+      ],
+      "dataset_expansion_relations": [
+        {
+          "research_question": "How did land use and forest cover in Omo Forest Reserve change from 2002 to 2022 using Landsat-family satellite imagery and machine-learning classification?",
+          "hypothesis_or_mechanism": "Multispectral Landsat observations and derived NDVI can distinguish forest cover, cropland, built environment, and water classes over time, enabling detection of forest-cover transitions relevant to conservation planning.",
+          "variables_and_data_use": "The study used Landsat 7, Landsat 8, and Landsat 9 Collection 2 Tier 1 TOA imagery, selected low-cloud annual scenes, mosaicked and clipped them to the Omo Forest Reserve, used selected spectral bands and NDVI, and trained/validated Random Forest land-cover classifications for 2002, 2012, and 2022.",
+          "method_paradigm": "Google Earth Engine preprocessing and feature derivation, supervised Random Forest classification with training and validation samples, confusion-matrix accuracy assessment, variable-importance analysis, and QGIS-based spatial/landscape analysis.",
+          "used_assets": [
+            "LANDSAT/LE07/C02/T1_TOA",
+            "LANDSAT/LC09/C02/T1_TOA"
+          ],
+          "idea_type": "change_detection",
+          "direction_id": "exp_792b173cafb3d2ee0ede",
+          "source_paper": {
+            "doi": "10.59324/ejiss.2026.2(3).03",
+            "title": "Investigation of the Impacts of Forest Transformation in Omo Forest Reserve, Ogun State",
+            "year": 2026,
+            "venue": "European Journal of Innovative Studies and Sustainability",
+            "authors": [
+              "Oluwatoyin Faith Ayodele-Olufemi",
+              "Emmanuel Temitope Jayeoba"
+            ]
+          },
+          "actual_dataset": {
+            "id": "LANDSAT/LE07/C02/T1_TOA",
+            "name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance"
+          },
+          "comparability_fit": "yes",
+          "comparability_reason": "The paper uses three separately dated 30 m Collection 2 Tier 1 TOA scenes for 2002, 2012 and 2022, then classifies the snapshots. LE07 and LC09 are individually approved; LC08 is also used but is not in this contract. The paper does not merge these scene identities into one product.",
+          "comparability_quote": "dataset and eight bands for the 2012 and 2022 datasets due to spectral limitations in the 2002 images.\nThis multispectral classification f\nacilitated effective land management and conservation planning.\n\nTable 1\n.\n\nSatellite Images Details\n",
+          "differences_vs_anchor": {
+            "lineage": "Landsat 7 ETM+ and Landsat 9 OLI TOA branches versus the anchor product.",
+            "spatial_temporal_support": "30 m, three selected scene dates; two admitted branches are 20 years apart.",
+            "additional_sources": "The 2012 LC08 branch is documented but not approved by this contract and is excluded from the admission.",
+            "operation": "Selected bands and NDVI feed separate time-slice Random Forest classifications."
+          },
+          "comparability_handling": "Count only the 2002 LE07 and 2022 LC09 product branches. Retain LC08 as an unapproved auxiliary source in the paper description, without including it in the admitted product IDs or used assets.",
+          "doi": "10.59324/ejiss.2026.2(3).03",
+          "task_id": "single_dataset/task_027",
+          "scope": "dataset_expansion",
+          "relation_scope": "same_class_dataset",
+          "anchor_dataset_id": "LANDSAT/LC08/C02/T1_TOA",
+          "actual_dataset_id": "LANDSAT/LE07/C02/T1_TOA",
+          "actual_product_name": "USGS Landsat 7 ETM+ Collection 2 Tier 1 TOA Reflectance",
+          "expansion_contract_id": "single_dataset/task_027_expansion_v1",
+          "expansion_contract_sha256": "bb621fff76256ba833d9f4bd6cd93b9ccf779574c9e35ebc089d1e115e5ad77c",
+          "task_card_sha256": "9b18ff6b09f15bddc9dcf25f939de90ed57b306c7022bce608d125b337c53809",
+          "source_text_sha256": "f1539ba4bb10286103881b4b9094fb7a3694312e77147cb3a12b2cb941a4a16e",
+          "product_use_quote": "\nSatellite\n\nImage ID\n\nNo. of bands\n\nResolution\n\nObservation Date\n\nLandsat 7\n\nLANDSAT/LE07/C02/T1_TOA\n\n6\n\n30m\n\n05 January 2002\n\nLandsat 8\n\nLANDSAT/LC08/C02/T1_TOA\n\n8\n\n30m\n\n12 May 2012\n\nLandsat 9\n\nLANDSAT/LC09/C02/T1_TOA\n\n8\n\n30m\n\n23 March ",
+          "operational_use_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+          "application_scope_quote": "was used for\ntraining and 25 % for validation. 6 bands ( 'B2',\n'B3','B4','B5','B7','B8') were selected for the 2002 dataset\nwhile 8 bands ('B2','B3','B4','B5','B6','B7','B8','B11') were selected for the 2012 and 2022 dataset. 200\ndecision ",
+          "supporting_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+          "human_reviewer": "Codex manual source review",
+          "human_reviewed_at_utc": "2026-10-08T14:25:06Z",
+          "human_reason": "Methods/Data identify separately dated Landsat 7, 8 and 9 Collection 2 Tier 1 TOA scenes and use them for independent time-slice classification. Count the approved LE07 and LC09 branches only; exclude LC08 from the admitted product set.",
+          "execution_kind": "production",
+          "strict_reconsideration": null,
+          "source_run_id": "datasetexp_recall1_20261008_task_027_r001",
+          "source_pool_sha256": "a083301e21a50d4963ff6520e4cb35c551ef491e5021c8d469cbb7619582ecd0"
+        },
+        {
+          "research_question": "How did land use and forest cover in Omo Forest Reserve change from 2002 to 2022 using Landsat-family satellite imagery and machine-learning classification?",
+          "hypothesis_or_mechanism": "Multispectral Landsat observations and derived NDVI can distinguish forest cover, cropland, built environment, and water classes over time, enabling detection of forest-cover transitions relevant to conservation planning.",
+          "variables_and_data_use": "The study used Landsat 7, Landsat 8, and Landsat 9 Collection 2 Tier 1 TOA imagery, selected low-cloud annual scenes, mosaicked and clipped them to the Omo Forest Reserve, used selected spectral bands and NDVI, and trained/validated Random Forest land-cover classifications for 2002, 2012, and 2022.",
+          "method_paradigm": "Google Earth Engine preprocessing and feature derivation, supervised Random Forest classification with training and validation samples, confusion-matrix accuracy assessment, variable-importance analysis, and QGIS-based spatial/landscape analysis.",
+          "used_assets": [
+            "LANDSAT/LE07/C02/T1_TOA",
+            "LANDSAT/LC09/C02/T1_TOA"
+          ],
+          "idea_type": "change_detection",
+          "direction_id": "exp_58790151e9e3555b2d94",
+          "source_paper": {
+            "doi": "10.59324/ejiss.2026.2(3).03",
+            "title": "Investigation of the Impacts of Forest Transformation in Omo Forest Reserve, Ogun State",
+            "year": 2026,
+            "venue": "European Journal of Innovative Studies and Sustainability",
+            "authors": [
+              "Oluwatoyin Faith Ayodele-Olufemi",
+              "Emmanuel Temitope Jayeoba"
+            ]
+          },
+          "actual_dataset": {
+            "id": "LANDSAT/LC09/C02/T1_TOA",
+            "name": "USGS Landsat 9 Collection 2 Tier 1 TOA Reflectance"
+          },
+          "comparability_fit": "yes",
+          "comparability_reason": "The paper uses three separately dated 30 m Collection 2 Tier 1 TOA scenes for 2002, 2012 and 2022, then classifies the snapshots. LE07 and LC09 are individually approved; LC08 is also used but is not in this contract. The paper does not merge these scene identities into one product.",
+          "comparability_quote": "dataset and eight bands for the 2012 and 2022 datasets due to spectral limitations in the 2002 images.\nThis multispectral classification f\nacilitated effective land management and conservation planning.\n\nTable 1\n.\n\nSatellite Images Details\n",
+          "differences_vs_anchor": {
+            "lineage": "Landsat 7 ETM+ and Landsat 9 OLI TOA branches versus the anchor product.",
+            "spatial_temporal_support": "30 m, three selected scene dates; two admitted branches are 20 years apart.",
+            "additional_sources": "The 2012 LC08 branch is documented but not approved by this contract and is excluded from the admission.",
+            "operation": "Selected bands and NDVI feed separate time-slice Random Forest classifications."
+          },
+          "comparability_handling": "Count only the 2002 LE07 and 2022 LC09 product branches. Retain LC08 as an unapproved auxiliary source in the paper description, without including it in the admitted product IDs or used assets.",
+          "doi": "10.59324/ejiss.2026.2(3).03",
+          "task_id": "single_dataset/task_027",
+          "scope": "dataset_expansion",
+          "relation_scope": "similar_dataset",
+          "anchor_dataset_id": "LANDSAT/LC08/C02/T1_TOA",
+          "actual_dataset_id": "LANDSAT/LC09/C02/T1_TOA",
+          "actual_product_name": "USGS Landsat 9 Collection 2 Tier 1 TOA Reflectance",
+          "expansion_contract_id": "single_dataset/task_027_expansion_v1",
+          "expansion_contract_sha256": "bb621fff76256ba833d9f4bd6cd93b9ccf779574c9e35ebc089d1e115e5ad77c",
+          "task_card_sha256": "9b18ff6b09f15bddc9dcf25f939de90ed57b306c7022bce608d125b337c53809",
+          "source_text_sha256": "f1539ba4bb10286103881b4b9094fb7a3694312e77147cb3a12b2cb941a4a16e",
+          "product_use_quote": "\nSatellite\n\nImage ID\n\nNo. of bands\n\nResolution\n\nObservation Date\n\nLandsat 7\n\nLANDSAT/LE07/C02/T1_TOA\n\n6\n\n30m\n\n05 January 2002\n\nLandsat 8\n\nLANDSAT/LC08/C02/T1_TOA\n\n8\n\n30m\n\n12 May 2012\n\nLandsat 9\n\nLANDSAT/LC09/C02/T1_TOA\n\n8\n\n30m\n\n23 March ",
+          "operational_use_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+          "application_scope_quote": "was used for\ntraining and 25 % for validation. 6 bands ( 'B2',\n'B3','B4','B5','B7','B8') were selected for the 2002 dataset\nwhile 8 bands ('B2','B3','B4','B5','B6','B7','B8','B11') were selected for the 2012 and 2022 dataset. 200\ndecision ",
+          "supporting_quote": "Landsat 7, 8, and 9 images were obtained using\nGEE, selecting those with minimal cloud cover. Th\ne images were filtered for annual coverage, mosaicked,\nand clipped to the region of interest, with radiometric and atmospheric correction ",
+          "human_reviewer": "Codex manual source review",
+          "human_reviewed_at_utc": "2026-10-08T14:25:06Z",
+          "human_reason": "Methods/Data identify separately dated Landsat 7, 8 and 9 Collection 2 Tier 1 TOA scenes and use them for independent time-slice classification. Count the approved LE07 and LC09 branches only; exclude LC08 from the admitted product set.",
+          "execution_kind": "production",
+          "strict_reconsideration": null,
+          "source_run_id": "datasetexp_recall1_20261008_task_027_r001",
+          "source_pool_sha256": "a083301e21a50d4963ff6520e4cb35c551ef491e5021c8d469cbb7619582ecd0"
+        }
+      ],
+      "extraction_confidence": "high",
+      "evidence_granularity": "Human-reviewed Methods/Data evidence under an approved dataset-expansion contract"
+    }
+  ],
+  "quality": {
+    "ref_count": 2,
+    "source_paper_count": 2,
+    "basis": "Recomputed counts only; historical coverage/assessment labels are not copied."
+  }
+}

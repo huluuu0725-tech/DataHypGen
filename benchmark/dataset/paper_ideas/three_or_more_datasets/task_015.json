@@ -1,0 +1,58 @@
+{
+  "paper_id": "10.3390/w17243572",
+  "task_id": "three_or_more_datasets/task_015",
+  "title": "Groundwater Storage Changes Derived from GRACE-FO Using In Situ Data for Practical Management",
+  "category": "grace_in_situ_precipitation",
+  "year": 2025,
+  "journal": "Water",
+  "impact_level": "medium",
+  "datasets": [
+    "GRACE/GRACE-FO terrestrial water-storage mass grids",
+    "In-situ groundwater-level observations",
+    "TRMM/IMERG precipitation estimates"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "grace_storage_input",
+      "dataset": "GRACE/GRACE-FO terrestrial water-storage mass grids"
+    },
+    {
+      "role": "in_situ_validation_input",
+      "dataset": "In-situ groundwater-level observations"
+    },
+    {
+      "role": "precipitation_driver",
+      "dataset": "TRMM/IMERG precipitation estimates"
+    }
+  ],
+  "idea": {
+    "research_question": "How do GRACE-FO storage anomalies, in-situ groundwater levels and precipitation jointly diagnose groundwater depletion and lagged recharge?",
+    "hypothesis": "The joint signal should explain variation that cannot be identified from any single required dataset alone.",
+    "mechanism": "Align all required roles, construct role-specific features, test interactions and compare against single-role baselines.",
+    "analytical_approach": "Multisource spatial-temporal modelling with interaction, robustness and ablation analysis",
+    "data_sources": [
+      "GEE:NASA/GRACE/MASS_GRIDS/LAND",
+      "API:https://api.waterdata.usgs.gov/ogcapi/v0/collections/field-measurements/items?f=json&parameter_code=72019&state_code=06&limit=1000",
+      "GEE:NASA/GPM_L3/IMERG_V07"
+    ],
+    "required_component_usage": [
+      "grace_storage_input",
+      "in_situ_validation_input",
+      "precipitation_driver"
+    ],
+    "expected_contribution": "A benchmark task grounded in an independently audited full-text seed paper.",
+    "falsification_condition": "Reject if any required role is absent, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_015:composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "audited_candidate_space": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\grace_in_situ_precipitation.json",
+    "extracted_methods_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\independent_recall_four_20260929\\pdf_reextract\\water-17-03572-v2.methods.txt",
+    "evidence_terms": {
+      "GRACE": true,
+      "precipitation": true,
+      "monitoring wells": true
+    }
+  }
+}

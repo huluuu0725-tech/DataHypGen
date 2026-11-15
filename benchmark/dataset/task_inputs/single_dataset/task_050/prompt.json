@@ -1,0 +1,32 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Boro watershed flood-inundation observation space",
+  "data_description": {
+    "dataset_name": "Copernicus Sentinel-1 GRD",
+    "data_type": "SAR ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "data_path": "GEE:COPERNICUS/S1_GRD",
+    "spatial_coverage": {
+      "region_name": "Boro watershed, Surakarta, Indonesia",
+      "coverage": "Sentinel-1 acquisition footprints over the Boro watershed and its immediate floodplain."
+    },
+    "temporal_coverage": "2014-10-01 to present, subject to catalog holdings at evaluation time.",
+    "spatial_resolution": "10 m ground-range detected SAR",
+    "temporal_unit": "Scene acquisitions",
+    "analytical_capabilities": [
+      "Retrieve Sentinel-1 VV and VH backscatter observations for flood-event windows",
+      "Construct pre-event to flood-event change metrics and flood-inundation classifications",
+      "Assess flood extent against independently collected local validation evidence when available"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Calibrated Sentinel-1 ground-range-detected SAR backscatter in decibels.",
+      "runtime_hint": "Use COPERNICUS/S1_GRD with a consistent instrument mode, orbit pass and polarization. Create comparable pre-event and event composites, mask permanent water where appropriate, and treat a derived flood map as a Sentinel-1 product rather than as a separate required source."
+    },
+    "data_source": "Copernicus Sentinel-1 mission, distributed through Google Earth Engine",
+    "gee_asset": {
+      "id": "COPERNICUS/S1_GRD",
+      "type": "image_collection"
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S1_GRD"
+}

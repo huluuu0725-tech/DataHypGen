@@ -1,0 +1,218 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Japan prefectures",
+  "datasets": [
+    {
+      "role": "atmospheric_emission_observation",
+      "data_description": {
+        "dataset_name": "Satellite atmospheric NO2 column observations",
+        "data_type": "Daily/monthly atmospheric-composition raster time series",
+        "data_format": "Role-labeled raster/time-series or external panel",
+        "data_source": "OMI/OMNO2d and Sentinel-5P TROPOMI",
+        "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+        "spatial_coverage": {
+          "region_name": "Japan prefectures",
+          "coverage": "Declared analysis region within Japan prefectures."
+        },
+        "analytical_capabilities": [
+          "Declared-role feature construction",
+          "Spatial/temporal alignment",
+          "Validation or mechanism analysis"
+        ]
+      },
+      "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2"
+    },
+    {
+      "role": "economic_activity_target",
+      "data_description": {
+        "dataset_name": "Prefecture-level economic indicators",
+        "data_type": "Annual/monthly socioeconomic panel",
+        "data_format": "Role-labeled raster/time-series or external panel",
+        "data_source": "Japan prefectural GDP and monthly economic statistics",
+        "data_path": "datasets/e-Stat/a003.xls",
+        "spatial_coverage": {
+          "region_name": "Japan prefectures",
+          "coverage": "Declared analysis region within Japan prefectures."
+        },
+        "analytical_capabilities": [
+          "Declared-role feature construction",
+          "Spatial/temporal alignment",
+          "Validation or mechanism analysis"
+        ]
+      },
+      "data_path": "datasets/e-Stat/a003.xls"
+    },
+    {
+      "role": "nighttime_proxy_comparator",
+      "data_description": {
+        "dataset_name": "VIIRS Black Marble nighttime radiance",
+        "data_type": "Daily corrected nighttime-radiance raster",
+        "data_format": "Role-labeled raster/time-series or external panel",
+        "data_source": "NASA Black Marble VNP46A2",
+        "data_path": "NASA/VIIRS/002/VNP46A2",
+        "spatial_coverage": {
+          "region_name": "Japan prefectures",
+          "coverage": "Declared analysis region within Japan prefectures."
+        },
+        "analytical_capabilities": [
+          "Declared-role feature construction",
+          "Spatial/temporal alignment",
+          "Validation or mechanism analysis"
+        ]
+      },
+      "data_path": "NASA/VIIRS/002/VNP46A2"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Satellite atmospheric NO2 column observations",
+      "data_type": "Daily/monthly atmospheric-composition raster time series",
+      "data_format": "Role-labeled raster/time-series or external panel",
+      "data_source": "OMI/OMNO2d and Sentinel-5P TROPOMI",
+      "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+      "spatial_coverage": {
+        "region_name": "Japan prefectures",
+        "coverage": "Declared analysis region within Japan prefectures."
+      },
+      "analytical_capabilities": [
+        "Declared-role feature construction",
+        "Spatial/temporal alignment",
+        "Validation or mechanism analysis"
+      ]
+    },
+    {
+      "dataset_name": "Prefecture-level economic indicators",
+      "data_type": "Annual/monthly socioeconomic panel",
+      "data_format": "Role-labeled raster/time-series or external panel",
+      "data_source": "Japan prefectural GDP and monthly economic statistics",
+      "data_path": "datasets/e-Stat/a003.xls",
+      "spatial_coverage": {
+        "region_name": "Japan prefectures",
+        "coverage": "Declared analysis region within Japan prefectures."
+      },
+      "analytical_capabilities": [
+        "Declared-role feature construction",
+        "Spatial/temporal alignment",
+        "Validation or mechanism analysis"
+      ]
+    },
+    {
+      "dataset_name": "VIIRS Black Marble nighttime radiance",
+      "data_type": "Daily corrected nighttime-radiance raster",
+      "data_format": "Role-labeled raster/time-series or external panel",
+      "data_source": "NASA Black Marble VNP46A2",
+      "data_path": "NASA/VIIRS/002/VNP46A2",
+      "spatial_coverage": {
+        "region_name": "Japan prefectures",
+        "coverage": "Declared analysis region within Japan prefectures."
+      },
+      "analytical_capabilities": [
+        "Declared-role feature construction",
+        "Spatial/temporal alignment",
+        "Validation or mechanism analysis"
+      ]
+    }
+  ],
+  "data_paths": [
+    "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+    "datasets/e-Stat/a003.xls",
+    "NASA/VIIRS/002/VNP46A2"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_011:composite_observation",
+    "type": "composite_observation",
+    "name": "atmospheric_proxy_economic_activity composite observation",
+    "observable_group": "atmospheric_proxy_economic_activity_multidataset_observation",
+    "components": [
+      {
+        "role": "atmospheric_emission_observation",
+        "data_description": {
+          "dataset_name": "Satellite atmospheric NO2 column observations",
+          "data_type": "Daily/monthly atmospheric-composition raster time series",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "OMI/OMNO2d and Sentinel-5P TROPOMI",
+          "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2"
+      },
+      {
+        "role": "economic_activity_target",
+        "data_description": {
+          "dataset_name": "Prefecture-level economic indicators",
+          "data_type": "Annual/monthly socioeconomic panel",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "Japan prefectural GDP and monthly economic statistics",
+          "data_path": "datasets/e-Stat/a003.xls",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "datasets/e-Stat/a003.xls"
+      },
+      {
+        "role": "nighttime_proxy_comparator",
+        "data_description": {
+          "dataset_name": "VIIRS Black Marble nighttime radiance",
+          "data_type": "Daily corrected nighttime-radiance raster",
+          "data_format": "Role-labeled raster/time-series or external panel",
+          "data_source": "NASA Black Marble VNP46A2",
+          "data_path": "NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Japan prefectures",
+            "coverage": "Declared analysis region within Japan prefectures."
+          },
+          "analytical_capabilities": [
+            "Declared-role feature construction",
+            "Spatial/temporal alignment",
+            "Validation or mechanism analysis"
+          ]
+        },
+        "data_path": "NASA/VIIRS/002/VNP46A2"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "atmospheric_emission_observation",
+        "economic_activity_target",
+        "nighttime_proxy_comparator"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after declared spatial and temporal alignment.",
+      "supplement_policy": "Supplementary data may be added only with a distinct mechanism, validation or context role; no supplement may replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_011:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+    "datasets/e-Stat/a003.xls",
+    "NASA/VIIRS/002/VNP46A2"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "atmospheric_emission_observation",
+      "economic_activity_target",
+      "nighttime_proxy_comparator"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

@@ -1,0 +1,1859 @@
+{
+  "schema_version": "3.0-multidataset-reference-space",
+  "task_id": "three_or_more_datasets/task_005",
+  "reference_coverage": "sparse_member_verified_20261010",
+  "evaluation_year": 2026,
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_005:lightning_terrain_climate",
+    "type": "composite_observation",
+    "name": "Lightning-terrain-climate composite observation",
+    "observable_group": "lightning_terrain_precipitation_multidataset_observation",
+    "data_description": {
+      "dataset_name": "Lightning–terrain–climate–land-use composite observation",
+      "data_type": "Composite multi-dataset observation",
+      "data_format": "Role-labeled, spatially and temporally aligned dataset bundle",
+      "spatial_coverage": "São Francisco River Basin, Brazil",
+      "analytical_capabilities": [
+        "Joint feature construction across all declared components",
+        "Role-aware spatial and temporal alignment",
+        "Multidataset mechanism and interaction analysis"
+      ]
+    },
+    "components": [
+      {
+        "role": "precipitation_driver",
+        "data_description": {
+          "dataset_name": "CHIRPS Daily Final Precipitation v2.0",
+          "data_type": "Raster image collection",
+          "data_format": "Google Earth Engine ImageCollection",
+          "spatial_resolution": "0.05 degree grid, approximately 5.6 km at the equator",
+          "temporal_unit": "Daily precipitation estimates",
+          "temporal_coverage": "1981-01-01 to near present",
+          "data_source": "Climate Hazards Center CHIRPS v2.0",
+          "gee_asset": {
+            "id": "UCSB-CHG/CHIRPS/DAILY",
+            "type": "image_collection"
+          },
+          "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY",
+          "analytical_capabilities": [
+            "Daily-to-seasonal rainfall accumulation",
+            "Extreme-rainfall and return-period summaries",
+            "Rainfall anomaly and antecedent-moisture indicators",
+            "Hydroclimatic covariate construction"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Daily precipitation depth in millimetres",
+            "runtime_hint": "Sum daily values for event totals and aggregate to the temporal support required by the other datasets; do not mix with CHIRPS preliminary or IMERG without an explicit comparison."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "GEE:UCSB-CHG/CHIRPS/DAILY"
+      },
+      {
+        "role": "topographic_driver",
+        "data_description": {
+          "dataset_name": "ASTER Global Digital Elevation Model V003",
+          "data_type": "Raster collection",
+          "data_format": "NASA Earthdata tiled elevation product",
+          "spatial_resolution": "1 arc-second postings, approximately 30 m at the equator",
+          "temporal_unit": "Static global elevation composite",
+          "temporal_coverage": "2000-03-01 to 2013-11-30 source scenes",
+          "data_source": "NASA/METI ASTER GDEM",
+          "data_path": "NASA_CMR:ASTGTM_003",
+          "analytical_capabilities": [
+            "Megarelief and landform derivation",
+            "Elevation and hypsometric profiles",
+            "Terrain stratification of ecological units",
+            "Topographic support for landscape classification"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Elevation in metres above the EGM96 geoid",
+            "runtime_hint": "Use elevation and derived landform variables as terrain covariates; preserve the native grid before aggregation."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "NASA_CMR:ASTGTM_003"
+      },
+      {
+        "role": "target_observation",
+        "data_description": {
+          "dataset_name": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "data_type": "Point/event observation collection",
+          "data_format": "NASA Earthdata event and gridded lightning records",
+          "spatial_resolution": "Event observations aggregated to the declared analysis grid",
+          "temporal_unit": "Orbital event observations aggregated to seasonal and annual counts",
+          "temporal_coverage": "1998-01-01 to 2013-12-31",
+          "data_source": "NASA TRMM Lightning Imaging Sensor",
+          "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING",
+          "analytical_capabilities": [
+            "Lightning flash-rate density mapping",
+            "Seasonal and diurnal hotspot analysis",
+            "Event-count aggregation to environmental grids",
+            "Threshold and cluster analysis"
+          ],
+          "unit_of_measurement": {
+            "primary_measurement": "Lightning event counts or flash-rate density",
+            "runtime_hint": "Aggregate events to a common spatial-temporal grid before comparing with precipitation, terrain and land-use variables."
+          },
+          "spatial_coverage": {
+            "region_name": "São Francisco River Basin, Brazil",
+            "coverage": "Catalog coverage intersected with São Francisco River Basin, Brazil."
+          }
+        },
+        "data_path": "NASA_CMR:LIS_TRMM_LIGHTNING"
+      }
+    ],
+    "combination_contract": {
+      "joint_observable": "Lightning event-rate response interpreted jointly with terrain, precipitation and land-use context on a common basin grid.",
+      "alignment": "All components are aggregated to the declared basin grid and seasonal/annual support before interaction and threshold analysis.",
+      "required_roles": [
+        "precipitation_driver",
+        "topographic_driver",
+        "target_observation"
+      ],
+      "component_count": 3
+    },
+    "observation_identity_contract": {
+      "physical_object": "lightning events and flash-rate density over a basin",
+      "source_lineage": "NASA TRMM Lightning Imaging Sensor event-observation lineage",
+      "core_measurement_semantics": "event counts or flash-rate density aggregated to a common spatial-temporal analysis grid",
+      "non_material_variations": "event filtering, grid aggregation, seasonal/diurnal aggregation and declared detection-quality screening",
+      "material_mismatches": "thunderstorm discussion without lightning observations or an unrelated lightning sensor with no LIS/TRMM-compatible input"
+    },
+    "asset_alias_policy": "The anchor requires LIS/TRMM lightning observations combined with CHIRPS precipitation and ASTER terrain. Land-use-only studies or studies without an operational lightning signal are adjacent references."
+  },
+  "seed_exclusion": {
+    "title": "Lightning Behavior and Its Relationship with Topography, Precipitation, and Land Use in the São Francisco River Basin",
+    "doi": "10.1007/s00024-026-04050-8",
+    "year": 2026,
+    "excluded_from_directions": true,
+    "seed_uses_anchor": true
+  },
+  "construction": {
+    "channels": [
+      "multidataset_anchor_asset_lineages",
+      "complete_literature_pool_20260929"
+    ],
+    "time_window": "2020 <= paper_year <= 2026; seed DOI, existing formal references and non-paper records excluded",
+    "required_methods_evidence": "A reference must operationally use the anchor and supporting data components in a common research instance. Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling; title-only dataset co-occurrence is insufficient. References without an explicit lightning signal are retained only as adjacent partial-overlap evidence.",
+    "candidate_audit_source": "complete_literature_pool_20260929 with section-ready/fulltext preference",
+    "anchor_semantics": "The task anchor is the complete role-labeled dataset combination, not the first component. A reference direction must preserve the joint observable and may not be admitted solely because it uses one component."
+  },
+  "quality": {
+    "ref_count": 8,
+    "source_paper_count": 8,
+    "direct_set_reference_count": 0,
+    "expanded_set_reference_count": 8,
+    "manual_admission_count": 0,
+    "rejected_count": 0,
+    "uncertain_count": 0,
+    "error_count": 0,
+    "partial_set_support_count": 8,
+    "component_support_count": 5,
+    "zero_member_support_count": 1,
+    "complete_member_combination_count": 0,
+    "disputed_complete_pending_recheck_count": 0,
+    "member_conflict_count": 0,
+    "quote_guard_review_count": 0,
+    "sparse_reference_space": true,
+    "member_verification_batch": "threeplus_member_verified_migration_20261010",
+    "legacy_quality": {
+      "ref_count": 8,
+      "source_paper_count": 8,
+      "fulltext_available_count": 8,
+      "methods_candidates_audited_count": 7,
+      "independent_author_team_count": 8,
+      "exact_or_near_exact_count": 0,
+      "adjacent_partial_overlap_count": 8,
+      "reference_space_collapsed": false,
+      "sparse_reference_space": false
+    }
+  },
+  "reference_papers": [
+    {
+      "doi": "10.47363/jgwcc/2025(1)131",
+      "title": "Geospatial Multi-Criteria Modelling of Large-Scale Sugarcane Production Suitability in Taraba State, Nigeria",
+      "year": 2025,
+      "venue": "Journal of Global Warming and Climate Change",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation",
+        "land_cover"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_002"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "NIMET/CHIRPS",
+        "SRTM"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "used_analogous",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 2,
+      "missing_member_ids": [
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.36948/ijfmr.2026.v08i01.67888",
+      "title": "Impact of Morphometric Parameters on Flood Susceptibility in the Teesta River Basin, West Bengal",
+      "year": 2026,
+      "venue": "International Journal For Multidisciplinary Research",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_001",
+        "single_dataset/task_013"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Digital Elevation Model (DEM)"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "precipitation_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "not_used",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.64707/revstsna.v45i01.1897",
+      "title": "Morphometric parameters of Vranso watershed (Burkina Faso, West Africa) and their influence on the site's potential recharge",
+      "year": 2026,
+      "venue": "Sciences Naturelles et Appliquées",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_011"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Modèle Numérique de Terrain de l'Alaska Satellite Facility"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "precipitation_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "not_used",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.5027/andgeov48n1-3242",
+      "title": "Landslide susceptibility zonation in the Tartagal River basin,  Sierras Subandinas, Salta, Argentina",
+      "year": 2021,
+      "venue": "Andean Geology",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_001"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "ALOS-PRISM stereo-pair derived DEM"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "precipitation_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "not_used",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.1186/s40537-025-01208-4",
+      "title": "Disaggregating IMERG satellite precipitation over Czech Republic: an innovative approach using hybrid Extreme Gradient Boosting based on Fuzzy Spatial-Temporal Multivariate Clustering",
+      "year": 2025,
+      "venue": "Journal of Big Data",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_002",
+        "single_dataset/task_006",
+        "single_dataset/task_015"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Integrated Multi-satellite Retrievs for GPM (IMERG) V06 final run"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "topographic_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "used_analogous",
+          "topographic_driver": "not_used",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "topographic_driver",
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.3126/jnha.v1i1.78223",
+      "title": "Hydrological influences of the landslide mechanisms: insight into the Aakhu Khola Watershed, Dhading District, Nepal",
+      "year": 2024,
+      "venue": "Journal of Nepal Hydrogeological Association",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_001"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "rainfall data from Department of Hydrology and Meteorology",
+        "digital elevation model (30 m resolution)"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 2,
+        "missing_member_ids": [
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "used_analogous",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 2,
+      "missing_member_ids": [
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.9734/air/2024/v25i41106",
+      "title": "Morphometric Study of the Jacuí River Watershed in João Monlevade (MG): A Geographic Perspective",
+      "year": 2024,
+      "venue": "Advances in Research",
+      "evidence_level": "fulltext",
+      "matched_signals": [
+        "dem",
+        "precipitation",
+        "land_cover"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_011"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [
+        "Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m"
+      ],
+      "member_verification_20261010": {
+        "covered_member_count": 1,
+        "missing_member_ids": [
+          "precipitation_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "not_used",
+          "topographic_driver": "used_analogous",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 1,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ]
+    },
+    {
+      "doi": "10.46660/ijeeg.vol11.iss4.2020.513",
+      "title": "Landslide Susceptibility Assessment Using Bivariate Method: A Case Study from River  Neelum and Jehlum Catchment Area",
+      "year": 2021,
+      "venue": "International Journal of Economic and Environmental Geology",
+      "evidence_level": "section_ready",
+      "matched_signals": [
+        "dem",
+        "precipitation"
+      ],
+      "selection_tier": "adjacent_partial_overlap",
+      "source_task_ids": [
+        "single_dataset/task_001"
+      ],
+      "reference_tier": "expanded_set_reference",
+      "record_type": "article",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "actual_datasets": [],
+      "member_verification_20261010": {
+        "covered_member_count": 0,
+        "missing_member_ids": [
+          "precipitation_driver",
+          "topographic_driver",
+          "target_observation"
+        ],
+        "partial_set_support": true,
+        "verdicts": {
+          "precipitation_driver": "not_used",
+          "topographic_driver": "not_used",
+          "target_observation": "not_used"
+        }
+      },
+      "partial_set_support": true,
+      "covered_member_count": 0,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "topographic_driver",
+        "target_observation"
+      ]
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_01",
+      "source_paper_doi": "10.47363/jgwcc/2025(1)131",
+      "title": "Geospatial Multi-Criteria Modelling of Large-Scale Sugarcane Production Suitability in Taraba State, Nigeria",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "NIMET/CHIRPS",
+        "SRTM"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "NIMET/CHIRPS",
+          "actual_product_in_paper": "NIMET/CHIRPS",
+          "evidence_quotes": [
+            "national climate records (NIMET/CHIRPS)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "SRTM",
+          "actual_product_in_paper": "SRTM",
+          "evidence_quotes": [
+            "digital elevation models (SRTM)"
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "The assessment integrates eleven critical biophysical and environmental criteria within a Geographic Information System (GIS) environment, including land use/land cover, elevation, slope, drainage density, soil classification, annual precipitation, and key soil fertility parameters (exchangeable potassium, nitrogen, phosphorus, and pH).",
+        "Data were derived from high-resolution satellite imagery (Sentinel-2), digital elevation models (SRTM), national climate records (NIMET/CHIRPS), and global soil databases (ISRIC SoilGrids).",
+        "Each criterion was standardized, weighted based on established agronomic thresholds, and combined using a weighted overlay analysis to generate a spatially explicit suitability map."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究旨在评估尼日利亚塔拉巴州大规模甘蔗生产的适宜性，综合考虑多种生物物理与环境因素。",
+      "hypothesis_or_mechanism": "假设甘蔗生产的适宜性受海拔、坡度、年降水量、土壤类型及肥力等关键环境因子共同控制，且这些因子可通过多准则评价模型进行空间整合以识别最优种植区。",
+      "variables_and_data_use": "研究使用了Sentinel-2高分辨率卫星影像用于土地利用/覆被分类，SRTM数字高程模型用于提取海拔和坡度，NIMET/CHIRPS气候数据用于获取年降水量，以及ISRIC SoilGrids全球土壤数据库提供交换性钾、氮、磷和pH等土壤肥力参数。",
+      "method_paradigm": "采用地理信息系统（GIS）环境下的多准则评价（MCE）方法，对各因子进行标准化、基于农学阈值赋权，并通过加权叠加分析生成空间显式的适宜性图。",
+      "study_area": "Taraba State, Nigeria",
+      "study_period": "未明确说明具体年份",
+      "datasets_used": [
+        {
+          "name_in_paper": "Sentinel-2",
+          "role_in_study": "土地利用/覆被分类",
+          "usage": "used_as_data",
+          "evidence_quote": "Data were derived from high-resolution satellite imagery (Sentinel-2)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "SRTM",
+          "role_in_study": "数字高程模型，用于提取海拔和坡度",
+          "usage": "used_as_data",
+          "evidence_quote": "digital elevation models (SRTM)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "NIMET/CHIRPS",
+          "role_in_study": "年降水量数据来源",
+          "usage": "used_as_data",
+          "evidence_quote": "national climate records (NIMET/CHIRPS)",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ISRIC SoilGrids",
+          "role_in_study": "土壤肥力参数（交换性钾、氮、磷、pH）",
+          "usage": "used_as_data",
+          "evidence_quote": "global soil databases (ISRIC SoilGrids)",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "sources": [
+          "crossref:10.47363/jgwcc/2025(1)131"
+        ],
+        "chars": 1836,
+        "source_sha256": "8ce2ab630b761b18e76c6c7c3b2942204bf154f2c40f35034c06adda33ba9f4f",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:17",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.47363_jgwcc_2025_1_131.json",
+        "quote_gate": {
+          "total": 9,
+          "verified": 9
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_01",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate; land_cover: land-use context or stratification. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation, land-use/land-cover classes.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation",
+          "land-use/land-cover classes"
+        ],
+        "source_paper": {
+          "title": "Geospatial Multi-Criteria Modelling of Large-Scale Sugarcane Production Suitability in Taraba State, Nigeria",
+          "doi": "10.47363/jgwcc/2025(1)131",
+          "year": 2025,
+          "venue": "Journal of Global Warming and Climate Change"
+        },
+        "author_team": [
+          "Joshua Maaku Mark",
+          "Oruonye ED",
+          "Taraba State Geographic Information Services (TAGIS), Taraba State, Nigeria"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "relationship_mechanism",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation",
+          "land_cover"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_02",
+      "source_paper_doi": "10.36948/ijfmr.2026.v08i01.67888",
+      "title": "Impact of Morphometric Parameters on Flood Susceptibility in the Teesta River Basin, West Bengal",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Digital Elevation Model (DEM)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Digital Elevation Model (DEM)",
+          "actual_product_in_paper": "Digital Elevation Model (DEM)",
+          "evidence_quotes": [
+            "The Teesta River Basin and the sub-watersheds were delineated in a GIS environment, using common hydrological tools and in high-resolution Digital Elevation Model (DEM)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The Teesta River Basin and the sub-watersheds were delineated in a GIS environment, using common hydrological tools and in high-resolution Digital Elevation Model (DEM)."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "该研究探讨了形态计量参数对西孟加拉邦提斯塔河流域洪水易发性的影响，旨在识别哪些流域形态特征（如排水密度、河网频率、流域起伏等）与洪水易发性密切相关。",
+      "hypothesis_or_mechanism": "流域的形态计量参数通过调控地表径流的产生、汇流集中时间和水流速度，进而影响洪水的发生概率和强度；高排水密度、高河网频率、低伸长率和陡峭地形的子流域更易发生洪水。",
+      "variables_and_data_use": "研究使用数字高程模型（DEM）提取流域边界、水系网络及形态计量参数，包括线性参数（如河流级序、分叉比）、面积参数（如排水密度、形状因子）和地形起伏参数（如流域起伏、起伏比）。这些参数通过GIS空间分析计算并用于构建洪水易发性综合指数。",
+      "method_paradigm": "采用基于GIS的形态计量分析方法，结合水文建模工具进行流域划分、水系提取和参数计算，并通过加权综合指数法对子流域洪水易发性进行分级。",
+      "study_area": "Teesta River Basin, West Bengal（包括Darjeeling、Kalimpong和Jalpaiguri地区）",
+      "study_period": "",
+      "datasets_used": [
+        {
+          "name_in_paper": "Digital Elevation Model (DEM)",
+          "role_in_study": "用于流域划分、水系提取和形态计量参数计算",
+          "usage": "used_as_data",
+          "evidence_quote": "The Teesta River Basin and the sub-watersheds were delineated in a GIS environment, using common hydrological tools and in high-resolution Digital Elevation Model (DEM).",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.36948_ijfmr.2026.v08i01.67888.txt",
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.36948_ijfmr.2026.v08i01.67888.methods.txt"
+        ],
+        "chars": 7434,
+        "source_sha256": "04f58b3e199163d75b336568f1563257b51652abb23721bbd972332ed7fdaac3",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:14",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.36948_ijfmr.2026.v08i01.67888.json",
+        "quote_gate": {
+          "total": 3,
+          "verified": 3
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_02",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Impact of Morphometric Parameters on Flood Susceptibility in the Teesta River Basin, West Bengal",
+          "doi": "10.36948/ijfmr.2026.v08i01.67888",
+          "year": 2026,
+          "venue": "International Journal For Multidisciplinary Research"
+        },
+        "author_team": [
+          "PRADEEP RAWAT",
+          "SOMA DAS"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "change_detection",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_03",
+      "source_paper_doi": "10.64707/revstsna.v45i01.1897",
+      "title": "Morphometric parameters of Vranso watershed (Burkina Faso, West Africa) and their influence on the site's potential recharge",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Modèle Numérique de Terrain de l'Alaska Satellite Facility"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Modèle Numérique de Terrain de l'Alaska Satellite Facility",
+          "actual_product_in_paper": "Modèle Numérique de Terrain de l'Alaska Satellite Facility",
+          "evidence_quotes": [
+            "divers indices morphométriques, notamment des paramètres linéaires, de forme et de relief, ont été quantifiés à partir des données du Modèle Numérique de Terrain de l'Alaska Satellite Facility."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "divers indices morphométriques, notamment des paramètres linéaires, de forme et de relief, ont été quantifiés à partir des données du Modèle Numérique de Terrain de l'Alaska Satellite Facility."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "研究西非布基纳法索Vranso流域的形态计量参数如何影响该地区的潜在补给能力。",
+      "hypothesis_or_mechanism": "流域的形态计量特征（如形状、线性与地形参数）控制着地表径流与入渗过程，进而影响地下水的潜在补给能力；构造结构与水系之间的连通性进一步促进了这一过程。",
+      "variables_and_data_use": "研究使用了阿拉斯加卫星设施（Alaska Satellite Facility）提供的数字高程模型（MNT）数据，用于提取和量化Vranso流域的线性、形状和地形形态计量参数。未使用降水或闪电观测数据，仅依赖DEM进行水文地貌分析。",
+      "method_paradigm": "基于GIS的形态计量分析方法，通过计算流域的圆形度指数、伸长指数、Gravelius系数、排水密度等指标，对流域几何与地形特征进行定量评估。",
+      "study_area": "Vranso流域，布基纳法索，西非",
+      "study_period": "",
+      "datasets_used": [
+        {
+          "name_in_paper": "Modèle Numérique de Terrain de l'Alaska Satellite Facility",
+          "role_in_study": "数字高程模型数据源，用于提取流域形态计量参数",
+          "usage": "used_as_data",
+          "evidence_quote": "divers indices morphométriques, notamment des paramètres linéaires, de forme et de relief, ont été quantifiés à partir des données du Modèle Numérique de Terrain de l'Alaska Satellite Facility.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.64707_revstsna.v45i01.1897.txt"
+        ],
+        "chars": 14934,
+        "source_sha256": "07840558f89af8c9d4596e13df6c308ded7726f306eb32c9cef6c8055b9a26e4",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:14",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.64707_revstsna.v45i01.1897.json",
+        "quote_gate": {
+          "total": 3,
+          "verified": 3
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_03",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Morphometric parameters of Vranso watershed (Burkina Faso, West Africa) and their influence on the site's potential recharge",
+          "doi": "10.64707/revstsna.v45i01.1897",
+          "year": 2026,
+          "venue": "Sciences Naturelles et Appliquées"
+        },
+        "author_team": [
+          "Drissa IDO",
+          "Issan KI",
+          "Lassany SORE",
+          "Maxime WUBDA",
+          "Youssouf KOUSSOUBE"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "decision_support",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_04",
+      "source_paper_doi": "10.5027/andgeov48n1-3242",
+      "title": "Landslide susceptibility zonation in the Tartagal River basin,  Sierras Subandinas, Salta, Argentina",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "ALOS-PRISM stereo-pair derived DEM"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "ALOS-PRISM stereo-pair derived DEM",
+          "actual_product_in_paper": "ALOS-PRISM stereo-pair derived DEM",
+          "evidence_quotes": [
+            "We also developed a DEM of 12.5 m spatial resolution by using digital photogrammetry with a stereo-pair of satellite images captured by the sensor ALOS-PRISM on 27 April 2008."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "We relied on an image acquired on 15 February 2009 by the instrument High Resolution Visible and Infrared (HRVIR) on board the satellite SPOT-4 for the elaboration of the landslide inventory map.",
+        "We also developed a DEM of 12.5 m spatial resolution by using digital photogrammetry with a stereo-pair of satellite images captured by the sensor ALOS-PRISM on 27 April 2008.",
+        "Finally, we used also vector data of the Tartagal River basin’s borders and rivers at a scale 1:50,000 and of the geology at scale 1:250,000 (Fig. 2)."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究旨在回答阿根廷萨尔塔省塔尔塔加尔河流域（Sierras Subandinas地区）的滑坡易发性空间分布问题，为灾害防治提供基线图件。",
+      "hypothesis_or_mechanism": "研究假设滑坡易发性受岩性、坡度和曲率等地形地质条件控制，且2009年强降雨触发的滑坡事件可作为建模依据；浅层滑坡主要发生在易侵蚀的第三纪砂岩和泥岩构成的斜坡上。",
+      "variables_and_data_use": "论文使用SPOT-4卫星HRVIR传感器获取的10米多光谱影像（2009年2月15日）制作滑坡编目图；利用ALOS-PRISM传感器立体像对（2008年4月27日获取）生成12.5米分辨率数字高程模型（DEM），从中提取坡度和曲率等地形变量；还使用了1:250,000比例尺地质图和1:50,000流域边界矢量数据。",
+      "method_paradigm": "采用启发式建模方法，将滑坡编目图与地形、岩性等条件因子作为输入，通过专家知识赋权生成滑坡易发性分区图。",
+      "study_area": "Tartagal River basin, Sierras Subandinas, Salta, Argentina",
+      "study_period": "主要分析2009年2月滑坡事件，并用2006年滑坡数据进行部分验证",
+      "datasets_used": [
+        {
+          "name_in_paper": "SPOT-4 HRVIR",
+          "role_in_study": "用于制作2009年滑坡编目图",
+          "usage": "used_as_data",
+          "evidence_quote": "We relied on an image acquired on 15 February 2009 by the instrument High Resolution Visible and Infrared (HRVIR) on board the satellite SPOT-4 for the elaboration of the landslide inventory map.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "ALOS-PRISM stereo-pair",
+          "role_in_study": "用于生成12.5米分辨率DEM以提取地形变量",
+          "usage": "used_as_data",
+          "evidence_quote": "We also developed a DEM of 12.5 m spatial resolution by using digital photogrammetry with a stereo-pair of satellite images captured by the sensor ALOS-PRISM on 27 April 2008.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "geology vector data at scale 1:250,000",
+          "role_in_study": "作为岩性条件因子",
+          "usage": "used_as_data",
+          "evidence_quote": "Finally, we used also vector data of the Tartagal River basin’s borders and rivers at a scale 1:50,000 and of the geology at scale 1:250,000 (Fig. 2).",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.5027_andgeov48n1-3242.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "a80fe709fdf62e74d6326861e488bcfa9f46a9dc997e4e1690df62ae94bb3575",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:18",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.5027_andgeov48n1-3242.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_04",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Landslide susceptibility zonation in the Tartagal River basin,  Sierras Subandinas, Salta, Argentina",
+          "doi": "10.5027/andgeov48n1-3242",
+          "year": 2021,
+          "venue": "Andean Geology"
+        },
+        "author_team": [
+          "Claudia Paola Cardozo",
+          "Guillermo Toyos",
+          "Valérie Baumann"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "relationship_mechanism",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_05",
+      "source_paper_doi": "10.1186/s40537-025-01208-4",
+      "title": "Disaggregating IMERG satellite precipitation over Czech Republic: an innovative approach using hybrid Extreme Gradient Boosting based on Fuzzy Spatial-Temporal Multivariate Clustering",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Integrated Multi-satellite Retrievs for GPM (IMERG) V06 final run"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Integrated Multi-satellite Retrievs for GPM (IMERG) V06 final run",
+          "actual_product_in_paper": "Integrated Multi-satellite Retrievs for GPM (IMERG) V06 final run",
+          "evidence_quotes": [
+            "The less biased satellite observations of precipitation from IMERG are used in this study. IMERG is a global precipitation product with 0.1 degrees spatial resolution and available at half-hourly, daily, and monthly temporal resolution. The IMERG V06 final run (gauge corrected) at a monthly scale is employed in this study."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Shuttle Radar Topography Mission (SRTM) Digital Elevation Data Version 4",
+          "evidence_quotes": [
+            "The study utilizes the Shuttle Radar Topography Mission (SRTM) Digital Elevation Data Version 4, available online at [38]. Acquired in February 2002, offers high-quality, global-scale data with a 90-meter spatial resolution."
+          ],
+          "fresh_quote_verified": false,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "topographic_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "This clustering relies on Integrated Multi-satellite Retrievs for GPM (IMERG) precipitation and Shuttle Radar Topography Mission (SRTM) Digital Elevation Data to establish eight distinct clusters.",
+        "The first step involves taking the IMERG and SRTM satellite data and resampling it.",
+        "We create the multivariate cluster in the second step using the resampled medians of IMERG and SRTM raster data from the Czech Republic."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "该研究旨在解决捷克共和国IMERG卫星降水数据空间分辨率较粗（约11 km）的问题，通过创新方法将其降尺度至1 km高分辨率，以更准确地刻画局地降水时空变异性。",
+      "hypothesis_or_mechanism": "假设结合模糊时空多变量聚类与混合极端梯度提升（XGBoost）的方法能有效利用地形与降水的时空关联性，从而显著提升IMERG降水数据在1 km分辨率下的精度。",
+      "variables_and_data_use": "研究使用了IMERG V06最终运行版月尺度降水数据作为主要驱动变量，并采用SRTM数字高程模型（90米分辨率）作为地形协变量。二者共同用于构建模糊时空多变量聚类，进而驱动XGBoost模型进行降尺度。地面27个雨量站观测数据用于模型训练与验证。",
+      "method_paradigm": "该方法范式为基于模糊时空多变量聚类的混合极端梯度提升（XGBoost）非参数降尺度框架，结合立方、三次样条和Lanczos重采样技术生成高分辨率输入数据。",
+      "study_area": "Czech Republic",
+      "study_period": "June 2000 to September 2021",
+      "datasets_used": [
+        {
+          "name_in_paper": "Integrated Multi-satellite Retrievs for GPM (IMERG) V06 final run",
+          "role_in_study": "降水驱动数据",
+          "usage": "used_as_data",
+          "evidence_quote": "The less biased satellite observations of precipitation from IMERG are used in this study. IMERG is a global precipitation product with 0.1 degrees spatial resolution and available at half-hourly, daily, and monthly temporal resolution. The IMERG V06 final run (gauge corrected) at a monthly scale is employed in this study.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "Shuttle Radar Topography Mission (SRTM) Digital Elevation Data Version 4",
+          "role_in_study": "地形驱动数据",
+          "usage": "used_as_data",
+          "evidence_quote": "The study utilizes the Shuttle Radar Topography Mission (SRTM) Digital Elevation Data Version 4, available online at [38]. Acquired in February 2002, offers high-quality, global-scale data with a 90-meter spatial resolution.",
+          "quote_verified": false
+        },
+        {
+          "name_in_paper": "in-situ rain-gauge data from twenty-seven stations",
+          "role_in_study": "目标观测数据（用于训练与验证）",
+          "usage": "used_as_data",
+          "evidence_quote": "The in-situ data from twenty-seven rain-gauge locations distributed throughout the Czech Republic (Figure 4a) are used to validate the disaggregated precipitation datasets.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.1186_s40537-025-01208-4.txt"
+        ],
+        "chars": 19023,
+        "source_sha256": "d2381dcbee5fa7aab9fd6bb05b677d8a11d743627953882807db9bc8dfacc7a8",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:28",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.1186_s40537-025-01208-4.json",
+        "quote_gate": {
+          "total": 8,
+          "verified": 6
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_05",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Disaggregating IMERG satellite precipitation over Czech Republic: an innovative approach using hybrid Extreme Gradient Boosting based on Fuzzy Spatial-Temporal Multivariate Clustering",
+          "doi": "10.1186/s40537-025-01208-4",
+          "year": 2025,
+          "venue": "Journal of Big Data"
+        },
+        "author_team": [
+          "A. S. Raghubanshi",
+          "Akhilesh Singh Raghubanshi",
+          "Gaurav Tripathi",
+          "K C Gouda",
+          "Kiran Jalem",
+          "Krushna Chandra Gouda",
+          "Laxmi Kant Sharma",
+          "Martin Hanel",
+          "Oldřich Rakovec",
+          "Petr Maca",
+          "Petr Máca",
+          "Poppová Bestakova",
+          "Pragya Mehrishi",
+          "Rajani Kumar Pradhan",
+          "Rakovec Oldřich",
+          "Rama Rao Nidamanuri",
+          "Sadaf Nasreen",
+          "Ujjwal Singh",
+          "Vivek Vikram Singh",
+          "Yannis Markonis",
+          "‪Rama Rao Nidamanuri"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "change_detection",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_06",
+      "source_paper_doi": "10.3126/jnha.v1i1.78223",
+      "title": "Hydrological influences of the landslide mechanisms: insight into the Aakhu Khola Watershed, Dhading District, Nepal",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "rainfall data from Department of Hydrology and Meteorology",
+        "digital elevation model (30 m resolution)"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "rainfall data from Department of Hydrology and Meteorology",
+          "actual_product_in_paper": "rainfall data from Department of Hydrology and Meteorology",
+          "evidence_quotes": [
+            "Rainfall map is prepared by using interpolation, obtained values."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "digital elevation model (30 m resolution)",
+          "actual_product_in_paper": "digital elevation model (30 m resolution)",
+          "evidence_quotes": [
+            "resolution is used as data for the preparation of distance to river map."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 2,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "partial_set_support",
+      "joint_use_evidence_quotes": [
+        "The main data gathering method consisted of field visit, a detailed inventory map of the landslides... meteorological data, and geological information.",
+        "factors map such as precipitation, drainage to factors.",
+        "resolution is used as data for the preparation of distance to river map."
+      ],
+      "joint_use_quote_verified": [
+        false,
+        true,
+        true
+      ],
+      "research_question": "该研究旨在探究尼泊尔达丁县Aakhu Khola流域滑坡机制中水文因素（特别是降雨）的作用，分析滑坡时空分布与降雨等水文因子的关系。",
+      "hypothesis_or_mechanism": "假设降雨是触发该区域滑坡的主要因素，滑坡活动状态（如再活化、活跃或不活跃）受年总降雨量控制；高排水密度和靠近河流的区域因水文作用（如增加孔隙水压力或持续侵蚀）更易发生滑坡。",
+      "variables_and_data_use": "研究使用了来自水文气象局四个站点的实测降雨数据，通过插值生成降雨图用于分析滑坡与降雨的关系；采用30米分辨率的数字高程模型（DEM）数据制作距河距离图和排水密度图，作为滑坡影响因子。",
+      "method_paradigm": "采用统计回归模型分析年滑坡数量与年降雨量之间的关系，并结合空间分析工具评估滑坡与致灾因子（如降水、距河距离、排水密度）的空间关联性，进行初步概率性滑坡敏感性评价。",
+      "study_area": "Aakhu Khola流域，达丁县，尼泊尔",
+      "study_period": "未明确说明具体年份，但分析基于多年年度滑坡与降雨数据",
+      "datasets_used": [
+        {
+          "name_in_paper": "rainfall data from Department of Hydrology and Meteorology",
+          "role_in_study": "降雨观测数据，用于构建降雨图并分析与滑坡的关系",
+          "usage": "used_as_data",
+          "evidence_quote": "Rainfall map is prepared by using interpolation, obtained values.",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "digital elevation model (30 m resolution)",
+          "role_in_study": "地形数据，用于制作距河距离图和排水密度图",
+          "usage": "used_as_data",
+          "evidence_quote": "resolution is used as data for the preparation of distance to river map.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.3126_jnha.v1i1.78223.txt"
+        ],
+        "chars": 5741,
+        "source_sha256": "ff8b4e71018e054c59bb2c6b996beb99a03d9c2c1691198654e41efd1b644d4f",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:23",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.3126_jnha.v1i1.78223.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 6
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_06",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Hydrological influences of the landslide mechanisms: insight into the Aakhu Khola Watershed, Dhading District, Nepal",
+          "doi": "10.3126/jnha.v1i1.78223",
+          "year": 2024,
+          "venue": "Journal of Nepal Hydrogeological Association"
+        },
+        "author_team": [
+          "Achyut Timalsina",
+          "Bharat Prasad Bhandari"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "decision_support",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_07",
+      "source_paper_doi": "10.9734/air/2024/v25i41106",
+      "title": "Morphometric Study of the Jacuí River Watershed in João Monlevade (MG): A Geographic Perspective",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [
+        "Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m"
+      ],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "used_analogous",
+          "identity_match": "analogous_product",
+          "usage": "used_as_data",
+          "actual_dataset": "Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m",
+          "actual_product_in_paper": "Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m",
+          "evidence_quotes": [
+            "The study used the Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m and the digital elevation model (DEM) generated from it."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "fresh_quote_verified"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "fulltext",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 1,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "The study used the Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m and the digital elevation model (DEM) generated from it."
+      ],
+      "joint_use_quote_verified": [
+        true
+      ],
+      "research_question": "本研究旨在刻画位于米纳斯吉拉斯州若昂蒙莱瓦迪市（João Monlevade, MG）的雅库伊河（Córrego Jacuí）流域的地貌形态特征，以理解其水文行为并为流域管理提供依据。",
+      "hypothesis_or_mechanism": "流域的地貌形态参数（如形状、排水密度等）决定了其水文响应特性，在平均年降雨条件下具有较低至中等的洪水倾向；但人类土地利用活动可能通过改变主河道而加剧洪水频率。",
+      "variables_and_data_use": "研究使用了航天飞机雷达地形测绘任务（Shuttle Radar Topographic Mission, SRTM）获取的30米分辨率影像，并基于该影像生成数字高程模型（DEM）用于流域地貌参数提取。未使用降水或闪电观测数据。",
+      "method_paradigm": "基于数字高程模型的地貌参数计算与地理信息系统（GIS）空间分析方法，包括流域边界提取及形态指标（如紧凑系数、形状因子、排水密度等）的量化。",
+      "study_area": "Córrego Jacuí watershed in the municipality of João Monlevade (MG), Brazil",
+      "study_period": "",
+      "datasets_used": [
+        {
+          "name_in_paper": "Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m",
+          "role_in_study": "用于生成数字高程模型以进行流域地貌分析",
+          "usage": "used_as_data",
+          "evidence_quote": "The study used the Shuttle Radar Topographic Mission (SRTM) image with a resolution of 30 m and the digital elevation model (DEM) generated from it.",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "fulltext",
+        "sources": [
+          "reference_sets\\audit\\fulltext_corpus\\text\\10.9734_air_2024_v25i41106.txt"
+        ],
+        "chars": 3362,
+        "source_sha256": "4af7fb739dcf103c92f8a3eb3a35c03da307e8e86a80d2b8cf39f762cf07c897",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:22:26",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.9734_air_2024_v25i41106.json",
+        "quote_gate": {
+          "total": 3,
+          "verified": 3
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_07",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate; land_cover: land-use context or stratification. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation, land-use/land-cover classes.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation",
+          "land-use/land-cover classes"
+        ],
+        "source_paper": {
+          "title": "Morphometric Study of the Jacuí River Watershed in João Monlevade (MG): A Geographic Perspective",
+          "doi": "10.9734/air/2024/v25i41106",
+          "year": 2024,
+          "venue": "Advances in Research"
+        },
+        "author_team": [
+          "Maísa Comar Pinhotti Aguiar"
+        ],
+        "extraction_confidence": "medium",
+        "evidence_granularity": "full text",
+        "idea_type": "relationship_mechanism",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation",
+          "land_cover"
+        ]
+      }
+    },
+    {
+      "direction_id": "three_or_more_datasets/task_005_ref_08",
+      "source_paper_doi": "10.46660/ijeeg.vol11.iss4.2020.513",
+      "title": "Landslide Susceptibility Assessment Using Bivariate Method: A Case Study from River  Neelum and Jehlum Catchment Area",
+      "reference_tier": "expanded_set_reference",
+      "admission_basis": "legacy_1_0_pool_member_verified_20261010",
+      "member_verification_basis": "threeplus_member_verified_migration_20261010",
+      "actual_datasets": [],
+      "member_adjudications": [
+        {
+          "member_id": "precipitation_driver",
+          "anchor_product": "CHIRPS Daily Final Precipitation v2.0",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "annual precipitation (1800 mm/year)",
+          "evidence_quotes": [
+            "high altitude along steep slopes and excessive precipitation (1800 mm/ year)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        },
+        {
+          "member_id": "topographic_driver",
+          "anchor_product": "ASTER Global Digital Elevation Model V003",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "used_as_data",
+          "actual_dataset": "",
+          "actual_product_in_paper": "Digital Elevation Model (DEM)",
+          "evidence_quotes": [
+            "derivatives (hill shad, topographic openness, slope, aspect, curvature) of Digital Elevation Model (DEM)."
+          ],
+          "fresh_quote_verified": true,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        },
+        {
+          "member_id": "target_observation",
+          "anchor_product": "TRMM Lightning Imaging Sensor (LIS) orbital lightning observations",
+          "verdict": "not_used",
+          "identity_match": "not_matched",
+          "usage": "not_present",
+          "actual_dataset": "",
+          "actual_product_in_paper": "",
+          "evidence_quotes": [],
+          "fresh_quote_verified": null,
+          "prior_quote_verified_count": 0,
+          "verification_basis": [
+            "no_use_evidence"
+          ],
+          "prior_basis": null,
+          "prior_basis_strength": null,
+          "prior_usage": null,
+          "fresh_text_tier": "abstract",
+          "member_conflict": false
+        }
+      ],
+      "covered_member_count": 0,
+      "partial_set_support": true,
+      "missing_member_ids": [
+        "precipitation_driver",
+        "topographic_driver",
+        "target_observation"
+      ],
+      "disputed_member_ids": [],
+      "needs_manual_recheck": false,
+      "same_research_instance": false,
+      "combination_coverage": "component_support",
+      "joint_use_evidence_quotes": [
+        "A spatial distribution map of landslides was prepared using orthophoto, previous records, and derivatives (hill shad, topographic openness, slope, aspect, curvature) of Digital Elevation Model (DEM).",
+        "high altitude along steep slopes and excessive precipitation (1800 mm/ year).",
+        "The current study is aimed to assess the susceptibility of landslide hazard to highlight the vulnerable areas for the purpose of risk reduction along Neelum and Jehlum rivers in district Muzaffarabad."
+      ],
+      "joint_use_quote_verified": [
+        true,
+        true,
+        true
+      ],
+      "research_question": "论文旨在评估巴基斯坦穆扎法拉巴德地区尼卢姆河与杰赫勒姆河流域的滑坡易发性，识别高风险区域以支持减灾规划。",
+      "hypothesis_or_mechanism": "滑坡的发生受多种条件因子共同影响，其中道路、岩性和河流是主要触发因素；弱岩性（泥岩、砂岩、页岩和黏土）、陡峭高海拔地形及年降水量高（1800毫米/年）等条件共同导致东北部区域滑坡易发性高。",
+      "variables_and_data_use": "研究使用了数字高程模型（DEM）及其衍生变量（坡度、坡向、曲率、山体阴影、地形开阔度）作为地形因子；滑坡分布图基于正射影像和历史记录制作；降水数据以年降水量（1800 mm/year）形式用于分析，但未说明具体来源产品；岩性、道路和河流作为非遥感条件因子参与建模。",
+      "method_paradigm": "采用基于证据权重法（Weight of Evidence, WOE）的数据驱动预测模型，结合十一个条件因子进行滑坡易发性制图。",
+      "study_area": "巴基斯坦穆扎法拉巴德地区的尼卢姆河与杰赫勒姆河流域",
+      "study_period": "未明确说明具体研究时段",
+      "datasets_used": [
+        {
+          "name_in_paper": "Digital Elevation Model (DEM)",
+          "role_in_study": "用于生成地形衍生变量（坡度、坡向、曲率、山体阴影、地形开阔度）",
+          "usage": "used_as_data",
+          "evidence_quote": "A spatial distribution map of landslides was prepared using orthophoto, previous records, and derivatives (hill shad, topographic openness, slope, aspect, curvature) of Digital Elevation Model (DEM).",
+          "quote_verified": true
+        },
+        {
+          "name_in_paper": "orthophoto",
+          "role_in_study": "用于制作滑坡空间分布图",
+          "usage": "used_as_data",
+          "evidence_quote": "A spatial distribution map of landslides was prepared using orthophoto, previous records, and derivatives (hill shad, topographic openness, slope, aspect, curvature) of Digital Elevation Model (DEM).",
+          "quote_verified": true
+        }
+      ],
+      "four_dim_provenance": {
+        "tier": "abstract",
+        "sources": [
+          "crossref:10.46660/ijeeg.vol11.iss4.2020.513"
+        ],
+        "chars": 1716,
+        "fulltext_mismatch_fallback": "local_fulltext_title_overlap=0.182<0.3; sources=['reference_sets\\\\audit\\\\fulltext_corpus\\\\text\\\\10.46660_ijeeg.vol11.iss4.2020.513.txt']",
+        "source_sha256": "ae9f48d64ed4d8f12dd12384c55964a912dfd6363ea58cf75ab208764039cd17",
+        "model": "qwen3-max",
+        "attempts": 1,
+        "extracted_at": "2026-10-10T07:33:19",
+        "prompt_version": "research_instance_v2_20261010",
+        "extraction_file": "reference_sets/audit/research_instance_extraction_20261010/three_or_more_datasets__task_005/10.46660_ijeeg.vol11.iss4.2020.513.json",
+        "quote_gate": {
+          "total": 7,
+          "verified": 7
+        }
+      },
+      "research_instance_status": "extracted",
+      "legacy_record": {
+        "direction_id": "three_or_more_datasets/task_005_ref_08",
+        "research_question": "How do terrain, precipitation and land-use context jointly explain spatial and seasonal variability in basin-scale environmental hazards?",
+        "hypothesis_or_mechanism": "Topography and surface cover modulate atmospheric forcing, while gridded precipitation provides the hydroclimatic state needed to interpret event-rate hotspots.",
+        "variables_and_data_use": "dem: terrain and elevation covariate; precipitation: hydroclimatic driver or rainfall covariate. Matched evidence: digital elevation and terrain variables, gridded or station-blended precipitation.",
+        "method_paradigm": "Common-grid aggregation, hotspot/cluster analysis, threshold detection and terrain–climate interaction modelling",
+        "used_assets": [
+          "digital elevation and terrain variables",
+          "gridded or station-blended precipitation"
+        ],
+        "source_paper": {
+          "title": "Landslide Susceptibility Assessment Using Bivariate Method: A Case Study from River  Neelum and Jehlum Catchment Area",
+          "doi": "10.46660/ijeeg.vol11.iss4.2020.513",
+          "year": 2021,
+          "venue": "International Journal of Economic and Environmental Geology"
+        },
+        "author_team": [
+          "Abdul Jalal",
+          "Arshad Ali Shadayi",
+          "Humanyoun Tariq",
+          "Javed Akhter Qureshi",
+          "Sabit Rahim",
+          "Shehla Gul",
+          "Tehmina Bibi"
+        ],
+        "extraction_confidence": "medium_high",
+        "evidence_granularity": "full text Methods/Data",
+        "idea_type": "change_detection",
+        "selection_tier": "adjacent_partial_overlap",
+        "matched_dataset_signals": [
+          "dem",
+          "precipitation"
+        ]
+      }
+    }
+  ],
+  "migration": {
+    "migrated_from": "1.0",
+    "migrated_on": "2026-10-10",
+    "batch": "threeplus_member_verified_migration_20261010",
+    "notes": "逐成员核验后迁移到 3.0-multidataset-reference-space：每篇论文的每个锚点成员按本地全文抽取（qwen3-max，引文核验）与旧记录证据联合判定是否实际用作数据；未覆盖全部成员的论文保持 partial_set_support=true，不写成完整组合。旧 direction 原样保留在 legacy_record；1.0 专有顶层键 s_level/s_assessment/anchor_asset_type/anchor_component_paths 移除，锚点由 anchor_asset.components 完整表示。"
+  }
+}

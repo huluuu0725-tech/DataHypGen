@@ -1,0 +1,51 @@
+{
+  "paper_id": "10.1371/journal.pone.0337901",
+  "task_id": "three_or_more_datasets/task_011",
+  "title": "Predicting economic activity using atmospheric nitrogen dioxide (NO2) satellite data: Evidence from local economic indicators in Japan",
+  "category": "atmospheric_proxy_economic_activity",
+  "year": 2025,
+  "journal": "PLOS One",
+  "impact_level": "medium",
+  "datasets": [
+    "Satellite atmospheric NO2 column observations",
+    "Prefecture-level economic indicators",
+    "VIIRS Black Marble nighttime radiance"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "atmospheric_emission_observation",
+      "dataset": "Satellite atmospheric NO2 column observations"
+    },
+    {
+      "role": "economic_activity_target",
+      "dataset": "Prefecture-level economic indicators"
+    },
+    {
+      "role": "nighttime_proxy_comparator",
+      "dataset": "VIIRS Black Marble nighttime radiance"
+    }
+  ],
+  "idea": {
+    "research_question": "Can satellite atmospheric NO2 provide a timely regional economic-activity proxy where nighttime lights saturate or miss daytime production?",
+    "hypothesis": "NO2 responds to combustion-related production and transport, complementing or outperforming nighttime lights for selected sectors and time scales.",
+    "mechanism": "Two-way fixed-effects panel regression, sector comparison and cross-proxy validation",
+    "expected_contribution": "Transfers an atmospheric-composition observable into socioeconomic measurement.",
+    "required_component_usage": [
+      "atmospheric_emission_observation",
+      "economic_activity_target",
+      "nighttime_proxy_comparator"
+    ],
+    "data_sources": [
+      "NASA/OMI/Aura/NO2/CLIMATOLOGY_V4 and COPERNICUS/S5P/OFFL/L3_NO2",
+      "datasets/e-Stat/a003.xls",
+      "NASA/VIIRS/002/VNP46A2"
+    ],
+    "falsification_condition": "Reject if any required role is omitted, background-only, or not operationally used in the same research instance."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:three_or_more_datasets/task_011:composite_observation",
+    "anchor_type": "composite_observation",
+    "extraction_basis": "Full-text seed evidence; empirical results are excluded from the task prompt."
+  }
+}

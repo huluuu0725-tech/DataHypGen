@@ -1,0 +1,206 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "CONUS temperature observation space",
+  "datasets": [
+    {
+      "role": "nldas2_air_temperature",
+      "data_description": {
+        "dataset_name": "NLDAS-2 Forcing Fields, Hourly",
+        "data_type": "Gridded daily maximum near-surface air-temperature observations",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+        "spatial_coverage": {
+          "region_name": "CONUS temperature observation space",
+          "coverage": "Declared analysis region within CONUS temperature observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ],
+        "data_source": "NASA North American Land Data Assimilation System Phase 2",
+        "gee_asset": {
+          "id": "NASA/NLDAS/FORA0125_H002",
+          "type": "image_collection"
+        }
+      },
+      "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+      "dataset_name": "NLDAS-2 Forcing Fields, Hourly",
+      "data_source": "NASA North American Land Data Assimilation System Phase 2",
+      "gee_asset": {
+        "id": "NASA/NLDAS/FORA0125_H002",
+        "type": "image_collection"
+      }
+    },
+    {
+      "role": "modis_land_surface_temperature",
+      "data_description": {
+        "dataset_name": "MODIS Aqua Land Surface Temperature and Emissivity 8-Day Global 1 km (MYD11A2.061)",
+        "data_type": "MODIS daytime land-surface-temperature composites",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:MODIS/061/MYD11A2",
+        "spatial_coverage": {
+          "region_name": "CONUS temperature observation space",
+          "coverage": "Declared analysis region within CONUS temperature observation space."
+        },
+        "analytical_capabilities": [
+          "Spatial or temporal alignment",
+          "Feature construction",
+          "Association analysis"
+        ],
+        "data_source": "NASA MODIS Aqua MYD11A2",
+        "gee_asset": {
+          "id": "MODIS/061/MYD11A2",
+          "type": "image_collection"
+        }
+      },
+      "data_path": "GEE:MODIS/061/MYD11A2",
+      "dataset_name": "MODIS Aqua Land Surface Temperature and Emissivity 8-Day Global 1 km (MYD11A2.061)",
+      "data_source": "NASA MODIS Aqua MYD11A2",
+      "gee_asset": {
+        "id": "MODIS/061/MYD11A2",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "NLDAS-2 Forcing Fields, Hourly",
+      "data_type": "Gridded daily maximum near-surface air-temperature observations",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+      "spatial_coverage": {
+        "region_name": "CONUS temperature observation space",
+        "coverage": "Declared analysis region within CONUS temperature observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ],
+      "data_source": "NASA North American Land Data Assimilation System Phase 2",
+      "gee_asset": {
+        "id": "NASA/NLDAS/FORA0125_H002",
+        "type": "image_collection"
+      }
+    },
+    {
+      "dataset_name": "MODIS Aqua Land Surface Temperature and Emissivity 8-Day Global 1 km (MYD11A2.061)",
+      "data_type": "MODIS daytime land-surface-temperature composites",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:MODIS/061/MYD11A2",
+      "spatial_coverage": {
+        "region_name": "CONUS temperature observation space",
+        "coverage": "Declared analysis region within CONUS temperature observation space."
+      },
+      "analytical_capabilities": [
+        "Spatial or temporal alignment",
+        "Feature construction",
+        "Association analysis"
+      ],
+      "data_source": "NASA MODIS Aqua MYD11A2",
+      "gee_asset": {
+        "id": "MODIS/061/MYD11A2",
+        "type": "image_collection"
+      }
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/NLDAS/FORA0125_H002",
+    "GEE:MODIS/061/MYD11A2"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:dual_dataset/task_029:composite_observation",
+    "type": "composite_observation",
+    "name": "nldas2_modis_land_surface_temperature composite observation",
+    "observable_group": "nldas2_modis_land_surface_temperature_multidataset_observation",
+    "components": [
+      {
+        "role": "nldas2_air_temperature",
+        "data_description": {
+          "dataset_name": "NLDAS-2 Forcing Fields, Hourly",
+          "data_type": "Gridded daily maximum near-surface air-temperature observations",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+          "spatial_coverage": {
+            "region_name": "CONUS temperature observation space",
+            "coverage": "Declared analysis region within CONUS temperature observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ],
+          "data_source": "NASA North American Land Data Assimilation System Phase 2",
+          "gee_asset": {
+            "id": "NASA/NLDAS/FORA0125_H002",
+            "type": "image_collection"
+          }
+        },
+        "data_path": "GEE:NASA/NLDAS/FORA0125_H002",
+        "dataset_name": "NLDAS-2 Forcing Fields, Hourly",
+        "data_source": "NASA North American Land Data Assimilation System Phase 2",
+        "gee_asset": {
+          "id": "NASA/NLDAS/FORA0125_H002",
+          "type": "image_collection"
+        }
+      },
+      {
+        "role": "modis_land_surface_temperature",
+        "data_description": {
+          "dataset_name": "MODIS Aqua Land Surface Temperature and Emissivity 8-Day Global 1 km (MYD11A2.061)",
+          "data_type": "MODIS daytime land-surface-temperature composites",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:MODIS/061/MYD11A2",
+          "spatial_coverage": {
+            "region_name": "CONUS temperature observation space",
+            "coverage": "Declared analysis region within CONUS temperature observation space."
+          },
+          "analytical_capabilities": [
+            "Spatial or temporal alignment",
+            "Feature construction",
+            "Association analysis"
+          ],
+          "data_source": "NASA MODIS Aqua MYD11A2",
+          "gee_asset": {
+            "id": "MODIS/061/MYD11A2",
+            "type": "image_collection"
+          }
+        },
+        "data_path": "GEE:MODIS/061/MYD11A2",
+        "dataset_name": "MODIS Aqua Land Surface Temperature and Emissivity 8-Day Global 1 km (MYD11A2.061)",
+        "data_source": "NASA MODIS Aqua MYD11A2",
+        "gee_asset": {
+          "id": "MODIS/061/MYD11A2",
+          "type": "image_collection"
+        }
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset components",
+      "required_roles": [
+        "nldas2_air_temperature",
+        "modis_land_surface_temperature"
+      ],
+      "component_count": 2,
+      "alignment": "Every required role must be represented in the same declared spatial or temporal support.",
+      "supplement_policy": "Optional context, covariates, or validation cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:dual_dataset/task_029:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/NLDAS/FORA0125_H002",
+    "GEE:MODIS/061/MYD11A2"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "nldas2_air_temperature",
+      "modis_land_surface_temperature"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

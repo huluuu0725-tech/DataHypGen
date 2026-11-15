@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "source_access_instructions": "Retrieve ArcGIS transmission-line attributes and geometry in EPSG:4326. Restrict to the study area and paginate with resultOffset/resultRecordCount, checking exceededTransferLimit; a successful first page is not a complete network. Preserve utility_infrastructure as the required role and align the network with nighttime-light observations and population data.",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Urban disaster-affected electricity networks",
+  "datasets": [
+    {
+      "role": "nighttime_light_observation",
+      "data_description": {
+        "dataset_name": "NASA VIIRS Black Marble nighttime lights",
+        "data_type": "Daily nighttime-radiance raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+        "spatial_coverage": {
+          "region_name": "Urban disaster-affected electricity networks",
+          "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+        },
+        "analytical_capabilities": [
+          "Radiance-loss and recovery features",
+          "Storm-time versus baseline comparison"
+        ]
+      },
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+    },
+    {
+      "role": "utility_infrastructure",
+      "data_description": {
+        "dataset_name": "Electric utility infrastructure network",
+        "data_type": "Power-line, substation or service-territory vector data",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+        "spatial_coverage": {
+          "region_name": "Urban disaster-affected electricity networks",
+          "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+        },
+        "analytical_capabilities": [
+          "Network exposure and outage propagation context",
+          "Spatial aggregation of outage likelihood"
+        ]
+      },
+      "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json"
+    },
+    {
+      "role": "ambient_population",
+      "data_description": {
+        "dataset_name": "Ambient population grid",
+        "data_type": "Gridded population raster",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:WorldPop/GP/100m/pop",
+        "spatial_coverage": {
+          "region_name": "Urban disaster-affected electricity networks",
+          "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+        },
+        "analytical_capabilities": [
+          "Affected-population estimation",
+          "Population-weighted outage severity"
+        ]
+      },
+      "data_path": "GEE:WorldPop/GP/100m/pop"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "NASA VIIRS Black Marble nighttime lights",
+      "data_type": "Daily nighttime-radiance raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+      "spatial_coverage": {
+        "region_name": "Urban disaster-affected electricity networks",
+        "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+      },
+      "analytical_capabilities": [
+        "Radiance-loss and recovery features",
+        "Storm-time versus baseline comparison"
+      ]
+    },
+    {
+      "dataset_name": "Electric utility infrastructure network",
+      "data_type": "Power-line, substation or service-territory vector data",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+      "spatial_coverage": {
+        "region_name": "Urban disaster-affected electricity networks",
+        "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+      },
+      "analytical_capabilities": [
+        "Network exposure and outage propagation context",
+        "Spatial aggregation of outage likelihood"
+      ]
+    },
+    {
+      "dataset_name": "Ambient population grid",
+      "data_type": "Gridded population raster",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:WorldPop/GP/100m/pop",
+      "spatial_coverage": {
+        "region_name": "Urban disaster-affected electricity networks",
+        "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+      },
+      "analytical_capabilities": [
+        "Affected-population estimation",
+        "Population-weighted outage severity"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "GEE:WorldPop/GP/100m/pop"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_018:composite_observation",
+    "type": "composite_observation",
+    "name": "nighttime_lights_power_population composite observation",
+    "observable_group": "nighttime_lights_power_population_multidataset_observation",
+    "components": [
+      {
+        "role": "nighttime_light_observation",
+        "data_description": {
+          "dataset_name": "NASA VIIRS Black Marble nighttime lights",
+          "data_type": "Daily nighttime-radiance raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/VIIRS/002/VNP46A2",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Radiance-loss and recovery features",
+            "Storm-time versus baseline comparison"
+          ]
+        },
+        "data_path": "GEE:NASA/VIIRS/002/VNP46A2"
+      },
+      {
+        "role": "utility_infrastructure",
+        "data_description": {
+          "dataset_name": "Electric utility infrastructure network",
+          "data_type": "Power-line, substation or service-territory vector data",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Network exposure and outage propagation context",
+            "Spatial aggregation of outage likelihood"
+          ]
+        },
+        "data_path": "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json"
+      },
+      {
+        "role": "ambient_population",
+        "data_description": {
+          "dataset_name": "Ambient population grid",
+          "data_type": "Gridded population raster",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:WorldPop/GP/100m/pop",
+          "spatial_coverage": {
+            "region_name": "Urban disaster-affected electricity networks",
+            "coverage": "Declared analysis region within Urban disaster-affected electricity networks."
+          },
+          "analytical_capabilities": [
+            "Affected-population estimation",
+            "Population-weighted outage severity"
+          ]
+        },
+        "data_path": "GEE:WorldPop/GP/100m/pop"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "nighttime_light_observation",
+        "utility_infrastructure",
+        "ambient_population"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_018:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/VIIRS/002/VNP46A2",
+    "API:https://services1.arcgis.com/Hp6G80Pky0om7QvQ/ArcGIS/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "GEE:WorldPop/GP/100m/pop"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "nighttime_light_observation",
+      "utility_infrastructure",
+      "ambient_population"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

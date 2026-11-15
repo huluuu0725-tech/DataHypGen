@@ -1,0 +1,46 @@
+{
+  "paper_id": "10.1038/ncomms6918",
+  "task_id": "dual_dataset/task_024",
+  "title": "Global pattern for the effect of climate and land cover on water yield",
+  "category": "climate_land_cover",
+  "year": 2015,
+  "journal": "Nature Communications",
+  "impact_level": "medium",
+  "datasets": [
+    "Climate forcing",
+    "Land-cover data"
+  ],
+  "multi_dataset_input": true,
+  "dataset_roles": [
+    {
+      "role": "climate_forcing",
+      "dataset": "Climate forcing"
+    },
+    {
+      "role": "land_cover",
+      "dataset": "Land-cover data"
+    }
+  ],
+  "idea": {
+    "research_question": "What associations can be identified between climate forcing and land-cover observations?",
+    "hypothesis": "The associated data components contain a joint spatial or temporal signal that is not represented by a single component alone.",
+    "mechanism": "Align the required components, construct comparable features, estimate associations and compare against single-component baselines.",
+    "analytical_approach": "Multisource spatial or temporal association analysis with robustness and ablation checks",
+    "data_sources": [
+      "GEE:ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "GEE:MODIS/061/MCD12Q1"
+    ],
+    "required_component_usage": [
+      "climate_forcing",
+      "land_cover"
+    ],
+    "expected_contribution": "A reproducible benchmark for association discovery across two core data components.",
+    "falsification_condition": "Reject if either required component is absent or not jointly represented."
+  },
+  "anchor_context": {
+    "task_anchor": "COMPOSITE:dual_dataset/task_024:composite_observation",
+    "anchor_type": "composite_observation",
+    "seed_selection_basis": "independent_pdf_methods_audit",
+    "independent_audit_file": "D:\\InternAgent\\experiments\\paper_experiments\\benchmark\\reference_sets\\audit\\dual_associations_20260930\\continued_seed_audit.json"
+  }
+}

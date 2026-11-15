@@ -1,0 +1,63 @@
+{
+  "paper_id": "10.3390/rs13071305",
+  "task_id": "single_dataset/task_033",
+  "title": "Precipitation Drives the NDVI Distribution on the Tibetan Plateau While High Warming Rates May Intensify Its Ecological Droughts",
+  "category": "climate_surface_interaction",
+  "year": 2021,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "GIMMS NDVI (8 km, 15-day, 1982-2015)",
+    "CMA station temperature, precipitation and relative humidity, ANUSPLIN-interpolated to 8 km"
+  ],
+  "study_area_verified": {
+    "name": "Tibetan Plateau",
+    "period": "1982-2015, growing season defined as May to September",
+    "station_count": 135,
+    "masking": "pixels with annual mean NDVI below 0.1 excluded; arid sub-regions ER1D1, ER2D1 and ER2D2 left out because non-vegetated area dominates",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NASA/GIMMS/3GV0",
+    "operationally_used": true,
+    "role": "sole vegetation-index input; 15-day observations reduced to monthly values by maximum-value compositing, then averaged over the May-September growing season",
+    "evidence": "Section 2.3 names the GIMMS NDVI dataset at 15-day temporal and 8 km spatial resolution over 1982-2015, with maximum-value compositing to a monthly step.",
+    "companion_datasets": [
+      "135 CMA stations, monthly mean/max/min temperature, precipitation and relative humidity 1982-2015, interpolated with ANUSPLIN v4.2 onto the 8 km NDVI grid; interpolation validated against withheld stations, Pearson r above 0.99 for temperature, 0.86 for precipitation, 0.89 for relative humidity"
+    ],
+    "anchor_history": "Anchor was MODIS/061/MOD13Q1 (250 m, 16-day, from 2000) until 2026-08-28. That product cannot reach the early 1980s at all, so a multi-decadal analysis was impossible under the former anchor.",
+    "residual_gap": "The Earth Engine GIMMS record ends 2013-12-16 while the published series runs to 2015, so the final two years of the source period are not reproducible from the anchor asset.",
+    "corrections": [
+      "The earlier datasets list named MODIS NDVI and ERA5. The source uses GIMMS NDVI, not MODIS; climate comes from CMA station records interpolated with ANUSPLIN, not ERA5."
+    ],
+    "review_date": "2026-08-28"
+  },
+  "idea": {
+    "research_question": "青藏高原生长季植被NDVI的空间异质性变化，是否主要由降水梯度主导，并在增温背景下通过加剧区域性干旱而改变不同气候带的植被响应机制？",
+    "hypothesis": "在青藏高原，不同区域的NDVI对气候因子的响应具有显著空间非平稳性；其中，生长季降水将比气温更强地解释NDVI变化，而最低气温在高海拔冷湿区将比平均气温和最高气温更能表征植被响应。进一步地，若局地升温速率高于降水补给增强速率，NDVI将下降或增长受抑，且这种抑制效应会在干旱和半干旱区因水分亏缺放大而更强。",
+    "mechanism": "气候变暖通过提高蒸散需求、降低土壤含水量并增强大气蒸散亏缺，进而加剧生态干旱；当降水不足以补偿这种水分损失时，叶片气孔导度、光合碳同化和地上生物量积累受限，最终反映为NDVI下降或波动增强。相反，在水分限制较弱或冷限制占主导的区域，降水增加可通过改善土壤水分和生长季可利用水分，促进植被覆盖恢复。最低气温则可能通过延长无霜期、缓解低温胁迫和提升生长季有效热量，影响高海拔地区NDVI，但其作用会受水分条件和海拔带共同调制。",
+    "key_variables": {
+      "target": "生长季NDVI（Normalized Difference Vegetation Index，像元尺度）",
+      "predictors": [
+        "生长季降水量",
+        "年/生长季平均气温",
+        "最低气温（Tmin）",
+        "最高气温（Tmax）",
+        "湿润指数或干旱指数",
+        "温度变化速率",
+        "降水变化速率",
+        "蒸散需求/水分亏缺指标"
+      ]
+    },
+    "data_sources": [
+      "GIMMS NDVI3g 数据集，1982–2015年，像元尺度，约1/12°空间分辨率，提取青藏高原生长季NDVI序列",
+      "中国气象站地面观测的温度与降水数据，1982–2015年，按站点记录构建生长季气候指标与趋势变量",
+      "青藏高原行政/地形边界数据，用于区域掩膜与分区分析"
+    ],
+    "analytical_approach": "以像元为单位构建地理加权回归（GWR）模型，使用自适应带宽并以AICc选择最优带宽；先对NDVI与气候变量做趋势分析与标准化处理，再用局地回归估计降水、Tmin、Tmax、平均气温和湿润/干旱指数对NDVI的空间非平稳效应；通过局地标准化回归系数识别主导因子，并可结合多重共线性诊断（VIF）与残差空间自相关检验（Moran's I）验证模型稳健性。",
+    "expected_contribution": "构建一个面向青藏高原的空间异质性研究框架，区分水分限制与温度限制主导的植被响应区，并将“增温”从单纯的热量增加解释为可能通过生态干旱强化而抑制NDVI的过程机制，为高寒区植被变化归因、生态脆弱区识别和气候适应性管理提供更精细的空间证据。",
+    "falsification_condition": "如果在控制空间非平稳性后，降水变量的局地标准化回归系数在研究区内占优面积低于25%，或Tmin并未显著优于Tmean/Tmax解释NDVI变化；同时若升温速率与NDVI变化率之间的局地负相关在干旱和半干旱区不显著（例如|r| < 0.2且P > 0.05），则“降水主导、增温通过干旱强化抑制NDVI”的假设应被否定。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

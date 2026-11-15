@@ -1,0 +1,76 @@
+{
+  "paper_id": "10.3390/rs10050788",
+  "task_id": "single_dataset/task_025",
+  "title": "SMAP Soil Moisture Change as an Indicator of Drought Conditions",
+  "category": "environmental_monitoring",
+  "year": 2018,
+  "journal": "Remote Sensing",
+  "impact_level": "medium",
+  "datasets": [
+    "SMAP L3_SM_P (36 km EASE-Grid 2.0)"
+  ],
+  "study_area_verified": {
+    "name": "Conterminous United States",
+    "period": "April 2015 to April 2018",
+    "source": "seed full text (10.3390/rs10050788) sections 2.1-2.3",
+    "review_date": "2026-08-28"
+  },
+  "anchor_use_verified": {
+    "task_anchor": "NASA_CMR:SPL3SMP",
+    "operationally_used": true,
+    "paper_actually_used": "SMAP L3 passive (L3_SM_P), gridded to the 36 km EASE-Grid 2.0 M36 grid",
+    "evidence": "Section 2.1: 'This study used three years (April 2015 to April 2018) of SMAP Level 3 passive (L3_SM_P) data, gridded to the 36 km EASE-Grid 2.0'.",
+    "products_the_paper_explicitly_declined": [
+      "SMAP Enhanced L3 passive soil moisture at 9 km",
+      "SMAP L4 root-zone soil moisture",
+      "SMAP-Sentinel active-passive 3 km product (12-day repeat too coarse for weekly analysis)"
+    ],
+    "decline_rationale": "The authors wanted to test the utility of SMAP observations without any additional downscaling or modelling.",
+    "catalog_availability": "NASA Earthdata CMR and NSIDC publicly distribute the exact SPL3SMP / L3_SM_P 36 km product. Current collection V009 is C2938664585-NSIDC_CPRD with product DOI 10.5067/4XXOGX0OOW1S. Google Earth Engine availability is not required for an external-dataset Anchor.",
+    "companion_datasets": [
+      "U.S. Drought Monitor weekly drought-category shapefiles",
+      "SPI-1, SPI-3 and SPI-6 from NDMC/HPRCC station data, interpolated to a 1000 m CONUS grid"
+    ],
+    "restored_from": "NASA_USDA/HSL/SMAP10KM_soil_moisture",
+    "restoration_reason": "The former 10 km Palmer-model task asset was not used by the seed. The exact 36 km L3 passive product is available from the authoritative NASA Earthdata/NSIDC platform.",
+    "review_date": "2026-09-24"
+  },
+  "identity_correction": {
+    "correct_anchor": "NASA_CMR:SPL3SMP",
+    "correct_resolution": "36 km EASE-Grid 2.0",
+    "historical_field_not_rewritten": "idea.data_sources[0] still says approximately 9 km because the protected generated idea block is retained as historical output.",
+    "authoritative_fields": [
+      "datasets",
+      "anchor_use_verified",
+      "dataset/task_inputs/single_dataset/task_025/prompt.json",
+      "reference_sets/single_dataset/task_025.json"
+    ],
+    "review_date": "2026-09-24"
+  },
+  "idea": {
+    "research_question": "SMAP表层土壤湿度在不同时间尺度上的变化，能否作为CONUS地区干旱类型演变与强度变化的早期指示器，并与USDM干旱分级及SPI-1所表征的气象干旱过程建立稳定对应关系？",
+    "hypothesis": "如果降水亏缺持续存在，那么SMAP土壤湿度变化量将先在短时间窗内转为负值，并在更长时间窗内持续累积；因此，4周尺度的土壤湿度变化应优先指向短期降水不足，而13周和26周尺度的持续负变化应更适合作为中长期干旱加深的前兆，并能解释USDM干旱等级向更严重类别的演变。",
+    "mechanism": "降水异常首先通过削弱土壤补给使表层含水量下降，随后在蒸散作用和蒸发需求持续存在的条件下，土壤水分亏缺向根区扩展并累积，形成从气象干旱到农业干旱再到水文干旱的传递链条；SMAP捕捉到的土壤湿度差分信号是这一链条的近实时表征，而短窗口变化主要反映近期降水输入不足，长窗口持续负变化则反映土壤水库的长期耗竭和干旱强度升级。",
+    "key_variables": {
+      "target": "USDM drought category / drought intensity class change，以及1-month SPI（SPI-1）所代表的气象干旱状态",
+      "predictors": [
+        "SMAP soil moisture change over 4-week window",
+        "SMAP soil moisture change over 13-week window",
+        "SMAP soil moisture change over 26-week window",
+        "SMAP surface soil moisture anomaly",
+        "SPI-1",
+        "USDM weekly drought class"
+      ]
+    },
+    "data_sources": [
+      "NASA SMAP soil moisture retrievals over CONUS, 2015-present, gridded satellite observations at ~9 km resolution with near-daily sampling",
+      "U.S. Drought Monitor (USDM), weekly drought category maps over CONUS, 2000-present, categorical drought intensity classes",
+      "Standardized Precipitation Index (SPI-1) computed from gridded precipitation data over CONUS, at monthly scale aligned to 1-month accumulation"
+    ],
+    "analytical_approach": "基于SMAP土壤湿度构建4周、13周和26周滚动差分指标，按USDM周尺度与SPI-1的时间窗进行对齐；采用分层相关分析（Pearson/Spearman）、有序分类回归或多项logit来检验土壤湿度变化对USDM等级转移的解释力，并用ROC/AUC或Kappa评估其对干旱分类的判别能力；对不同时间窗设置统一阈值候选，用敏感性分析比较短期与长期干旱响应。",
+    "expected_contribution": "提出一个以SMAP土壤湿度变化量为核心的干旱监测框架，把静态土壤湿度值推进为动态变化指标，从而同时刻画短期降水亏缺和中长期干旱累积；该框架有望补充USDM和SPI对不同干旱阶段的表征能力，并为近实时干旱预警提供更敏感的地表水分证据。",
+    "falsification_condition": "如果SMAP土壤湿度变化量在4周、13周和26周窗口内对USDM等级转移或SPI-1的解释力均接近无效，例如相关系数|r| < 0.2，或分类判别AUC <= 0.60，且在不同区域与季节分层后仍无法稳定优于仅用静态土壤湿度或随机基线，则该研究假设可被否定。"
+  },
+  "enriched": true,
+  "enrichment_source": "tldr+abstract"
+}

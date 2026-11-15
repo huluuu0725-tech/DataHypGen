@@ -1,0 +1,66 @@
+{
+  "paper_id": "10.2208/jscejhe.75.2_i_1099",
+  "task_id": "single_dataset/task_008",
+  "title": "The Automatic Extraction of Physical Flood Protection Parameters for Global River Models",
+  "category": "geomorphology_analysis",
+  "year": 2019,
+  "journal": "Journal of Japan Society of Civil Engineers, Ser. B1 (Hydraulic Engineering)",
+  "impact_level": "medium",
+  "datasets": [
+    "MERIT Hydro 3 arc-second surface flow direction",
+    "MERIT Hydro upstream drainage area",
+    "USGS 3D Elevation Program 1/3 arc-second DEM and its 3 arc-second aggregate",
+    "USACE National Levee Database levee locations and validation crest elevations"
+  ],
+  "study_area_verified": {
+    "name": "Conterminous United States",
+    "scope": "The method is applied across the United States excluding Alaska and Hawaii; detailed examples include the Mississippi River basin and local areas near Kansas City and Burnsville.",
+    "analysis_grids": "NLD levee locations and 3DEP elevation are processed at 1/3 arc-second where needed; NLD, aggregated DEM and MERIT Hydro are aligned at 3 arc-seconds for river-network operations.",
+    "review_date": "2026-09-26"
+  },
+  "anchor_identity": {
+    "task_anchor": "MERIT/Hydro/v1_0_1",
+    "paper_used": "MERIT Hydro 3 arc-second surface flow direction and accompanying upstream drainage area",
+    "methods_evidence": [
+      "Methods section 2(1)c states that the study uses the 3 arc-second MERIT Hydro global surface-flow-direction dataset and its accompanying upstream drainage area.",
+      "Upstream drainage area thresholds of 500 and 100 km2 define main-channel and tributary pixels.",
+      "MERIT Hydro flow direction is followed to associate levee pixels with river pixels and determine their position relative to downstream flow."
+    ],
+    "identity_status": "exact_anchor_use",
+    "verified_from": "Public full text PDF",
+    "review_date": "2026-09-26"
+  },
+  "idea": {
+    "research_question": "在美国本土范围内，能否将 MERIT Hydro 的表面流向与上游汇水面积、USGS 3DEP 高程和 USACE 堤防位置结合，自动建立堤防与受保护河道的空间对应关系，并提取可直接写入全球一维河流模型的堤防高度、堤防–河道距离和河道横断面参数？",
+    "hypothesis": "MERIT Hydro 的水流方向能够把堤防像元沿水文连通路径匹配到正确河道，上游汇水面积阈值能够区分主河道与支流；再结合高分辨率 3DEP 地形和 NLD 堤防位置，可在大陆尺度自动恢复局地洪水防护几何。若匹配正确，提取的横断面应大体垂直于河流流向，堤防–河道对应率和堤顶高程验证也应达到可用于全球河流模型的水平。",
+    "mechanism": "首先以 MERIT Hydro 上游汇水面积的 500 km2 和 100 km2 阈值提取主河道和支流像元；随后从每个 NLD 堤防像元附近搜索可沿 MERIT Hydro 流向到达的河道像元，并结合上下游方向判断堤防位于左岸还是右岸。连接堤防与河道的横断面与 3 秒 DEM 叠置以提取断面高程，1/3 秒 3DEP 与 NLD 位置用于估计堤顶高程，堤顶与堤外地面高程之差形成堤防高度。最后以河道像元为索引保留左右岸最近堤防，使结果能够接入一维全球河流模型。",
+    "key_variables": {
+      "target": "河道像元与左右岸堤防的对应关系，以及由此得到的堤防–河道距离、河道横断面高程、堤顶高程、堤外地面高程、堤防高度和横断面相对河流流向的夹角。",
+      "predictors": [
+        "MERIT Hydro 3 arc-second 八方向表面流向",
+        "MERIT Hydro 上游汇水面积及 500 km2、100 km2 河道阈值",
+        "USACE National Levee Database 堤防位置",
+        "USGS 3DEP 1/3 arc-second 高程及其 3 arc-second 聚合 DEM",
+        "沿 MERIT Hydro 流向到达候选河道所需的像元步数",
+        "堤防与候选河道的球面直线距离",
+        "河道上下游像元确定的局地流向"
+      ]
+    },
+    "data_sources": [
+      "MERIT Hydro：3 arc-second 表面流向和上游汇水面积，用于河道像元提取、水文路径追踪、左右岸判断和河流方向计算。",
+      "USGS 3D Elevation Program：1/3 arc-second DEM 用于捕捉堤顶高程；聚合到 3 arc-second 的 DEM 用于河道横断面和堤外地面高程。",
+      "USACE National Levee Database：堤防位置用于建立待匹配堤防像元；部分已有堤顶高程仅用于独立验证，不进入提取算法。"
+    ],
+    "analytical_approach": "将 NLD 堤防位置分别栅格化到 1/3 秒和 3 秒网格；按 MERIT Hydro 上游汇水面积阈值生成主河道与支流候选。对每个堤防像元，在邻域内搜索能够沿 MERIT Hydro 流向到达河道的起始像元，再沿流向追踪到河道并用局地最短距离细化匹配。依据进入河道前的像元位置判定左右岸，以堤防–河道连线抽取 3 秒 DEM 横断面，并用 1/3 秒 3DEP 的局地最大值估计堤顶。按河道像元整合左右岸最近堤防后，统计全美匹配率、横断面与流向夹角，并以 NLD 独立堤顶高程计算误差；同时分析 MERIT Hydro 单一流向和 3 秒分辨率在三角洲、近河堤防等环境中的限制。",
+    "expected_contribution": "形成一套可扩展到大陆尺度的物理洪水防护参数提取流程，把 MERIT Hydro 河网拓扑与高分辨率地形、堤防清单连接起来，为全球河流模型显式加入左右岸堤防、堤防高度和横断面几何提供数据基础，并明确 3 秒河网分辨率、单一流向和 DEM 无法解析低矮堤防时的适用边界。",
+    "falsification_condition": "若大部分 NLD 堤防无法匹配到水文连通的 MERIT Hydro 河道，匹配后的横断面仍普遍不接近垂直于河流流向，或提取堤顶高程相对独立 NLD 高程没有随可解析堤防高度改善，则不支持 MERIT Hydro 流向、汇水面积与高分辨率地形足以自动恢复可用洪水防护几何的假设。具体地，若堤防–河道匹配率显著低于原文约 90%，流向与横断面夹角优化不能把平均值从约 66 度提高到接近 85 度，且高于约 3 m 的堤防仍表现出大的系统高程误差，则该方法不应直接用于全球河流模型。"
+  },
+  "enriched": true,
+  "enrichment_source": "public_pdf_fulltext",
+  "pdf_url": "https://www.jstage.jst.go.jp/article/jscejhe/75/2/75_I_1099/_pdf",
+  "seed_refresh": {
+    "replaced_doi": "10.5194/nhess-19-2405-2019",
+    "reason": "The former seed used NED/NHD-derived HAND rather than MERIT Hydro. The replacement operationally uses the exact task Anchor and preserves the 2019 publication year and CONUS scope.",
+    "date": "2026-09-26"
+  }
+}

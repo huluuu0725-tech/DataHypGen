@@ -1,0 +1,200 @@
+{
+  "schema_version": "2.0-composite-anchor",
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Pantanal and other drought-sensitive fire landscapes",
+  "datasets": [
+    {
+      "role": "soil_moisture_state",
+      "data_description": {
+        "dataset_name": "Satellite soil-moisture time series",
+        "data_type": "Soil-moisture raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+        "spatial_coverage": {
+          "region_name": "Pantanal and other drought-sensitive fire landscapes",
+          "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+        },
+        "analytical_capabilities": [
+          "Drought-state estimation",
+          "Antecedent moisture features"
+        ]
+      },
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+    },
+    {
+      "role": "climate_extremes",
+      "data_description": {
+        "dataset_name": "Precipitation and temperature forcing",
+        "data_type": "Climate forcing raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY",
+        "spatial_coverage": {
+          "region_name": "Pantanal and other drought-sensitive fire landscapes",
+          "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+        },
+        "analytical_capabilities": [
+          "Drought and heatwave metrics",
+          "Compound-extreme detection"
+        ]
+      },
+      "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY"
+    },
+    {
+      "role": "burned_area_observation",
+      "data_description": {
+        "dataset_name": "MODIS/FireCCI burned-area product",
+        "data_type": "Burned-area raster time series",
+        "data_format": "Role-labeled raster, vector or time-series data",
+        "data_path": "GEE:ESA/CCI/FireCCI/5_1",
+        "spatial_coverage": {
+          "region_name": "Pantanal and other drought-sensitive fire landscapes",
+          "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+        },
+        "analytical_capabilities": [
+          "Fire-event response variable",
+          "Spatial and temporal fire aggregation"
+        ]
+      },
+      "data_path": "GEE:ESA/CCI/FireCCI/5_1"
+    }
+  ],
+  "data_descriptions": [
+    {
+      "dataset_name": "Satellite soil-moisture time series",
+      "data_type": "Soil-moisture raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+      "spatial_coverage": {
+        "region_name": "Pantanal and other drought-sensitive fire landscapes",
+        "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+      },
+      "analytical_capabilities": [
+        "Drought-state estimation",
+        "Antecedent moisture features"
+      ]
+    },
+    {
+      "dataset_name": "Precipitation and temperature forcing",
+      "data_type": "Climate forcing raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY",
+      "spatial_coverage": {
+        "region_name": "Pantanal and other drought-sensitive fire landscapes",
+        "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+      },
+      "analytical_capabilities": [
+        "Drought and heatwave metrics",
+        "Compound-extreme detection"
+      ]
+    },
+    {
+      "dataset_name": "MODIS/FireCCI burned-area product",
+      "data_type": "Burned-area raster time series",
+      "data_format": "Role-labeled raster, vector or time-series data",
+      "data_path": "GEE:ESA/CCI/FireCCI/5_1",
+      "spatial_coverage": {
+        "region_name": "Pantanal and other drought-sensitive fire landscapes",
+        "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+      },
+      "analytical_capabilities": [
+        "Fire-event response variable",
+        "Spatial and temporal fire aggregation"
+      ]
+    }
+  ],
+  "data_paths": [
+    "GEE:NASA/SMAP/SPL4SMGP/008",
+    "GEE:ECMWF/ERA5_LAND/HOURLY",
+    "GEE:ESA/CCI/FireCCI/5_1"
+  ],
+  "anchor_asset": {
+    "id": "COMPOSITE:three_or_more_datasets/task_017:composite_observation",
+    "type": "composite_observation",
+    "name": "drought_fire_burned_area composite observation",
+    "observable_group": "drought_fire_burned_area_multidataset_observation",
+    "components": [
+      {
+        "role": "soil_moisture_state",
+        "data_description": {
+          "dataset_name": "Satellite soil-moisture time series",
+          "data_type": "Soil-moisture raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:NASA/SMAP/SPL4SMGP/008",
+          "spatial_coverage": {
+            "region_name": "Pantanal and other drought-sensitive fire landscapes",
+            "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+          },
+          "analytical_capabilities": [
+            "Drought-state estimation",
+            "Antecedent moisture features"
+          ]
+        },
+        "data_path": "GEE:NASA/SMAP/SPL4SMGP/008"
+      },
+      {
+        "role": "climate_extremes",
+        "data_description": {
+          "dataset_name": "Precipitation and temperature forcing",
+          "data_type": "Climate forcing raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY",
+          "spatial_coverage": {
+            "region_name": "Pantanal and other drought-sensitive fire landscapes",
+            "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+          },
+          "analytical_capabilities": [
+            "Drought and heatwave metrics",
+            "Compound-extreme detection"
+          ]
+        },
+        "data_path": "GEE:ECMWF/ERA5_LAND/HOURLY"
+      },
+      {
+        "role": "burned_area_observation",
+        "data_description": {
+          "dataset_name": "MODIS/FireCCI burned-area product",
+          "data_type": "Burned-area raster time series",
+          "data_format": "Role-labeled raster, vector or time-series data",
+          "data_path": "GEE:ESA/CCI/FireCCI/5_1",
+          "spatial_coverage": {
+            "region_name": "Pantanal and other drought-sensitive fire landscapes",
+            "coverage": "Declared analysis region within Pantanal and other drought-sensitive fire landscapes."
+          },
+          "analytical_capabilities": [
+            "Fire-event response variable",
+            "Spatial and temporal fire aggregation"
+          ]
+        },
+        "data_path": "GEE:ESA/CCI/FireCCI/5_1"
+      }
+    ],
+    "combination_contract": {
+      "physical_object": "Composite observation formed by all required dataset roles",
+      "required_roles": [
+        "soil_moisture_state",
+        "climate_extremes",
+        "burned_area_observation"
+      ],
+      "component_count": 3,
+      "alignment": "All required roles must be operationally used in the same research instance after spatial-temporal alignment.",
+      "supplement_policy": "Additional data may be added only for validation, mechanism or context and cannot replace a required role."
+    }
+  },
+  "anchor_asset_id": "COMPOSITE:three_or_more_datasets/task_017:composite_observation",
+  "anchor_asset_type": "composite_observation",
+  "anchor_components": [
+    "GEE:NASA/SMAP/SPL4SMGP/008",
+    "GEE:ECMWF/ERA5_LAND/HOURLY",
+    "GEE:ESA/CCI/FireCCI/5_1"
+  ],
+  "hard_constraints": {
+    "required_roles": [
+      "soil_moisture_state",
+      "climate_extremes",
+      "burned_area_observation"
+    ],
+    "must_use_all_required_roles": true,
+    "do_not_reduce_to_single_dataset": true,
+    "max_required_datasets": 3
+  }
+}

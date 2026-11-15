@@ -1,0 +1,27 @@
+{
+  "paper_id": "10.24127/jumatisi.v7i1.10126",
+  "task_id": "single_dataset/task_050",
+  "title": "Validation of Flood Inundation Distribution in the Boro Watershed Using Sentinel-1 Imagery and 1D HEC-RAS Simulation Against Field Observation Data",
+  "category": "sentinel1_flood_inundation",
+  "year": 2025,
+  "journal": "Jurnal Teknologi dan Manajemen Informatika",
+  "impact_level": "medium",
+  "datasets": [
+    "Copernicus Sentinel-1 GRD"
+  ],
+  "idea": {
+    "research_question": "Can Sentinel-1 backscatter change reliably delineate flood inundation in the Boro watershed?",
+    "hypothesis": "Flood-event Sentinel-1 backscatter changes relative to comparable pre-event observations identify inundated areas more accurately than a static water baseline.",
+    "mechanism": "Align pre-event and event Sentinel-1 scenes by acquisition geometry, calculate polarization-specific change metrics, and classify persistent flood signals after masking confounding water and unsuitable terrain.",
+    "analytical_approach": "Single-source Sentinel-1 SAR flood-inundation mapping with event-window sensitivity and independent validation where available",
+    "data_sources": [
+      "GEE:COPERNICUS/S1_GRD"
+    ],
+    "expected_contribution": "A reproducible single-dataset benchmark for Sentinel-1 flood-inundation detection without requiring local HEC-RAS model outputs.",
+    "falsification_condition": "Reject the hypothesis if event-to-baseline backscatter changes do not improve flood delineation over a permanent-water or no-change baseline."
+  },
+  "seed_audit": {
+    "selection_basis": "dual_dataset_expansion_fulltext_audit",
+    "migration_note": "Migrated from dual_dataset/task_031 on 2026-10-07; the local 1D HEC-RAS output is unavailable, so the active contract retains only public Sentinel-1 observations."
+  }
+}
