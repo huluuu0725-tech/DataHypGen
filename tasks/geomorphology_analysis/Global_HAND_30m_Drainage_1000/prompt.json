@@ -1,0 +1,88 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "Global 30m Height Above the Nearest Drainage with Number of River head threshold cells 1000",
+    "spatial_coverage": {
+      "region_name": "Global HAND coverage",
+      "coverage": "Global height-above-nearest-drainage raster at 30 m resolution for the 1000 river-head-threshold-cell variant."
+    },
+    "temporal_coverage": "Static HAND topographic surface.",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "30m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Static topographic surface",
+    "records": "Single raster image asset",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": 1,
+    "raster_content": {
+      "band_count": 1,
+      "band_names": [
+        "b1"
+      ],
+      "band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "float"
+        }
+      },
+      "gee_asset_id": "users/gena/GlobalHAND/30m/hand-1000",
+      "thematic_group": "Hydrology",
+      "band_semantics": {
+        "b1": "Height-above-nearest-drainage raster."
+      },
+      "sample_runtime_properties": {
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        },
+        "system:asset_size": 169958511224
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine image probe. The prompt preserves the observed single-band HAND surface and avoids inventing any additional class encoding.",
+    "analytical_capabilities": [
+      "Drainage-relative elevation analysis",
+      "Potential floodplain and lowland screening",
+      "Terrain-hydrology coupling analysis",
+      "Combination with flood-event or settlement datasets",
+      "Threshold-based HAND hotspot detection"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Height-above-nearest-drainage values, typically interpreted as vertical distance; verify unit conventions from the source docs before thresholding.",
+      "runtime_hint": "Use the raster as a relative topographic position surface rather than an absolute elevation model."
+    },
+    "data_source": "Gennaddi Donchyts, Deltares via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/hand/",
+    "gee_asset": {
+      "id": "users/gena/GlobalHAND/30m/hand-1000",
+      "type": "image",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:hydrology/GLOBAL-HEIGHT-ABV-NEAREST-DRAINAGE",
+      "docs": "https://gee-community-catalog.org/projects/hand/",
+      "license": "Creative Commons Attribution Share Alike 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/hand.png"
+    }
+  },
+  "data_path": "GEE:users/gena/GlobalHAND/30m/hand-1000"
+}

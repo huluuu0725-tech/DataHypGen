@@ -1,0 +1,100 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "MODIS Land Cover Type Yearly Global 500m (MCD12Q1 V061)",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global land surface coverage at 500m resolution providing annual land cover classifications from 2001 to 2024."
+    },
+    "temporal_coverage": "2001-2024 annual land cover type classifications",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Annual",
+    "records": "ImageCollection with yearly global land cover from 2001-2024",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 255}",
+    "total_samples": "24 years of annual global coverage",
+    "raster_content": {
+      "band_count": 12,
+      "band_names": [
+        "LC_Type1",
+        "LC_Type2",
+        "LC_Type3",
+        "LC_Type4",
+        "LC_Type5",
+        "LC_Prop1",
+        "LC_Prop2",
+        "LC_Prop3",
+        "LC_Prop1_Assessment",
+        "LC_Prop2_Assessment",
+        "LC_Prop3_Assessment",
+        "QC"
+      ],
+      "band_data_types": {
+        "LC_Type1": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "IGBP (International Geosphere-Biosphere Programme) classification with 17 classes"
+        },
+        "LC_Type2": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "University of Maryland (UMD) classification with 15 classes"
+        },
+        "LC_Type3": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "LAI (Leaf Area Index) based classification with 10 classes"
+        },
+        "LC_Type4": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "BGC (BIOME-Biogeochemical Cycles) classification with 8 classes"
+        },
+        "LC_Type5": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "Plant Functional Types classification with 11 classes"
+        }
+      },
+      "gee_asset_id": "MODIS/061/MCD12Q1",
+      "thematic_group": "Global Land Use and Land Cover",
+      "band_semantics": {
+        "LC_Type1": "Primary IGBP land cover classification used for most applications",
+        "LC_Type2": "Alternative UMD classification scheme",
+        "LC_Prop1": "FAO-LCCS1 land cover layer",
+        "LC_Prop2": "FAO-LCCS2 land use layer",
+        "LC_Prop3": "FAO-LCCS3 surface hydrology layer"
+      }
+    },
+    "important_note": "MCD12Q1 provides multiple classification schemes (IGBP, UMD, LAI, BGC, PFT) allowing flexibility in analysis. The 23-year time series enables robust land cover change detection and trend analysis.",
+    "analytical_capabilities": [
+      "Long-term land cover change analysis (2001-2024)",
+      "Multi-classification scheme comparison (IGBP, UMD, LAI, BGC, PFT)",
+      "Global vegetation dynamics monitoring",
+      "Deforestation and afforestation trend detection",
+      "Agricultural expansion tracking",
+      "Urbanization pattern analysis",
+      "Climate-vegetation relationship studies",
+      "Biome shift detection over two decades",
+      "Land use transition matrix construction"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Categorical land cover type codes specific to each classification scheme.",
+      "runtime_hint": "Select LC_Type1 (IGBP) for standard land cover analysis; use temporal filtering to compare across years."
+    },
+    "data_source": "NASA LP DAAC at the USGS EROS Center via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+    "gee_asset": {
+      "id": "MODIS/061/MCD12Q1",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+      "docs": "https://lpdaac.usgs.gov/products/mcd12q1v061/",
+      "license": "proprietary",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_061_MCD12Q1_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MCD12Q1"
+}

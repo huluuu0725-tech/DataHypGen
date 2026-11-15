@@ -1,0 +1,138 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "Bulk density of the fine earth fraction",
+    "spatial_coverage": {
+      "region_name": "Global soil bulk-density coverage",
+      "coverage": "Global SoilGrids bulk-density raster with six standard depth intervals in a single multiband image."
+    },
+    "temporal_coverage": "Static modeled soil-property image with six standard depth intervals.",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "250m",
+    "coordinate_system": "PROJCS[\"World_Mollweide\", \n  GEOGCS[\"GCS_WGS_1984\", \n    DATUM[\"D_WGS_1984\", \n      SPHEROID[\"WGS_1984\", 6378137.0, 298.257223563]], \n    PRIMEM[\"Greenwich\", 0.0], \n    UNIT[\"degree\", 0.017453292519943295], \n    AXIS[\"Longitude\", EAST], \n    AXIS[\"Latitude\", NORTH]], \n  PROJECTION[\"Mollweide\"], \n  PARAMETER[\"semi_minor\", 6378137.0], \n  PARAMETER[\"false_easting\", 0.0], \n  PARAMETER[\"false_northing\", 0.0], \n  PARAMETER[\"central_meridian\", 0.0], \n  UNIT[\"m\", 1.0], \n  AXIS[\"x\", EAST], \n  AXIS[\"y\", NORTH]]",
+    "temporal_unit": "Depth interval bands, not time",
+    "records": "Single multiband image with 6 depth bands",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": -32768, \"max\": 32767}",
+    "total_samples": 1,
+    "raster_content": {
+      "band_count": 6,
+      "band_names": [
+        "bdod_0-5cm_mean",
+        "bdod_5-15cm_mean",
+        "bdod_15-30cm_mean",
+        "bdod_30-60cm_mean",
+        "bdod_60-100cm_mean",
+        "bdod_100-200cm_mean"
+      ],
+      "band_data_types": {
+        "bdod_0-5cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        },
+        "bdod_5-15cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        },
+        "bdod_15-30cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        },
+        "bdod_30-60cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        },
+        "bdod_60-100cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        },
+        "bdod_100-200cm_mean": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -32768,
+          "max": 32767
+        }
+      },
+      "gee_asset_id": "projects/soilgrids-isric/bdod_mean",
+      "thematic_group": "Soil Properties",
+      "band_semantics": {
+        "bdod_0-5cm_mean": "Mean bulk density for the 0-5 cm soil interval.",
+        "bdod_5-15cm_mean": "Mean bulk density for the 5-15 cm soil interval.",
+        "bdod_15-30cm_mean": "Mean bulk density for the 15-30 cm soil interval.",
+        "bdod_30-60cm_mean": "Mean bulk density for the 30-60 cm soil interval.",
+        "bdod_60-100cm_mean": "Mean bulk density for the 60-100 cm soil interval.",
+        "bdod_100-200cm_mean": "Mean bulk density for the 100-200 cm soil interval."
+      },
+      "sample_runtime_properties": {
+        "Covariates": "depth,clm_wcl_s07rad,clm_wcl_srdyrsum,clm_wcl_s08rad,luc_lds_mng,mor_mrg_vdp,clm_wcl_s04rad,clm_wcl_bio16,luc_gfc_trely10,clm_wcl_bio07,mor_env_demm,mor_mrg_twi,clm_esa_s09avg,clm_wcl_srdyrstd,luc_esa_l170,clm_mod_lstd01std,clm_esa_s05avg,clm_wcl_p05tot,mor_mrg_vbf,clm_wcl_p04tot,clm_wcl_bio18,clm_wcl_p10tot,clm_wcl_p09tot,clm_mod_lstd03std,veg_mod_evirng,veg_mod_eviyravg,clm_wcl_bio19,clm_mod_lstd09std,clm_wcl_p12tot,clm_wcl_bio08,clm_wcl_bio17,clm_mod_lstd11std,clm_mod_lstd05std,clm_mod_lstd02std,clm_esa_s08avg,clm_wcl_bio15,clm_mod_lstd10std,veg_mod_nppy15,clm_mod_lstd04std,clm_mod_lstd12std",
+        "WoSIS_version": "Data stream 7",
+        "description": "Bulk density in cg/cm3 at 6 standard depths. Predictions were derived using a digital soil mapping approach based on Quantile Random Forest, drawing on a global compilation of soil profile data and environmental layers. \n\n**Soil Property DOI**\n[https://doi.org/10.17027/isric-soilgrids.713396f9-1687-11ea-a7c0-a0481ca9e724](https://doi.org/10.17027/isric-soilgrids.713396f9-1687-11ea-a7c0-a0481ca9e724)\n\n**Terms of use**\nThis version of SoilGrids is available to you by [ISRIC — World Soil Information](isric.org) under the CC-BY 4.0 License.\n\n**Important notice**\n[SoilGrids](https://www.isric.org/explore/soilgrids/) is designed as a globally consistent, data-driven system that predicts soil properties and classes using global covariates and globally fitted models. If you are looking for soil information on national and/or local levels we advise to compare SoilGrids predictions with soil maps derived from national and local soil geographical databases. National soil maps are usually based on more detailed input soil information and therefore are often more accurate than SoilGrids (within the local coverage area). For an overview of national and regional soil databases, please refer to the Soil Geographic Databases compendium.\n\n**Citation**\nde Sousa, L.,  Poggio, L.,  Batjes, N.H., Heuvelink, G.B.M., Kempen, B., Ribeiro, E.,  Rossiter, D. SoilGrids 2.0: producing quality-assessed soil information for the globe. Under submission to SOIL\n\n\n",
+        "Mtry": "12",
+        "Litter_layers": "FALSE",
+        "Mapped_units": "cg/cm3",
+        "title": "Bulk density, mean",
+        "Number_trees": "200",
+        "Outputs_version": "RUN03",
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        }
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine image probe. The runtime metadata explicitly exposes the mapped unit and indicates that the six bands correspond to standard soil-depth intervals.",
+    "analytical_capabilities": [
+      "Bulk-density spatial stratification",
+      "Soil physical constraint mapping",
+      "Combination with slope, vegetation, or agriculture layers",
+      "Regional edaphic gradient analysis",
+      "Terrain-soil interaction discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Bulk density in `cg/cm3` (from asset property `Mapped_units`).",
+      "runtime_hint": "Compare bands by depth interval and do not interpret them as repeated observations over time."
+    },
+    "data_source": "International Soil Reference and Information Centre (ISRIC) via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/isric/",
+    "gee_asset": {
+      "id": "projects/soilgrids-isric/bdod_mean",
+      "type": "image",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:soil-properties/ISRIC-SOIL-GRID-250",
+      "docs": "https://gee-community-catalog.org/projects/isric/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/isric.png"
+    }
+  },
+  "data_path": "GEE:projects/soilgrids-isric/bdod_mean"
+}

@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time Formaldehyde (HCHO)",
+    "spatial_coverage": {
+      "region_name": "Global formaldehyde monitoring coverage",
+      "coverage": "Global near real-time HCHO concentration from Sentinel-5P TROPOMI sensor with daily coverage. The Earth Engine collection provides global atmospheric formaldehyde measurements."
+    },
+    "temporal_coverage": "Daily HCHO measurements from 2018-07-10 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "3.5 x 7 km (~5.5 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_HCHO",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "tropospheric_HCHO_column_number_density": "Tropospheric vertical column of HCHO (mol/m^2)",
+        "tropospheric_HCHO_column_number_density_amf": "Air mass factor for HCHO column",
+        "HCHO_slant_column_number_density": "Slant column density of HCHO (mol/m^2)"
+      }
+    },
+    "important_note": "Formaldehyde is an intermediate gas in oxidation chains of non-methane volatile organic compounds (NMVOC), leading to CO2. NMVOCs are important precursors of tropospheric O3. Major HCHO source in remote atmosphere is CH4 oxidation. Over continents, oxidation of NMVOCs from vegetation, fires, traffic and industry causes localized HCHO enhancements. HCHO in boundary layer relates to short-lived hydrocarbon releases.",
+    "analytical_capabilities": [
+      "Vegetation emission monitoring and biogenic VOC assessment",
+      "Biomass burning detection and impact analysis",
+      "Urban air quality and traffic emission tracking",
+      "Industrial VOC emission identification",
+      "Tropospheric ozone precursor analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "HCHO column number density in mol/m^2. Use tropospheric_HCHO_column_number_density for boundary layer studies.",
+      "runtime_hint": "Filter by validity flags (>50), cloud fraction, and solar zenith angle for reliable measurements."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_HCHO",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_HCHO"
+}

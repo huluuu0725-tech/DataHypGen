@@ -1,0 +1,60 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global mapped mining areas",
+  "data_description": {
+    "dataset_name": "Global Mining Polygons",
+    "spatial_coverage": {
+      "region_name": "Global mapped surface-mining areas",
+      "coverage": "Global polygon inventory of mapped surface-mining areas compiled for sites active at any time between 2000 and 2017."
+    },
+    "temporal_coverage": "Static polygon inventory representing mining areas active during 2000-2017.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "temporal_unit": "Static feature table",
+    "records": "21060 features",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "total_samples": 21060,
+    "vector_content": {
+      "geometry_type": "Polygon",
+      "property_keys": [
+        "AREA",
+        "COUNTRY_NA",
+        "ISO3_CODE"
+      ],
+      "sample_properties": {
+        "COUNTRY_NA": "Cuba",
+        "ISO3_CODE": "CUB"
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/global-mining/global_mining_polygons",
+      "thematic_group": "Global Utilities, Assets and Amenities Layers",
+      "property_semantics_hint": {
+        "AREA": "Numeric polygon-area attribute present in the sampled feature; confirm the area unit before direct comparison.",
+        "COUNTRY_NA": "Country name associated with the sampled mining polygon.",
+        "ISO3_CODE": "ISO-3 country code associated with the sampled mining polygon."
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine FeatureCollection probe. The prompt keeps the observed polygon count and sampled country attributes, but does not assume an `AREA` unit that was not explicitly exposed by the runtime metadata.",
+    "analytical_capabilities": [
+      "Mining footprint geometry analysis",
+      "Regional mining distribution comparison",
+      "Attribute-based mining feature screening",
+      "Combination with water, settlement, or land-cover layers",
+      "Resource extraction pattern discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Polygon geometry plus mining-site attributes; the sampled `AREA` field exists but its numeric unit is not stated in the runtime probe and should be verified before aggregation.",
+      "runtime_hint": "Treat country fields as categorical join keys and confirm the `AREA` convention against the source documentation before area-based comparison."
+    },
+    "data_source": "FINEPRINT project, European Research Council, European Union's Horizon 2020 via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/global_mining/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/global-mining/global_mining_polygons",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-utilities-assets-amenities/GLOBAL-MINING-AND-VALIDATION",
+      "docs": "https://gee-community-catalog.org/projects/global_mining/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/global_mining.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/global-mining/global_mining_polygons"
+}

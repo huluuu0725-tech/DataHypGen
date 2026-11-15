@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time Nitrogen Dioxide (NO2)",
+    "spatial_coverage": {
+      "region_name": "Global NO2 monitoring coverage",
+      "coverage": "Global near real-time NO2 concentration from Sentinel-5P TROPOMI sensor with daily coverage. The Earth Engine collection provides global atmospheric nitrogen dioxide measurements."
+    },
+    "temporal_coverage": "Daily NO2 measurements from 2018-07-10 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1113.2m (~1.1 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_NO2",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "NO2_column_number_density": "Total vertical column of NO2 (mol/m^2)",
+        "tropospheric_NO2_column_number_density": "Tropospheric vertical column of NO2 (mol/m^2)",
+        "stratospheric_NO2_column_number_density": "Stratospheric vertical column of NO2 (mol/m^2)"
+      }
+    },
+    "important_note": "Nitrogen dioxide is a key air quality indicator. NO2 enters the atmosphere through fossil fuel combustion, biomass burning, and natural processes. This dataset provides near real-time monitoring capabilities for air pollution studies.",
+    "analytical_capabilities": [
+      "Urban air quality assessment",
+      "Traffic and industrial emission tracking",
+      "Seasonal pollution pattern analysis",
+      "Cross-regional pollution transport studies",
+      "Emission hotspot identification"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NO2 column number density in mol/m^2. Use tropospheric_NO2_column_number_density band for boundary layer pollution studies.",
+      "runtime_hint": "Filter by QA values and cloud fraction for reliable measurements. Negative values may occur over clean regions."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_NO2",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_NO2"
+}

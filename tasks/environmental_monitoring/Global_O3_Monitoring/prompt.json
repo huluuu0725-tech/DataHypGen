@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time Total Column Ozone (O3)",
+    "spatial_coverage": {
+      "region_name": "Global O3 monitoring coverage",
+      "coverage": "Global near real-time total column ozone from Sentinel-5P TROPOMI sensor. The Earth Engine collection provides global atmospheric ozone measurements from surface to top of atmosphere."
+    },
+    "temporal_coverage": "Daily O3 measurements from 2018-07-10 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1113.2m (~1.1 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_O3",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "O3_column_number_density": "Total atmospheric column of O3 between surface and top of atmosphere (mol/m^2)",
+        "O3_column_number_density_amf": "Weighted mean air mass factor (mol/m^2)",
+        "O3_slant_column_number_density": "O3 ring corrected slant column (mol/m^2)"
+      }
+    },
+    "important_note": "Ozone is critical for UV radiation shielding in the stratosphere and acts as a cleansing agent in the troposphere. This dataset enables monitoring of ozone layer recovery following the Montreal Protocol and tracks ground-level ozone pollution.",
+    "analytical_capabilities": [
+      "Stratospheric ozone layer monitoring",
+      "UV radiation exposure assessment",
+      "Tropospheric air quality analysis",
+      "Seasonal ozone variation studies",
+      "Climate change impact assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "O3 column number density in mol/m^2. Total column represents integrated ozone from surface to top of atmosphere.",
+      "runtime_hint": "Quality filtering based on ozone_effective_temperature [180-260K] and fitted_root_mean_square <= 0.01 is recommended."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_O3",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_O3"
+}

@@ -1,0 +1,77 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global natural disasters (1960-2018)",
+  "data_description": {
+    "dataset_name": "Geocoded Disasters (GDIS) Dataset (1960-2018)",
+    "spatial_coverage": {
+      "region_name": "Global natural disasters",
+      "coverage": "Global geocoded catalog of natural disasters including floods, storms, earthquakes, landslides, droughts, volcanic activity, and extreme temperatures. Dataset encompasses 39,953 locations for 9,924 disasters worldwide from 1960 to 2018."
+    },
+    "temporal_coverage": "Natural disaster records spanning 1960-2018 from the EM-DAT database; individual features carry event-level date fields.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "spatial_resolution": "Administrative level 1 to 3 (state/province to district/village level)",
+    "coordinate_system": "",
+    "temporal_unit": "Per-event timestamp fields in feature attributes",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "vector_content": {
+      "geometry_type": "Point/Polygon",
+      "property_keys": [
+        "DisNo",
+        "Year",
+        "Disaster_Type",
+        "Disaster_Subtype",
+        "Country",
+        "ISO",
+        "Location",
+        "Total_Deaths",
+        "No_Injured",
+        "No_Affected",
+        "No_Homeless",
+        "Total_Affected",
+        "Total_Damage"
+      ],
+      "property_semantics_hint": {
+        "DisNo": "Unique disaster identifier from EM-DAT.",
+        "Year": "Year when the disaster occurred.",
+        "Disaster_Type": "Main disaster type (flood, storm, earthquake, landslide, drought, volcanic activity, extreme temperature).",
+        "Disaster_Subtype": "Specific subtype within the main disaster category.",
+        "Country": "Country where the disaster occurred.",
+        "Location": "Textual location description (administrative units).",
+        "Total_Deaths": "Total number of deaths attributed to the disaster.",
+        "No_Injured": "Number of people injured.",
+        "No_Affected": "Number of people affected (excluding deaths and injuries).",
+        "No_Homeless": "Number of people made homeless.",
+        "Total_Affected": "Total number of people affected (sum of injured, affected, and homeless).",
+        "Total_Damage": "Estimated economic damage in USD."
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/gdis_1960-2018",
+      "thematic_group": "Global Events Layers"
+    },
+    "important_note": "Description fields were populated from NASA SEDAC's Geocoded Disasters Dataset, which extends CRED's EM-DAT database. This is a comprehensive multi-hazard dataset covering floods, storms, earthquakes, landslides, droughts, volcanic eruptions, and extreme temperatures over 58 years.",
+    "analytical_capabilities": [
+      "Multi-hazard disaster clustering and spatial analysis",
+      "Temporal disaster frequency and trend analysis",
+      "Disaster type and subtype classification",
+      "Impact assessment across multiple dimensions (deaths, injuries, displacement, economic damage)",
+      "Cross-country and regional disaster pattern comparison",
+      "Disaster vulnerability and exposure mapping",
+      "Long-term disaster trend and climate change correlation analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Event-level categorical attributes plus count fields (deaths, injured, affected, homeless) and economic damage (USD).",
+      "runtime_hint": "Use Year, Disaster_Type, and impact metrics directly from the feature table. Geographic resolution varies from admin level 1 to 3 based on data availability."
+    },
+    "data_source": "NASA SEDAC (Centre for Research on the Epidemiology of Disasters CRED EM-DAT extension) via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/gdis/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/gdis_1960-2018",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-events-layers/GEOCODED-DISASTERS-DATASET",
+      "docs": "https://gee-community-catalog.org/projects/gdis/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/gdis.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/gdis_1960-2018"
+}

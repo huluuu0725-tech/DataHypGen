@@ -1,0 +1,44 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global surface",
+  "data_description": {
+    "dataset_name": "MERRA-2 M2T1NXRAD: Surface Radiation Diagnostics V5.12.4",
+    "spatial_coverage": {
+      "region_name": "Global surface radiation flux coverage",
+      "coverage": "Global hourly surface radiation diagnostics from the MERRA-2 reanalysis on a 0.5 degree latitude by 0.625 degree longitude grid."
+    },
+    "temporal_coverage": "Hourly time-averaged series from January 1980 to present.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "temporal_unit": "Hourly time-averaged (tavg1_2d_rad_Nx; stamps are hour-centred, starting 00:30 UTC)",
+    "raster_content": {
+      "gee_asset_id": "NASA/GSFC/MERRA/rad/2",
+      "thematic_group": "Weather and Climate Layers"
+    },
+    "important_note": "This product is a REANALYSIS (model assimilation) output from NASA GMAO, not a direct satellite retrieval. Fluxes are physically consistent model diagnostics constrained by assimilated observations, so claims must be framed as reanalysis-derived rather than directly observed. All-sky and clear-sky counterparts are provided as separate bands (e.g. SWGDN vs SWGDNCLR), which lets cloud radiative effect be computed as their difference. Runtime metadata such as exact band schema, sign conventions, grid alignment, and collection length should be verified during task execution before quantitative analysis.",
+    "analytical_capabilities": [
+      "Surface shortwave and longwave radiation flux quantification (SWGDN, SWGNT, LWGAB, LWGNT)",
+      "Surface net radiation and energy balance analysis from paired shortwave and longwave net fluxes",
+      "Surface albedo and spectral reflectance partitioning (ALBEDO, ALBVISDF/ALBVISDR, ALBNIRDF/ALBNIRDR)",
+      "Radiative forcing and climate feedback studies using all-sky versus clear-sky flux pairs",
+      "Cloud radiative effects on the surface energy budget via all-sky minus clear-sky differences, with cloud fraction and optical thickness (CLDTOT, TAUTOT)",
+      "Solar energy resource assessment and variability from incoming shortwave flux (SWGDN)",
+      "Land-atmosphere energy exchange dynamics combining radiative fluxes with surface skin temperature and emissivity (TS, EMIS)"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Radiative fluxes in W/m² covering downward, net, and upwelling shortwave and longwave at the surface and top of atmosphere; albedo, cloud fraction, optical thickness, and emissivity are dimensionless; TS is in Kelvin. Confirm runtime band units and sign conventions before numeric comparison.",
+      "runtime_hint": "36 bands spanning all-sky, clear-sky (CLR) and clear-sky-clean (CLRCLN) variants. Native temporal resolution is hourly; aggregate to daily, monthly, or seasonal means as the analysis requires."
+    },
+    "data_source": "NASA Global Modeling and Assimilation Office (GMAO), MERRA-2 reanalysis, via Google Earth Engine",
+    "reference": "https://doi.org/10.5067/Q9QMY5PBNV1T",
+    "gee_asset": {
+      "id": "NASA/GSFC/MERRA/rad/2",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/NASA_GSFC_MERRA_rad_2",
+      "docs": "https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/",
+      "license": "Public Domain",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/NASA/NASA_GSFC_MERRA_rad_2_sample.png"
+    }
+  },
+  "data_path": "GEE:NASA/GSFC/MERRA/rad/2"
+}

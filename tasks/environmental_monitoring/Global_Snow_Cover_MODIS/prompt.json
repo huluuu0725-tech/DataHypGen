@@ -1,0 +1,54 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "MODIS Terra Snow Cover Daily Global 500m",
+    "spatial_coverage": {
+      "region_name": "Global snow cover monitoring",
+      "coverage": "Global daily snow cover from MODIS Terra satellite with 500m resolution. Provides comprehensive monitoring of snow-covered areas across all terrestrial regions."
+    },
+    "temporal_coverage": "Daily snow cover measurements from 2000-02-24 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\"}",
+    "total_samples": "Continuous daily acquisition since 2000",
+    "raster_content": {
+      "gee_asset_id": "MODIS/061/MOD10A1",
+      "thematic_group": "cryosphere",
+      "band_semantics": {
+        "NDSI_Snow_Cover": "Normalized Difference Snow Index snow cover (0-100 percent)",
+        "NDSI": "Raw Normalized Difference Snow Index value",
+        "Snow_Albedo_Daily_Tile": "Daily snow albedo (0-100 percent)",
+        "orbit_pnt": "Pointer to orbit coverage",
+        "granule_pnt": "Pointer to granule coverage"
+      }
+    },
+    "important_note": "Snow cover data based on Normalized Difference Snow Index (NDSI) algorithm with additional criteria tests. MODIS provides long-term consistent snow cover record critical for climate studies, water resource management, and ecosystem monitoring. The 500m resolution enables detection of snow cover in complex terrain and fragmented landscapes.",
+    "analytical_capabilities": [
+      "Seasonal snow cover extent and duration analysis",
+      "Snowmelt timing and water resource forecasting",
+      "Climate change impact on cryosphere monitoring",
+      "Mountain snowpack assessment for water management",
+      "Snow albedo feedback and energy balance studies"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "NDSI_Snow_Cover in percent (0-100). Values represent fractional snow cover within each pixel. Snow albedo in percent (0-100).",
+      "runtime_hint": "Filter by quality flags to remove cloud-contaminated pixels. NDSI threshold of 0.4 typically indicates snow presence. Snow albedo only valid over snow-covered areas."
+    },
+    "data_source": "NASA MODIS Terra satellite via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD10A1",
+    "gee_asset": {
+      "id": "MODIS/061/MOD10A1",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD10A1",
+      "docs": "https://nsidc.org/data/mod10a1",
+      "license": "NASA Open Data Policy",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD10A1"
+}

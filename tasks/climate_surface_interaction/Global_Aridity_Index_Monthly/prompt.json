@@ -1,0 +1,96 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "Global Aridity Index Monthly",
+    "spatial_coverage": {
+      "region_name": "Global climatological aridity coverage",
+      "coverage": "Global aridity-index climatology in WGS84 at 30 arc-second resolution. The monthly asset is organized as one climatological layer per calendar month rather than as a historical monthly timeline."
+    },
+    "temporal_coverage": "Twelve monthly climatology layers for the 1970-2000 climate baseline, indexed by calendar month rather than observation date.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 arc-second (~1 km at the equator)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Monthly climatology",
+    "records": "12 monthly climatology images in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 65535}",
+    "total_samples": 12,
+    "raster_content": {
+      "collection_size": 12,
+      "first_band_count": 1,
+      "first_band_names": [
+        "b1"
+      ],
+      "first_band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 65535
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/global_ai/global_ai_monthly",
+      "thematic_group": "Weather and Climate Layers",
+      "band_semantics": {
+        "b1": "Aridity-index raster for the calendar month encoded by `system:index`."
+      },
+      "sample_runtime_properties": {
+        "num_bands": 1,
+        "id_no": "ai_v3_01",
+        "ysize": 21600,
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        },
+        "xsize": 43200,
+        "system:asset_size": 336438658,
+        "system:index": "ai_v3_01"
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The collection indexes one climatological layer per calendar month rather than a long historical sequence.",
+    "analytical_capabilities": [
+      "Monthly aridity seasonality analysis",
+      "Dryness gradient mapping",
+      "Climate-water limitation comparison",
+      "Combination with vegetation, crop, or soil datasets",
+      "Aridity anomaly discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Monthly aridity-index values by calendar month; check the exact scaling convention against the source docs before numeric comparison.",
+      "runtime_hint": "Use the image index suffix (`01`-`12`) as the month indicator because explicit timestamps were not exposed in the runtime metadata."
+    },
+    "data_source": "CGIAR Platform for Big Data in Agriculture via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/ai0/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/global_ai/global_ai_monthly",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:weather-climate/GLOBAL-ARIDITY-INDEX",
+      "docs": "https://gee-community-catalog.org/projects/ai0/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/ai0.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/global_ai/global_ai_monthly"
+}

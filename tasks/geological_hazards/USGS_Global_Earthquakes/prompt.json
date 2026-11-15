@@ -1,0 +1,78 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global earthquake events",
+  "data_description": {
+    "dataset_name": "USGS Global Earthquake Dataset",
+    "spatial_coverage": {
+      "region_name": "Global earthquake events",
+      "coverage": "Global point-event catalog of earthquakes from various sources including seismic stations, satellite imagery, and ground-based observations. Continuously updated with daily aggregates."
+    },
+    "temporal_coverage": "Historical earthquake records from 1900 to present, with daily updates. Dataset contains millions of earthquake records.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "spatial_resolution": "",
+    "coordinate_system": "",
+    "temporal_unit": "Per-event timestamp fields in feature attributes",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "vector_content": {
+      "geometry_type": "Point",
+      "property_keys": [
+        "time",
+        "latitude",
+        "longitude",
+        "depth",
+        "mag",
+        "magType",
+        "nst",
+        "gap",
+        "dmin",
+        "rms",
+        "net",
+        "id",
+        "updated",
+        "place",
+        "type",
+        "status"
+      ],
+      "property_semantics_hint": {
+        "time": "Time when the earthquake occurred (Unix timestamp or ISO format).",
+        "mag": "Magnitude of the earthquake.",
+        "magType": "Type of magnitude measurement (e.g., Mw, Ml, Ms).",
+        "depth": "Depth of the earthquake hypocenter in kilometers.",
+        "place": "Textual description of the earthquake location.",
+        "type": "Type of seismic event (earthquake, explosion, etc.).",
+        "status": "Review status of the event (automatic, reviewed, etc.).",
+        "gap": "Largest azimuthal gap between azimuthally adjacent stations (degrees).",
+        "dmin": "Horizontal distance from the epicenter to the nearest station (km).",
+        "rms": "Root-mean-square travel time residual (seconds)."
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/USGS/usgs_earthquakes",
+      "thematic_group": "Global Events Layers"
+    },
+    "important_note": "Description fields below were populated from the USGS Earthquake Hazards Program. The dataset is continuously updated with daily earthquake aggregates and includes comprehensive metadata for seismic event characterization.",
+    "analytical_capabilities": [
+      "Earthquake event clustering and spatial analysis",
+      "Magnitude-frequency distribution analysis",
+      "Temporal seismic activity pattern detection",
+      "Depth-based earthquake classification",
+      "Seismic hazard assessment and risk mapping",
+      "Aftershock sequence analysis",
+      "Global and regional seismicity pattern discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Magnitude (dimensionless), depth (kilometers), and time-based event attributes.",
+      "runtime_hint": "Use magnitude, depth, and time fields directly from the feature table. Filter by magnitude type and review status for quality control."
+    },
+    "data_source": "USGS Earthquake Hazards Program via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/global_earthquakes/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/USGS/usgs_earthquakes",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:/global-events-layers/USGS-EARTHQUAKES",
+      "docs": "https://gee-community-catalog.org/projects/global_earthquakes/",
+      "license": "custom",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/global_earthquakes.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/USGS/usgs_earthquakes"
+}

@@ -1,0 +1,51 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrestrial land areas",
+  "data_description": {
+    "dataset_name": "MODIS Gap-Filled Long-term Land Surface Temperature Daily Daytime",
+    "spatial_coverage": {
+      "region_name": "Global land surface temperature coverage",
+      "coverage": "Global gap-filled daily land surface temperature from MODIS Terra and Aqua satellites. This seamless high spatiotemporal dataset covers all terrestrial land areas using a novel spatiotemporal gap-filling framework."
+    },
+    "temporal_coverage": "Daily LST measurements from 2003 to 2020 in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1km (1000m)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "6575 daily images (2003-2020)",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": 6575,
+    "raster_content": {
+      "gee_asset_id": "projects/sat-io/open-datasets/gap-filled-lst/gf_day_1km",
+      "thematic_group": "Weather and Climate Layers",
+      "band_semantics": {
+        "LST_Day": "Gap-filled daytime land surface temperature derived from MODIS Terra and Aqua observations"
+      }
+    },
+    "important_note": "This dataset uses a spatiotemporal gap-filling framework combining four daily MODIS LST observations (Terra day/night, Aqua day/night) to generate seamless coverage. The method filters long-term trends and interpolates residuals to fill gaps from clouds and missing data.",
+    "analytical_capabilities": [
+      "Urban heat island monitoring",
+      "Climate change impact assessment",
+      "Vegetation stress detection",
+      "Drought monitoring through land surface conditions",
+      "Ecological and hydrological modeling",
+      "Epidemiological temperature studies"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Land surface temperature in Kelvin or Celsius. The LST_Day band represents daytime surface temperature conditions.",
+      "runtime_hint": "This gap-filled product provides continuous coverage without missing values, suitable for time series analysis and long-term trend studies."
+    },
+    "data_source": "MODIS Terra and Aqua satellites, processed by Zhang et al. via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/daily_lst/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/gap-filled-lst/gf_day_1km",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:weather-climate/MODIS-GAPFILLED-LST-DAILY",
+      "docs": "https://gee-community-catalog.org/projects/daily_lst/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/daily_lst.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/gap-filled-lst/gf_day_1km"
+}

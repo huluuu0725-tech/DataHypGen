@@ -1,0 +1,98 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global mangrove regions",
+  "data_description": {
+    "dataset_name": "Global Mangrove Watch v3 Change Raster (1996 baseline)",
+    "spatial_coverage": {
+      "region_name": "Global mangrove change coverage",
+      "coverage": "Global mangrove change rasters referenced to a fixed 1996 baseline, with one image for each target year represented in the collection."
+    },
+    "temporal_coverage": "Change layers comparing a 1996 baseline against target years 2007-2020 (derived from `system:index` values like `gmw_v3_f1996_t2007`).",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "approx. 30m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Per target year change layer relative to the 1996 baseline",
+    "records": "10 target-year change images in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 255}",
+    "total_samples": 10,
+    "raster_content": {
+      "collection_size": 10,
+      "first_band_count": 1,
+      "first_band_names": [
+        "b1"
+      ],
+      "first_band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 255
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/GMW/change/change_f1996",
+      "thematic_group": "Global Land Use and Land Cover",
+      "band_semantics": {
+        "b1": "Mangrove-change raster comparing baseline year 1996 to the target year encoded by `system:index`."
+      },
+      "sample_runtime_properties": {
+        "system:time_start": 820459800000,
+        "num_bands": 1,
+        "id_no": "gmw_v3_f1996_t2007",
+        "ysize": 324000,
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        },
+        "system:time_end": 1199064600000,
+        "xsize": 1620000,
+        "system:asset_size": 50535579,
+        "system:index": "gmw_v3_f1996_t2007"
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The runtime index indicates a fixed 1996 baseline compared against later target years, not a simple timestamped annual stack.",
+    "analytical_capabilities": [
+      "Mangrove change mapping",
+      "Coastal ecosystem transition analysis",
+      "Regional mangrove persistence/loss comparison",
+      "Combination with shoreline or storm-surge datasets",
+      "Coastal vulnerability pattern discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Mangrove change class codes relative to the 1996 baseline; class meanings should be verified from the source docs before tabulation.",
+      "runtime_hint": "Use the target year encoded in `system:index` and do not interpret the collection as a regular annual time series starting in 1996."
+    },
+    "data_source": "Global Mangrove Watch, Aberystwyth University, solo Earth Observation, Wetlands Institute, International Water Management Institute, UN Environment World Conservation Monitoring Center via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/mangrove/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/GMW/change/change_f1996",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-landuse-landcover/GLOBAL-MANGROVE-WATCH",
+      "docs": "https://gee-community-catalog.org/projects/mangrove/",
+      "license": "Creative Commons Attribution Share Alike 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/mangrove.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/GMW/change/change_f1996"
+}

@@ -1,0 +1,48 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "High Resolution Settlement Layer (HRSL)",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "High-resolution population distribution data for nearly every country in the world, derived from building detection using computer vision techniques on satellite imagery."
+    },
+    "temporal_coverage": "Static snapshot circa 2016-2022; represents population distribution estimates based on building footprints and census data.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "30 meters",
+    "coordinate_system": "WGS84",
+    "temporal_unit": "Static population density estimate per pixel",
+    "records": "Global coverage with multiple demographic layers (total population, men, women, youth, elderly, children under five, women of reproductive age)",
+    "data_type_numeric": "Population count per 30m pixel; inspect band names and scaling factors before aggregation.",
+    "raster_content": {
+      "gee_asset_id": "projects/sat-io/open-datasets/hrsl/hrslpop",
+      "thematic_group": "Population & Socioeconomic"
+    },
+    "important_note": "This dataset uses computer vision techniques to identify buildings from satellite imagery and combines with census data to estimate population distribution. The dataset includes demographic breakdowns by age and sex. Multiple related assets are available for different demographic groups.",
+    "analytical_capabilities": [
+      "High-resolution population density mapping",
+      "Urban settlement pattern analysis",
+      "Demographic distribution analysis by age and sex",
+      "Population exposure assessment for hazards",
+      "Accessibility and service coverage analysis",
+      "Rural-urban gradient characterization",
+      "Infrastructure planning support"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Population count per 30-meter pixel",
+      "runtime_hint": "Check band names and scaling factors; the dataset provides population estimates at building-level resolution, aggregated to 30m grid cells."
+    },
+    "data_source": "Center for International Earth Science Information Network (CIESIN) at Columbia University and Facebook Data for Good, via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/hrsl/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/hrsl/hrslpop",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:population-socioeconomics/FACEBOOK-HRSL-30m",
+      "docs": "https://gee-community-catalog.org/projects/hrsl/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/hrsl.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/hrsl/hrslpop"
+}

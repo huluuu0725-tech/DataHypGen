@@ -1,0 +1,51 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Canada 2023 wildfire burn areas",
+  "data_description": {
+    "dataset_name": "Canada 2023 Wildfires",
+    "spatial_coverage": {
+      "region_name": "Canada 2023 wildfire burn areas",
+      "coverage": "Canada's forested ecosystems affected by the 2023 wildfire season, the largest area burned in Canada's modern history."
+    },
+    "temporal_coverage": "2023 fire season: summer fires (May 30 - September 17) and fall fires (September 17 - October 25).",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "30m",
+    "coordinate_system": "",
+    "temporal_unit": "Seasonal fire detection periods",
+    "records": "Single image with multi-temporal fire detections",
+    "data_type_numeric": "Categorical fire detection and timing bands",
+    "total_samples": "30-meter pixels covering Canada's forested areas",
+    "bands": [
+      {
+        "name": "fire_detection",
+        "description": "Fire detection classification: summer fires and fall fires",
+        "units": "categorical",
+        "gsd": 30
+      }
+    ],
+    "important_note": "This dataset captures Canada's historic 2023 wildfire season using the Tracking Intra- and Inter-year Change (TIIC) algorithm applied to Sentinel-2 and Landsat-8/9 time series. Fires are classified into summer and fall detection periods based on change detection timing.",
+    "analytical_capabilities": [
+      "Burn area extent mapping",
+      "Fire detection timing analysis",
+      "Seasonal fire pattern identification",
+      "Large-scale wildfire impact assessment",
+      "Fire perimeter delineation"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Binary fire detection with temporal classification (summer/fall)",
+      "runtime_hint": "Use the fire_detection band to identify burned pixels; summer and fall classes indicate detection period."
+    },
+    "data_source": "Pelletier et al. 2024 via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/ca_fires/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Wildfire_2023_Summer_Fall",
+      "type": "Image",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:fire-monitoring-analysis/CA-FOREST-FIRE-2023",
+      "docs": "https://gee-community-catalog.org/projects/ca_fires/",
+      "license": "Open Government Licence - Canada",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/ca_fires.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Wildfire_2023_Summer_Fall"
+}

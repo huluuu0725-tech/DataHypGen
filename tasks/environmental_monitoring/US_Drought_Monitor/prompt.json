@@ -1,0 +1,102 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "United States",
+  "data_description": {
+    "dataset_name": "United States Drought Monitor",
+    "spatial_coverage": {
+      "region_name": "United States",
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ],
+      "coverage": "Official STAC extent is a global bounding box, but the dataset semantics and title target the United States drought-monitor domain."
+    },
+    "temporal_coverage": "2000-01-04/2026-06-23",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "250m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Weekly image",
+    "records": "1381 weekly images in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": -128, \"max\": 127}",
+    "total_samples": 1381,
+    "raster_content": {
+      "collection_size": 1381,
+      "first_band_count": 1,
+      "first_band_names": [
+        "DM"
+      ],
+      "first_band_data_types": {
+        "DM": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -128,
+          "max": 127
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/us-drought-monitor",
+      "thematic_group": "Weather and Climate Layers",
+      "band_semantics": {
+        "DM": "U.S. Drought Monitor drought category band"
+      },
+      "sample_runtime_properties": {
+        "system:time_start": 946339200000,
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        },
+        "system:time_end": 946944000000,
+        "system:asset_size": 709082,
+        "system:index": "USDM_20000104_M"
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The collection behaves like a regular weekly drought-category series.",
+    "analytical_capabilities": [
+      "Weekly drought class evolution analysis",
+      "Regional drought persistence mapping",
+      "Drought transition sequence analysis",
+      "Combination with fire or vegetation response datasets",
+      "Drought hotspot and anomaly screening"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Ordinal drought category code stored in band `DM`; interpret values as drought classes rather than continuous magnitude.",
+      "runtime_hint": "Use the weekly timestamps in the collection and map the `DM` codes to the official U.S. Drought Monitor classes before classwise aggregation."
+    },
+    "data_source": "National Drought Mitigation Center at the University of Nebraska-Lincoln, the United States Department of Agriculture, and the National Oceanic and Atmospheric Administration. Map courtesy of NDMC via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/usdm/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/us-drought-monitor",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:weather-climate/UNITED-STATES-DROUGHT-MONITOR",
+      "docs": "https://gee-community-catalog.org/projects/usdm/",
+      "license": "custom",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/usdm.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/us-drought-monitor"
+}

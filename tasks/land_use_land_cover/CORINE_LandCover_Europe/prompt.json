@@ -1,0 +1,96 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Europe",
+  "data_description": {
+    "dataset_name": "Copernicus CORINE Land Cover",
+    "spatial_coverage": {
+      "region_name": "Europe",
+      "coverage": "European land cover classification covering 39 countries with 44 land cover and land use classes at 100m resolution. Includes EU member states, Iceland, Norway, Switzerland, Turkey, and parts of North Africa and the Middle East."
+    },
+    "temporal_coverage": "1990, 2000, 2006, 2012, 2018 multi-temporal snapshots with change layers",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "100m",
+    "coordinate_system": "EPSG:3035 (ETRS89-extended / LAEA Europe)",
+    "temporal_unit": "Multi-year snapshots with 6-year intervals",
+    "records": "ImageCollection with 5 time points and associated change layers",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 1, \"max\": 48}",
+    "total_samples": "Multiple images covering reference years 1990, 2000, 2006, 2012, 2018",
+    "raster_content": {
+      "band_count": 1,
+      "band_names": [
+        "landcover"
+      ],
+      "band_data_types": {
+        "landcover": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 1,
+          "max": 48,
+          "description": "44-class hierarchical land cover classification: Level 1 (5 classes: artificial, agricultural, forest, wetlands, water), Level 2 (15 classes), Level 3 (44 classes)"
+        }
+      },
+      "gee_asset_id": "COPERNICUS/CORINE/V20/100m",
+      "thematic_group": "Regional Land Use and Land Cover",
+      "band_semantics": {
+        "landcover": "Hierarchical land cover/use classification with 44 classes: urban fabric types (continuous/discontinuous), industrial/commercial units, transport networks, agricultural areas (arable, permanent crops, pastures), forests (broadleaved, coniferous, mixed), shrublands, open spaces, wetlands (inland/coastal), and water bodies."
+      },
+      "class_hierarchy": {
+        "Level_1": [
+          "1: Artificial surfaces",
+          "2: Agricultural areas",
+          "3: Forest and semi-natural areas",
+          "4: Wetlands",
+          "5: Water bodies"
+        ],
+        "Level_3_examples": [
+          "111: Continuous urban fabric (>80% sealed)",
+          "112: Discontinuous urban fabric",
+          "121: Industrial or commercial units",
+          "211: Non-irrigated arable land",
+          "221: Vineyards",
+          "222: Fruit trees and berry plantations",
+          "231: Pastures",
+          "311: Broad-leaved forest",
+          "312: Coniferous forest",
+          "313: Mixed forest",
+          "321: Natural grasslands",
+          "322: Moors and heathland",
+          "324: Transitional woodland-shrub",
+          "411: Inland marshes",
+          "421: Salt marshes",
+          "511: Water courses",
+          "512: Water bodies"
+        ]
+      }
+    },
+    "important_note": "CORINE Land Cover is the most detailed and authoritative land cover product for Europe, with 44 hierarchical classes enabling fine-grained urban, agricultural, and forest type discrimination. Minimum mapping unit is 25 hectares for areal phenomena and 100m width for linear phenomena. Change layers identify land cover conversions between epochs.",
+    "analytical_capabilities": [
+      "High-resolution European land cover mapping with 44 thematic classes",
+      "Urban sprawl and infrastructure expansion analysis",
+      "Detailed agricultural land use classification (crop types, irrigation, orchards)",
+      "Forest type mapping (broadleaved, coniferous, mixed forest)",
+      "Wetland extent and type identification (inland marshes, peatbogs, salt marshes)",
+      "Multi-temporal change detection (1990-2018) for land use transitions",
+      "Coastal zone development and artificial surface expansion",
+      "Biodiversity habitat assessment using fine-grained natural vegetation classes",
+      "EU environmental policy compliance monitoring",
+      "Urbanization pattern comparison across European countries"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Categorical land cover/use class codes (1-48) organized in a three-level hierarchy.",
+      "runtime_hint": "Use 'landcover' band and filter by year (1990, 2000, 2006, 2012, 2018); extract Level 1 classes by integer division (code // 100); compare temporal layers to detect land use transitions."
+    },
+    "data_source": "Copernicus Land Monitoring Service / European Environment Agency via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_CORINE_V20_100m",
+    "gee_asset": {
+      "id": "COPERNICUS/CORINE/V20/100m",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_CORINE_V20_100m",
+      "docs": "https://land.copernicus.eu/pan-european/corine-land-cover",
+      "license": "Copernicus data and information policy (free and open access)",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/COPERNICUS/COPERNICUS_CORINE_V20_100m_sample.png"
+    }
+  },
+  "data_path": "GEE:COPERNICUS/CORINE/V20/100m"
+}

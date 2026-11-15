@@ -1,0 +1,103 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "Hansen Global Forest Change v1.13 (2000-2025)",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global forest extent, loss, and gain at 30m resolution covering all land areas from 2000 to 2025, derived from Landsat time-series analysis."
+    },
+    "temporal_coverage": "2000-2025 forest change analysis with year 2000 baseline",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset (single multi-band image)",
+    "spatial_resolution": "30.92m (approximately 30m)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Annual forest loss bands; baseline 2000 tree cover",
+    "records": "Single multi-band image containing 25 years of forest change data",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int/float\"}",
+    "total_samples": "Single global composite image",
+    "raster_content": {
+      "band_count": 5,
+      "band_names": [
+        "treecover2000",
+        "loss",
+        "gain",
+        "lossyear",
+        "datamask"
+      ],
+      "band_data_types": {
+        "treecover2000": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "units": "%",
+          "description": "Tree canopy cover percentage for year 2000 (0-100%)"
+        },
+        "loss": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 1,
+          "description": "Forest loss during 2000-2025 period (1=loss, 0=no loss)"
+        },
+        "gain": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 1,
+          "description": "Forest gain during 2000-2012 period (1=gain, 0=no gain)"
+        },
+        "lossyear": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 25,
+          "description": "Year of forest loss (1=2001, 2=2002, ..., 25=2025; 0=no loss)"
+        },
+        "datamask": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "Data mask: 1=mapped land, 2=water, 0=no data"
+        }
+      },
+      "gee_asset_id": "UMD/hansen/global_forest_change_2025_v1_13",
+      "thematic_group": "Forest and Biomass",
+      "band_semantics": {
+        "treecover2000": "Baseline tree canopy cover percentage in year 2000",
+        "loss": "Binary forest loss indicator for 2000-2025 period",
+        "lossyear": "Year of detected forest loss encoded as 1-25",
+        "gain": "Forest gain indicator for 2000-2012 subset period"
+      }
+    },
+    "important_note": "This dataset provides the most comprehensive global forest change analysis available. The 'lossyear' band enables year-specific deforestation analysis. Note that 'gain' only covers 2000-2012, while 'loss' covers the full 2000-2025 period.",
+    "analytical_capabilities": [
+      "Global deforestation hotspot identification and quantification",
+      "Year-by-year forest loss trend analysis (2001-2025)",
+      "Forest cover baseline assessment for year 2000",
+      "Deforestation rate calculation by region and time period",
+      "Forest fragmentation pattern analysis",
+      "Protected area effectiveness evaluation",
+      "Carbon emission estimation from forest loss",
+      "Illegal logging detection and monitoring",
+      "Reforestation/afforestation gain assessment (2000-2012)",
+      "Forest loss correlation with climate, fire, and human activities",
+      "Biodiversity habitat loss quantification"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Tree cover: percentage (0-100%); Loss/Gain: binary (0/1); Loss year: year code (1-25 for 2001-2025).",
+      "runtime_hint": "Use 'treecover2000' to filter baseline forest areas (e.g., >30% canopy cover), then analyze 'loss' and 'lossyear' for deforestation patterns."
+    },
+    "data_source": "Hansen/UMD/Google/USGS/NASA via Google Earth Engine",
+    "reference": "Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, et al. 2013. High-Resolution Global Maps of 21st-Century Forest Cover Change. Science 342 (15 November): 850-53.",
+    "gee_asset": {
+      "id": "UMD/hansen/global_forest_change_2025_v1_13",
+      "type": "Image",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2025_v1_13",
+      "docs": "https://glad.earthengine.app/view/global-forest-change",
+      "license": "CC-BY-4.0",
+      "thumbnail": "https://storage.googleapis.com/earthengine-stac/catalog/UMD/UMD_hansen_global_forest_change_2023_v1_11_thumbnail.png"
+    }
+  },
+  "data_path": "GEE:UMD/hansen/global_forest_change_2025_v1_13"
+}

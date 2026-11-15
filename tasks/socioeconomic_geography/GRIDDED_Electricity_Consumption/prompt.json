@@ -1,0 +1,50 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "Global Electric Consumption revised GDP",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global gridded electricity consumption dataset at 1 km resolution derived from harmonized nighttime light data. Provides spatially explicit estimates of electricity consumption patterns worldwide."
+    },
+    "temporal_coverage": "1992 to 2019 - annual time series",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1 kilometer",
+    "coordinate_system": "WGS84",
+    "temporal_unit": "Annual estimates",
+    "records": "Global annual electricity consumption estimates at 1 km resolution for 1992-2019, derived from calibrated nighttime light data using particle swarm optimization-back propagation (PSO-BP) algorithm",
+    "data_type_numeric": "Electricity consumption estimates (units vary - check band metadata); also includes gridded GDP estimates derived from electricity consumption.",
+    "raster_content": {
+      "gee_asset_id": "projects/sat-io/open-datasets/GRIDDED_EC",
+      "thematic_group": "Global Utilities, Assets and Amenities Layers"
+    },
+    "important_note": "This dataset provides spatially explicit electricity consumption estimates derived from harmonized DMSP/OLS and NPP/VIIRS nighttime light observations. The methodology employs advanced calibration techniques (PSO-BP algorithm) to unify different sensor scales and create consistent temporal trends. From a revised real growth perspective, the dataset also includes gridded GDP estimates. This enables fine-scale analysis of energy use patterns, economic activity, and development indicators at sub-national and local scales.",
+    "analytical_capabilities": [
+      "High-resolution electricity consumption mapping and trend analysis (1992-2019)",
+      "Economic activity and GDP spatial distribution assessment",
+      "Energy intensity and efficiency analysis at local scales",
+      "Urban-rural energy consumption disparity studies",
+      "Development trajectory monitoring using electricity as a proxy",
+      "Energy poverty and access gap identification",
+      "Carbon emissions estimation from electricity use",
+      "Regional economic inequality and development pattern analysis",
+      "Correlation studies between electricity use and socioeconomic indicators"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Electricity consumption (check band metadata for specific units - likely kWh or similar energy unit per pixel per year)",
+      "runtime_hint": "The dataset provides annual electricity consumption grids at 1 km resolution. Check band names and metadata for electricity consumption vs. GDP layers. Values are derived from nighttime light calibration and may require scaling. Use temporal analysis to track consumption trends over the 1992-2019 period."
+    },
+    "data_source": "Chen, J., Gao, M., Cheng, S. et al. 2022 via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/elc_gdp/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/GRIDDED_EC",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:population-socioeconomics/GRIDDED-ELECTRICITY-CONSUMPTION-GDP",
+      "docs": "https://gee-community-catalog.org/projects/elc_gdp/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/elc_gdp.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/GRIDDED_EC"
+}

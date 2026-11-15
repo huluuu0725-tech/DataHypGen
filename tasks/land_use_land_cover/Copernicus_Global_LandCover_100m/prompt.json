@@ -1,0 +1,110 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "Copernicus Global Land Cover Layers: CGLS-LC100 Collection 3",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global land surface coverage at 100m resolution providing discrete land cover classifications and continuous field layers for the period 2015-2019, derived from PROBA-V satellite data."
+    },
+    "temporal_coverage": "2015-2019 annual land cover classifications",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "100m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Annual",
+    "records": "ImageCollection with yearly global land cover from 2015-2019",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\"}",
+    "total_samples": "5 years of annual global coverage",
+    "raster_content": {
+      "band_count": 11,
+      "band_names": [
+        "discrete_classification",
+        "forest_type",
+        "urban_coverfraction",
+        "bare-coverfraction",
+        "crops-coverfraction",
+        "grass-coverfraction",
+        "moss-coverfraction",
+        "shrub-coverfraction",
+        "tree-coverfraction",
+        "snow-coverfraction",
+        "water-permanent-coverfraction"
+      ],
+      "band_data_types": {
+        "discrete_classification": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 200,
+          "description": "Discrete land cover classification (0=No data, 20=Shrubs, 30=Herbaceous vegetation, 40=Cultivated, 50=Urban, 60=Bare, 70=Snow and ice, 80=Water bodies, 90=Herbaceous wetland, 100=Moss and lichen, 111-126=Forest types)"
+        },
+        "forest_type": {
+          "type": "PixelType",
+          "precision": "int",
+          "description": "Forest type layer with detailed forest classifications"
+        },
+        "tree-coverfraction": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "units": "%",
+          "description": "Percentage of tree cover within pixel (0-100%)"
+        },
+        "crops-coverfraction": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "units": "%",
+          "description": "Percentage of cropland cover within pixel (0-100%)"
+        },
+        "urban_coverfraction": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "units": "%",
+          "description": "Percentage of urban/built-up cover within pixel (0-100%)"
+        }
+      },
+      "gee_asset_id": "COPERNICUS/Landcover/100m/Proba-V-C3/Global",
+      "thematic_group": "Global Land Use and Land Cover",
+      "band_semantics": {
+        "discrete_classification": "Primary discrete land cover classification layer",
+        "forest_type": "Detailed forest type stratification",
+        "tree-coverfraction": "Continuous tree cover fraction for sub-pixel analysis",
+        "crops-coverfraction": "Continuous cropland fraction for agricultural monitoring"
+      }
+    },
+    "important_note": "Copernicus Global Land Cover provides both discrete classifications and continuous cover fraction layers, enabling both categorical and quantitative land cover analysis. The 100m resolution bridges the gap between coarse MODIS (500m) and fine Sentinel-based products (10m).",
+    "analytical_capabilities": [
+      "Multi-annual land cover change analysis (2015-2019)",
+      "Discrete land cover classification with 23 classes including detailed forest types",
+      "Sub-pixel land cover fraction analysis using continuous cover layers",
+      "Agricultural land monitoring using crops-coverfraction layer",
+      "Forest cover assessment with both discrete and continuous metrics",
+      "Urban expansion tracking using urban_coverfraction",
+      "Mixed-pixel composition analysis combining multiple fraction layers",
+      "Vegetation gradient analysis across biomes",
+      "Land cover validation using fraction layers as ground truth proxy",
+      "Regional land use intensity assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Discrete classification: categorical class codes (0-200); Cover fraction layers: percentage (0-100%).",
+      "runtime_hint": "Use 'discrete_classification' for categorical analysis; use cover fraction bands (e.g., 'tree-coverfraction', 'crops-coverfraction') for continuous sub-pixel assessment."
+    },
+    "data_source": "Copernicus Global Land Service via Google Earth Engine",
+    "reference": "https://land.copernicus.eu/global/products/lc",
+    "gee_asset": {
+      "id": "COPERNICUS/Landcover/100m/Proba-V-C3/Global",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global",
+      "docs": "https://land.copernicus.eu/global/products/lc",
+      "license": "proprietary",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/COPERNICUS/COPERNICUS_Landcover_100m_Proba-V-C3_Global_sample.png"
+    }
+  },
+  "data_path": "GEE:COPERNICUS/Landcover/100m/Proba-V-C3/Global"
+}

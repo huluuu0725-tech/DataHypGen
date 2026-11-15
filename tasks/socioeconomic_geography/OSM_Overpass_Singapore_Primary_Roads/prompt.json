@@ -1,0 +1,18 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Singapore",
+  "domain": "socioeconomic_geography",
+  "data_description": {
+    "dataset_name": "OpenStreetMap Primary and Trunk Road Network in Singapore",
+    "spatial_coverage": {"region_name": "Singapore", "coverage": "OSM ways tagged highway=primary or highway=trunk within a bounded Singapore extent."},
+    "temporal_coverage": "Current OpenStreetMap database state at query time.",
+    "data_type": "FeatureCollection",
+    "data_format": "Overpass JSON",
+    "coordinate_system": "WGS84",
+    "important_note": "The query covers mapped primary and trunk roads only; it is not a complete routable network and tagging practices may vary.",
+    "analytical_capabilities": ["Analyze arterial-road density", "Identify connectivity corridors", "Compare network concentration across the city-state"],
+    "data_source": "OpenStreetMap Overpass API",
+    "source_metadata": {"source": "OSM_OVERPASS", "id": "singapore_primary_trunk_roads", "endpoint": "https://overpass-api.de/api/interpreter", "overpass_ql": "[out:json][timeout:25];way[\"highway\"~\"^(primary|trunk)$\"](1.15,103.55,1.48,104.12);out geom 1000;", "provider": "OpenStreetMap contributors", "license": "ODbL 1.0", "thematic_group": "Road infrastructure"}
+  },
+  "data_path": "OSM_OVERPASS:singapore_primary_trunk_roads"
+}

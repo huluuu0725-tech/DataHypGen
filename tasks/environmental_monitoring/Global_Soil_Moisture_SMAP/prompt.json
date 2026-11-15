@@ -1,0 +1,53 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "SMAP L3 Radiometer Global Daily 9km Soil Moisture",
+    "spatial_coverage": {
+      "region_name": "Global land surface soil moisture coverage",
+      "coverage": "Global daily composite of land surface soil moisture retrieved by SMAP L-Band radiometer. Covers all terrestrial areas not permanently frozen or covered with water."
+    },
+    "temporal_coverage": "Daily soil moisture measurements from 2015-04-01 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "9 km",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition with 2-3 day global revisit",
+    "raster_content": {
+      "gee_asset_id": "NASA/SMAP/SPL3SMP_E/005",
+      "thematic_group": "soil",
+      "band_semantics": {
+        "soil_moisture_am": "Surface soil moisture from descending pass (6am local time, cm^3/cm^3)",
+        "soil_moisture_pm": "Surface soil moisture from ascending pass (6pm local time, cm^3/cm^3)",
+        "vegetation_water_content": "Vegetation water content (kg/m^2)",
+        "surface_flag": "Surface condition flags (frozen/thawed, water/land)"
+      }
+    },
+    "important_note": "SMAP measures liquid water in the top 5cm layer of soil everywhere on Earth not covered with water or frozen. It distinguishes between frozen and thawed ground. SMAP provides critical data for drought monitoring, agricultural planning, flood prediction, and climate studies. The mission started operation in April 2015 after radar component failure, continuing with radiometer-only measurements.",
+    "analytical_capabilities": [
+      "Drought monitoring and early warning systems",
+      "Agricultural water stress assessment and crop yield prediction",
+      "Flood forecasting and hydrological modeling",
+      "Land-atmosphere interaction and climate studies",
+      "Freeze-thaw state monitoring for high latitudes"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Soil moisture in cm^3/cm^3 (volumetric water content). Use soil_moisture_am for morning measurements and soil_moisture_pm for evening measurements.",
+      "runtime_hint": "Filter by retrieval quality flags and surface condition flags. Higher vegetation density reduces retrieval accuracy. Frozen ground is flagged separately."
+    },
+    "data_source": "NASA SMAP (Soil Moisture Active Passive) mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/NASA_SMAP_SPL3SMP_E_005",
+    "gee_asset": {
+      "id": "NASA/SMAP/SPL3SMP_E/005",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/NASA_SMAP_SPL3SMP_E_005",
+      "docs": "https://smap.jpl.nasa.gov/",
+      "license": "NASA Open Data Policy",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:NASA/SMAP/SPL3SMP_E/005"
+}

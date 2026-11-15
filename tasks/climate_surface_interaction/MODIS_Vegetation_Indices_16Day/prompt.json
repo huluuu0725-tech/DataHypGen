@@ -1,0 +1,44 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global terrestrial regions",
+  "data_description": {
+    "dataset_name": "MODIS Terra Vegetation Indices 16-Day Global 500m",
+    "spatial_coverage": {
+      "region_name": "Global vegetation monitoring coverage",
+      "coverage": "Global 16-day composite vegetation indices (NDVI and EVI) from Terra MODIS at 500m resolution covering all vegetated land areas."
+    },
+    "temporal_coverage": "16-day vegetation index time series from 2000 to present (2026).",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "temporal_unit": "16-day composite",
+    "raster_content": {
+      "gee_asset_id": "MODIS/061/MOD13A1",
+      "thematic_group": "Agriculture, Vegetation and Forestry"
+    },
+    "important_note": "This description is grounded in the local community-catalog index and cached project documentation. Runtime metadata such as exact band schema, spatial resolution, coordinate system, and collection length should be verified during task execution before quantitative analysis.",
+    "analytical_capabilities": [
+      "Temperature-vegetation response relationship quantification",
+      "Climate-driven vegetation phenology analysis",
+      "Precipitation-vegetation productivity correlation",
+      "Drought impact on vegetation health assessment",
+      "Seasonal vegetation dynamics and climate coupling",
+      "Land surface greening/browning trend detection",
+      "Vegetation feedback to surface energy balance through albedo and evapotranspiration"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Normalized Difference Vegetation Index (NDVI) and Enhanced Vegetation Index (EVI) as dimensionless ratios; values typically range from -1 to 1 with scale factor 0.0001; confirm runtime scaling before analysis.",
+      "runtime_hint": "NDVI and EVI values require scale factor application (multiply by 0.0001); negative values indicate water/snow, near-zero is bare soil, and high positive values indicate dense vegetation."
+    },
+    "data_source": "NASA LP DAAC at USGS EROS Center via Google Earth Engine",
+    "reference": "https://lpdaac.usgs.gov/products/mod13a1v061/",
+    "gee_asset": {
+      "id": "MODIS/061/MOD13A1",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13A1",
+      "docs": "https://lpdaac.usgs.gov/documents/103/MOD13_User_Guide_V6.pdf",
+      "license": "No restrictions on use",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_061_MOD13A1_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD13A1"
+}

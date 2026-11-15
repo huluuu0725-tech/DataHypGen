@@ -1,0 +1,122 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "JRC Global Surface Water Mapping Layers",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global surface water extent and dynamics at 30m resolution derived from Landsat imagery spanning nearly four decades (1984-2021)."
+    },
+    "temporal_coverage": "1984-2021 historical water occurrence, transitions, seasonality, and recurrence",
+    "data_type": "Image",
+    "data_format": "Google Earth Engine Image asset",
+    "spatial_resolution": "30m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Multi-temporal composite with various temporal metrics",
+    "records": "Single multi-band image with 10 water occurrence and transition layers",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 255}",
+    "total_samples": 1,
+    "raster_content": {
+      "band_count": 10,
+      "band_names": [
+        "occurrence",
+        "change_abs",
+        "change_norm",
+        "seasonality",
+        "recurrence",
+        "transition",
+        "max_extent",
+        "occurrence_2021",
+        "change_intensity",
+        "monthly_history"
+      ],
+      "band_data_types": {
+        "occurrence": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "description": "Percentage of time water was present on the surface during 1984-2021"
+        },
+        "change_abs": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -100,
+          "max": 100,
+          "description": "Absolute change in water occurrence between first and last epochs"
+        },
+        "change_norm": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": -100,
+          "max": 100,
+          "description": "Normalized change in water occurrence"
+        },
+        "seasonality": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 12,
+          "description": "Number of months water is present per year"
+        },
+        "recurrence": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "description": "Percentage of years water was observed at least once"
+        },
+        "transition": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 10,
+          "description": "Water transition class: permanent water, new permanent, lost permanent, seasonal, etc."
+        },
+        "max_extent": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 1,
+          "description": "Binary mask of maximum water extent ever detected"
+        }
+      },
+      "gee_asset_id": "JRC/GSW1_4/GlobalSurfaceWater",
+      "thematic_group": "Water Resources and Land Cover Change",
+      "band_semantics": {
+        "occurrence": "Historical water occurrence frequency showing how often each pixel was covered by water from 1984 to 2021.",
+        "change_abs": "Absolute change in water presence between epochs, detecting water body expansion or contraction.",
+        "seasonality": "Number of months per year that water is typically present, distinguishing permanent from seasonal water bodies.",
+        "transition": "Categorical classification of water dynamics: permanent water, new permanent, lost permanent, seasonal, new seasonal, lost seasonal, ephemeral permanent, ephemeral seasonal.",
+        "max_extent": "Maximum spatial extent of all water detected over the entire observation period."
+      }
+    },
+    "important_note": "JRC Global Surface Water provides the most comprehensive global analysis of surface water dynamics, including occurrence frequency, change detection, and seasonal patterns derived from 38 years of Landsat observations. Essential for wetland monitoring, reservoir tracking, and climate-driven water availability studies.",
+    "analytical_capabilities": [
+      "Long-term water body occurrence and persistence mapping",
+      "Detection of new reservoirs, dams, and artificial water bodies",
+      "Identification of disappearing lakes and wetland loss",
+      "Seasonal vs. permanent water body classification",
+      "Drought impact assessment via water extent reduction",
+      "Flood extent mapping and recurrence analysis",
+      "Coastal erosion and delta dynamics studies",
+      "Irrigation expansion and agricultural water use detection",
+      "Climate change impacts on surface water availability"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Percentage occurrence (0-100) for water presence frequency; categorical codes for transition types; binary mask for maximum extent.",
+      "runtime_hint": "Use 'occurrence' band for frequency analysis; 'transition' band for change classification; 'seasonality' for temporal patterns; combine with precipitation/temperature data for climate linkage."
+    },
+    "data_source": "European Commission Joint Research Centre (JRC) via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+    "gee_asset": {
+      "id": "JRC/GSW1_4/GlobalSurfaceWater",
+      "type": "Image",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+      "docs": "https://global-surface-water.appspot.com/",
+      "license": "The datasets are freely available for use under a Creative Commons Attribution 4.0 International license",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/JRC/JRC_GSW1_4_GlobalSurfaceWater_sample.png"
+    }
+  },
+  "data_path": "GEE:JRC/GSW1_4/GlobalSurfaceWater"
+}

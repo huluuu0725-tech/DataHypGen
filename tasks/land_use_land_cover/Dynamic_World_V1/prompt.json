@@ -1,0 +1,116 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "Dynamic World V1",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global land surface coverage at 10m resolution with near-real-time (NRT) land cover predictions derived from Sentinel-2 imagery, updated every 2-5 days."
+    },
+    "temporal_coverage": "2015-06-27 to present (near-real-time updates)",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "10m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Near-real-time (every 2-5 days matching Sentinel-2 revisit)",
+    "records": "ImageCollection with high-frequency global land cover predictions",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\", \"min\": 0, \"max\": 1}",
+    "total_samples": "Thousands of images with near-daily global coverage",
+    "raster_content": {
+      "band_count": 10,
+      "band_names": [
+        "water",
+        "trees",
+        "grass",
+        "flooded_vegetation",
+        "crops",
+        "shrub_and_scrub",
+        "built",
+        "bare",
+        "snow_and_ice",
+        "label"
+      ],
+      "band_data_types": {
+        "water": {
+          "type": "PixelType",
+          "precision": "float",
+          "min": 0,
+          "max": 1,
+          "description": "Probability of water class"
+        },
+        "trees": {
+          "type": "PixelType",
+          "precision": "float",
+          "min": 0,
+          "max": 1,
+          "description": "Probability of trees class"
+        },
+        "grass": {
+          "type": "PixelType",
+          "precision": "float",
+          "min": 0,
+          "max": 1,
+          "description": "Probability of grass class"
+        },
+        "crops": {
+          "type": "PixelType",
+          "precision": "float",
+          "min": 0,
+          "max": 1,
+          "description": "Probability of crops/agricultural land class"
+        },
+        "built": {
+          "type": "PixelType",
+          "precision": "float",
+          "min": 0,
+          "max": 1,
+          "description": "Probability of built/urban area class"
+        },
+        "label": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 8,
+          "description": "Discrete class label (0=water, 1=trees, 2=grass, 3=flooded_vegetation, 4=crops, 5=shrub_and_scrub, 6=built, 7=bare, 8=snow_and_ice)"
+        }
+      },
+      "gee_asset_id": "GOOGLE/DYNAMICWORLD/V1",
+      "thematic_group": "Global Land Use and Land Cover",
+      "band_semantics": {
+        "water": "Probability band for water bodies",
+        "trees": "Probability band for tree/forest cover",
+        "crops": "Probability band for agricultural cropland",
+        "built": "Probability band for built-up/urban areas",
+        "label": "Discrete land cover class with highest probability"
+      }
+    },
+    "important_note": "Dynamic World provides both probability bands (0-1 for each class) and a discrete label band. The probabilistic approach enables uncertainty quantification and mixed-pixel analysis. Near-real-time updates allow monitoring of rapid land cover changes.",
+    "analytical_capabilities": [
+      "Near-real-time land cover monitoring with 2-5 day latency",
+      "High-resolution (10m) global land cover classification",
+      "Probabilistic land cover assessment enabling uncertainty analysis",
+      "Seasonal vegetation dynamics tracking",
+      "Rapid agricultural monitoring (planting, harvest, crop rotation)",
+      "Urban expansion detection at sub-monthly intervals",
+      "Flood extent mapping using flooded_vegetation class",
+      "Post-disaster land cover change assessment",
+      "Mixed-pixel composition analysis using probability bands",
+      "Time-series based phenology studies"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Probability values (0-1) for each land cover class, and discrete class labels (0-8) in the 'label' band.",
+      "runtime_hint": "Use probability bands for uncertainty-aware analysis or the 'label' band for discrete classification; filter by date range for temporal analysis."
+    },
+    "data_source": "World Resources Institute / Google via Google Earth Engine",
+    "reference": "https://www.dynamicworld.app/",
+    "gee_asset": {
+      "id": "GOOGLE/DYNAMICWORLD/V1",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
+      "docs": "https://www.dynamicworld.app/",
+      "license": "CC-BY-4.0",
+      "thumbnail": "https://www.dynamicworld.app/static/images/preview.png"
+    }
+  },
+  "data_path": "GEE:GOOGLE/DYNAMICWORLD/V1"
+}

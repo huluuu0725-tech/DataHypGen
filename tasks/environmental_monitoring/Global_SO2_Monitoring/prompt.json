@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time Sulfur Dioxide (SO2)",
+    "spatial_coverage": {
+      "region_name": "Global SO2 monitoring coverage",
+      "coverage": "Global near real-time SO2 concentration from Sentinel-5P TROPOMI sensor with daily coverage. The Earth Engine collection provides global atmospheric sulfur dioxide measurements."
+    },
+    "temporal_coverage": "Daily SO2 measurements from 2018-07-10 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "3.5 x 7 km (~5.5 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_SO2",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "SO2_column_number_density": "Total vertical column of SO2 (mol/m^2)",
+        "SO2_column_number_density_amf": "Air mass factor for SO2 column",
+        "SO2_slant_column_number_density": "Slant column density of SO2 (mol/m^2)"
+      }
+    },
+    "important_note": "Sulfur dioxide enters Earth's atmosphere through both natural and anthropogenic processes. About 70% of emitted SO2 comes from anthropogenic sources including fossil fuel combustion and industrial activities. SO2 emissions adversely affect human health, air quality, and climate through radiative forcing via sulfate aerosol formation. Volcanic SO2 emissions can pose threats to aviation.",
+    "analytical_capabilities": [
+      "Volcanic eruption monitoring and aviation safety",
+      "Industrial emission tracking and air quality assessment",
+      "Sulfate aerosol formation analysis",
+      "Cross-regional pollution transport studies",
+      "Emission source identification and quantification"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "SO2 column number density in mol/m^2. Negative values may occur over clean regions and should not be filtered except for outliers below -0.001 mol/m^2.",
+      "runtime_hint": "Filter by QA values, cloud fraction, and solar zenith angle for reliable measurements. Snow/ice conditions affect retrieval quality."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_SO2",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_SO2"
+}

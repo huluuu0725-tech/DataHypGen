@@ -1,0 +1,62 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "Geomorpho90m First order derivatives: Aspect",
+    "spatial_coverage": {
+      "region_name": "Global geomorphometric aspect coverage",
+      "coverage": "Global Geomorpho90m aspect dataset in WGS84, organized as spatial tiles rather than a single monolithic raster."
+    },
+    "temporal_coverage": "Static geomorphometric aspect tile collection derived from MERIT DEM; each image represents a spatial terrain tile rather than a time step.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "3 arc-second (~90m)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Not a temporal series; spatial tiles only",
+    "records": "1148 spatial aspect tiles in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": 1148,
+    "raster_content": {
+      "collection_size": 1148,
+      "first_band_count": 1,
+      "first_band_names": [
+        "b1"
+      ],
+      "first_band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "float"
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/Geomorpho90m/aspect",
+      "thematic_group": "Geophysical, Biological & Biogeochemical",
+      "band_semantics": {
+        "b1": "Aspect raster for the spatial tile encoded by `system:index`. Values represent compass direction in degrees (0-360), where 0=North, 90=East, 180=South, 270=West."
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The collection is organized as spatial aspect tiles, not as a dated time series.",
+    "analytical_capabilities": [
+      "Global slope orientation pattern analysis",
+      "Solar radiation and insolation modeling",
+      "Microclimate characterization",
+      "Vegetation distribution analysis by exposure",
+      "Snow accumulation and melt prediction",
+      "Wind exposure assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Aspect in degrees (0-360) measured clockwise from North: 0/360=North, 90=East, 180=South, 270=West. Flat areas may have undefined aspect.",
+      "runtime_hint": "Treat `system:index` values as tile identifiers and `pixel_resolution` as the spatial-resolution cue."
+    },
+    "data_source": "Yale University, Coillte, Irish State Forestry Board, Leibniz-Institute of Freshwater Ecology and Inland Fisheries, European Commission - Joint Research Centre, Spatial Ecology via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/geomorpho90/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/Geomorpho90m/aspect",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:geophysical-biological-biogeochemical/GEOMORPHO90-RUGGEDENESS",
+      "docs": "https://gee-community-catalog.org/projects/geomorpho90/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/geomorpho90.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/Geomorpho90m/aspect"
+}

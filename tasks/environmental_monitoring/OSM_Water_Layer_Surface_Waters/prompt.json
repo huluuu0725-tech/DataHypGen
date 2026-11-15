@@ -1,0 +1,156 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global OpenStreetMap mapped surface waters",
+  "data_description": {
+    "dataset_name": "OSM Water Layer Surface Waters in OpenStreetMap",
+    "spatial_coverage": {
+      "region_name": "Global mapped surface waters",
+      "coverage": "Global OSM-derived surface-water dataset organized as 5 degree x 5 degree raster tiles in WGS84. Runtime footprints should be interpreted per tile rather than as a single collection-wide polygon."
+    },
+    "temporal_coverage": "Static OSM-derived surface-water tile collection; each image represents a spatial tile rather than a time step.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "90m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Not a temporal series; spatial tiles only",
+    "records": "1150 spatial raster tiles in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 255}",
+    "total_samples": 1150,
+    "raster_content": {
+      "collection_size": 1150,
+      "first_band_count": 1,
+      "first_band_names": [
+        "b1"
+      ],
+      "first_band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 255
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/OSM_waterLayer",
+      "thematic_group": "Hydrology",
+      "band_semantics": {
+        "b1": "OSM-derived surface-water raster for the spatial tile encoded by `system:index`."
+      },
+      "sample_runtime_properties": {
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              9.999374942099951,
+              4.999975301967036
+            ],
+            [
+              9.999237061443186,
+              5.000001436707066
+            ],
+            [
+              9.374270862461154,
+              5.000001454286156
+            ],
+            [
+              8.749374983655368,
+              5.00000145215031
+            ],
+            [
+              8.124479144471008,
+              5.000001433236061
+            ],
+            [
+              7.499583299054739,
+              5.00000144131939
+            ],
+            [
+              6.874687534797117,
+              5.000001467027005
+            ],
+            [
+              6.249791675283042,
+              5.0000014578908525
+            ],
+            [
+              5.624895866315211,
+              5.000001475279579
+            ],
+            [
+              4.999999639019098,
+              5.000001471391704
+            ],
+            [
+              4.999613759380301,
+              4.999662137132782
+            ],
+            [
+              4.999162036056934,
+              4.999355957261444
+            ],
+            [
+              4.9991652093728165,
+              3.543857765986595e-08
+            ],
+            [
+              4.999504437876776,
+              -0.00038468750574406727
+            ],
+            [
+              4.999810665558111,
+              -0.0008347640302132629
+            ],
+            [
+              9.9991666707219,
+              -0.0008348235895215546
+            ],
+            [
+              9.999551303382452,
+              -0.0004955521611369627
+            ],
+            [
+              10.00000146568464,
+              -0.00018928622962917116
+            ],
+            [
+              10.000004622630925,
+              4.9991666951762985
+            ],
+            [
+              9.99966418502968,
+              4.999551199264489
+            ],
+            [
+              9.999374942099951,
+              4.999975301967036
+            ]
+          ]
+        },
+        "system:asset_size": 446799,
+        "system:index": "n00e005"
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The collection is tiled spatially and does not expose a usable time axis in the runtime metadata.",
+    "analytical_capabilities": [
+      "Mapped surface-water extent analysis",
+      "Tile-level water presence comparison",
+      "Hydrologic context extraction",
+      "Combination with terrain or population exposure layers",
+      "OSM water-feature completeness inspection"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "OSM-derived surface-water mask/class values; verify the class encoding before area tabulation.",
+      "runtime_hint": "Treat `system:index` values such as `n00e005` as tile identifiers and interpret the raster as a derived map layer rather than a temporal observation sequence."
+    },
+    "data_source": "Institute of Industrial Sciences, Open Street Map, OSM via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/osm_water/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/OSM_waterLayer",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:hydrology/OSM-WATER-SURFACE",
+      "docs": "https://gee-community-catalog.org/projects/osm_water/",
+      "license": "Creative Commons Attribution Share Alike 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/osm_water.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/OSM_waterLayer"
+}

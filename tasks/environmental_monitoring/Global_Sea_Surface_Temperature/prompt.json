@@ -1,0 +1,51 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global ocean areas",
+  "data_description": {
+    "dataset_name": "Global Gridded Sea Surface Temperature (SSTG)",
+    "spatial_coverage": {
+      "region_name": "Global ocean surface temperature coverage",
+      "coverage": "Global gridded sea surface temperature dataset integrating multiple satellite sensors (MODIS, AVHRR, AMSR-E, AMSR2, WindSat) and in situ observations to provide consistent SST measurements."
+    },
+    "temporal_coverage": "Daily SST measurements from 2002 to 2019 in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "~5km to 10km grid resolution",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "6575 daily images (2002-2019)",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": 6575,
+    "raster_content": {
+      "gee_asset_id": "projects/sat-io/open-datasets/sstg",
+      "thematic_group": "Oceans and Shorelines",
+      "band_semantics": {
+        "SST": "Gridded sea surface temperature harmonized across multiple sensors"
+      }
+    },
+    "important_note": "This dataset addresses the inconsistency problem across different SST sensors by harmonizing temperature values from different ocean depths and observation times. Essential for studying global climate change and ocean dynamics.",
+    "analytical_capabilities": [
+      "Marine heatwave detection and tracking",
+      "Ocean-atmosphere interaction studies",
+      "Climate change impact on ocean temperature",
+      "Coral bleaching risk assessment",
+      "Marine ecosystem health monitoring",
+      "Fishery resource management"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Sea surface temperature in degrees Celsius or Kelvin. The SST band provides consistent temperature values harmonized across multiple sensor sources.",
+      "runtime_hint": "This gridded product integrates multiple sensors to provide consistent SST measurements, reducing gaps and sensor-specific biases."
+    },
+    "data_source": "Multi-sensor SST dataset (MODIS, AVHRR, AMSR-E, AMSR2, WindSat, in situ) processed by Cao et al. via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/sstg/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/sstg",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:oceans-shorelines/GLOBAL-GRIDDED-SST",
+      "docs": "https://gee-community-catalog.org/projects/sstg/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/sstg.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/sstg"
+}

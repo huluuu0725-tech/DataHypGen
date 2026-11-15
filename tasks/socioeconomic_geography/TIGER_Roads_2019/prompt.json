@@ -1,0 +1,74 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "United States",
+  "data_description": {
+    "dataset_name": "TIGER Census Roads Dataset 2019",
+    "spatial_coverage": {
+      "region_name": "United States",
+      "coverage": "United States road-network feature coverage for all 50 states, the District of Columbia, Puerto Rico, and U.S. Island Areas in the 2019 TIGER release."
+    },
+    "temporal_coverage": "Static 2019 TIGER/Line road-network snapshot.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "spatial_resolution": "",
+    "coordinate_system": "",
+    "temporal_unit": "Static 2019 feature table",
+    "records": "18123446 features",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "total_samples": 18123446,
+    "vector_content": {
+      "property_keys": [
+        "PREQUAL",
+        "SUFQUAL",
+        "RTTYP",
+        "LINEARID",
+        "SUFTYP",
+        "SUFDIR",
+        "MTFCC",
+        "FULLNAME",
+        "PREDIR",
+        "system:index",
+        "PRETYP",
+        "NAME"
+      ],
+      "sample_properties": {
+        "FULLNAME": "\"Chln Tendan Ifil",
+        "LINEARID": "1103018738850"
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/TIGER/2019/Roads",
+      "thematic_group": "Global Utilities, Assets and Amenities Layers",
+      "property_semantics_hint": {
+        "FULLNAME": "Full road name string when populated.",
+        "LINEARID": "Unique linear feature identifier for the road segment.",
+        "NAME": "Core road-name field when populated separately from directional/type fields.",
+        "RTTYP": "Road-route type classification field in the TIGER schema.",
+        "MTFCC": "MAF/TIGER Feature Class Code describing the transportation feature type.",
+        "PREDIR": "Predirectional component of the road name when available.",
+        "SUFDIR": "Sufdirectional component of the road name when available."
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine FeatureCollection probe. The runtime schema clearly exposes road-name and classification fields, but the first sampled feature had `Empty` geometry, so geometry-dependent analyses should re-sample or filter non-empty features at runtime.",
+    "analytical_capabilities": [
+      "Road network feature density analysis",
+      "Transportation infrastructure distribution mapping",
+      "Attribute-based road inventory inspection",
+      "Combination with population, mining, or hazard layers",
+      "U.S. accessibility pattern discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Road-feature attributes and vector geometry; no single canonical measurement field should be assumed from the probe alone.",
+      "runtime_hint": "Use schema fields such as `FULLNAME`, `LINEARID`, `RTTYP`, and `MTFCC` for attribute filtering, and validate geometry availability on sampled features before spatial analysis."
+    },
+    "data_source": "U.S. Census Bureau via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/tiger_roads/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/TIGER/2019/Roads",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-utilities-assets-amenities/TIGER-ROADS-MULTIYEAR",
+      "docs": "https://gee-community-catalog.org/projects/tiger_roads/",
+      "license": "custom",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/tiger_roads.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/TIGER/2019/Roads"
+}

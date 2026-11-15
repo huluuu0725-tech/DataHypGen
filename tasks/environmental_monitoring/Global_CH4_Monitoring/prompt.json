@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Offline Methane (CH4)",
+    "spatial_coverage": {
+      "region_name": "Global methane monitoring coverage",
+      "coverage": "Global offline CH4 concentration from Sentinel-5P TROPOMI sensor. The Earth Engine collection provides global atmospheric methane column measurements over land and ocean glint areas."
+    },
+    "temporal_coverage": "Daily CH4 measurements from 2018-11-28 to present in the Earth Engine asset. Ocean glint observations added after November 2021.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "7 x 7 km",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/OFFL/L3_CH4",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "CH4_column_volume_mixing_ratio_dry_air": "Column averaged dry air mixing ratio of methane (ppb)",
+        "aerosol_height": "Aerosol layer height (m)",
+        "aerosol_optical_depth": "Aerosol optical depth (unitless)"
+      }
+    },
+    "important_note": "Methane is the second most important anthropogenic greenhouse gas after CO2. Roughly three-quarters of methane emissions are anthropogenic. TROPOMI provides CH4 column concentrations with high surface sensitivity, good spatiotemporal coverage, and sufficient accuracy for inverse modeling of sources and sinks. Uses absorption from Oxygen-A Band (760nm) and SWIR range.",
+    "analytical_capabilities": [
+      "Anthropogenic emission source identification and quantification",
+      "Natural wetland and permafrost emission monitoring",
+      "Agricultural and livestock emission assessment",
+      "Oil and gas infrastructure leak detection",
+      "Inverse modeling for source-sink attribution"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "CH4 column volume mixing ratio in parts per billion (ppb). For overall uncertainty, multiply provided error by factor of 2.",
+      "runtime_hint": "Filter by qa_value >= 0.5 for quality data. Note that some low concentration artifacts may remain. Data covers land and ocean glint areas after Nov 2021."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CH4",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/OFFL/L3_CH4",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CH4",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/OFFL/L3_CH4"
+}

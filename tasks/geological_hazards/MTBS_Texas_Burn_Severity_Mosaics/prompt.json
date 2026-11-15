@@ -1,0 +1,91 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Texas, USA",
+  "data_description": {
+    "dataset_name": "MTBS Burn Severity Mosaics - Texas",
+    "spatial_coverage": {
+      "region_name": "Texas, USA",
+      "coverage": "24 annual Texas burn-severity mosaics stored as one GeoTIFF per year. Sampled raster bounds vary by year because yearly burned-area extents differ.",
+      "sample_bounds_2009": {
+        "left": -927345.0,
+        "bottom": 398775.0,
+        "right": 211275.0,
+        "top": 1466385.0
+      }
+    },
+    "temporal_coverage": "1997-2020 annual mosaics from the local directory structure (`1997/.../mtbs_TX_1997.tif` through `2020/.../mtbs_TX_2020.tif`).",
+    "data_type": "Single-band categorical burn-severity GeoTIFF mosaics",
+    "data_format": "GeoTIFF",
+    "spatial_resolution": "30 meters",
+    "coordinate_system": "ESRI:102039 (USA Contiguous Albers Equal Area Conic)",
+    "temporal_unit": "Annual raster mosaic",
+    "total_years": 24,
+    "records": "24 GeoTIFF files, one categorical raster mosaic per year",
+    "data_type_numeric": "uint8",
+    "total_samples": 24,
+    "raster_content": {
+      "classification_type": "Single-band categorical burn-severity codes",
+      "band_count": 1,
+      "band_names": [
+        "burn_severity_class"
+      ],
+      "band_semantics": {
+        "burn_severity_class": "Per-pixel MTBS burn-severity category code for the corresponding year."
+      },
+      "pixel_values": {
+        "0": "No data / outside mapped burn-severity area (also the raster nodata value in sampled files).",
+        "1": "Unburned to low severity",
+        "2": "Low severity",
+        "3": "Moderate severity",
+        "4": "Increased greenness",
+        "5": "High severity",
+        "6": "Non-processing area mask"
+      },
+      "sample_runtime_properties": {
+        "sample_file": "datasets/MTBS_BSmosaics/2009/mtbs_TX_2009.tif",
+        "width": 37954,
+        "height": 35587,
+        "dtype": "uint8",
+        "nodata": 0.0,
+        "resolution_m": [
+          30.0,
+          30.0
+        ],
+        "observed_unique_values_2009": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    "analytical_capabilities": [
+      "Annual burned area calculation",
+      "Severity-class area aggregation",
+      "Time-series burned area trend analysis",
+      "Spatial hotspot detection",
+      "High-severity fire analysis",
+      "Change detection between years",
+      "Burn severity distribution modeling",
+      "Severity transition matrix analysis",
+      "Long-term fire frequency assessment",
+      "Temporal patterns in burn severity"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Categorical burn-severity class code per 30 m pixel, not a continuous dNBR value.",
+      "pixel_area": "900 m² (30 m x 30 m)",
+      "area_conversion": {
+        "1_pixel": "0.09 hectares",
+        "1_pixel_km2": "0.0009 km²"
+      },
+      "runtime_hint": "Use class codes categorically. Area aggregation is meaningful; arithmetic averaging of class values is generally not."
+    },
+    "data_source": "Local annual GeoTIFF mosaics under datasets/MTBS_BSmosaics, originally from the USGS Monitoring Trends in Burn Severity (MTBS) program",
+    "reference": "MTBS Project (2023). Monitoring Trends in Burn Severity. U.S. Geological Survey. https://www.mtbs.gov/",
+    "important_note": "This prompt was revised from the local GeoTIFF files themselves, not only from MTBS documentation. The sampled annual rasters are single-band uint8 categorical mosaics in ESRI:102039 at 30 m, and local reads confirm that class value `5` appears in the data even though the older prompt omitted it."
+  },
+  "data_path": "./datasets/MTBS_BSmosaics"
+}

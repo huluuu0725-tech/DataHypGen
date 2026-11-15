@@ -1,0 +1,59 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global volcanic regions",
+  "data_description": {
+    "dataset_name": "MODIS Thermal Anomalies and Volcano Detection",
+    "spatial_coverage": {
+      "region_name": "Global volcanic thermal anomaly detection coverage",
+      "coverage": "Global coverage of active volcanic thermal anomalies detected by MODIS sensors across all volcanic regions worldwide."
+    },
+    "temporal_coverage": "Daily thermal anomaly detection from November 2000 to present.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1km",
+    "coordinate_system": "WGS84",
+    "temporal_unit": "Daily composite",
+    "records": "Daily images with thermal anomaly detection bands",
+    "data_type_numeric": "Fire radiative power, brightness temperature, and detection confidence",
+    "total_samples": "Daily global coverage at 1km resolution",
+    "bands": [
+      {
+        "name": "FireMask",
+        "description": "Pixel quality and fire detection classification",
+        "units": "categorical",
+        "gsd": 1000
+      },
+      {
+        "name": "MaxFRP",
+        "description": "Maximum Fire Radiative Power",
+        "units": "MW (megawatts)",
+        "gsd": 1000
+      }
+    ],
+    "important_note": "This dataset from NASA's MODIS Active Fire Product (MCD14DL) detects thermal anomalies including volcanic eruptions, lava flows, and fumarolic activity. The thermal detection algorithm is sensitive to both flaming and smoldering volcanic thermal emissions. Volcanic thermal anomalies can be distinguished from wildfires by spatial persistence, location near known volcanic centers, and temporal patterns.",
+    "analytical_capabilities": [
+      "Active volcano eruption detection and monitoring",
+      "Lava flow thermal emission tracking",
+      "Volcanic thermal anomaly intensity quantification",
+      "Eruption onset and cessation timing analysis",
+      "Volcanic activity spatial extent mapping",
+      "Long-term volcanic thermal activity trends",
+      "Volcanic hazard early warning potential"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Fire Radiative Power (FRP) in megawatts (MW) and brightness temperature in Kelvin; volcanic thermal anomalies typically show sustained elevated FRP at fixed locations.",
+      "runtime_hint": "Filter thermal detections by proximity to known volcanic centers and temporal persistence to isolate volcanic signals from wildfire noise; combine with volcano location databases for validation."
+    },
+    "data_source": "NASA MODIS Active Fire Product (MCD14DL) via Google Earth Engine",
+    "reference": "https://doi.org/10.5067/MODIS/MCD14DL.NRT.006",
+    "gee_asset": {
+      "id": "MODIS/006/MCD14DL",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD14DL",
+      "docs": "https://lpdaac.usgs.gov/products/mcd14dlv006/",
+      "license": "Public Domain",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_006_MCD14DL_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/006/MCD14DL"
+}

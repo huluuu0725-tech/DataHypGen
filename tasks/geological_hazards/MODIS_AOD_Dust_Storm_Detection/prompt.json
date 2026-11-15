@@ -1,0 +1,59 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global dust storm source and transport regions",
+  "data_description": {
+    "dataset_name": "MODIS Aerosol Optical Depth for Dust Storm Detection",
+    "spatial_coverage": {
+      "region_name": "Global dust storm and aerosol monitoring coverage",
+      "coverage": "Global coverage of atmospheric aerosol optical depth with primary focus on major dust source regions including the Sahara, Arabian Peninsula, Central Asia, Australian deserts, and southwestern United States."
+    },
+    "temporal_coverage": "Daily aerosol observations from February 2000 to present.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1km",
+    "coordinate_system": "WGS84",
+    "temporal_unit": "Daily composite",
+    "records": "Daily global aerosol optical depth images",
+    "data_type_numeric": "Aerosol optical depth at multiple wavelengths",
+    "total_samples": "Daily global coverage at 1km spatial resolution",
+    "bands": [
+      {
+        "name": "Optical_Depth_Land_And_Ocean",
+        "description": "Aerosol optical depth retrieved over both land and ocean surfaces",
+        "units": "dimensionless (AOD at 550nm)",
+        "gsd": 1000
+      },
+      {
+        "name": "AOD_QA",
+        "description": "Quality assurance flags for AOD retrievals",
+        "units": "categorical",
+        "gsd": 1000
+      }
+    ],
+    "important_note": "This dataset from MODIS Terra and Aqua satellites (MCD19A2) provides daily aerosol optical depth measurements crucial for detecting and tracking dust storm events. Dust storms are characterized by elevated AOD values (typically >0.5) over arid and semi-arid regions. The Multi-Angle Implementation of Atmospheric Correction (MAIAC) algorithm provides improved spatial resolution and accuracy over bright desert surfaces where dust originates.",
+    "analytical_capabilities": [
+      "Dust storm outbreak detection and tracking",
+      "Dust source region identification and characterization",
+      "Long-range dust transport pathway mapping",
+      "Dust storm frequency and intensity climatology",
+      "Seasonal dust activity pattern analysis",
+      "Dust emission and atmospheric loading quantification",
+      "Air quality and visibility impact assessment during dust events"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Aerosol Optical Depth (AOD) dimensionless at 550nm wavelength; values >0.5 typically indicate moderate to heavy aerosol loading; dust storms often produce AOD >1.0 to >3.0.",
+      "runtime_hint": "Combine high AOD values with low Ångström exponent (<0.6) to distinguish coarse-mode dust aerosols from fine-mode pollution or smoke; use temporal change detection to identify dust outbreak events."
+    },
+    "data_source": "NASA MODIS MAIAC Aerosol Product (MCD19A2) via Google Earth Engine",
+    "reference": "https://doi.org/10.5067/MODIS/MCD19A2.006",
+    "gee_asset": {
+      "id": "MODIS/006/MCD19A2_GRANULES",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD19A2_GRANULES",
+      "docs": "https://lpdaac.usgs.gov/products/mcd19a2v006/",
+      "license": "Public Domain",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_006_MCD19A2_GRANULES_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/006/MCD19A2_GRANULES"
+}

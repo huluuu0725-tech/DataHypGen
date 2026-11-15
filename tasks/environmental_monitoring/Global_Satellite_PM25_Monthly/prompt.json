@@ -1,0 +1,96 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "Global Monthly Satellite-derived PM2.5",
+    "spatial_coverage": {
+      "region_name": "Global gridded PM2.5 coverage",
+      "coverage": "Global monthly PM2.5 raster product in WGS84 on a 0.01 degree grid. The Earth Engine footprint is collection-wide global coverage rather than a narrower study-area polygon."
+    },
+    "temporal_coverage": "Monthly PM2.5 series from 1998-01 to 2022-12 in the current Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "0.01 degree (~1.1 km at the equator)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Monthly image",
+    "records": "300 monthly images in collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": 300,
+    "raster_content": {
+      "collection_size": 300,
+      "first_band_count": 1,
+      "first_band_names": [
+        "b1"
+      ],
+      "first_band_data_types": {
+        "b1": {
+          "type": "PixelType",
+          "precision": "float"
+        }
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/MONTHLY",
+      "thematic_group": "Weather and Climate Layers",
+      "band_semantics": {
+        "b1": "Monthly PM2.5 raster for the image month encoded by `system:index`."
+      },
+      "sample_runtime_properties": {
+        "system:time_start": 883612800000,
+        "num_bands": 1,
+        "id_no": "V6GL02-a_CNNPM25_Global_199801-199801",
+        "ysize": 13000,
+        "system:footprint": {
+          "type": "LinearRing",
+          "coordinates": [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        },
+        "system:time_end": 886204800000,
+        "xsize": 36000,
+        "system:asset_size": 859909225,
+        "system:index": "V6GL02-a_CNNPM25_Global_199801-199801"
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine ImageCollection probe. The collection behaves like a genuine monthly series from 1998-01 to 2022-12.",
+    "analytical_capabilities": [
+      "Monthly PM2.5 exposure analysis",
+      "Seasonal air-pollution comparison",
+      "Regional concentration hotspot detection",
+      "Combination with population, fire, or road datasets",
+      "Air-quality anomaly discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Monthly PM2.5 concentration raster; verify the exact concentration unit from the source docs before reporting absolute values.",
+      "runtime_hint": "Use the image month encoded in `system:index`/`system:time_start` and treat each image as one monthly concentration snapshot."
+    },
+    "data_source": "Atmospheric Composition Analysis Group at Washington University in St Louis via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/global_pm25/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/MONTHLY",
+      "type": "image_collection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:weather-climate/GLOBAL-SATELLITE-PM25",
+      "docs": "https://gee-community-catalog.org/projects/global_pm25/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/global_pm25.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/GLOBAL-SATELLITE-PM25/MONTHLY"
+}

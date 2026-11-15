@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time Carbon Monoxide (CO)",
+    "spatial_coverage": {
+      "region_name": "Global CO monitoring coverage",
+      "coverage": "Global near real-time CO concentration from Sentinel-5P TROPOMI sensor. The Earth Engine collection provides global atmospheric carbon monoxide measurements in clear-sky and cloudy-sky conditions."
+    },
+    "temporal_coverage": "Daily CO measurements from 2018-11-22 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "1113.2m (~1.1 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_CO",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "CO_column_number_density": "Vertically integrated CO column density (mol/m^2)",
+        "H2O_column_number_density": "Water vapor column (mol/m^2)",
+        "cloud_height": "Scattering layer height (m)"
+      }
+    },
+    "important_note": "Carbon monoxide is a key atmospheric tracer for combustion processes. Main sources include fossil fuel combustion, biomass burning, and atmospheric oxidation of methane. CO has a lifetime of weeks to months, making it useful for tracking pollution transport.",
+    "analytical_capabilities": [
+      "Biomass burning emission monitoring",
+      "Urban and industrial pollution tracking",
+      "Long-range pollution transport analysis",
+      "Seasonal CO variation studies",
+      "Fire impact assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "CO column number density in mol/m^2. Use CO_column_number_density band for total atmospheric CO content.",
+      "runtime_hint": "CO measurements are sensitive to cloud cover. Use cloud_height band to assess retrieval conditions."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_CO",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_CO"
+}

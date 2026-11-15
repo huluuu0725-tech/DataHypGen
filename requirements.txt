@@ -1,0 +1,45 @@
+# DataGenHyp runtime dependencies (direct deps only; pip resolves the rest).
+#
+# Versions match the previously verified Linux pip freeze. ROS 2, rqt, tf2,
+# ament, nvidia-cuda, torch/triton and other packages unrelated to the
+# pipeline were removed. For unit tests only, use requirements-dev.txt.
+#
+#   pip install -r requirements.txt
+
+# ---- LLM clients and networking ----
+openai==1.99.1
+anthropic==0.69.0
+httpx==0.28.1
+aiohttp==3.12.15
+aiohttp_socks==0.11.0        # SOCKS proxy support in GeoDataSearch
+requests==2.34.2
+urllib3==2.5.0
+
+# ---- config, serialization, structured output ----
+python-dotenv==1.1.1         # `from dotenv import load_dotenv`
+PyYAML==6.0.2
+json_repair>=0.51.0          # 0.51.0 was pulled from PyPI; allow current release
+jsonschema==4.25.0
+
+# ---- numerics and tables ----
+numpy==1.26.4
+scipy==1.15.3
+pandas==3.0.5
+tqdm==4.67.1
+
+# ---- Google Earth Engine (DatasetProfiler / GeoDataSearch / ResourceCheck) ----
+earthengine-api==1.7.38
+httplib2==0.32.0             # custom http transport in gee_auth
+
+# ---- geospatial (DatasetProfiler local raster/vector reads; imports are try/except guarded) ----
+rasterio==1.4.4
+boto3>=1.35.0                # dynamic/refreshable credentials for private STAC S3 assets
+xarray==2025.6.1
+shapely==2.1.2
+tifffile                     # not in the old freeze; fallback reader when rasterio is unavailable
+pyshp                        # `import shapefile`
+
+# ---- literature retrieval and PDF ----
+beautifulsoup4==4.13.4       # only html.parser is used; lxml not required
+pdfplumber==0.5.13
+pdfminer.six==20181108       # pdfplumber 0.5.x needs this old pdfminer; pin together

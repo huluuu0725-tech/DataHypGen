@@ -1,0 +1,50 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global fire events (2003-2016)",
+  "data_description": {
+    "dataset_name": "Global Fire Atlas: Day of Burn (2003-2016)",
+    "spatial_coverage": {
+      "region_name": "Global burned areas",
+      "coverage": "Global 500 m raster layers recording the day of year on which each burned pixel was detected from 2003 through 2016."
+    },
+    "temporal_coverage": "Annual images from 2003 through 2016; each image encodes within-year burn timing as day-of-year pixel values.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "500 meters (derived from MODIS)",
+    "coordinate_system": "WGS84",
+    "temporal_unit": "Annual image with day-of-year pixel values",
+    "data_type_numeric": "Integer values representing day of year when burning occurred",
+    "raster_content": {
+      "bands": [
+        {"name": "b1", "description": "Day of burn - Julian day (1-365/366) when the pixel was detected as burned"}
+      ],
+      "gee_asset_id": "projects/sat-io/open-datasets/global-fire-atlas/day_of_burn",
+      "thematic_group": "Fire Monitoring and Analysis"
+    },
+    "important_note": "The collection is annual, not a daily image series. Daily timing is encoded in each pixel as its day of burn within that year. This asset contains only the Day of Burn layer; fire direction, fire line, fire speed, ignition, and perimeter products are separate assets.",
+    "analytical_capabilities": [
+      "Within-year burn timing mapping",
+      "Annual burned-area timing comparison",
+      "Seasonal fire pattern analysis",
+      "Regional fire occurrence frequency",
+      "Fire progression timing analysis from day-of-year gradients",
+      "Combination with climate data for fire risk assessment",
+      "Interannual burned-area timing analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Day of year (Julian day, 1-365 or 1-366 for leap years) when burning was detected at each pixel location.",
+      "runtime_hint": "Select the annual image first, then interpret `b1` as day of year. Do not treat collection images as daily observations. Separate Global Fire Atlas assets are required for direction, line length, speed, ignition, or perimeter variables."
+    },
+    "data_source": "Global Fire Atlas by Niels Andela via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/gfa/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/global-fire-atlas/day_of_burn",
+      "type": "ImageCollection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:fire-monitoring-analysis/GLOBAL-FIRE-ATLAS",
+      "docs": "https://gee-community-catalog.org/projects/gfa/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/gfa.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/global-fire-atlas/day_of_burn"
+}

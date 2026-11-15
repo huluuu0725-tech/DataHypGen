@@ -1,0 +1,69 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "United States wildfire risk assessment",
+  "data_description": {
+    "dataset_name": "Wildfire Risk to Communities (WRC)",
+    "spatial_coverage": {
+      "region_name": "United States wildfire risk assessment",
+      "coverage": "Nationwide coverage of wildfire risk potential across the entire United States."
+    },
+    "temporal_coverage": "Static snapshot representing current wildfire risk conditions based on multiple data sources.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "270m",
+    "coordinate_system": "",
+    "temporal_unit": "Static snapshot",
+    "records": "Multi-band risk assessment layers",
+    "data_type_numeric": "Continuous risk index values",
+    "total_samples": "270-meter pixels covering United States",
+    "bands": [
+      {
+        "name": "wildfire_likelihood",
+        "description": "Probability of wildfire occurrence",
+        "units": "risk index",
+        "gsd": 270
+      },
+      {
+        "name": "wildfire_intensity",
+        "description": "Expected fire intensity when wildfire occurs",
+        "units": "risk index",
+        "gsd": 270
+      },
+      {
+        "name": "susceptibility",
+        "description": "Landscape susceptibility to wildfire",
+        "units": "risk index",
+        "gsd": 270
+      },
+      {
+        "name": "exposure",
+        "description": "Community exposure to wildfire hazard",
+        "units": "risk index",
+        "gsd": 270
+      }
+    ],
+    "important_note": "Created by USDA Forest Service to provide a nationwide view of wildfire risk potential. The dataset integrates vegetation data, fuel models, historical fire data, and population data to assess multiple components of wildfire risk.",
+    "analytical_capabilities": [
+      "Wildfire risk hotspot identification",
+      "Community vulnerability assessment",
+      "Multi-component risk analysis (likelihood, intensity, susceptibility, exposure)",
+      "Regional fire hazard comparison",
+      "Fire management priority area identification"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Wildfire risk indices (normalized scales)",
+      "runtime_hint": "Combine multiple risk bands (likelihood, intensity, susceptibility, exposure) for comprehensive wildfire risk assessment."
+    },
+    "data_source": "USDA Forest Service via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/wrc/",
+    "gee_asset": {
+      "id": "projects/climate-engine-pro/assets/ce-wrc-static",
+      "type": "ImageCollection",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:fire-monitoring-analysis/WILDFIRE-RISK-COMMUNITIES",
+      "docs": "https://gee-community-catalog.org/projects/wrc/",
+      "license": "Creative Commons Zero v1.0 Universal",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/wrc.png"
+    }
+  },
+  "data_path": "GEE:projects/climate-engine-pro/assets/ce-wrc-static"
+}

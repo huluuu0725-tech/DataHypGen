@@ -1,0 +1,69 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global large flood events (1985-2016)",
+  "data_description": {
+    "dataset_name": "Global large flood events - Dartmouth Flood Observatory (1985-2016)",
+    "spatial_coverage": {
+      "region_name": "Global large flood events",
+      "coverage": "Global point-event catalog of large flood events from 1985 to 2016 identified by the Dartmouth Flood Observatory."
+    },
+    "temporal_coverage": "Flood event records spanning 1985-2016; individual features carry event-level date fields.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "spatial_resolution": "",
+    "coordinate_system": "",
+    "temporal_unit": "Per-event timestamp fields in feature attributes",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "vector_content": {
+      "geometry_type": "Point/Polygon",
+      "property_keys": [
+        "BEGAN",
+        "ENDED",
+        "DURATION",
+        "MAINCAUSE",
+        "MAINCAUSEF",
+        "SEVERITY",
+        "DEAD",
+        "DISPLACED",
+        "COUNTRY"
+      ],
+      "property_semantics_hint": {
+        "BEGAN": "Start date of the flood event.",
+        "ENDED": "End date of the flood event.",
+        "DURATION": "Duration of the flood event in days.",
+        "MAINCAUSE": "Original main cause classification of the flood.",
+        "MAINCAUSEF": "Simplified main cause classification for mapping purposes.",
+        "SEVERITY": "Severity rating of the flood event.",
+        "DEAD": "Number of fatalities reported.",
+        "DISPLACED": "Number of people displaced.",
+        "COUNTRY": "Country where the flood occurred."
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/events/large_flood_events_1985-2016",
+      "thematic_group": "Global Events Layers"
+    },
+    "important_note": "Description fields below were populated from the Dartmouth Flood Observatory catalog. The dataset includes flood type, cause, severity, and impact metrics. Some event types have been merged under MAINCAUSEF for mapping purposes.",
+    "analytical_capabilities": [
+      "Flood event clustering and spatial analysis",
+      "Temporal flood frequency analysis",
+      "Flood cause and severity classification",
+      "Impact assessment (fatalities and displacement)",
+      "Cross-country flood pattern comparison",
+      "Seasonal and long-term flood trend analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Event-level categorical attributes plus count fields such as DEAD and DISPLACED.",
+      "runtime_hint": "Use event date fields, severity descriptors, and impact count fields directly from the feature table; inspect MAINCAUSE for detailed classification."
+    },
+    "data_source": "Dartmouth Flood Observatory via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/flood/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/events/large_flood_events_1985-2016",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-events-layers/GLOBAL-LARGE-FLOOD-EVENTS",
+      "docs": "https://gee-community-catalog.org/projects/flood/",
+      "license": "custom",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/flood.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/events/large_flood_events_1985-2016"
+}

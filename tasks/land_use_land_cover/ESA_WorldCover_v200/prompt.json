@@ -1,0 +1,66 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "ESA WorldCover 10m v200",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global land surface coverage at 10m resolution derived from Sentinel-1 and Sentinel-2 satellite imagery for the year 2021."
+    },
+    "temporal_coverage": "2021 annual land cover classification",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "10m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Annual snapshot",
+    "records": "ImageCollection with global 10m land cover tiles",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 255}",
+    "total_samples": "Multiple tiles covering global land surface",
+    "raster_content": {
+      "band_count": 1,
+      "band_names": [
+        "Map"
+      ],
+      "band_data_types": {
+        "Map": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 255,
+          "description": "Land cover class: 10=Tree cover, 20=Shrubland, 30=Grassland, 40=Cropland, 50=Built-up, 60=Bare/sparse vegetation, 70=Snow and ice, 80=Permanent water bodies, 90=Herbaceous wetland, 95=Mangroves, 100=Moss and lichen"
+        }
+      },
+      "gee_asset_id": "ESA/WorldCover/v200",
+      "thematic_group": "Global Land Use and Land Cover",
+      "band_semantics": {
+        "Map": "ESA WorldCover land cover classification map with 11 classes at 10m spatial resolution based on Sentinel-1 and Sentinel-2 data for 2021."
+      }
+    },
+    "important_note": "ESA WorldCover provides high-resolution (10m) global land cover mapping with 11 thematic classes. The product achieves an overall accuracy of 74.4% globally based on validation data.",
+    "analytical_capabilities": [
+      "High-resolution global land cover mapping and classification",
+      "Urban expansion and built-up area analysis",
+      "Agricultural land extent and cropland monitoring",
+      "Forest and tree cover assessment",
+      "Wetland and water body identification",
+      "Land use change detection when combined with multi-temporal data",
+      "Habitat mapping and biodiversity assessment",
+      "Climate change impact studies on land surface"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Categorical land cover class codes (10-100), not continuous physical values.",
+      "runtime_hint": "Use the 'Map' band to access land cover classes; filter by date to select 2021 coverage."
+    },
+    "data_source": "ESA WorldCover Consortium via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200",
+    "gee_asset": {
+      "id": "ESA/WorldCover/v200",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200",
+      "docs": "https://esa-worldcover.org/",
+      "license": "Creative Commons Attribution 4.0 International",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/ESA/ESA_WorldCover_v200_sample.png"
+    }
+  },
+  "data_path": "GEE:ESA/WorldCover/v200"
+}

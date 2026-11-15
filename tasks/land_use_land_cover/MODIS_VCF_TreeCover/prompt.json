@@ -1,0 +1,84 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global",
+  "data_description": {
+    "dataset_name": "MODIS Vegetation Continuous Fields (VCF) - Tree Cover",
+    "spatial_coverage": {
+      "region_name": "Global",
+      "coverage": "Global terrestrial surface coverage at 250m resolution providing continuous estimates of tree cover, non-tree vegetation, and bare ground percentages."
+    },
+    "temporal_coverage": "2000-2022 annual vegetation continuous fields",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "250m",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Annual",
+    "records": "ImageCollection with annual global vegetation cover percentage estimates from 2000 to 2022",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"int\", \"min\": 0, \"max\": 100}",
+    "total_samples": "23 annual images (2000-2022)",
+    "raster_content": {
+      "band_count": 3,
+      "band_names": [
+        "Percent_Tree_Cover",
+        "Percent_NonTree_Vegetation",
+        "Percent_NonVegetated"
+      ],
+      "band_data_types": {
+        "Percent_Tree_Cover": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "description": "Percentage of pixel covered by trees (vegetation >5m height)"
+        },
+        "Percent_NonTree_Vegetation": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "description": "Percentage of pixel covered by herbaceous vegetation and shrubs"
+        },
+        "Percent_NonVegetated": {
+          "type": "PixelType",
+          "precision": "int",
+          "min": 0,
+          "max": 100,
+          "description": "Percentage of pixel that is bare ground, water, or built-up"
+        }
+      },
+      "gee_asset_id": "MODIS/061/MOD44B",
+      "thematic_group": "Global Vegetation Cover",
+      "band_semantics": {
+        "Percent_Tree_Cover": "Continuous percentage estimate (0-100) of tree canopy cover per pixel, where trees are defined as vegetation taller than 5 meters.",
+        "Percent_NonTree_Vegetation": "Continuous percentage estimate (0-100) of non-tree vegetation including herbaceous plants and shrubs.",
+        "Percent_NonVegetated": "Continuous percentage estimate (0-100) of bare ground, water bodies, snow/ice, and built-up areas."
+      }
+    },
+    "important_note": "MODIS VCF provides continuous percentage estimates rather than discrete classes, enabling quantitative analysis of vegetation cover gradients and subtle changes over time. The three bands (tree, non-tree, bare) sum to approximately 100% per pixel.",
+    "analytical_capabilities": [
+      "Continuous tree cover percentage mapping and monitoring",
+      "Forest degradation and regrowth gradient analysis",
+      "Savanna and woodland ecosystem characterization",
+      "Agricultural expansion quantification via tree cover loss",
+      "Urban-rural vegetation gradient studies",
+      "Biomass estimation and carbon stock assessment",
+      "Habitat suitability modeling based on vegetation density",
+      "Climate-vegetation interaction analysis"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Percentage (0-100) of pixel area covered by each vegetation type.",
+      "runtime_hint": "Use continuous percentage values for gradient analysis; filter by year to track temporal trends in tree cover change."
+    },
+    "data_source": "NASA MODIS Terra satellite via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD44B",
+    "gee_asset": {
+      "id": "MODIS/061/MOD44B",
+      "type": "ImageCollection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD44B",
+      "docs": "https://lpdaac.usgs.gov/products/mod44bv061/",
+      "license": "Public Domain",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_061_MOD44B_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD44B"
+}

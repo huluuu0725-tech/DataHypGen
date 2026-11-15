@@ -1,0 +1,44 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land areas",
+  "data_description": {
+    "dataset_name": "MODIS Thermal Anomalies and Fire Daily Global 1km",
+    "spatial_coverage": {
+      "region_name": "Global active fire and thermal anomaly detection coverage",
+      "coverage": "Global daily thermal anomalies and active fire locations from MODIS Terra and Aqua satellites at 1km resolution."
+    },
+    "temporal_coverage": "Daily time series from November 2000 (Terra) and July 2002 (Aqua) to present.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "temporal_unit": "Daily composite",
+    "raster_content": {
+      "gee_asset_id": "MODIS/061/MOD14A1 and MODIS/061/MYD14A1",
+      "thematic_group": "Weather and Climate Layers"
+    },
+    "important_note": "This description is grounded in the local community-catalog index and cached project documentation. Runtime metadata such as exact band schema, spatial resolution, coordinate system, and collection length should be verified during task execution before quantitative analysis.",
+    "analytical_capabilities": [
+      "Active fire detection and fire spread monitoring",
+      "Biomass burning and wildfire intensity assessment",
+      "Climate extreme events (drought, heatwave) and fire risk correlation",
+      "Fire-vegetation-climate feedback analysis",
+      "Fire radiative power and energy release quantification",
+      "Burned area mapping and post-fire recovery studies",
+      "Smoke emissions and air quality impact assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Fire radiative power (MW) for detected thermal anomalies; includes FireMask confidence levels (low/nominal/high) and MaxFRP (maximum fire radiative power); confirm runtime band units and detection thresholds before numeric comparison.",
+      "runtime_hint": "Product provides daily fire detections with confidence flags; fire pixels indicate active combustion or high-temperature thermal anomalies; quality flags indicate cloud cover and other retrieval conditions."
+    },
+    "data_source": "NASA MODIS Collection 6.1 Thermal Anomalies and Fire Product via Google Earth Engine",
+    "reference": "https://doi.org/10.5067/MODIS/MOD14A1.061",
+    "gee_asset": {
+      "id": "MODIS/061/MOD14A1",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD14A1",
+      "docs": "https://lpdaac.usgs.gov/products/mod14a1v061/",
+      "license": "Public Domain",
+      "thumbnail": "https://developers.google.com/earth-engine/datasets/images/MODIS/MODIS_061_MOD14A1_sample.png"
+    }
+  },
+  "data_path": "GEE:MODIS/061/MOD14A1"
+}

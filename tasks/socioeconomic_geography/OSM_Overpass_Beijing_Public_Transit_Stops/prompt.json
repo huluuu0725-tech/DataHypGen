@@ -1,0 +1,18 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Beijing metropolitan region",
+  "domain": "socioeconomic_geography",
+  "data_description": {
+    "dataset_name": "OpenStreetMap Public Transit Stops in Beijing",
+    "spatial_coverage": {"region_name": "Beijing metropolitan region", "coverage": "OSM bus stops and public-transport platforms within the declared Beijing bounding box."},
+    "temporal_coverage": "Current OpenStreetMap database state at query time.",
+    "data_type": "FeatureCollection",
+    "data_format": "Overpass JSON",
+    "coordinate_system": "WGS84",
+    "important_note": "The result represents mapped transit stops and platforms, not complete ridership or timetable data. OSM completeness and tagging consistency vary by district.",
+    "analytical_capabilities": ["Map public-transit stop coverage", "Measure stop density and spacing", "Identify transit accessibility gaps when combined with population and road-network data", "Compare transit provision across subregions"],
+    "data_source": "OpenStreetMap Overpass API",
+    "source_metadata": {"source": "OSM_OVERPASS", "id": "beijing_public_transit_stops", "endpoint": "https://overpass-api.de/api/interpreter", "overpass_ql": "[out:json][timeout:25];(nwr[\"highway\"=\"bus_stop\"](39.4,115.7,41.1,117.4);nwr[\"public_transport\"=\"platform\"](39.4,115.7,41.1,117.4););out center 500;", "provider": "OpenStreetMap contributors", "license": "ODbL 1.0", "thematic_group": "Public transport infrastructure"}
+  },
+  "data_path": "OSM_OVERPASS:beijing_public_transit_stops"
+}

@@ -1,0 +1,97 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global reported landslide events",
+  "data_description": {
+    "dataset_name": "Global Landslide Catalog - NASA Goddard (1970-2019)",
+    "spatial_coverage": {
+      "region_name": "Global reported landslide events",
+      "coverage": "Global point-event catalog of reported rainfall-triggered landslides."
+    },
+    "temporal_coverage": "Reported landslide-event records spanning 1970-2019 (from the dataset title); individual features also carry event-level date fields such as `event_date` and `created_da`.",
+    "data_type": "FeatureCollection",
+    "data_format": "Google Earth Engine FeatureCollection asset",
+    "spatial_resolution": "",
+    "coordinate_system": "",
+    "temporal_unit": "Per-event timestamp fields in feature attributes",
+    "records": "11033 features",
+    "data_type_numeric": "Attribute schema is mixed; inspect property fields before numeric aggregation",
+    "total_samples": 11033,
+    "vector_content": {
+      "geometry_type": "Point",
+      "property_keys": [
+        "admin_divi",
+        "country_co",
+        "country_na",
+        "created_da",
+        "event_date",
+        "event_desc",
+        "event_id",
+        "event_impo",
+        "event_time",
+        "event_titl",
+        "fatality_c",
+        "gazeteer_c",
+        "landslid_1",
+        "landslid_2",
+        "landslid_3",
+        "landslide_",
+        "last_edite",
+        "latitude",
+        "location_a",
+        "location_d"
+      ],
+      "sample_properties": {
+        "admin_divi": "",
+        "country_co": "",
+        "country_na": "",
+        "created_da": "11/20/2017 03:17:00 PM",
+        "event_date": "07/03/2017 06:04:00 PM",
+        "event_desc": "A couple died after being buried in a landslide.   Bharat Rai, 58, of Jimigaon in Kulung-6 and his 54-year-old wife Rammani died after the house they were living in was buried in the landslides triggered by heavy rainfall last night.",
+        "event_id": 9955,
+        "event_impo": "",
+        "event_time": "22:00",
+        "event_titl": "Landslide in Bhojpur",
+        "fatality_c": 2,
+        "gazeteer_c": "",
+        "landslid_1": "",
+        "landslid_2": "medium",
+        "landslid_3": ""
+      },
+      "gee_asset_id": "projects/sat-io/open-datasets/events/global_landslide_1970-2019",
+      "thematic_group": "Global Events Layers",
+      "property_semantics_hint": {
+        "event_date": "Reported date and time of the landslide event.",
+        "event_titl": "Short event title/headline in the catalog.",
+        "event_desc": "Free-text narrative description of the reported landslide event.",
+        "fatality_c": "Fatality count reported for the event when available.",
+        "landslid_2": "Sampled categorical landslide-size or severity descriptor from the source table.",
+        "country_na": "Country name field when populated in the catalog.",
+        "location_d": "Location description field when populated in the catalog.",
+        "source_nam": "Source publication or reporting outlet name when populated."
+      }
+    },
+    "important_note": "Description fields below were populated from an actual Earth Engine FeatureCollection probe. The prompt preserves the sampled event attributes and treats the catalog as an event table rather than a continuous raster or regular time series.",
+    "analytical_capabilities": [
+      "Landslide event clustering",
+      "Temporal event frequency analysis",
+      "Property-based event type comparison",
+      "Combination with slope or rainfall layers",
+      "Global landslide reporting pattern discovery"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Event-level categorical/text attributes plus count fields such as `fatality_c`.",
+      "runtime_hint": "Use `event_date`, event severity descriptors, and count-like fields directly from the feature table; do not coerce narrative fields into numeric measures."
+    },
+    "data_source": "NASA Goddard Space Flight Center via Google Earth Engine Community Catalog",
+    "reference": "https://gee-community-catalog.org/projects/landslide/",
+    "gee_asset": {
+      "id": "projects/sat-io/open-datasets/events/global_landslide_1970-2019",
+      "type": "table",
+      "sample_code": "https://code.earthengine.google.com/?scriptPath=users/sat-io/awesome-gee-catalog-examples:global-events-layers/GLOBAL-LANDSLIDE-CATALOG",
+      "docs": "https://gee-community-catalog.org/projects/landslide/",
+      "license": "custom",
+      "thumbnail": "https://gee-community-catalog.org/thumbnails/landslide.png"
+    }
+  },
+  "data_path": "GEE:projects/sat-io/open-datasets/events/global_landslide_1970-2019"
+}

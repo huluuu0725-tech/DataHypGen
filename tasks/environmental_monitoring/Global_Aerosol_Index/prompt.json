@@ -1,0 +1,52 @@
+{
+  "system": "You are an intelligent geography pattern discovery agent that autonomously explores geographic data to identify novel patterns and regularities.",
+  "region_name": "Global land and ocean areas",
+  "data_description": {
+    "dataset_name": "Sentinel-5P Near Real-Time UV Aerosol Index",
+    "spatial_coverage": {
+      "region_name": "Global aerosol monitoring coverage",
+      "coverage": "Global near real-time UV Aerosol Index from Sentinel-5P TROPOMI sensor with daily coverage. The Earth Engine collection provides global absorbing aerosol index measurements."
+    },
+    "temporal_coverage": "Daily aerosol index measurements from 2018-07-10 to present in the Earth Engine asset.",
+    "data_type": "ImageCollection",
+    "data_format": "Google Earth Engine ImageCollection asset",
+    "spatial_resolution": "3.5 x 7 km (~5.5 km)",
+    "coordinate_system": "EPSG:4326",
+    "temporal_unit": "Daily image",
+    "records": "Multiple daily images per collection",
+    "data_type_numeric": "{\"type\": \"PixelType\", \"precision\": \"float\"}",
+    "total_samples": "Continuous daily acquisition",
+    "raster_content": {
+      "gee_asset_id": "COPERNICUS/S5P/NRTI/L3_AER_AI",
+      "thematic_group": "atmosphere",
+      "band_semantics": {
+        "absorbing_aerosol_index": "UV Aerosol Index at 354/388 nm wavelength pair (unitless)",
+        "sensor_altitude": "Altitude of the satellite sensor (m)",
+        "sensor_zenith_angle": "Zenith angle of the sensor (degrees)"
+      }
+    },
+    "important_note": "The UV Aerosol Index (UVAI or AAI) is based on wavelength-dependent changes in Rayleigh scattering. Positive AAI indicates presence of UV-absorbing aerosols like dust and smoke. It is useful for tracking episodic aerosol plumes from dust outbreaks, volcanic ash, and biomass burning. Unlike aerosol optical thickness, AAI can be calculated in presence of clouds, enabling daily global coverage.",
+    "analytical_capabilities": [
+      "Dust storm tracking and source identification",
+      "Biomass burning smoke plume monitoring",
+      "Volcanic ash cloud tracking for aviation safety",
+      "Long-range aerosol transport analysis",
+      "Air quality impact assessment"
+    ],
+    "unit_of_measurement": {
+      "primary_measurement": "Absorbing Aerosol Index (unitless). Positive values indicate UV-absorbing aerosols. Higher values represent stronger aerosol absorption.",
+      "runtime_hint": "Filter by validity flags (>50) for reliable measurements. The index works in cloudy conditions unlike optical thickness measurements."
+    },
+    "data_source": "European Space Agency Sentinel-5P TROPOMI mission via Google Earth Engine",
+    "reference": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI",
+    "gee_asset": {
+      "id": "COPERNICUS/S5P/NRTI/L3_AER_AI",
+      "type": "image_collection",
+      "sample_code": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI",
+      "docs": "https://sentinel.esa.int/web/sentinel/missions/sentinel-5p",
+      "license": "Copernicus Sentinel data terms",
+      "thumbnail": ""
+    }
+  },
+  "data_path": "GEE:COPERNICUS/S5P/NRTI/L3_AER_AI"
+}
